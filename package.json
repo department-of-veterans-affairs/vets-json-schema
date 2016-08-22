@@ -5,6 +5,9 @@
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
   },
+  "scripts": {
+    "build": "node src/start"
+  },
   "devDependencies": {
     "ajv": "^4.5.0",
     "babel": "^6.5.2",
