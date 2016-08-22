@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import schema from '../../src/edu-benefits/schema';
+import schema from '../../dist/edu-benefits-schema.json';
 import Ajv from 'ajv';
 
 describe('education benefits json schema', () => {
