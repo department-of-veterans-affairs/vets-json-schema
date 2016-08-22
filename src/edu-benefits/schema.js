@@ -203,7 +203,8 @@ module.exports = {
           type: 'string'
         },
         routingNumber: {
-          type: 'string'
+          type: 'string',
+          pattern: '^\\d{9}$'
         },
         accountNumber: {
           type: 'string'

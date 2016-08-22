@@ -110,6 +110,11 @@ describe('education benefits json schema', () => {
       valid: ['checking', 'savings'],
       invalid: ['bitcoin']
     });
+
+    testValidAndInvalid('bankAccount.routingNumber', {
+      valid: ['123456789'],
+      invalid: ['12345678']
+    });
   });
 
   context('serviceAcademyGraduationYear validations', () => {
