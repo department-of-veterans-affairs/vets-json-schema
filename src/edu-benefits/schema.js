@@ -214,6 +214,37 @@ module.exports = {
     previouslyFiledClaimWithVa: {
       type: 'boolean'
     },
+    previousVaClaims: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+            'enum': [
+              'comensation',
+              'pension',
+              'vocationalRehab',
+              'homeLoan',
+              'insurance',
+              'educationBenefits.chapter30',
+              'educationBenefits.chapter32',
+              'educationBenefits.chapter33',
+              'educationBenefits.chapter34',
+              'educationBenefits.chapter35',
+              'educationBenefits.chapter1606',
+              'educationBenefits.chapter1607',
+              'educationBenefits.ncs',
+              'educationBenefits.useOfTransferredBenefits'
+            ]
+          },
+          fileNumber: {
+            type: 'string'
+          }
+        },
+        required: ['name']
+      }
+    },
     previouslyAppliedWithSomeoneElsesService: {
       type: 'boolean'
     },
