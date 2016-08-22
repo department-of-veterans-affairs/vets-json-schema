@@ -1,2 +1,2 @@
 require('babel-register');
-require('./edu-benefits/schema');
+require('./generate-schemas');
