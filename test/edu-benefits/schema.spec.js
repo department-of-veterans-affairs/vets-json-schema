@@ -121,11 +121,21 @@ describe('education benefits json schema', () => {
 
   context('dateRange validations', () => {
     testValidAndInvalid('activeDutyRepayingPeriod', {
-      valid: [validDateRange],
+      valid: [
+        validDateRange,
+        {
+          from: '2000-01-01',
+          to: 'present'
+        }
+      ],
       invalid: [
         {
           from: 'foo',
           to: 'bar'
+        },
+        {
+          from: '2000-01-01',
+          to: 'future'
         },
         {
           from: '2000-01-01'

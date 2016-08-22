@@ -79,7 +79,15 @@ module.exports = {
           $ref: '#/definitions/date'
         },
         to: {
-          $ref: '#/definitions/date'
+          oneOf: [
+            {
+              $ref: '#/definitions/date'
+            },
+            {
+              type: 'string',
+              enum: ['present']
+            }
+          ]
         }
       },
       required: ['from', 'to']
