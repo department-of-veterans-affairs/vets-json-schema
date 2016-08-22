@@ -9,7 +9,9 @@
     "ajv": "^4.5.0",
     "babel": "^6.5.2",
     "babel-preset-es2015": "^6.13.2",
-    "lodash": "^4.15.0"
+    "chai": "^3.5.0",
+    "lodash": "^4.15.0",
+    "mocha": "^3.0.2"
   },
   "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme"
 }
