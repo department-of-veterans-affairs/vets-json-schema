@@ -1,6 +1,6 @@
 // Relocate options-for-select.
-const options = require('../../common/utils/options-for-select');
-const _ = require('lodash');
+import options from '../common/options-for-select';
+import _ from 'lodash';
 
 const countries = options.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(options.states).filter(x => _.includes(countries, x));
