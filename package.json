@@ -6,9 +6,9 @@
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
   },
   "scripts": {
-    "build": "node src/start",
+    "build": "node src/start build",
     "test": "mocha 'test/**/*.spec.js'",
-    "watch": "node src/watch"
+    "watch": "node src/start watch"
   },
   "devDependencies": {
     "ajv": "^4.5.0",
