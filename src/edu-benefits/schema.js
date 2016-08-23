@@ -1,10 +1,9 @@
-// Relocate options-for-select.
-import options from '../common/options-for-select';
+import constants from '../common/constants';
 import _ from 'lodash';
 
-const countries = options.countries.map(object => object.value);
-const countriesWithAnyState = Object.keys(options.states).filter(x => _.includes(countries, x));
-const countryStateProperites = _.map(options.states, (value, key) => ({
+const countries = constants.countries.map(object => object.value);
+const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+const countryStateProperites = _.map(constants.states, (value, key) => ({
   properties: {
     country: {
       'enum': [key]
@@ -112,7 +111,7 @@ module.exports = {
           maxLength: 30
         },
         suffix: {
-          'enum': options.suffixes
+          'enum': constants.suffixes
         },
       },
       required: [
