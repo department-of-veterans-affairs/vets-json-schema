@@ -1,0 +1,22 @@
+{
+  "name": "vets-json-schema",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
+  },
+  "scripts": {
+    "build": "node src/start",
+    "test": "mocha 'test/**/*.spec.js'"
+  },
+  "devDependencies": {
+    "ajv": "^4.5.0",
+    "babel": "^6.5.2",
+    "babel-preset-es2015": "^6.13.2",
+    "chai": "^3.5.0",
+    "jsonfile": "^2.3.1",
+    "lodash": "^4.15.0",
+    "mocha": "^3.0.2"
+  },
+  "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme"
+}
