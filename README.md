@@ -1,4 +1,4 @@
-# vets-json-schema
+# vets-json-schema [![Build Status](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema.svg?branch=master)](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema)
 
 ## I want to...
 
