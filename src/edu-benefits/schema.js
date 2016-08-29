@@ -183,6 +183,9 @@ module.exports = {
         fullName: {
           $ref: '#/definitions/fullName'
         },
+        sameAddress: {
+          type: 'boolean'
+        },
         address: {
           $ref: '#/definitions/address'
         },
