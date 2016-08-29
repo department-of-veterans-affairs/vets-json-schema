@@ -2,7 +2,11 @@ import watch from 'node-watch';
 import { execSync } from 'child_process';
 
 const build = () => {
-  execSync('npm run build', { stdio:[0,1,2] });
+  try {
+    execSync('npm run build', { stdio:[0,1,2] });
+  } catch (e) {
+    console.log(e.message);
+  }
 };
 
 build();
