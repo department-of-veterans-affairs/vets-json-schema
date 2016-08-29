@@ -230,11 +230,21 @@ describe('education benefits json schema', () => {
     });
   });
 
-  context('email validaiton', () => {
+  context('email validation', () => {
     testValidAndInvalid('email', {
       valid: [
         'foo@foo.com',
         'foo+1@foo.com'
+      ],
+      invalid: ['foo']
+    });
+  });
+
+  context('preferredContactMethod validation', () => {
+    testValidAndInvalid('preferredContactMethod', {
+      valid: [
+        'mail',
+        'email'
       ],
       invalid: ['foo']
     });

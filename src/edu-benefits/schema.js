@@ -179,6 +179,10 @@ module.exports = {
     mobile: {
       $ref: '#/definitions/phone'
     },
+    preferredContactMethod: {
+      type: 'string',
+      enum: ['mail', 'email', 'phone']
+    },
     emergencyContact: {
       type: 'object',
       properties: {
