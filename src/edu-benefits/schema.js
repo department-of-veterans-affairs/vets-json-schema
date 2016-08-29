@@ -144,7 +144,7 @@ module.exports = {
     },
     benefitsRelinquished: {
       type: 'string',
-      'enum': ['chapter33', 'chapter30', 'chapter1606', 'chapter32', 'unknown']
+      'enum': ['chapter30', 'chapter1606', 'chapter1607', 'unknown']
     },
     fullName: {
       $ref: '#/definitions/fullName'
