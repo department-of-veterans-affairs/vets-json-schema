@@ -359,21 +359,24 @@ module.exports = {
     toursOfDuty: {
       type: 'array',
       items: {
-        dateRange: {
-          $ref: '#/definitions/dateRange'
-        },
-        serviceBranch: {
-          type: 'string'
-          // TODO enum for this field?
-        },
-        serviceStatus: {
-          type: 'string'
-        },
-        doNotApplyToBenefit: {
-          type: 'boolean'
-        },
-        involuntarilyCalledToDuty: {
-          type: 'boolean'
+        type: 'object',
+        properties: {
+          dateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          serviceBranch: {
+            type: 'string'
+            // TODO enum for this field?
+          },
+          serviceStatus: {
+            type: 'string'
+          },
+          doNotApplyToBenefit: {
+            type: 'boolean'
+          },
+          involuntarilyCalledToDuty: {
+            type: 'boolean'
+          }
         },
         required: ['dateRange', 'serviceBranch', 'serviceStatus', 'involuntarilyCalledToDuty']
       }

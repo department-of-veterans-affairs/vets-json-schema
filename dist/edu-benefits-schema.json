@@ -526,20 +526,23 @@
     "toursOfDuty": {
       "type": "array",
       "items": {
-        "dateRange": {
-          "$ref": "#/definitions/dateRange"
-        },
-        "serviceBranch": {
-          "type": "string"
-        },
-        "serviceStatus": {
-          "type": "string"
-        },
-        "doNotApplyToBenefit": {
-          "type": "boolean"
-        },
-        "involuntarilyCalledToDuty": {
-          "type": "boolean"
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "serviceBranch": {
+            "type": "string"
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "doNotApplyToBenefit": {
+            "type": "boolean"
+          },
+          "involuntarilyCalledToDuty": {
+            "type": "boolean"
+          }
         },
         "required": [
           "dateRange",

@@ -164,11 +164,19 @@ describe('education benefits json schema', () => {
         serviceStatus: 'active',
         involuntarilyCalledToDuty: true
       }]],
-      invalid: [[{
-        serviceBranch: 'navy',
-        serviceStatus: 'active',
-        involuntarilyCalledToDuty: true
-      }]],
+      invalid: [
+        [{
+          serviceBranch: 'navy',
+          serviceStatus: 'active',
+          involuntarilyCalledToDuty: true
+        }],
+        [{
+          dateRange: validDateRange,
+          serviceBranch: 1,
+          serviceStatus: 'active',
+          involuntarilyCalledToDuty: true
+        }]
+      ],
     });
   });
 
