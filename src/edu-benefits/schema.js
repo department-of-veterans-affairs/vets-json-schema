@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 const countryStateProperites = _.map(constants.states, (value, key) => ({
   properties: {
     country: {
@@ -144,7 +145,7 @@ module.exports = {
     },
     benefitsRelinquished: {
       type: 'string',
-      'enum': ['chapter30', 'chapter1606', 'chapter1607', 'unknown']
+      'enum': ['chapter1607', 'unknown', ..._.without(benefits, 'chapter33', 'chapter32')]
     },
     fullName: {
       $ref: '#/definitions/fullName'
@@ -375,7 +376,7 @@ module.exports = {
             type: 'array',
             items: {
               type: 'string',
-              'enum': ['chapter33', 'chapter30', 'chapter1606', 'chapter32']
+              'enum': benefits
             }
           },
           involuntarilyCalledToDuty: {

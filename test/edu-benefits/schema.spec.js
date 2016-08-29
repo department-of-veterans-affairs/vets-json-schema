@@ -163,7 +163,7 @@ describe('education benefits json schema', () => {
         serviceBranch: 'navy',
         serviceStatus: 'active',
         involuntarilyCalledToDuty: true,
-        benefitsToApplyTo: ['chapter33', 'chapter30']
+        benefitsToApplyTo: ['chapter33', 'chapter30', 'chapter1606', 'chapter32']
       }]],
       invalid: [
         [{
@@ -268,7 +268,7 @@ describe('education benefits json schema', () => {
 
   context('benefitsRelinquished validation', () => {
     testValidAndInvalid('benefitsRelinquished', {
-      valid: ['chapter30', 'unknown'],
+      valid: ['chapter30', 'unknown', 'chapter1607', 'chapter1606'],
       invalid: ['chapter33']
     });
   });
