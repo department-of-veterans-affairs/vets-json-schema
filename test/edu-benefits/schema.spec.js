@@ -229,4 +229,11 @@ describe('education benefits json schema', () => {
       ]
     });
   });
+
+  context('benefitsRelinquished validation', () => {
+    testValidAndInvalid('benefitsRelinquished', {
+      valid: ['chapter30', 'unknown'],
+      invalid: ['chapter31']
+    });
+  });
 });

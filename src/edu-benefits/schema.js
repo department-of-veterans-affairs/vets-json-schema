@@ -131,18 +131,7 @@ module.exports = {
   additionalProperties: false,
   properties: {
     chapter33: {
-      type: 'object',
-      properties: {
-        enabled: {
-          type: 'boolean'
-        },
-        electionType: {
-          type: 'string'
-        },
-        electionDate: {
-          $ref: '#/definitions/date'
-        }
-      }
+      type: 'boolean'
     },
     chapter30: {
       type: 'boolean'
@@ -152,6 +141,10 @@ module.exports = {
     },
     chapter32: {
       type: 'boolean'
+    },
+    benefitsRelinquished: {
+      type: 'string',
+      'enum': ['chapter33', 'chapter30', 'chapter1606', 'chapter32', 'unknown']
     },
     fullName: {
       $ref: '#/definitions/fullName'
