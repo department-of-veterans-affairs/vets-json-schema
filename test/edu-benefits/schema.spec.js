@@ -42,8 +42,9 @@ describe('education benefits json schema', () => {
       });
     });
   };
+  const validDate = '2000-01-01';
   const validDateRange = {
-    from: '2000-01-01',
+    from: validDate,
     to: '2000-01-02'
   };
 
@@ -216,15 +217,18 @@ describe('education benefits json schema', () => {
     });
   });
 
-  context('rotc scholarship amounts validation', () => {
-    testValidAndInvalid('rotcScholarshipAmounts', {
-      valid: [[{
-        year: 1999,
-        amount: 99.99
-      }]],
-      invalid: [[{
-        year: 1999
-      }]]
+  context('senior rotc validation', () => {
+    testValidAndInvalid('seniorRotc', {
+      valid: [{
+        commissionDate: validDate,
+        rotcScholarshipAmounts: [{
+          year: 1999,
+          amount: 99.99
+        }]
+      }],
+      invalid: [{
+        commissionDate: validDate,
+      }]
     });
   });
 

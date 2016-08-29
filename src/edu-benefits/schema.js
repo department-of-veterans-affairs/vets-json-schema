@@ -321,6 +321,30 @@ module.exports = {
       type: 'integer',
       minimum: 1900
     },
+    seniorRotc: {
+      type: 'object',
+      properties: {
+        commissionDate: {
+          $ref: '#/definitions/date'
+        },
+        rotcScholarshipAmounts: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              year: {
+                type: 'integer'
+              },
+              amount: {
+                type: 'number'
+              },
+            },
+            required: ['year', 'amount']
+          }
+        }
+      },
+      required: ['commissionDate', 'rotcScholarshipAmounts']
+    },
     seniorRotcScholarshipProgram: {
       type: 'boolean'
     },
@@ -329,9 +353,6 @@ module.exports = {
     },
     seniorRotcScholarshipComments: {
       type: 'string'
-    },
-    dateOfRotcCommission: {
-      $ref: '#/definitions/date'
     },
     civilianBenefitsAssistance: {
       type: 'boolean'
@@ -438,21 +459,6 @@ module.exports = {
           },
         },
         required: ['name', 'months', 'postMilitaryJob']
-      }
-    },
-    rotcScholarshipAmounts: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          year: {
-            type: 'integer'
-          },
-          amount: {
-            type: 'number'
-          },
-        },
-        required: ['year', 'amount']
       }
     }
   }

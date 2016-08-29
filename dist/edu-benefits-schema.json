@@ -487,6 +487,36 @@
       "type": "integer",
       "minimum": 1900
     },
+    "seniorRotc": {
+      "type": "object",
+      "properties": {
+        "commissionDate": {
+          "$ref": "#/definitions/date"
+        },
+        "rotcScholarshipAmounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "year": {
+                "type": "integer"
+              },
+              "amount": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "year",
+              "amount"
+            ]
+          }
+        }
+      },
+      "required": [
+        "commissionDate",
+        "rotcScholarshipAmounts"
+      ]
+    },
     "seniorRotcScholarshipProgram": {
       "type": "boolean"
     },
@@ -495,9 +525,6 @@
     },
     "seniorRotcScholarshipComments": {
       "type": "string"
-    },
-    "dateOfRotcCommission": {
-      "$ref": "#/definitions/date"
     },
     "civilianBenefitsAssistance": {
       "type": "boolean"
@@ -620,24 +647,6 @@
           "name",
           "months",
           "postMilitaryJob"
-        ]
-      }
-    },
-    "rotcScholarshipAmounts": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "year": {
-            "type": "integer"
-          },
-          "amount": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "year",
-          "amount"
         ]
       }
     }
