@@ -281,18 +281,7 @@
   "additionalProperties": false,
   "properties": {
     "chapter33": {
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        },
-        "electionType": {
-          "type": "string"
-        },
-        "electionDate": {
-          "$ref": "#/definitions/date"
-        }
-      }
+      "type": "boolean"
     },
     "chapter30": {
       "type": "boolean"
@@ -302,6 +291,15 @@
     },
     "chapter32": {
       "type": "boolean"
+    },
+    "benefitsRelinquished": {
+      "type": "string",
+      "enum": [
+        "chapter30",
+        "chapter1606",
+        "chapter1607",
+        "unknown"
+      ]
     },
     "fullName": {
       "$ref": "#/definitions/fullName"
