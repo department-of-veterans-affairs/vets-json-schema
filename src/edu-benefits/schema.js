@@ -176,7 +176,7 @@ module.exports = {
     phone: {
       $ref: '#/definitions/phone'
     },
-    secondaryPhone: {
+    mobile: {
       $ref: '#/definitions/phone'
     },
     emergencyContact: {
