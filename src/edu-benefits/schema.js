@@ -128,6 +128,7 @@ module.exports = {
       pattern: '^[0-9]{9}$'
     },
   },
+  additionalProperties: false,
   properties: {
     chapter33: {
       type: 'object',
