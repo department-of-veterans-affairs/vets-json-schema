@@ -182,9 +182,6 @@ module.exports = {
         fullName: {
           $ref: '#/definitions/fullName'
         },
-        sameAddressAndPhone: {
-          type: 'boolean'
-        },
         address: {
           $ref: '#/definitions/address'
         },
