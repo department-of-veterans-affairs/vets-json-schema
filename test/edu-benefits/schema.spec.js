@@ -1,11 +1,13 @@
 import { expect } from 'chai';
 import schema from '../../dist/edu-benefits-schema.json';
 import Ajv from 'ajv';
+import _ from 'lodash';
 
 describe('education benefits json schema', () => {
-  let ajv;
+  let ajv = new Ajv();
+  let currentSchema;
   const validateSchema = (data) => {
-    return ajv.validate('edu-benefits-schema', data);
+    return ajv.validate(currentSchema, data);
   };
   const validators = {
     valid: (data) => {
@@ -48,9 +50,8 @@ describe('education benefits json schema', () => {
     to: '2000-01-02'
   };
 
-  before(() => {
-    ajv = new Ajv();
-    ajv.addSchema(schema, 'edu-benefits-schema');
+  beforeEach(() => {
+    currentSchema = schema;
   });
 
   context('ssn validations', () => {
@@ -82,7 +83,13 @@ describe('education benefits json schema', () => {
   });
 
   context('address validations', () => {
-    ['address', 'secondaryContact.address', 'schoolAddress'].forEach((parentKey) => {
+    beforeEach(() => {
+      let modifiedSchema = _.cloneDeep(schema);
+      delete(modifiedSchema.properties.school.required);
+      currentSchema = modifiedSchema;
+    });
+
+    ['address', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           street: '123 a rd',
@@ -297,6 +304,15 @@ describe('education benefits json schema', () => {
       invalid: [{
         married: true
       }]
+    });
+  });
+
+  context('school validation', () => {
+    testValidAndInvalid('school', {
+      valid: [{
+        name: 'harvard'
+      }],
+      invalid: [{}]
     });
   });
 });

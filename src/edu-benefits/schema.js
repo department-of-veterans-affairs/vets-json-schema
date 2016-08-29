@@ -250,20 +250,23 @@ module.exports = {
     alreadyReceivedInformationPamphlet: {
       type: 'boolean'
     },
-    schoolName: {
-      type: 'string'
-    },
-    schoolAddress: {
-      $ref: '#/definitions/address'
-    },
-    educationStartDate: {
-      $ref: '#/definitions/date'
-    },
-    educationalObjective: {
-      type: 'string'
-    },
-    courseOfStudy: {
-      type: 'string'
+    school: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string'
+        },
+        address: {
+          $ref: '#/definitions/address'
+        },
+        startDate: {
+          $ref: '#/definitions/date'
+        },
+        educationObjective: {
+          type: 'string'
+        }
+      },
+      required: ['name']
     },
     educationType: {
       type: 'object',
