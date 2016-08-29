@@ -183,7 +183,7 @@ module.exports = {
       type: 'string',
       enum: ['mail', 'email', 'phone']
     },
-    emergencyContact: {
+    secondaryContact: {
       type: 'object',
       properties: {
         fullName: {

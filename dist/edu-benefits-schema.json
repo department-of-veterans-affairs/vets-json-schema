@@ -340,7 +340,7 @@
         "phone"
       ]
     },
-    "emergencyContact": {
+    "secondaryContact": {
       "type": "object",
       "properties": {
         "fullName": {

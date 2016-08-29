@@ -60,7 +60,7 @@ describe('education benefits json schema', () => {
   });
 
   context('name validations', () => {
-    ['fullName', 'emergencyContact.fullName'].forEach((parentKey) => {
+    ['fullName', 'secondaryContact.fullName'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           first: 'john',
@@ -81,7 +81,7 @@ describe('education benefits json schema', () => {
   });
 
   context('address validations', () => {
-    ['address', 'emergencyContact.address', 'schoolAddress'].forEach((parentKey) => {
+    ['address', 'secondaryContact.address', 'schoolAddress'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           street: '123 a rd',
@@ -97,7 +97,7 @@ describe('education benefits json schema', () => {
   });
 
   context('phone # validations', () => {
-    ['phone', 'mobile', 'emergencyContact.phone'].forEach((parentKey) => {
+    ['phone', 'mobile', 'secondaryContact.phone'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: ['5555555555'],
         invalid: ['1a']
