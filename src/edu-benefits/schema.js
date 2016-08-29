@@ -384,29 +384,32 @@ module.exports = {
     postHighSchoolTrainings: {
       type: 'array',
       items: {
-        name: {
-          type: 'string'
-        },
-        city: {
-          type: 'string'
-        },
-        state: {
-          type: 'string'
-        },
-        dateRange: {
-          $ref: '#/definitions/dateRange'
-        },
-        hours: {
-          type: 'integer'
-        },
-        hoursType: {
-          type: 'string'
-        },
-        degreeReceived: {
-          type: 'string'
-        },
-        major: {
-          type: 'string'
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          },
+          city: {
+            type: 'string'
+          },
+          state: {
+            type: 'string'
+          },
+          dateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          hours: {
+            type: 'integer'
+          },
+          hoursType: {
+            type: 'string'
+          },
+          degreeReceived: {
+            type: 'string'
+          },
+          major: {
+            type: 'string'
+          },
         },
         required: ['name', 'dateRange', 'city']
       }
@@ -414,17 +417,20 @@ module.exports = {
     nonMilitaryJobs: {
       type: 'array',
       items: {
-        name: {
-          type: 'string'
-        },
-        months: {
-          type: 'integer'
-        },
-        licenseOrRating: {
-          type: 'string'
-        },
-        postMilitaryJob: {
-          type: 'boolean'
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          },
+          months: {
+            type: 'integer'
+          },
+          licenseOrRating: {
+            type: 'string'
+          },
+          postMilitaryJob: {
+            type: 'boolean'
+          },
         },
         required: ['name', 'months', 'postMilitaryJob']
       }
@@ -432,11 +438,14 @@ module.exports = {
     rotcScholarshipAmounts: {
       type: 'array',
       items: {
-        year: {
-          type: 'integer'
-        },
-        amount: {
-          type: 'number'
+        type: 'object',
+        properties: {
+          year: {
+            type: 'integer'
+          },
+          amount: {
+            type: 'number'
+          },
         },
         required: ['year', 'amount']
       }
