@@ -291,19 +291,24 @@ module.exports = {
       }
     },
     currentlyActiveDuty: {
-      type: 'boolean'
-    },
-    terminalLeaveBeforeDischarge: {
-      type: 'boolean'
+      type: 'object',
+      properties: {
+        yes: {
+          type: 'boolean'
+        },
+        onTerminalLeave: {
+          type: 'boolean'
+        },
+        nonVaAssistance: {
+          type: 'boolean'
+        }
+      }
     },
     highSchoolOrGedCompletionDate: {
       $ref: '#/definitions/date'
     },
     faaFlightCertificatesInformation: {
       type: 'string'
-    },
-    nonVaAssistance: {
-      type: 'boolean'
     },
     guardsmenReservistsAssistance: {
       type: 'boolean'
