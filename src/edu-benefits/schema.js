@@ -440,7 +440,8 @@ module.exports = {
             type: 'integer'
           },
           hoursType: {
-            type: 'string'
+            type: 'string',
+            'enum': ['semester', 'quarter', 'clock']
           },
           degreeReceived: {
             type: 'string'

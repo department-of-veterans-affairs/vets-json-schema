@@ -195,11 +195,21 @@ describe('education benefits json schema', () => {
         name: 'college',
         dateRange: validDateRange,
         city: 'new york',
+        hoursType: 'semester',
         state: 'NY'
       }]],
-      invalid: [[{
-        name: 'college'
-      }]]
+      invalid: [
+        [{
+          name: 'college'
+        }],
+        [{
+          name: 'college',
+          dateRange: validDateRange,
+          city: 'new york',
+          hoursType: 'semestar',
+          state: 'NY'
+        }]
+      ]
     });
   });
 
