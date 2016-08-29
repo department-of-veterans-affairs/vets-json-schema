@@ -322,6 +322,10 @@
     "address": {
       "$ref": "#/definitions/address"
     },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
     "phone": {
       "$ref": "#/definitions/phone"
     },

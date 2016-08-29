@@ -126,7 +126,7 @@ module.exports = {
     ssn: {
       type: 'string',
       pattern: '^[0-9]{9}$'
-    },
+    }
   },
   additionalProperties: false,
   properties: {
@@ -168,6 +168,10 @@ module.exports = {
     },
     address: {
       $ref: '#/definitions/address'
+    },
+    email: {
+      type: 'string',
+      format: 'email'
     },
     phone: {
       $ref: '#/definitions/phone'

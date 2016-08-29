@@ -229,4 +229,14 @@ describe('education benefits json schema', () => {
       ]
     });
   });
+
+  context('email validaiton', () => {
+    testValidAndInvalid('email', {
+      valid: [
+        'foo@foo.com',
+        'foo+1@foo.com'
+      ],
+      invalid: ['foo']
+    });
+  });
 });
