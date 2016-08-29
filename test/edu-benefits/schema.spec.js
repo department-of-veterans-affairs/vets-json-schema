@@ -249,24 +249,6 @@ describe('education benefits json schema', () => {
     });
   });
 
-  context('previous va claims validation', () => {
-    testValidAndInvalid('previousVaClaims', {
-      valid: [[{
-        name: 'educationBenefits.chapter30',
-        fileNumber: '123'
-      }]],
-      invalid: [
-        [{
-          fileNumber: '123'
-        }],
-        [{
-          name: 'not on the list',
-          fileNumber: '123'
-        }]
-      ]
-    });
-  });
-
   context('email validation', () => {
     testValidAndInvalid('email', {
       valid: [
