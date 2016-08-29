@@ -373,7 +373,19 @@ module.exports = {
       $ref: '#/definitions/dateRange'
     },
     serviceBefore1977: {
-      type: 'boolean'
+      type: 'object',
+      properties: {
+        married: {
+          type: 'boolean'
+        },
+        haveDependents: {
+          type: 'boolean'
+        },
+        parentDependent: {
+          type: 'boolean'
+        }
+      },
+      required: ['married', 'haveDependents', 'parentDependent']
     },
     remarks: {
       type: 'string'

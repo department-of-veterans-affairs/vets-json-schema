@@ -276,4 +276,17 @@ describe('education benefits json schema', () => {
       invalid: ['chapter33']
     });
   });
+
+  context('serviceBefore1977 validation', () => {
+    testValidAndInvalid('serviceBefore1977', {
+      valid: [{
+        married: true,
+        haveDependents: true,
+        parentDependent: false
+      }],
+      invalid: [{
+        married: true
+      }]
+    });
+  });
 });
