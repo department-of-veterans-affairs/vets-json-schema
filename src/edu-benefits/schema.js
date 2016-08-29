@@ -369,6 +369,9 @@ module.exports = {
         serviceStatus: {
           type: 'string'
         },
+        doNotApplyToBenefit: {
+          type: 'boolean'
+        },
         involuntarilyCalledToDuty: {
           type: 'boolean'
         },
