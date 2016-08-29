@@ -371,8 +371,12 @@ module.exports = {
           serviceStatus: {
             type: 'string'
           },
-          doNotApplyToBenefit: {
-            type: 'boolean'
+          benefitsToApplyTo: {
+            type: 'array',
+            items: {
+              type: 'string',
+              'enum': ['chapter33', 'chapter30', 'chapter1606', 'chapter32']
+            }
           },
           involuntarilyCalledToDuty: {
             type: 'boolean'
