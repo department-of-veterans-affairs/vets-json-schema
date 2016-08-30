@@ -237,14 +237,14 @@ describe('education benefits json schema', () => {
   context('senior rotc validation', () => {
     testValidAndInvalid('seniorRotc', {
       valid: [{
-        commissionDate: validDate,
+        commissionYear: 1981,
         rotcScholarshipAmounts: [{
           year: 1999,
           amount: 99.99
         }]
       }],
       invalid: [{
-        commissionDate: validDate,
+        commissionYear: 1981,
       }]
     });
   });

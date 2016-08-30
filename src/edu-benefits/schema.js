@@ -68,6 +68,10 @@ module.exports = {
         'country'
       ]
     },
+    year: {
+      type: 'integer',
+      minimum: 1900
+    },
     date: {
       format: 'date',
       type: 'string'
@@ -278,14 +282,13 @@ module.exports = {
       type: 'string'
     },
     serviceAcademyGraduationYear: {
-      type: 'integer',
-      minimum: 1900
+      $ref: '#/definitions/year'
     },
     seniorRotc: {
       type: 'object',
       properties: {
-        commissionDate: {
-          $ref: '#/definitions/date'
+        commissionYear: {
+          $ref: '#/definitions/year'
         },
         rotcScholarshipAmounts: {
           type: 'array',
@@ -303,7 +306,7 @@ module.exports = {
           }
         }
       },
-      required: ['commissionDate', 'rotcScholarshipAmounts']
+      required: ['commissionYear', 'rotcScholarshipAmounts']
     },
     seniorRotcScholarshipProgram: {
       type: 'boolean'
