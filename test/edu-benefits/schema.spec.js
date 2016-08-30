@@ -1,11 +1,13 @@
 import { expect } from 'chai';
 import schema from '../../dist/edu-benefits-schema.json';
 import Ajv from 'ajv';
+import _ from 'lodash';
 
 describe('education benefits json schema', () => {
-  let ajv;
+  let ajv = new Ajv();
+  let currentSchema;
   const validateSchema = (data) => {
-    return ajv.validate('edu-benefits-schema', data);
+    return ajv.validate(currentSchema, data);
   };
   const validators = {
     valid: (data) => {
@@ -47,9 +49,8 @@ describe('education benefits json schema', () => {
     to: '2000-01-02'
   };
 
-  before(() => {
-    ajv = new Ajv();
-    ajv.addSchema(schema, 'edu-benefits-schema');
+  beforeEach(() => {
+    currentSchema = schema;
   });
 
   context('ssn validations', () => {
@@ -60,7 +61,7 @@ describe('education benefits json schema', () => {
   });
 
   context('name validations', () => {
-    ['fullName', 'emergencyContact.fullName'].forEach((parentKey) => {
+    ['fullName', 'secondaryContact.fullName'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           first: 'john',
@@ -81,7 +82,13 @@ describe('education benefits json schema', () => {
   });
 
   context('address validations', () => {
-    ['address', 'emergencyContact.address', 'schoolAddress'].forEach((parentKey) => {
+    beforeEach(() => {
+      let modifiedSchema = _.cloneDeep(schema);
+      delete(modifiedSchema.properties.school.required);
+      currentSchema = modifiedSchema;
+    });
+
+    ['address', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           street: '123 a rd',
@@ -97,7 +104,7 @@ describe('education benefits json schema', () => {
   });
 
   context('phone # validations', () => {
-    ['phone', 'secondaryPhone', 'emergencyContact.phone'].forEach((parentKey) => {
+    ['phone', 'mobile', 'secondaryContact.phone'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: ['5555555555'],
         invalid: ['1a']
@@ -162,13 +169,29 @@ describe('education benefits json schema', () => {
         dateRange: validDateRange,
         serviceBranch: 'navy',
         serviceStatus: 'active',
-        involuntarilyCalledToDuty: true
+        involuntarilyCalledToDuty: 'yes',
+        benefitsToApplyTo: ['chapter33', 'chapter30', 'chapter1606', 'chapter32']
       }]],
-      invalid: [[{
-        serviceBranch: 'navy',
-        serviceStatus: 'active',
-        involuntarilyCalledToDuty: true
-      }]],
+      invalid: [
+        [{
+          serviceBranch: 'navy',
+          serviceStatus: 'active',
+          involuntarilyCalledToDuty: 'yes'
+        }],
+        [{
+          dateRange: validDateRange,
+          serviceBranch: 1,
+          serviceStatus: 'active',
+          involuntarilyCalledToDuty: 'yes'
+        }],
+        [{
+          dateRange: validDateRange,
+          serviceBranch: 'navy',
+          serviceStatus: 'active',
+          involuntarilyCalledToDuty: 'yes',
+          benefitsToApplyTo: ['chapter85968568']
+        }]
+      ],
     });
   });
 
@@ -178,11 +201,28 @@ describe('education benefits json schema', () => {
         name: 'college',
         dateRange: validDateRange,
         city: 'new york',
+        hoursType: 'semester',
         state: 'NY'
       }]],
-      invalid: [[{
-        name: 'college'
-      }]]
+      invalid: [
+        [{
+          name: 'college'
+        }],
+        [{
+          name: 'college',
+          dateRange: validDateRange,
+          city: 'new york',
+          hoursType: 'semestar',
+          state: 'NY'
+        }],
+        [{
+          name: 'college',
+          dateRange: validDateRange,
+          city: 'new york',
+          hoursType: 'semester',
+          state: 'ABC'
+        }]
+      ]
     });
   });
 
@@ -200,40 +240,67 @@ describe('education benefits json schema', () => {
     });
   });
 
-  context('rotc scholarship amounts validation', () => {
-    testValidAndInvalid('rotcScholarshipAmounts', {
-      valid: [[{
-        year: 1999,
-        amount: 99.99
-      }]],
-      invalid: [[{
-        year: 1999
-      }]]
+  context('senior rotc validation', () => {
+    testValidAndInvalid('seniorRotc', {
+      valid: [{
+        commissionYear: 1981,
+        rotcScholarshipAmounts: [{
+          year: 1999,
+          amount: 99.99
+        }]
+      }],
+      invalid: [{
+        commissionYear: 1981,
+      }]
     });
   });
 
-  context('previous va claims validation', () => {
-    testValidAndInvalid('previousVaClaims', {
-      valid: [[{
-        name: 'educationBenefits.chapter30',
-        fileNumber: '123'
-      }]],
-      invalid: [
-        [{
-          fileNumber: '123'
-        }],
-        [{
-          name: 'not on the list',
-          fileNumber: '123'
-        }]
-      ]
+  context('email validation', () => {
+    testValidAndInvalid('email', {
+      valid: [
+        'foo@foo.com',
+        'foo+1@foo.com'
+      ],
+      invalid: ['foo']
+    });
+  });
+
+  context('preferredContactMethod validation', () => {
+    testValidAndInvalid('preferredContactMethod', {
+      valid: [
+        'mail',
+        'email'
+      ],
+      invalid: ['foo']
     });
   });
 
   context('benefitsRelinquished validation', () => {
     testValidAndInvalid('benefitsRelinquished', {
-      valid: ['chapter30', 'unknown'],
+      valid: ['chapter30', 'unknown', 'chapter1607', 'chapter1606'],
       invalid: ['chapter33']
+    });
+  });
+
+  context('serviceBefore1977 validation', () => {
+    testValidAndInvalid('serviceBefore1977', {
+      valid: [{
+        married: true,
+        haveDependents: true,
+        parentDependent: false
+      }],
+      invalid: [{
+        married: true
+      }]
+    });
+  });
+
+  context('school validation', () => {
+    testValidAndInvalid('school', {
+      valid: [{
+        name: 'harvard'
+      }],
+      invalid: [{}]
     });
   });
 });

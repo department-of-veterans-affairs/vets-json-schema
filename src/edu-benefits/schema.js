@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 const countryStateProperites = _.map(constants.states, (value, key) => ({
   properties: {
     country: {
@@ -67,6 +68,10 @@ module.exports = {
         'country'
       ]
     },
+    year: {
+      type: 'integer',
+      minimum: 1900
+    },
     date: {
       format: 'date',
       type: 'string'
@@ -126,7 +131,7 @@ module.exports = {
     ssn: {
       type: 'string',
       pattern: '^[0-9]{9}$'
-    },
+    }
   },
   additionalProperties: false,
   properties: {
@@ -144,7 +149,7 @@ module.exports = {
     },
     benefitsRelinquished: {
       type: 'string',
-      'enum': ['chapter30', 'chapter1606', 'chapter1607', 'unknown']
+      'enum': ['chapter1607', 'unknown', ..._.without(benefits, 'chapter33', 'chapter32')]
     },
     fullName: {
       $ref: '#/definitions/fullName'
@@ -162,19 +167,27 @@ module.exports = {
     address: {
       $ref: '#/definitions/address'
     },
+    email: {
+      type: 'string',
+      format: 'email'
+    },
     phone: {
       $ref: '#/definitions/phone'
     },
-    secondaryPhone: {
+    mobile: {
       $ref: '#/definitions/phone'
     },
-    emergencyContact: {
+    preferredContactMethod: {
+      type: 'string',
+      enum: ['mail', 'email', 'phone']
+    },
+    secondaryContact: {
       type: 'object',
       properties: {
         fullName: {
           $ref: '#/definitions/fullName'
         },
-        sameAddressAndPhone: {
+        sameAddress: {
           type: 'boolean'
         },
         address: {
@@ -204,60 +217,23 @@ module.exports = {
         }
       }
     },
-    previouslyFiledClaimWithVa: {
-      type: 'boolean'
-    },
-    previousVaClaims: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string',
-            'enum': [
-              'comensation',
-              'pension',
-              'vocationalRehab',
-              'homeLoan',
-              'insurance',
-              'educationBenefits.chapter30',
-              'educationBenefits.chapter32',
-              'educationBenefits.chapter33',
-              'educationBenefits.chapter34',
-              'educationBenefits.chapter35',
-              'educationBenefits.chapter1606',
-              'educationBenefits.chapter1607',
-              'educationBenefits.ncs',
-              'educationBenefits.useOfTransferredBenefits'
-            ]
-          },
-          fileNumber: {
-            type: 'string'
-          }
+    school: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string'
         },
-        required: ['name']
-      }
-    },
-    previouslyAppliedWithSomeoneElsesService: {
-      type: 'boolean'
-    },
-    alreadyReceivedInformationPamphlet: {
-      type: 'boolean'
-    },
-    schoolName: {
-      type: 'string'
-    },
-    schoolAddress: {
-      $ref: '#/definitions/address'
-    },
-    educationStartDate: {
-      $ref: '#/definitions/date'
-    },
-    educationalObjective: {
-      type: 'string'
-    },
-    courseOfStudy: {
-      type: 'string'
+        address: {
+          $ref: '#/definitions/address'
+        },
+        startDate: {
+          $ref: '#/definitions/date'
+        },
+        educationObjective: {
+          type: 'string'
+        }
+      },
+      required: ['name']
     },
     educationType: {
       type: 'object',
@@ -286,10 +262,18 @@ module.exports = {
       }
     },
     currentlyActiveDuty: {
-      type: 'boolean'
-    },
-    terminalLeaveBeforeDischarge: {
-      type: 'boolean'
+      type: 'object',
+      properties: {
+        yes: {
+          type: 'boolean'
+        },
+        onTerminalLeave: {
+          type: 'boolean'
+        },
+        nonVaAssistance: {
+          type: 'boolean'
+        }
+      }
     },
     highSchoolOrGedCompletionDate: {
       $ref: '#/definitions/date'
@@ -297,36 +281,38 @@ module.exports = {
     faaFlightCertificatesInformation: {
       type: 'string'
     },
-    nonVaAssistance: {
-      type: 'boolean'
-    },
-    guardsmenReservistsAssistance: {
-      type: 'boolean'
-    },
-    nonVaAssistanceComments: {
-      type: 'string'
-    },
     serviceAcademyGraduationYear: {
-      type: 'integer',
-      minimum: 1900
+      $ref: '#/definitions/year'
+    },
+    seniorRotc: {
+      type: 'object',
+      properties: {
+        commissionYear: {
+          $ref: '#/definitions/year'
+        },
+        rotcScholarshipAmounts: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              year: {
+                type: 'integer'
+              },
+              amount: {
+                type: 'number'
+              },
+            },
+            required: ['year', 'amount']
+          }
+        }
+      },
+      required: ['commissionYear', 'rotcScholarshipAmounts']
     },
     seniorRotcScholarshipProgram: {
       type: 'boolean'
     },
-    seniorRotcOfficersCommission: {
-      type: 'boolean'
-    },
-    seniorRotcScholarshipComments: {
-      type: 'string'
-    },
-    dateOfRotcCommission: {
-      $ref: '#/definitions/date'
-    },
     civilianBenefitsAssistance: {
       type: 'boolean'
-    },
-    civilianBenefitsAssistanceComments: {
-      type: 'string'
     },
     additionalContributions: {
       type: 'boolean'
@@ -341,7 +327,19 @@ module.exports = {
       $ref: '#/definitions/dateRange'
     },
     serviceBefore1977: {
-      type: 'boolean'
+      type: 'object',
+      properties: {
+        married: {
+          type: 'boolean'
+        },
+        haveDependents: {
+          type: 'boolean'
+        },
+        parentDependent: {
+          type: 'boolean'
+        }
+      },
+      required: ['married', 'haveDependents', 'parentDependent']
     },
     remarks: {
       type: 'string'
@@ -349,18 +347,29 @@ module.exports = {
     toursOfDuty: {
       type: 'array',
       items: {
-        dateRange: {
-          $ref: '#/definitions/dateRange'
-        },
-        serviceBranch: {
-          type: 'string'
-          // TODO enum for this field?
-        },
-        serviceStatus: {
-          type: 'string'
-        },
-        involuntarilyCalledToDuty: {
-          type: 'boolean'
+        type: 'object',
+        properties: {
+          dateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          serviceBranch: {
+            type: 'string'
+            // TODO enum for this field?
+          },
+          serviceStatus: {
+            type: 'string'
+          },
+          benefitsToApplyTo: {
+            type: 'array',
+            items: {
+              type: 'string',
+              'enum': benefits
+            }
+          },
+          involuntarilyCalledToDuty: {
+            type: 'string',
+            'enum': ['yes', 'no', 'n/a']
+          }
         },
         required: ['dateRange', 'serviceBranch', 'serviceStatus', 'involuntarilyCalledToDuty']
       }
@@ -368,29 +377,34 @@ module.exports = {
     postHighSchoolTrainings: {
       type: 'array',
       items: {
-        name: {
-          type: 'string'
-        },
-        city: {
-          type: 'string'
-        },
-        state: {
-          type: 'string'
-        },
-        dateRange: {
-          $ref: '#/definitions/dateRange'
-        },
-        hours: {
-          type: 'integer'
-        },
-        hoursType: {
-          type: 'string'
-        },
-        degreeReceived: {
-          type: 'string'
-        },
-        major: {
-          type: 'string'
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          },
+          city: {
+            type: 'string'
+          },
+          state: {
+            type: 'string',
+            enum: _.map(constants.states.USA, (stateData) => { return stateData.value })
+          },
+          dateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          hours: {
+            type: 'integer'
+          },
+          hoursType: {
+            type: 'string',
+            'enum': ['semester', 'quarter', 'clock']
+          },
+          degreeReceived: {
+            type: 'string'
+          },
+          major: {
+            type: 'string'
+          },
         },
         required: ['name', 'dateRange', 'city']
       }
@@ -398,31 +412,22 @@ module.exports = {
     nonMilitaryJobs: {
       type: 'array',
       items: {
-        name: {
-          type: 'string'
-        },
-        months: {
-          type: 'integer'
-        },
-        licenseOrRating: {
-          type: 'string'
-        },
-        postMilitaryJob: {
-          type: 'boolean'
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          },
+          months: {
+            type: 'integer'
+          },
+          licenseOrRating: {
+            type: 'string'
+          },
+          postMilitaryJob: {
+            type: 'boolean'
+          },
         },
         required: ['name', 'months', 'postMilitaryJob']
-      }
-    },
-    rotcScholarshipAmounts: {
-      type: 'array',
-      items: {
-        year: {
-          type: 'integer'
-        },
-        amount: {
-          type: 'number'
-        },
-        required: ['year', 'amount']
       }
     }
   }
