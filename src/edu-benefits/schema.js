@@ -367,7 +367,8 @@ module.exports = {
             }
           },
           involuntarilyCalledToDuty: {
-            type: 'boolean'
+            type: 'string',
+            'enum': ['yes', 'no', 'n/a']
           }
         },
         required: ['dateRange', 'serviceBranch', 'serviceStatus', 'involuntarilyCalledToDuty']

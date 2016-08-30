@@ -169,26 +169,26 @@ describe('education benefits json schema', () => {
         dateRange: validDateRange,
         serviceBranch: 'navy',
         serviceStatus: 'active',
-        involuntarilyCalledToDuty: true,
+        involuntarilyCalledToDuty: 'yes',
         benefitsToApplyTo: ['chapter33', 'chapter30', 'chapter1606', 'chapter32']
       }]],
       invalid: [
         [{
           serviceBranch: 'navy',
           serviceStatus: 'active',
-          involuntarilyCalledToDuty: true
+          involuntarilyCalledToDuty: 'yes'
         }],
         [{
           dateRange: validDateRange,
           serviceBranch: 1,
           serviceStatus: 'active',
-          involuntarilyCalledToDuty: true
+          involuntarilyCalledToDuty: 'yes'
         }],
         [{
           dateRange: validDateRange,
           serviceBranch: 'navy',
           serviceStatus: 'active',
-          involuntarilyCalledToDuty: true,
+          involuntarilyCalledToDuty: 'yes',
           benefitsToApplyTo: ['chapter85968568']
         }]
       ],

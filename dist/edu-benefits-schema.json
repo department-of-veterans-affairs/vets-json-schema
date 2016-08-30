@@ -547,7 +547,12 @@
             }
           },
           "involuntarilyCalledToDuty": {
-            "type": "boolean"
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "n/a"
+            ]
           }
         },
         "required": [
