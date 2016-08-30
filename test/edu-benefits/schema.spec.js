@@ -44,9 +44,8 @@ describe('education benefits json schema', () => {
       });
     });
   };
-  const validDate = '2000-01-01';
   const validDateRange = {
-    from: validDate,
+    from: '2000-01-01',
     to: '2000-01-02'
   };
 
