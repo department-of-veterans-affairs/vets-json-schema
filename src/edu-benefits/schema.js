@@ -385,7 +385,8 @@ module.exports = {
             type: 'string'
           },
           state: {
-            type: 'string'
+            type: 'string',
+            enum: _.map(constants.states.USA, (stateData) => { return stateData.value })
           },
           dateRange: {
             $ref: '#/definitions/dateRange'
