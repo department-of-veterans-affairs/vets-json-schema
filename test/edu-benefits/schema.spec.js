@@ -61,7 +61,7 @@ describe('education benefits json schema', () => {
   });
 
   context('name validations', () => {
-    ['fullName', 'secondaryContact.fullName'].forEach((parentKey) => {
+    ['veteranFullName', 'secondaryContact.fullName'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           first: 'john',

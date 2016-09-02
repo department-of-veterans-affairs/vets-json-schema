@@ -305,7 +305,7 @@
         "chapter1606"
       ]
     },
-    "fullName": {
+    "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
     "gender": {

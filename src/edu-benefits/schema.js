@@ -151,7 +151,7 @@ module.exports = {
       type: 'string',
       'enum': ['chapter1607', 'unknown', ..._.without(benefits, 'chapter33', 'chapter32')]
     },
-    fullName: {
+    veteranFullName: {
       $ref: '#/definitions/fullName'
     },
     gender: {
