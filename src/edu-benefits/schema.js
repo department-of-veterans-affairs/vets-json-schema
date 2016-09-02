@@ -161,7 +161,7 @@ module.exports = {
     birthday: {
       $ref: '#/definitions/date'
     },
-    socialSecurityNumber: {
+    veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
     },
     address: {

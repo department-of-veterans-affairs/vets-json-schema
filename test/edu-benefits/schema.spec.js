@@ -54,7 +54,7 @@ describe('education benefits json schema', () => {
   });
 
   context('ssn validations', () => {
-    testValidAndInvalid('socialSecurityNumber', {
+    testValidAndInvalid('veteranSocialSecurityNumber', {
       valid: ['123456789'],
       invalid: ['123-45-6789', '12345678']
     });
