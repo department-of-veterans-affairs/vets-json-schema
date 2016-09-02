@@ -158,7 +158,7 @@ module.exports = {
       type: 'string',
       'enum': ['M', 'F']
     },
-    birthday: {
+    veteranDateOfBirth: {
       $ref: '#/definitions/date'
     },
     veteranSocialSecurityNumber: {

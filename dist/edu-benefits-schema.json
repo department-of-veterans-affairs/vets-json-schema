@@ -315,7 +315,7 @@
         "F"
       ]
     },
-    "birthday": {
+    "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
     },
     "veteranSocialSecurityNumber": {
