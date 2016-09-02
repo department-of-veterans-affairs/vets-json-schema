@@ -104,7 +104,7 @@ describe('education benefits json schema', () => {
   });
 
   context('phone # validations', () => {
-    ['phone', 'mobile', 'secondaryContact.phone'].forEach((parentKey) => {
+    ['homePhone', 'mobilePhone', 'secondaryContact.phone'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: ['5555555555'],
         invalid: ['1a']

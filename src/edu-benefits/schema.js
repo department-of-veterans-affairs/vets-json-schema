@@ -171,10 +171,10 @@ module.exports = {
       type: 'string',
       format: 'email'
     },
-    phone: {
+    homePhone: {
       $ref: '#/definitions/phone'
     },
-    mobile: {
+    mobilePhone: {
       $ref: '#/definitions/phone'
     },
     preferredContactMethod: {
