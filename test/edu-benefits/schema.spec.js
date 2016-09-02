@@ -88,7 +88,7 @@ describe('education benefits json schema', () => {
       currentSchema = modifiedSchema;
     });
 
-    ['address', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
+    ['veteranAddress', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           street: '123 a rd',

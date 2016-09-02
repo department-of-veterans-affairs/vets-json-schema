@@ -164,7 +164,7 @@ module.exports = {
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
     },
-    address: {
+    veteranAddress: {
       $ref: '#/definitions/address'
     },
     email: {
