@@ -54,14 +54,14 @@ describe('education benefits json schema', () => {
   });
 
   context('ssn validations', () => {
-    testValidAndInvalid('socialSecurityNumber', {
+    testValidAndInvalid('veteranSocialSecurityNumber', {
       valid: ['123456789'],
       invalid: ['123-45-6789', '12345678']
     });
   });
 
   context('name validations', () => {
-    ['fullName', 'secondaryContact.fullName'].forEach((parentKey) => {
+    ['veteranFullName', 'secondaryContact.fullName'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           first: 'john',
@@ -88,7 +88,7 @@ describe('education benefits json schema', () => {
       currentSchema = modifiedSchema;
     });
 
-    ['address', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
+    ['veteranAddress', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           street: '123 a rd',
@@ -104,7 +104,7 @@ describe('education benefits json schema', () => {
   });
 
   context('phone # validations', () => {
-    ['phone', 'mobile', 'secondaryContact.phone'].forEach((parentKey) => {
+    ['homePhone', 'mobilePhone', 'secondaryContact.phone'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: ['5555555555'],
         invalid: ['1a']
@@ -157,7 +157,7 @@ describe('education benefits json schema', () => {
   });
 
   context('date validations', () => {
-    testValidAndInvalid('birthday', {
+    testValidAndInvalid('veteranDateOfBirth', {
       valid: ['2000-01-02'],
       invalid: ['4/6/1998', 'Fri Aug 19 2016 15:09:46 GMT-0400 (EDT)']
     });

@@ -305,7 +305,7 @@
         "chapter1606"
       ]
     },
-    "fullName": {
+    "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
     "gender": {
@@ -315,23 +315,23 @@
         "F"
       ]
     },
-    "birthday": {
+    "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
     },
-    "socialSecurityNumber": {
+    "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
-    "address": {
+    "veteranAddress": {
       "$ref": "#/definitions/address"
     },
     "email": {
       "type": "string",
       "format": "email"
     },
-    "phone": {
+    "homePhone": {
       "$ref": "#/definitions/phone"
     },
-    "mobile": {
+    "mobilePhone": {
       "$ref": "#/definitions/phone"
     },
     "preferredContactMethod": {

@@ -151,30 +151,30 @@ module.exports = {
       type: 'string',
       'enum': ['chapter1607', 'unknown', ..._.without(benefits, 'chapter33', 'chapter32')]
     },
-    fullName: {
+    veteranFullName: {
       $ref: '#/definitions/fullName'
     },
     gender: {
       type: 'string',
       'enum': ['M', 'F']
     },
-    birthday: {
+    veteranDateOfBirth: {
       $ref: '#/definitions/date'
     },
-    socialSecurityNumber: {
+    veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
     },
-    address: {
+    veteranAddress: {
       $ref: '#/definitions/address'
     },
     email: {
       type: 'string',
       format: 'email'
     },
-    phone: {
+    homePhone: {
       $ref: '#/definitions/phone'
     },
-    mobile: {
+    mobilePhone: {
       $ref: '#/definitions/phone'
     },
     preferredContactMethod: {
