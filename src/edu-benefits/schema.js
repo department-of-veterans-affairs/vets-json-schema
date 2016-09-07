@@ -232,8 +232,7 @@ module.exports = {
         educationObjective: {
           type: 'string'
         }
-      },
-      required: ['name']
+      }
     },
     educationType: {
       type: 'object',
