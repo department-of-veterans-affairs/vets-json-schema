@@ -225,15 +225,14 @@ module.exports = {
         },
         address: {
           $ref: '#/definitions/address'
-        },
-        startDate: {
-          $ref: '#/definitions/date'
-        },
-        educationObjective: {
-          type: 'string'
         }
-      },
-      required: ['name']
+      }
+    },
+    educationStartDate: {
+      $ref: '#/definitions/date'
+    },
+    educationObjective: {
+      type: 'string'
     },
     educationType: {
       type: 'object',

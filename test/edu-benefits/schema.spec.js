@@ -300,7 +300,9 @@ describe('education benefits json schema', () => {
       valid: [{
         name: 'harvard'
       }],
-      invalid: [{}]
+      invalid: [{
+        name: true
+      }]
     });
   });
 });
