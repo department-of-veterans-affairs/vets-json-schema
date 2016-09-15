@@ -61,7 +61,7 @@ describe('education benefits json schema', () => {
   });
 
   context('name validations', () => {
-    ['veteranFullName', 'secondaryContact.fullName'].forEach((parentKey) => {
+    ['veteranFullName'].forEach((parentKey) => {
       testValidAndInvalid(parentKey, {
         valid: [{
           first: 'john',
@@ -234,7 +234,7 @@ describe('education benefits json schema', () => {
         postMilitaryJob: true
       }]],
       invalid: [[{
-        name: 'programmer',
+        postMilitaryJob: true,
         months: 1
       }]]
     });
