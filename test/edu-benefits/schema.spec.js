@@ -305,4 +305,26 @@ describe('education benefits json schema', () => {
       }]
     });
   });
+
+  context('previous va claims validation', () => {
+    testValidAndInvalid('previousVaClaims', {
+      valid: [
+        [{
+          claimType: 'vocationalRehab'
+        }],
+        [{
+          claimType: 'vocationalRehab',
+          fileNumber: 'blah',
+          sponsorVeteran: {
+            fileNumber: 'number'
+          }
+        }]
+      ],
+      invalid: [
+        [{
+          fileNumber: 'blah',
+        }]
+      ]
+    });
+  });
 });
