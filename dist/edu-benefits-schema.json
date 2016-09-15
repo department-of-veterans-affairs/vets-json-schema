@@ -346,7 +346,7 @@
       "type": "object",
       "properties": {
         "fullName": {
-          "$ref": "#/definitions/fullName"
+          "type": "string"
         },
         "sameAddress": {
           "type": "boolean"
@@ -368,9 +368,6 @@
             "checking",
             "savings"
           ]
-        },
-        "bankName": {
-          "type": "string"
         },
         "routingNumber": {
           "type": "string",
@@ -399,30 +396,16 @@
       "type": "string"
     },
     "educationType": {
-      "type": "object",
-      "properties": {
-        "college": {
-          "type": "boolean"
-        },
-        "correspondence": {
-          "type": "boolean"
-        },
-        "apprenticeship": {
-          "type": "boolean"
-        },
-        "flightTraining": {
-          "type": "boolean"
-        },
-        "testReimbursement": {
-          "type": "boolean"
-        },
-        "licensingReimbursement": {
-          "type": "boolean"
-        },
-        "tuitionTopUp": {
-          "type": "boolean"
-        }
-      }
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp"
+      ]
     },
     "currentlyActiveDuty": {
       "type": "object",
@@ -554,9 +537,7 @@
         },
         "required": [
           "dateRange",
-          "serviceBranch",
-          "serviceStatus",
-          "involuntarilyCalledToDuty"
+          "serviceBranch"
         ]
       }
     },
@@ -658,8 +639,7 @@
         },
         "required": [
           "name",
-          "dateRange",
-          "city"
+          "dateRange"
         ]
       }
     },
@@ -682,9 +662,7 @@
           }
         },
         "required": [
-          "name",
-          "months",
-          "postMilitaryJob"
+          "name"
         ]
       }
     }

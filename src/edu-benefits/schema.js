@@ -185,7 +185,7 @@ module.exports = {
       type: 'object',
       properties: {
         fullName: {
-          $ref: '#/definitions/fullName'
+          type: 'string'
         },
         sameAddress: {
           type: 'boolean'
@@ -204,9 +204,6 @@ module.exports = {
         accountType: {
           type: 'string',
           'enum': ['checking', 'savings']
-        },
-        bankName: {
-          type: 'string'
         },
         routingNumber: {
           type: 'string',
@@ -235,30 +232,8 @@ module.exports = {
       type: 'string'
     },
     educationType: {
-      type: 'object',
-      properties: {
-        college: {
-          type: 'boolean'
-        },
-        correspondence: {
-          type: 'boolean'
-        },
-        apprenticeship: {
-          type: 'boolean'
-        },
-        flightTraining: {
-          type: 'boolean'
-        },
-        testReimbursement: {
-          type: 'boolean'
-        },
-        licensingReimbursement: {
-          type: 'boolean'
-        },
-        tuitionTopUp: {
-          type: 'boolean'
-        }
-      }
+      type: 'string',
+      enum: ['college', 'correspondence', 'apprenticeship', 'flightTraining', 'testReimbursement', 'licensingReimbursement', 'tuitionTopUp']
     },
     currentlyActiveDuty: {
       type: 'object',
@@ -370,7 +345,7 @@ module.exports = {
             'enum': ['yes', 'no', 'n/a']
           }
         },
-        required: ['dateRange', 'serviceBranch', 'serviceStatus', 'involuntarilyCalledToDuty']
+        required: ['dateRange', 'serviceBranch']
       }
     },
     postHighSchoolTrainings: {
@@ -405,7 +380,7 @@ module.exports = {
             type: 'string'
           },
         },
-        required: ['name', 'dateRange', 'city']
+        required: ['name', 'dateRange']
       }
     },
     nonMilitaryJobs: {
@@ -426,7 +401,7 @@ module.exports = {
             type: 'boolean'
           },
         },
-        required: ['name', 'months', 'postMilitaryJob']
+        required: ['name']
       }
     }
   }
