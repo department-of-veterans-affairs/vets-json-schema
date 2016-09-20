@@ -474,7 +474,15 @@
       "$ref": "#/definitions/date"
     },
     "faaFlightCertificatesInformation": {
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
     },
     "serviceAcademyGraduationYear": {
       "$ref": "#/definitions/year"
@@ -564,16 +572,12 @@
             "type": "string"
           },
           "benefitsToApplyTo": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "chapter33",
-                "chapter30",
-                "chapter1606",
-                "chapter32"
-              ]
-            }
+            "type": "string",
+            "enum": [
+              "chapter30",
+              "chapter1606",
+              "chapter32"
+            ]
           },
           "involuntarilyCalledToDuty": {
             "type": "string",
@@ -714,6 +718,12 @@
           "name"
         ]
       }
+    },
+    "applyingUsingOwnBenefits": {
+      "type": "boolean"
+    },
+    "benefitsRelinquishedDate": {
+      "$ref": "#/definitions/date"
     }
   }
 }
