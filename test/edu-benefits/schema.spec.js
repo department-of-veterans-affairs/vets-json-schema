@@ -170,7 +170,7 @@ describe('education benefits json schema', () => {
         serviceBranch: 'navy',
         serviceStatus: 'active',
         involuntarilyCalledToDuty: 'yes',
-        benefitsToApplyTo: ['chapter33', 'chapter30', 'chapter1606', 'chapter32']
+        benefitsToApplyTo: 'chapter30'
       }]],
       invalid: [
         [{

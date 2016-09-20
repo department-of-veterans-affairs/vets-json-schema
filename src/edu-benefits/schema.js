@@ -300,7 +300,15 @@ module.exports = {
       $ref: '#/definitions/date'
     },
     faaFlightCertificatesInformation: {
-      type: 'string'
+      type: "array",
+      items: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          }
+        }
+      }
     },
     serviceAcademyGraduationYear: {
       $ref: '#/definitions/year'
@@ -381,11 +389,12 @@ module.exports = {
             type: 'string'
           },
           benefitsToApplyTo: {
-            type: 'array',
-            items: {
-              type: 'string',
-              'enum': benefits
-            }
+            type: 'string',
+            enum: [
+              'chapter30',
+              'chapter1606',
+              'chapter32'
+            ]
           },
           involuntarilyCalledToDuty: {
             type: 'string',
@@ -450,6 +459,12 @@ module.exports = {
         },
         required: ['name']
       }
+    },
+    applyingUsingOwnBenefits: {
+      type: "boolean"
+    },
+    benefitsRelinquishedDate: {
+      '$ref': '#/definitions/date'
     }
   }
 };
