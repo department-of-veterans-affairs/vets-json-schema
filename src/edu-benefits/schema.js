@@ -300,15 +300,7 @@ module.exports = {
       $ref: '#/definitions/date'
     },
     faaFlightCertificatesInformation: {
-      type: "array",
-      items: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string'
-          }
-        }
-      }
+      type: 'string'
     },
     serviceAcademyGraduationYear: {
       $ref: '#/definitions/year'
