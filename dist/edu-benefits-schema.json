@@ -30,9 +30,9 @@
                 "YT"
               ]
             },
-            "zipcode": {
+            "postalCode": {
               "type": "string",
-              "maxLength": 50
+              "maxLength": 10
             }
           }
         },
@@ -79,9 +79,9 @@
                 "zacatecas"
               ]
             },
-            "zipcode": {
+            "postalCode": {
               "type": "string",
-              "maxLength": 50
+              "maxLength": 10
             }
           }
         },
@@ -155,9 +155,9 @@
                 "WY"
               ]
             },
-            "zipcode": {
+            "postalCode": {
               "type": "string",
-              "maxLength": 50
+              "maxLength": 10
             }
           }
         },
@@ -172,7 +172,7 @@
                 ]
               }
             },
-            "provinceCode": {
+            "state": {
               "type": "string",
               "maxLength": 51
             },

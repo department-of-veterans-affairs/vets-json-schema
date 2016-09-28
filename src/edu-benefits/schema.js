@@ -12,9 +12,9 @@ const countryStateProperites = _.map(constants.states, (value, key) => ({
     state: {
       'enum': value.map(x => x.value)
     },
-    zipcode: {
+    postalCode: {
       type: 'string',
-      maxLength: 50
+      maxLength: 10
     }
   }
 }));
@@ -26,7 +26,7 @@ countryStateProperites.push(
           'enum': countriesWithAnyState
         }
       },
-      provinceCode: {
+      state: {
         type: 'string',
         maxLength: 51
       },
