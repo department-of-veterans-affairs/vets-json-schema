@@ -424,10 +424,7 @@
               }
             }
           }
-        },
-        "required": [
-          "claimType"
-        ]
+        }
       }
     },
     "school": {
@@ -499,11 +496,7 @@
               "amount": {
                 "type": "number"
               }
-            },
-            "required": [
-              "year",
-              "amount"
-            ]
+            }
           }
         }
       },
@@ -687,11 +680,7 @@
           "major": {
             "type": "string"
           }
-        },
-        "required": [
-          "name",
-          "dateRange"
-        ]
+        }
       }
     },
     "nonMilitaryJobs": {
@@ -711,10 +700,7 @@
           "postMilitaryJob": {
             "type": "boolean"
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       }
     },
     "applyingUsingOwnBenefits": {
