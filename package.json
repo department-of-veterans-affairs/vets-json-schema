@@ -10,6 +10,9 @@
     "test": "mocha 'test/**/*.spec.js'",
     "watch": "node src/start watch"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "ajv": "^4.5.0",
     "babel": "^6.5.2",
