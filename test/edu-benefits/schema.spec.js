@@ -206,18 +206,8 @@ describe('education benefits json schema', () => {
       }]],
       invalid: [
         [{
-          name: 'college'
-        }],
-        [{
           name: 'college',
-          dateRange: validDateRange,
-          city: 'new york',
-          hoursType: 'semestar',
-          state: 'NY'
-        }],
-        [{
-          name: 'college',
-          dateRange: validDateRange,
+          dateRange: {},
           city: 'new york',
           hoursType: 'semester',
           state: 'ABC'
@@ -235,7 +225,7 @@ describe('education benefits json schema', () => {
       }]],
       invalid: [[{
         postMilitaryJob: true,
-        months: 1
+        months: 'a'
       }]]
     });
   });
@@ -250,7 +240,7 @@ describe('education benefits json schema', () => {
         }]
       }],
       invalid: [{
-        commissionYear: 1981,
+        commissionYear: 1981
       }]
     });
   });
@@ -303,28 +293,6 @@ describe('education benefits json schema', () => {
       invalid: [{
         name: true
       }]
-    });
-  });
-
-  context('previous va claims validation', () => {
-    testValidAndInvalid('previousVaClaims', {
-      valid: [
-        [{
-          claimType: 'vocationalRehab'
-        }],
-        [{
-          claimType: 'vocationalRehab',
-          fileNumber: 'blah',
-          sponsorVeteran: {
-            fileNumber: 'number'
-          }
-        }]
-      ],
-      invalid: [
-        [{
-          fileNumber: 'blah',
-        }]
-      ]
     });
   });
 });

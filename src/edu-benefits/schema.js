@@ -257,8 +257,7 @@ module.exports = {
               }
             }
           }
-        },
-        required: ['claimType']
+        }
       }
     },
     school: {
@@ -322,8 +321,7 @@ module.exports = {
               amount: {
                 type: 'number'
               },
-            },
-            required: ['year', 'amount']
+            }
           }
         }
       },
@@ -427,8 +425,7 @@ module.exports = {
           major: {
             type: 'string'
           },
-        },
-        required: ['name', 'dateRange']
+        }
       }
     },
     nonMilitaryJobs: {
@@ -448,8 +445,7 @@ module.exports = {
           postMilitaryJob: {
             type: 'boolean'
           },
-        },
-        required: ['name']
+        }
       }
     },
     applyingUsingOwnBenefits: {
