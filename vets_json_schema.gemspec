@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'json'
 
 Gem::Specification.new do |gem|
