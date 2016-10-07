@@ -1,13 +1,14 @@
-require 'json'
-
 Gem::Specification.new do |gem|
   gem.name = 'vets_json_schema'
 
-  gem.version = JSON.parse(File.read('package.json'))['version']
+  file = File.read('package.json')
+  gem.version = file.match(/"version": "((\\"|[^"])*)"/)[1]
   gem.summary = 'JSON Schemas for all Vets.gov projects'
   gem.author = 'VA devs'
 
   gem.files = `git ls-files`.split("\n")
   gem.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ['lib']
+
+  gem.add_dependency 'multi_json', '~> 1.0'
 end
