@@ -378,13 +378,11 @@ module.exports = {
           serviceStatus: {
             type: 'string'
           },
+          applyPeriodToSelected: {
+            type: 'boolean'
+          },
           benefitsToApplyTo: {
-            type: 'string',
-            enum: [
-              'chapter30',
-              'chapter1606',
-              'chapter32'
-            ]
+            type: 'string'
           },
           involuntarilyCalledToDuty: {
             type: 'string',
