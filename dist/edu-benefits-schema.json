@@ -569,8 +569,7 @@
             "type": "string",
             "enum": [
               "yes",
-              "no",
-              "n/a"
+              "no"
             ]
           }
         },

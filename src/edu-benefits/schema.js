@@ -386,7 +386,7 @@ module.exports = {
           },
           involuntarilyCalledToDuty: {
             type: 'string',
-            'enum': ['yes', 'no', 'n/a']
+            'enum': ['yes', 'no']
           }
         },
         required: ['dateRange', 'serviceBranch']
