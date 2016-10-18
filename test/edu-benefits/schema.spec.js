@@ -158,8 +158,22 @@ describe('education benefits json schema', () => {
 
   context('date validations', () => {
     testValidAndInvalid('veteranDateOfBirth', {
-      valid: ['2000-01-02'],
-      invalid: ['4/6/1998', 'Fri Aug 19 2016 15:09:46 GMT-0400 (EDT)']
+      valid: [
+        '2000-01-02',
+        '2000-01-31',
+        '2000-11-02',
+        '2000-11-25'
+      ],
+      invalid: [
+        '4/6/1998',
+        'Fri Aug 19 2016 15:09:46 GMT-0400 (EDT)',
+        '2000-1-02',
+        '2000-13-01',
+        '2000-12-32',
+        '2000-12-00',
+        '2000-00-01',
+        '2000-01-9'
+      ]
     });
   });
 
