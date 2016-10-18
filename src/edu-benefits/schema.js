@@ -126,7 +126,8 @@ module.exports = {
     },
     phone: {
       type: 'string',
-      pattern: '^[0-9]{10}$'
+      pattern: '^[\\d\\-]+$',
+      minLength: 10
     },
     ssn: {
       type: 'string',
