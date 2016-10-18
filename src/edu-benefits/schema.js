@@ -73,7 +73,7 @@ module.exports = {
       minimum: 1900
     },
     date: {
-      format: 'date',
+      pattern: '^\\d{4}-\\d{2}-\\d{2}$',
       type: 'string'
     },
     dateRange: {
