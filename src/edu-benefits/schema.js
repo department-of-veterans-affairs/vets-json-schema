@@ -215,52 +215,6 @@ module.exports = {
         }
       }
     },
-    previouslyFiledClaimWithVa: {
-      type: 'boolean'
-    },
-    previousVaClaims: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          claimType: {
-            type: 'string',
-            'enum': [
-              'chapter30',
-              'chapter32',
-              'chapter33',
-              'chapter34',
-              'chapter35',
-              'chapter1606',
-              'chapter1607',
-              'nationalService',
-              'transferredBenefits',
-              'vocationalRehab',
-            ]
-          },
-          previouslyAppliedWithSomeoneElsesService: {
-            type: 'boolean'
-          },
-          fileNumber: {
-            type: 'string'
-          },
-          sponsorVeteran: {
-            type: 'object',
-            properties: {
-              fullName: {
-                $ref: '#/definitions/fullName'
-              },
-              fileNumber: {
-                type: 'string'
-              },
-              payeeNumber: {
-                type: 'string'
-              }
-            }
-          }
-        }
-      }
-    },
     school: {
       type: 'object',
       properties: {
@@ -361,9 +315,6 @@ module.exports = {
       },
       required: ['married', 'haveDependents', 'parentDependent']
     },
-    remarks: {
-      type: 'string'
-    },
     toursOfDuty: {
       type: 'array',
       items: {
@@ -374,7 +325,6 @@ module.exports = {
           },
           serviceBranch: {
             type: 'string'
-            // TODO enum for this field?
           },
           serviceStatus: {
             type: 'string'
@@ -385,10 +335,6 @@ module.exports = {
           benefitsToApplyTo: {
             type: 'string'
           },
-          involuntarilyCalledToDuty: {
-            type: 'string',
-            'enum': ['yes', 'no']
-          }
         },
         required: ['dateRange', 'serviceBranch']
       }
@@ -412,7 +358,7 @@ module.exports = {
             $ref: '#/definitions/dateRange'
           },
           hours: {
-            type: 'integer'
+            type: 'number'
           },
           hoursType: {
             type: 'string',
