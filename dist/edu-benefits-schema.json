@@ -456,7 +456,6 @@
         }
       },
       "required": [
-        "commissionYear",
         "rotcScholarshipAmounts"
       ]
     },
