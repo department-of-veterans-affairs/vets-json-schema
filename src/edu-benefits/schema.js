@@ -280,7 +280,7 @@ module.exports = {
           }
         }
       },
-      required: ['commissionYear', 'rotcScholarshipAmounts']
+      required: ['rotcScholarshipAmounts']
     },
     seniorRotcScholarshipProgram: {
       type: 'boolean'
