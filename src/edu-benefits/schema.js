@@ -382,7 +382,7 @@ module.exports = {
             type: 'string'
           },
           months: {
-            type: 'integer'
+            type: 'number'
           },
           licenseOrRating: {
             type: 'string'
