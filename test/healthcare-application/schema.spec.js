@@ -1,5 +1,5 @@
 import ajv from 'ajv';
-import applicationSchema from '../../dist/healthcare-application.json';
+import applicationSchema from '../../dist/healthcare-application-schema.json';
 import { expect } from 'chai';
 
 const jsonValidator = ajv({ allErrors: true, errorDataPath: 'property', removeAdditional: true, useDefaults: true });
