@@ -1,5 +1,7 @@
-import eduBenefitsSchema from './edu-benefits/schema';
 import jsonfile from 'jsonfile';
 
-jsonfile.writeFileSync('dist/edu-benefits-schema.json', eduBenefitsSchema, { spaces: 2 });
+['edu-benefits', 'healthcare-application'].forEach((schema) => {
+  jsonfile.writeFileSync(`dist/${schema}-schema.json`, require(`./${schema}/schema`), { spaces: 2 });
+});
+
 console.log('json built');
