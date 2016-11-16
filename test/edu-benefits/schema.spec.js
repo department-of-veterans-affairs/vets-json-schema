@@ -1,9 +1,7 @@
 import { expect } from 'chai';
-import { eduBenefits } from '../../dist/schemas';
+import { eduBenefits as schema } from '../../dist/schemas';
 import Ajv from 'ajv';
 import _ from 'lodash';
-
-const schema = eduBenefits;
 
 describe('education benefits json schema', () => {
   let ajv = new Ajv();
