@@ -1,1 +1,3 @@
-export const eduBenefits = require('./edu-benefits-schema.json');
+module.exports = {
+  eduBenefits: require('./edu-benefits-schema.json')
+};
