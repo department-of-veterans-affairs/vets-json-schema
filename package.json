@@ -10,6 +10,7 @@
     "test": "mocha 'test/**/*.spec.js'",
     "watch": "node src/start watch"
   },
+  "main": "dist/schemas.js",
   "files": [
     "dist"
   ],
