@@ -310,7 +310,8 @@
           "type": "string"
         },
         "insurancePolicyHolderName": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 50
         },
         "insurancePolicyNumber": {
           "type": "string"
@@ -1731,34 +1732,5 @@
     "lastEntryDate",
     "lastDischargeDate",
     "dischargeType"
-  ],
-  "dependencies": {
-    "veteranGrossIncome": [
-      "discloseFinancialInformation"
-    ],
-    "veteranNetIncome": [
-      "discloseFinancialInformation"
-    ],
-    "veteranOtherIncome": [
-      "discloseFinancialInformation"
-    ],
-    "spouseGrossIncome": [
-      "discloseFinancialInformation"
-    ],
-    "spouseNetIncome": [
-      "discloseFinancialInformation"
-    ],
-    "spouseOtherIncome": [
-      "discloseFinancialInformation"
-    ],
-    "deductibleMedicalExpenses": [
-      "discloseFinancialInformation"
-    ],
-    "deductibleFuneralExpenses": [
-      "discloseFinancialInformation"
-    ],
-    "deductibleEducationExpenses": [
-      "discloseFinancialInformation"
-    ]
-  }
+  ]
 }

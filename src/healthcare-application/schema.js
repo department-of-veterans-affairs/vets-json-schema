@@ -159,6 +159,7 @@ module.exports = {
         },
         insurancePolicyHolderName: {
           type: 'string',
+          maxLength: 50
         },
         insurancePolicyNumber: {
           type: 'string',

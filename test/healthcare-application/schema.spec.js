@@ -60,4 +60,15 @@ describe('healthcare-application json schema', () => {
       expect(ssnValidation('aa-22-3333')).to.be.false;
     });
   });
+
+  describe('provider', () => {
+    const providerValidation = definitionValidator('provider');
+    it('allows insurancePolicyHolderName with less than 50 chars', () => {
+      expect(providerValidation({ insurancePolicyHolderName: 'foo' })).to.be.true;
+    });
+
+    it('doesnt allow insurancePolicyHolderName with more than 50 chars', () => {
+      expect(providerValidation({ insurancePolicyHolderName: '012345678901234567890123456789012345678901234567890' })).to.be.false;
+    });
+  });
 });
