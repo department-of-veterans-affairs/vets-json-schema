@@ -307,16 +307,20 @@
       "type": "object",
       "properties": {
         "insuranceName": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 100
         },
         "insurancePolicyHolderName": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 50
         },
         "insurancePolicyNumber": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "insuranceGroupCode": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         }
       }
     },
