@@ -130,7 +130,7 @@ module.exports = {
         },
         last: {
           type: 'string',
-          minLength: 1,
+          minLength: 2,
           maxLength: 30
         },
         suffix: {

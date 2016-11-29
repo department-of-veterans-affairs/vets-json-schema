@@ -60,4 +60,15 @@ describe('healthcare-application json schema', () => {
       expect(ssnValidation('aa-22-3333')).to.be.false;
     });
   });
+
+  describe('fullName', () => {
+    const fullNameValidation = definitionValidator('fullName');
+    it('allows 2 letter last names', () => {
+      expect(fullNameValidation({ first: 'foo', last: 'ba' })).to.be.true;
+    });
+
+    it('doesnt allow 1 letter last names', () => {
+      expect(fullNameValidation({ first: 'foo', last: 'b' })).to.be.false;
+    });
+  });
 });
