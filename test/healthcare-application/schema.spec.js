@@ -65,6 +65,17 @@ describe('healthcare-application json schema', () => {
     });
   });
 
+  describe('fullName', () => {
+    const fullNameValidation = definitionValidator('fullName');
+    it('allows 2 letter last names', () => {
+      expect(fullNameValidation({ first: 'foo', last: 'ba' })).to.be.true;
+    });
+
+    it('doesnt allow 1 letter last names', () => {
+      expect(fullNameValidation({ first: 'foo', last: 'b' })).to.be.false;
+    });
+  });
+
   describe('provider', () => {
     const providerValidation = definitionValidator('provider');
 
