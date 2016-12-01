@@ -156,15 +156,19 @@ module.exports = {
       properties: {
         insuranceName: {
           type: 'string',
+          maxLength: 100
         },
         insurancePolicyHolderName: {
           type: 'string',
+          maxLength: 50
         },
         insurancePolicyNumber: {
           type: 'string',
+          maxLength: 30
         },
         insuranceGroupCode: {
           type: 'string',
+          maxLength: 30
         },
       },
     },
