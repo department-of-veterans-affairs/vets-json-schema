@@ -1,5 +1,7 @@
 require 'multi_json'
 
 module VetsJsonSchema
-  EDUCATION_BENEFITS = MultiJson.load(File.read("#{__dir__}/../dist/edu-benefits-schema.json"))
+  %w(edu-benefits healthcare-application).each do |schema|
+    const_set(schema.underscore.upcase, MultiJson.load(File.read("#{__dir__}/../dist/#{schema}-schema.json")))
+  end
 end
