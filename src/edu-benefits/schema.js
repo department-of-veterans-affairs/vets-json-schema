@@ -73,7 +73,7 @@ module.exports = {
       minimum: 1900
     },
     date: {
-      pattern: '^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
+      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
       type: 'string'
     },
     dateRange: {
@@ -94,7 +94,7 @@ module.exports = {
           ]
         }
       },
-      required: ['from', 'to']
+      required: ['from']
     },
     fullName: {
       type: 'object',

@@ -138,6 +138,9 @@ describe('education benefits json schema', () => {
         {
           from: '2000-01-01',
           to: 'present'
+        },
+        {
+          from: '2000-01-01'
         }
       ],
       invalid: [
@@ -149,9 +152,6 @@ describe('education benefits json schema', () => {
           from: '2000-01-01',
           to: 'future'
         },
-        {
-          from: '2000-01-01'
-        }
       ]
     });
   });
@@ -162,7 +162,11 @@ describe('education benefits json schema', () => {
         '2000-01-02',
         '2000-01-31',
         '2000-11-02',
-        '2000-11-25'
+        '2000-11-25',
+        'XXXX-11-25',
+        'XXXX-XX-25',
+        '2001-11-XX',
+        '2001-XX-01'
       ],
       invalid: [
         '4/6/1998',
