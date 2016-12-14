@@ -382,6 +382,9 @@ module.exports = {
     },
     campLejeune: {
       type: 'boolean'
+    },
+    privacyAgreementAccepted: {
+      type: "boolean"
     }
   },
   required: [
