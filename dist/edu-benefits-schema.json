@@ -236,10 +236,7 @@
             }
           ]
         }
-      },
-      "required": [
-        "from"
-      ]
+      }
     },
     "fullName": {
       "type": "object",

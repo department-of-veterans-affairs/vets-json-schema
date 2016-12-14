@@ -93,8 +93,7 @@ module.exports = {
             }
           ]
         }
-      },
-      required: ['from']
+      }
     },
     fullName: {
       type: 'object',
