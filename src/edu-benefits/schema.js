@@ -397,6 +397,9 @@ module.exports = {
     },
     benefitsRelinquishedDate: {
       '$ref': '#/definitions/date'
+    },
+    privacyAgreementAccepted: {
+      type: "boolean"
     }
   }
 };
