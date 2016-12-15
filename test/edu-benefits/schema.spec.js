@@ -33,6 +33,7 @@ describe('education benefits json schema', () => {
       }
     });
 
+    object['privacyAgreementAccepted'] = true
     return object;
   };
   const testValidAndInvalid = (parentKey, fields) => {
