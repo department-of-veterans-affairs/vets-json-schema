@@ -398,7 +398,8 @@ module.exports = {
       '$ref': '#/definitions/date'
     },
     privacyAgreementAccepted: {
-      type: "boolean"
+      type: "boolean",
+      enum: [true]
     }
   }
 };
