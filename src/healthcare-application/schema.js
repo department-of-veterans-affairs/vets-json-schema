@@ -384,10 +384,12 @@ module.exports = {
       type: 'boolean'
     },
     privacyAgreementAccepted: {
-      type: "boolean"
+      type: "boolean",
+      enum: [true]
     }
   },
   required: [
+    'privacyAgreementAccepted',
     'veteranFullName',
     'veteranSocialSecurityNumber',
     'veteranDateOfBirth',
