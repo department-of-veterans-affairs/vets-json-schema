@@ -389,6 +389,7 @@ module.exports = {
     }
   },
   required: [
+    'privacyAgreementAccepted',
     'veteranFullName',
     'veteranSocialSecurityNumber',
     'veteranDateOfBirth',

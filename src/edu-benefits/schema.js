@@ -401,5 +401,6 @@ module.exports = {
       type: "boolean",
       enum: [true]
     }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
