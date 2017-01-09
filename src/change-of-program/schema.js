@@ -4,5 +4,8 @@ module.exports = {
   type: 'object',
   additionalProperties: false,
   properties: {
+    veteranFullName: {
+      $ref: '#/definitions/fullName'
+    },
   }
 };
