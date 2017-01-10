@@ -18,17 +18,17 @@ const objectBuilder = (keys, value) => {
     }
   });
 
-  object['privacyAgreementAccepted'] = true;
   return object;
 };
 
 export default class SchemaTestHelper {
-  constructor(schema) {
+  constructor(schema, defaults = {}) {
     this.schema = schema;
+    this.defaults = defaults;
   }
 
   validateSchema(data) {
-    return ajv.validate(this.schema, data);
+    return ajv.validate(this.schema, Object.assign({}, data, this.defaults));
   }
 
   schemaExpect(valid, data) {
