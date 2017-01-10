@@ -1,5 +1,6 @@
 import SchemaTestHelper from '../support/schema-test-helper';
 import { eduBenefits as schema } from '../../dist/schemas';
+
 let schemaTestHelper = new SchemaTestHelper(
   schema,
   {
