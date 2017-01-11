@@ -1,10 +1,20 @@
-import { expect } from 'chai';
+import SchemaTestHelper from '../support/schema-test-helper';
 import { changeOfProgram as schema } from '../../dist/schemas';
-import Ajv from 'ajv';
-import _ from 'lodash';
+
+let schemaTestHelper = new SchemaTestHelper(schema);
 
 describe('change of program json schema', () => {
-  it('foo', () => {
-    expect(true).to.equal(true);
+  context('veteranFullName', () => {
+    ['veteranFullName'].forEach((parentKey) => {
+      schemaTestHelper.testValidAndInvalid(parentKey, {
+        valid: [{
+          first: 'john',
+          last: 'doe'
+        }],
+        invalid: [{
+          first: 'john'
+        }]
+      });
+    });
   });
 });

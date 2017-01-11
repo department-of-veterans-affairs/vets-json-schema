@@ -1,8 +1,6 @@
-import SchemaTestHelper from '../support/schema-test-helper';
 import { expect } from 'chai';
+import SchemaTestHelper from '../support/schema-test-helper';
 import definitions from '../../src/common/definitions';
-import Ajv from 'ajv';
-import _ from 'lodash';
 
 describe('schema definitions', () => {
   const testDefinition = (definition, data) => {
