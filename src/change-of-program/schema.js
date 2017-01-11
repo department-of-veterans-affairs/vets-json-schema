@@ -2,6 +2,7 @@ import definitions from '../../src/common/definitions';
 
 let myDefinitions = {
   fullName: definitions.fullName,
+  address: definitions.address
 };
 
 module.exports = {
@@ -13,6 +14,9 @@ module.exports = {
   properties: {
     veteranFullName: {
       $ref: '#/definitions/fullName'
+    },
+    veteranAddress: {
+      $ref: '#/definitions/address'
     },
   }
 };
