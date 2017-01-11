@@ -2,73 +2,14 @@ import constants from '../common/constants';
 import _ from 'lodash';
 import definitions from '../../src/common/definitions';
 
-const countries = constants.countries.map(object => object.value);
-const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
 const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
-const countryStateProperites = _.map(constants.states, (value, key) => ({
-  properties: {
-    country: {
-      'enum': [key]
-    },
-    state: {
-      'enum': value.map(x => x.value)
-    },
-    postalCode: {
-      type: 'string',
-      maxLength: 10
-    }
-  }
-}));
-countryStateProperites.push(
-  {
-    properties: {
-      country: {
-        not: {
-          'enum': countriesWithAnyState
-        }
-      },
-      state: {
-        type: 'string',
-        maxLength: 51
-      },
-      postalCode: {
-        type: 'string',
-        maxLength: 51
-      },
-    },
-  });
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Education Benefits Claim',
   type: 'object',
   definitions: {
-    address: {
-      type: 'object',
-      oneOf: countryStateProperites,
-      properties: {
-        street: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 50
-        },
-        street2: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 50
-        },
-        city: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 51
-        }
-      },
-      required: [
-        'street',
-        'city',
-        'country'
-      ]
-    },
+    address: definitions.address,
     year: {
       type: 'integer',
       minimum: 1900
