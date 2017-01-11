@@ -98,8 +98,14 @@ const phone = {
   minLength: 10
 };
 
+const ssn = {
+  type: 'string',
+  pattern: '^[0-9]{9}$'
+};
+
 export default {
   fullName,
   address,
   phone,
+  ssn,
 };

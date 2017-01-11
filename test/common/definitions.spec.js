@@ -59,4 +59,9 @@ describe('schema definitions', () => {
     valid: ['5555555555', '555-555-5555', '555 555 5555'],
     invalid: ['1234']
   });
+
+  testValidAndInvalidDefinitions('ssn', {
+    valid: ['123456789'],
+    invalid: ['123-45-6789', '12345678']
+  });
 });
