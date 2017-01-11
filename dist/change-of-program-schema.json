@@ -251,6 +251,17 @@
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
+    },
+    "school": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        }
+      }
     }
   },
   "properties": {
@@ -320,6 +331,15 @@
       "type": "string"
     },
     "programName": {
+      "type": "string"
+    },
+    "newSchool": {
+      "$ref": "#/definitions/school"
+    },
+    "oldSchool": {
+      "$ref": "#/definitions/school"
+    },
+    "reasonForChange": {
       "type": "string"
     }
   }

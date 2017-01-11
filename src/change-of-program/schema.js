@@ -10,7 +10,8 @@ module.exports = {
     'fullName',
     'address',
     'phone',
-    'ssn'
+    'ssn',
+    'school'
   ]),
   properties: {
     veteranFullName: {
@@ -56,6 +57,15 @@ module.exports = {
       type: 'string'
     },
     programName: {
+      type: 'string'
+    },
+    newSchool: {
+      $ref: '#/definitions/school'
+    },
+    oldSchool: {
+      $ref: '#/definitions/school'
+    },
+    reasonForChange: {
       type: 'string'
     },
   }

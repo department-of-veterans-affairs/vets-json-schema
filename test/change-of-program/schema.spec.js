@@ -57,4 +57,11 @@ describe('change of program json schema', () => {
     valid: [{ college: true }],
     invalid: [{ college: 'true' }]
   });
+
+  ['new', 'old'].forEach((type) => {
+    schemaTestHelper.testValidAndInvalid(`${type}School`, {
+      valid: [{ name: 'foo' }],
+      invalid: [{ name: true }]
+    });
+  });
 });
