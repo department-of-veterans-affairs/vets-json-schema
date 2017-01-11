@@ -68,5 +68,9 @@ module.exports = {
     reasonForChange: {
       type: 'string'
     },
+    bankAccountChange: {
+      type: 'string',
+      enum: ['startOrChange', 'stop']
+    },
   }
 };
