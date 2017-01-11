@@ -93,7 +93,13 @@ const address = (() => {
   };
 })();
 
+const phone = {
+  type: 'string',
+  minLength: 10
+};
+
 export default {
   fullName,
-  address
+  address,
+  phone,
 };

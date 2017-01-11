@@ -3,70 +3,60 @@ import SchemaTestHelper from '../support/schema-test-helper';
 import definitions from '../../src/common/definitions';
 
 describe('schema definitions', () => {
-  const testDefinition = (definition, data) => {
+  const testValidAndInvalidDefinitions = (definitionName, fields) => {
     let schemaTestHelper = new SchemaTestHelper(
-      Object.assign(
-        {
-          $schema: 'http://json-schema.org/draft-04/schema#'
-        },
-        definition
-      )
+      {
+        $schema: 'http://json-schema.org/draft-04/schema#',
+        type: 'object',
+        properties: {
+          [definitionName]: definitions[definitionName]
+        }
+      }
     );
 
-    return schemaTestHelper.validateSchema(data);
+    schemaTestHelper.testValidAndInvalid(definitionName, fields);
   };
 
-  const testValidAndInvalidDefinitions = (definitionName, fields) => {
-    ['valid', 'invalid'].forEach((fieldType) => {
-      const valid = fieldType === 'valid';
-
-      fields[fieldType].forEach((value) => {
-        it(`should${valid ? '' : 'nt'} allow ${definitionName} with ${JSON.stringify(value)}`, () => {
-          expect(testDefinition(definitions[definitionName], value)).to.equal(valid);
-        });
-      });
-    });
-  }
-
-  context('fullName', () => {
-    testValidAndInvalidDefinitions('fullName', {
-      valid: [{
-        first: 'john',
-        last: 'doe'
-      }],
-      invalid: [{
-        first: 'john'
-      }]
-    });
+  testValidAndInvalidDefinitions('fullName', {
+    valid: [{
+      first: 'john',
+      last: 'doe'
+    }],
+    invalid: [{
+      first: 'john'
+    }]
   });
 
-  context('address', () => {
-    testValidAndInvalidDefinitions('address', {
-      valid: [
-        {
-          street: '123 a rd',
-          city: 'abc',
-          country: 'USA'
-        },
-        {
-          street: '123 a rd',
-          city: 'abc',
-          state: 'VA',
-          country: 'USA'
-        }
-      ],
-      invalid: [
-        {
-          city: 'foo',
-          country: 'USA'
-        },
-        {
-          street: '123 a rd',
-          city: 'abc',
-          state: 'foo',
-          country: 'USA'
-        }
-      ]
-    });
+  testValidAndInvalidDefinitions('address', {
+    valid: [
+      {
+        street: '123 a rd',
+        city: 'abc',
+        country: 'USA'
+      },
+      {
+        street: '123 a rd',
+        city: 'abc',
+        state: 'VA',
+        country: 'USA'
+      }
+    ],
+    invalid: [
+      {
+        city: 'foo',
+        country: 'USA'
+      },
+      {
+        street: '123 a rd',
+        city: 'abc',
+        state: 'foo',
+        country: 'USA'
+      }
+    ]
+  });
+
+  testValidAndInvalidDefinitions('phone', {
+    valid: ['5555555555', '555-555-5555', '555 555 5555'],
+    invalid: ['1234']
   });
 });
