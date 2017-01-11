@@ -290,6 +290,25 @@
           "$ref": "#/definitions/address"
         }
       }
+    },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
     }
   },
   "additionalProperties": false,
@@ -370,23 +389,7 @@
       }
     },
     "bankAccount": {
-      "type": "object",
-      "properties": {
-        "accountType": {
-          "type": "string",
-          "enum": [
-            "checking",
-            "savings"
-          ]
-        },
-        "routingNumber": {
-          "type": "string",
-          "pattern": "^\\d{9}$"
-        },
-        "accountNumber": {
-          "type": "string"
-        }
-      }
+      "$ref": "#/definitions/bankAccount"
     },
     "school": {
       "$ref": "#/definitions/school"

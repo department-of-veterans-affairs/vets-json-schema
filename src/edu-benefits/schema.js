@@ -41,7 +41,8 @@ module.exports = {
     'fullName',
     'phone',
     'ssn',
-    'school'
+    'school',
+    'bankAccount'
   ])),
   additionalProperties: false,
   properties: {
@@ -109,20 +110,7 @@ module.exports = {
       }
     },
     bankAccount: {
-      type: 'object',
-      properties: {
-        accountType: {
-          type: 'string',
-          'enum': ['checking', 'savings']
-        },
-        routingNumber: {
-          type: 'string',
-          pattern: '^\\d{9}$'
-        },
-        accountNumber: {
-          type: 'string'
-        }
-      }
+      $ref: '#/definitions/bankAccount'
     },
     school: {
       $ref: '#/definitions/school'

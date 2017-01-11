@@ -77,4 +77,21 @@ describe('schema definitions', () => {
       name: true
     }]
   });
+
+  testValidAndInvalidDefinitions('bankAccount', {
+    valid: [
+      {
+        accountType: 'checking',
+        routingNumber: '123456789',
+        accountNumber: '1234'
+      }
+    ],
+    invalid: [
+      {
+        accountType: 'foo',
+        routingNumber: '123456789',
+        accountNumber: '1234'
+      }
+    ]
+  });
 });

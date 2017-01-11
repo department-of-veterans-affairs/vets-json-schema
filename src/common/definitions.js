@@ -115,10 +115,28 @@ const school = {
   }
 };
 
+const bankAccount = {
+  type: 'object',
+  properties: {
+    accountType: {
+      type: 'string',
+      'enum': ['checking', 'savings']
+    },
+    routingNumber: {
+      type: 'string',
+      pattern: '^\\d{9}$'
+    },
+    accountNumber: {
+      type: 'string'
+    }
+  }
+};
+
 export default {
   fullName,
   address,
   phone,
   ssn,
   school,
+  bankAccount
 };
