@@ -25,5 +25,12 @@ module.exports = {
     nightPhone: {
       $ref: '#/definitions/phone'
     },
+    vaFileNumber: {
+      type: 'string'
+    },
+    email: {
+      type: 'string',
+      format: 'email'
+    },
   }
 };
