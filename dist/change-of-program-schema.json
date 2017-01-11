@@ -243,6 +243,10 @@
         "city",
         "country"
       ]
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10
     }
   },
   "properties": {
@@ -251,6 +255,12 @@
     },
     "veteranAddress": {
       "$ref": "#/definitions/address"
+    },
+    "dayPhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "nightPhone": {
+      "$ref": "#/definitions/phone"
     }
   }
 }

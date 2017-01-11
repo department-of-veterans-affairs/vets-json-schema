@@ -2,7 +2,8 @@ import definitions from '../../src/common/definitions';
 
 let myDefinitions = {
   fullName: definitions.fullName,
-  address: definitions.address
+  address: definitions.address,
+  phone: definitions.phone
 };
 
 module.exports = {
@@ -17,6 +18,12 @@ module.exports = {
     },
     veteranAddress: {
       $ref: '#/definitions/address'
+    },
+    dayPhone: {
+      $ref: '#/definitions/phone'
+    },
+    nightPhone: {
+      $ref: '#/definitions/phone'
     },
   }
 };
