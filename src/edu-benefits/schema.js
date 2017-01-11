@@ -1,5 +1,6 @@
 import constants from '../common/constants';
 import _ from 'lodash';
+import definitions from '../../src/common/definitions';
 
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
@@ -95,34 +96,7 @@ module.exports = {
         }
       }
     },
-    fullName: {
-      type: 'object',
-      properties: {
-        salutation: {
-          type: 'string'
-        },
-        first: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 30
-        },
-        middle: {
-          type: 'string'
-        },
-        last: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 30
-        },
-        suffix: {
-          'enum': constants.suffixes
-        },
-      },
-      required: [
-        'first',
-        'last'
-      ]
-    },
+    fullName: definitions.fullName,
     phone: {
       type: 'string',
       minLength: 10

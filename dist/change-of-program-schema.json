@@ -3,5 +3,9 @@
   "title": "REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING",
   "type": "object",
   "additionalProperties": false,
-  "properties": {}
+  "properties": {
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    }
+  }
 }
