@@ -94,4 +94,15 @@ describe('schema definitions', () => {
       }
     ]
   });
+
+  testValidAndInvalidDefinitions('serviceBefore1977', {
+    valid: [{
+      married: true,
+      haveDependents: true,
+      parentDependent: false
+    }],
+    invalid: [{
+      married: true
+    }]
+  });
 });

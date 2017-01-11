@@ -132,11 +132,28 @@ const bankAccount = {
   }
 };
 
+const serviceBefore1977 = {
+  type: 'object',
+  properties: {
+    married: {
+      type: 'boolean'
+    },
+    haveDependents: {
+      type: 'boolean'
+    },
+    parentDependent: {
+      type: 'boolean'
+    }
+  },
+  required: ['married', 'haveDependents', 'parentDependent']
+};
+
 export default {
   fullName,
   address,
   phone,
   ssn,
   school,
-  bankAccount
+  bankAccount,
+  serviceBefore1977
 };

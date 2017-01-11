@@ -42,7 +42,8 @@ module.exports = {
     'phone',
     'ssn',
     'school',
-    'bankAccount'
+    'bankAccount',
+    'serviceBefore1977'
   ])),
   additionalProperties: false,
   properties: {
@@ -190,19 +191,7 @@ module.exports = {
       $ref: '#/definitions/dateRange'
     },
     serviceBefore1977: {
-      type: 'object',
-      properties: {
-        married: {
-          type: 'boolean'
-        },
-        haveDependents: {
-          type: 'boolean'
-        },
-        parentDependent: {
-          type: 'boolean'
-        }
-      },
-      required: ['married', 'haveDependents', 'parentDependent']
+      $ref: '#/definitions/serviceBefore1977'
     },
     toursOfDuty: {
       type: 'array',

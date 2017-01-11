@@ -309,6 +309,25 @@
           "type": "string"
         }
       }
+    },
+    "serviceBefore1977": {
+      "type": "object",
+      "properties": {
+        "married": {
+          "type": "boolean"
+        },
+        "haveDependents": {
+          "type": "boolean"
+        },
+        "parentDependent": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "married",
+        "haveDependents",
+        "parentDependent"
+      ]
     }
   },
   "additionalProperties": false,
@@ -479,23 +498,7 @@
       "$ref": "#/definitions/dateRange"
     },
     "serviceBefore1977": {
-      "type": "object",
-      "properties": {
-        "married": {
-          "type": "boolean"
-        },
-        "haveDependents": {
-          "type": "boolean"
-        },
-        "parentDependent": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "married",
-        "haveDependents",
-        "parentDependent"
-      ]
+      "$ref": "#/definitions/serviceBefore1977"
     },
     "toursOfDuty": {
       "type": "array",
