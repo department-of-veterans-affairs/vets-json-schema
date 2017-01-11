@@ -148,6 +148,31 @@ const serviceBefore1977 = {
   required: ['married', 'haveDependents', 'parentDependent']
 };
 
+const dateRange = {
+  type: 'object',
+  properties: {
+    from: {
+      $ref: '#/definitions/date'
+    },
+    to: {
+      oneOf: [
+        {
+          $ref: '#/definitions/date'
+        },
+        {
+          type: 'string',
+          enum: ['present']
+        }
+      ]
+    }
+  }
+};
+
+const date = {
+  pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+  type: 'string'
+};
+
 export default {
   fullName,
   address,
@@ -155,5 +180,7 @@ export default {
   ssn,
   school,
   bankAccount,
-  serviceBefore1977
+  serviceBefore1977,
+  dateRange,
+  date
 };

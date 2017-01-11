@@ -80,5 +80,29 @@ module.exports = {
     serviceBefore1977: {
       $ref: '#/definitions/serviceBefore1977'
     },
+    toursOfDuty: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          dateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          serviceBranch: {
+            type: 'string'
+          },
+          serviceStatus: {
+            type: 'string'
+          },
+          applyPeriodToSelected: {
+            type: 'boolean'
+          },
+          benefitsToApplyTo: {
+            type: 'string'
+          },
+        },
+        required: ['dateRange', 'serviceBranch']
+      }
+    }
   }
 };

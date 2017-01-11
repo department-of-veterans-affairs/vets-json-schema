@@ -105,4 +105,53 @@ describe('schema definitions', () => {
       married: true
     }]
   });
+
+  testValidAndInvalidDefinitions('dateRange', {
+    valid: [
+      {
+        from: '2000-01-01',
+        to: '2000-01-02'
+      },
+      {
+        from: '2000-01-01',
+        to: 'present'
+      },
+      {
+        from: '2000-01-01'
+      }
+    ],
+    invalid: [
+      {
+        from: 'foo',
+        to: 'bar'
+      },
+      {
+        from: '2000-01-01',
+        to: 'future'
+      }
+    ]
+  });
+
+  testValidAndInvalidDefinitions('date', {
+    valid: [
+      '2000-01-02',
+      '2000-01-31',
+      '2000-11-02',
+      '2000-11-25',
+      'XXXX-11-25',
+      'XXXX-XX-25',
+      '2001-11-XX',
+      '2001-XX-01'
+    ],
+    invalid: [
+      '4/6/1998',
+      'Fri Aug 19 2016 15:09:46 GMT-0400 (EDT)',
+      '2000-1-02',
+      '2000-13-01',
+      '2000-12-32',
+      '2000-12-00',
+      '2000-00-01',
+      '2000-01-9'
+    ]
+  });
 });
