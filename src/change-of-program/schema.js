@@ -3,7 +3,8 @@ import definitions from '../../src/common/definitions';
 let myDefinitions = {
   fullName: definitions.fullName,
   address: definitions.address,
-  phone: definitions.phone
+  phone: definitions.phone,
+  ssn: definitions.ssn
 };
 
 module.exports = {
@@ -31,6 +32,9 @@ module.exports = {
     email: {
       type: 'string',
       format: 'email'
+    },
+    veteranSocialSecurityNumber: {
+      $ref: '#/definitions/ssn'
     },
   }
 };

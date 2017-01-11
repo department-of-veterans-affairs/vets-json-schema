@@ -40,4 +40,11 @@ describe('change of program json schema', () => {
     ],
     invalid: ['foo']
   });
+
+  schemaTestHelper.testValidAndInvalid('veteranSocialSecurityNumber', {
+    valid: [
+      '123456789'
+    ],
+    invalid: ['123']
+  });
 });

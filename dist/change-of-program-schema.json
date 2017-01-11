@@ -247,6 +247,10 @@
     "phone": {
       "type": "string",
       "minLength": 10
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     }
   },
   "properties": {
@@ -268,6 +272,9 @@
     "email": {
       "type": "string",
       "format": "email"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     }
   }
 }
