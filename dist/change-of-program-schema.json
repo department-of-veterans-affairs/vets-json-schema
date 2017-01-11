@@ -281,6 +281,25 @@
           "type": "string"
         }
       }
+    },
+    "serviceBefore1977": {
+      "type": "object",
+      "properties": {
+        "married": {
+          "type": "boolean"
+        },
+        "haveDependents": {
+          "type": "boolean"
+        },
+        "parentDependent": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "married",
+        "haveDependents",
+        "parentDependent"
+      ]
     }
   },
   "properties": {
@@ -370,6 +389,9 @@
     },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
+    },
+    "serviceBefore1977": {
+      "$ref": "#/definitions/serviceBefore1977"
     }
   }
 }

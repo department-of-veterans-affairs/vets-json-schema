@@ -12,7 +12,8 @@ module.exports = {
     'phone',
     'ssn',
     'school',
-    'bankAccount'
+    'bankAccount',
+    'serviceBefore1977'
   ]),
   properties: {
     veteranFullName: {
@@ -75,6 +76,9 @@ module.exports = {
     },
     bankAccount: {
       $ref: '#/definitions/bankAccount'
+    },
+    serviceBefore1977: {
+      $ref: '#/definitions/serviceBefore1977'
     },
   }
 };

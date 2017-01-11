@@ -82,4 +82,15 @@ describe('change of program json schema', () => {
       accountNumber: '1234'
     }]
   });
+
+  schemaTestHelper.testValidAndInvalid('serviceBefore1977', {
+    valid: [{
+      married: true,
+      haveDependents: true,
+      parentDependent: false
+    }],
+    invalid: [{
+      married: true
+    }]
+  });
 });
