@@ -1,4 +1,5 @@
 import definitions from '../../src/common/definitions';
+import _ from 'lodash';
 
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
