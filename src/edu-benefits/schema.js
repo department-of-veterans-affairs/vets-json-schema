@@ -8,7 +8,7 @@ module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Education Benefits Claim',
   type: 'object',
-  definitions: {
+  definitions: _.merge({
     address: definitions.address,
     year: {
       type: 'integer',
@@ -36,11 +36,13 @@ module.exports = {
           ]
         }
       }
-    },
-    fullName: definitions.fullName,
-    phone: definitions.phone,
-    ssn: definitions.ssn
-  },
+    }
+  }, _.pick(definitions, [
+    'fullName',
+    'phone',
+    'ssn',
+    'school'
+  ])),
   additionalProperties: false,
   properties: {
     chapter33: {
@@ -123,15 +125,7 @@ module.exports = {
       }
     },
     school: {
-      type: 'object',
-      properties: {
-        name: {
-          type: 'string'
-        },
-        address: {
-          $ref: '#/definitions/address'
-        }
-      }
+      $ref: '#/definitions/school'
     },
     educationStartDate: {
       $ref: '#/definitions/date'
