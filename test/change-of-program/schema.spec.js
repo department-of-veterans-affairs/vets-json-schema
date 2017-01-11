@@ -69,4 +69,17 @@ describe('change of program json schema', () => {
     valid: ['startOrChange'],
     invalid: ['foo']
   });
+
+  schemaTestHelper.testValidAndInvalid('bankAccount', {
+    valid: [{
+      accountType: 'checking',
+      routingNumber: '123456789',
+      accountNumber: '1234'
+    }],
+    invalid: [{
+      accountType: 'foo',
+      routingNumber: '123456789',
+      accountNumber: '1234'
+    }]
+  });
 });

@@ -262,6 +262,25 @@
           "$ref": "#/definitions/address"
         }
       }
+    },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
     }
   },
   "properties": {
@@ -348,6 +367,9 @@
         "startOrChange",
         "stop"
       ]
+    },
+    "bankAccount": {
+      "$ref": "#/definitions/bankAccount"
     }
   }
 }

@@ -11,7 +11,8 @@ module.exports = {
     'address',
     'phone',
     'ssn',
-    'school'
+    'school',
+    'bankAccount'
   ]),
   properties: {
     veteranFullName: {
@@ -71,6 +72,9 @@ module.exports = {
     bankAccountChange: {
       type: 'string',
       enum: ['startOrChange', 'stop']
+    },
+    bankAccount: {
+      $ref: '#/definitions/bankAccount'
     },
   }
 };
