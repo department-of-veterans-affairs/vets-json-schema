@@ -52,4 +52,9 @@ describe('change of program json schema', () => {
     valid: ['chapter33'],
     invalid: ['foo']
   });
+
+  schemaTestHelper.testValidAndInvalid('educationType', {
+    valid: [{ college: true }],
+    invalid: [{ college: 'true' }]
+  });
 });

@@ -40,5 +40,18 @@ module.exports = {
       type: 'string',
       enum: ['chapter33', 'chapter30', 'chapter32', 'chapter1606', 'chapter1607', 'transferOfEntitlement']
     },
+    educationType: {
+      type: 'object',
+      properties: {
+        college: { type: 'boolean' },
+        correspondence: { type: 'boolean' },
+        apprenticeship: { type: 'boolean' },
+        cooperativeTraining: { type: 'boolean' },
+        tuitionTopUp: { type: 'boolean' },
+        flightTraining: { type: 'boolean' },
+        licensingReimbursement: { type: 'boolean' },
+        testReimbursement: { type: 'boolean' }
+      }
+    },
   }
 };
