@@ -42,15 +42,31 @@ describe('schema definitions', () => {
 
   context('address', () => {
     testValidAndInvalidDefinitions('address', {
-      valid: [{
-        street: '123 a rd',
-        city: 'abc',
-        country: 'USA'
-      }],
-      invalid: [{
-        city: 'foo',
-        country: 'USA'
-      }]
+      valid: [
+        {
+          street: '123 a rd',
+          city: 'abc',
+          country: 'USA'
+        },
+        {
+          street: '123 a rd',
+          city: 'abc',
+          state: 'VA',
+          country: 'USA'
+        }
+      ],
+      invalid: [
+        {
+          city: 'foo',
+          country: 'USA'
+        },
+        {
+          street: '123 a rd',
+          city: 'abc',
+          state: 'foo',
+          country: 'USA'
+        }
+      ]
     });
   });
 });
