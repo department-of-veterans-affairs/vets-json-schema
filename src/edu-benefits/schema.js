@@ -38,10 +38,7 @@ module.exports = {
       }
     },
     fullName: definitions.fullName,
-    phone: {
-      type: 'string',
-      minLength: 10
-    },
+    phone: definitions.phone,
     ssn: {
       type: 'string',
       pattern: '^[0-9]{9}$'
