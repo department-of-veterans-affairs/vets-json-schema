@@ -53,5 +53,11 @@ module.exports = {
         testReimbursement: { type: 'boolean' }
       }
     },
+    educationObjective: {
+      type: 'string'
+    },
+    programName: {
+      type: 'string'
+    },
   }
 };

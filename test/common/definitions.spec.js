@@ -8,6 +8,7 @@ describe('schema definitions', () => {
       {
         $schema: 'http://json-schema.org/draft-04/schema#',
         type: 'object',
+        definitions: definitions,
         properties: {
           [definitionName]: definitions[definitionName]
         }
@@ -15,6 +16,12 @@ describe('schema definitions', () => {
     );
 
     schemaTestHelper.testValidAndInvalid(definitionName, fields);
+  };
+
+  const validAddress = {
+    street: '123 a rd',
+    city: 'abc',
+    country: 'USA'
   };
 
   testValidAndInvalidDefinitions('fullName', {
@@ -29,11 +36,7 @@ describe('schema definitions', () => {
 
   testValidAndInvalidDefinitions('address', {
     valid: [
-      {
-        street: '123 a rd',
-        city: 'abc',
-        country: 'USA'
-      },
+      validAddress,
       {
         street: '123 a rd',
         city: 'abc',
@@ -63,5 +66,15 @@ describe('schema definitions', () => {
   testValidAndInvalidDefinitions('ssn', {
     valid: ['123456789'],
     invalid: ['123-45-6789', '12345678']
+  });
+
+  testValidAndInvalidDefinitions('school', {
+    valid: [{
+      name: 'foo',
+      address: validAddress
+    }],
+    invalid: [{
+      name: true
+    }]
   });
 });

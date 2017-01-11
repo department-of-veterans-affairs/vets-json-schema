@@ -103,9 +103,22 @@ const ssn = {
   pattern: '^[0-9]{9}$'
 };
 
+const school = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string'
+    },
+    address: {
+      $ref: '#/definitions/address'
+    }
+  }
+};
+
 export default {
   fullName,
   address,
   phone,
   ssn,
+  school,
 };
