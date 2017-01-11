@@ -36,5 +36,9 @@ module.exports = {
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
     },
+    benefit: {
+      type: 'string',
+      enum: ['chapter33', 'chapter30', 'chapter32', 'chapter1606', 'chapter1607', 'transferOfEntitlement']
+    },
   }
 };
