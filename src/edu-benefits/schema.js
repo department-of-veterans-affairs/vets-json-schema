@@ -9,7 +9,6 @@ module.exports = {
   title: 'Education Benefits Claim',
   type: 'object',
   definitions: _.merge({
-    address: definitions.address,
     year: {
       type: 'integer',
       minimum: 1900
@@ -38,6 +37,7 @@ module.exports = {
       }
     }
   }, _.pick(definitions, [
+    'address',
     'fullName',
     'phone',
     'ssn',
