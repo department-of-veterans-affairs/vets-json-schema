@@ -205,9 +205,6 @@ module.exports = {
       maxLength: 20
     },
     stateOfBirth: {
-      'enum': states
-    },
-    placeOfBirthState: {
       'enum': states + [{ label: 'Other', value: 'Other' }]
     },
     veteranDateOfBirth: {
