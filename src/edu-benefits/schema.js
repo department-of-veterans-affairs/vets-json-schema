@@ -4,7 +4,7 @@ import definitions from '../common/definitions';
 
 const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 
-module.exports = {
+export default {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Education Benefits Claim',
   type: 'object',

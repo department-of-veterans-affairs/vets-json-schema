@@ -1,7 +1,7 @@
 import definitions from '../common/definitions';
 import _ from 'lodash';
 
-module.exports = {
+export default {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING',
   type: 'object',
