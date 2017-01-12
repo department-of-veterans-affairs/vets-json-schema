@@ -106,6 +106,15 @@ module.exports = {
         },
         required: ['dateRange', 'serviceBranch']
       }
+    },
+    civilianBenefitsAssistance: {
+      type: 'boolean'
+    },
+    nonVaAssistance: {
+      type: 'boolean'
+    },
+    remarks: {
+      type: 'string'
     }
   }
 };
