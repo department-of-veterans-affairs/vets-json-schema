@@ -205,7 +205,7 @@ export default {
       maxLength: 20
     },
     stateOfBirth: {
-      'enum': states
+      'enum': states.concat(['Other'])
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
