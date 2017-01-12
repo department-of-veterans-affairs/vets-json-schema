@@ -27,7 +27,7 @@ describe('change of program json schema', () => {
     }]
   });
 
-  ['day', 'night'].forEach((type) => {
+  ['home', 'mobile'].forEach((type) => {
     schemaTestHelper.testValidAndInvalid(`${type}Phone`, {
       valid: ['555-555-5555'],
       invalid: ['1234']

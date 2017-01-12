@@ -24,10 +24,10 @@ export default {
     veteranAddress: {
       $ref: '#/definitions/address'
     },
-    dayPhone: {
+    homePhone: {
       $ref: '#/definitions/phone'
     },
-    nightPhone: {
+    mobilePhone: {
       $ref: '#/definitions/phone'
     },
     vaFileNumber: {
