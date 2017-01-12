@@ -1,4 +1,4 @@
-import definitions from '../../src/common/definitions';
+import definitions from '../common/definitions';
 import _ from 'lodash';
 
 module.exports = {
