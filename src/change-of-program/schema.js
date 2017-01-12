@@ -70,7 +70,7 @@ export default {
     },
     bankAccountChange: {
       type: 'string',
-      enum: ['startOrChange', 'stop']
+      enum: ['start', 'change', 'stop']
     },
     bankAccount: {
       $ref: '#/definitions/bankAccount'

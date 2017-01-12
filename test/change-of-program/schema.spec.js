@@ -72,7 +72,7 @@ describe('change of program json schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('bankAccountChange', {
-    valid: ['startOrChange'],
+    valid: ['start', 'change'],
     invalid: ['foo']
   });
 
