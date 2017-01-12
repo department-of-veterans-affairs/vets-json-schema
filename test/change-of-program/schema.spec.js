@@ -55,8 +55,8 @@ describe('change of program json schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('educationType', {
-    valid: [{ college: true }],
-    invalid: [{ college: 'true' }]
+    valid: ['cooperativeTraining', 'college'],
+    invalid: ['foo']
   });
 
   ['new', 'old'].forEach((type) => {

@@ -325,6 +325,19 @@
           ]
         }
       }
+    },
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp",
+        "cooperativeTraining"
+      ]
     }
   },
   "properties": {
@@ -362,33 +375,7 @@
       ]
     },
     "educationType": {
-      "type": "object",
-      "properties": {
-        "college": {
-          "type": "boolean"
-        },
-        "correspondence": {
-          "type": "boolean"
-        },
-        "apprenticeship": {
-          "type": "boolean"
-        },
-        "cooperativeTraining": {
-          "type": "boolean"
-        },
-        "tuitionTopUp": {
-          "type": "boolean"
-        },
-        "flightTraining": {
-          "type": "boolean"
-        },
-        "licensingReimbursement": {
-          "type": "boolean"
-        },
-        "testReimbursement": {
-          "type": "boolean"
-        }
-      }
+      "$ref": "#/definitions/educationType"
     },
     "educationObjective": {
       "type": "string"

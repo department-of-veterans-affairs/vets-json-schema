@@ -1,6 +1,8 @@
 import definitions from '../common/definitions';
 import _ from 'lodash';
 
+definitions.educationType.enum.push('cooperativeTraining');
+
 export default {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING',
@@ -15,7 +17,8 @@ export default {
     'bankAccount',
     'serviceBefore1977',
     'date',
-    'dateRange'
+    'dateRange',
+    'educationType'
   ]),
   properties: {
     veteranFullName: {
@@ -45,17 +48,7 @@ export default {
       enum: ['chapter33', 'chapter30', 'chapter32', 'chapter1606', 'chapter1607', 'transferOfEntitlement']
     },
     educationType: {
-      type: 'object',
-      properties: {
-        college: { type: 'boolean' },
-        correspondence: { type: 'boolean' },
-        apprenticeship: { type: 'boolean' },
-        cooperativeTraining: { type: 'boolean' },
-        tuitionTopUp: { type: 'boolean' },
-        flightTraining: { type: 'boolean' },
-        licensingReimbursement: { type: 'boolean' },
-        testReimbursement: { type: 'boolean' }
-      }
+      $ref: '#/definitions/educationType'
     },
     educationObjective: {
       type: 'string'
