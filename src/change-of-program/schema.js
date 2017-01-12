@@ -62,6 +62,9 @@ export default {
     oldSchool: {
       $ref: '#/definitions/school'
     },
+    trainingEndDate: {
+      $ref: '#/definitions/date'
+    },
     reasonForChange: {
       type: 'string'
     },

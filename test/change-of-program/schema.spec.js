@@ -66,6 +66,11 @@ describe('change of program json schema', () => {
     });
   });
 
+  schemaTestHelper.testValidAndInvalid('trainingEndDate', {
+    valid: [fixtures.date],
+    invalid: ['foo']
+  });
+
   schemaTestHelper.testValidAndInvalid('bankAccountChange', {
     valid: ['startOrChange'],
     invalid: ['foo']
