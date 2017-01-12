@@ -467,10 +467,7 @@
         "WV",
         "WI",
         "WY",
-        {
-          "label": "Other",
-          "value": "Other"
-        }
+        "Other"
       ]
     },
     "veteranDateOfBirth": {
