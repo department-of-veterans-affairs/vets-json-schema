@@ -103,17 +103,11 @@ describe('change of program json schema', () => {
   schemaTestHelper.testValidAndInvalid('toursOfDuty', {
     valid: [[{
       serviceBranch: 'army',
-      dateRange: fixtures.dateRange,
-      involuntarilyCalledToDuty: true,
-      serviceStatus: 'honorable discharge',
-      nationalGuardType: 'title10'
+      dateRange: fixtures.dateRange
     }]],
     invalid: [[{
-      serviceBranch: 'army',
-      dateRange: fixtures.dateRange,
-      involuntarilyCalledToDuty: true,
-      serviceStatus: 'honorable discharge',
-      nationalGuardType: 'foo'
+      serviceBranch: true,
+      dateRange: fixtures.dateRange
     }]]
   });
 });

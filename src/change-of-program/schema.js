@@ -88,16 +88,6 @@ export default {
           },
           dateRange: {
             $ref: '#/definitions/dateRange'
-          },
-          involuntarilyCalledToDuty: {
-            type: 'boolean'
-          },
-          serviceStatus: {
-            type: 'string'
-          },
-          nationalGuardType: {
-            type: 'string',
-            enum: ['title10', 'title32']
           }
         },
         required: ['dateRange', 'serviceBranch']
