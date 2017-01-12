@@ -145,4 +145,9 @@ describe('schema definitions', () => {
       '2000-01-9'
     ]
   });
+
+  testValidAndInvalidDefinitions('educationType', {
+    valid: ['college', 'correspondence'],
+    invalid: ['foo']
+  });
 });

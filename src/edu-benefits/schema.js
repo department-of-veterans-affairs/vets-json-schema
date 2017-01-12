@@ -22,7 +22,8 @@ export default {
     'bankAccount',
     'serviceBefore1977',
     'date',
-    'dateRange'
+    'dateRange',
+    'educationType'
   ])),
   additionalProperties: false,
   properties: {
@@ -102,8 +103,7 @@ export default {
       type: 'string'
     },
     educationType: {
-      type: 'string',
-      enum: ['college', 'correspondence', 'apprenticeship', 'flightTraining', 'testReimbursement', 'licensingReimbursement', 'tuitionTopUp']
+      $ref: '#/definitions/educationType'
     },
     currentlyActiveDuty: {
       type: 'object',

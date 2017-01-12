@@ -173,6 +173,11 @@ const date = {
   type: 'string'
 };
 
+const educationType = {
+  type: 'string',
+  enum: ['college', 'correspondence', 'apprenticeship', 'flightTraining', 'testReimbursement', 'licensingReimbursement', 'tuitionTopUp']
+};
+
 export default {
   fullName,
   address,
@@ -182,5 +187,6 @@ export default {
   bankAccount,
   serviceBefore1977,
   dateRange,
-  date
+  date,
+  educationType
 };
