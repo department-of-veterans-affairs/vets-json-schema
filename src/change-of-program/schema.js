@@ -13,7 +13,9 @@ module.exports = {
     'ssn',
     'school',
     'bankAccount',
-    'serviceBefore1977'
+    'serviceBefore1977',
+    'date',
+    'dateRange'
   ]),
   properties: {
     veteranFullName: {
@@ -85,21 +87,22 @@ module.exports = {
       items: {
         type: 'object',
         properties: {
+          serviceBranch: {
+            type: 'string'
+          },
           dateRange: {
             $ref: '#/definitions/dateRange'
           },
-          serviceBranch: {
-            type: 'string'
+          involuntarilyCalledToDuty: {
+            type: 'boolean'
           },
           serviceStatus: {
             type: 'string'
           },
-          applyPeriodToSelected: {
-            type: 'boolean'
-          },
-          benefitsToApplyTo: {
-            type: 'string'
-          },
+          nationalGuardType: {
+            type: 'string',
+            enum: ['title10', 'title32']
+          }
         },
         required: ['dateRange', 'serviceBranch']
       }

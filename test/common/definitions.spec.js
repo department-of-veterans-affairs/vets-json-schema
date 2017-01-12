@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import SchemaTestHelper from '../support/schema-test-helper';
 import definitions from '../../src/common/definitions';
+import fixtures from '../support/fixtures';
 
 describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
@@ -108,10 +109,7 @@ describe('schema definitions', () => {
 
   testValidAndInvalidDefinitions('dateRange', {
     valid: [
-      {
-        from: '2000-01-01',
-        to: '2000-01-02'
-      },
+      fixtures.dateRange,
       {
         from: '2000-01-01',
         to: 'present'

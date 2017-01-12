@@ -1,5 +1,6 @@
 import SchemaTestHelper from '../support/schema-test-helper';
 import { changeOfProgram as schema } from '../../dist/schemas';
+import fixtures from '../support/fixtures';
 
 let schemaTestHelper = new SchemaTestHelper(schema);
 
@@ -92,5 +93,22 @@ describe('change of program json schema', () => {
     invalid: [{
       married: true
     }]
+  });
+
+  schemaTestHelper.testValidAndInvalid('toursOfDuty', {
+    valid: [[{
+      serviceBranch: 'army',
+      dateRange: fixtures.dateRange,
+      involuntarilyCalledToDuty: true,
+      serviceStatus: 'honorable discharge',
+      nationalGuardType: 'title10'
+    }]],
+    invalid: [[{
+      serviceBranch: 'army',
+      dateRange: fixtures.dateRange,
+      involuntarilyCalledToDuty: true,
+      serviceStatus: 'honorable discharge',
+      nationalGuardType: 'foo'
+    }]]
   });
 });
