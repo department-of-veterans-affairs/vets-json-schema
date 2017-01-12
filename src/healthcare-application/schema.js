@@ -207,6 +207,9 @@ module.exports = {
     stateOfBirth: {
       'enum': states
     },
+    placeOfBirthState: {
+      'enum': states + [{ label: 'Other', value: 'Other' }]
+    },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
     },
