@@ -205,7 +205,7 @@ module.exports = {
       maxLength: 20
     },
     stateOfBirth: {
-      'enum': states + [{ label: 'Other', value: 'Other' }]
+      'enum': states.concat([{ label: 'Other', value: 'Other' }])
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
