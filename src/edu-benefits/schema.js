@@ -12,29 +12,6 @@ module.exports = {
     year: {
       type: 'integer',
       minimum: 1900
-    },
-    date: {
-      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
-      type: 'string'
-    },
-    dateRange: {
-      type: 'object',
-      properties: {
-        from: {
-          $ref: '#/definitions/date'
-        },
-        to: {
-          oneOf: [
-            {
-              $ref: '#/definitions/date'
-            },
-            {
-              type: 'string',
-              enum: ['present']
-            }
-          ]
-        }
-      }
     }
   }, _.pick(definitions, [
     'address',
@@ -43,7 +20,9 @@ module.exports = {
     'ssn',
     'school',
     'bankAccount',
-    'serviceBefore1977'
+    'serviceBefore1977',
+    'date',
+    'dateRange'
   ])),
   additionalProperties: false,
   properties: {
