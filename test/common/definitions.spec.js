@@ -19,12 +19,6 @@ describe('schema definitions', () => {
     schemaTestHelper.testValidAndInvalid(definitionName, fields);
   };
 
-  const validAddress = {
-    street: '123 a rd',
-    city: 'abc',
-    country: 'USA'
-  };
-
   testValidAndInvalidDefinitions('fullName', {
     valid: [{
       first: 'john',
@@ -37,7 +31,7 @@ describe('schema definitions', () => {
 
   testValidAndInvalidDefinitions('address', {
     valid: [
-      validAddress,
+      fixtures.address,
       {
         street: '123 a rd',
         city: 'abc',
@@ -72,7 +66,7 @@ describe('schema definitions', () => {
   testValidAndInvalidDefinitions('school', {
     valid: [{
       name: 'foo',
-      address: validAddress
+      address: fixtures.address
     }],
     invalid: [{
       name: true
