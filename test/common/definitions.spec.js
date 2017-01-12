@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import SchemaTestHelper from '../support/schema-test-helper';
 import definitions from '../../src/common/definitions';
 import fixtures from '../support/fixtures';
