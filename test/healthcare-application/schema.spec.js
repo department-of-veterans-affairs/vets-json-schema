@@ -1,7 +1,10 @@
 import ajv from 'ajv';
 import { healthcareApplication as applicationSchema } from '../../dist/schemas';
 import { expect } from 'chai';
+import SchemaTestHelper from '../support/schema-test-helper';
+import _ from 'lodash';
 
+let schemaTestHelper = new SchemaTestHelper(_.omit(applicationSchema, 'required'));
 const jsonValidator = ajv({ allErrors: true, errorDataPath: 'property', removeAdditional: true, useDefaults: true });
 
 function definitionValidator(field) {
@@ -96,5 +99,20 @@ describe('healthcare-application json schema', () => {
         expect(providerValidation({ [providerField]: stringGenerate(providerFieldMaxLength + 1) })).to.be.false;
       });
     });
+  });
+
+  schemaTestHelper.testValidAndInvalid('email', {
+    valid: [
+      'a@a.com',
+      'a@a.net',
+      'a+2@a.com',
+      'foo.bar@foo.org'
+    ],
+    invalid: [
+      '@',
+      'foo',
+      'foo.com',
+      '@a.com'
+    ]
   });
 });
