@@ -106,6 +106,7 @@ describe('healthcare-application json schema', () => {
       'a@a.com',
       'a@a.net',
       'a+2@a.com',
+      'Foo@foo.com',
       'foo.bar@foo.org'
     ],
     invalid: [
