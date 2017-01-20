@@ -112,6 +112,8 @@ describe('healthcare-application json schema', () => {
       '@',
       'foo',
       'foo.com',
+      'a@a',
+      'a@a.',
       '@a.com'
     ]
   });
