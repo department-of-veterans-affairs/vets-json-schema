@@ -3,6 +3,10 @@
   "title": "Education Benefits Claim",
   "type": "object",
   "definitions": {
+    "year": {
+      "type": "integer",
+      "minimum": 1900
+    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -209,35 +213,6 @@
         "country"
       ]
     },
-    "year": {
-      "type": "integer",
-      "minimum": 1900
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
-    "dateRange": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
-        },
-        "to": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/date"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "present"
-              ]
-            }
-          ]
-        }
-      }
-    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -279,6 +254,92 @@
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
+    },
+    "school": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        }
+      }
+    },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceBefore1977": {
+      "type": "object",
+      "properties": {
+        "married": {
+          "type": "boolean"
+        },
+        "haveDependents": {
+          "type": "boolean"
+        },
+        "parentDependent": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "married",
+        "haveDependents",
+        "parentDependent"
+      ]
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/date"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "present"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp"
+      ]
     }
   },
   "additionalProperties": false,
@@ -359,34 +420,10 @@
       }
     },
     "bankAccount": {
-      "type": "object",
-      "properties": {
-        "accountType": {
-          "type": "string",
-          "enum": [
-            "checking",
-            "savings"
-          ]
-        },
-        "routingNumber": {
-          "type": "string",
-          "pattern": "^\\d{9}$"
-        },
-        "accountNumber": {
-          "type": "string"
-        }
-      }
+      "$ref": "#/definitions/bankAccount"
     },
     "school": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/address"
-        }
-      }
+      "$ref": "#/definitions/school"
     },
     "educationStartDate": {
       "$ref": "#/definitions/date"
@@ -395,16 +432,7 @@
       "type": "string"
     },
     "educationType": {
-      "type": "string",
-      "enum": [
-        "college",
-        "correspondence",
-        "apprenticeship",
-        "flightTraining",
-        "testReimbursement",
-        "licensingReimbursement",
-        "tuitionTopUp"
-      ]
+      "$ref": "#/definitions/educationType"
     },
     "currentlyActiveDuty": {
       "type": "object",
@@ -473,23 +501,7 @@
       "$ref": "#/definitions/dateRange"
     },
     "serviceBefore1977": {
-      "type": "object",
-      "properties": {
-        "married": {
-          "type": "boolean"
-        },
-        "haveDependents": {
-          "type": "boolean"
-        },
-        "parentDependent": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "married",
-        "haveDependents",
-        "parentDependent"
-      ]
+      "$ref": "#/definitions/serviceBefore1977"
     },
     "toursOfDuty": {
       "type": "array",

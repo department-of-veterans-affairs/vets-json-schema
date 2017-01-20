@@ -1,61 +1,21 @@
-import { expect } from 'chai';
+import SchemaTestHelper from '../support/schema-test-helper';
 import { eduBenefits as schema } from '../../dist/schemas';
-import Ajv from 'ajv';
-import _ from 'lodash';
+
+let schemaTestHelper = new SchemaTestHelper(
+  schema,
+  {
+    privacyAgreementAccepted: true
+  }
+);
 
 describe('education benefits json schema', () => {
-  let ajv = new Ajv();
-  let currentSchema;
-  const validateSchema = (data) => {
-    return ajv.validate(currentSchema, data);
-  };
-  const validators = {
-    valid: (data) => {
-      expect(validateSchema(data)).to.equal(true);
-    },
-    invalid: (data) => {
-      expect(validateSchema(data)).to.equal(false);
-      expect(ajv.errors[0].dataPath).to.contain(`.${Object.keys(data)[0]}`);
-    }
-  };
-  const objectBuilder = (keys, value) => {
-    let object = {};
-
-    keys.split('.').reverse().forEach((key, i) => {
-      if (i === 0) {
-        object = {
-          [key]: value
-        };
-      } else {
-        object = {
-          [key]: object
-        };
-      }
-    });
-
-    object['privacyAgreementAccepted'] = true
-    return object;
-  };
-  const testValidAndInvalid = (parentKey, fields) => {
-    ['valid', 'invalid'].forEach((fieldType) => {
-      fields[fieldType].forEach((values) => {
-        it(`should${fieldType === 'valid' ? '' : 'nt'} allow ${parentKey} with ${JSON.stringify(values)}`, () => {
-          validators[fieldType](objectBuilder(parentKey, values));
-        });
-      });
-    });
-  };
   const validDateRange = {
     from: '2000-01-01',
     to: '2000-01-02'
   };
 
-  beforeEach(() => {
-    currentSchema = schema;
-  });
-
   context('ssn validations', () => {
-    testValidAndInvalid('veteranSocialSecurityNumber', {
+    schemaTestHelper.testValidAndInvalid('veteranSocialSecurityNumber', {
       valid: ['123456789'],
       invalid: ['123-45-6789', '12345678']
     });
@@ -63,7 +23,7 @@ describe('education benefits json schema', () => {
 
   context('name validations', () => {
     ['veteranFullName'].forEach((parentKey) => {
-      testValidAndInvalid(parentKey, {
+      schemaTestHelper.testValidAndInvalid(parentKey, {
         valid: [{
           first: 'john',
           last: 'doe'
@@ -76,21 +36,15 @@ describe('education benefits json schema', () => {
   });
 
   context('gender validations', () => {
-    testValidAndInvalid('gender', {
+    schemaTestHelper.testValidAndInvalid('gender', {
       valid: ['M', 'F'],
       invalid: ['Z']
     });
   });
 
   context('address validations', () => {
-    beforeEach(() => {
-      let modifiedSchema = _.cloneDeep(schema);
-      delete(modifiedSchema.properties.school.required);
-      currentSchema = modifiedSchema;
-    });
-
     ['veteranAddress', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
-      testValidAndInvalid(parentKey, {
+      schemaTestHelper.testValidAndInvalid(parentKey, {
         valid: [{
           street: '123 a rd',
           city: 'abc',
@@ -106,7 +60,7 @@ describe('education benefits json schema', () => {
 
   context('phone # validations', () => {
     ['homePhone', 'mobilePhone', 'secondaryContact.phone'].forEach((parentKey) => {
-      testValidAndInvalid(parentKey, {
+      schemaTestHelper.testValidAndInvalid(parentKey, {
         valid: ['5555555555', '555-555-5555', '555 555 5555'],
         invalid: ['1234']
       });
@@ -114,26 +68,26 @@ describe('education benefits json schema', () => {
   });
 
   context('bank account validations', () => {
-    testValidAndInvalid('bankAccount.accountType', {
+    schemaTestHelper.testValidAndInvalid('bankAccount.accountType', {
       valid: ['checking', 'savings'],
       invalid: ['bitcoin']
     });
 
-    testValidAndInvalid('bankAccount.routingNumber', {
+    schemaTestHelper.testValidAndInvalid('bankAccount.routingNumber', {
       valid: ['123456789'],
       invalid: ['12345678']
     });
   });
 
   context('serviceAcademyGraduationYear validations', () => {
-    testValidAndInvalid('serviceAcademyGraduationYear', {
+    schemaTestHelper.testValidAndInvalid('serviceAcademyGraduationYear', {
       valid: [2004],
       invalid: [1899]
     });
   });
 
   context('dateRange validations', () => {
-    testValidAndInvalid('activeDutyRepayingPeriod', {
+    schemaTestHelper.testValidAndInvalid('activeDutyRepayingPeriod', {
       valid: [
         validDateRange,
         {
@@ -158,7 +112,7 @@ describe('education benefits json schema', () => {
   });
 
   context('date validations', () => {
-    testValidAndInvalid('veteranDateOfBirth', {
+    schemaTestHelper.testValidAndInvalid('veteranDateOfBirth', {
       valid: [
         '2000-01-02',
         '2000-01-31',
@@ -183,7 +137,7 @@ describe('education benefits json schema', () => {
   });
 
   context('tours of duty validation', () => {
-    testValidAndInvalid('toursOfDuty', {
+    schemaTestHelper.testValidAndInvalid('toursOfDuty', {
       valid: [[{
         dateRange: validDateRange,
         serviceBranch: 'navy',
@@ -218,7 +172,7 @@ describe('education benefits json schema', () => {
   });
 
   context('post high school trainings validation', () => {
-    testValidAndInvalid('postHighSchoolTrainings', {
+    schemaTestHelper.testValidAndInvalid('postHighSchoolTrainings', {
       valid: [[{
         name: 'college',
         dateRange: validDateRange,
@@ -239,7 +193,7 @@ describe('education benefits json schema', () => {
   });
 
   context('non military jobs validation', () => {
-    testValidAndInvalid('nonMilitaryJobs', {
+    schemaTestHelper.testValidAndInvalid('nonMilitaryJobs', {
       valid: [[{
         name: 'president',
         months: 9999,
@@ -253,7 +207,7 @@ describe('education benefits json schema', () => {
   });
 
   context('senior rotc validation', () => {
-    testValidAndInvalid('seniorRotc', {
+    schemaTestHelper.testValidAndInvalid('seniorRotc', {
       valid: [{
         commissionYear: 1981,
         rotcScholarshipAmounts: [{
@@ -268,7 +222,7 @@ describe('education benefits json schema', () => {
   });
 
   context('email validation', () => {
-    testValidAndInvalid('email', {
+    schemaTestHelper.testValidAndInvalid('email', {
       valid: [
         'foo@foo.com',
         'foo+1@foo.com'
@@ -278,7 +232,7 @@ describe('education benefits json schema', () => {
   });
 
   context('preferredContactMethod validation', () => {
-    testValidAndInvalid('preferredContactMethod', {
+    schemaTestHelper.testValidAndInvalid('preferredContactMethod', {
       valid: [
         'mail',
         'email'
@@ -288,14 +242,14 @@ describe('education benefits json schema', () => {
   });
 
   context('benefitsRelinquished validation', () => {
-    testValidAndInvalid('benefitsRelinquished', {
+    schemaTestHelper.testValidAndInvalid('benefitsRelinquished', {
       valid: ['chapter30', 'unknown', 'chapter1607', 'chapter1606'],
       invalid: ['chapter33']
     });
   });
 
   context('serviceBefore1977 validation', () => {
-    testValidAndInvalid('serviceBefore1977', {
+    schemaTestHelper.testValidAndInvalid('serviceBefore1977', {
       valid: [{
         married: true,
         haveDependents: true,
@@ -308,7 +262,7 @@ describe('education benefits json schema', () => {
   });
 
   context('school validation', () => {
-    testValidAndInvalid('school', {
+    schemaTestHelper.testValidAndInvalid('school', {
       valid: [{
         name: 'harvard'
       }],
