@@ -20,6 +20,14 @@ export default {
     'dateRange',
     'educationType'
   ]),
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   properties: {
     veteranFullName: {
       $ref: '#/definitions/fullName'
