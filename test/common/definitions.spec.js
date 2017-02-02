@@ -105,7 +105,7 @@ describe('schema definitions', () => {
       fixtures.dateRange,
       {
         from: '2000-01-01',
-        to: 'present'
+        to: '2001-03-02'
       },
       {
         from: '2000-01-01'

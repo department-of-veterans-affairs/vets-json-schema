@@ -92,7 +92,7 @@ describe('education benefits json schema', () => {
         validDateRange,
         {
           from: '2000-01-01',
-          to: 'present'
+          to: '2001-03-30'
         },
         {
           from: '2000-01-01'

@@ -18,7 +18,8 @@ export default {
     'serviceBefore1977',
     'date',
     'dateRange',
-    'educationType'
+    'educationType',
+    'preferredContactMethod',
   ]),
   properties: {
     veteranFullName: {
@@ -34,18 +35,22 @@ export default {
       $ref: '#/definitions/phone'
     },
     vaFileNumber: {
-      type: 'string'
+      type: 'string',
+      pattern: '^[cC]{0,1}\\d{8}$'
     },
     email: {
       type: 'string',
       format: 'email'
+    },
+    preferredContactMethod: {
+      $ref: '#/definitions/preferredContactMethod'
     },
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
     },
     benefit: {
       type: 'string',
-      enum: ['chapter33', 'chapter30', 'chapter32', 'chapter1606', 'chapter1607', 'transferOfEntitlement']
+      enum: ['chapter33', 'chapter30', 'chapter1606', 'chapter32', 'chapter1607', 'transferOfEntitlement']
     },
     educationType: {
       $ref: '#/definitions/educationType'
@@ -89,8 +94,7 @@ export default {
           dateRange: {
             $ref: '#/definitions/dateRange'
           }
-        },
-        required: ['dateRange', 'serviceBranch']
+        }
       }
     },
     civilianBenefitsAssistance: {
