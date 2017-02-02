@@ -19,7 +19,7 @@ export default {
     'date',
     'dateRange',
     'educationType',
-    'preferredContactMethod',
+    'preferredContactMethod'
   ]),
   properties: {
     veteranFullName: {
