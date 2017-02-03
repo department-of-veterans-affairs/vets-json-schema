@@ -2,9 +2,6 @@
   "fullName": {
     "type": "object",
     "properties": {
-      "salutation": {
-        "type": "string"
-      },
       "first": {
         "type": "string",
         "minLength": 1,
@@ -19,6 +16,7 @@
         "maxLength": 30
       },
       "suffix": {
+        "type": "string",
         "enum": [
           "Jr.",
           "Sr.",
@@ -303,17 +301,7 @@
         "$ref": "#/definitions/date"
       },
       "to": {
-        "oneOf": [
-          {
-            "$ref": "#/definitions/date"
-          },
-          {
-            "type": "string",
-            "enum": [
-              "present"
-            ]
-          }
-        ]
+        "$ref": "#/definitions/date"
       }
     }
   },
@@ -332,6 +320,14 @@
       "licensingReimbursement",
       "tuitionTopUp",
       "cooperativeTraining"
+    ]
+  },
+  "preferredContactMethod": {
+    "type": "string",
+    "enum": [
+      "mail",
+      "email",
+      "phone"
     ]
   }
 }
