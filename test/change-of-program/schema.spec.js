@@ -122,10 +122,10 @@ describe('change of program json schema', () => {
 
       [
         { veteranSocialSecurityNumber: '123456789' },
-        { vaFileNumber: '123' },
+        { vaFileNumber: '12345678' },
         {
           veteranSocialSecurityNumber: '123456789',
-          vaFileNumber: '123'
+          vaFileNumber: '12345678'
         }
       ].forEach((schemaData) => {
         fullSchemaTestHelper.schemaExpect(true, schemaData);

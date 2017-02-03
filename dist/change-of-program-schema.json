@@ -7,9 +7,6 @@
     "fullName": {
       "type": "object",
       "properties": {
-        "salutation": {
-          "type": "string"
-        },
         "first": {
           "type": "string",
           "minLength": 1,
@@ -24,6 +21,7 @@
           "maxLength": 30
         },
         "suffix": {
+          "type": "string",
           "enum": [
             "Jr.",
             "Sr.",
@@ -312,17 +310,7 @@
           "$ref": "#/definitions/date"
         },
         "to": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/date"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "present"
-              ]
-            }
-          ]
+          "$ref": "#/definitions/date"
         }
       }
     },
@@ -337,6 +325,14 @@
         "licensingReimbursement",
         "tuitionTopUp",
         "cooperativeTraining"
+      ]
+    },
+    "preferredContactMethod": {
+      "type": "string",
+      "enum": [
+        "mail",
+        "email",
+        "phone"
       ]
     }
   },
@@ -366,11 +362,15 @@
       "$ref": "#/definitions/phone"
     },
     "vaFileNumber": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{8}$"
     },
     "email": {
       "type": "string",
       "format": "email"
+    },
+    "preferredContactMethod": {
+      "$ref": "#/definitions/preferredContactMethod"
     },
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
@@ -380,8 +380,8 @@
       "enum": [
         "chapter33",
         "chapter30",
-        "chapter32",
         "chapter1606",
+        "chapter32",
         "chapter1607",
         "transferOfEntitlement"
       ]
@@ -432,11 +432,7 @@
           "dateRange": {
             "$ref": "#/definitions/dateRange"
           }
-        },
-        "required": [
-          "dateRange",
-          "serviceBranch"
-        ]
+        }
       }
     },
     "civilianBenefitsAssistance": {

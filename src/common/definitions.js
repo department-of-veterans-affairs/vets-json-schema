@@ -4,9 +4,6 @@ import _ from 'lodash';
 const fullName = {
   type: 'object',
   properties: {
-    salutation: {
-      type: 'string'
-    },
     first: {
       type: 'string',
       minLength: 1,
@@ -21,6 +18,7 @@ const fullName = {
       maxLength: 30
     },
     suffix: {
+      type: 'string',
       'enum': constants.suffixes
     },
   },
@@ -155,15 +153,7 @@ const dateRange = {
       $ref: '#/definitions/date'
     },
     to: {
-      oneOf: [
-        {
-          $ref: '#/definitions/date'
-        },
-        {
-          type: 'string',
-          enum: ['present']
-        }
-      ]
+      $ref: '#/definitions/date'
     }
   }
 };
@@ -178,6 +168,15 @@ const educationType = {
   enum: ['college', 'correspondence', 'apprenticeship', 'flightTraining', 'testReimbursement', 'licensingReimbursement', 'tuitionTopUp']
 };
 
+const preferredContactMethod = {
+  type: 'string',
+  enum: [
+    'mail',
+    'email',
+    'phone'
+  ]
+};
+
 export default {
   fullName,
   address,
@@ -188,5 +187,6 @@ export default {
   serviceBefore1977,
   dateRange,
   date,
-  educationType
+  educationType,
+  preferredContactMethod
 };
