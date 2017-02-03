@@ -21,6 +21,14 @@ export default {
     'educationType',
     'preferredContactMethod'
   ]),
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   properties: {
     veteranFullName: {
       $ref: '#/definitions/fullName'

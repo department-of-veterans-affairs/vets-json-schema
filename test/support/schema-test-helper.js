@@ -1,8 +1,6 @@
 import { expect } from 'chai';
 import Ajv from 'ajv';
 
-let ajv = new Ajv();
-
 const objectBuilder = (keys, value) => {
   let object = {};
 
@@ -25,17 +23,18 @@ export default class SchemaTestHelper {
   constructor(schema, defaults = {}) {
     this.schema = schema;
     this.defaults = defaults;
+    this.ajv = new Ajv();
   }
 
   validateSchema(data) {
-    return ajv.validate(this.schema, Object.assign({}, data, this.defaults));
+    return this.ajv.validate(this.schema, Object.assign({}, data, this.defaults));
   }
 
   schemaExpect(valid, data) {
     expect(this.validateSchema(data)).to.equal(valid);
 
     if (!valid) {
-      expect(ajv.errors[0].dataPath).to.contain(`.${Object.keys(data)[0]}`);
+      expect(this.ajv.errors[0].dataPath).to.contain(`.${Object.keys(data)[0]}`);
     }
   }
 

@@ -1,5 +1,5 @@
 import SchemaTestHelper from '../support/schema-test-helper';
-import definitions from '../../src/common/definitions';
+import { definitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
 
 describe('schema definitions', () => {
