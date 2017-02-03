@@ -23,7 +23,8 @@ export default {
     'serviceBefore1977',
     'date',
     'dateRange',
-    'educationType'
+    'educationType',
+    'preferredContactMethod'
   ])),
   additionalProperties: false,
   properties: {
@@ -70,8 +71,7 @@ export default {
       $ref: '#/definitions/phone'
     },
     preferredContactMethod: {
-      type: 'string',
-      enum: ['mail', 'email', 'phone']
+      $ref: '#/definitions/preferredContactMethod'
     },
     secondaryContact: {
       type: 'object',

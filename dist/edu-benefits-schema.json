@@ -328,6 +328,14 @@
         "licensingReimbursement",
         "tuitionTopUp"
       ]
+    },
+    "preferredContactMethod": {
+      "type": "string",
+      "enum": [
+        "mail",
+        "email",
+        "phone"
+      ]
     }
   },
   "additionalProperties": false,
@@ -383,12 +391,7 @@
       "$ref": "#/definitions/phone"
     },
     "preferredContactMethod": {
-      "type": "string",
-      "enum": [
-        "mail",
-        "email",
-        "phone"
-      ]
+      "$ref": "#/definitions/preferredContactMethod"
     },
     "secondaryContact": {
       "type": "object",
