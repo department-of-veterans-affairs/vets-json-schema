@@ -1,8 +1,10 @@
 import SchemaTestHelper from '../support/schema-test-helper';
 import { changeOfProgram as schema } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
+import _ from 'lodash';
+import { expect } from 'chai';
 
-let schemaTestHelper = new SchemaTestHelper(schema);
+let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'));
 
 describe('change of program json schema', () => {
   schemaTestHelper.testValidAndInvalid('veteranFullName', {
@@ -109,5 +111,25 @@ describe('change of program json schema', () => {
       serviceBranch: true,
       dateRange: fixtures.dateRange
     }]]
+  });
+
+  describe('required fields', () => {
+    it('should require either ssn or vaFileNumber', () => {
+      let fullSchemaTestHelper = new SchemaTestHelper(schema);
+
+      expect(fullSchemaTestHelper.validateSchema({})).to.equal(false);
+      expect(fullSchemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
+
+      [
+        { veteranSocialSecurityNumber: '123456789' },
+        { vaFileNumber: '123' },
+        {
+          veteranSocialSecurityNumber: '123456789',
+          vaFileNumber: '123'
+        }
+      ].forEach((schemaData) => {
+        fullSchemaTestHelper.schemaExpect(true, schemaData);
+      });
+    });
   });
 });
