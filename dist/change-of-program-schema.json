@@ -334,6 +334,12 @@
         "email",
         "phone"
       ]
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
     }
   },
   "anyOf": [
@@ -443,6 +449,12 @@
     },
     "remarks": {
       "type": "string"
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }

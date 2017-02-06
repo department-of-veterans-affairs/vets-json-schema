@@ -150,4 +150,9 @@ describe('schema definitions', () => {
     valid: ['college', 'correspondence'],
     invalid: ['foo']
   });
+
+  testValidAndInvalidDefinitions('privacyAgreementAccepted', {
+    valid: [true],
+    invalid: [false]
+  });
 });

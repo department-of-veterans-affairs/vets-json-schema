@@ -4,7 +4,11 @@ import fixtures from '../support/fixtures';
 import _ from 'lodash';
 import { expect } from 'chai';
 
-let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'));
+const schemaDefaults = {
+  privacyAgreementAccepted: true
+};
+
+let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
 
 describe('change of program json schema', () => {
   schemaTestHelper.testValidAndInvalid('veteranFullName', {
@@ -115,7 +119,7 @@ describe('change of program json schema', () => {
 
   describe('required fields', () => {
     it('should require either ssn or vaFileNumber', () => {
-      let fullSchemaTestHelper = new SchemaTestHelper(schema);
+      let fullSchemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
 
       expect(fullSchemaTestHelper.validateSchema({})).to.equal(false);
       expect(fullSchemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');

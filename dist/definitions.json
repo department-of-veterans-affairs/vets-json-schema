@@ -329,5 +329,11 @@
       "email",
       "phone"
     ]
+  },
+  "privacyAgreementAccepted": {
+    "type": "boolean",
+    "enum": [
+      true
+    ]
   }
 }
