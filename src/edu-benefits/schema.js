@@ -24,7 +24,8 @@ export default {
     'date',
     'dateRange',
     'educationType',
-    'preferredContactMethod'
+    'preferredContactMethod',
+    'privacyAgreementAccepted'
   ])),
   additionalProperties: false,
   properties: {
@@ -257,8 +258,7 @@ export default {
       '$ref': '#/definitions/date'
     },
     privacyAgreementAccepted: {
-      type: "boolean",
-      enum: [true]
+      $ref: '#/definitions/privacyAgreementAccepted'
     }
   },
   required: ['privacyAgreementAccepted']

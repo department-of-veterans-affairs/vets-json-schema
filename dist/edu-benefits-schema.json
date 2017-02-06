@@ -336,6 +336,12 @@
         "email",
         "phone"
       ]
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
     }
   },
   "additionalProperties": false,
@@ -649,10 +655,7 @@
       "$ref": "#/definitions/date"
     },
     "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
+      "$ref": "#/definitions/privacyAgreementAccepted"
     }
   },
   "required": [
