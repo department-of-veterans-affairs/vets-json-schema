@@ -19,7 +19,8 @@ export default {
     'date',
     'dateRange',
     'educationType',
-    'preferredContactMethod'
+    'preferredContactMethod',
+    'privacyAgreementAccepted'
   ]),
   anyOf: [
     {
@@ -113,6 +114,10 @@ export default {
     },
     remarks: {
       type: 'string'
+    },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted'
     }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
