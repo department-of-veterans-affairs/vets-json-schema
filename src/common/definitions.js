@@ -177,6 +177,11 @@ const preferredContactMethod = {
   ]
 };
 
+const privacyAgreementAccepted = {
+  type: "boolean",
+  enum: [true]
+};
+
 export default {
   fullName,
   address,
@@ -188,5 +193,6 @@ export default {
   dateRange,
   date,
   educationType,
-  preferredContactMethod
+  preferredContactMethod,
+  privacyAgreementAccepted
 };
