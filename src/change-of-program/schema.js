@@ -59,7 +59,7 @@ export default {
     },
     benefit: {
       type: 'string',
-      enum: ['chapter33', 'chapter30', 'chapter1606', 'chapter32', 'chapter1607', 'transferOfEntitlement']
+      enum: ['chapter33', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32', 'chapter1607']
     },
     educationType: {
       $ref: '#/definitions/educationType'
@@ -84,7 +84,7 @@ export default {
     },
     bankAccountChange: {
       type: 'string',
-      enum: ['start', 'change', 'stop']
+      enum: ['update', 'start', 'stop']
     },
     bankAccount: {
       $ref: '#/definitions/bankAccount'
