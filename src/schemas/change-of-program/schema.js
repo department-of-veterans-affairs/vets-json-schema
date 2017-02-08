@@ -1,4 +1,4 @@
-import definitions from '../common/definitions';
+import definitions from '../../common/definitions';
 import _ from 'lodash';
 
 definitions.educationType.enum.push('cooperativeTraining');

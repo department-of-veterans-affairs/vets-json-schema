@@ -1,6 +1,6 @@
-import constants from '../common/constants';
+import constants from '../../common/constants';
 import _ from 'lodash';
-import definitions from '../common/definitions';
+import definitions from '../../common/definitions';
 
 const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 
