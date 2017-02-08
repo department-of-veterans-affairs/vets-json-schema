@@ -387,9 +387,9 @@
         "chapter33",
         "chapter30",
         "chapter1606",
+        "transferOfEntitlement",
         "chapter32",
-        "chapter1607",
-        "transferOfEntitlement"
+        "chapter1607"
       ]
     },
     "educationType": {
@@ -416,8 +416,8 @@
     "bankAccountChange": {
       "type": "string",
       "enum": [
+        "update",
         "start",
-        "change",
         "stop"
       ]
     },
