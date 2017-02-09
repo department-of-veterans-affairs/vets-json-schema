@@ -1,6 +1,12 @@
-module.exports = {
-  eduBenefits: require('./edu-benefits-schema.json'),
-  healthcareApplication: require('./healthcare-application-schema.json'),
-  changeOfProgram: require('./change-of-program-schema.json'),
+var fs = require('fs');
+var codingInflector = require('coding-inflector');
+
+var schemas = {
   definitions: require('./definitions.json')
 };
+
+fs.readdirSync('src/schemas').forEach((schema) => {
+  schemas[codingInflector.camelize(schema)] = require('./' + schema + '-schema.json');
+});
+
+module.exports = schemas;
