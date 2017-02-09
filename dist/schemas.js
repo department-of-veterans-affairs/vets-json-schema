@@ -1,12 +1,12 @@
 var fs = require('fs');
 var codingInflector = require('coding-inflector');
 
-var schemas = {
-  definitions: require('./definitions.json')
-};
+var schemas = {};
 
-fs.readdirSync('src/schemas').forEach((schema) => {
-  schemas[codingInflector.camelize(schema)] = require('./' + schema + '-schema.json');
+fs.readdirSync(__dirname).forEach((fileName) => {
+  if (fileName === 'schemas.js') return;
+
+  schemas[codingInflector.camelize(fileName.replace('.json', '').replace('-schema', ''))] = require('./' + fileName);
 });
 
 module.exports = schemas;
