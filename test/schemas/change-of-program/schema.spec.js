@@ -1,6 +1,6 @@
-import SchemaTestHelper from '../support/schema-test-helper';
-import { changeOfProgram as schema } from '../../dist/schemas';
-import fixtures from '../support/fixtures';
+import SchemaTestHelper from '../../support/schema-test-helper';
+import { changeOfProgram as schema } from '../../../dist/schemas';
+import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import { expect } from 'chai';
 
