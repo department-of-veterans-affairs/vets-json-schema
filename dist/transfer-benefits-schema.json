@@ -9,11 +9,18 @@
       "enum": [
         true
       ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     }
   },
   "properties": {
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     }
   },
   "required": [

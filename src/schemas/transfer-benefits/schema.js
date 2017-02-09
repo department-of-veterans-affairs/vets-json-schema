@@ -7,12 +7,16 @@ export default {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions,
-    'privacyAgreementAccepted'
+    'privacyAgreementAccepted',
+    'ssn'
   ),
   properties: {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
-    }
+    },
+    veteranSocialSecurityNumber: {
+      $ref: '#/definitions/ssn'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
