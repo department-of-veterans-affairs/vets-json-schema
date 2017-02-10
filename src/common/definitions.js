@@ -182,6 +182,11 @@ const privacyAgreementAccepted = {
   enum: [true]
 };
 
+const gender = {
+  type: 'string',
+  'enum': ['M', 'F']
+};
+
 export default {
   fullName,
   address,
@@ -194,5 +199,6 @@ export default {
   date,
   educationType,
   preferredContactMethod,
-  privacyAgreementAccepted
+  privacyAgreementAccepted,
+  gender
 };

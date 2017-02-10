@@ -335,5 +335,12 @@
     "enum": [
       true
     ]
+  },
+  "gender": {
+    "type": "string",
+    "enum": [
+      "M",
+      "F"
+    ]
   }
 }

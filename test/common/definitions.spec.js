@@ -155,4 +155,9 @@ describe('schema definitions', () => {
     valid: [true],
     invalid: [false]
   });
+
+  testValidAndInvalidDefinitions('gender', {
+    valid: ['M', 'F'],
+    invalid: ['male']
+  });
 });
