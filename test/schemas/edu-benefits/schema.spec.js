@@ -23,7 +23,8 @@ describe('education benefits json schema', () => {
     'bankAccount',
     'date',
     'educationType',
-    'email'
+    'email',
+    'school'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -175,17 +176,6 @@ describe('education benefits json schema', () => {
       }],
       invalid: [{
         married: true
-      }]
-    });
-  });
-
-  context('school validation', () => {
-    schemaTestHelper.testValidAndInvalid('school', {
-      valid: [{
-        name: 'harvard'
-      }],
-      invalid: [{
-        name: true
       }]
     });
   });

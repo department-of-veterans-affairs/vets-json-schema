@@ -25,16 +25,11 @@ describe('change of program json schema', () => {
     sharedTests.runTest(test);
   });
 
+  sharedTests.runTest('school', ['newSchool', 'oldSchool']);
+
   schemaTestHelper.testValidAndInvalid('benefit', {
     valid: ['chapter33'],
     invalid: ['foo']
-  });
-
-  ['new', 'old'].forEach((type) => {
-    schemaTestHelper.testValidAndInvalid(`${type}School`, {
-      valid: [{ name: 'foo' }],
-      invalid: [{ name: true }]
-    });
   });
 
   schemaTestHelper.testValidAndInvalid('trainingEndDate', {

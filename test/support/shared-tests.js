@@ -98,6 +98,16 @@ const testData = {
       valid: ['cooperativeTraining', 'college'],
       invalid: ['foo']
     }
+  },
+  school: {
+    data: {
+      valid: [{
+        name: 'harvard'
+      }],
+      invalid: [{
+        name: true
+      }]
+    }
   }
 };
 

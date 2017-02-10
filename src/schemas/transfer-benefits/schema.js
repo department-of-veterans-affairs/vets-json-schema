@@ -16,6 +16,7 @@ export default {
     'phone',
     'bankAccount',
     'educationType',
+    'school',
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -62,6 +63,9 @@ export default {
     },
     educationType: {
       $ref: '#/definitions/educationType'
+    },
+    school: {
+      $ref: '#/definitions/school'
     },
   },
   required: ['privacyAgreementAccepted']
