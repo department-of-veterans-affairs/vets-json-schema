@@ -32,4 +32,14 @@ describe('transfer benefits schema', () => {
       '4/6/1998'
     ]
   });
+
+  schemaTestHelper.testValidAndInvalid('veteranFullName', {
+    valid: [{
+      first: 'john',
+      last: 'doe'
+    }],
+    invalid: [{
+      first: 'john'
+    }]
+  });
 });
