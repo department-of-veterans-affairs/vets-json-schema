@@ -19,18 +19,14 @@ describe('change of program json schema', () => {
     'address',
     'phone',
     'email',
-    'bankAccount'
+    'bankAccount',
+    'educationType'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
 
   schemaTestHelper.testValidAndInvalid('benefit', {
     valid: ['chapter33'],
-    invalid: ['foo']
-  });
-
-  schemaTestHelper.testValidAndInvalid('educationType', {
-    valid: ['cooperativeTraining', 'college'],
     invalid: ['foo']
   });
 

@@ -19,7 +19,8 @@ describe('transfer benefits schema', () => {
     'address',
     'phone',
     'email',
-    'bankAccount'
+    'bankAccount',
+    'educationType'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

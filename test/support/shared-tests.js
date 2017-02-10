@@ -92,6 +92,12 @@ const testData = {
         accountNumber: '1234'
       }]
     }
+  },
+  educationType: {
+    data: {
+      valid: ['cooperativeTraining', 'college'],
+      invalid: ['foo']
+    }
   }
 };
 

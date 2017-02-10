@@ -285,6 +285,19 @@
           "type": "string"
         }
       }
+    },
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp",
+        "cooperativeTraining"
+      ]
     }
   },
   "properties": {
@@ -337,6 +350,9 @@
         "chapter1606",
         "chapter1607"
       ]
+    },
+    "educationType": {
+      "$ref": "#/definitions/educationType"
     }
   },
   "required": [

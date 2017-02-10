@@ -22,6 +22,7 @@ describe('education benefits json schema', () => {
     'gender',
     'bankAccount',
     'date',
+    'educationType',
     'email'
   ].forEach((test) => {
     sharedTests.runTest(test);

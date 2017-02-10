@@ -15,6 +15,7 @@ export default {
     'address',
     'phone',
     'bankAccount',
+    'educationType',
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -58,6 +59,9 @@ export default {
     benefit: {
       type: 'string',
       enum: ['chapter33', 'chapter30', 'chapter1606', 'chapter1607']
+    },
+    educationType: {
+      $ref: '#/definitions/educationType'
     },
   },
   required: ['privacyAgreementAccepted']
