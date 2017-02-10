@@ -15,7 +15,6 @@ describe('transfer benefits schema', () => {
   [
     'ssn',
     'gender',
-    'date',
     'fullName',
     'address',
     'phone',
@@ -24,4 +23,6 @@ describe('transfer benefits schema', () => {
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
+
+  sharedTests.runTest('date', ['veteranDateOfBirth', 'highSchoolOrGedCompletionDate']);
 });

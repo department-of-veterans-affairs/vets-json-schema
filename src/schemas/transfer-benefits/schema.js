@@ -48,6 +48,17 @@ export default {
     bankAccount: {
       $ref: '#/definitions/bankAccount'
     },
+    relationship: {
+      type: 'string',
+      'enum': ['spouse', 'child']
+    },
+    highSchoolOrGedCompletionDate: {
+      $ref: '#/definitions/date'
+    },
+    benefit: {
+      type: 'string',
+      enum: ['chapter33', 'chapter30', 'chapter1606', 'chapter1607']
+    },
   },
   required: ['privacyAgreementAccepted']
 };
