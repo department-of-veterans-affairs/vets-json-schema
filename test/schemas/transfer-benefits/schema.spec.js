@@ -25,4 +25,9 @@ describe('transfer benefits schema', () => {
   });
 
   sharedTests.runTest('date', ['veteranDateOfBirth', 'highSchoolOrGedCompletionDate']);
+
+  schemaTestHelper.testValidAndInvalid('benefit', {
+    valid: ['chapter33'],
+    invalid: ['foo']
+  });
 });
