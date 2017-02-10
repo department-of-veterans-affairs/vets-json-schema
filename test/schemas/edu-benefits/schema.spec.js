@@ -25,7 +25,8 @@ describe('education benefits json schema', () => {
     'educationType',
     'email',
     'school',
-    'postHighSchoolTrainings'
+    'postHighSchoolTrainings',
+    'nonMilitaryJobs'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -98,20 +99,6 @@ describe('education benefits json schema', () => {
           benefitsToApplyTo: 'chapter30'
         }]
       ],
-    });
-  });
-
-  context('non military jobs validation', () => {
-    schemaTestHelper.testValidAndInvalid('nonMilitaryJobs', {
-      valid: [[{
-        name: 'president',
-        months: 9999,
-        postMilitaryJob: true
-      }]],
-      invalid: [[{
-        postMilitaryJob: true,
-        months: 'a'
-      }]]
     });
   });
 

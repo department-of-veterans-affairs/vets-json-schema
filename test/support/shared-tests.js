@@ -130,6 +130,19 @@ const testData = {
         }]
       ]
     }
+  },
+  nonMilitaryJobs: {
+    data: {
+      valid: [[{
+        name: 'president',
+        months: 9999,
+        postMilitaryJob: true
+      }]],
+      invalid: [[{
+        postMilitaryJob: true,
+        months: 'a'
+      }]]
+    }
   }
 };
 
