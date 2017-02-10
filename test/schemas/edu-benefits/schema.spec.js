@@ -1,5 +1,6 @@
 import SchemaTestHelper from '../../support/schema-test-helper';
 import { eduBenefits as schema } from '../../../dist/schemas';
+import SharedTests from '../../support/shared-tests';
 
 let schemaTestHelper = new SchemaTestHelper(
   schema,
@@ -7,6 +8,7 @@ let schemaTestHelper = new SchemaTestHelper(
     privacyAgreementAccepted: true
   }
 );
+let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('education benefits json schema', () => {
   const validDateRange = {
@@ -14,70 +16,20 @@ describe('education benefits json schema', () => {
     to: '2000-01-02'
   };
 
-  context('ssn validations', () => {
-    schemaTestHelper.testValidAndInvalid('veteranSocialSecurityNumber', {
-      valid: ['123456789'],
-      invalid: ['123-45-6789', '12345678']
-    });
+  [
+    'ssn',
+    'fullName',
+    'gender',
+    'bankAccount',
+    'date',
+    'email'
+  ].forEach((test) => {
+    sharedTests.runTest(test);
   });
 
-  context('name validations', () => {
-    ['veteranFullName'].forEach((parentKey) => {
-      schemaTestHelper.testValidAndInvalid(parentKey, {
-        valid: [{
-          first: 'john',
-          last: 'doe'
-        }],
-        invalid: [{
-          first: 'john'
-        }]
-      });
-    });
-  });
+  sharedTests.runTest('address', ['veteranAddress', 'secondaryContact.address', 'school.address']);
 
-  context('gender validations', () => {
-    schemaTestHelper.testValidAndInvalid('gender', {
-      valid: ['M', 'F'],
-      invalid: ['Z']
-    });
-  });
-
-  context('address validations', () => {
-    ['veteranAddress', 'secondaryContact.address', 'school.address'].forEach((parentKey) => {
-      schemaTestHelper.testValidAndInvalid(parentKey, {
-        valid: [{
-          street: '123 a rd',
-          city: 'abc',
-          country: 'USA'
-        }],
-        invalid: [{
-          city: 'foo',
-          country: 'USA'
-        }]
-      });
-    });
-  });
-
-  context('phone # validations', () => {
-    ['homePhone', 'mobilePhone', 'secondaryContact.phone'].forEach((parentKey) => {
-      schemaTestHelper.testValidAndInvalid(parentKey, {
-        valid: ['5555555555', '555-555-5555', '555 555 5555'],
-        invalid: ['1234']
-      });
-    });
-  });
-
-  context('bank account validations', () => {
-    schemaTestHelper.testValidAndInvalid('bankAccount.accountType', {
-      valid: ['checking', 'savings'],
-      invalid: ['bitcoin']
-    });
-
-    schemaTestHelper.testValidAndInvalid('bankAccount.routingNumber', {
-      valid: ['123456789'],
-      invalid: ['12345678']
-    });
-  });
+  sharedTests.runTest('phone', ['homePhone', 'mobilePhone', 'secondaryContact.phone']);
 
   context('serviceAcademyGraduationYear validations', () => {
     schemaTestHelper.testValidAndInvalid('serviceAcademyGraduationYear', {
@@ -107,31 +59,6 @@ describe('education benefits json schema', () => {
           from: '2000-01-01',
           to: 'future'
         },
-      ]
-    });
-  });
-
-  context('date validations', () => {
-    schemaTestHelper.testValidAndInvalid('veteranDateOfBirth', {
-      valid: [
-        '2000-01-02',
-        '2000-01-31',
-        '2000-11-02',
-        '2000-11-25',
-        'XXXX-11-25',
-        'XXXX-XX-25',
-        '2001-11-XX',
-        '2001-XX-01'
-      ],
-      invalid: [
-        '4/6/1998',
-        'Fri Aug 19 2016 15:09:46 GMT-0400 (EDT)',
-        '2000-1-02',
-        '2000-13-01',
-        '2000-12-32',
-        '2000-12-00',
-        '2000-00-01',
-        '2000-01-9'
       ]
     });
   });
@@ -218,16 +145,6 @@ describe('education benefits json schema', () => {
       invalid: [{
         commissionYear: 1981
       }]
-    });
-  });
-
-  context('email validation', () => {
-    schemaTestHelper.testValidAndInvalid('email', {
-      valid: [
-        'foo@foo.com',
-        'foo+1@foo.com'
-      ],
-      invalid: ['foo']
     });
   });
 
