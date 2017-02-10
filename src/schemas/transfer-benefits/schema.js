@@ -13,7 +13,8 @@ export default {
     'date',
     'fullName',
     'address',
-    'phone'
+    'phone',
+    'bankAccount',
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -43,6 +44,9 @@ export default {
     email: {
       type: 'string',
       format: 'email'
+    },
+    bankAccount: {
+      $ref: '#/definitions/bankAccount'
     },
   },
   required: ['privacyAgreementAccepted']
