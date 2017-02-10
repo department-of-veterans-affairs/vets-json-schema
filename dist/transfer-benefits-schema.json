@@ -421,6 +421,26 @@
           "$ref": "#/definitions/date"
         }
       }
+    },
+    "nonMilitaryJobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "months": {
+            "type": "number"
+          },
+          "licenseOrRating": {
+            "type": "string"
+          },
+          "postMilitaryJob": {
+            "type": "boolean"
+          }
+        }
+      }
     }
   },
   "properties": {
@@ -488,6 +508,9 @@
     },
     "postHighSchoolTrainings": {
       "$ref": "#/definitions/postHighSchoolTrainings"
+    },
+    "nonMilitaryJobs": {
+      "$ref": "#/definitions/nonMilitaryJobs"
     }
   },
   "required": [

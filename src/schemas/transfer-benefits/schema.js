@@ -19,6 +19,7 @@ export default {
     'school',
     'postHighSchoolTrainings',
     'dateRange',
+    'nonMilitaryJobs',
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -77,6 +78,9 @@ export default {
     },
     postHighSchoolTrainings: {
       $ref: '#/definitions/postHighSchoolTrainings'
+    },
+    nonMilitaryJobs: {
+      $ref: '#/definitions/nonMilitaryJobs'
     },
   },
   required: ['privacyAgreementAccepted']

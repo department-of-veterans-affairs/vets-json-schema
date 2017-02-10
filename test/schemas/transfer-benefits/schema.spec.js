@@ -22,7 +22,8 @@ describe('transfer benefits schema', () => {
     'bankAccount',
     'educationType',
     'school',
-    'postHighSchoolTrainings'
+    'postHighSchoolTrainings',
+    'nonMilitaryJobs'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
