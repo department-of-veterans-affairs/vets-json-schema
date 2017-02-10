@@ -12,7 +12,8 @@ export default {
     'gender',
     'date',
     'fullName',
-    'address'
+    'address',
+    'phone'
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -32,6 +33,12 @@ export default {
     },
     veteranAddress: {
       $ref: '#/definitions/address'
+    },
+    homePhone: {
+      $ref: '#/definitions/phone'
+    },
+    mobilePhone: {
+      $ref: '#/definitions/phone'
     },
   },
   required: ['privacyAgreementAccepted']
