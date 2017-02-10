@@ -160,4 +160,23 @@ describe('schema definitions', () => {
     valid: ['M', 'F'],
     invalid: ['male']
   });
+
+  testValidAndInvalidDefinitions('postHighSchoolTrainings', {
+    valid: [[{
+      name: 'college',
+      dateRange: fixtures.dateRange,
+      city: 'new york',
+      hoursType: 'semester',
+      state: 'NY'
+    }]],
+    invalid: [
+      [{
+        name: 'college',
+        dateRange: {},
+        city: 'new york',
+        hoursType: 'semester',
+        state: 'ABC'
+      }]
+    ]
+  });
 });

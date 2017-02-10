@@ -187,6 +187,41 @@ const gender = {
   'enum': ['M', 'F']
 };
 
+const postHighSchoolTrainings = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string'
+      },
+      city: {
+        type: 'string'
+      },
+      state: {
+        type: 'string',
+        enum: _.map(constants.states.USA, (stateData) => { return stateData.value })
+      },
+      dateRange: {
+        $ref: '#/definitions/dateRange'
+      },
+      hours: {
+        type: 'number'
+      },
+      hoursType: {
+        type: 'string',
+        'enum': ['semester', 'quarter', 'clock']
+      },
+      degreeReceived: {
+        type: 'string'
+      },
+      major: {
+        type: 'string'
+      },
+    }
+  }
+};
+
 export default {
   fullName,
   address,
@@ -200,5 +235,6 @@ export default {
   educationType,
   preferredContactMethod,
   privacyAgreementAccepted,
-  gender
+  gender,
+  postHighSchoolTrainings
 };
