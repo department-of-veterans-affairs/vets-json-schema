@@ -443,5 +443,25 @@
         }
       }
     }
+  },
+  "nonMilitaryJobs": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "months": {
+          "type": "number"
+        },
+        "licenseOrRating": {
+          "type": "string"
+        },
+        "postMilitaryJob": {
+          "type": "boolean"
+        }
+      }
+    }
   }
 }

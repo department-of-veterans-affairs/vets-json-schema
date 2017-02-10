@@ -222,6 +222,27 @@ const postHighSchoolTrainings = {
   }
 };
 
+const nonMilitaryJobs = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string'
+      },
+      months: {
+        type: 'number'
+      },
+      licenseOrRating: {
+        type: 'string'
+      },
+      postMilitaryJob: {
+        type: 'boolean'
+      },
+    }
+  }
+};
+
 export default {
   fullName,
   address,
@@ -236,5 +257,6 @@ export default {
   preferredContactMethod,
   privacyAgreementAccepted,
   gender,
-  postHighSchoolTrainings
+  postHighSchoolTrainings,
+  nonMilitaryJobs
 };

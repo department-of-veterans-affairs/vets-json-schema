@@ -179,4 +179,16 @@ describe('schema definitions', () => {
       }]
     ]
   });
+
+  testValidAndInvalidDefinitions('nonMilitaryJobs', {
+    valid: [[{
+      name: 'president',
+      months: 9999,
+      postMilitaryJob: true
+    }]],
+    invalid: [[{
+      postMilitaryJob: true,
+      months: 'a'
+    }]]
+  });
 });

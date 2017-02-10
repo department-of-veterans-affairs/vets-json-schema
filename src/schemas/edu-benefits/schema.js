@@ -27,7 +27,8 @@ export default {
     'preferredContactMethod',
     'privacyAgreementAccepted',
     'gender',
-    'postHighSchoolTrainings'
+    'postHighSchoolTrainings',
+    'nonMilitaryJobs'
   ])),
   additionalProperties: false,
   properties: {
@@ -202,24 +203,7 @@ export default {
       $ref: '#/definitions/postHighSchoolTrainings'
     },
     nonMilitaryJobs: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string'
-          },
-          months: {
-            type: 'number'
-          },
-          licenseOrRating: {
-            type: 'string'
-          },
-          postMilitaryJob: {
-            type: 'boolean'
-          },
-        }
-      }
+      $ref: '#/definitions/nonMilitaryJobs'
     },
     applyingUsingOwnBenefits: {
       type: "boolean"

@@ -451,6 +451,26 @@
           }
         }
       }
+    },
+    "nonMilitaryJobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "months": {
+            "type": "number"
+          },
+          "licenseOrRating": {
+            "type": "string"
+          },
+          "postMilitaryJob": {
+            "type": "boolean"
+          }
+        }
+      }
     }
   },
   "additionalProperties": false,
@@ -636,24 +656,7 @@
       "$ref": "#/definitions/postHighSchoolTrainings"
     },
     "nonMilitaryJobs": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "months": {
-            "type": "number"
-          },
-          "licenseOrRating": {
-            "type": "string"
-          },
-          "postMilitaryJob": {
-            "type": "boolean"
-          }
-        }
-      }
+      "$ref": "#/definitions/nonMilitaryJobs"
     },
     "applyingUsingOwnBenefits": {
       "type": "boolean"
