@@ -3,56 +3,25 @@ import { changeOfProgram as schema } from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import { expect } from 'chai';
+import SharedTests from '../../support/shared-tests';
 
 const schemaDefaults = {
   privacyAgreementAccepted: true
 };
 
 let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
+let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('change of program json schema', () => {
-  schemaTestHelper.testValidAndInvalid('veteranFullName', {
-    valid: [{
-      first: 'john',
-      last: 'doe'
-    }],
-    invalid: [{
-      first: 'john'
-    }]
-  });
-
-  schemaTestHelper.testValidAndInvalid('veteranAddress', {
-    valid: [{
-      street: '123 a rd',
-      city: 'abc',
-      country: 'USA'
-    }],
-    invalid: [{
-      city: 'foo',
-      country: 'USA'
-    }]
-  });
-
-  ['home', 'mobile'].forEach((type) => {
-    schemaTestHelper.testValidAndInvalid(`${type}Phone`, {
-      valid: ['555-555-5555'],
-      invalid: ['1234']
-    });
-  });
-
-  schemaTestHelper.testValidAndInvalid('email', {
-    valid: [
-      'foo@foo.com',
-      'foo+1@foo.com'
-    ],
-    invalid: ['foo']
-  });
-
-  schemaTestHelper.testValidAndInvalid('veteranSocialSecurityNumber', {
-    valid: [
-      '123456789'
-    ],
-    invalid: ['123']
+  [
+    'ssn',
+    'fullName',
+    'address',
+    'phone',
+    'email',
+    'bankAccount'
+  ].forEach((test) => {
+    sharedTests.runTest(test);
   });
 
   schemaTestHelper.testValidAndInvalid('benefit', {
@@ -80,19 +49,6 @@ describe('change of program json schema', () => {
   schemaTestHelper.testValidAndInvalid('bankAccountChange', {
     valid: ['start', 'update'],
     invalid: ['foo']
-  });
-
-  schemaTestHelper.testValidAndInvalid('bankAccount', {
-    valid: [{
-      accountType: 'checking',
-      routingNumber: '123456789',
-      accountNumber: '1234'
-    }],
-    invalid: [{
-      accountType: 'foo',
-      routingNumber: '123456789',
-      accountNumber: '1234'
-    }]
   });
 
   schemaTestHelper.testValidAndInvalid('serviceBefore1977', {
