@@ -24,7 +24,8 @@ describe('education benefits json schema', () => {
     'date',
     'educationType',
     'email',
-    'school'
+    'school',
+    'postHighSchoolTrainings'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -97,27 +98,6 @@ describe('education benefits json schema', () => {
           benefitsToApplyTo: 'chapter30'
         }]
       ],
-    });
-  });
-
-  context('post high school trainings validation', () => {
-    schemaTestHelper.testValidAndInvalid('postHighSchoolTrainings', {
-      valid: [[{
-        name: 'college',
-        dateRange: validDateRange,
-        city: 'new york',
-        hoursType: 'semester',
-        state: 'NY'
-      }]],
-      invalid: [
-        [{
-          name: 'college',
-          dateRange: {},
-          city: 'new york',
-          hoursType: 'semester',
-          state: 'ABC'
-        }]
-      ]
     });
   });
 

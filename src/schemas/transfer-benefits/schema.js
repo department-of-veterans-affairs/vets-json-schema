@@ -17,6 +17,8 @@ export default {
     'bankAccount',
     'educationType',
     'school',
+    'postHighSchoolTrainings',
+    'dateRange',
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -72,6 +74,9 @@ export default {
     },
     faaFlightCertificatesInformation: {
       type: 'string'
+    },
+    postHighSchoolTrainings: {
+      $ref: '#/definitions/postHighSchoolTrainings'
     },
   },
   required: ['privacyAgreementAccepted']

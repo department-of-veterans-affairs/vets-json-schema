@@ -1,3 +1,5 @@
+import fixtures from './fixtures';
+
 const testData = {
   phone: {
     fields: ['homePhone', 'mobilePhone'],
@@ -107,6 +109,26 @@ const testData = {
       invalid: [{
         name: true
       }]
+    }
+  },
+  postHighSchoolTrainings: {
+    data: {
+      valid: [[{
+        name: 'college',
+        dateRange: fixtures.dateRange,
+        city: 'new york',
+        hoursType: 'semester',
+        state: 'NY'
+      }]],
+      invalid: [
+        [{
+          name: 'college',
+          dateRange: {},
+          city: 'new york',
+          hoursType: 'semester',
+          state: 'ABC'
+        }]
+      ]
     }
   }
 };
