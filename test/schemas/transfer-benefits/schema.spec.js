@@ -16,4 +16,11 @@ describe('transfer benefits schema', () => {
     ],
     invalid: ['123']
   });
+
+  schemaTestHelper.testValidAndInvalid('gender', {
+    valid: [
+      'M'
+    ],
+    invalid: ['m']
+  });
 });

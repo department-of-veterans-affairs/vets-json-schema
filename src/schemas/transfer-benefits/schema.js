@@ -8,7 +8,8 @@ export default {
   additionalProperties: false,
   definitions: _.pick(definitions,
     'privacyAgreementAccepted',
-    'ssn'
+    'ssn',
+    'gender'
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -16,6 +17,9 @@ export default {
     },
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
+    },
+    gender: {
+      $ref: '#/definitions/gender'
     },
   },
   required: ['privacyAgreementAccepted']

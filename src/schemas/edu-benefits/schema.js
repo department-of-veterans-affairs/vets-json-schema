@@ -25,7 +25,8 @@ export default {
     'dateRange',
     'educationType',
     'preferredContactMethod',
-    'privacyAgreementAccepted'
+    'privacyAgreementAccepted',
+    'gender'
   ])),
   additionalProperties: false,
   properties: {
@@ -49,8 +50,7 @@ export default {
       $ref: '#/definitions/fullName'
     },
     gender: {
-      type: 'string',
-      'enum': ['M', 'F']
+      $ref: '#/definitions/gender'
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
