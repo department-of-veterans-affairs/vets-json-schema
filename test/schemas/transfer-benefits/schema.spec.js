@@ -63,4 +63,12 @@ describe('transfer benefits schema', () => {
       });
     });
   });
+
+  schemaTestHelper.testValidAndInvalid('email', {
+    valid: [
+      'foo@foo.com',
+      'foo+1@foo.com'
+    ],
+    invalid: ['foo']
+  });
 });

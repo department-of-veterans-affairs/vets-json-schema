@@ -40,6 +40,10 @@ export default {
     mobilePhone: {
       $ref: '#/definitions/phone'
     },
+    email: {
+      type: 'string',
+      format: 'email'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
