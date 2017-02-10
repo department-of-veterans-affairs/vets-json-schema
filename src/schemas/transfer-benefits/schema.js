@@ -67,6 +67,9 @@ export default {
     school: {
       $ref: '#/definitions/school'
     },
+    educationObjective: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
