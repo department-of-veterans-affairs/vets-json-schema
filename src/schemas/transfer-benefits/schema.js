@@ -11,7 +11,8 @@ export default {
     'ssn',
     'gender',
     'date',
-    'fullName'
+    'fullName',
+    'address'
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -28,6 +29,9 @@ export default {
     },
     veteranFullName: {
       $ref: '#/definitions/fullName'
+    },
+    veteranAddress: {
+      $ref: '#/definitions/address'
     },
   },
   required: ['privacyAgreementAccepted']

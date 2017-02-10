@@ -42,4 +42,16 @@ describe('transfer benefits schema', () => {
       first: 'john'
     }]
   });
+
+  schemaTestHelper.testValidAndInvalid('veteranAddress', {
+    valid: [{
+      street: '123 a rd',
+      city: 'abc',
+      country: 'USA'
+    }],
+    invalid: [{
+      city: 'foo',
+      country: 'USA'
+    }]
+  });
 });
