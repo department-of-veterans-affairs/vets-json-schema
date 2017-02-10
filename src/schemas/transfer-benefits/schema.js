@@ -70,6 +70,9 @@ export default {
     educationObjective: {
       type: 'string'
     },
+    faaFlightCertificatesInformation: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
