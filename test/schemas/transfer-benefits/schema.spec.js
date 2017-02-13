@@ -14,7 +14,6 @@ let sharedTests = new SharedTests(schemaTestHelper);
 describe('transfer benefits schema', () => {
   [
     'gender',
-    'fullName',
     'address',
     'phone',
     'email',
@@ -28,6 +27,8 @@ describe('transfer benefits schema', () => {
   });
 
   sharedTests.runTest('ssn', ['relativeSocialSecurityNumber']);
+
+  sharedTests.runTest('fullName', ['relativeFullName']);
 
   sharedTests.runTest('date', ['relativeDateOfBirth', 'highSchoolOrGedCompletionDate']);
 

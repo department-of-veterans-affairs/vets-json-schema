@@ -34,7 +34,7 @@ export default {
     relativeDateOfBirth: {
       $ref: '#/definitions/date'
     },
-    veteranFullName: {
+    relativeFullName: {
       $ref: '#/definitions/fullName'
     },
     veteranAddress: {
