@@ -19,7 +19,7 @@ export default {
     'school',
     'postHighSchoolTrainings',
     'dateRange',
-    'nonMilitaryJobs',
+    'nonMilitaryJobs'
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -99,7 +99,7 @@ export default {
     },
     veteranAddress: {
       $ref: '#/definitions/address'
-    },
+    }
   },
   required: ['privacyAgreementAccepted']
 };
