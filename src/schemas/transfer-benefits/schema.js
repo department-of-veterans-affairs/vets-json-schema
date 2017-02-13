@@ -91,6 +91,9 @@ export default {
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
     },
+    serviceBranch: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
