@@ -88,6 +88,9 @@ export default {
     civilianBenefitsAssistance: {
       type: 'boolean'
     },
+    veteranSocialSecurityNumber: {
+      $ref: '#/definitions/ssn'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
