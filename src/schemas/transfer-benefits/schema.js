@@ -25,7 +25,7 @@ export default {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
     },
-    veteranSocialSecurityNumber: {
+    relativeSocialSecurityNumber: {
       $ref: '#/definitions/ssn'
     },
     gender: {

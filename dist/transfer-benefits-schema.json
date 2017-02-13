@@ -447,7 +447,7 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
-    "veteranSocialSecurityNumber": {
+    "relativeSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
     "gender": {
@@ -511,6 +511,12 @@
     },
     "nonMilitaryJobs": {
       "$ref": "#/definitions/nonMilitaryJobs"
+    },
+    "nonVaAssistance": {
+      "type": "boolean"
+    },
+    "civilianBenefitsAssistance": {
+      "type": "boolean"
     }
   },
   "required": [
