@@ -97,6 +97,9 @@ export default {
     veteranFullName: {
       $ref: '#/definitions/fullName'
     },
+    veteranAddress: {
+      $ref: '#/definitions/address'
+    },
   },
   required: ['privacyAgreementAccepted']
 };

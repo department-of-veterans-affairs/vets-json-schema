@@ -29,7 +29,7 @@ describe('transfer benefits schema', () => {
 
   sharedTests.runTest('fullName', ['relativeFullName', 'veteranFullName']);
 
-  sharedTests.runTest('address', ['relativeAddress']);
+  sharedTests.runTest('address', ['relativeAddress', 'veteranAddress']);
 
   sharedTests.runTest('date', ['relativeDateOfBirth', 'highSchoolOrGedCompletionDate']);
 
