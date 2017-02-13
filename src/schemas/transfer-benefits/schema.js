@@ -37,7 +37,7 @@ export default {
     relativeFullName: {
       $ref: '#/definitions/fullName'
     },
-    veteranAddress: {
+    relativeAddress: {
       $ref: '#/definitions/address'
     },
     homePhone: {
