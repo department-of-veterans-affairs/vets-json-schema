@@ -27,7 +27,7 @@ describe('transfer benefits schema', () => {
 
   sharedTests.runTest('ssn', ['relativeSocialSecurityNumber', 'veteranSocialSecurityNumber']);
 
-  sharedTests.runTest('fullName', ['relativeFullName']);
+  sharedTests.runTest('fullName', ['relativeFullName', 'veteranFullName']);
 
   sharedTests.runTest('address', ['relativeAddress']);
 

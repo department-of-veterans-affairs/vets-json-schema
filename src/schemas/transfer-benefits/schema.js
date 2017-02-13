@@ -94,6 +94,9 @@ export default {
     serviceBranch: {
       type: 'string'
     },
+    veteranFullName: {
+      $ref: '#/definitions/fullName'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
