@@ -82,6 +82,12 @@ export default {
     nonMilitaryJobs: {
       $ref: '#/definitions/nonMilitaryJobs'
     },
+    nonVaAssistance: {
+      type: 'boolean'
+    },
+    civilianBenefitsAssistance: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
