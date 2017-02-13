@@ -29,7 +29,7 @@ describe('transfer benefits schema', () => {
 
   sharedTests.runTest('ssn', ['relativeSocialSecurityNumber']);
 
-  sharedTests.runTest('date', ['veteranDateOfBirth', 'highSchoolOrGedCompletionDate']);
+  sharedTests.runTest('date', ['relativeDateOfBirth', 'highSchoolOrGedCompletionDate']);
 
   schemaTestHelper.testValidAndInvalid('benefit', {
     valid: ['chapter33'],
