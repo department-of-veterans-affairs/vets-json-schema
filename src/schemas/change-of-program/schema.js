@@ -1,6 +1,7 @@
-import definitions from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
 import _ from 'lodash';
 
+let definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('cooperativeTraining');
 
 export default {

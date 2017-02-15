@@ -318,8 +318,7 @@
       "flightTraining",
       "testReimbursement",
       "licensingReimbursement",
-      "tuitionTopUp",
-      "cooperativeTraining"
+      "tuitionTopUp"
     ]
   },
   "preferredContactMethod": {

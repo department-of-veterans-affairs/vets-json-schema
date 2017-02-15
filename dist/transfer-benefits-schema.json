@@ -295,8 +295,7 @@
         "flightTraining",
         "testReimbursement",
         "licensingReimbursement",
-        "tuitionTopUp",
-        "cooperativeTraining"
+        "tuitionTopUp"
       ]
     },
     "school": {
