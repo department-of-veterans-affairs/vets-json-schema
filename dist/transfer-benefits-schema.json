@@ -17,8 +17,8 @@
     "gender": {
       "type": "string",
       "enum": [
-        "M",
-        "F"
+        "F",
+        "M"
       ]
     },
     "date": {

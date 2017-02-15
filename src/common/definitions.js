@@ -184,7 +184,7 @@ const privacyAgreementAccepted = {
 
 const gender = {
   type: 'string',
-  'enum': ['M', 'F']
+  'enum': ['F', 'M']
 };
 
 const postHighSchoolTrainings = {
