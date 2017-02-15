@@ -22,7 +22,6 @@ describe('education benefits json schema', () => {
     'gender',
     'bankAccount',
     'date',
-    'educationType',
     'email',
     'school',
     'postHighSchoolTrainings',
@@ -34,6 +33,11 @@ describe('education benefits json schema', () => {
   sharedTests.runTest('address', ['veteranAddress', 'secondaryContact.address', 'school.address']);
 
   sharedTests.runTest('phone', ['homePhone', 'mobilePhone', 'secondaryContact.phone']);
+
+  schemaTestHelper.testValidAndInvalid('educationType', {
+    valid: ['college', 'tuitionTopUp'],
+    invalid: ['foo', 'cooperativeTraining']
+  });
 
   context('serviceAcademyGraduationYear validations', () => {
     schemaTestHelper.testValidAndInvalid('serviceAcademyGraduationYear', {
