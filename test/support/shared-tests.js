@@ -98,7 +98,7 @@ const testData = {
   educationType: {
     data: {
       valid: ['college', 'tuitionTopUp'],
-      invalid: ['foo']
+      invalid: ['foo', 'cooperativeTraining']
     }
   },
   school: {
