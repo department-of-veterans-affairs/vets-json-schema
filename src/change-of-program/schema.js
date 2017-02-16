@@ -84,7 +84,7 @@ export default {
     },
     bankAccountChange: {
       type: 'string',
-      enum: ['update', 'start', 'stop']
+      enum: ['startChange', 'stop']
     },
     bankAccount: {
       $ref: '#/definitions/bankAccount'

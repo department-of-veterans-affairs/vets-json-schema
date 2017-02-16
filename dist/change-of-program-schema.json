@@ -416,8 +416,7 @@
     "bankAccountChange": {
       "type": "string",
       "enum": [
-        "update",
-        "start",
+        "startChange",
         "stop"
       ]
     },
