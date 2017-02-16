@@ -1,7 +1,7 @@
 import ajv from 'ajv';
-import { healthcareApplication as applicationSchema } from '../../dist/schemas';
+import { healthcareApplication as applicationSchema } from '../../../dist/schemas';
 import { expect } from 'chai';
-import SchemaTestHelper from '../support/schema-test-helper';
+import SchemaTestHelper from '../../support/schema-test-helper';
 import _ from 'lodash';
 
 let schemaTestHelper = new SchemaTestHelper(_.omit(applicationSchema, 'required'));

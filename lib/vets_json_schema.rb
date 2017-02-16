@@ -1,7 +1,11 @@
 require 'multi_json'
+require 'script_utils'
 
 module VetsJsonSchema
-  %w(edu-benefits healthcare-application change-of-program).each do |schema|
-    const_set(schema.underscore.upcase, MultiJson.load(File.read("#{__dir__}/../dist/#{schema}-schema.json")))
+  base_dir = "#{__dir__}/../"
+
+  ScriptUtils.directories("#{base_dir}src/schemas").each do |schema|
+    schema = File.basename(schema)
+    const_set(schema.underscore.upcase, MultiJson.load(File.read("#{base_dir}dist/#{schema}-schema.json")))
   end
 end

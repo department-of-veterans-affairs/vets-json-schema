@@ -1,6 +1,6 @@
-import constants from '../common/constants';
+import constants from '../../common/constants';
 import _ from 'lodash';
-import definitions from '../common/definitions';
+import definitions from '../../common/definitions';
 
 const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 
@@ -25,7 +25,10 @@ export default {
     'dateRange',
     'educationType',
     'preferredContactMethod',
-    'privacyAgreementAccepted'
+    'privacyAgreementAccepted',
+    'gender',
+    'postHighSchoolTrainings',
+    'nonMilitaryJobs'
   ])),
   additionalProperties: false,
   properties: {
@@ -49,8 +52,7 @@ export default {
       $ref: '#/definitions/fullName'
     },
     gender: {
-      type: 'string',
-      'enum': ['M', 'F']
+      $ref: '#/definitions/gender'
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
@@ -198,58 +200,10 @@ export default {
       }
     },
     postHighSchoolTrainings: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string'
-          },
-          city: {
-            type: 'string'
-          },
-          state: {
-            type: 'string',
-            enum: _.map(constants.states.USA, (stateData) => { return stateData.value })
-          },
-          dateRange: {
-            $ref: '#/definitions/dateRange'
-          },
-          hours: {
-            type: 'number'
-          },
-          hoursType: {
-            type: 'string',
-            'enum': ['semester', 'quarter', 'clock']
-          },
-          degreeReceived: {
-            type: 'string'
-          },
-          major: {
-            type: 'string'
-          },
-        }
-      }
+      $ref: '#/definitions/postHighSchoolTrainings'
     },
     nonMilitaryJobs: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string'
-          },
-          months: {
-            type: 'number'
-          },
-          licenseOrRating: {
-            type: 'string'
-          },
-          postMilitaryJob: {
-            type: 'boolean'
-          },
-        }
-      }
+      $ref: '#/definitions/nonMilitaryJobs'
     },
     applyingUsingOwnBenefits: {
       type: "boolean"
