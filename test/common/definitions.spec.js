@@ -155,4 +155,40 @@ describe('schema definitions', () => {
     valid: [true],
     invalid: [false]
   });
+
+  testValidAndInvalidDefinitions('gender', {
+    valid: ['M', 'F'],
+    invalid: ['male']
+  });
+
+  testValidAndInvalidDefinitions('postHighSchoolTrainings', {
+    valid: [[{
+      name: 'college',
+      dateRange: fixtures.dateRange,
+      city: 'new york',
+      hoursType: 'semester',
+      state: 'NY'
+    }]],
+    invalid: [
+      [{
+        name: 'college',
+        dateRange: {},
+        city: 'new york',
+        hoursType: 'semester',
+        state: 'ABC'
+      }]
+    ]
+  });
+
+  testValidAndInvalidDefinitions('nonMilitaryJobs', {
+    valid: [[{
+      name: 'president',
+      months: 9999,
+      postMilitaryJob: true
+    }]],
+    invalid: [[{
+      postMilitaryJob: true,
+      months: 'a'
+    }]]
+  });
 });

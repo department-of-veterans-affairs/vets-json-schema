@@ -1,6 +1,12 @@
-module.exports = {
-  eduBenefits: require('./edu-benefits-schema.json'),
-  healthcareApplication: require('./healthcare-application-schema.json'),
-  changeOfProgram: require('./change-of-program-schema.json'),
-  definitions: require('./definitions.json')
-};
+var fs = require('fs');
+var codingInflector = require('coding-inflector');
+
+var schemas = {};
+
+fs.readdirSync(__dirname).forEach((fileName) => {
+  if (fileName === 'schemas.js') return;
+
+  schemas[codingInflector.camelize(fileName.replace('.json', '').replace('-schema', ''))] = require('./' + fileName);
+});
+
+module.exports = schemas;

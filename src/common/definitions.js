@@ -182,6 +182,67 @@ const privacyAgreementAccepted = {
   enum: [true]
 };
 
+const gender = {
+  type: 'string',
+  'enum': ['F', 'M']
+};
+
+const postHighSchoolTrainings = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string'
+      },
+      city: {
+        type: 'string'
+      },
+      state: {
+        type: 'string',
+        enum: _.map(constants.states.USA, (stateData) => { return stateData.value })
+      },
+      dateRange: {
+        $ref: '#/definitions/dateRange'
+      },
+      hours: {
+        type: 'number'
+      },
+      hoursType: {
+        type: 'string',
+        'enum': ['semester', 'quarter', 'clock']
+      },
+      degreeReceived: {
+        type: 'string'
+      },
+      major: {
+        type: 'string'
+      },
+    }
+  }
+};
+
+const nonMilitaryJobs = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string'
+      },
+      months: {
+        type: 'number'
+      },
+      licenseOrRating: {
+        type: 'string'
+      },
+      postMilitaryJob: {
+        type: 'boolean'
+      },
+    }
+  }
+};
+
 export default {
   fullName,
   address,
@@ -194,5 +255,8 @@ export default {
   date,
   educationType,
   preferredContactMethod,
-  privacyAgreementAccepted
+  privacyAgreementAccepted,
+  gender,
+  postHighSchoolTrainings,
+  nonMilitaryJobs
 };

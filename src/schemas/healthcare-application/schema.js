@@ -1,4 +1,4 @@
-import constants from '../common/constants';
+import constants from '../../common/constants';
 import _ from 'lodash';
 
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
