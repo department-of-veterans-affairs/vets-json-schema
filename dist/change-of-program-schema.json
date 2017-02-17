@@ -417,7 +417,8 @@
       "type": "string",
       "enum": [
         "startChange",
-        "stop"
+        "stop",
+        "leave"
       ]
     },
     "bankAccount": {
