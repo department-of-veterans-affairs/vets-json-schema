@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    }
+  },
+  "properties": {
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "relativeSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
+}
