@@ -7,6 +7,7 @@ export default {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions,
+    'privacyAgreementAccepted',
     'ssn',
   ),
   properties: {
