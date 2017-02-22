@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
 
 export default {
@@ -9,14 +10,12 @@ export default {
   definitions: _.pick(definitions,
     'privacyAgreementAccepted',
     'ssn',
+    'gender',
   ),
-  properties: {
-    privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
-    },
-    relativeSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
-    },
-  },
+  properties: _.merge({},
+    schemaHelpers.getDefinition('privacyAgreementAccepted'),
+    schemaHelpers.getDefinition('ssn', 'relativeSocialSecurityNumber'),
+    schemaHelpers.getDefinition('gender'),
+  ),
   required: ['privacyAgreementAccepted']
 };

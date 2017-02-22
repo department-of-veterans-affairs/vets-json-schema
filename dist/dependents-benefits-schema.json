@@ -13,6 +13,13 @@
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
     }
   },
   "properties": {
@@ -21,6 +28,9 @@
     },
     "relativeSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
     }
   },
   "required": [
