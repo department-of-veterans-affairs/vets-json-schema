@@ -262,6 +262,10 @@
         "city",
         "country"
       ]
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10
     }
   },
   "properties": {
@@ -282,6 +286,12 @@
     },
     "relativeAddress": {
       "$ref": "#/definitions/address"
+    },
+    "homePhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "mobilePhone": {
+      "$ref": "#/definitions/phone"
     }
   },
   "required": [

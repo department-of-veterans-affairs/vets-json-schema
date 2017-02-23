@@ -14,6 +14,7 @@ let sharedTests = new SharedTests(schemaTestHelper);
 describe('transfer benefits schema', () => {
   [
     'gender',
+    'phone',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
