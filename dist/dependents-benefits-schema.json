@@ -269,6 +269,10 @@
     }
   },
   "properties": {
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

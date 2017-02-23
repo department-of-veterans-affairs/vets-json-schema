@@ -8,7 +8,12 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {},
-  properties: {},
+  properties: {
+    email: {
+      type: 'string',
+      format: 'email'
+    }
+  },
   required: ['privacyAgreementAccepted']
 };
 
