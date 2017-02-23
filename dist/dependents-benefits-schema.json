@@ -266,6 +266,25 @@
     "phone": {
       "type": "string",
       "minLength": 10
+    },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
     }
   },
   "properties": {
@@ -296,6 +315,9 @@
     },
     "mobilePhone": {
       "$ref": "#/definitions/phone"
+    },
+    "bankAccount": {
+      "$ref": "#/definitions/bankAccount"
     }
   },
   "required": [

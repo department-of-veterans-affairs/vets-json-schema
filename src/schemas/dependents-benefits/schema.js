@@ -26,6 +26,7 @@ let schema = {
   ['address', 'relativeAddress'],
   ['phone', 'homePhone'],
   ['phone', 'mobilePhone'],
+  ['bankAccount'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
