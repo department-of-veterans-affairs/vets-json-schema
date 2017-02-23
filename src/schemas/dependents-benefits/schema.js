@@ -17,6 +17,8 @@ let schema = {
   ['ssn', 'relativeSocialSecurityNumber'],
   ['gender'],
   ['date', 'relativeDateOfBirth'],
+  ['fullName', 'relativeFullName'],
+  ['address', 'relativeAddress'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
