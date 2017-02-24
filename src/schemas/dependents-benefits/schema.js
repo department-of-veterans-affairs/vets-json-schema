@@ -81,7 +81,11 @@ let schema = {
           type: 'string'
         }
       }
-    }
+    },
+    highSchoolStatus: {
+      type: 'string',
+      enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended']
+    },
   },
   required: ['privacyAgreementAccepted']
 };

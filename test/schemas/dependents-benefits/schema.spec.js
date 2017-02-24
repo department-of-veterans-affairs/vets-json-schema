@@ -66,4 +66,9 @@ describe('transfer benefits schema', () => {
       disability: 1
     }]
   });
+
+  schemaTestHelper.testValidAndInvalid('highSchoolStatus', {
+    valid: ['graduated', 'ged'],
+    invalid: ['foo']
+  });
 });

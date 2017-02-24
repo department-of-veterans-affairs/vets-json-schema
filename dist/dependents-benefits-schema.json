@@ -525,6 +525,16 @@
         }
       }
     },
+    "highSchoolStatus": {
+      "type": "string",
+      "enum": [
+        "graduated",
+        "discontinued",
+        "graduationExpected",
+        "ged",
+        "neverAttended"
+      ]
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
