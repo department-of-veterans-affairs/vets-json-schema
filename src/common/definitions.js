@@ -261,6 +261,11 @@ const secondaryContact = {
   }
 };
 
+const vaFileNumber = {
+  type: 'string',
+  pattern: '^[cC]{0,1}\\d{8}$'
+};
+
 export default {
   fullName,
   address,
@@ -277,5 +282,6 @@ export default {
   gender,
   postHighSchoolTrainings,
   nonMilitaryJobs,
-  secondaryContact
+  secondaryContact,
+  vaFileNumber
 };

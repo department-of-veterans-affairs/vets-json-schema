@@ -203,4 +203,16 @@ describe('schema definitions', () => {
       fullName: 1
     }]
   });
+
+  testValidAndInvalidDefinitions('vaFileNumber', {
+    valid: [
+      '12345678',
+      'c12345678',
+      'C12345678',
+    ],
+    invalid: [
+      '123',
+      'd12345678',
+    ]
+  });
 });

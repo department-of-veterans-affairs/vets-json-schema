@@ -479,5 +479,9 @@
         "$ref": "#/definitions/phone"
       }
     }
+  },
+  "vaFileNumber": {
+    "type": "string",
+    "pattern": "^[cC]{0,1}\\d{8}$"
   }
 }
