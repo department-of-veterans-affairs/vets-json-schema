@@ -32,6 +32,9 @@ let schema = {
     trainingState: {
       enum: constants.usaStates
     },
+    educationObjective: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
