@@ -22,6 +22,7 @@ describe('transfer benefits schema', () => {
     'educationType',
     'school',
     'relationship',
+    'toursOfDuty',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

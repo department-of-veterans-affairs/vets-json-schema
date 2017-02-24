@@ -1,6 +1,7 @@
 import constants from '../../common/constants';
 import _ from 'lodash';
 import definitions from '../../common/definitions';
+import schemaHelpers from '../../common/schema-helpers';
 
 const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 

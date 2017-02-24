@@ -4,6 +4,17 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -337,6 +348,33 @@
         "spouse",
         "child"
       ]
+    },
+    "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "serviceBranch": {
+            "type": "string"
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "applyPeriodToSelected": {
+            "type": "boolean"
+          },
+          "benefitsToApplyTo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dateRange",
+          "serviceBranch"
+        ]
+      }
     }
   },
   "properties": {
@@ -546,6 +584,9 @@
     },
     "benefitsRelinquishedDate": {
       "$ref": "#/definitions/date"
+    },
+    "toursOfDuty": {
+      "$ref": "#/definitions/toursOfDuty"
     }
   },
   "required": [

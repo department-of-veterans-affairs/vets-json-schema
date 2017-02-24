@@ -8,7 +8,7 @@ let schema = {
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS",
   type: 'object',
   additionalProperties: false,
-  definitions: {},
+  definitions: _.pick(definitions, 'dateRange'),
   properties: {
     email: {
       type: 'string',
@@ -110,6 +110,7 @@ let schema = {
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
+  ['toursOfDuty'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
