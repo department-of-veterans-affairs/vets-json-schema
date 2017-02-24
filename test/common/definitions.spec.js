@@ -215,4 +215,14 @@ describe('schema definitions', () => {
       'd12345678',
     ]
   });
+
+  testValidAndInvalidDefinitions('relationship', {
+    valid: [
+      'spouse',
+      'child'
+    ],
+    invalid: [
+      'brother'
+    ]
+  });
 });

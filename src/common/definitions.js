@@ -266,6 +266,11 @@ const vaFileNumber = {
   pattern: '^[cC]{0,1}\\d{8}$'
 };
 
+const relationship = {
+  type: 'string',
+  'enum': ['spouse', 'child']
+};
+
 export default {
   fullName,
   address,
@@ -283,5 +288,6 @@ export default {
   postHighSchoolTrainings,
   nonMilitaryJobs,
   secondaryContact,
-  vaFileNumber
+  vaFileNumber,
+  relationship
 };

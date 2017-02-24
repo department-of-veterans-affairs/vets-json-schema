@@ -484,5 +484,12 @@
   "vaFileNumber": {
     "type": "string",
     "pattern": "^[cC]{0,1}\\d{8}$"
+  },
+  "relationship": {
+    "type": "string",
+    "enum": [
+      "spouse",
+      "child"
+    ]
   }
 }
