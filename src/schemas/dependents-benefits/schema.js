@@ -29,6 +29,7 @@ let schema = {
   ['bankAccount'],
   ['secondaryContact'],
   ['fullName', 'veteranFullName'],
+  ['ssn', 'veteranSocialSecurityNumber'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
