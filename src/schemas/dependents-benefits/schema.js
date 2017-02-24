@@ -12,7 +12,10 @@ let schema = {
     email: {
       type: 'string',
       format: 'email'
-    }
+    },
+    serviceBranch: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
