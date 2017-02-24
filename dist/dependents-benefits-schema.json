@@ -316,6 +316,9 @@
     "serviceBranch": {
       "type": "string"
     },
+    "currentlyActiveDuty": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
