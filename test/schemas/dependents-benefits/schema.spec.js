@@ -31,7 +31,7 @@ describe('transfer benefits schema', () => {
 
   sharedTests.runTest('ssn', ['relativeSocialSecurityNumber', 'veteranSocialSecurityNumber', 'previousBenefits.veteranSocialSecurityNumber']);
 
-  sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath', 'educationStartDate', 'benefitsRelinquishedDate', 'highSchoolOrGedCompletionDate']);
+  sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath', 'educationStartDate', 'benefitsRelinquishedDate', 'highSchool.highSchoolOrGedCompletionDate']);
 
   sharedTests.runTest('address', ['relativeAddress']);
 
@@ -67,7 +67,7 @@ describe('transfer benefits schema', () => {
     }]
   });
 
-  schemaTestHelper.testValidAndInvalid('highSchoolStatus', {
+  schemaTestHelper.testValidAndInvalid('highSchool.status', {
     valid: ['graduated', 'ged'],
     invalid: ['foo']
   });

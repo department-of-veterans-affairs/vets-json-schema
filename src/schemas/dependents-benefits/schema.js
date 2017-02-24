@@ -82,9 +82,14 @@ let schema = {
         }
       }
     },
-    highSchoolStatus: {
-      type: 'string',
-      enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended']
+    highSchool: {
+      type: 'object',
+      properties: {
+        status: {
+          type: 'string',
+          enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended']
+        }
+      }
     },
   },
   required: ['privacyAgreementAccepted']
@@ -115,7 +120,7 @@ let schema = {
   ['fullName', 'previousBenefits.veteranFullName'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
   ['toursOfDuty'],
-  ['date', 'highSchoolOrGedCompletionDate'],
+  ['date', 'highSchool.highSchoolOrGedCompletionDate'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

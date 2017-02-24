@@ -525,15 +525,23 @@
         }
       }
     },
-    "highSchoolStatus": {
-      "type": "string",
-      "enum": [
-        "graduated",
-        "discontinued",
-        "graduationExpected",
-        "ged",
-        "neverAttended"
-      ]
+    "highSchool": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "graduated",
+            "discontinued",
+            "graduationExpected",
+            "ged",
+            "neverAttended"
+          ]
+        },
+        "highSchoolOrGedCompletionDate": {
+          "$ref": "#/definitions/date"
+        }
+      }
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
@@ -597,9 +605,6 @@
     },
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
-    },
-    "highSchoolOrGedCompletionDate": {
-      "$ref": "#/definitions/date"
     }
   },
   "required": [
