@@ -9,5 +9,9 @@ export default {
     city: 'abc',
     country: 'USA'
   },
-  phone: '555-555-5555'
+  phone: '555-555-5555',
+  fullName: {
+    first: 'john',
+    last: 'doe'
+  }
 };

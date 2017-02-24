@@ -439,10 +439,10 @@
         },
         "remarried": {
           "type": "boolean"
+        },
+        "remarriageDate": {
+          "$ref": "#/definitions/date"
         }
-      },
-      "remarriageDate": {
-        "$ref": "#/definitions/date"
       }
     },
     "benefit": {
@@ -478,6 +478,12 @@
         },
         "other": {
           "type": "string"
+        },
+        "veteranFullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "veteranSocialSecurityNumber": {
+          "$ref": "#/definitions/ssn"
         }
       }
     },

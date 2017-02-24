@@ -15,9 +15,11 @@ const addDefinitionToSchema = (schema, definition, key) => {
   };
 
   const keysArray = key.split('.');
-  let prop = schema.properties;
+  let prop = schema;
 
   keysArray.forEach((k, i) => {
+    prop = prop.properties;
+
     if (i === keysArray.length - 1) {
       prop[k] = getDefinition(definition);
     } else {
