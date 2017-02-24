@@ -125,6 +125,7 @@ let schema = {
   ['toursOfDuty'],
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
   ['postHighSchoolTrainings'],
+  ['nonMilitaryJobs']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

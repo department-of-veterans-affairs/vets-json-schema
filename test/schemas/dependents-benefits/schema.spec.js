@@ -24,6 +24,7 @@ describe('transfer benefits schema', () => {
     'relationship',
     'toursOfDuty',
     'postHighSchoolTrainings',
+    'nonMilitaryJobs',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
