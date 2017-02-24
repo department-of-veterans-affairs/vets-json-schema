@@ -143,6 +143,19 @@ const testData = {
         months: 'a'
       }]]
     }
+  },
+  secondaryContact: {
+    data: {
+      valid: [{
+        fullName: 'john doe',
+        sameAddress: true,
+        address: fixtures.address,
+        phone: fixtures.phone
+      }],
+      invalid: [{
+        fullName: 1
+      }]
+    }
   }
 };
 

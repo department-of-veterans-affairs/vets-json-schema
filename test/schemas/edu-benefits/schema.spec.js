@@ -26,7 +26,8 @@ describe('education benefits json schema', () => {
     'school',
     'postHighSchoolTrainings',
     'educationType',
-    'nonMilitaryJobs'
+    'nonMilitaryJobs',
+    'secondaryContact'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
