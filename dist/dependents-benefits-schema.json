@@ -330,6 +330,13 @@
           "$ref": "#/definitions/address"
         }
       }
+    },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "spouse",
+        "child"
+      ]
     }
   },
   "properties": {
@@ -477,6 +484,9 @@
     },
     "school": {
       "$ref": "#/definitions/school"
+    },
+    "relationship": {
+      "$ref": "#/definitions/relationship"
     }
   },
   "required": [

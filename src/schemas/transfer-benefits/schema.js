@@ -1,7 +1,8 @@
 import definitions from '../../common/definitions';
 import _ from 'lodash';
+import schemaHelpers from '../../common/schema-helpers';
 
-export default {
+let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR FAMILY MEMBER TO USE TRANSFERRED BENEFITS',
   type: 'object',
@@ -53,10 +54,6 @@ export default {
     bankAccount: {
       $ref: '#/definitions/bankAccount'
     },
-    relationship: {
-      type: 'string',
-      'enum': ['spouse', 'child']
-    },
     highSchoolOrGedCompletionDate: {
       $ref: '#/definitions/date'
     },
@@ -103,3 +100,7 @@ export default {
   },
   required: ['privacyAgreementAccepted']
 };
+
+schemaHelpers.addDefinitionToSchema(schema, 'relationship');
+
+export default schema;

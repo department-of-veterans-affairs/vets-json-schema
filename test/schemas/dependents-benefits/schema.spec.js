@@ -21,6 +21,7 @@ describe('transfer benefits schema', () => {
     'vaFileNumber',
     'educationType',
     'school',
+    'relationship',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

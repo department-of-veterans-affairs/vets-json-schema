@@ -166,6 +166,16 @@ const testData = {
         '123'
       ]
     }
+  },
+  relationship: {
+    data: {
+      valid: [
+        'spouse'
+      ],
+      invalid: [
+        'foo'
+      ]
+    }
   }
 };
 
