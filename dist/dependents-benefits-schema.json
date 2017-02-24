@@ -418,6 +418,12 @@
         "WY"
       ]
     },
+    "educationObjective": {
+      "type": "string"
+    },
+    "educationalCounseling": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

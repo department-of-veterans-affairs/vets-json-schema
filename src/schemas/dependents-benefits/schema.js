@@ -35,6 +35,9 @@ let schema = {
     educationObjective: {
       type: 'string'
     },
+    educationalCounseling: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
