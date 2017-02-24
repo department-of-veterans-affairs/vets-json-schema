@@ -302,6 +302,10 @@
           "$ref": "#/definitions/phone"
         }
       }
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{8}$"
     }
   },
   "properties": {
@@ -344,6 +348,9 @@
     },
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
     }
   },
   "required": [
