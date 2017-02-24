@@ -335,6 +335,9 @@
     "outstandingFelony": {
       "type": "boolean"
     },
+    "restorativeTraining": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
