@@ -366,6 +366,9 @@
     },
     "veteranDateOfDeath": {
       "$ref": "#/definitions/date"
+    },
+    "educationStartDate": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [

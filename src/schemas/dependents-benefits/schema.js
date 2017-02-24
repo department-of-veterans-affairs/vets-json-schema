@@ -42,6 +42,7 @@ let schema = {
   ['vaFileNumber'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'veteranDateOfDeath'],
+  ['date', 'educationStartDate'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
