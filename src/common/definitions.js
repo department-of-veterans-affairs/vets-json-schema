@@ -200,7 +200,7 @@ const postHighSchoolTrainings = {
       },
       state: {
         type: 'string',
-        enum: _.map(constants.states.USA, (stateData) => { return stateData.value })
+        enum: constants.usaStates
       },
       dateRange: {
         $ref: '#/definitions/dateRange'

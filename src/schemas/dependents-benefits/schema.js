@@ -1,5 +1,6 @@
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
+import constants from '../../common/constants';
 import _ from 'lodash';
 
 let schema = {
@@ -27,6 +28,9 @@ let schema = {
     },
     vocationalTraining: {
       type: 'boolean'
+    },
+    trainingState: {
+      enum: constants.usaStates
     },
   },
   required: ['privacyAgreementAccepted']

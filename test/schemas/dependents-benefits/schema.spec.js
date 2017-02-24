@@ -32,4 +32,9 @@ describe('transfer benefits schema', () => {
   sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath', 'educationStartDate']);
 
   sharedTests.runTest('address', ['relativeAddress']);
+
+  schemaTestHelper.testValidAndInvalid('trainingState', {
+    valid: ['DC', 'VA'],
+    invalid: ['XX']
+  });
 });
