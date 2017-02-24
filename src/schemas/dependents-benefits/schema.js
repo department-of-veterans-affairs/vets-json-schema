@@ -115,6 +115,7 @@ let schema = {
   ['fullName', 'previousBenefits.veteranFullName'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
   ['toursOfDuty'],
+  ['date', 'highSchoolOrGedCompletionDate'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

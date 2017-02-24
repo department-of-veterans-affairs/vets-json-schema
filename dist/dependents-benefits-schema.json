@@ -597,6 +597,9 @@
     },
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
+    },
+    "highSchoolOrGedCompletionDate": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [
