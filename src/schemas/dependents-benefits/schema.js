@@ -28,6 +28,7 @@ let schema = {
   ['phone', 'mobilePhone'],
   ['bankAccount'],
   ['secondaryContact'],
+  ['fullName', 'veteranFullName'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

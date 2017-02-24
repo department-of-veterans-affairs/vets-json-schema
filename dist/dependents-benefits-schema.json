@@ -338,6 +338,9 @@
     },
     "secondaryContact": {
       "$ref": "#/definitions/secondaryContact"
+    },
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
     }
   },
   "required": [
