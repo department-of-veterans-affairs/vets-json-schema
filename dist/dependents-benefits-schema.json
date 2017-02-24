@@ -338,6 +338,9 @@
     "restorativeTraining": {
       "type": "boolean"
     },
+    "vocationalTraining": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

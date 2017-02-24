@@ -25,6 +25,9 @@ let schema = {
     restorativeTraining: {
       type: 'boolean'
     },
+    vocationalTraining: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
