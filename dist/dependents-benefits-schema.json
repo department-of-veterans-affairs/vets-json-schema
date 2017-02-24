@@ -445,6 +445,13 @@
         "$ref": "#/definitions/date"
       }
     },
+    "benefit": {
+      "type": "string",
+      "enum": [
+        "chapter35",
+        "chapter33"
+      ]
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

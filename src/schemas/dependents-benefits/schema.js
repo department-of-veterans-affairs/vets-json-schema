@@ -48,7 +48,11 @@ let schema = {
           type: 'boolean'
         }
       }
-    }
+    },
+    benefit: {
+      type: 'string',
+      enum: ['chapter35', 'chapter33']
+    },
   },
   required: ['privacyAgreementAccepted']
 };

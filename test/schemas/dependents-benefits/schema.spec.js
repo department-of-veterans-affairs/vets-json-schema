@@ -49,4 +49,9 @@ describe('transfer benefits schema', () => {
       divorcePending: 1
     }]
   });
+
+  schemaTestHelper.testValidAndInvalid('benefit', {
+    valid: ['chapter35'],
+    invalid: ['chapter32']
+  });
 });
