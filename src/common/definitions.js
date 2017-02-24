@@ -243,6 +243,24 @@ const nonMilitaryJobs = {
   }
 };
 
+const secondaryContact = {
+  type: 'object',
+  properties: {
+    fullName: {
+      type: 'string'
+    },
+    sameAddress: {
+      type: 'boolean'
+    },
+    address: {
+      $ref: '#/definitions/address'
+    },
+    phone: {
+      $ref: '#/definitions/phone'
+    },
+  }
+};
+
 export default {
   fullName,
   address,
@@ -258,5 +276,6 @@ export default {
   privacyAgreementAccepted,
   gender,
   postHighSchoolTrainings,
-  nonMilitaryJobs
+  nonMilitaryJobs,
+  secondaryContact
 };

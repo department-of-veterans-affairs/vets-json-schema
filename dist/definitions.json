@@ -462,5 +462,22 @@
         }
       }
     }
+  },
+  "secondaryContact": {
+    "type": "object",
+    "properties": {
+      "fullName": {
+        "type": "string"
+      },
+      "sameAddress": {
+        "type": "boolean"
+      },
+      "address": {
+        "$ref": "#/definitions/address"
+      },
+      "phone": {
+        "$ref": "#/definitions/phone"
+      }
+    }
   }
 }
