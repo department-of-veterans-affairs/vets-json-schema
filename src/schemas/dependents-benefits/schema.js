@@ -38,6 +38,17 @@ let schema = {
     educationalCounseling: {
       type: 'boolean'
     },
+    spouseInfo: {
+      type: 'object',
+      properties: {
+        divorcePending: {
+          type: 'boolean'
+        },
+        remarried: {
+          type: 'boolean'
+        }
+      }
+    }
   },
   required: ['privacyAgreementAccepted']
 };
@@ -62,6 +73,7 @@ let schema = {
   ['educationType'],
   ['school'],
   ['relationship'],
+  ['date', 'spouseInfo.remarriageDate'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

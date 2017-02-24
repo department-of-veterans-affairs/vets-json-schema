@@ -38,4 +38,15 @@ describe('transfer benefits schema', () => {
     valid: ['DC', 'VA'],
     invalid: ['XX']
   });
+
+  schemaTestHelper.testValidAndInvalid('spouseInfo', {
+    valid: [{
+      divorcePending: true,
+      remarried: true,
+      remarriageDate: fixtures.date
+    }],
+    invalid: [{
+      divorcePending: 1
+    }]
+  });
 });
