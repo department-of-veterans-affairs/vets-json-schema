@@ -271,6 +271,31 @@ const relationship = {
   'enum': ['spouse', 'child']
 };
 
+const toursOfDuty = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      dateRange: {
+        $ref: '#/definitions/dateRange'
+      },
+      serviceBranch: {
+        type: 'string'
+      },
+      serviceStatus: {
+        type: 'string'
+      },
+      applyPeriodToSelected: {
+        type: 'boolean'
+      },
+      benefitsToApplyTo: {
+        type: 'string'
+      },
+    },
+    required: ['dateRange', 'serviceBranch']
+  }
+};
+
 export default {
   fullName,
   address,
@@ -289,5 +314,6 @@ export default {
   nonMilitaryJobs,
   secondaryContact,
   vaFileNumber,
-  relationship
+  relationship,
+  toursOfDuty
 };

@@ -1,6 +1,7 @@
 import SchemaTestHelper from '../support/schema-test-helper';
 import { definitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
+import testData from '../support/test-data';
 
 describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
@@ -225,4 +226,6 @@ describe('schema definitions', () => {
       'brother'
     ]
   });
+
+  testValidAndInvalidDefinitions('toursOfDuty', testData.toursOfDuty.data);
 });

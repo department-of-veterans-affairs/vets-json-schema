@@ -4,7 +4,7 @@ import definitions from '../../common/definitions';
 
 const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 
-export default {
+let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Education Benefits Claim',
   type: 'object',
@@ -175,30 +175,6 @@ export default {
     serviceBefore1977: {
       $ref: '#/definitions/serviceBefore1977'
     },
-    toursOfDuty: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          dateRange: {
-            $ref: '#/definitions/dateRange'
-          },
-          serviceBranch: {
-            type: 'string'
-          },
-          serviceStatus: {
-            type: 'string'
-          },
-          applyPeriodToSelected: {
-            type: 'boolean'
-          },
-          benefitsToApplyTo: {
-            type: 'string'
-          },
-        },
-        required: ['dateRange', 'serviceBranch']
-      }
-    },
     postHighSchoolTrainings: {
       $ref: '#/definitions/postHighSchoolTrainings'
     },
@@ -217,3 +193,7 @@ export default {
   },
   required: ['privacyAgreementAccepted']
 };
+
+schemaHelpers.addDefinitionToSchema(schema, 'toursOfDuty');
+
+export default schema;
