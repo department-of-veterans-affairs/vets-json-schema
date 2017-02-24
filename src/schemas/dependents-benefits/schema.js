@@ -78,6 +78,7 @@ let schema = {
   ['school'],
   ['relationship'],
   ['date', 'spouseInfo.remarriageDate'],
+  ['date', 'benefitsRelinquishedDate'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
