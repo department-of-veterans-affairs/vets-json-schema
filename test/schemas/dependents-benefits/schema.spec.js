@@ -54,4 +54,15 @@ describe('transfer benefits schema', () => {
     valid: ['chapter35'],
     invalid: ['chapter32']
   });
+
+  schemaTestHelper.testValidAndInvalid('previousBenefits', {
+    valid: [{
+      disability: true,
+      ownServiceBenefits: 'chapter32',
+      transferOfEntitlement: true
+    }],
+    invalid: [{
+      disability: 1
+    }]
+  });
 });

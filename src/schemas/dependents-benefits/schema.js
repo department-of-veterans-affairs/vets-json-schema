@@ -53,6 +53,35 @@ let schema = {
       type: 'string',
       enum: ['chapter35', 'chapter33']
     },
+    previousBenefits: {
+      type: 'object',
+      properties: {
+        disability: {
+          type: 'boolean'
+        },
+        dic: {
+          type: 'boolean'
+        },
+        chapter31: {
+          type: 'boolean'
+        },
+        ownServiceBenefits: {
+          type: 'string'
+        },
+        chapter35: {
+          type: 'boolean'
+        },
+        chapter33: {
+          type: 'boolean'
+        },
+        transferOfEntitlement: {
+          type: 'boolean'
+        },
+        other: {
+          type: 'string'
+        }
+      }
+    }
   },
   required: ['privacyAgreementAccepted']
 };
