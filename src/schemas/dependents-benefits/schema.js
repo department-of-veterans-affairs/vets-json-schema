@@ -84,12 +84,15 @@ let schema = {
     },
     highSchool: {
       type: 'object',
-      properties: {
-        status: {
-          type: 'string',
-          enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended']
+      properties: _.merge(
+        _.omit(definitions.postHighSchoolTrainings.items.properties, 'major'),
+        {
+          status: {
+            type: 'string',
+            enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended']
+          }
         }
-      }
+      )
     },
   },
   required: ['privacyAgreementAccepted']

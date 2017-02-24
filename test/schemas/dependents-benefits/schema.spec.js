@@ -71,4 +71,17 @@ describe('transfer benefits schema', () => {
     valid: ['graduated', 'ged'],
     invalid: ['foo']
   });
+
+  schemaTestHelper.testValidAndInvalid('highSchool', {
+    valid: [{
+      name: 'ps1',
+      dateRange: fixtures.dateRange,
+      city: 'new york',
+      hoursType: 'semester',
+      state: 'NY'
+    }],
+    invalid: [{
+      name: 1
+    }]
+  });
 });
