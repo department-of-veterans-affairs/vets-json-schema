@@ -319,6 +319,17 @@
         "tuitionTopUp",
         "farmCoop"
       ]
+    },
+    "school": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        }
+      }
     }
   },
   "properties": {
@@ -391,6 +402,9 @@
     },
     "educationType": {
       "$ref": "#/definitions/educationType"
+    },
+    "school": {
+      "$ref": "#/definitions/school"
     }
   },
   "required": [

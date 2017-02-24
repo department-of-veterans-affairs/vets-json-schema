@@ -50,6 +50,7 @@ let schema = {
   ['date', 'veteranDateOfDeath'],
   ['date', 'educationStartDate'],
   ['educationType'],
+  ['school'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
