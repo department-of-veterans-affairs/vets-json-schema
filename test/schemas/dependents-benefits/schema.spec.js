@@ -18,6 +18,7 @@ describe('transfer benefits schema', () => {
     'email',
     'bankAccount',
     'secondaryContact',
+    'vaFileNumber',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

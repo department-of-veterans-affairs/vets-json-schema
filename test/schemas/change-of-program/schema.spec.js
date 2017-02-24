@@ -19,7 +19,8 @@ describe('change of program json schema', () => {
     'address',
     'phone',
     'email',
-    'bankAccount'
+    'bankAccount',
+    'vaFileNumber'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

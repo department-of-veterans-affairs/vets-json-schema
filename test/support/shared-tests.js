@@ -156,6 +156,16 @@ const testData = {
         fullName: 1
       }]
     }
+  },
+  vaFileNumber: {
+    data: {
+      valid: [
+        '12345678'
+      ],
+      invalid: [
+        '123'
+      ]
+    }
   }
 };
 
