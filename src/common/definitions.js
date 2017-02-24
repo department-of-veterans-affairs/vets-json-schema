@@ -165,7 +165,7 @@ const date = {
 
 const educationType = {
   type: 'string',
-  enum: ['college', 'correspondence', 'apprenticeship', 'flightTraining', 'testReimbursement', 'licensingReimbursement', 'tuitionTopUp']
+  enum: ['college', 'correspondence', 'apprenticeship', 'flightTraining', 'testReimbursement', 'licensingReimbursement', 'tuitionTopUp', 'farmCoop']
 };
 
 const preferredContactMethod = {

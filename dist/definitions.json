@@ -318,7 +318,8 @@
       "flightTraining",
       "testReimbursement",
       "licensingReimbursement",
-      "tuitionTopUp"
+      "tuitionTopUp",
+      "farmCoop"
     ]
   },
   "preferredContactMethod": {

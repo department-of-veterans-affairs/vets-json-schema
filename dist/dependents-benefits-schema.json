@@ -306,6 +306,19 @@
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{8}$"
+    },
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp",
+        "farmCoop"
+      ]
     }
   },
   "properties": {
@@ -369,6 +382,9 @@
     },
     "educationStartDate": {
       "$ref": "#/definitions/date"
+    },
+    "educationType": {
+      "$ref": "#/definitions/educationType"
     }
   },
   "required": [
