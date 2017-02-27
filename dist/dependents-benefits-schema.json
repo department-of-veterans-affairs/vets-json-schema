@@ -760,6 +760,12 @@
     "civilianBenefitsSource": {
       "type": "string"
     },
+    "remarks": {
+      "type": "string"
+    },
+    "eduBenefitsPamphlet": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

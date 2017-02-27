@@ -100,6 +100,12 @@ let schema = {
     civilianBenefitsSource: {
       type: 'string'
     },
+    remarks: {
+      type: 'string'
+    },
+    eduBenefitsPamphlet: {
+      type: 'boolean'
+    }
   },
   required: ['privacyAgreementAccepted']
 };
