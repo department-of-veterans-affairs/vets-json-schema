@@ -12,7 +12,7 @@ const addDefinitionToSchema = (schema, definition, key) => {
 
   if (schemaDefinitions[definition] == null) {
     schemaDefinitions[definition] = definitions[definition];
-  };
+  }
 
   const keysArray = key.split('.');
   let prop = schema;
