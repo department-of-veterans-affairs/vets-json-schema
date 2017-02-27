@@ -97,6 +97,9 @@ let schema = {
     civilianBenefitsAssistance: {
       type: 'boolean'
     },
+    civilianBenefitsSource: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };

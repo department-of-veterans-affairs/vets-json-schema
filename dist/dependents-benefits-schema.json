@@ -757,6 +757,9 @@
     "civilianBenefitsAssistance": {
       "type": "boolean"
     },
+    "civilianBenefitsSource": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
