@@ -26,7 +26,7 @@ const addDefinitionToSchema = (schema, definition, key) => {
       if (prop[k] == null) prop[k] = {};
 
       prop = prop[k];
-    };
+    }
   });
 };
 
