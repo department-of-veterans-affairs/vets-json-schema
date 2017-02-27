@@ -754,6 +754,9 @@
         }
       }
     },
+    "civilianBenefitsAssistance": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

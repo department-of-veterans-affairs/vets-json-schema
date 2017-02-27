@@ -94,6 +94,9 @@ let schema = {
         }
       )
     },
+    civilianBenefitsAssistance: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
