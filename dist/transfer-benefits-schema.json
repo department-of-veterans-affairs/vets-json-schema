@@ -295,8 +295,7 @@
         "flightTraining",
         "testReimbursement",
         "licensingReimbursement",
-        "tuitionTopUp",
-        "farmCoop"
+        "tuitionTopUp"
       ]
     },
     "school": {

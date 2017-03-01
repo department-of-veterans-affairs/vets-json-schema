@@ -42,6 +42,11 @@ describe('dependents benefits schema', () => {
     invalid: ['XX']
   });
 
+  schemaTestHelper.testValidAndInvalid('educationType', {
+    valid: ['farmCoop'],
+    invalid: ['cooperativeTraining']
+  });
+
   schemaTestHelper.testValidAndInvalid('spouseInfo', {
     valid: [{
       divorcePending: true,

@@ -1,14 +1,20 @@
-import definitions from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import constants from '../../common/constants';
 import _ from 'lodash';
+
+let definitions = _.cloneDeep(originalDefinitions);
+definitions.educationType.enum.push('farmCoop');
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, 'dateRange'),
+  definitions: _.pick(definitions, [
+    'dateRange',
+    'educationType'
+  ]),
   properties: {
     email: {
       type: 'string',
