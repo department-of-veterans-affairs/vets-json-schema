@@ -31,5 +31,6 @@ const addDefinitionToSchema = (schema, definition, key) => {
 };
 
 export default {
-  addDefinitionToSchema
+  addDefinitionToSchema,
+  getDefinition
 };

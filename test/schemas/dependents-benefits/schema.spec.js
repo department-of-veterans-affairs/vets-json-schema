@@ -19,8 +19,6 @@ describe('dependents benefits schema', () => {
     'bankAccount',
     'secondaryContact',
     'vaFileNumber',
-    'educationType',
-    'school',
     'relationship',
     'toursOfDuty',
     'postHighSchoolTrainings',
@@ -35,16 +33,27 @@ describe('dependents benefits schema', () => {
 
   sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath', 'educationStartDate', 'benefitsRelinquishedDate', 'highSchool.highSchoolOrGedCompletionDate']);
 
-  sharedTests.runTest('address', ['relativeAddress']);
+  sharedTests.runTest('address', ['relativeAddress', 'educationProgram.address']);
 
   schemaTestHelper.testValidAndInvalid('trainingState', {
     valid: ['DC', 'VA'],
     invalid: ['XX']
   });
 
-  schemaTestHelper.testValidAndInvalid('educationType', {
+  schemaTestHelper.testValidAndInvalid('educationProgram.educationType', {
     valid: ['farmCoop'],
     invalid: ['cooperativeTraining']
+  });
+
+  schemaTestHelper.testValidAndInvalid('educationProgram', {
+    valid: [{
+      name: 'school name',
+      address: fixtures.address,
+      educationType: 'college'
+    }],
+    invalid: [{
+      name: 1
+    }]
   });
 
   schemaTestHelper.testValidAndInvalid('spouseInfo', {

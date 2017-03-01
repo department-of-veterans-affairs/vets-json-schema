@@ -331,17 +331,6 @@
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{8}$"
     },
-    "school": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/address"
-        }
-      }
-    },
     "relationship": {
       "type": "string",
       "enum": [
@@ -763,6 +752,20 @@
     "remarks": {
       "type": "string"
     },
+    "educationProgram": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "educationType": {
+          "$ref": "#/definitions/educationType"
+        }
+      }
+    },
     "eduBenefitsPamphlet": {
       "type": "boolean"
     },
@@ -813,12 +816,6 @@
     },
     "educationStartDate": {
       "$ref": "#/definitions/date"
-    },
-    "educationType": {
-      "$ref": "#/definitions/educationType"
-    },
-    "school": {
-      "$ref": "#/definitions/school"
     },
     "relationship": {
       "$ref": "#/definitions/relationship"

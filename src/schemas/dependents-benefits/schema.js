@@ -109,6 +109,16 @@ let schema = {
     remarks: {
       type: 'string'
     },
+    educationProgram: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string'
+        },
+        address: schemaHelpers.getDefinition('address'),
+        educationType: schemaHelpers.getDefinition('educationType')
+      }
+    },
     eduBenefitsPamphlet: {
       type: 'boolean'
     }
@@ -133,8 +143,6 @@ let schema = {
   ['date', 'veteranDateOfBirth'],
   ['date', 'veteranDateOfDeath'],
   ['date', 'educationStartDate'],
-  ['educationType'],
-  ['school'],
   ['relationship'],
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
