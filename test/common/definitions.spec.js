@@ -1,6 +1,7 @@
 import SchemaTestHelper from '../support/schema-test-helper';
 import { definitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
+import testData from '../support/test-data';
 
 describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
@@ -191,4 +192,40 @@ describe('schema definitions', () => {
       months: 'a'
     }]]
   });
+
+  testValidAndInvalidDefinitions('secondaryContact', {
+    valid: [{
+      fullName: 'john doe',
+      sameAddress: true,
+      address: fixtures.address,
+      phone: fixtures.phone
+    }],
+    invalid: [{
+      fullName: 1
+    }]
+  });
+
+  testValidAndInvalidDefinitions('vaFileNumber', {
+    valid: [
+      '12345678',
+      'c12345678',
+      'C12345678',
+    ],
+    invalid: [
+      '123',
+      'd12345678',
+    ]
+  });
+
+  testValidAndInvalidDefinitions('relationship', {
+    valid: [
+      'spouse',
+      'child'
+    ],
+    invalid: [
+      'brother'
+    ]
+  });
+
+  testValidAndInvalidDefinitions('toursOfDuty', testData.toursOfDuty.data);
 });

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const countries = [
   { value: 'USA', label: 'United States' },
   { value: 'AFG', label: 'Afghanistan' },
@@ -1601,6 +1603,8 @@ const yesNo = [
   { label: 'No', value: 'N' }
 ];
 
+const usaStates = _.map(states.USA, (stateData) => { return stateData.value });
+
 module.exports = {
   countries,
   maritalStatuses,
@@ -1613,5 +1617,6 @@ module.exports = {
   days,
   vaMedicalFacilities,
   childRelationships,
-  yesNo
+  yesNo,
+  usaStates
 };

@@ -26,7 +26,9 @@ describe('education benefits json schema', () => {
     'school',
     'postHighSchoolTrainings',
     'educationType',
-    'nonMilitaryJobs'
+    'nonMilitaryJobs',
+    'secondaryContact',
+    'toursOfDuty'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -64,41 +66,6 @@ describe('education benefits json schema', () => {
           to: 'future'
         },
       ]
-    });
-  });
-
-  context('tours of duty validation', () => {
-    schemaTestHelper.testValidAndInvalid('toursOfDuty', {
-      valid: [[{
-        dateRange: validDateRange,
-        serviceBranch: 'navy',
-        serviceStatus: 'active',
-        benefitsToApplyTo: 'chapter30'
-      }]],
-      invalid: [
-        [{
-          serviceBranch: 'navy',
-          serviceStatus: 'active',
-        }],
-        [{
-          dateRange: validDateRange,
-          serviceBranch: 1,
-          serviceStatus: 'active',
-        }],
-        [{
-          dateRange: validDateRange,
-          serviceBranch: 'navy',
-          serviceStatus: 'active',
-          benefitsToApplyTo: ['chapter85968568']
-        },
-        {
-          dateRange: validDateRange,
-          serviceBranch: 'navy',
-          serviceStatus: 'active',
-          involuntarilyCalledToDuty: 'yes',
-          benefitsToApplyTo: 'chapter30'
-        }]
-      ],
     });
   });
 

@@ -1,10 +1,11 @@
 import originalDefinitions from '../../common/definitions';
+import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('cooperativeTraining');
 
-export default {
+let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING',
   type: 'object',
@@ -43,10 +44,6 @@ export default {
     },
     mobilePhone: {
       $ref: '#/definitions/phone'
-    },
-    vaFileNumber: {
-      type: 'string',
-      pattern: '^[cC]{0,1}\\d{8}$'
     },
     email: {
       type: 'string',
@@ -122,3 +119,7 @@ export default {
   },
   required: ['privacyAgreementAccepted']
 };
+
+schemaHelpers.addDefinitionToSchema(schema, 'vaFileNumber');
+
+export default schema;

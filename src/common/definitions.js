@@ -200,7 +200,7 @@ const postHighSchoolTrainings = {
       },
       state: {
         type: 'string',
-        enum: _.map(constants.states.USA, (stateData) => { return stateData.value })
+        enum: constants.usaStates
       },
       dateRange: {
         $ref: '#/definitions/dateRange'
@@ -243,6 +243,59 @@ const nonMilitaryJobs = {
   }
 };
 
+const secondaryContact = {
+  type: 'object',
+  properties: {
+    fullName: {
+      type: 'string'
+    },
+    sameAddress: {
+      type: 'boolean'
+    },
+    address: {
+      $ref: '#/definitions/address'
+    },
+    phone: {
+      $ref: '#/definitions/phone'
+    },
+  }
+};
+
+const vaFileNumber = {
+  type: 'string',
+  pattern: '^[cC]{0,1}\\d{8}$'
+};
+
+const relationship = {
+  type: 'string',
+  'enum': ['spouse', 'child']
+};
+
+const toursOfDuty = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      dateRange: {
+        $ref: '#/definitions/dateRange'
+      },
+      serviceBranch: {
+        type: 'string'
+      },
+      serviceStatus: {
+        type: 'string'
+      },
+      applyPeriodToSelected: {
+        type: 'boolean'
+      },
+      benefitsToApplyTo: {
+        type: 'string'
+      },
+    },
+    required: ['dateRange', 'serviceBranch']
+  }
+};
+
 export default {
   fullName,
   address,
@@ -258,5 +311,9 @@ export default {
   privacyAgreementAccepted,
   gender,
   postHighSchoolTrainings,
-  nonMilitaryJobs
+  nonMilitaryJobs,
+  secondaryContact,
+  vaFileNumber,
+  relationship,
+  toursOfDuty
 };

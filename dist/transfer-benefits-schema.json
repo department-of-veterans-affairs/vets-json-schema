@@ -440,6 +440,13 @@
           }
         }
       }
+    },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "spouse",
+        "child"
+      ]
     }
   },
   "properties": {
@@ -473,13 +480,6 @@
     },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
-    },
-    "relationship": {
-      "type": "string",
-      "enum": [
-        "spouse",
-        "child"
-      ]
     },
     "highSchoolOrGedCompletionDate": {
       "$ref": "#/definitions/date"
@@ -528,6 +528,9 @@
     },
     "veteranAddress": {
       "$ref": "#/definitions/address"
+    },
+    "relationship": {
+      "$ref": "#/definitions/relationship"
     }
   },
   "required": [
