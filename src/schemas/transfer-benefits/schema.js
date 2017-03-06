@@ -4,7 +4,7 @@ import schemaHelpers from '../../common/schema-helpers';
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'APPLICATION FOR FAMILY MEMBER TO USE TRANSFERRED BENEFITS',
+  title: 'APPLICATION FOR FAMILY MEMBER TO USE TRANSFERRED BENEFITS (22-1990E)',
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions,

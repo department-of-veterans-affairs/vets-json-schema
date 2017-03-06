@@ -7,7 +7,7 @@ const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'Education Benefits Claim',
+  title: 'APPLICATION FOR VA EDUCATION BENEFITS (22-1990)',
   type: 'object',
   definitions: _.merge({
     year: {

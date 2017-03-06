@@ -7,7 +7,7 @@ definitions.educationType.enum.push('cooperativeTraining');
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING',
+  title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-1995)',
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
