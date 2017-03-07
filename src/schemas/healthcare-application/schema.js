@@ -39,6 +39,7 @@ countryStateProperites.push(
 
 export default {
   $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'APPLICATION FOR HEALTH BENEFITS (10-10EZ)',
   definitions: {
     address: {
       type: 'object',

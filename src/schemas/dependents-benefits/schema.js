@@ -8,7 +8,7 @@ definitions.educationType.enum.push('farmCoop');
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS",
+  title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
