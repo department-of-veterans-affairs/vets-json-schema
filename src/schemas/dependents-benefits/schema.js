@@ -36,6 +36,7 @@ let schema = {
       type: 'boolean'
     },
     trainingState: {
+      type: 'string',
       enum: constants.usaStates
     },
     educationObjective: {
