@@ -508,6 +508,7 @@
       "type": "boolean"
     },
     "trainingState": {
+      "type": "string",
       "enum": [
         "AL",
         "AK",
