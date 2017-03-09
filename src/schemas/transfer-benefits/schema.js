@@ -67,6 +67,9 @@ let schema = {
     educationObjective: {
       type: 'string'
     },
+    educationStartDate: {
+      $ref: '#/definitions/date'
+    },
     faaFlightCertificatesInformation: {
       type: 'string'
     },
