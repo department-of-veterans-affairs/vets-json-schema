@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "APPLICATION FOR VA EDUCATION BENEFITS UNDER THE NATIONAL CALL TO SERVICE (NCS) PROGRAM (22-1990N)",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    }
+  },
+  "properties": {
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
+}
