@@ -19,6 +19,7 @@ describe('dependents benefits schema', () => {
     'bankAccount',
     'secondaryContact',
     'vaFileNumber',
+    'educationProgram',
     'relationship',
     'toursOfDuty',
     'postHighSchoolTrainings',

@@ -298,7 +298,7 @@
         "tuitionTopUp"
       ]
     },
-    "school": {
+    "educationProgram": {
       "type": "object",
       "properties": {
         "name": {
@@ -306,6 +306,9 @@
         },
         "address": {
           "$ref": "#/definitions/address"
+        },
+        "educationType": {
+          "$ref": "#/definitions/educationType"
         }
       }
     },
@@ -491,11 +494,8 @@
         "chapter30"
       ]
     },
-    "educationType": {
-      "$ref": "#/definitions/educationType"
-    },
-    "school": {
-      "$ref": "#/definitions/school"
+    "educationProgram": {
+      "$ref": "#/definitions/educationProgram"
     },
     "educationObjective": {
       "type": "string"

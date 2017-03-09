@@ -293,6 +293,21 @@ const toursOfDuty = {
       },
     },
     required: ['dateRange', 'serviceBranch']
+  },
+};
+
+const educationProgram = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string'
+    },
+    address: {
+      $ref: '#/definitions/address'
+    },
+    educationType: {
+      $ref: '#/definitions/educationType'
+    }
   }
 };
 
@@ -315,5 +330,6 @@ export default {
   secondaryContact,
   vaFileNumber,
   relationship,
-  toursOfDuty
+  toursOfDuty,
+  educationProgram
 };

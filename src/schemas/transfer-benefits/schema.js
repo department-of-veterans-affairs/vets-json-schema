@@ -17,7 +17,7 @@ let schema = {
     'phone',
     'bankAccount',
     'educationType',
-    'school',
+    'educationProgram',
     'postHighSchoolTrainings',
     'dateRange',
     'nonMilitaryJobs'
@@ -61,11 +61,8 @@ let schema = {
       type: 'string',
       enum: ['chapter33', 'chapter30']
     },
-    educationType: {
-      $ref: '#/definitions/educationType'
-    },
-    school: {
-      $ref: '#/definitions/school'
+    educationProgram: {
+      $ref: '#/definitions/educationProgram'
     },
     educationObjective: {
       type: 'string'
