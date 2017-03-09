@@ -101,6 +101,24 @@ export default {
       invalid: ['foo', 'cooperativeTraining']
     }
   },
+  educationProgram: {
+    data: {
+      valid: [{
+        educationType: 'college',
+        name: 'Test',
+        address: {
+          country: 'USA',
+          state: 'MT',
+          street: '123',
+          city: 'Test'
+        }
+      }],
+      invalid: [{
+        educationType: 'blahblah',
+        name: 'Test'
+      }]
+    }
+  },
   school: {
     data: {
       valid: [{

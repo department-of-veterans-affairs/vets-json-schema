@@ -485,6 +485,20 @@
           }
         }
       }
+    },
+    "educationProgram": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "educationType": {
+          "$ref": "#/definitions/educationType"
+        }
+      }
     }
   },
   "properties": {
@@ -753,20 +767,6 @@
     "remarks": {
       "type": "string"
     },
-    "educationProgram": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/address"
-        },
-        "educationType": {
-          "$ref": "#/definitions/educationType"
-        }
-      }
-    },
     "eduBenefitsPamphlet": {
       "type": "boolean"
     },
@@ -832,6 +832,9 @@
     },
     "nonMilitaryJobs": {
       "$ref": "#/definitions/nonMilitaryJobs"
+    },
+    "educationProgram": {
+      "$ref": "#/definitions/educationProgram"
     }
   },
   "required": [

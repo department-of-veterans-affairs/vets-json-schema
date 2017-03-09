@@ -17,8 +17,7 @@ describe('transfer benefits schema', () => {
     'phone',
     'email',
     'bankAccount',
-    'educationType',
-    'school',
+    'educationProgram',
     'postHighSchoolTrainings',
     'nonMilitaryJobs',
     'relationship'

@@ -110,16 +110,6 @@ let schema = {
     remarks: {
       type: 'string'
     },
-    educationProgram: {
-      type: 'object',
-      properties: {
-        name: {
-          type: 'string'
-        },
-        address: schemaHelpers.getDefinition('address'),
-        educationType: schemaHelpers.getDefinition('educationType')
-      }
-    },
     eduBenefitsPamphlet: {
       type: 'boolean'
     }
@@ -152,7 +142,8 @@ let schema = {
   ['toursOfDuty'],
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
   ['postHighSchoolTrainings'],
-  ['nonMilitaryJobs']
+  ['nonMilitaryJobs'],
+  ['educationProgram']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

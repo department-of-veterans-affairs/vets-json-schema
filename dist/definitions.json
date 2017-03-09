@@ -517,5 +517,19 @@
         "serviceBranch"
       ]
     }
+  },
+  "educationProgram": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "address": {
+        "$ref": "#/definitions/address"
+      },
+      "educationType": {
+        "$ref": "#/definitions/educationType"
+      }
+    }
   }
 }
