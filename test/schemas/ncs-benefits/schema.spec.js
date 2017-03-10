@@ -19,6 +19,7 @@ describe('ncs benefits schema', () => {
     'bankAccount',
     'educationProgram',
     'currentlyActiveDuty',
+    'toursOfDuty',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

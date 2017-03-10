@@ -8,7 +8,8 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
-    'educationType'
+    'educationType',
+    'dateRange'
   ]),
   properties: {
     email: {
@@ -37,6 +38,7 @@ let schema = {
   ['bankAccount'],
   ['educationProgram'],
   ['currentlyActiveDuty'],
+  ['toursOfDuty'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
