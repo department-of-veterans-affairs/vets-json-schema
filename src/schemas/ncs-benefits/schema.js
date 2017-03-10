@@ -16,6 +16,7 @@ let schema = {
 [
   ['privacyAgreementAccepted'],
   ['ssn', 'veteranSocialSecurityNumber'],
+  ['gender'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
