@@ -7,7 +7,9 @@ let schema = {
   title: "APPLICATION FOR VA EDUCATION BENEFITS UNDER THE NATIONAL CALL TO SERVICE (NCS) PROGRAM (22-1990N)",
   type: 'object',
   additionalProperties: false,
-  definitions: {},
+  definitions: _.pick(definitions, [
+    'educationType'
+  ]),
   properties: {
     email: {
       type: 'string',
@@ -27,6 +29,7 @@ let schema = {
   ['phone', 'homePhone'],
   ['phone', 'mobilePhone'],
   ['bankAccount'],
+  ['educationProgram'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
