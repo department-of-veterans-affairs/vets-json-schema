@@ -15,6 +15,9 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    educationObjective: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
