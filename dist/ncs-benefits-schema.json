@@ -311,6 +311,20 @@
           "$ref": "#/definitions/educationType"
         }
       }
+    },
+    "currentlyActiveDuty": {
+      "type": "object",
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "onTerminalLeave": {
+          "type": "boolean"
+        },
+        "nonVaAssistance": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "properties": {
@@ -350,6 +364,9 @@
     },
     "educationProgram": {
       "$ref": "#/definitions/educationProgram"
+    },
+    "currentlyActiveDuty": {
+      "$ref": "#/definitions/currentlyActiveDuty"
     }
   },
   "required": [
