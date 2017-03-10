@@ -12,4 +12,5 @@ let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('ncs benefits schema', () => {
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
 });
