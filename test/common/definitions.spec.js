@@ -228,4 +228,6 @@ describe('schema definitions', () => {
   });
 
   testValidAndInvalidDefinitions('toursOfDuty', testData.toursOfDuty.data);
+
+  testValidAndInvalidDefinitions('currentlyActiveDuty', testData.currentlyActiveDuty.data);
 });

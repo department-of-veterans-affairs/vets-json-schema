@@ -311,6 +311,21 @@ const educationProgram = {
   }
 };
 
+const currentlyActiveDuty = {
+  type: 'object',
+  properties: {
+    yes: {
+      type: 'boolean'
+    },
+    onTerminalLeave: {
+      type: 'boolean'
+    },
+    nonVaAssistance: {
+      type: 'boolean'
+    }
+  }
+};
+
 export default {
   fullName,
   address,
@@ -331,5 +346,6 @@ export default {
   vaFileNumber,
   relationship,
   toursOfDuty,
-  educationProgram
+  educationProgram,
+  currentlyActiveDuty
 };

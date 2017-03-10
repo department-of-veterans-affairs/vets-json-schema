@@ -195,6 +195,18 @@ export default {
       ]
     }
   },
+  currentlyActiveDuty: {
+    data: {
+      valid: [{
+        yes: true,
+        onTerminalLeave: true,
+        nonVaAssistance: true
+      }],
+      invalid: [{
+        yes: 1
+      }]
+    }
+  },
   toursOfDuty: {
     data: {
       valid: [[{
