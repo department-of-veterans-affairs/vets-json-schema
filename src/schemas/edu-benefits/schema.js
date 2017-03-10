@@ -109,20 +109,6 @@ let schema = {
     educationType: {
       $ref: '#/definitions/educationType'
     },
-    currentlyActiveDuty: {
-      type: 'object',
-      properties: {
-        yes: {
-          type: 'boolean'
-        },
-        onTerminalLeave: {
-          type: 'boolean'
-        },
-        nonVaAssistance: {
-          type: 'boolean'
-        }
-      }
-    },
     highSchoolOrGedCompletionDate: {
       $ref: '#/definitions/date'
     },
@@ -195,6 +181,11 @@ let schema = {
   required: ['privacyAgreementAccepted']
 };
 
-schemaHelpers.addDefinitionToSchema(schema, 'toursOfDuty');
+[
+  ['toursOfDuty'],
+  ['currentlyActiveDuty']
+].forEach((args) => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
 
 export default schema;
