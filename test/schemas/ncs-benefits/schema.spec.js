@@ -23,4 +23,6 @@ describe('ncs benefits schema', () => {
   sharedTests.runTest('date', ['veteranDateOfBirth']);
 
   sharedTests.runTest('fullName', ['veteranFullName']);
+
+  sharedTests.runTest('address', ['veteranAddress']);
 });
