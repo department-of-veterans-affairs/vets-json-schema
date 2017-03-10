@@ -21,4 +21,6 @@ describe('ncs benefits schema', () => {
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
 
   sharedTests.runTest('date', ['veteranDateOfBirth']);
+
+  sharedTests.runTest('fullName', ['veteranFullName']);
 });
