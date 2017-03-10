@@ -18,6 +18,9 @@ let schema = {
     educationObjective: {
       type: 'string'
     },
+    payHighestRateBenefit: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };

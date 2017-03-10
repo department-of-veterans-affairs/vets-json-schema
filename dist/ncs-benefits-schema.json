@@ -335,6 +335,9 @@
     "educationObjective": {
       "type": "string"
     },
+    "payHighestRateBenefit": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
