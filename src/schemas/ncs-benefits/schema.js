@@ -22,6 +22,9 @@ let schema = {
     payHighestRateBenefit: {
       type: 'boolean'
     },
+    seniorRotcScholarshipProgram: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };

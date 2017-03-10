@@ -376,6 +376,9 @@
     "payHighestRateBenefit": {
       "type": "boolean"
     },
+    "seniorRotcScholarshipProgram": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
