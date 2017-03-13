@@ -499,6 +499,14 @@
           "$ref": "#/definitions/educationType"
         }
       }
+    },
+    "preferredContactMethod": {
+      "type": "string",
+      "enum": [
+        "mail",
+        "email",
+        "phone"
+      ]
     }
   },
   "properties": {
@@ -835,6 +843,9 @@
     },
     "educationProgram": {
       "$ref": "#/definitions/educationProgram"
+    },
+    "preferredContactMethod": {
+      "$ref": "#/definitions/preferredContactMethod"
     }
   },
   "required": [
