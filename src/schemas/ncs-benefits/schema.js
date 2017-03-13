@@ -25,6 +25,12 @@ let schema = {
     seniorRotcScholarshipProgram: {
       type: 'boolean'
     },
+    civilianBenefitsAssistance: {
+      type: 'boolean'
+    },
+    civilianBenefitsSource: {
+      type: 'string'
+    }
   },
   required: ['privacyAgreementAccepted']
 };
