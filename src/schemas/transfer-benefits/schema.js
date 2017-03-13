@@ -20,7 +20,8 @@ let schema = {
     'educationProgram',
     'postHighSchoolTrainings',
     'dateRange',
-    'nonMilitaryJobs'
+    'nonMilitaryJobs',
+    'preferredContactMethod'
   ),
   properties: {
     privacyAgreementAccepted: {
@@ -93,6 +94,9 @@ let schema = {
     },
     veteranAddress: {
       $ref: '#/definitions/address'
+    },
+    preferredContactMethod: {
+      $ref: '#/definitions/preferredContactMethod'
     }
   },
   required: ['privacyAgreementAccepted']

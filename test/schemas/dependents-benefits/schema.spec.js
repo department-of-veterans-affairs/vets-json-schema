@@ -24,6 +24,7 @@ describe('dependents benefits schema', () => {
     'toursOfDuty',
     'postHighSchoolTrainings',
     'nonMilitaryJobs',
+    'preferredContactMethod'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
