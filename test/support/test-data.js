@@ -8,6 +8,13 @@ export default {
       invalid: ['1234']
     }
   },
+  preferredContactMethod: {
+    fields: ['preferredContactMethod'],
+    data: {
+      valid: ['mail', 'phone'],
+      invalid: ['1234']
+    }
+  },
   ssn: {
     fields: ['veteranSocialSecurityNumber'],
     data: {

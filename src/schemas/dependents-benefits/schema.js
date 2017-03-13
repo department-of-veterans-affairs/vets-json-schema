@@ -143,7 +143,8 @@ let schema = {
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
   ['postHighSchoolTrainings'],
   ['nonMilitaryJobs'],
-  ['educationProgram']
+  ['educationProgram'],
+  ['preferredContactMethod']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

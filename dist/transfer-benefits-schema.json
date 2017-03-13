@@ -444,6 +444,14 @@
         }
       }
     },
+    "preferredContactMethod": {
+      "type": "string",
+      "enum": [
+        "mail",
+        "email",
+        "phone"
+      ]
+    },
     "relationship": {
       "type": "string",
       "enum": [
@@ -526,6 +534,9 @@
     },
     "veteranAddress": {
       "$ref": "#/definitions/address"
+    },
+    "preferredContactMethod": {
+      "$ref": "#/definitions/preferredContactMethod"
     },
     "relationship": {
       "$ref": "#/definitions/relationship"
