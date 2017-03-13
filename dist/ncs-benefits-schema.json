@@ -363,6 +363,14 @@
           "serviceBranch"
         ]
       }
+    },
+    "preferredContactMethod": {
+      "type": "string",
+      "enum": [
+        "mail",
+        "email",
+        "phone"
+      ]
     }
   },
   "properties": {
@@ -414,6 +422,9 @@
     },
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
+    },
+    "preferredContactMethod": {
+      "$ref": "#/definitions/preferredContactMethod"
     }
   },
   "required": [

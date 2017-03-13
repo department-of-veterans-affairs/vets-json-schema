@@ -42,6 +42,7 @@ let schema = {
   ['educationProgram'],
   ['currentlyActiveDuty'],
   ['toursOfDuty'],
+  ['preferredContactMethod']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
