@@ -37,11 +37,6 @@ describe('dependents benefits schema', () => {
 
   sharedTests.runTest('address', ['relativeAddress', 'educationProgram.address']);
 
-  schemaTestHelper.testValidAndInvalid('trainingState', {
-    valid: ['DC', 'VA'],
-    invalid: ['XX']
-  });
-
   schemaTestHelper.testValidAndInvalid('educationProgram.educationType', {
     valid: ['farmCoop'],
     invalid: ['cooperativeTraining']

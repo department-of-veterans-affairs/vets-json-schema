@@ -1,6 +1,5 @@
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import constants from '../../common/constants';
 import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
@@ -36,8 +35,7 @@ let schema = {
       type: 'boolean'
     },
     trainingState: {
-      type: 'string',
-      enum: constants.usaStates
+      type: 'string'
     },
     educationObjective: {
       type: 'string'
