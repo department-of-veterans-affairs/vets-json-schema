@@ -2,6 +2,7 @@ import SchemaTestHelper from '../../support/schema-test-helper';
 import { transferBenefits as schema } from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
 import _ from 'lodash';
+import { expect } from 'chai';
 import SharedTests from '../../support/shared-tests';
 
 const schemaDefaults = {
@@ -21,7 +22,8 @@ describe('transfer benefits schema', () => {
     'postHighSchoolTrainings',
     'nonMilitaryJobs',
     'relationship',
-    'preferredContactMethod'
+    'preferredContactMethod',
+    'vaFileNumber'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -37,5 +39,25 @@ describe('transfer benefits schema', () => {
   schemaTestHelper.testValidAndInvalid('benefit', {
     valid: ['chapter33'],
     invalid: ['foo']
+  });
+
+  describe('required fields', () => {
+    it('should require either ssn or vaFileNumber', () => {
+      let fullSchemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
+
+      expect(fullSchemaTestHelper.validateSchema({})).to.equal(false);
+      expect(fullSchemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
+
+      [
+        { veteranSocialSecurityNumber: '123456789' },
+        { vaFileNumber: '12345678' },
+        {
+          veteranSocialSecurityNumber: '123456789',
+          vaFileNumber: '12345678'
+        }
+      ].forEach((schemaData) => {
+        fullSchemaTestHelper.schemaExpect(true, schemaData);
+      });
+    });
   });
 });

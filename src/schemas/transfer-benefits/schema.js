@@ -23,6 +23,14 @@ let schema = {
     'nonMilitaryJobs',
     'preferredContactMethod'
   ),
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["ssn"]
+    }
+  ],
   properties: {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
@@ -103,5 +111,6 @@ let schema = {
 };
 
 schemaHelpers.addDefinitionToSchema(schema, 'relationship');
+schemaHelpers.addDefinitionToSchema(schema, 'vaFileNumber');
 
 export default schema;
