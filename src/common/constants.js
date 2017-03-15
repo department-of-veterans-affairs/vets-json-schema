@@ -1604,6 +1604,7 @@ const yesNo = [
 ];
 
 const usaStates = _.map(states.USA, (stateData) => { return stateData.value });
+const usaStatesOther = usaStates.concat('other').sort();
 
 module.exports = {
   countries,
@@ -1618,5 +1619,6 @@ module.exports = {
   vaMedicalFacilities,
   childRelationships,
   yesNo,
-  usaStates
+  usaStates,
+  usaStatesOther
 };

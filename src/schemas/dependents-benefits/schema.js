@@ -37,7 +37,10 @@ let schema = {
     },
     trainingState: {
       type: 'string',
-      enum: constants.usaStates
+      enum: constants.usaStatesOther
+    },
+    trainingStateOther: {
+      type: 'string'
     },
     educationObjective: {
       type: 'string'
