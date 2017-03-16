@@ -8,7 +8,7 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions,
-    'privacyAgreementAccepted', [
+    'privacyAgreementAccepted',
     'ssn',
     'gender',
     'date',
@@ -22,7 +22,7 @@ let schema = {
     'dateRange',
     'nonMilitaryJobs',
     'preferredContactMethod'
-  ]),
+  ),
   anyOf: [
     {
       "required" : ["vaFileNumber"]
