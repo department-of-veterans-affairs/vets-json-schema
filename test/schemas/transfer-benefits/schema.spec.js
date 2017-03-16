@@ -49,10 +49,10 @@ describe('transfer benefits schema', () => {
       expect(fullSchemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
 
       [
-        { veteranSocialSecurityNumber: '123456789' },
+        { relativeSocialSecurityNumber: '123456789' },
         { vaFileNumber: '12345678' },
         {
-          veteranSocialSecurityNumber: '123456789',
+          relativeSocialSecurityNumber: '123456789',
           vaFileNumber: '12345678'
         }
       ].forEach((schemaData) => {
