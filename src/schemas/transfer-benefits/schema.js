@@ -8,7 +8,7 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions,
-    'privacyAgreementAccepted',
+    'privacyAgreementAccepted', [
     'ssn',
     'gender',
     'date',
@@ -22,13 +22,13 @@ let schema = {
     'dateRange',
     'nonMilitaryJobs',
     'preferredContactMethod'
-  ),
+  ]),
   anyOf: [
     {
       "required" : ["vaFileNumber"]
     },
     {
-      "required" : ["ssn"]
+      "required" : ["relativeSocialSecurityNumber"]
     }
   ],
   properties: {
@@ -110,7 +110,11 @@ let schema = {
   required: ['privacyAgreementAccepted']
 };
 
-schemaHelpers.addDefinitionToSchema(schema, 'relationship');
-schemaHelpers.addDefinitionToSchema(schema, 'vaFileNumber');
+[
+  ['relationship'],
+  ['vaFileNumber'],
+].forEach((args) => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
 
 export default schema;
