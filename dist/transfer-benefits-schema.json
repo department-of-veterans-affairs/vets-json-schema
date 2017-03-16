@@ -458,8 +458,24 @@
         "spouse",
         "child"
       ]
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{8}$"
     }
   },
+  "anyOf": [
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    },
+    {
+      "required": [
+        "relativeSocialSecurityNumber"
+      ]
+    }
+  ],
   "properties": {
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
@@ -540,6 +556,9 @@
     },
     "relationship": {
       "$ref": "#/definitions/relationship"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
     }
   },
   "required": [
