@@ -64,6 +64,10 @@
         "first",
         "last"
       ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     }
   },
   "properties": {
@@ -72,6 +76,9 @@
     },
     "relativeFullName": {
       "$ref": "#/definitions/fullName"
+    },
+    "relativeSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     }
   },
   "required": [
