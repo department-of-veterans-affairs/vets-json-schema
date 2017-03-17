@@ -68,6 +68,10 @@
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{8}$"
     }
   },
   "properties": {
@@ -79,6 +83,9 @@
     },
     "relativeSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
     }
   },
   "required": [
