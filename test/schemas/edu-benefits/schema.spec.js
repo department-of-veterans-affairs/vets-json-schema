@@ -28,7 +28,8 @@ describe('education benefits json schema', () => {
     'educationType',
     'nonMilitaryJobs',
     'secondaryContact',
-    'toursOfDuty'
+    'toursOfDuty',
+    'currentlyActiveDuty'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

@@ -531,5 +531,19 @@
         "$ref": "#/definitions/educationType"
       }
     }
+  },
+  "currentlyActiveDuty": {
+    "type": "object",
+    "properties": {
+      "yes": {
+        "type": "boolean"
+      },
+      "onTerminalLeave": {
+        "type": "boolean"
+      },
+      "nonVaAssistance": {
+        "type": "boolean"
+      }
+    }
   }
 }

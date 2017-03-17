@@ -497,6 +497,20 @@
           "serviceBranch"
         ]
       }
+    },
+    "currentlyActiveDuty": {
+      "type": "object",
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "onTerminalLeave": {
+          "type": "boolean"
+        },
+        "nonVaAssistance": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "additionalProperties": false,
@@ -582,20 +596,6 @@
     "educationType": {
       "$ref": "#/definitions/educationType"
     },
-    "currentlyActiveDuty": {
-      "type": "object",
-      "properties": {
-        "yes": {
-          "type": "boolean"
-        },
-        "onTerminalLeave": {
-          "type": "boolean"
-        },
-        "nonVaAssistance": {
-          "type": "boolean"
-        }
-      }
-    },
     "highSchoolOrGedCompletionDate": {
       "$ref": "#/definitions/date"
     },
@@ -668,6 +668,9 @@
     },
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
+    },
+    "currentlyActiveDuty": {
+      "$ref": "#/definitions/currentlyActiveDuty"
     }
   },
   "required": [
