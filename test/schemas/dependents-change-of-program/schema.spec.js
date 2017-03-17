@@ -15,6 +15,7 @@ describe('dependents change of program schema', () => {
   [
     'vaFileNumber',
     'gender',
+    'phone',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
