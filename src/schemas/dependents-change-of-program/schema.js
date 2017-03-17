@@ -12,6 +12,10 @@ let schema = {
     'dateRange'
   ]),
   properties: {
+    email: {
+      type: 'string',
+      format: 'email'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
