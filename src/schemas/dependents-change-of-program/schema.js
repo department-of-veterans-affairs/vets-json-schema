@@ -30,6 +30,7 @@ let schema = {
   ['address', 'relativeAddress'],
   ['phone', 'homePhone'],
   ['phone', 'mobilePhone'],
+  ['preferredContactMethod'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

@@ -293,6 +293,14 @@
     "phone": {
       "type": "string",
       "minLength": 10
+    },
+    "preferredContactMethod": {
+      "type": "string",
+      "enum": [
+        "mail",
+        "email",
+        "phone"
+      ]
     }
   },
   "properties": {
@@ -326,6 +334,9 @@
     },
     "mobilePhone": {
       "$ref": "#/definitions/phone"
+    },
+    "preferredContactMethod": {
+      "$ref": "#/definitions/preferredContactMethod"
     }
   },
   "required": [
