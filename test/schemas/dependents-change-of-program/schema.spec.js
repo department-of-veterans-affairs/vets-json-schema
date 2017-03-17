@@ -18,6 +18,7 @@ describe('dependents change of program schema', () => {
     'phone',
     'email',
     'preferredContactMethod',
+    'bankAccount',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

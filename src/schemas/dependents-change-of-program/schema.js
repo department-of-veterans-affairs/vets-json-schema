@@ -31,6 +31,7 @@ let schema = {
   ['phone', 'homePhone'],
   ['phone', 'mobilePhone'],
   ['preferredContactMethod'],
+  ['bankAccount'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

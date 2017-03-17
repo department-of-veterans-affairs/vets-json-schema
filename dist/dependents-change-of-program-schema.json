@@ -301,6 +301,25 @@
         "email",
         "phone"
       ]
+    },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
     }
   },
   "properties": {
@@ -337,6 +356,9 @@
     },
     "preferredContactMethod": {
       "$ref": "#/definitions/preferredContactMethod"
+    },
+    "bankAccount": {
+      "$ref": "#/definitions/bankAccount"
     }
   },
   "required": [
