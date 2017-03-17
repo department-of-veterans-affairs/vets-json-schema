@@ -382,6 +382,9 @@
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     }
   },
   "required": [
