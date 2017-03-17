@@ -38,6 +38,7 @@ let schema = {
   ['secondaryContact'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
+  ['date', 'veteranDateOfBirth'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

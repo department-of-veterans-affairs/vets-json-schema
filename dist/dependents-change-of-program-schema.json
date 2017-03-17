@@ -388,6 +388,9 @@
     },
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
+    },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [
