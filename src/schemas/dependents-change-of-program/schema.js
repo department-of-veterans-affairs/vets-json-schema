@@ -33,6 +33,7 @@ let schema = {
   ['preferredContactMethod'],
   ['bankAccount'],
   ['secondaryContact'],
+  ['fullName', 'veteranFullName'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

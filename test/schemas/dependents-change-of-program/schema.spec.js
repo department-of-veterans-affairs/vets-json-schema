@@ -24,7 +24,7 @@ describe('dependents change of program schema', () => {
     sharedTests.runTest(test);
   });
 
-  sharedTests.runTest('fullName', ['relativeFullName']);
+  sharedTests.runTest('fullName', ['relativeFullName', 'veteranFullName']);
 
   sharedTests.runTest('ssn', ['relativeSocialSecurityNumber']);
 
