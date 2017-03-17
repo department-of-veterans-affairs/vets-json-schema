@@ -4,6 +4,8 @@ import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('farmCoop');
+const modifiedToursOfDuty = definitions.toursOfDuty;
+delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -99,6 +101,7 @@ let schema = {
         }
       )
     },
+    toursOfDuty: modifiedToursOfDuty,
     civilianBenefitsAssistance: {
       type: 'boolean'
     },
@@ -137,7 +140,7 @@ let schema = {
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
-  ['toursOfDuty'],
+  // ['toursOfDuty'],
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
   ['postHighSchoolTrainings'],
   ['nonMilitaryJobs'],
