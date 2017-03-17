@@ -14,6 +14,7 @@ let sharedTests = new SharedTests(schemaTestHelper);
 describe('dependents change of program schema', () => {
   [
     'vaFileNumber',
+    'gender',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });

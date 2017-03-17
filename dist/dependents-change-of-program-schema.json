@@ -72,6 +72,13 @@
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{8}$"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
     }
   },
   "properties": {
@@ -86,6 +93,9 @@
     },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
     }
   },
   "required": [
