@@ -344,6 +344,9 @@
       "type": "string",
       "format": "email"
     },
+    "serviceBranch": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
