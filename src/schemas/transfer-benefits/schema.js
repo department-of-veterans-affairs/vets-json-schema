@@ -23,6 +23,14 @@ let schema = {
     'nonMilitaryJobs',
     'preferredContactMethod'
   ),
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["relativeSocialSecurityNumber"]
+    }
+  ],
   properties: {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
@@ -102,6 +110,11 @@ let schema = {
   required: ['privacyAgreementAccepted']
 };
 
-schemaHelpers.addDefinitionToSchema(schema, 'relationship');
+[
+  ['relationship'],
+  ['vaFileNumber'],
+].forEach((args) => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
 
 export default schema;
