@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DEPENDENTS' REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-5495)",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp"
+      ]
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    }
+  },
+  "properties": {
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
+}
