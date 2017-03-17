@@ -23,6 +23,7 @@ let schema = {
   ['vaFileNumber'],
   ['gender'],
   ['date', 'relativeDateOfBirth'],
+  ['address', 'relativeAddress'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
