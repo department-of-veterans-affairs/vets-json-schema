@@ -344,6 +344,33 @@
         "spouse",
         "child"
       ]
+    },
+    "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "serviceBranch": {
+            "type": "string"
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "applyPeriodToSelected": {
+            "type": "boolean"
+          },
+          "benefitsToApplyTo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dateRange",
+          "serviceBranch"
+        ]
+      }
     }
   },
   "properties": {
@@ -359,6 +386,13 @@
     },
     "outstandingFelony": {
       "type": "boolean"
+    },
+    "benefit": {
+      "type": "string",
+      "enum": [
+        "chapter35",
+        "chapter33"
+      ]
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
@@ -410,6 +444,9 @@
     },
     "relationship": {
       "$ref": "#/definitions/relationship"
+    },
+    "toursOfDuty": {
+      "$ref": "#/definitions/toursOfDuty"
     }
   },
   "required": [

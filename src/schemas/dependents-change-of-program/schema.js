@@ -25,6 +25,10 @@ let schema = {
     outstandingFelony: {
       type: 'boolean'
     },
+    benefit: {
+      type: 'string',
+      enum: ['chapter35', 'chapter33']
+    },
   },
   required: ['privacyAgreementAccepted']
 };
@@ -47,6 +51,7 @@ let schema = {
   ['date', 'veteranDateOfBirth'],
   ['date', 'veteranDateOfDeath'],
   ['relationship'],
+  ['toursOfDuty'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
