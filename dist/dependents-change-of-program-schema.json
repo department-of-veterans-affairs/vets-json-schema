@@ -337,6 +337,13 @@
           "$ref": "#/definitions/phone"
         }
       }
+    },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "spouse",
+        "child"
+      ]
     }
   },
   "properties": {
@@ -397,6 +404,9 @@
     },
     "veteranDateOfDeath": {
       "$ref": "#/definitions/date"
+    },
+    "relationship": {
+      "$ref": "#/definitions/relationship"
     }
   },
   "required": [
