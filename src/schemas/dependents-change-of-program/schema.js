@@ -58,6 +58,8 @@ let schema = {
   ['relationship'],
   ['toursOfDuty'],
   ['educationType'],
+  ['school', 'newSchool'],
+  ['school', 'oldSchool'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

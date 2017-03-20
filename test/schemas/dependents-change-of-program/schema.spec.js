@@ -34,4 +34,6 @@ describe('dependents change of program schema', () => {
   sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath']);
 
   sharedTests.runTest('address', ['relativeAddress']);
+
+  sharedTests.runTest('school', ['newSchool', 'oldSchool']);
 });

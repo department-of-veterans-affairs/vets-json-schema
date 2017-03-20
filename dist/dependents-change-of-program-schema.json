@@ -371,6 +371,17 @@
         "licensingReimbursement",
         "tuitionTopUp"
       ]
+    },
+    "school": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        }
+      }
     }
   },
   "properties": {
@@ -456,6 +467,12 @@
     },
     "educationType": {
       "$ref": "#/definitions/educationType"
+    },
+    "newSchool": {
+      "$ref": "#/definitions/school"
+    },
+    "oldSchool": {
+      "$ref": "#/definitions/school"
     }
   },
   "required": [
