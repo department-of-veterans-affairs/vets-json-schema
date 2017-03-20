@@ -19,6 +19,9 @@ let schema = {
     serviceBranch: {
       type: 'string'
     },
+    currentlyActiveDuty: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
