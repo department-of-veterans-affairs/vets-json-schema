@@ -34,6 +34,9 @@ let schema = {
     programName: {
       type: 'string'
     },
+    reasonForChange: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };

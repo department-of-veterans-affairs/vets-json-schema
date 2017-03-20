@@ -411,6 +411,9 @@
     "programName": {
       "type": "string"
     },
+    "reasonForChange": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
