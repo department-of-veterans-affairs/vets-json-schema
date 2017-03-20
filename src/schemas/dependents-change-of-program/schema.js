@@ -37,6 +37,9 @@ let schema = {
     reasonForChange: {
       type: 'string'
     },
+    remarks: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };

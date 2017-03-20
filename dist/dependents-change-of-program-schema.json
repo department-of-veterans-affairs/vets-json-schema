@@ -414,6 +414,9 @@
     "reasonForChange": {
       "type": "string"
     },
+    "remarks": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
