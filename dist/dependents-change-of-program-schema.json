@@ -397,6 +397,9 @@
     "educationObjective": {
       "type": "string"
     },
+    "programName": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

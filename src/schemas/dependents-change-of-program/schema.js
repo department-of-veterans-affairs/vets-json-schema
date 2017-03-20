@@ -31,6 +31,9 @@ let schema = {
     educationObjective: {
       type: 'string'
     },
+    programName: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
