@@ -140,7 +140,6 @@ let schema = {
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
-  // ['toursOfDuty'],
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
   ['postHighSchoolTrainings'],
   ['nonMilitaryJobs'],
