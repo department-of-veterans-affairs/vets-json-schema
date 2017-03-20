@@ -8,7 +8,6 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
-    'educationType',
     'dateRange'
   ]),
   properties: {
@@ -52,7 +51,7 @@ let schema = {
   ['date', 'veteranDateOfDeath'],
   ['relationship'],
   ['toursOfDuty'],
-  ['educationProgram'],
+  ['educationType'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

@@ -4,18 +4,6 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "educationType": {
-      "type": "string",
-      "enum": [
-        "college",
-        "correspondence",
-        "apprenticeship",
-        "flightTraining",
-        "testReimbursement",
-        "licensingReimbursement",
-        "tuitionTopUp"
-      ]
-    },
     "dateRange": {
       "type": "object",
       "properties": {
@@ -372,19 +360,17 @@
         ]
       }
     },
-    "educationProgram": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/address"
-        },
-        "educationType": {
-          "$ref": "#/definitions/educationType"
-        }
-      }
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp"
+      ]
     }
   },
   "properties": {
@@ -462,8 +448,8 @@
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
     },
-    "educationProgram": {
-      "$ref": "#/definitions/educationProgram"
+    "educationType": {
+      "$ref": "#/definitions/educationType"
     }
   },
   "required": [

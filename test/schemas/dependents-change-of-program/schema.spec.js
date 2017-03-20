@@ -22,7 +22,7 @@ describe('dependents change of program schema', () => {
     'secondaryContact',
     'relationship',
     'toursOfDuty',
-    'educationProgram',
+    'educationType',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
