@@ -22,6 +22,9 @@ let schema = {
     currentlyActiveDuty: {
       type: 'boolean'
     },
+    outstandingFelony: {
+      type: 'boolean'
+    },
   },
   required: ['privacyAgreementAccepted']
 };

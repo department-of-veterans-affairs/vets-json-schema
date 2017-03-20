@@ -357,6 +357,9 @@
     "currentlyActiveDuty": {
       "type": "boolean"
     },
+    "outstandingFelony": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
