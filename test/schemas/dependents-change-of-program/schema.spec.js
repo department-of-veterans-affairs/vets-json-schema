@@ -21,7 +21,8 @@ describe('dependents change of program schema', () => {
     'bankAccount',
     'secondaryContact',
     'relationship',
-    'toursOfDuty'
+    'toursOfDuty',
+    'educationProgram',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
