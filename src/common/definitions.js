@@ -82,12 +82,7 @@ const address = (() => {
         minLength: 1,
         maxLength: 51
       }
-    },
-    required: [
-      'street',
-      'city',
-      'country'
-    ]
+    }
   };
 })();
 

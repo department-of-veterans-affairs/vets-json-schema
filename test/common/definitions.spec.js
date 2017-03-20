@@ -37,13 +37,13 @@ describe('schema definitions', () => {
         city: 'abc',
         state: 'VA',
         country: 'USA'
-      }
-    ],
-    invalid: [
+      },
       {
         city: 'foo',
         country: 'USA'
-      },
+      }
+    ],
+    invalid: [
       {
         street: '123 a rd',
         city: 'abc',
