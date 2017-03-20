@@ -391,6 +391,9 @@
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
+    },
+    "veteranDateOfDeath": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [
