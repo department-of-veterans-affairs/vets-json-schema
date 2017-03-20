@@ -394,6 +394,9 @@
         "chapter33"
       ]
     },
+    "educationObjective": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

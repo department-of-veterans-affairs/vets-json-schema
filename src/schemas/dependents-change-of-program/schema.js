@@ -28,6 +28,9 @@ let schema = {
       type: 'string',
       enum: ['chapter35', 'chapter33']
     },
+    educationObjective: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
