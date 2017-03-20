@@ -21,7 +21,6 @@ describe('dependents benefits schema', () => {
     'vaFileNumber',
     'educationProgram',
     'relationship',
-    'toursOfDuty',
     'postHighSchoolTrainings',
     'nonMilitaryJobs',
     'preferredContactMethod'
@@ -78,6 +77,18 @@ describe('dependents benefits schema', () => {
     invalid: [{
       disability: 1
     }]
+  });
+
+  schemaTestHelper.testValidAndInvalid('toursOfDuty', {
+    valid: [[{
+      dateRange: fixtures.dateRange,
+      serviceBranch: 'Army',
+      serviceStatus: 'Honorable',
+      applyPeriodToSelected: true
+    }]],
+    invalid: [[{
+      dateRange: 'foo'
+    }]]
   });
 
   schemaTestHelper.testValidAndInvalid('highSchool.status', {
