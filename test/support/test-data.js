@@ -74,8 +74,7 @@ export default {
         country: 'USA'
       }],
       invalid: [{
-        city: 'foo',
-        country: 'USA'
+        city: 1
       }]
     }
   },
