@@ -280,12 +280,7 @@
           "minLength": 1,
           "maxLength": 51
         }
-      },
-      "required": [
-        "street",
-        "city",
-        "country"
-      ]
+      }
     },
     "phone": {
       "type": "string",
@@ -337,33 +332,6 @@
         "spouse",
         "child"
       ]
-    },
-    "toursOfDuty": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "dateRange": {
-            "$ref": "#/definitions/dateRange"
-          },
-          "serviceBranch": {
-            "type": "string"
-          },
-          "serviceStatus": {
-            "type": "string"
-          },
-          "applyPeriodToSelected": {
-            "type": "boolean"
-          },
-          "benefitsToApplyTo": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "dateRange",
-          "serviceBranch"
-        ]
-      }
     },
     "postHighSchoolTrainings": {
       "type": "array",
@@ -702,6 +670,30 @@
         }
       }
     },
+    "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "serviceBranch": {
+            "type": "string"
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "applyPeriodToSelected": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "dateRange",
+          "serviceBranch"
+        ]
+      }
+    },
     "civilianBenefitsAssistance": {
       "type": "boolean"
     },
@@ -767,9 +759,6 @@
     },
     "benefitsRelinquishedDate": {
       "$ref": "#/definitions/date"
-    },
-    "toursOfDuty": {
-      "$ref": "#/definitions/toursOfDuty"
     },
     "postHighSchoolTrainings": {
       "$ref": "#/definitions/postHighSchoolTrainings"
