@@ -271,12 +271,7 @@
           "minLength": 1,
           "maxLength": 51
         }
-      },
-      "required": [
-        "street",
-        "city",
-        "country"
-      ]
+      }
     },
     "phone": {
       "type": "string",
