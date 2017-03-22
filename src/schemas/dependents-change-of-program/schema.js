@@ -66,6 +66,7 @@ let schema = {
   ['educationType'],
   ['school', 'newSchool'],
   ['school', 'oldSchool'],
+  ['bankAccountChange']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
