@@ -227,7 +227,7 @@ describe('schema definitions', () => {
     ]
   });
 
-  testValidAndInvalidDefinitions('toursOfDuty', testData.toursOfDuty.data);
-
-  testValidAndInvalidDefinitions('currentlyActiveDuty', testData.currentlyActiveDuty.data);
+  ['toursOfDuty', 'currentlyActiveDuty', 'bankAccountChange'].forEach((definition) => {
+    testValidAndInvalidDefinitions(definition, testData[definition].data);
+  });
 });
