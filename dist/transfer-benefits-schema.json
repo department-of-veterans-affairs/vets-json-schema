@@ -467,7 +467,7 @@
     },
     {
       "required": [
-        "relativeSocialSecurityNumber"
+        "veteranSocialSecurityNumber"
       ]
     }
   ],
