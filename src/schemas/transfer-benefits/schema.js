@@ -28,7 +28,7 @@ let schema = {
       "required" : ["vaFileNumber"]
     },
     {
-      "required" : ["relativeSocialSecurityNumber"]
+      "required" : ["veteranSocialSecurityNumber"]
     }
   ],
   properties: {
