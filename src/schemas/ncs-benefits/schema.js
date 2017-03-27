@@ -32,7 +32,7 @@ let schema = {
       type: 'string'
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'veteranFullName']
 };
 
 [
