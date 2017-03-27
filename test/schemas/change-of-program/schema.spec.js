@@ -6,7 +6,11 @@ import { expect } from 'chai';
 import SharedTests from '../../support/shared-tests';
 
 const schemaDefaults = {
-  privacyAgreementAccepted: true
+  privacyAgreementAccepted: true,
+  veteranFullName: {
+    first: 'a',
+    last: 'b'
+  }
 };
 
 let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
