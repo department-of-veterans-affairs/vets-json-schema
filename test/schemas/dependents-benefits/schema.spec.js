@@ -5,7 +5,11 @@ import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
 
 const schemaDefaults = {
-  privacyAgreementAccepted: true
+  privacyAgreementAccepted: true,
+  relativeFullName: {
+    first: 'a',
+    last: 'b'
+  }
 };
 
 let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
