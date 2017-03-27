@@ -5,7 +5,11 @@ import SharedTests from '../../support/shared-tests';
 let schemaTestHelper = new SchemaTestHelper(
   schema,
   {
-    privacyAgreementAccepted: true
+    privacyAgreementAccepted: true,
+    veteranFullName: {
+      first: 'a',
+      last: 'b'
+    }
   }
 );
 let sharedTests = new SharedTests(schemaTestHelper);
