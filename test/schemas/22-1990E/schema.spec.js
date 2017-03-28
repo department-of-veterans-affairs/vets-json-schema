@@ -1,9 +1,11 @@
 import SchemaTestHelper from '../../support/schema-test-helper';
-import { transferBenefits as schema } from '../../../dist/schemas';
+import schemas from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import { expect } from 'chai';
 import SharedTests from '../../support/shared-tests';
+
+const schema = schemas['22-1990E'];
 
 const schemaDefaults = {
   privacyAgreementAccepted: true
