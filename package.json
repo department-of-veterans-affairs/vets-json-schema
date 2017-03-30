@@ -1,6 +1,6 @@
 {
   "name": "vets-json-schema",
-  "version": "1.9.1",
+  "version": "2.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
@@ -14,9 +14,6 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "coding-inflector": "0.0.1"
-  },
   "devDependencies": {
     "ajv": "^4.5.0",
     "babel": "^6.5.2",

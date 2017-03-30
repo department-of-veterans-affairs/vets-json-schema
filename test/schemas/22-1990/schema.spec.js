@@ -1,6 +1,8 @@
 import SchemaTestHelper from '../../support/schema-test-helper';
-import { eduBenefits as schema } from '../../../dist/schemas';
+import schemas from '../../../dist/schemas';
 import SharedTests from '../../support/shared-tests';
+
+const schema = schemas['22-1990'];
 
 let schemaTestHelper = new SchemaTestHelper(
   schema,

@@ -1,9 +1,11 @@
 import SchemaTestHelper from '../../support/schema-test-helper';
-import { transferBenefits as schema } from '../../../dist/schemas';
+import schemas from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import { expect } from 'chai';
 import SharedTests from '../../support/shared-tests';
+
+const schema = schemas['22-1995'];
 
 const schemaDefaults = {
   privacyAgreementAccepted: true
@@ -12,33 +14,57 @@ const schemaDefaults = {
 let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
-describe('transfer benefits schema', () => {
+describe('change of program json schema', () => {
   [
-    'gender',
+    'ssn',
+    'fullName',
+    'address',
     'phone',
     'email',
     'bankAccount',
-    'educationProgram',
-    'postHighSchoolTrainings',
-    'nonMilitaryJobs',
-    'relationship',
-    'preferredContactMethod',
-    'vaFileNumber'
+    'vaFileNumber',
+    'bankAccountChange'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
 
-  sharedTests.runTest('ssn', ['relativeSocialSecurityNumber', 'veteranSocialSecurityNumber']);
+  sharedTests.runTest('school', ['newSchool', 'oldSchool']);
 
-  sharedTests.runTest('fullName', ['relativeFullName', 'veteranFullName']);
-
-  sharedTests.runTest('address', ['relativeAddress', 'veteranAddress']);
-
-  sharedTests.runTest('date', ['relativeDateOfBirth', 'highSchoolOrGedCompletionDate']);
+  schemaTestHelper.testValidAndInvalid('educationType', {
+    valid: ['college', 'cooperativeTraining'],
+    invalid: ['foo']
+  });
 
   schemaTestHelper.testValidAndInvalid('benefit', {
     valid: ['chapter33'],
     invalid: ['foo']
+  });
+
+  schemaTestHelper.testValidAndInvalid('trainingEndDate', {
+    valid: [fixtures.date],
+    invalid: ['foo']
+  });
+
+  schemaTestHelper.testValidAndInvalid('serviceBefore1977', {
+    valid: [{
+      married: true,
+      haveDependents: true,
+      parentDependent: false
+    }],
+    invalid: [{
+      married: true
+    }]
+  });
+
+  schemaTestHelper.testValidAndInvalid('toursOfDuty', {
+    valid: [[{
+      serviceBranch: 'army',
+      dateRange: fixtures.dateRange
+    }]],
+    invalid: [[{
+      serviceBranch: true,
+      dateRange: fixtures.dateRange
+    }]]
   });
 
   describe('required fields', () => {
@@ -49,10 +75,10 @@ describe('transfer benefits schema', () => {
       expect(fullSchemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
 
       [
-        { relativeSocialSecurityNumber: '123456789' },
+        { veteranSocialSecurityNumber: '123456789' },
         { vaFileNumber: '12345678' },
         {
-          relativeSocialSecurityNumber: '123456789',
+          veteranSocialSecurityNumber: '123456789',
           vaFileNumber: '12345678'
         }
       ].forEach((schemaData) => {
