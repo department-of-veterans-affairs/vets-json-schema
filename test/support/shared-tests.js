@@ -1,8 +1,27 @@
 import testData from './test-data';
+import { expect } from 'chai';
 
 export default class SharedTests {
   constructor(schemaTestHelper) {
     this.schemaTestHelper = schemaTestHelper;
+  }
+
+  requireSsnOrFile() {
+    it('should require ssn or file number', () => {
+      expect(this.schemaTestHelper.validateSchema({})).to.equal(false);
+      expect(this.schemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
+
+      [
+        { veteranSocialSecurityNumber: '123456789' },
+        { vaFileNumber: '12345678' },
+        {
+          veteranSocialSecurityNumber: '123456789',
+          vaFileNumber: '12345678'
+        }
+      ].forEach((schemaData) => {
+        this.schemaTestHelper.schemaExpect(true, schemaData);
+      });
+    });
   }
 
   runTest(name, fields) {
