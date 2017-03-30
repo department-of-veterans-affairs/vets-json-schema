@@ -10,7 +10,7 @@ const schemaDefaults = {
   privacyAgreementAccepted: true
 };
 
-let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
+let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('dependents benefits schema', () => {
