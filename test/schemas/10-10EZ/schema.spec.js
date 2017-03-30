@@ -1,8 +1,10 @@
 import ajv from 'ajv';
-import { healthcareApplication as applicationSchema } from '../../../dist/schemas';
+import schemas from '../../../dist/schemas';
 import { expect } from 'chai';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import _ from 'lodash';
+
+const applicationSchema = schemas['10-10EZ'];
 
 let schemaTestHelper = new SchemaTestHelper(_.omit(applicationSchema, 'required'));
 const jsonValidator = ajv({ allErrors: true, errorDataPath: 'property', removeAdditional: true, useDefaults: true });
