@@ -1,8 +1,10 @@
 import SchemaTestHelper from '../../support/schema-test-helper';
-import { dependentsBenefits as schema } from '../../../dist/schemas';
+import schemas from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
+
+const schema = schemas['22-5490'];
 
 const schemaDefaults = {
   privacyAgreementAccepted: true,
