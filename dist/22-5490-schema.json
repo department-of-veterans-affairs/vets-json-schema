@@ -786,6 +786,7 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "relativeFullName"
   ]
 }

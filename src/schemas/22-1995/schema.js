@@ -117,7 +117,7 @@ let schema = {
       $ref: '#/definitions/privacyAgreementAccepted'
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'veteranFullName']
 };
 
 schemaHelpers.addDefinitionToSchema(schema, 'vaFileNumber');

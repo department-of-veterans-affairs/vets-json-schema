@@ -7,7 +7,11 @@ const schema = schemas['22-1990'];
 let schemaTestHelper = new SchemaTestHelper(
   schema,
   {
-    privacyAgreementAccepted: true
+    privacyAgreementAccepted: true,
+    veteranFullName: {
+      first: 'a',
+      last: 'b'
+    }
   }
 );
 let sharedTests = new SharedTests(schemaTestHelper);

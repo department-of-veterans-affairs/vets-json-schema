@@ -123,7 +123,7 @@ let schema = {
       type: 'boolean'
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'relativeFullName']
 };
 
 [

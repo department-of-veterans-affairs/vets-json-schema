@@ -7,7 +7,11 @@ import SharedTests from '../../support/shared-tests';
 const schema = schemas['22-5490'];
 
 const schemaDefaults = {
-  privacyAgreementAccepted: true
+  privacyAgreementAccepted: true,
+  relativeFullName: {
+    first: 'a',
+    last: 'b'
+  }
 };
 
 let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
