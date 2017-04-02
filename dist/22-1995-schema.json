@@ -339,6 +339,14 @@
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{8}$"
+    },
+    "bankAccountChange": {
+      "type": "string",
+      "enum": [
+        "noChange",
+        "startUpdate",
+        "stop"
+      ]
     }
   },
   "anyOf": [
@@ -408,14 +416,6 @@
     "reasonForChange": {
       "type": "string"
     },
-    "bankAccountChange": {
-      "type": "string",
-      "enum": [
-        "noChange",
-        "startUpdate",
-        "stop"
-      ]
-    },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
     },
@@ -450,6 +450,9 @@
     },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
+    },
+    "bankAccountChange": {
+      "$ref": "#/definitions/bankAccountChange"
     }
   },
   "required": [

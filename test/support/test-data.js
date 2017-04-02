@@ -213,6 +213,12 @@ export default {
       }]
     }
   },
+  bankAccountChange: {
+    data: {
+      valid: ['noChange', 'startUpdate', 'stop'],
+      invalid: ['foo']
+    }
+  },
   toursOfDuty: {
     data: {
       valid: [[{

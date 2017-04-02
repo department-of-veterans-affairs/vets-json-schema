@@ -80,10 +80,6 @@ let schema = {
     reasonForChange: {
       type: 'string'
     },
-    bankAccountChange: {
-      type: 'string',
-      enum: ['noChange', 'startUpdate', 'stop']
-    },
     bankAccount: {
       $ref: '#/definitions/bankAccount'
     },
@@ -120,6 +116,11 @@ let schema = {
   required: ['privacyAgreementAccepted', 'veteranFullName']
 };
 
-schemaHelpers.addDefinitionToSchema(schema, 'vaFileNumber');
+[
+  ['vaFileNumber'],
+  ['bankAccountChange']
+].forEach((args) => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
 
 export default schema;

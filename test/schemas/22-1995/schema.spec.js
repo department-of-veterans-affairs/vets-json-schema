@@ -26,7 +26,8 @@ describe('change of program json schema', () => {
     'phone',
     'email',
     'bankAccount',
-    'vaFileNumber'
+    'vaFileNumber',
+    'bankAccountChange'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -45,11 +46,6 @@ describe('change of program json schema', () => {
 
   schemaTestHelper.testValidAndInvalid('trainingEndDate', {
     valid: [fixtures.date],
-    invalid: ['foo']
-  });
-
-  schemaTestHelper.testValidAndInvalid('bankAccountChange', {
-    valid: ['startUpdate', 'stop', 'noChange'],
     invalid: ['foo']
   });
 

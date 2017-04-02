@@ -540,5 +540,13 @@
         "type": "boolean"
       }
     }
+  },
+  "bankAccountChange": {
+    "type": "string",
+    "enum": [
+      "noChange",
+      "startUpdate",
+      "stop"
+    ]
   }
 }

@@ -377,6 +377,14 @@
           "$ref": "#/definitions/address"
         }
       }
+    },
+    "bankAccountChange": {
+      "type": "string",
+      "enum": [
+        "noChange",
+        "startUpdate",
+        "stop"
+      ]
     }
   },
   "properties": {
@@ -474,6 +482,9 @@
     },
     "oldSchool": {
       "$ref": "#/definitions/school"
+    },
+    "bankAccountChange": {
+      "$ref": "#/definitions/bankAccountChange"
     }
   },
   "required": [

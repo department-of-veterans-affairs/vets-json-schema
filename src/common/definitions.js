@@ -321,6 +321,11 @@ const currentlyActiveDuty = {
   }
 };
 
+const bankAccountChange = {
+  type: 'string',
+  enum: ['noChange', 'startUpdate', 'stop']
+};
+
 export default {
   fullName,
   address,
@@ -342,5 +347,6 @@ export default {
   relationship,
   toursOfDuty,
   educationProgram,
-  currentlyActiveDuty
+  currentlyActiveDuty,
+  bankAccountChange
 };
