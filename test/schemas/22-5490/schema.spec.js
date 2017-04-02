@@ -7,10 +7,14 @@ import SharedTests from '../../support/shared-tests';
 const schema = schemas['22-5490'];
 
 const schemaDefaults = {
-  privacyAgreementAccepted: true
+  privacyAgreementAccepted: true,
+  relativeFullName: {
+    first: 'a',
+    last: 'b'
+  }
 };
 
-let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
+let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('dependents benefits schema', () => {
@@ -110,4 +114,6 @@ describe('dependents benefits schema', () => {
       name: 1
     }]
   });
+
+  (new SharedTests(new SchemaTestHelper(schema, schemaDefaults))).requireSsnOrFile();
 });

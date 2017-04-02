@@ -456,6 +456,7 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "veteranFullName"
   ]
 }

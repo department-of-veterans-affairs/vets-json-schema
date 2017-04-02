@@ -557,6 +557,7 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "relativeFullName"
   ]
 }

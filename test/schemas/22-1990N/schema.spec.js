@@ -7,7 +7,11 @@ import SharedTests from '../../support/shared-tests';
 const schema = schemas['22-1990N'];
 
 const schemaDefaults = {
-  privacyAgreementAccepted: true
+  privacyAgreementAccepted: true,
+  veteranFullName: {
+    first: 'a',
+    last: 'b'
+  }
 };
 
 let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);

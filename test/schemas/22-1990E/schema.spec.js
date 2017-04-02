@@ -8,7 +8,11 @@ import SharedTests from '../../support/shared-tests';
 const schema = schemas['22-1990E'];
 
 const schemaDefaults = {
-  privacyAgreementAccepted: true
+  privacyAgreementAccepted: true,
+  relativeFullName: {
+    first: 'a',
+    last: 'b'
+  }
 };
 
 let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
@@ -43,23 +47,5 @@ describe('transfer benefits schema', () => {
     invalid: ['foo']
   });
 
-  describe('required fields', () => {
-    it('should require either ssn or vaFileNumber', () => {
-      let fullSchemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
-
-      expect(fullSchemaTestHelper.validateSchema({})).to.equal(false);
-      expect(fullSchemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
-
-      [
-        { veteranSocialSecurityNumber: '123456789' },
-        { vaFileNumber: '12345678' },
-        {
-          veteranSocialSecurityNumber: '123456789',
-          vaFileNumber: '12345678'
-        }
-      ].forEach((schemaData) => {
-        fullSchemaTestHelper.schemaExpect(true, schemaData);
-      });
-    });
-  });
+  (new SharedTests(new SchemaTestHelper(schema, schemaDefaults))).requireSsnOrFile();
 });

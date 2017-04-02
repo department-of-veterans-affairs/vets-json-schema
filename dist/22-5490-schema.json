@@ -477,6 +477,18 @@
       ]
     }
   },
+  "anyOf": [
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    },
+    {
+      "required": [
+        "veteranSocialSecurityNumber"
+      ]
+    }
+  ],
   "properties": {
     "email": {
       "type": "string",
@@ -774,6 +786,7 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "relativeFullName"
   ]
 }

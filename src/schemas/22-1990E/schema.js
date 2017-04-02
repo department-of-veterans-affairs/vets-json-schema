@@ -107,7 +107,7 @@ let schema = {
       $ref: '#/definitions/preferredContactMethod'
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'relativeFullName']
 };
 
 [

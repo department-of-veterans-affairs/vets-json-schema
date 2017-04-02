@@ -27,7 +27,7 @@ export default class SchemaTestHelper {
   }
 
   validateSchema(data) {
-    return this.ajv.validate(this.schema, Object.assign({}, data, this.defaults));
+    return this.ajv.validate(this.schema, Object.assign({}, this.defaults, data));
   }
 
   schemaExpect(valid, data) {
