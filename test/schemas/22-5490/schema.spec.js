@@ -14,7 +14,7 @@ const schemaDefaults = {
   }
 };
 
-let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
+let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('dependents benefits schema', () => {
@@ -114,4 +114,6 @@ describe('dependents benefits schema', () => {
       name: 1
     }]
   });
+
+  (new SharedTests(new SchemaTestHelper(schema, schemaDefaults))).requireSsnOrFile();
 });

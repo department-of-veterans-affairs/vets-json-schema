@@ -16,6 +16,14 @@ let schema = {
     'dateRange',
     'educationType'
   ]),
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   properties: {
     email: {
       type: 'string',
