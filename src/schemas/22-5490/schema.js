@@ -149,6 +149,7 @@ let schema = {
   ['fullName', 'previousBenefits.veteranFullName'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
+  ['date', 'highSchool.graduationExpectedDate'],
   ['postHighSchoolTrainings'],
   ['nonMilitaryJobs'],
   ['educationProgram'],
