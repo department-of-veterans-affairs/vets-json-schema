@@ -14,7 +14,11 @@ const schemaDefaults = {
   }
 };
 
-let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
+let liteSchema = _.cloneDeep(schema);
+delete liteSchema.anyOf;
+delete liteSchema.properties.previousBenefits.anyOf;
+
+let schemaTestHelper = new SchemaTestHelper(liteSchema, schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('dependents benefits schema', () => {
@@ -75,15 +79,32 @@ describe('dependents benefits schema', () => {
     invalid: ['chapter32']
   });
 
-  schemaTestHelper.testValidAndInvalid('previousBenefits', {
-    valid: [{
+  describe('previousBenefits tests', () => {
+    let pbSchemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
+    const previousBenefitsFixture = {
       disability: true,
       ownServiceBenefits: 'chapter32',
       transferOfEntitlement: true
-    }],
-    invalid: [{
-      disability: 1
-    }]
+    };
+
+    pbSchemaTestHelper.testValidAndInvalid('previousBenefits', {
+      valid: [
+        Object.assign(
+          { vaFileNumber: '12345678' },
+          previousBenefitsFixture
+        ),
+        Object.assign(
+          { veteranSocialSecurityNumber: '123456789' },
+          previousBenefitsFixture
+        )
+      ],
+      invalid: [
+        {
+          disability: 1
+        },
+        previousBenefitsFixture
+      ]
+    });
   });
 
   schemaTestHelper.testValidAndInvalid('toursOfDuty', {

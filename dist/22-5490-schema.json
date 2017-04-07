@@ -477,18 +477,6 @@
       ]
     }
   },
-  "anyOf": [
-    {
-      "required": [
-        "vaFileNumber"
-      ]
-    },
-    {
-      "required": [
-        "veteranSocialSecurityNumber"
-      ]
-    }
-  ],
   "properties": {
     "email": {
       "type": "string",
@@ -575,7 +563,19 @@
         "veteranSocialSecurityNumber": {
           "$ref": "#/definitions/ssn"
         }
-      }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "vaFileNumber"
+          ]
+        },
+        {
+          "required": [
+            "veteranSocialSecurityNumber"
+          ]
+        }
+      ]
     },
     "highSchool": {
       "type": "object",
@@ -791,5 +791,17 @@
   "required": [
     "privacyAgreementAccepted",
     "relativeFullName"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    },
+    {
+      "required": [
+        "veteranSocialSecurityNumber"
+      ]
+    }
   ]
 }
