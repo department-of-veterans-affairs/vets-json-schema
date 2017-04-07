@@ -569,6 +569,9 @@
         "veteranFullName": {
           "$ref": "#/definitions/fullName"
         },
+        "vaFileNumber": {
+          "$ref": "#/definitions/vaFileNumber"
+        },
         "veteranSocialSecurityNumber": {
           "$ref": "#/definitions/ssn"
         }

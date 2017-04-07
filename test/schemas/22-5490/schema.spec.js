@@ -24,7 +24,6 @@ describe('dependents benefits schema', () => {
     'email',
     'bankAccount',
     'secondaryContact',
-    'vaFileNumber',
     'educationProgram',
     'relationship',
     'postHighSchoolTrainings',
@@ -37,6 +36,8 @@ describe('dependents benefits schema', () => {
   sharedTests.runTest('fullName', ['relativeFullName', 'veteranFullName', 'previousBenefits.veteranFullName']);
 
   sharedTests.runTest('ssn', ['relativeSocialSecurityNumber', 'veteranSocialSecurityNumber', 'previousBenefits.veteranSocialSecurityNumber']);
+
+  sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'previousBenefits.vaFileNumber']);
 
   sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath', 'educationStartDate', 'benefitsRelinquishedDate', 'highSchool.highSchoolOrGedCompletionDate']);
 

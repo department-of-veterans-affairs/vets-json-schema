@@ -147,6 +147,7 @@ let schema = {
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
+  ['vaFileNumber', 'previousBenefits.vaFileNumber'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
   ['postHighSchoolTrainings'],
