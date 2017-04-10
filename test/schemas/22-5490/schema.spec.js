@@ -14,6 +14,8 @@ const schemaDefaults = {
   }
 };
 
+// remove the anyOf required fields so that tests for other fields can run without filling them in
+// tests for the specific anyOf fields should not use this liteSchema
 let liteSchema = _.cloneDeep(schema);
 delete liteSchema.anyOf;
 delete liteSchema.properties.previousBenefits.anyOf;
