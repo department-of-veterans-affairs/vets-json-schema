@@ -6,6 +6,16 @@ let definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('farmCoop');
 const modifiedToursOfDuty = definitions.toursOfDuty;
 delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
+const fileNumOrSsn = {
+  anyOf: [
+    {
+      "required": ["vaFileNumber"]
+    },
+    {
+      "required": ["veteranSocialSecurityNumber"]
+    }
+  ]
+};
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -16,14 +26,6 @@ let schema = {
     'dateRange',
     'educationType'
   ]),
-  anyOf: [
-    {
-      "required" : ["vaFileNumber"]
-    },
-    {
-      "required" : ["veteranSocialSecurityNumber"]
-    }
-  ],
   properties: {
     email: {
       type: 'string',
@@ -68,7 +70,7 @@ let schema = {
       type: 'string',
       enum: ['chapter35', 'chapter33']
     },
-    previousBenefits: {
+    previousBenefits: Object.assign({
       type: 'object',
       properties: {
         disability: {
@@ -96,7 +98,7 @@ let schema = {
           type: 'string'
         }
       }
-    },
+    }, fileNumOrSsn),
     highSchool: {
       type: 'object',
       properties: _.merge(
@@ -126,6 +128,8 @@ let schema = {
   required: ['privacyAgreementAccepted', 'relativeFullName']
 };
 
+Object.assign(schema, fileNumOrSsn);
+
 [
   ['privacyAgreementAccepted'],
   ['ssn', 'relativeSocialSecurityNumber'],
@@ -147,6 +151,7 @@ let schema = {
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
+  ['vaFileNumber', 'previousBenefits.vaFileNumber'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
   ['date', 'highSchool.highSchoolOrGedCompletionDate'],
   ['postHighSchoolTrainings'],
