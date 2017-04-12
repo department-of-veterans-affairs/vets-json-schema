@@ -482,6 +482,9 @@
     "veteranDateOfDeath": {
       "$ref": "#/definitions/date"
     },
+    "trainingEndDate": {
+      "$ref": "#/definitions/date"
+    },
     "relationship": {
       "$ref": "#/definitions/relationship"
     },
