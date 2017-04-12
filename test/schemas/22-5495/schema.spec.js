@@ -28,7 +28,7 @@ describe('dependents change of program schema', () => {
     'secondaryContact',
     'relationship',
     'toursOfDuty',
-    'educationType',
+    'educationProgram',
     'bankAccountChange'
   ].forEach((test) => {
     sharedTests.runTest(test);
@@ -42,5 +42,5 @@ describe('dependents change of program schema', () => {
 
   sharedTests.runTest('address', ['relativeAddress']);
 
-  sharedTests.runTest('school', ['newSchool', 'oldSchool']);
+  sharedTests.runTest('school', ['oldSchool']);
 });
