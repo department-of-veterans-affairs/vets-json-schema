@@ -62,6 +62,7 @@ let schema = {
   ['ssn', 'veteranSocialSecurityNumber'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'veteranDateOfDeath'],
+  ['date', 'trainingEndDate'],
   ['relationship'],
   ['toursOfDuty'],
   ['educationProgram'],
