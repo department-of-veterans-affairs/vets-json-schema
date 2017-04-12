@@ -15,6 +15,18 @@
         }
       }
     },
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp"
+      ]
+    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -355,17 +367,19 @@
         ]
       }
     },
-    "educationType": {
-      "type": "string",
-      "enum": [
-        "college",
-        "correspondence",
-        "apprenticeship",
-        "flightTraining",
-        "testReimbursement",
-        "licensingReimbursement",
-        "tuitionTopUp"
-      ]
+    "educationProgram": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "educationType": {
+          "$ref": "#/definitions/educationType"
+        }
+      }
     },
     "school": {
       "type": "object",
@@ -474,11 +488,8 @@
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
     },
-    "educationType": {
-      "$ref": "#/definitions/educationType"
-    },
-    "newSchool": {
-      "$ref": "#/definitions/school"
+    "educationProgram": {
+      "$ref": "#/definitions/educationProgram"
     },
     "oldSchool": {
       "$ref": "#/definitions/school"

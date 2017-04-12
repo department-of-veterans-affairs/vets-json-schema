@@ -8,7 +8,8 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
-    'dateRange'
+    'dateRange',
+    'educationType'
   ]),
   properties: {
     email: {
@@ -63,8 +64,7 @@ let schema = {
   ['date', 'veteranDateOfDeath'],
   ['relationship'],
   ['toursOfDuty'],
-  ['educationType'],
-  ['school', 'newSchool'],
+  ['educationProgram'],
   ['school', 'oldSchool'],
   ['bankAccountChange']
 ].forEach((args) => {
