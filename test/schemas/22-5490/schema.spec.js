@@ -139,5 +139,5 @@ describe('dependents benefits schema', () => {
     }]
   });
 
-  (new SharedTests(new SchemaTestHelper(schema, schemaDefaults))).requireSsnOrFile();
+  new SharedTests(new SchemaTestHelper(schema, schemaDefaults));
 });
