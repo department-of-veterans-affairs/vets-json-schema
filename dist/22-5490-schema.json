@@ -563,19 +563,7 @@
         "veteranSocialSecurityNumber": {
           "$ref": "#/definitions/ssn"
         }
-      },
-      "anyOf": [
-        {
-          "required": [
-            "vaFileNumber"
-          ]
-        },
-        {
-          "required": [
-            "veteranSocialSecurityNumber"
-          ]
-        }
-      ]
+      }
     },
     "highSchool": {
       "type": "object",

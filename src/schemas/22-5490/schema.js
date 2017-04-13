@@ -70,7 +70,7 @@ let schema = {
       type: 'string',
       enum: ['chapter35', 'chapter33']
     },
-    previousBenefits: Object.assign({
+    previousBenefits: {
       type: 'object',
       properties: {
         disability: {
@@ -98,7 +98,7 @@ let schema = {
           type: 'string'
         }
       }
-    }, fileNumOrSsn),
+    },
     highSchool: {
       type: 'object',
       properties: _.merge(

@@ -98,13 +98,13 @@ describe('dependents benefits schema', () => {
         Object.assign(
           { veteranSocialSecurityNumber: '123456789' },
           previousBenefitsFixture
-        )
+        ),
+        previousBenefitsFixture
       ],
       invalid: [
         {
           disability: 1
-        },
-        previousBenefitsFixture
+        }
       ]
     });
   });
