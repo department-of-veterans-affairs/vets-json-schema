@@ -779,17 +779,5 @@
   "required": [
     "privacyAgreementAccepted",
     "relativeFullName"
-  ],
-  "anyOf": [
-    {
-      "required": [
-        "vaFileNumber"
-      ]
-    },
-    {
-      "required": [
-        "veteranSocialSecurityNumber"
-      ]
-    }
   ]
 }
