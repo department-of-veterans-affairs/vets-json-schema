@@ -2,6 +2,7 @@ import constants from '../../common/constants';
 import _ from 'lodash';
 
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
+const statesUS = _.uniq(_.flatten(_.values(constants.states.USA)).map(object => object.value));
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
 const countryStateProperites = _.map(constants.states, (value, key) => ({
@@ -135,6 +136,7 @@ export default {
           maxLength: 30
         },
         suffix: {
+          type: 'string',
           'enum': constants.suffixes
         },
       },
@@ -206,7 +208,8 @@ export default {
       maxLength: 20
     },
     stateOfBirth: {
-      'enum': states.concat(['Other'])
+      type: 'string',
+      'enum': statesUS.concat(['Other'])
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
