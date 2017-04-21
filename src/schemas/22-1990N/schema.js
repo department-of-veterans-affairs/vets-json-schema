@@ -1,13 +1,19 @@
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
+import set from 'lodash/fp/set';
+
+const updatedDefinitions = set('educationType.enum', 
+  definitions.educationType.enum.filter(x => x !== 'tuitionTopUp'),
+  definitions
+);
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: "APPLICATION FOR VA EDUCATION BENEFITS UNDER THE NATIONAL CALL TO SERVICE (NCS) PROGRAM (22-1990N)",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, [
+  definitions: _.pick(updatedDefinitions, [
     'educationType',
     'dateRange'
   ]),
