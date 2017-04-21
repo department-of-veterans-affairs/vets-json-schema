@@ -3,7 +3,7 @@ import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
-definitions.educationType.enum.push('farmCoop');
+definitions.educationType.enum.push('cooperativeTraining');
 const modifiedToursOfDuty = definitions.toursOfDuty;
 delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 
