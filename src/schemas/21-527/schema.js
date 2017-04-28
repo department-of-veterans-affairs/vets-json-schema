@@ -21,7 +21,10 @@ let schema = {
     },
     liveWithSpouse: {
       type: 'boolean'
-    }
+    },
+    reasonForNotLivingWithSpouse: {
+      type: 'string'
+    },
   },
 };
 

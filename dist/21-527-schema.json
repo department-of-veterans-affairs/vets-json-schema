@@ -277,6 +277,9 @@
     "liveWithSpouse": {
       "type": "boolean"
     },
+    "reasonForNotLivingWithSpouse": {
+      "type": "string"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
