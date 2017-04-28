@@ -13,6 +13,9 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    locationOfMarriage: {
+      type: 'string'
+    }
   },
 };
 
