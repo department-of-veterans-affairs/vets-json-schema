@@ -16,6 +16,10 @@ let schema = {
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
+  ['address', 'veteranAddress'],
+  ['phone', 'dayPhone'],
+  ['phone', 'nightPhone'],
+  ['phone', 'mobilePhone'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

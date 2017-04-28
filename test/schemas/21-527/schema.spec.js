@@ -17,4 +17,6 @@ describe('21-527 schema', () => {
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
+
+  sharedTests.runTest('phone', ['dayPhone', 'nightPhone', 'mobilePhone']);
 });
