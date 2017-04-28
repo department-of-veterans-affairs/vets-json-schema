@@ -336,6 +336,15 @@
           "pattern": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$"
         }
       ]
+    },
+    "maritalStatus": {
+      "enum": [
+        "Married",
+        "Never Married",
+        "Separated",
+        "Widowed",
+        "Divorced"
+      ]
     }
   },
   "type": "object",
@@ -475,13 +484,7 @@
       "$ref": "#/definitions/date"
     },
     "maritalStatus": {
-      "enum": [
-        "Married",
-        "Never Married",
-        "Separated",
-        "Widowed",
-        "Divorced"
-      ]
+      "$ref": "#/definitions/maritalStatus"
     },
     "isVaServiceConnected": {
       "type": "boolean"

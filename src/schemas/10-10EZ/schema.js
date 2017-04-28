@@ -1,5 +1,6 @@
 import constants from '../../common/constants';
 import _ from 'lodash';
+import schemaHelpers from '../../common/schema-helpers';
 
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
 const countries = constants.countries.map(object => object.value);
@@ -37,7 +38,7 @@ countryStateProperites.push(
     },
   });
 
-export default {
+let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR HEALTH BENEFITS (10-10EZ)',
   definitions: {
@@ -407,3 +408,12 @@ export default {
     'dischargeType'
   ]
 };
+
+[
+  ['maritalStatus']
+].forEach((args) => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
+
+
+export default schema;
