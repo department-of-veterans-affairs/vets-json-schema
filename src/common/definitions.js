@@ -330,6 +330,33 @@ const maritalStatus = {
   'enum': constants.maritalStatuses
 };
 
+const marriages = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      dateOfMarriage: {
+        $ref: '#/definitions/date'
+      },
+      locationOfMarriage: {
+        type: 'string'
+      },
+      spouseFullName: {
+        $ref: '#/definitions/fullName'
+      },
+      dateOfSeparation: {
+        $ref: '#/definitions/date'
+      },
+      locationOfSeparation: {
+        type: 'string'
+      },
+      reasonForSeparation: {
+        type: 'string'
+      }
+    }
+  }
+};
+
 export default {
   fullName,
   address,
