@@ -13,6 +13,7 @@ let schema = {
 };
 
 [
+  ['fullName', 'veteranFullName'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
