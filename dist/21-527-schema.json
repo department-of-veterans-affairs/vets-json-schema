@@ -303,6 +303,9 @@
     },
     "spouseDateOfBirth": {
       "$ref": "#/definitions/date"
+    },
+    "spouseSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     }
   }
 }

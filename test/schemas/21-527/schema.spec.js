@@ -11,7 +11,6 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-527 schema', () => {
   [
-    'ssn',
     'vaFileNumber',
     'email',
     'maritalStatus',
@@ -20,6 +19,8 @@ describe('21-527 schema', () => {
   });
 
   sharedTests.runTest('fullName', ['veteranFullName', 'spouseFullName']);
+
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
   sharedTests.runTest('phone', ['dayPhone', 'nightPhone', 'mobilePhone']);
 
