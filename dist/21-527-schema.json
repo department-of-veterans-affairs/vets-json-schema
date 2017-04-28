@@ -248,6 +248,15 @@
     "phone": {
       "type": "string",
       "minLength": 10
+    },
+    "maritalStatus": {
+      "enum": [
+        "Married",
+        "Never Married",
+        "Separated",
+        "Widowed",
+        "Divorced"
+      ]
     }
   },
   "properties": {
@@ -275,6 +284,9 @@
     },
     "mobilePhone": {
       "$ref": "#/definitions/phone"
+    },
+    "maritalStatus": {
+      "$ref": "#/definitions/maritalStatus"
     }
   }
 }

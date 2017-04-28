@@ -24,6 +24,7 @@ let schema = {
   ['phone', 'dayPhone'],
   ['phone', 'nightPhone'],
   ['phone', 'mobilePhone'],
+  ['maritalStatus'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

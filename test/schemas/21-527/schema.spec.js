@@ -15,6 +15,7 @@ describe('21-527 schema', () => {
     'ssn',
     'vaFileNumber',
     'email',
+    'maritalStatus',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
