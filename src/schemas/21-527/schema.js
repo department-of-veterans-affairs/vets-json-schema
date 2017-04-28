@@ -25,6 +25,9 @@ let schema = {
     reasonForNotLivingWithSpouse: {
       type: 'string'
     },
+    monthlySpousePayment: {
+      type: 'integer'
+    },
   },
 };
 

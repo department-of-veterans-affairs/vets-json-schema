@@ -280,6 +280,9 @@
     "reasonForNotLivingWithSpouse": {
       "type": "string"
     },
+    "monthlySpousePayment": {
+      "type": "integer"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
