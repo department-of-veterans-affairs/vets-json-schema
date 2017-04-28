@@ -271,6 +271,9 @@
     "locationOfMarriage": {
       "type": "string"
     },
+    "spouseIsVeteran": {
+      "type": "boolean"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },

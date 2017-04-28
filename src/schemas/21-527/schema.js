@@ -15,6 +15,9 @@ let schema = {
     },
     locationOfMarriage: {
       type: 'string'
+    },
+    spouseIsVeteran: {
+      type: 'boolean'
     }
   },
 };
