@@ -25,4 +25,6 @@ describe('21-527 schema', () => {
   sharedTests.runTest('phone', ['dayPhone', 'nightPhone', 'mobilePhone']);
 
   sharedTests.runTest('date', ['dateOfMarriage', 'spouseDateOfBirth']);
+
+  sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
 });

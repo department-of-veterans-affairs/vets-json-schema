@@ -309,6 +309,9 @@
     },
     "spouseSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
+    },
+    "spouseVaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
     }
   }
 }
