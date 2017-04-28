@@ -30,6 +30,7 @@ let schema = {
   ['maritalStatus'],
   ['date', 'dateOfMarriage'],
   ['fullName', 'spouseFullName'],
+  ['date', 'spouseDateOfBirth'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
