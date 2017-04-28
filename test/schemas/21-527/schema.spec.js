@@ -11,7 +11,6 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-527 schema', () => {
   [
-    'vaFileNumber',
     'email',
     'maritalStatus',
   ].forEach((test) => {
@@ -27,4 +26,6 @@ describe('21-527 schema', () => {
   sharedTests.runTest('date', ['dateOfMarriage', 'spouseDateOfBirth']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
+
+  sharedTests.runTest('address', ['veteranAddress', 'spouseAddress']);
 });

@@ -315,6 +315,9 @@
     },
     "spouseVaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
+    },
+    "spouseAddress": {
+      "$ref": "#/definitions/address"
     }
   }
 }
