@@ -219,6 +219,18 @@ export default {
       invalid: ['foo']
     }
   },
+  maritalStatus: {
+    data: {
+      valid: [
+        'Married',
+        'Never Married',
+        'Separated',
+        'Widowed',
+        'Divorced'
+      ],
+      invalid: ['foo']
+    }
+  },
   toursOfDuty: {
     data: {
       valid: [[{

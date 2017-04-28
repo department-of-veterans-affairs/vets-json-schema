@@ -548,5 +548,14 @@
       "startUpdate",
       "stop"
     ]
+  },
+  "maritalStatus": {
+    "enum": [
+      "Married",
+      "Never Married",
+      "Separated",
+      "Widowed",
+      "Divorced"
+    ]
   }
 }

@@ -227,7 +227,12 @@ describe('schema definitions', () => {
     ]
   });
 
-  ['toursOfDuty', 'currentlyActiveDuty', 'bankAccountChange'].forEach((definition) => {
+  [
+    'toursOfDuty',
+    'currentlyActiveDuty',
+    'bankAccountChange',
+    'maritalStatus'
+  ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
   });
 });

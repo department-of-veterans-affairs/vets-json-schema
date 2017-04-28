@@ -326,6 +326,10 @@ const bankAccountChange = {
   enum: ['noChange', 'startUpdate', 'stop']
 };
 
+const maritalStatus = {
+  'enum': constants.maritalStatuses
+};
+
 export default {
   fullName,
   address,
@@ -348,5 +352,6 @@ export default {
   toursOfDuty,
   educationProgram,
   currentlyActiveDuty,
-  bankAccountChange
+  bankAccountChange,
+  maritalStatus
 };
