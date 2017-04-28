@@ -18,6 +18,9 @@ let schema = {
     },
     spouseIsVeteran: {
       type: 'boolean'
+    },
+    liveWithSpouse: {
+      type: 'boolean'
     }
   },
 };

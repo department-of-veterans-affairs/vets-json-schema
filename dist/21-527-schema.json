@@ -274,6 +274,9 @@
     "spouseIsVeteran": {
       "type": "boolean"
     },
+    "liveWithSpouse": {
+      "type": "boolean"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
