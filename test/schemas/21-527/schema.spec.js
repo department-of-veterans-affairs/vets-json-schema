@@ -13,7 +13,6 @@ describe('21-527 schema', () => {
   [
     'email',
     'maritalStatus',
-    'marriages'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -29,4 +28,6 @@ describe('21-527 schema', () => {
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
 
   sharedTests.runTest('address', ['veteranAddress', 'spouseAddress']);
+
+  sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 });

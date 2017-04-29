@@ -46,7 +46,8 @@ let schema = {
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],
   ['address', 'spouseAddress'],
-  ['marriages']
+  ['marriages'],
+  ['marriages', 'spouseMarriages']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
