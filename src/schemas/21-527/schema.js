@@ -28,6 +28,38 @@ let schema = {
     monthlySpousePayment: {
       type: 'integer'
     },
+    childrenInHousehold: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          childFullName: schemaHelpers.getDefinition('fullName'),
+          childDateOfBirth: schemaHelpers.getDefinition('date'),
+          childPlaceOfBirth: {
+            type: 'string'
+          },
+          childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+          biological: {
+            type: 'boolean'
+          },
+          adopted: {
+            type: 'boolean'
+          },
+          stepchild: {
+            type: 'boolean'
+          },
+          attendingCollege: {
+            type: 'boolean'
+          },
+          disabled: {
+            type: 'boolean'
+          },
+          previouslyMarried: {
+            type: 'boolean'
+          }
+        }
+      }
+    }
   },
 };
 
