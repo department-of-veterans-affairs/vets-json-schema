@@ -231,7 +231,8 @@ describe('schema definitions', () => {
     'toursOfDuty',
     'currentlyActiveDuty',
     'bankAccountChange',
-    'maritalStatus'
+    'maritalStatus',
+    'marriages'
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
   });

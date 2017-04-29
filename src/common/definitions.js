@@ -380,5 +380,6 @@ export default {
   educationProgram,
   currentlyActiveDuty,
   bankAccountChange,
-  maritalStatus
+  maritalStatus,
+  marriages
 };

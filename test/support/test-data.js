@@ -231,6 +231,21 @@ export default {
       invalid: ['foo']
     }
   },
+  marriages: {
+    data: {
+      valid: [[{
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: 'ny, ny',
+        spouseFullName: fixtures.fullName,
+        dateOfSeparation: fixtures.date,
+        locationOfSeparation: 'ny, ny',
+        reasonForSeparation: 'divorce'
+      }]],
+      invalid: [[{
+        dateOfMarriage: false
+      }]]
+    }
+  },
   toursOfDuty: {
     data: {
       valid: [[{
