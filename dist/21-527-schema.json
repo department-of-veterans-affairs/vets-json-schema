@@ -309,6 +309,26 @@
     "monthlySpousePayment": {
       "type": "integer"
     },
+    "childrenNotInHousehold": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "childFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "childAddress": {
+            "$ref": "#/definitions/address"
+          },
+          "personWhoLivesWithChild": {
+            "$ref": "#/definitions/fullName"
+          },
+          "monthlyPayment": {
+            "type": "integer"
+          }
+        }
+      }
+    },
     "childrenInHousehold": {
       "type": "array",
       "items": {

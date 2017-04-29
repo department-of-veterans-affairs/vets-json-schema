@@ -48,4 +48,16 @@ describe('21-527 schema', () => {
       childFullName: 1
     }]]
   });
+
+  schemaTestHelper.testValidAndInvalid('childrenNotInHousehold', {
+    valid: [[{
+      childFullName: fixtures.fullName,
+      childAddress: fixtures.address,
+      personWhoLivesWithChild: fixtures.fullName,
+      monthlyPayment: 1
+    }]],
+    invalid: [[{
+      childFullName: 1
+    }]]
+  });
 });
