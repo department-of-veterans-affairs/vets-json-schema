@@ -95,4 +95,9 @@ describe('21-527 schema', () => {
       employer: 1
     }]]
   });
+
+  schemaTestHelper.testValidAndInvalid('highestEducationLevel', {
+    valid: ['grade1', 'grade12', 'college1', 'college4', 'college4+'],
+    invalid: ['grade0', 'grade13', 'college0', 'college5']
+  });
 });

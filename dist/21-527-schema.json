@@ -398,6 +398,28 @@
         }
       }
     },
+    "highestEducationLevel": {
+      "type": "string",
+      "enum": [
+        "grade1",
+        "grade2",
+        "grade3",
+        "grade4",
+        "grade5",
+        "grade6",
+        "grade7",
+        "grade8",
+        "grade9",
+        "grade10",
+        "grade11",
+        "grade12",
+        "college1",
+        "college2",
+        "college3",
+        "college4",
+        "college4+"
+      ]
+    },
     "childrenNotInHousehold": {
       "type": "array",
       "items": {

@@ -97,6 +97,9 @@ let schema = {
         }
       }
     },
+    highestEducationLevel: {
+      type: 'string'
+    },
     childrenNotInHousehold: {
       type: 'array',
       items: {
@@ -166,5 +169,21 @@ let schema = {
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
+
+(() => {
+  let highestEducationLevelEnum = [];
+
+  _.times(12, (i) => {
+    highestEducationLevelEnum.push(`grade${i + 1}`);
+  });
+
+  _.times(4, (i) => {
+    highestEducationLevelEnum.push(`college${i + 1}`);
+  });
+
+  highestEducationLevelEnum.push('college4+');
+
+  schema.properties.highestEducationLevel.enum = highestEducationLevelEnum;
+})();
 
 export default schema;
