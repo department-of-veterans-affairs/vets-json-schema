@@ -40,6 +40,9 @@ let schema = {
         }
       }
     },
+    disabilityPension: {
+      type: 'boolean'
+    },
     childrenNotInHousehold: {
       type: 'array',
       items: {
