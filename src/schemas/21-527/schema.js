@@ -28,6 +28,18 @@ let schema = {
     monthlySpousePayment: {
       type: 'integer'
     },
+    disabilities: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          },
+          disabilityStartDate: schemaHelpers.getDefinition('date')
+        }
+      }
+    },
     childrenNotInHousehold: {
       type: 'array',
       items: {

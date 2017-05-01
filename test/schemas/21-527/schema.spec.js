@@ -60,4 +60,14 @@ describe('21-527 schema', () => {
       childFullName: 1
     }]]
   });
+
+  schemaTestHelper.testValidAndInvalid('disabilities', {
+    valid: [[{
+      name: 'polio',
+      disabilityStartDate: fixtures.date
+    }]],
+    invalid: [[{
+      name: false
+    }]]
+  });
 });
