@@ -7,7 +7,9 @@ let schema = {
   title: 'INCOME, NET WORTH, AND EMPLOYMENT STATEMENT',
   type: 'object',
   additionalProperties: false,
-  definitions: {},
+  definitions: _.pick(definitions,
+    'dateRange'
+  ),
   properties: {
     email: {
       type: 'string',
@@ -42,6 +44,19 @@ let schema = {
     },
     disabilityPension: {
       type: 'boolean'
+    },
+    hospitalizations: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          dateRange: schemaHelpers.getDefinition('dateRange'),
+          facilityName: {
+            type: 'string'
+          },
+          address: schemaHelpers.getDefinition('address')
+        }
+      }
     },
     childrenNotInHousehold: {
       type: 'array',

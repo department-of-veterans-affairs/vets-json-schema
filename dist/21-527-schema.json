@@ -4,6 +4,17 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -325,6 +336,23 @@
     },
     "disabilityPension": {
       "type": "boolean"
+    },
+    "hospitalizations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "facilityName": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/definitions/address"
+          }
+        }
+      }
     },
     "childrenNotInHousehold": {
       "type": "array",

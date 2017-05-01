@@ -70,4 +70,15 @@ describe('21-527 schema', () => {
       name: false
     }]]
   });
+
+  schemaTestHelper.testValidAndInvalid('hospitalizations', {
+    valid: [[{
+      dateRange: fixtures.dateRange,
+      facilityName: 'foo hospital',
+      address: fixtures.address
+    }]],
+    invalid: [[{
+      dateRange: false
+    }]]
+  });
 });
