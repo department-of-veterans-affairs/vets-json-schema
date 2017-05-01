@@ -372,6 +372,32 @@
     "currentSelfEmployment": {
       "type": "string"
     },
+    "jobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "employer": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/definitions/address"
+          },
+          "jobTitle": {
+            "type": "string"
+          },
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "daysMissed": {
+            "type": "string"
+          },
+          "annualEarnings": {
+            "type": "integer"
+          }
+        }
+      }
+    },
     "childrenNotInHousehold": {
       "type": "array",
       "items": {

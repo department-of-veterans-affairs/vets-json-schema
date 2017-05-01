@@ -74,6 +74,29 @@ let schema = {
     currentSelfEmployment: {
       type: 'string'
     },
+    jobs: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          employer: {
+            type: 'string'
+          },
+          address: schemaHelpers.getDefinition('address'),
+          jobTitle: {
+            type: 'string'
+          },
+          dateRange: schemaHelpers.getDefinition('dateRange'),
+          daysMissed: {
+            // making this a string so people can answer in words if they don't know the exact number of days
+            type: 'string'
+          },
+          annualEarnings: {
+            type: 'integer'
+          }
+        }
+      }
+    },
     childrenNotInHousehold: {
       type: 'array',
       items: {

@@ -81,4 +81,18 @@ describe('21-527 schema', () => {
       dateRange: false
     }]]
   });
+
+  schemaTestHelper.testValidAndInvalid('jobs', {
+    valid: [[{
+      employer: 'foo corp',
+      address: fixtures.address,
+      jobTitle: 'analyst',
+      dateRange: fixtures.dateRange,
+      daysMissed: '1 month',
+      annualEarnings: 12
+    }]],
+    invalid: [[{
+      employer: 1
+    }]]
+  });
 });
