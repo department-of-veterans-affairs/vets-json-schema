@@ -114,6 +114,9 @@ let schema = {
         }
       }
     },
+    otherExperience: {
+      type: 'string'
+    },
     childrenInHousehold: {
       type: 'array',
       items: {

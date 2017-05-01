@@ -440,6 +440,9 @@
         }
       }
     },
+    "otherExperience": {
+      "type": "string"
+    },
     "childrenInHousehold": {
       "type": "array",
       "items": {
