@@ -117,6 +117,19 @@ let schema = {
     otherExperience: {
       type: 'string'
     },
+    inNursingHome: {
+      type: 'boolean'
+    },
+    nursingHome: {
+      type: 'string'
+    },
+    nursingHomeAddress: schemaHelpers.getDefinition('address'),
+    medicaidCoversNursingHome: {
+      type: 'boolean'
+    },
+    appliedForMedicaid: {
+      type: 'boolean'
+    },
     childrenInHousehold: {
       type: 'array',
       items: {
