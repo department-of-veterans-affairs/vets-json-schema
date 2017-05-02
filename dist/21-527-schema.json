@@ -458,6 +458,26 @@
     "appliedForMedicaid": {
       "type": "boolean"
     },
+    "netWorth": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relationship": {
+            "type": "string",
+            "enum": [
+              "self",
+              "spouse",
+              "child"
+            ]
+          },
+          "childFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "bankAccount": {}
+        }
+      }
+    },
     "childrenInHousehold": {
       "type": "array",
       "items": {

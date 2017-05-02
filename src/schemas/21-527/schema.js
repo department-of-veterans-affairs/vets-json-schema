@@ -130,6 +130,20 @@ let schema = {
     appliedForMedicaid: {
       type: 'boolean'
     },
+    netWorth: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          relationship: {
+            type: 'string',
+            enum: ['self', 'spouse', 'child']
+          },
+          childFullName: schemaHelpers.getDefinition('fullName'),
+          bankAccount: {}
+        }
+      }
+    },
     childrenInHousehold: {
       type: 'array',
       items: {

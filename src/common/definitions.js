@@ -266,6 +266,18 @@ const relationship = {
   'enum': ['spouse', 'child']
 };
 
+const netWorthAccount = {
+  type: 'object',
+  properties: {
+    amount: {
+      type: 'integer'
+    },
+    interest: {
+      type: 'boolean'
+    }
+  }
+};
+
 const toursOfDuty = {
   type: 'array',
   items: {
@@ -381,5 +393,6 @@ export default {
   currentlyActiveDuty,
   bankAccountChange,
   maritalStatus,
+  netWorthAccount,
   marriages
 };

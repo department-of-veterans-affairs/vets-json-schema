@@ -227,6 +227,16 @@ describe('schema definitions', () => {
     ]
   });
 
+  testValidAndInvalidDefinitions('netWorthAccount', {
+    valid: [{
+      amount: 1,
+      interest: true
+    }],
+    invalid: [{
+      amount: false
+    }]
+  });
+
   [
     'toursOfDuty',
     'currentlyActiveDuty',

@@ -558,6 +558,17 @@
       "Divorced"
     ]
   },
+  "netWorthAccount": {
+    "type": "object",
+    "properties": {
+      "amount": {
+        "type": "integer"
+      },
+      "interest": {
+        "type": "boolean"
+      }
+    }
+  },
   "marriages": {
     "type": "array",
     "items": {
