@@ -8,7 +8,8 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions,
-    'dateRange'
+    'dateRange',
+    'netWorthAccount'
   ),
   properties: {
     email: {
@@ -140,7 +141,7 @@ let schema = {
             enum: ['self', 'spouse', 'child']
           },
           childFullName: schemaHelpers.getDefinition('fullName'),
-          bankAccount: {}
+          netWorthAccount: schemaHelpers.getDefinition('netWorthAccount')
         }
       }
     },

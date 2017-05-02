@@ -15,6 +15,17 @@
         }
       }
     },
+    "netWorthAccount": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "interest": {
+          "type": "boolean"
+        }
+      }
+    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -474,7 +485,9 @@
           "childFullName": {
             "$ref": "#/definitions/fullName"
           },
-          "bankAccount": {}
+          "netWorthAccount": {
+            "$ref": "#/definitions/netWorthAccount"
+          }
         }
       }
     },
