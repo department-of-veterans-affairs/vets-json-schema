@@ -243,6 +243,17 @@ export default {
       }]
     }
   },
+  relationshipAndChildName: {
+    data: {
+      valid: [{
+        relationship: 'self',
+        childFullName: fixtures.fullName
+      }],
+      invalid: [{
+        relationship: 'foo'
+      }]
+    }
+  },
   marriages: {
     data: {
       valid: [[{

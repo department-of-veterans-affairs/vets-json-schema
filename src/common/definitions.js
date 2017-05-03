@@ -267,6 +267,17 @@ const relationship = {
   'enum': ['spouse', 'child']
 };
 
+const relationshipAndChildName = {
+  type: 'object',
+  properties: {
+    relationship: {
+      type: 'string',
+      enum: relationship.enum.concat(['self'])
+    },
+    childFullName: schemaHelpers.getDefinition('fullName')
+  }
+};
+
 const netWorthAccount = {
   type: 'object',
   properties: {
@@ -409,5 +420,6 @@ export default {
   maritalStatus,
   netWorthAccount,
   moneyTransfer,
+  relationshipAndChildName,
   marriages
 };

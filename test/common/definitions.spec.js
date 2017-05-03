@@ -243,6 +243,7 @@ describe('schema definitions', () => {
     'bankAccountChange',
     'maritalStatus',
     'moneyTransfer',
+    'relationshipAndChildName',
     'marriages'
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);

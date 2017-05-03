@@ -138,6 +138,48 @@ let schema = {
     disabilityBenefits: {
       type: 'boolean'
     },
+    monthlyIncome: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          relationship: schemaHelpers.getDefinition('relationship'),
+          childFullName: schemaHelpers.getDefinition('fullName'),
+          salary: {
+            type: 'integer'
+          },
+          socialSecurity: {
+            type: 'integer'
+          },
+          civilService: {
+            type: 'integer'
+          },
+          railroad: {
+            type: 'integer'
+          },
+          military: {
+            type: 'integer'
+          },
+          blackLung: {
+            type: 'integer'
+          },
+          ssi: {
+            type: 'integer'
+          },
+          other: {
+            type: 'object',
+            properties: {
+              name: {
+                type: 'string'
+              },
+              amount: {
+                type: 'integer'
+              }
+            }
+          }
+        }
+      }
+    },
     netWorth: {
       type: 'array',
       items: {
