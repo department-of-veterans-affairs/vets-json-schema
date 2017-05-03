@@ -11,6 +11,10 @@ export default {
   },
   ssn: '123456789',
   phone: '555-555-5555',
+  netWorthAccount: {
+    amount: 123,
+    interest: true
+  },
   fullName: {
     first: 'john',
     last: 'doe'

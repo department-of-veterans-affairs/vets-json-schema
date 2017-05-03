@@ -141,7 +141,21 @@ let schema = {
             enum: ['self', 'spouse', 'child']
           },
           childFullName: schemaHelpers.getDefinition('fullName'),
-          netWorthAccount: schemaHelpers.getDefinition('netWorthAccount')
+          netWorthAccounts: {
+            type: 'object',
+            properties: {
+              bank: schemaHelpers.getDefinition('netWorthAccount'),
+              ira: schemaHelpers.getDefinition('netWorthAccount'),
+              stocks: schemaHelpers.getDefinition('netWorthAccount'),
+              business: schemaHelpers.getDefinition('netWorthAccount'),
+              realProperty: {
+                type: 'integer'
+              },
+              otherProperty: {
+                type: 'integer'
+              }
+            }
+          }
         }
       }
     },

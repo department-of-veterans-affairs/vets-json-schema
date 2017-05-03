@@ -485,8 +485,28 @@
           "childFullName": {
             "$ref": "#/definitions/fullName"
           },
-          "netWorthAccount": {
-            "$ref": "#/definitions/netWorthAccount"
+          "netWorthAccounts": {
+            "type": "object",
+            "properties": {
+              "bank": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "ira": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "stocks": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "business": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "realProperty": {
+                "type": "integer"
+              },
+              "otherProperty": {
+                "type": "integer"
+              }
+            }
           }
         }
       }

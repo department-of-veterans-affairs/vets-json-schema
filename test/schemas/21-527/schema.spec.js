@@ -100,4 +100,22 @@ describe('21-527 schema', () => {
     valid: ['grade1', 'grade12', 'college1', 'college4', 'college4+'],
     invalid: ['grade0', 'grade13', 'college0', 'college5']
   });
+
+  schemaTestHelper.testValidAndInvalid('netWorth', {
+    valid: [[{
+      relationship: 'self',
+      childFullName: fixtures.fullName,
+      netWorthAccounts: {
+        bank: fixtures.netWorthAccount,
+        ira: fixtures.netWorthAccount,
+        stocks: fixtures.netWorthAccount,
+        business: fixtures.netWorthAccount,
+        realProperty: 123,
+        otherProperty: 12
+      }
+    }]],
+    invalid: [[{
+      relationship: 'foo'
+    }]]
+  });
 });
