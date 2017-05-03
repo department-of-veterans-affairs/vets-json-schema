@@ -15,6 +15,14 @@
         }
       }
     },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "spouse",
+        "child",
+        "self"
+      ]
+    },
     "netWorthAccount": {
       "type": "object",
       "properties": {
@@ -483,18 +491,16 @@
     "appliedForMedicaid": {
       "type": "boolean"
     },
+    "disabilityBenefits": {
+      "type": "boolean"
+    },
     "netWorth": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "relationship": {
-            "type": "string",
-            "enum": [
-              "self",
-              "spouse",
-              "child"
-            ]
+            "$ref": "#/definitions/relationship"
           },
           "childFullName": {
             "$ref": "#/definitions/fullName"

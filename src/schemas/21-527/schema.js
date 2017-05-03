@@ -1,6 +1,9 @@
-import definitions from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
+
+let definitions = _.cloneDeep(originalDefinitions);
+definitions.relationship.enum.push('self');
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -9,6 +12,7 @@ let schema = {
   additionalProperties: false,
   definitions: _.pick(definitions,
     'dateRange',
+    'relationship',
     'netWorthAccount'
   ),
   properties: {
@@ -131,15 +135,15 @@ let schema = {
     appliedForMedicaid: {
       type: 'boolean'
     },
+    disabilityBenefits: {
+      type: 'boolean'
+    },
     netWorth: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          relationship: {
-            type: 'string',
-            enum: ['self', 'spouse', 'child']
-          },
+          relationship: schemaHelpers.getDefinition('relationship'),
           childFullName: schemaHelpers.getDefinition('fullName'),
           netWorthAccounts: {
             type: 'object',
