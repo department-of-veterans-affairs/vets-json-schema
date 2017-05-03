@@ -77,7 +77,8 @@ export default {
           $ref: '#/definitions/fullName'
         },
         childRelation: {
-          'enum': constants.childRelationships
+          'enum': constants.childRelationships,
+          type: 'string',
         },
         childSocialSecurityNumber: {
           $ref: '#/definitions/ssn'
@@ -135,6 +136,7 @@ export default {
           maxLength: 30
         },
         suffix: {
+          type: 'string',
           'enum': constants.suffixes
         },
       },
@@ -198,6 +200,7 @@ export default {
       $ref: '#/definitions/ssn'
     },
     gender: {
+      type: 'string',
       'enum': constants.genders.map(option => option.value)
     },
     cityOfBirth: {
@@ -206,12 +209,14 @@ export default {
       maxLength: 20
     },
     stateOfBirth: {
+      type: 'string',
       'enum': states.concat(['Other'])
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
     },
     maritalStatus: {
+      type: 'string',
       'enum': constants.maritalStatuses
     },
     isVaServiceConnected: {
@@ -227,6 +232,7 @@ export default {
       type: 'boolean'
     },
     vaMedicalFacility: {
+      type: 'string',
       'enum': _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value)
     },
     wantsInitialVaContact: {
@@ -346,6 +352,7 @@ export default {
       $ref: '#/definitions/date'
     },
     lastServiceBranch: {
+      type: 'string',
       'enum': constants.branchesServed.map(option => option.value)
     },
     lastEntryDate: {
@@ -355,6 +362,7 @@ export default {
       $ref: '#/definitions/date'
     },
     dischargeType: {
+      type: 'string',
       'enum': constants.dischargeTypes.map(option => option.value)
     },
     purpleHeartRecipient: {

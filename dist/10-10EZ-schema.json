@@ -223,7 +223,8 @@
             "Son",
             "Stepson",
             "Stepdaughter"
-          ]
+          ],
+          "type": "string"
         },
         "childSocialSecurityNumber": {
           "$ref": "#/definitions/ssn"
@@ -281,6 +282,7 @@
           "maxLength": 30
         },
         "suffix": {
+          "type": "string",
           "enum": [
             "Jr.",
             "Sr.",
@@ -350,6 +352,7 @@
       "$ref": "#/definitions/ssn"
     },
     "gender": {
+      "type": "string",
       "enum": [
         "F",
         "M"
@@ -361,6 +364,7 @@
       "maxLength": 20
     },
     "stateOfBirth": {
+      "type": "string",
       "enum": [
         "AB",
         "BC",
@@ -475,6 +479,7 @@
       "$ref": "#/definitions/date"
     },
     "maritalStatus": {
+      "type": "string",
       "enum": [
         "Married",
         "Never Married",
@@ -496,6 +501,7 @@
       "type": "boolean"
     },
     "vaMedicalFacility": {
+      "type": "string",
       "enum": [
         "463GA",
         "463GB",
@@ -1662,6 +1668,7 @@
       "$ref": "#/definitions/date"
     },
     "lastServiceBranch": {
+      "type": "string",
       "enum": [
         "air force",
         "army",
@@ -1685,6 +1692,7 @@
       "$ref": "#/definitions/date"
     },
     "dischargeType": {
+      "type": "string",
       "enum": [
         "honorable",
         "general",
