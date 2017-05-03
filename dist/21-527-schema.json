@@ -339,6 +339,17 @@
           "type": "integer"
         }
       }
+    },
+    "otherIncome": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
     }
   },
   "properties": {
@@ -502,6 +513,18 @@
     "disabilityBenefits": {
       "type": "boolean"
     },
+    "annualIncome": {
+      "relationshipAndChildName": {
+        "$ref": "#/definitions/relationshipAndChildName"
+      },
+      "interest": {
+        "type": "integer"
+      },
+      "workersComp": {
+        "type": "integer"
+      },
+      "other": {}
+    },
     "monthlyIncome": {
       "type": "array",
       "items": {
@@ -531,16 +554,8 @@
           "ssi": {
             "type": "integer"
           },
-          "other": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "amount": {
-                "type": "integer"
-              }
-            }
+          "otherIncome": {
+            "$ref": "#/definitions/otherIncome"
           }
         }
       }

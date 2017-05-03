@@ -367,6 +367,18 @@ const maritalStatus = {
   'enum': constants.maritalStatuses
 };
 
+const otherIncome = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string'
+    },
+    amount: {
+      type: 'integer'
+    }
+  }
+};
+
 const marriages = {
   type: 'array',
   items: {
@@ -396,6 +408,7 @@ const marriages = {
 
 export default {
   fullName,
+  otherIncome,
   address,
   phone,
   ssn,

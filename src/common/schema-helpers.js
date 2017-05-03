@@ -18,6 +18,8 @@ const addDefinitionToSchema = (schema, definition, key) => {
   let prop = schema;
 
   keysArray.forEach((k, i) => {
+    if (prop.type === 'array') prop = prop.items;
+
     prop = prop.properties;
 
     if (i === keysArray.length - 1) {

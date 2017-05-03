@@ -24,5 +24,9 @@ export default {
     relationship: 'self',
     childFullName: fullName
   },
+  otherIncome: {
+    name: 'other',
+    amount: 123
+  },
   fullName: fullName
 };

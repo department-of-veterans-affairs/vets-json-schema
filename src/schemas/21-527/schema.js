@@ -9,7 +9,6 @@ let schema = {
   additionalProperties: false,
   definitions: _.pick(definitions,
     'dateRange',
-    'relationshipAndChildName',
     'netWorthAccount'
   ),
   properties: {
@@ -135,12 +134,25 @@ let schema = {
     disabilityBenefits: {
       type: 'boolean'
     },
+    annualIncome: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          interest: {
+            type: 'integer'
+          },
+          workersComp: {
+            type: 'integer'
+          }
+        }
+      }
+    },
     monthlyIncome: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          relationshipAndChildName: schemaHelpers.getDefinition('relationshipAndChildName'),
           salary: {
             type: 'integer'
           },
@@ -161,17 +173,6 @@ let schema = {
           },
           ssi: {
             type: 'integer'
-          },
-          other: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string'
-              },
-              amount: {
-                type: 'integer'
-              }
-            }
           }
         }
       }
@@ -181,7 +182,6 @@ let schema = {
       items: {
         type: 'object',
         properties: {
-          relationshipAndChildName: schemaHelpers.getDefinition('relationshipAndChildName'),
           childFullName: schemaHelpers.getDefinition('fullName'),
           netWorthAccounts: {
             type: 'object',
@@ -254,7 +254,10 @@ let schema = {
   ['marriages'],
   ['moneyTransfer', 'recentMoneyTransfer'],
   ['moneyTransfer', 'largeMoneyTransfer'],
-  ['marriages', 'spouseMarriages']
+  ['marriages', 'spouseMarriages'],
+  ['relationshipAndChildName', 'monthlyIncome.relationshipAndChildName']
+  ['relationshipAndChildName', 'netWorth.relationshipAndChildName']
+  ['otherIncome', 'monthlyIncome.otherIncome']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

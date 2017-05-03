@@ -237,6 +237,13 @@ describe('schema definitions', () => {
     }]
   });
 
+  testValidAndInvalidDefinitions('otherIncome', {
+    valid: [fixtures.otherIncome],
+    invalid: [{
+      name: 1
+    }]
+  });
+
   [
     'toursOfDuty',
     'currentlyActiveDuty',

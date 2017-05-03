@@ -113,10 +113,7 @@ describe('21-527 schema', () => {
       military: 0,
       blackLung: 0,
       ssi: 1,
-      other: {
-        name: 'other',
-        amount: 99999999
-      }
+      otherIncome: fixtures.otherIncome
     }]],
     invalid: [[{
       salary: false
