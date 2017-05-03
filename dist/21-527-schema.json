@@ -15,13 +15,21 @@
         }
       }
     },
-    "relationship": {
-      "type": "string",
-      "enum": [
-        "spouse",
-        "child",
-        "self"
-      ]
+    "relationshipAndChildName": {
+      "type": "object",
+      "properties": {
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "spouse",
+            "child",
+            "self"
+          ]
+        },
+        "childFullName": {
+          "$ref": "#/definitions/fullName"
+        }
+      }
     },
     "netWorthAccount": {
       "type": "object",
@@ -499,11 +507,8 @@
       "items": {
         "type": "object",
         "properties": {
-          "relationship": {
-            "$ref": "#/definitions/relationship"
-          },
-          "childFullName": {
-            "$ref": "#/definitions/fullName"
+          "relationshipAndChildName": {
+            "$ref": "#/definitions/relationshipAndChildName"
           },
           "salary": {
             "type": "integer"
@@ -545,8 +550,8 @@
       "items": {
         "type": "object",
         "properties": {
-          "relationship": {
-            "$ref": "#/definitions/relationship"
+          "relationshipAndChildName": {
+            "$ref": "#/definitions/relationshipAndChildName"
           },
           "childFullName": {
             "$ref": "#/definitions/fullName"

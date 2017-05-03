@@ -103,10 +103,29 @@ describe('21-527 schema', () => {
     invalid: ['grade0', 'grade13', 'college0', 'college5']
   });
 
+  schemaTestHelper.testValidAndInvalid('monthlyIncome',{
+    valid: [[{
+      relationshipAndChildName: fixtures.relationshipAndChildName,
+      salary: 1,
+      socialSecurity: 1,
+      civilService: 1,
+      railroad: 0,
+      military: 0,
+      blackLung: 0,
+      ssi: 1,
+      other: {
+        name: 'other',
+        amount: 99999999
+      }
+    }]],
+    invalid: [[{
+      salary: false
+    }]]
+  });
+
   schemaTestHelper.testValidAndInvalid('netWorth', {
     valid: [[{
-      relationship: 'self',
-      childFullName: fixtures.fullName,
+      relationshipAndChildName: fixtures.relationshipAndChildName,
       netWorthAccounts: {
         bank: fixtures.netWorthAccount,
         ira: fixtures.netWorthAccount,
@@ -117,7 +136,9 @@ describe('21-527 schema', () => {
       }
     }]],
     invalid: [[{
-      relationship: 'foo'
+      netWorthAccounts: {
+        realProperty: false
+      }
     }]]
   });
 });

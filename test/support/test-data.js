@@ -245,10 +245,7 @@ export default {
   },
   relationshipAndChildName: {
     data: {
-      valid: [{
-        relationship: 'self',
-        childFullName: fixtures.fullName
-      }],
+      valid: [fixtures.relationshipAndChildName],
       invalid: [{
         relationship: 'foo'
       }]

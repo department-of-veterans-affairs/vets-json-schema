@@ -1,3 +1,8 @@
+const fullName = {
+  first: 'john',
+  last: 'doe'
+};
+
 export default {
   date: '2000-01-01',
   dateRange: {
@@ -15,8 +20,9 @@ export default {
     amount: 123,
     interest: true
   },
-  fullName: {
-    first: 'john',
-    last: 'doe'
-  }
+  relationshipAndChildName: {
+    relationship: 'self',
+    childFullName: fullName
+  },
+  fullName: fullName
 };

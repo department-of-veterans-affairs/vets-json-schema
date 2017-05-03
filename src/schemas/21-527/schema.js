@@ -1,9 +1,6 @@
-import originalDefinitions from '../../common/definitions';
+import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
-
-let definitions = _.cloneDeep(originalDefinitions);
-definitions.relationship.enum.push('self');
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -12,7 +9,7 @@ let schema = {
   additionalProperties: false,
   definitions: _.pick(definitions,
     'dateRange',
-    'relationship',
+    'relationshipAndChildName',
     'netWorthAccount'
   ),
   properties: {
@@ -143,8 +140,7 @@ let schema = {
       items: {
         type: 'object',
         properties: {
-          relationship: schemaHelpers.getDefinition('relationship'),
-          childFullName: schemaHelpers.getDefinition('fullName'),
+          relationshipAndChildName: schemaHelpers.getDefinition('relationshipAndChildName'),
           salary: {
             type: 'integer'
           },
@@ -185,7 +181,7 @@ let schema = {
       items: {
         type: 'object',
         properties: {
-          relationship: schemaHelpers.getDefinition('relationship'),
+          relationshipAndChildName: schemaHelpers.getDefinition('relationshipAndChildName'),
           childFullName: schemaHelpers.getDefinition('fullName'),
           netWorthAccounts: {
             type: 'object',
