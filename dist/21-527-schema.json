@@ -15,22 +15,6 @@
         }
       }
     },
-    "relationshipAndChildName": {
-      "type": "object",
-      "properties": {
-        "relationship": {
-          "type": "string",
-          "enum": [
-            "spouse",
-            "child",
-            "self"
-          ]
-        },
-        "childFullName": {
-          "$ref": "#/definitions/fullName"
-        }
-      }
-    },
     "netWorthAccount": {
       "type": "object",
       "properties": {
@@ -340,6 +324,22 @@
         }
       }
     },
+    "relationshipAndChildName": {
+      "type": "object",
+      "properties": {
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "spouse",
+            "child",
+            "self"
+          ]
+        },
+        "childFullName": {
+          "$ref": "#/definitions/fullName"
+        }
+      }
+    },
     "otherIncome": {
       "type": "object",
       "properties": {
@@ -514,25 +514,27 @@
       "type": "boolean"
     },
     "annualIncome": {
-      "relationshipAndChildName": {
-        "$ref": "#/definitions/relationshipAndChildName"
-      },
-      "interest": {
-        "type": "integer"
-      },
-      "workersComp": {
-        "type": "integer"
-      },
-      "other": {}
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "interest": {
+            "type": "integer"
+          },
+          "workersComp": {
+            "type": "integer"
+          },
+          "otherIncome": {
+            "$ref": "#/definitions/otherIncome"
+          }
+        }
+      }
     },
     "monthlyIncome": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "relationshipAndChildName": {
-            "$ref": "#/definitions/relationshipAndChildName"
-          },
           "salary": {
             "type": "integer"
           },
@@ -554,6 +556,9 @@
           "ssi": {
             "type": "integer"
           },
+          "relationshipAndChildName": {
+            "$ref": "#/definitions/relationshipAndChildName"
+          },
           "otherIncome": {
             "$ref": "#/definitions/otherIncome"
           }
@@ -565,9 +570,6 @@
       "items": {
         "type": "object",
         "properties": {
-          "relationshipAndChildName": {
-            "$ref": "#/definitions/relationshipAndChildName"
-          },
           "childFullName": {
             "$ref": "#/definitions/fullName"
           },
@@ -593,6 +595,9 @@
                 "type": "integer"
               }
             }
+          },
+          "relationshipAndChildName": {
+            "$ref": "#/definitions/relationshipAndChildName"
           }
         }
       }
@@ -688,6 +693,9 @@
     },
     "spouseMarriages": {
       "$ref": "#/definitions/marriages"
+    },
+    "annualIncome,relationshipAndChildName": {
+      "$ref": "#/definitions/relationshipAndChildName"
     }
   }
 }

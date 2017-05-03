@@ -120,6 +120,18 @@ describe('21-527 schema', () => {
     }]]
   });
 
+  schemaTestHelper.testValidAndInvalid('annualIncome', {
+    valid: [[{
+      relationshipAndChildName: fixtures.relationshipAndChildName,
+      otherIncome: fixtures.otherIncome,
+      interest: 1,
+      workersComp: 2
+    }]],
+    invalid: [[{
+      interest: false
+    }]]
+  });
+
   schemaTestHelper.testValidAndInvalid('netWorth', {
     valid: [[{
       relationshipAndChildName: fixtures.relationshipAndChildName,

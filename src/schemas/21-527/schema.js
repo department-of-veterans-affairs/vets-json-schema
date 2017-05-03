@@ -255,9 +255,11 @@ let schema = {
   ['moneyTransfer', 'recentMoneyTransfer'],
   ['moneyTransfer', 'largeMoneyTransfer'],
   ['marriages', 'spouseMarriages'],
-  ['relationshipAndChildName', 'monthlyIncome.relationshipAndChildName']
-  ['relationshipAndChildName', 'netWorth.relationshipAndChildName']
-  ['otherIncome', 'monthlyIncome.otherIncome']
+  ['relationshipAndChildName', 'monthlyIncome.relationshipAndChildName'],
+  ['relationshipAndChildName', 'netWorth.relationshipAndChildName'],
+  ['relationshipAndChildName', 'annualIncome,relationshipAndChildName'],
+  ['otherIncome', 'monthlyIncome.otherIncome'],
+  ['otherIncome', 'annualIncome.otherIncome']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
