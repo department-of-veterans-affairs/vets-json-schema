@@ -569,6 +569,20 @@
       }
     }
   },
+  "moneyTransfer": {
+    "type": "object",
+    "properties": {
+      "yes": {
+        "type": "boolean"
+      },
+      "date": {
+        "$ref": "#/definitions/date"
+      },
+      "amount": {
+        "type": "integer"
+      }
+    }
+  },
   "marriages": {
     "type": "array",
     "items": {
