@@ -31,6 +31,8 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 
+  sharedTests.runTest('moneyTransfer', ['recentMoneyTransfer', 'largeMoneyTransfer']);
+
   schemaTestHelper.testValidAndInvalid('childrenInHousehold', {
     valid: [[{
       childFullName: fixtures.fullName,

@@ -210,6 +210,8 @@ let schema = {
   ['vaFileNumber', 'spouseVaFileNumber'],
   ['address', 'spouseAddress'],
   ['marriages'],
+  ['moneyTransfer', 'recentMoneyTransfer'],
+  ['moneyTransfer', 'largeMoneyTransfer'],
   ['marriages', 'spouseMarriages']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
