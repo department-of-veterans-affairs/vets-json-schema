@@ -197,6 +197,9 @@ let schema = {
         }
       }
     },
+    remarks: {
+      type: 'string'
+    },
     netWorth: {
       type: 'array',
       items: {

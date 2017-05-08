@@ -607,6 +607,9 @@
         }
       }
     },
+    "remarks": {
+      "type": "string"
+    },
     "netWorth": {
       "type": "array",
       "items": {
