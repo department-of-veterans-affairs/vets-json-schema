@@ -78,7 +78,8 @@ let schema = {
           $ref: '#/definitions/fullName'
         },
         childRelation: {
-          'enum': constants.childRelationships
+          'enum': constants.childRelationships,
+          type: 'string',
         },
         childSocialSecurityNumber: {
           $ref: '#/definitions/ssn'
@@ -136,6 +137,7 @@ let schema = {
           maxLength: 30
         },
         suffix: {
+          type: 'string',
           'enum': constants.suffixes
         },
       },
@@ -199,6 +201,7 @@ let schema = {
       $ref: '#/definitions/ssn'
     },
     gender: {
+      type: 'string',
       'enum': constants.genders.map(option => option.value)
     },
     cityOfBirth: {
@@ -207,12 +210,14 @@ let schema = {
       maxLength: 20
     },
     stateOfBirth: {
+      type: 'string',
       'enum': states.concat(['Other'])
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
     },
     maritalStatus: {
+      type: 'string',
       'enum': constants.maritalStatuses
     },
     isVaServiceConnected: {
@@ -228,6 +233,7 @@ let schema = {
       type: 'boolean'
     },
     vaMedicalFacility: {
+      type: 'string',
       'enum': _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value)
     },
     wantsInitialVaContact: {
@@ -347,6 +353,7 @@ let schema = {
       $ref: '#/definitions/date'
     },
     lastServiceBranch: {
+      type: 'string',
       'enum': constants.branchesServed.map(option => option.value)
     },
     lastEntryDate: {
@@ -356,6 +363,7 @@ let schema = {
       $ref: '#/definitions/date'
     },
     dischargeType: {
+      type: 'string',
       'enum': constants.dischargeTypes.map(option => option.value)
     },
     purpleHeartRecipient: {
