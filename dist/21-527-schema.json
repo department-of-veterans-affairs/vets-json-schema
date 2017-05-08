@@ -530,6 +530,29 @@
         }
       }
     },
+    "otherExpenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "paidTo": {
+            "type": "string"
+          },
+          "disabilityOrRelationship": {
+            "type": "string"
+          },
+          "date": {
+            "$ref": "#/definitions/date"
+          }
+        }
+      }
+    },
     "monthlyIncome": {
       "type": "array",
       "items": {

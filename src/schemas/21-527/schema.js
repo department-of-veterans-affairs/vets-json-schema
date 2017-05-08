@@ -148,6 +148,26 @@ let schema = {
         }
       }
     },
+    otherExpenses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          amount: {
+            type: 'integer'
+          },
+          purpose: {
+            type: 'string'
+          },
+          paidTo: {
+            type: 'string'
+          },
+          disabilityOrRelationship: {
+            type: 'string'
+          }
+        }
+      }
+    },
     monthlyIncome: {
       type: 'array',
       items: {
@@ -258,6 +278,7 @@ let schema = {
   ['relationshipAndChildName', 'monthlyIncome.relationshipAndChildName'],
   ['relationshipAndChildName', 'netWorth.relationshipAndChildName'],
   ['relationshipAndChildName', 'annualIncome,relationshipAndChildName'],
+  ['date', 'otherExpenses.date'],
   ['otherIncome', 'monthlyIncome.otherIncome'],
   ['otherIncome', 'annualIncome.otherIncome']
 ].forEach((args) => {
