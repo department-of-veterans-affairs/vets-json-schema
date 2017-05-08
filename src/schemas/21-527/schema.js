@@ -280,6 +280,7 @@ let schema = {
   ['relationshipAndChildName', 'annualIncome,relationshipAndChildName'],
   ['date', 'otherExpenses.date'],
   ['otherIncome', 'monthlyIncome.otherIncome'],
+  ['bankAccount'],
   ['otherIncome', 'annualIncome.otherIncome']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
