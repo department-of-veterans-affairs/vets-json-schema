@@ -442,6 +442,9 @@
     "relativeSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
+    "relativeVaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
