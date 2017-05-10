@@ -1,5 +1,6 @@
 import constants from './constants';
 import _ from 'lodash';
+import schemaHelpers from './schema-helpers';
 
 const fullName = {
   type: 'object',
@@ -266,6 +267,42 @@ const relationship = {
   'enum': ['spouse', 'child']
 };
 
+const relationshipAndChildName = {
+  type: 'object',
+  properties: {
+    relationship: {
+      type: 'string',
+      enum: relationship.enum.concat(['self'])
+    },
+    childFullName: schemaHelpers.getDefinition('fullName')
+  }
+};
+
+const netWorthAccount = {
+  type: 'object',
+  properties: {
+    amount: {
+      type: 'integer'
+    },
+    interest: {
+      type: 'boolean'
+    }
+  }
+};
+
+const moneyTransfer = {
+  type: 'object',
+  properties: {
+    yes: {
+      type: 'boolean'
+    },
+    date: schemaHelpers.getDefinition('date'),
+    amount: {
+      type: 'integer'
+    }
+  }
+};
+
 const toursOfDuty = {
   type: 'array',
   items: {
@@ -326,8 +363,53 @@ const bankAccountChange = {
   enum: ['noChange', 'startUpdate', 'stop']
 };
 
+const maritalStatus = {
+  type: 'string',
+  'enum': constants.maritalStatuses
+};
+
+const otherIncome = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string'
+    },
+    amount: {
+      type: 'integer'
+    }
+  }
+};
+
+const marriages = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      dateOfMarriage: {
+        $ref: '#/definitions/date'
+      },
+      locationOfMarriage: {
+        type: 'string'
+      },
+      spouseFullName: {
+        $ref: '#/definitions/fullName'
+      },
+      dateOfSeparation: {
+        $ref: '#/definitions/date'
+      },
+      locationOfSeparation: {
+        type: 'string'
+      },
+      reasonForSeparation: {
+        type: 'string'
+      }
+    }
+  }
+};
+
 export default {
   fullName,
+  otherIncome,
   address,
   phone,
   ssn,
@@ -348,5 +430,10 @@ export default {
   toursOfDuty,
   educationProgram,
   currentlyActiveDuty,
-  bankAccountChange
+  bankAccountChange,
+  maritalStatus,
+  netWorthAccount,
+  moneyTransfer,
+  relationshipAndChildName,
+  marriages
 };

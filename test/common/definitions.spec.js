@@ -227,7 +227,32 @@ describe('schema definitions', () => {
     ]
   });
 
-  ['toursOfDuty', 'currentlyActiveDuty', 'bankAccountChange'].forEach((definition) => {
+  testValidAndInvalidDefinitions('netWorthAccount', {
+    valid: [{
+      amount: 1,
+      interest: true
+    }],
+    invalid: [{
+      amount: false
+    }]
+  });
+
+  testValidAndInvalidDefinitions('otherIncome', {
+    valid: [fixtures.otherIncome],
+    invalid: [{
+      name: 1
+    }]
+  });
+
+  [
+    'toursOfDuty',
+    'currentlyActiveDuty',
+    'bankAccountChange',
+    'maritalStatus',
+    'moneyTransfer',
+    'relationshipAndChildName',
+    'marriages'
+  ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
   });
 });

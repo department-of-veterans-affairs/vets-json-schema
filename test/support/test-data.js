@@ -219,6 +219,53 @@ export default {
       invalid: ['foo']
     }
   },
+  maritalStatus: {
+    data: {
+      valid: [
+        'Married',
+        'Never Married',
+        'Separated',
+        'Widowed',
+        'Divorced'
+      ],
+      invalid: ['foo']
+    }
+  },
+  moneyTransfer: {
+    data: {
+      valid: [{
+        yes: true,
+        date: fixtures.date,
+        amount: 123
+      }],
+      invalid: [{
+        yes: 1
+      }]
+    }
+  },
+  relationshipAndChildName: {
+    data: {
+      valid: [fixtures.relationshipAndChildName],
+      invalid: [{
+        relationship: 'foo'
+      }]
+    }
+  },
+  marriages: {
+    data: {
+      valid: [[{
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: 'ny, ny',
+        spouseFullName: fixtures.fullName,
+        dateOfSeparation: fixtures.date,
+        locationOfSeparation: 'ny, ny',
+        reasonForSeparation: 'divorce'
+      }]],
+      invalid: [[{
+        dateOfMarriage: false
+      }]]
+    }
+  },
   toursOfDuty: {
     data: {
       valid: [[{

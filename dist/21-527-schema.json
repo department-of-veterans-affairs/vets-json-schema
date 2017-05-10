@@ -1,0 +1,750 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "INCOME, NET WORTH, AND EMPLOYMENT STATEMENT",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "netWorthAccount": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "interest": {
+          "type": "boolean"
+        }
+      }
+    },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{8}$"
+    },
+    "address": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "country": {
+              "enum": [
+                "CAN"
+              ]
+            },
+            "state": {
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "enum": [
+                "MEX"
+              ]
+            },
+            "state": {
+              "enum": [
+                "aguascalientes",
+                "baja-california-norte",
+                "baja-california-sur",
+                "campeche",
+                "chiapas",
+                "chihuahua",
+                "coahuila",
+                "colima",
+                "distrito-federal",
+                "durango",
+                "guanajuato",
+                "guerrero",
+                "hidalgo",
+                "jalisco",
+                "mexico",
+                "michoacan",
+                "morelos",
+                "nayarit",
+                "nuevo-leon",
+                "oaxaca",
+                "puebla",
+                "queretaro",
+                "quintana-roo",
+                "san-luis-potosi",
+                "sinaloa",
+                "sonora",
+                "tabasco",
+                "tamaulipas",
+                "tlaxcala",
+                "veracruz",
+                "yucatan",
+                "zacatecas"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "enum": [
+                "USA"
+              ]
+            },
+            "state": {
+              "enum": [
+                "AL",
+                "AK",
+                "AS",
+                "AZ",
+                "AR",
+                "AA",
+                "AE",
+                "AP",
+                "CA",
+                "CO",
+                "CT",
+                "DE",
+                "DC",
+                "FM",
+                "FL",
+                "GA",
+                "GU",
+                "HI",
+                "ID",
+                "IL",
+                "IN",
+                "IA",
+                "KS",
+                "KY",
+                "LA",
+                "ME",
+                "MH",
+                "MD",
+                "MA",
+                "MI",
+                "MN",
+                "MS",
+                "MO",
+                "MT",
+                "NE",
+                "NV",
+                "NH",
+                "NJ",
+                "NM",
+                "NY",
+                "NC",
+                "ND",
+                "MP",
+                "OH",
+                "OK",
+                "OR",
+                "PW",
+                "PA",
+                "PR",
+                "RI",
+                "SC",
+                "SD",
+                "TN",
+                "TX",
+                "UT",
+                "VT",
+                "VI",
+                "VA",
+                "WA",
+                "WV",
+                "WI",
+                "WY"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "not": {
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
+              }
+            },
+            "state": {
+              "type": "string",
+              "maxLength": 51
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 51
+            }
+          }
+        }
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "street2": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 51
+        }
+      }
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10
+    },
+    "maritalStatus": {
+      "type": "string",
+      "enum": [
+        "Married",
+        "Never Married",
+        "Separated",
+        "Widowed",
+        "Divorced"
+      ]
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "marriages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateOfMarriage": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfMarriage": {
+            "type": "string"
+          },
+          "spouseFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "dateOfSeparation": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfSeparation": {
+            "type": "string"
+          },
+          "reasonForSeparation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "moneyTransfer": {
+      "type": "object",
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "date": {
+          "$ref": "#/definitions/date"
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "relationshipAndChildName": {
+      "type": "object",
+      "properties": {
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "spouse",
+            "child",
+            "self"
+          ]
+        },
+        "childFullName": {
+          "$ref": "#/definitions/fullName"
+        }
+      }
+    },
+    "otherIncome": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "locationOfMarriage": {
+      "type": "string"
+    },
+    "spouseIsVeteran": {
+      "type": "boolean"
+    },
+    "liveWithSpouse": {
+      "type": "boolean"
+    },
+    "reasonForNotLivingWithSpouse": {
+      "type": "string"
+    },
+    "monthlySpousePayment": {
+      "type": "integer"
+    },
+    "disabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "disabilityStartDate": {
+            "$ref": "#/definitions/date"
+          }
+        }
+      }
+    },
+    "disabilityPension": {
+      "type": "boolean"
+    },
+    "hospitalizations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "facilityName": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/definitions/address"
+          }
+        }
+      }
+    },
+    "currentlyEmployed": {
+      "type": "boolean"
+    },
+    "lastEmploymentDate": {
+      "$ref": "#/definitions/date"
+    },
+    "selfEmployedBeforeDisability": {
+      "type": "boolean"
+    },
+    "selfEmploymentBeforeDisability": {
+      "type": "string"
+    },
+    "currentlySelfEmployed": {
+      "type": "boolean"
+    },
+    "currentSelfEmployment": {
+      "type": "string"
+    },
+    "jobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "employer": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/definitions/address"
+          },
+          "jobTitle": {
+            "type": "string"
+          },
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "daysMissed": {
+            "type": "string"
+          },
+          "annualEarnings": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "highestEducationLevel": {
+      "type": "string",
+      "enum": [
+        "grade1",
+        "grade2",
+        "grade3",
+        "grade4",
+        "grade5",
+        "grade6",
+        "grade7",
+        "grade8",
+        "grade9",
+        "grade10",
+        "grade11",
+        "grade12",
+        "college1",
+        "college2",
+        "college3",
+        "college4",
+        "college4+"
+      ]
+    },
+    "childrenNotInHousehold": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "childFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "childAddress": {
+            "$ref": "#/definitions/address"
+          },
+          "personWhoLivesWithChild": {
+            "$ref": "#/definitions/fullName"
+          },
+          "monthlyPayment": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "otherExperience": {
+      "type": "string"
+    },
+    "inNursingHome": {
+      "type": "boolean"
+    },
+    "nursingHome": {
+      "type": "string"
+    },
+    "nursingHomeAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "medicaidCoversNursingHome": {
+      "type": "boolean"
+    },
+    "appliedForMedicaid": {
+      "type": "boolean"
+    },
+    "disabilityBenefits": {
+      "type": "boolean"
+    },
+    "annualIncome": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "interest": {
+            "type": "integer"
+          },
+          "workersComp": {
+            "type": "integer"
+          },
+          "otherIncome": {
+            "$ref": "#/definitions/otherIncome"
+          }
+        }
+      }
+    },
+    "otherExpenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "paidTo": {
+            "type": "string"
+          },
+          "disabilityOrRelationship": {
+            "type": "string"
+          },
+          "date": {
+            "$ref": "#/definitions/date"
+          }
+        }
+      }
+    },
+    "monthlyIncome": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "salary": {
+            "type": "integer"
+          },
+          "socialSecurity": {
+            "type": "integer"
+          },
+          "civilService": {
+            "type": "integer"
+          },
+          "railroad": {
+            "type": "integer"
+          },
+          "military": {
+            "type": "integer"
+          },
+          "blackLung": {
+            "type": "integer"
+          },
+          "ssi": {
+            "type": "integer"
+          },
+          "relationshipAndChildName": {
+            "$ref": "#/definitions/relationshipAndChildName"
+          },
+          "otherIncome": {
+            "$ref": "#/definitions/otherIncome"
+          }
+        }
+      }
+    },
+    "remarks": {
+      "type": "string"
+    },
+    "netWorth": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "childFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "netWorthAccounts": {
+            "type": "object",
+            "properties": {
+              "bank": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "ira": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "stocks": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "business": {
+                "$ref": "#/definitions/netWorthAccount"
+              },
+              "realProperty": {
+                "type": "integer"
+              },
+              "otherProperty": {
+                "type": "integer"
+              }
+            }
+          },
+          "relationshipAndChildName": {
+            "$ref": "#/definitions/relationshipAndChildName"
+          }
+        }
+      }
+    },
+    "childrenInHousehold": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "childFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "childDateOfBirth": {
+            "$ref": "#/definitions/date"
+          },
+          "childPlaceOfBirth": {
+            "type": "string"
+          },
+          "childSocialSecurityNumber": {
+            "$ref": "#/definitions/ssn"
+          },
+          "biological": {
+            "type": "boolean"
+          },
+          "adopted": {
+            "type": "boolean"
+          },
+          "stepchild": {
+            "type": "boolean"
+          },
+          "attendingCollege": {
+            "type": "boolean"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "previouslyMarried": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "veteranAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "dayPhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "nightPhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "mobilePhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "maritalStatus": {
+      "$ref": "#/definitions/maritalStatus"
+    },
+    "dateOfMarriage": {
+      "$ref": "#/definitions/date"
+    },
+    "spouseFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "spouseDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "spouseSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "spouseVaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "spouseAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "marriages": {
+      "$ref": "#/definitions/marriages"
+    },
+    "recentMoneyTransfer": {
+      "$ref": "#/definitions/moneyTransfer"
+    },
+    "largeMoneyTransfer": {
+      "$ref": "#/definitions/moneyTransfer"
+    },
+    "spouseMarriages": {
+      "$ref": "#/definitions/marriages"
+    },
+    "annualIncome,relationshipAndChildName": {
+      "$ref": "#/definitions/relationshipAndChildName"
+    },
+    "bankAccount": {
+      "$ref": "#/definitions/bankAccount"
+    }
+  }
+}

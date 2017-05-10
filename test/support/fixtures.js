@@ -1,3 +1,8 @@
+const fullName = {
+  first: 'john',
+  last: 'doe'
+};
+
 export default {
   date: '2000-01-01',
   dateRange: {
@@ -9,9 +14,19 @@ export default {
     city: 'abc',
     country: 'USA'
   },
+  ssn: '123456789',
   phone: '555-555-5555',
-  fullName: {
-    first: 'john',
-    last: 'doe'
-  }
+  netWorthAccount: {
+    amount: 123,
+    interest: true
+  },
+  relationshipAndChildName: {
+    relationship: 'self',
+    childFullName: fullName
+  },
+  otherIncome: {
+    name: 'other',
+    amount: 123
+  },
+  fullName: fullName
 };

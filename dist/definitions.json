@@ -31,6 +31,17 @@
       "last"
     ]
   },
+  "otherIncome": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "amount": {
+        "type": "integer"
+      }
+    }
+  },
   "address": {
     "type": "object",
     "oneOf": [
@@ -548,5 +559,82 @@
       "startUpdate",
       "stop"
     ]
+  },
+  "maritalStatus": {
+    "type": "string",
+    "enum": [
+      "Married",
+      "Never Married",
+      "Separated",
+      "Widowed",
+      "Divorced"
+    ]
+  },
+  "netWorthAccount": {
+    "type": "object",
+    "properties": {
+      "amount": {
+        "type": "integer"
+      },
+      "interest": {
+        "type": "boolean"
+      }
+    }
+  },
+  "moneyTransfer": {
+    "type": "object",
+    "properties": {
+      "yes": {
+        "type": "boolean"
+      },
+      "date": {
+        "$ref": "#/definitions/date"
+      },
+      "amount": {
+        "type": "integer"
+      }
+    }
+  },
+  "relationshipAndChildName": {
+    "type": "object",
+    "properties": {
+      "relationship": {
+        "type": "string",
+        "enum": [
+          "spouse",
+          "child",
+          "self"
+        ]
+      },
+      "childFullName": {
+        "$ref": "#/definitions/fullName"
+      }
+    }
+  },
+  "marriages": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "dateOfMarriage": {
+          "$ref": "#/definitions/date"
+        },
+        "locationOfMarriage": {
+          "type": "string"
+        },
+        "spouseFullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "dateOfSeparation": {
+          "$ref": "#/definitions/date"
+        },
+        "locationOfSeparation": {
+          "type": "string"
+        },
+        "reasonForSeparation": {
+          "type": "string"
+        }
+      }
+    }
   }
 }
