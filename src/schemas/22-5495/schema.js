@@ -55,6 +55,7 @@ let schema = {
   ['privacyAgreementAccepted'],
   ['fullName', 'relativeFullName'],
   ['ssn', 'relativeSocialSecurityNumber'],
+  ['vaFileNumber', 'relativeVaFileNumber'],
   ['vaFileNumber'],
   ['gender'],
   ['date', 'relativeDateOfBirth'],

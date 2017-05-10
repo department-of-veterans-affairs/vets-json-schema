@@ -43,4 +43,6 @@ describe('dependents change of program schema', () => {
   sharedTests.runTest('address', ['relativeAddress']);
 
   sharedTests.runTest('school', ['oldSchool']);
+
+  sharedTests.runTest('vaFileNumber', ['relativeVaFileNumber']);
 });
