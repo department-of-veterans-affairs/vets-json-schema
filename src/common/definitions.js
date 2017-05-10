@@ -364,6 +364,7 @@ const bankAccountChange = {
 };
 
 const maritalStatus = {
+  type: 'string',
   'enum': constants.maritalStatuses
 };
 

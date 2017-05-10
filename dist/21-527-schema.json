@@ -272,6 +272,7 @@
       "minLength": 10
     },
     "maritalStatus": {
+      "type": "string",
       "enum": [
         "Married",
         "Never Married",

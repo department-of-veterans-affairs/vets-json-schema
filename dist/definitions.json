@@ -561,6 +561,7 @@
     ]
   },
   "maritalStatus": {
+    "type": "string",
     "enum": [
       "Married",
       "Never Married",
