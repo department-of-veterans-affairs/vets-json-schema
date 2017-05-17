@@ -35,9 +35,11 @@ const address = (() => {
   const countryStateProperites = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
+        type: 'string',
         'enum': [key]
       },
       state: {
+        type: 'string',
         'enum': value.map(x => x.value)
       },
       postalCode: {
@@ -50,6 +52,7 @@ const address = (() => {
     properties: {
       country: {
         not: {
+          type: 'string',
           'enum': countriesWithAnyState
         }
       },
