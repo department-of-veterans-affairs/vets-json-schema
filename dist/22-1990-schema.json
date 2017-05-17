@@ -13,11 +13,13 @@
         {
           "properties": {
             "country": {
+              "type": "string",
               "enum": [
                 "CAN"
               ]
             },
             "state": {
+              "type": "string",
               "enum": [
                 "AB",
                 "BC",
@@ -43,11 +45,13 @@
         {
           "properties": {
             "country": {
+              "type": "string",
               "enum": [
                 "MEX"
               ]
             },
             "state": {
+              "type": "string",
               "enum": [
                 "aguascalientes",
                 "baja-california-norte",
@@ -92,11 +96,13 @@
         {
           "properties": {
             "country": {
+              "type": "string",
               "enum": [
                 "USA"
               ]
             },
             "state": {
+              "type": "string",
               "enum": [
                 "AL",
                 "AK",
@@ -172,6 +178,7 @@
           "properties": {
             "country": {
               "not": {
+                "type": "string",
                 "enum": [
                   "CAN",
                   "MEX",

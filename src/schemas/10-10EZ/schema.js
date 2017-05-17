@@ -8,9 +8,11 @@ const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includ
 const countryStateProperites = _.map(constants.states, (value, key) => ({
   properties: {
     country: {
+      type: 'string',
       'enum': [key]
     },
     state: {
+      type: 'string',
       'enum': value.map(x => x.value)
     },
     zipcode: {
@@ -24,6 +26,7 @@ countryStateProperites.push(
     properties: {
       country: {
         not: {
+          type: 'string',
           'enum': countriesWithAnyState
         }
       },
