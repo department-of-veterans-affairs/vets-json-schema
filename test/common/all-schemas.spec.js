@@ -16,18 +16,18 @@ describe('all schema tests', () => {
         return keyArr[keyArr.length - 1];
       });
 
-      if (Object.keys(obj).length === 1 && !skipTypeCheck) {
-        for (let i = 0, len = skipTypeArr.length; i < len; i++) {
-          if (skipTypeCheck) break;
-
-          let key = skipTypeArr[i];
-
-          if (obj[key] != null) skipTypeCheck = true;
+      _.tap(Object.keys(obj), objKeys => {
+        if (
+          !skipTypeCheck &&
+          objKeys.length === 1 &&
+          _.includes(skipTypeArr, objKeys[0])
+        ) {
+          skipTypeCheck = true;
         }
-      }
+      });
 
       if (!skipTypeCheck && obj.type == null) {
-        throw `${key} needs type`;
+        throw new Error(`${key} needs type`);
       }
 
       for (let k in obj) {
