@@ -3,20 +3,20 @@ import { expect } from 'chai';
 import _ from 'lodash';
 
 describe('all schema tests', () => {
-  describe('types test', () => {
-    const iterateObject = (key, obj, skipTypeCheck = false) => {
+  it('schema properties should have types', () => {
+    const skipTypeArr = [
+      'allOf',
+      'anyOf',
+      'oneOf',
+      'not'
+    ];
+
+    const checkObjectTypes = (key, obj, skipTypeCheck = false) => {
       const lastKey = _.tap(key.split('.'), keyArr => {
         return keyArr[keyArr.length - 1];
       });
 
-      const skipTypeArr = [
-        'allOf',
-        'anyOf',
-        'oneOf',
-        'not'
-      ];
-
-      if (Object.keys(obj).length === 1) {
+      if (Object.keys(obj).length === 1 && !skipTypeCheck) {
         for (let i = 0, len = skipTypeArr.length; i < len; i++) {
           if (skipTypeCheck) break;
 
@@ -39,12 +39,12 @@ describe('all schema tests', () => {
 
           if (!skipNextTypeCheck && lastKey !== 'properties' && k === 'properties') skipNextTypeCheck = true;
 
-          iterateObject(`${key}.${k}`, v, skipNextTypeCheck);
+          checkObjectTypes(`${key}.${k}`, v, skipNextTypeCheck);
         } else if (_.isArray(v)) {
           if (_.includes(skipTypeArr, k) && obj.type != null) skipNextTypeCheck = true;
 
           v.forEach((item) => {
-            if (_.isPlainObject(item)) iterateObject(`${key}.${k}`, item, skipNextTypeCheck);
+            if (_.isPlainObject(item)) checkObjectTypes(`${key}.${k}`, item, skipNextTypeCheck);
           });
         }
       }
@@ -53,7 +53,7 @@ describe('all schema tests', () => {
     for (let k in schemas) {
       if (k === 'definitions') continue;
 
-      iterateObject(k, schemas[k]);
+      checkObjectTypes(k, schemas[k]);
     }
   });
 });
