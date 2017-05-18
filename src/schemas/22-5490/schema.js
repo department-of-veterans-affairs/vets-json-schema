@@ -21,6 +21,9 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    currentSameAsPrevious: {
+      type: 'boolean'
+    },
     serviceBranch: {
       type: 'string'
     },
