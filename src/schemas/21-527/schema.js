@@ -7,10 +7,65 @@ let schema = {
   title: 'INCOME, NET WORTH, AND EMPLOYMENT STATEMENT',
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions,
-    'dateRange',
-    'netWorthAccount'
-  ),
+  definitions: _.merge(_.pick(definitions,
+    'dateRange'
+  ), {
+    netWorth: {
+      type: 'object',
+      properties: {
+        bank: { type: 'integer' },
+        ira: { type: 'integer' },
+        stocks: { type: 'integer' },
+        business: { type: 'integer' },
+        realProperty: { type: 'integer' },
+        otherProperty: { type: 'integer' },
+        additionalSources: { $ref: '#/definitions/additionalSources' }
+      }
+    },
+    additionalSources: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          },
+          amount: {
+            type: 'integer'
+          }
+        }
+      }
+    },
+    monthlyIncome: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          salary: {
+            type: 'integer'
+          },
+          socialSecurity: {
+            type: 'integer'
+          },
+          civilService: {
+            type: 'integer'
+          },
+          railroad: {
+            type: 'integer'
+          },
+          military: {
+            type: 'integer'
+          },
+          blackLung: {
+            type: 'integer'
+          },
+          ssi: {
+            type: 'integer'
+          }
+        }
+      }
+    },
+  }),
   properties: {
     email: {
       type: 'string',
@@ -101,17 +156,46 @@ let schema = {
     highestEducationLevel: {
       type: 'string'
     },
-    childrenNotInHousehold: {
+    children: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
           childFullName: schemaHelpers.getDefinition('fullName'),
+          childDateOfBirth: schemaHelpers.getDefinition('date'),
+          childNotInHousehold: {
+            type: 'boolean'
+          },
           childAddress: schemaHelpers.getDefinition('address'),
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
           monthlyPayment: {
             type: 'integer'
-          }
+          },
+          monthlyIncome: { $ref: '#/definitions/monthlyIncome' },
+          expectedIncome: { $ref: '#/definitions/expectedIncome' },
+          netWorth: { $ref: '#/definitions/netWorth' },
+          childPlaceOfBirth: {
+            type: 'string'
+          },
+          childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+          biological: {
+            type: 'boolean'
+          },
+          adopted: {
+            type: 'boolean'
+          },
+          stepchild: {
+            type: 'boolean'
+          },
+          attendingCollege: {
+            type: 'boolean'
+          },
+          disabled: {
+            type: 'boolean'
+          },
+          previouslyMarried: {
+            type: 'boolean'
+          },
         }
       }
     },
@@ -168,95 +252,10 @@ let schema = {
         }
       }
     },
-    monthlyIncome: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          salary: {
-            type: 'integer'
-          },
-          socialSecurity: {
-            type: 'integer'
-          },
-          civilService: {
-            type: 'integer'
-          },
-          railroad: {
-            type: 'integer'
-          },
-          military: {
-            type: 'integer'
-          },
-          blackLung: {
-            type: 'integer'
-          },
-          ssi: {
-            type: 'integer'
-          }
-        }
-      }
-    },
     remarks: {
       type: 'string'
-    },
-    netWorth: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          childFullName: schemaHelpers.getDefinition('fullName'),
-          netWorthAccounts: {
-            type: 'object',
-            properties: {
-              bank: schemaHelpers.getDefinition('netWorthAccount'),
-              ira: schemaHelpers.getDefinition('netWorthAccount'),
-              stocks: schemaHelpers.getDefinition('netWorthAccount'),
-              business: schemaHelpers.getDefinition('netWorthAccount'),
-              realProperty: {
-                type: 'integer'
-              },
-              otherProperty: {
-                type: 'integer'
-              }
-            }
-          }
-        }
-      }
-    },
-    childrenInHousehold: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          childFullName: schemaHelpers.getDefinition('fullName'),
-          childDateOfBirth: schemaHelpers.getDefinition('date'),
-          childPlaceOfBirth: {
-            type: 'string'
-          },
-          childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
-          biological: {
-            type: 'boolean'
-          },
-          adopted: {
-            type: 'boolean'
-          },
-          stepchild: {
-            type: 'boolean'
-          },
-          attendingCollege: {
-            type: 'boolean'
-          },
-          disabled: {
-            type: 'boolean'
-          },
-          previouslyMarried: {
-            type: 'boolean'
-          }
-        }
-      }
     }
-  },
+  }
 };
 
 [
@@ -279,13 +278,14 @@ let schema = {
   ['moneyTransfer', 'recentMoneyTransfer'],
   ['moneyTransfer', 'largeMoneyTransfer'],
   ['marriages', 'spouseMarriages'],
-  ['relationshipAndChildName', 'monthlyIncome.relationshipAndChildName'],
-  ['relationshipAndChildName', 'netWorth.relationshipAndChildName'],
-  ['relationshipAndChildName', 'annualIncome,relationshipAndChildName'],
   ['date', 'otherExpenses.date'],
-  ['otherIncome', 'monthlyIncome.otherIncome'],
+  ['netWorth'],
+  ['monthlyIncome'],
+  ['expectedIncome'],
+  ['netWorth', 'spouseNetWorth'],
+  ['monthlyIncome', 'spouseMonthlyIncome'],
+  ['expectedIncome', 'spouseExpectedIncome'],
   ['bankAccount'],
-  ['otherIncome', 'annualIncome.otherIncome']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
