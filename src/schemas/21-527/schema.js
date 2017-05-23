@@ -37,34 +37,49 @@ let schema = {
       }
     },
     monthlyIncome: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          salary: {
-            type: 'integer'
-          },
-          socialSecurity: {
-            type: 'integer'
-          },
-          civilService: {
-            type: 'integer'
-          },
-          railroad: {
-            type: 'integer'
-          },
-          military: {
-            type: 'integer'
-          },
-          blackLung: {
-            type: 'integer'
-          },
-          ssi: {
-            type: 'integer'
-          }
-        }
+      type: 'object',
+      properties: {
+        salary: {
+          type: 'integer'
+        },
+        socialSecurity: {
+          type: 'integer'
+        },
+        civilService: {
+          type: 'integer'
+        },
+        railroad: {
+          type: 'integer'
+        },
+        military: {
+          type: 'integer'
+        },
+        blackLung: {
+          type: 'integer'
+        },
+        ssi: {
+          type: 'integer'
+        },
+        additionalSources: { $ref: '#/definitions/additionalSources' }
       }
     },
+    expectedIncome: {
+      type: 'object',
+      properties: {
+        salary: {
+          type: 'integer'
+        },
+        interest: {
+          type: 'integer'
+        },
+        other: {
+          type: 'integer'
+        },
+        additionalSources: {
+          $ref: '#/definitions/additionalSources'
+        }
+      }
+    }
   }),
   properties: {
     email: {
