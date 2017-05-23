@@ -14,9 +14,9 @@ let schema = {
       type: 'object',
       properties: {
         bank: { type: 'integer' },
+        interestBank: { type: 'integer' },
         ira: { type: 'integer' },
         stocks: { type: 'integer' },
-        business: { type: 'integer' },
         realProperty: { type: 'integer' },
         otherProperty: { type: 'integer' },
         additionalSources: { $ref: '#/definitions/additionalSources' }
@@ -39,9 +39,6 @@ let schema = {
     monthlyIncome: {
       type: 'object',
       properties: {
-        salary: {
-          type: 'integer'
-        },
         socialSecurity: {
           type: 'integer'
         },
@@ -51,10 +48,10 @@ let schema = {
         railroad: {
           type: 'integer'
         },
-        military: {
+        blackLung: {
           type: 'integer'
         },
-        blackLung: {
+        serviceRetirement: {
           type: 'integer'
         },
         ssi: {

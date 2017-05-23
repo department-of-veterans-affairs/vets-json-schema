@@ -21,13 +21,13 @@
         "bank": {
           "type": "integer"
         },
+        "interestBank": {
+          "type": "integer"
+        },
         "ira": {
           "type": "integer"
         },
         "stocks": {
-          "type": "integer"
-        },
-        "business": {
           "type": "integer"
         },
         "realProperty": {
@@ -58,9 +58,6 @@
     "monthlyIncome": {
       "type": "object",
       "properties": {
-        "salary": {
-          "type": "integer"
-        },
         "socialSecurity": {
           "type": "integer"
         },
@@ -70,10 +67,10 @@
         "railroad": {
           "type": "integer"
         },
-        "military": {
+        "blackLung": {
           "type": "integer"
         },
-        "blackLung": {
+        "serviceRetirement": {
           "type": "integer"
         },
         "ssi": {
