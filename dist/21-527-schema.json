@@ -691,9 +691,6 @@
     "maritalStatus": {
       "$ref": "#/definitions/maritalStatus"
     },
-    "dateOfMarriage": {
-      "$ref": "#/definitions/date"
-    },
     "spouseFullName": {
       "$ref": "#/definitions/fullName"
     },

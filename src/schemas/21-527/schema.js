@@ -279,9 +279,8 @@ let schema = {
   ['phone', 'nightPhone'],
   ['phone', 'mobilePhone'],
   ['maritalStatus'],
-  // TODO: make sure they allow dates like 2017-01-XX
-  ['date', 'dateOfMarriage'],
   ['fullName', 'spouseFullName'],
+  // TODO: make sure they allow dates like 2017-01-XX
   ['date', 'spouseDateOfBirth'],
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],
