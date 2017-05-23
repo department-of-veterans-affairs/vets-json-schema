@@ -45,6 +45,7 @@ describe('21-527 schema', () => {
       stepchild: true,
       attendingCollege: true,
       disabled: true,
+      married: true,
       previouslyMarried: true,
       childFullName: fixtures.fullName,
       childAddress: fixtures.address,

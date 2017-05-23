@@ -202,6 +202,9 @@ let schema = {
           disabled: {
             type: 'boolean'
           },
+          married: {
+            type: 'boolean'
+          },
           previouslyMarried: {
             type: 'boolean'
           },
