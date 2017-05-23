@@ -458,9 +458,6 @@
         }
       }
     },
-    "disabilityPension": {
-      "type": "boolean"
-    },
     "hospitalizations": {
       "type": "array",
       "items": {

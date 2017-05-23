@@ -107,9 +107,6 @@ let schema = {
         }
       }
     },
-    disabilityPension: {
-      type: 'boolean'
-    },
     hospitalizations: {
       type: 'array',
       items: {
