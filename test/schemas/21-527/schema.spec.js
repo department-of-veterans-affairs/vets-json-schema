@@ -18,7 +18,7 @@ describe('21-527 schema', () => {
     sharedTests.runTest(test);
   });
 
-  sharedTests.runTest('fullName', ['veteranFullName', 'spouseFullName']);
+  sharedTests.runTest('fullName', ['veteranFullName']);
 
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
