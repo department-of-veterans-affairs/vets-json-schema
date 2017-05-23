@@ -256,6 +256,7 @@ export default {
       valid: [[{
         dateOfMarriage: fixtures.date,
         locationOfMarriage: 'ny, ny',
+        marriageType: 'common law',
         spouseFullName: fixtures.fullName,
         dateOfSeparation: fixtures.date,
         locationOfSeparation: 'ny, ny',

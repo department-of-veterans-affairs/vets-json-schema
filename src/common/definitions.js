@@ -394,6 +394,9 @@ const marriages = {
       locationOfMarriage: {
         type: 'string'
       },
+      marriageType: {
+        type: 'string'
+      },
       spouseFullName: {
         $ref: '#/definitions/fullName'
       },
