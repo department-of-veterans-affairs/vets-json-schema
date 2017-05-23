@@ -458,7 +458,7 @@
         }
       }
     },
-    "hospitalizations": {
+    "vaHospitalTreatments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -466,11 +466,11 @@
           "dateRange": {
             "$ref": "#/definitions/dateRange"
           },
-          "facilityName": {
+          "name": {
             "type": "string"
           },
-          "address": {
-            "$ref": "#/definitions/address"
+          "location": {
+            "type": "string"
           }
         }
       }

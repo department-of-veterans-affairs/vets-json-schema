@@ -107,16 +107,18 @@ let schema = {
         }
       }
     },
-    hospitalizations: {
+    vaHospitalTreatments: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
           dateRange: schemaHelpers.getDefinition('dateRange'),
-          facilityName: {
+          name: {
             type: 'string'
           },
-          address: schemaHelpers.getDefinition('address')
+          location: {
+            type: 'string'
+          }
         }
       }
     },
