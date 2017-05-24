@@ -105,6 +105,10 @@ let schema = {
     combatSince911: {
       type: 'boolean'
     },
+    // 13A. ARE YOU CURRENTLY ACTIVATED TO FEDERAL ACTIVE DUTY UNDER THE AUTHORITY OF TITLE 10, U.S.C. (National Guard)?
+    nationalGuardActivation: {
+      type: 'boolean'
+    },
     placeOfSeparation: {
       type: 'string'
     },
@@ -239,6 +243,8 @@ let schema = {
   ['gender'],
   // TODO: make sure they allow dates like 2017-01-XX
   ['dateRange', 'activeServiceDateRange'],
+  // 13B. DATE OF ACTIVATION (MM,DD,YYYY)
+  ['date', 'activationDate'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
   ['ssn', 'spouseSocialSecurityNumber'],

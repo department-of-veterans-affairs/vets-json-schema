@@ -449,6 +449,9 @@
     "combatSince911": {
       "type": "boolean"
     },
+    "nationalGuardActivation": {
+      "type": "boolean"
+    },
     "placeOfSeparation": {
       "type": "string"
     },
@@ -623,6 +626,9 @@
     },
     "activeServiceDateRange": {
       "$ref": "#/definitions/dateRange"
+    },
+    "activationDate": {
+      "$ref": "#/definitions/date"
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
