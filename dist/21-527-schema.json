@@ -563,24 +563,6 @@
         }
       }
     },
-    "inNursingHome": {
-      "type": "boolean"
-    },
-    "nursingHome": {
-      "type": "string"
-    },
-    "nursingHomeAddress": {
-      "$ref": "#/definitions/address"
-    },
-    "medicaidCoversNursingHome": {
-      "type": "boolean"
-    },
-    "appliedForMedicaid": {
-      "type": "boolean"
-    },
-    "disabilityBenefits": {
-      "type": "boolean"
-    },
     "annualIncome": {
       "type": "array",
       "items": {

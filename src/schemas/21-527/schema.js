@@ -191,22 +191,6 @@ let schema = {
         }
       }
     },
-    inNursingHome: {
-      type: 'boolean'
-    },
-    nursingHome: {
-      type: 'string'
-    },
-    nursingHomeAddress: schemaHelpers.getDefinition('address'),
-    medicaidCoversNursingHome: {
-      type: 'boolean'
-    },
-    appliedForMedicaid: {
-      type: 'boolean'
-    },
-    disabilityBenefits: {
-      type: 'boolean'
-    },
     annualIncome: {
       type: 'array',
       items: {
