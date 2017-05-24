@@ -105,6 +105,9 @@ let schema = {
     combatSince911: {
       type: 'boolean'
     },
+    placeOfSeparation: {
+      type: 'string'
+    },
     disabilities: {
       type: 'array',
       items: {
