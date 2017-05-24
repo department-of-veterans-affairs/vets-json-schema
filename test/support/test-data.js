@@ -135,6 +135,14 @@ export default {
       }]
     }
   },
+  dateRange: {
+    data: {
+      valid: [fixtures.dateRange],
+      invalid: [{
+        from: false
+      }]
+    }
+  },
   postHighSchoolTrainings: {
     data: {
       valid: [[{

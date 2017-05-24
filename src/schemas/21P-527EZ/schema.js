@@ -232,7 +232,7 @@ let schema = {
   ['maritalStatus'],
   ['gender'],
   // TODO: make sure they allow dates like 2017-01-XX
-  ['date', 'activeServiceStartDate'],
+  ['dateRange', 'activeServiceDateRange'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
   ['ssn', 'spouseSocialSecurityNumber'],

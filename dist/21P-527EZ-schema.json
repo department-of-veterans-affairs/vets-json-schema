@@ -615,8 +615,8 @@
     "gender": {
       "$ref": "#/definitions/gender"
     },
-    "activeServiceStartDate": {
-      "$ref": "#/definitions/date"
+    "activeServiceDateRange": {
+      "$ref": "#/definitions/dateRange"
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
