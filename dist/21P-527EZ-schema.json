@@ -449,6 +449,9 @@
     "combatSince911": {
       "type": "boolean"
     },
+    "otherMarriage": {
+      "type": "string"
+    },
     "nationalGuardActivation": {
       "type": "boolean"
     },
