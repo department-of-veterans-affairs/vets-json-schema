@@ -142,6 +142,17 @@ describe('21-527 schema', () => {
     }]]
   });
 
+  schemaTestHelper.testValidAndInvalid('nationalGuard',{
+    valid: [{
+      name: 'unit 123',
+      address: fixtures.address,
+      phone: fixtures.phone
+    }],
+    invalid: [[{
+      name: false
+    }]]
+  });
+
   schemaTestHelper.testValidAndInvalid('otherExpenses', {
     valid: [[{
       amount: 1,

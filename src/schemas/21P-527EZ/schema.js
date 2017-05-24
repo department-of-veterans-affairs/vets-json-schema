@@ -109,6 +109,14 @@ let schema = {
     nationalGuardActivation: {
       type: 'boolean'
     },
+    nationalGuard: {
+      type: 'object',
+      properties: {
+        name: { type: 'string' },
+        address: schemaHelpers.getDefinition('address'),
+        phone: schemaHelpers.getDefinition('phone')
+      }
+    },
     placeOfSeparation: {
       type: 'string'
     },
@@ -243,7 +251,6 @@ let schema = {
   ['gender'],
   // TODO: make sure they allow dates like 2017-01-XX
   ['dateRange', 'activeServiceDateRange'],
-  // 13B. DATE OF ACTIVATION (MM,DD,YYYY)
   ['date', 'activationDate'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],

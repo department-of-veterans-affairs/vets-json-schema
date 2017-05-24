@@ -452,6 +452,20 @@
     "nationalGuardActivation": {
       "type": "boolean"
     },
+    "nationalGuard": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "phone": {
+          "$ref": "#/definitions/phone"
+        }
+      }
+    },
     "placeOfSeparation": {
       "type": "string"
     },
