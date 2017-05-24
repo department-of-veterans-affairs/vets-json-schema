@@ -13,6 +13,7 @@ describe('21-527 schema', () => {
   [
     'email',
     'maritalStatus',
+    'gender',
     'bankAccount'
   ].forEach((test) => {
     sharedTests.runTest(test);

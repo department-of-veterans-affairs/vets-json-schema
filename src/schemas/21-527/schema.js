@@ -223,6 +223,7 @@ let schema = {
   ['phone', 'nightPhone'],
   ['phone', 'mobilePhone'],
   ['maritalStatus'],
+  ['gender'],
   // TODO: make sure they allow dates like 2017-01-XX
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
