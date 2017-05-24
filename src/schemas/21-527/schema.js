@@ -122,22 +122,6 @@ let schema = {
         }
       }
     },
-    currentlyEmployed: {
-      type: 'boolean'
-    },
-    lastEmploymentDate: schemaHelpers.getDefinition('date'),
-    selfEmployedBeforeDisability: {
-      type: 'boolean'
-    },
-    selfEmploymentBeforeDisability: {
-      type: 'string'
-    },
-    currentlySelfEmployed: {
-      type: 'boolean'
-    },
-    currentSelfEmployment: {
-      type: 'string'
-    },
     jobs: {
       type: 'array',
       items: {
