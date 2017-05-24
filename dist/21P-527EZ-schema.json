@@ -449,6 +449,12 @@
     "combatSince911": {
       "type": "boolean"
     },
+    "noRapidProcessing": {
+      "type": "boolean"
+    },
+    "noBankAccount": {
+      "type": "boolean"
+    },
     "otherMarriage": {
       "type": "string"
     },

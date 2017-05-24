@@ -105,6 +105,14 @@ let schema = {
     combatSince911: {
       type: 'boolean'
     },
+    // 32. I DO NOT want my claim considered for rapid processing under the FDC Program because I plan to submit further evidence in support of my claim.
+    noRapidProcessing: {
+      type: 'boolean'
+    },
+    // 29. I CERTIFY THAT I DO NOT HAVE AN ACCOUNT WITH A FINANCIAL INSTITUTION OR CERTIFIED PAYMENT AGENT
+    noBankAccount: {
+      type: 'boolean'
+    },
     // 21F. IF YOU INDICATED "OTHER" AS TYPE OF MARRIAGE IN ITEM 21C, PLEASE EXPLAIN:
     otherMarriage: {
       type: 'string'
