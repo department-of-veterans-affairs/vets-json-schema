@@ -95,6 +95,9 @@ let schema = {
     monthlySpousePayment: {
       type: 'integer'
     },
+    serviceBranch: {
+      type: 'string'
+    },
     previousNames: {
       type: 'array',
       items: schemaHelpers.getDefinition('fullName')

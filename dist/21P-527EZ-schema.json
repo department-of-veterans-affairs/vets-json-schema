@@ -437,6 +437,9 @@
     "monthlySpousePayment": {
       "type": "integer"
     },
+    "serviceBranch": {
+      "type": "string"
+    },
     "previousNames": {
       "type": "array",
       "items": {
