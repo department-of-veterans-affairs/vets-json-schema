@@ -205,7 +205,7 @@ let schema = {
           paidTo: {
             type: 'string'
           },
-          disabilityOrRelationship: {
+          relationship: {
             type: 'string'
           }
         }

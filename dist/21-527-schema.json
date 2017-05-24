@@ -563,7 +563,7 @@
           "paidTo": {
             "type": "string"
           },
-          "disabilityOrRelationship": {
+          "relationship": {
             "type": "string"
           },
           "date": {
