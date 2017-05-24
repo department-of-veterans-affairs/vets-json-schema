@@ -34,7 +34,7 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('moneyTransfer', ['recentMoneyTransfer', 'largeMoneyTransfer']);
 
-  schemaTestHelper.testValidAndInvalid('childrenInHousehold', {
+  schemaTestHelper.testValidAndInvalid('children', {
     valid: [[{
       childFullName: fixtures.fullName,
       childDateOfBirth: fixtures.date,
@@ -45,22 +45,42 @@ describe('21-527 schema', () => {
       stepchild: true,
       attendingCollege: true,
       disabled: true,
-      previouslyMarried: true
-    }]],
-    invalid: [[{
-      childFullName: 1
-    }]]
-  });
-
-  schemaTestHelper.testValidAndInvalid('childrenNotInHousehold', {
-    valid: [[{
+      previouslyMarried: true,
       childFullName: fixtures.fullName,
       childAddress: fixtures.address,
       personWhoLivesWithChild: fixtures.fullName,
-      monthlyPayment: 1
+      monthlyPayment: 1,
+      monthlyIncome: {
+        socialSecurity: 1,
+        railroad: 1,
+        blackLunk: 0,
+        serviceRetirement: 0,
+        civilService: 5,
+        ssi: 1,
+        additionalSources: [{
+          name: 'Something',
+          amount: 1
+        }]
+      },
+      netWorth: {
+        bank: 2,
+        ira: 2,
+        stocks: 2,
+        business: 2,
+        realProperty: 123,
+        otherProperty: 12
+      }
     }]],
     invalid: [[{
-      childFullName: 1
+      childFullName: 1,
+      monthlyIncome: {
+        civilService: 'what'
+      },
+      netWorth: {
+        additionalSources: [{
+          name: 1
+        }]
+      }
     }]]
   });
 
@@ -105,9 +125,8 @@ describe('21-527 schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('monthlyIncome',{
-    valid: [[{
+    valid: [{
       relationshipAndChildName: fixtures.relationshipAndChildName,
-      salary: 1,
       socialSecurity: 1,
       civilService: 1,
       railroad: 0,
@@ -115,9 +134,9 @@ describe('21-527 schema', () => {
       blackLung: 0,
       ssi: 1,
       otherIncome: fixtures.otherIncome
-    }]],
+    }],
     invalid: [[{
-      salary: false
+      ssi: false
     }]]
   });
 
@@ -143,25 +162,6 @@ describe('21-527 schema', () => {
     }]],
     invalid: [[{
       amount: false
-    }]]
-  });
-
-  schemaTestHelper.testValidAndInvalid('netWorth', {
-    valid: [[{
-      relationshipAndChildName: fixtures.relationshipAndChildName,
-      netWorthAccounts: {
-        bank: fixtures.netWorthAccount,
-        ira: fixtures.netWorthAccount,
-        stocks: fixtures.netWorthAccount,
-        business: fixtures.netWorthAccount,
-        realProperty: 123,
-        otherProperty: 12
-      }
-    }]],
-    invalid: [[{
-      netWorthAccounts: {
-        realProperty: false
-      }
     }]]
   });
 });

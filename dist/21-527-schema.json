@@ -15,14 +15,86 @@
         }
       }
     },
-    "netWorthAccount": {
+    "netWorth": {
       "type": "object",
       "properties": {
-        "amount": {
+        "bank": {
+          "type": "integer"
+        },
+        "interestBank": {
+          "type": "integer"
+        },
+        "ira": {
+          "type": "integer"
+        },
+        "stocks": {
+          "type": "integer"
+        },
+        "realProperty": {
+          "type": "integer"
+        },
+        "otherProperty": {
+          "type": "integer"
+        },
+        "additionalSources": {
+          "$ref": "#/definitions/additionalSources"
+        }
+      }
+    },
+    "additionalSources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "monthlyIncome": {
+      "type": "object",
+      "properties": {
+        "socialSecurity": {
+          "type": "integer"
+        },
+        "civilService": {
+          "type": "integer"
+        },
+        "railroad": {
+          "type": "integer"
+        },
+        "blackLung": {
+          "type": "integer"
+        },
+        "serviceRetirement": {
+          "type": "integer"
+        },
+        "ssi": {
+          "type": "integer"
+        },
+        "additionalSources": {
+          "$ref": "#/definitions/additionalSources"
+        }
+      }
+    },
+    "expectedIncome": {
+      "type": "object",
+      "properties": {
+        "salary": {
           "type": "integer"
         },
         "interest": {
-          "type": "boolean"
+          "type": "integer"
+        },
+        "other": {
+          "type": "integer"
+        },
+        "additionalSources": {
+          "$ref": "#/definitions/additionalSources"
         }
       }
     },
@@ -332,33 +404,6 @@
         }
       }
     },
-    "relationshipAndChildName": {
-      "type": "object",
-      "properties": {
-        "relationship": {
-          "type": "string",
-          "enum": [
-            "spouse",
-            "child",
-            "self"
-          ]
-        },
-        "childFullName": {
-          "$ref": "#/definitions/fullName"
-        }
-      }
-    },
-    "otherIncome": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "integer"
-        }
-      }
-    },
     "bankAccount": {
       "type": "object",
       "properties": {
@@ -499,13 +544,19 @@
         "college4+"
       ]
     },
-    "childrenNotInHousehold": {
+    "children": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "childFullName": {
             "$ref": "#/definitions/fullName"
+          },
+          "childDateOfBirth": {
+            "$ref": "#/definitions/date"
+          },
+          "childNotInHousehold": {
+            "type": "boolean"
           },
           "childAddress": {
             "$ref": "#/definitions/address"
@@ -515,6 +566,39 @@
           },
           "monthlyPayment": {
             "type": "integer"
+          },
+          "monthlyIncome": {
+            "$ref": "#/definitions/monthlyIncome"
+          },
+          "expectedIncome": {
+            "$ref": "#/definitions/expectedIncome"
+          },
+          "netWorth": {
+            "$ref": "#/definitions/netWorth"
+          },
+          "childPlaceOfBirth": {
+            "type": "string"
+          },
+          "childSocialSecurityNumber": {
+            "$ref": "#/definitions/ssn"
+          },
+          "biological": {
+            "type": "boolean"
+          },
+          "adopted": {
+            "type": "boolean"
+          },
+          "stepchild": {
+            "type": "boolean"
+          },
+          "attendingCollege": {
+            "type": "boolean"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "previouslyMarried": {
+            "type": "boolean"
           }
         }
       }
@@ -550,9 +634,6 @@
           },
           "workersComp": {
             "type": "integer"
-          },
-          "otherIncome": {
-            "$ref": "#/definitions/otherIncome"
           }
         }
       }
@@ -580,118 +661,8 @@
         }
       }
     },
-    "monthlyIncome": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "salary": {
-            "type": "integer"
-          },
-          "socialSecurity": {
-            "type": "integer"
-          },
-          "civilService": {
-            "type": "integer"
-          },
-          "railroad": {
-            "type": "integer"
-          },
-          "military": {
-            "type": "integer"
-          },
-          "blackLung": {
-            "type": "integer"
-          },
-          "ssi": {
-            "type": "integer"
-          },
-          "relationshipAndChildName": {
-            "$ref": "#/definitions/relationshipAndChildName"
-          },
-          "otherIncome": {
-            "$ref": "#/definitions/otherIncome"
-          }
-        }
-      }
-    },
     "remarks": {
       "type": "string"
-    },
-    "netWorth": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "childFullName": {
-            "$ref": "#/definitions/fullName"
-          },
-          "netWorthAccounts": {
-            "type": "object",
-            "properties": {
-              "bank": {
-                "$ref": "#/definitions/netWorthAccount"
-              },
-              "ira": {
-                "$ref": "#/definitions/netWorthAccount"
-              },
-              "stocks": {
-                "$ref": "#/definitions/netWorthAccount"
-              },
-              "business": {
-                "$ref": "#/definitions/netWorthAccount"
-              },
-              "realProperty": {
-                "type": "integer"
-              },
-              "otherProperty": {
-                "type": "integer"
-              }
-            }
-          },
-          "relationshipAndChildName": {
-            "$ref": "#/definitions/relationshipAndChildName"
-          }
-        }
-      }
-    },
-    "childrenInHousehold": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "childFullName": {
-            "$ref": "#/definitions/fullName"
-          },
-          "childDateOfBirth": {
-            "$ref": "#/definitions/date"
-          },
-          "childPlaceOfBirth": {
-            "type": "string"
-          },
-          "childSocialSecurityNumber": {
-            "$ref": "#/definitions/ssn"
-          },
-          "biological": {
-            "type": "boolean"
-          },
-          "adopted": {
-            "type": "boolean"
-          },
-          "stepchild": {
-            "type": "boolean"
-          },
-          "attendingCollege": {
-            "type": "boolean"
-          },
-          "disabled": {
-            "type": "boolean"
-          },
-          "previouslyMarried": {
-            "type": "boolean"
-          }
-        }
-      }
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
@@ -747,8 +718,23 @@
     "spouseMarriages": {
       "$ref": "#/definitions/marriages"
     },
-    "annualIncome,relationshipAndChildName": {
-      "$ref": "#/definitions/relationshipAndChildName"
+    "netWorth": {
+      "$ref": "#/definitions/netWorth"
+    },
+    "monthlyIncome": {
+      "$ref": "#/definitions/monthlyIncome"
+    },
+    "expectedIncome": {
+      "$ref": "#/definitions/expectedIncome"
+    },
+    "spouseNetWorth": {
+      "$ref": "#/definitions/netWorth"
+    },
+    "spouseMonthlyIncome": {
+      "$ref": "#/definitions/monthlyIncome"
+    },
+    "spouseExpectedIncome": {
+      "$ref": "#/definitions/expectedIncome"
     },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
