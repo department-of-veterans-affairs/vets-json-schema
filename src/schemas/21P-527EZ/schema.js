@@ -117,6 +117,14 @@ let schema = {
         phone: schemaHelpers.getDefinition('phone')
       }
     },
+    // 16A-C. DID YOU RECEIVE ANY TYPE OF SEPARATION/SEVERANCE RETIRED PAY?
+    severancePay: {
+      type: 'object',
+      properties: {
+        amount: { type: 'integer' },
+        type: { type: 'string' }
+      }
+    },
     placeOfSeparation: {
       type: 'string'
     },

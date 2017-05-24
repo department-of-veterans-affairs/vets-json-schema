@@ -466,6 +466,17 @@
         }
       }
     },
+    "severancePay": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
     "placeOfSeparation": {
       "type": "string"
     },
