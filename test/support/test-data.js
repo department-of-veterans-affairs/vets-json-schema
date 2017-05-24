@@ -231,18 +231,6 @@ export default {
       invalid: ['foo']
     }
   },
-  moneyTransfer: {
-    data: {
-      valid: [{
-        yes: true,
-        date: fixtures.date,
-        amount: 123
-      }],
-      invalid: [{
-        yes: 1
-      }]
-    }
-  },
   relationshipAndChildName: {
     data: {
       valid: [fixtures.relationshipAndChildName],

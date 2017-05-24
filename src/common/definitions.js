@@ -293,19 +293,6 @@ const netWorthAccount = {
   }
 };
 
-const moneyTransfer = {
-  type: 'object',
-  properties: {
-    yes: {
-      type: 'boolean'
-    },
-    date: schemaHelpers.getDefinition('date'),
-    amount: {
-      type: 'integer'
-    }
-  }
-};
-
 const toursOfDuty = {
   type: 'array',
   items: {
@@ -439,7 +426,6 @@ export default {
   bankAccountChange,
   maritalStatus,
   netWorthAccount,
-  moneyTransfer,
   relationshipAndChildName,
   marriages
 };

@@ -393,20 +393,6 @@
         }
       }
     },
-    "moneyTransfer": {
-      "type": "object",
-      "properties": {
-        "yes": {
-          "type": "boolean"
-        },
-        "date": {
-          "$ref": "#/definitions/date"
-        },
-        "amount": {
-          "type": "integer"
-        }
-      }
-    },
     "bankAccount": {
       "type": "object",
       "properties": {
@@ -638,12 +624,6 @@
     },
     "marriages": {
       "$ref": "#/definitions/marriages"
-    },
-    "recentMoneyTransfer": {
-      "$ref": "#/definitions/moneyTransfer"
-    },
-    "largeMoneyTransfer": {
-      "$ref": "#/definitions/moneyTransfer"
     },
     "spouseMarriages": {
       "$ref": "#/definitions/marriages"

@@ -243,8 +243,6 @@ let schema = {
   ['vaFileNumber', 'spouseVaFileNumber'],
   ['address', 'spouseAddress'],
   ['marriages'],
-  ['moneyTransfer', 'recentMoneyTransfer'],
-  ['moneyTransfer', 'largeMoneyTransfer'],
   ['marriages', 'spouseMarriages'],
   ['date', 'otherExpenses.date'],
   ['netWorth'],
