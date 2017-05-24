@@ -224,6 +224,7 @@ let schema = {
   ['phone', 'mobilePhone'],
   ['maritalStatus'],
   // TODO: make sure they allow dates like 2017-01-XX
+  ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],

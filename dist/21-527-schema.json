@@ -596,6 +596,9 @@
     "maritalStatus": {
       "$ref": "#/definitions/maritalStatus"
     },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
     "spouseDateOfBirth": {
       "$ref": "#/definitions/date"
     },
