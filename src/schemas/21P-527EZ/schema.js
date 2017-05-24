@@ -102,6 +102,9 @@ let schema = {
       type: 'array',
       items: schemaHelpers.getDefinition('fullName')
     },
+    combatSince911: {
+      type: 'boolean'
+    },
     disabilities: {
       type: 'array',
       items: {

@@ -446,6 +446,9 @@
         "$ref": "#/definitions/fullName"
       }
     },
+    "combatSince911": {
+      "type": "boolean"
+    },
     "disabilities": {
       "type": "array",
       "items": {
