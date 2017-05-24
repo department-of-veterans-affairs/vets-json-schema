@@ -4,7 +4,7 @@ import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
 
-const schema = schemas['21-527'];
+const schema = schemas['21P-527EZ'];
 
 let schemaTestHelper = new SchemaTestHelper(schema);
 let sharedTests = new SharedTests(schemaTestHelper);

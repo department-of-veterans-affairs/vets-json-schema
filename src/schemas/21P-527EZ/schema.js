@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'INCOME, NET WORTH, AND EMPLOYMENT STATEMENT',
+  title: 'APPLICATION FOR PENSION',
   type: 'object',
   additionalProperties: false,
   definitions: _.merge(_.pick(definitions,
