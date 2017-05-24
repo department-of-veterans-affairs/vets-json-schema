@@ -95,6 +95,10 @@ let schema = {
     monthlySpousePayment: {
       type: 'integer'
     },
+    previousNames: {
+      type: 'array',
+      items: schemaHelpers.getDefinition('fullName')
+    },
     disabilities: {
       type: 'array',
       items: {

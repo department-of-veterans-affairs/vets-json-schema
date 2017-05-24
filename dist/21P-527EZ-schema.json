@@ -437,6 +437,12 @@
     "monthlySpousePayment": {
       "type": "integer"
     },
+    "previousNames": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fullName"
+      }
+    },
     "disabilities": {
       "type": "array",
       "items": {

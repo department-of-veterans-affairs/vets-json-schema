@@ -84,6 +84,11 @@ describe('21-527 schema', () => {
     }]]
   });
 
+  schemaTestHelper.testValidAndInvalid('previousNames', {
+    valid: [[fixtures.fullName, fixtures.fullName]],
+    invalid: [[false]]
+  });
+
   schemaTestHelper.testValidAndInvalid('disabilities', {
     valid: [[{
       name: 'polio',
