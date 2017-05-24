@@ -641,6 +641,9 @@
     "activeServiceDateRange": {
       "$ref": "#/definitions/dateRange"
     },
+    "powDateRange": {
+      "$ref": "#/definitions/dateRange"
+    },
     "activationDate": {
       "$ref": "#/definitions/date"
     },

@@ -27,7 +27,7 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('date', ['spouseDateOfBirth', 'veteranDateOfBirth', 'activationDate']);
 
-  sharedTests.runTest('dateRange', ['activeServiceDateRange']);
+  sharedTests.runTest('dateRange', ['activeServiceDateRange', 'powDateRange']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
 
