@@ -600,9 +600,6 @@
         }
       }
     },
-    "remarks": {
-      "type": "string"
-    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },

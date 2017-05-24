@@ -224,9 +224,6 @@ let schema = {
           }
         }
       }
-    },
-    remarks: {
-      type: 'string'
     }
   }
 };
