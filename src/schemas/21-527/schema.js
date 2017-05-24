@@ -191,20 +191,6 @@ let schema = {
         }
       }
     },
-    annualIncome: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          interest: {
-            type: 'integer'
-          },
-          workersComp: {
-            type: 'integer'
-          }
-        }
-      }
-    },
     otherExpenses: {
       type: 'array',
       items: {
