@@ -15,6 +15,10 @@
         }
       }
     },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
     "netWorth": {
       "type": "object",
       "properties": {
@@ -346,10 +350,6 @@
         }
       }
     },
-    "phone": {
-      "type": "string",
-      "minLength": 10
-    },
     "maritalStatus": {
       "type": "string",
       "enum": [
@@ -471,7 +471,7 @@
           "$ref": "#/definitions/address"
         },
         "phone": {
-          "$ref": "#/definitions/phone"
+          "$ref": "#/definitions/usaPhone"
         }
       }
     },
@@ -647,13 +647,13 @@
       "$ref": "#/definitions/address"
     },
     "dayPhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "nightPhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "mobilePhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "maritalStatus": {
       "$ref": "#/definitions/maritalStatus"
