@@ -10,6 +10,10 @@ let schema = {
   definitions: _.merge(_.pick(definitions,
     'dateRange'
   ), {
+    usaPhone: {
+      type: 'string',
+      pattern: '^\\d{10}$'
+    },
     netWorth: {
       type: 'object',
       properties: {
@@ -126,7 +130,7 @@ let schema = {
       properties: {
         name: { type: 'string' },
         address: schemaHelpers.getDefinition('address'),
-        phone: schemaHelpers.getDefinition('phone')
+        phone: schemaHelpers.getDefinition('usaPhone')
       }
     },
     // 16A-C. DID YOU RECEIVE ANY TYPE OF SEPARATION/SEVERANCE RETIRED PAY?
@@ -264,9 +268,9 @@ let schema = {
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
   ['address', 'veteranAddress'],
-  ['phone', 'dayPhone'],
-  ['phone', 'nightPhone'],
-  ['phone', 'mobilePhone'],
+  ['usaPhone', 'dayPhone'],
+  ['usaPhone', 'nightPhone'],
+  ['usaPhone', 'mobilePhone'],
   ['maritalStatus'],
   ['gender'],
   // TODO: make sure they allow dates like 2017-01-XX

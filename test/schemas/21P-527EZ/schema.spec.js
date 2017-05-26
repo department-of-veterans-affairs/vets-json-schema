@@ -23,8 +23,6 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
-  sharedTests.runTest('phone', ['dayPhone', 'nightPhone', 'mobilePhone']);
-
   sharedTests.runTest('date', ['spouseDateOfBirth', 'veteranDateOfBirth', 'activationDate']);
 
   sharedTests.runTest('dateRange', ['activeServiceDateRange', 'powDateRange']);
@@ -84,6 +82,13 @@ describe('21-527 schema', () => {
         }]
       }
     }]]
+  });
+
+  ['dayPhone', 'nightPhone', 'mobilePhone', 'nationalGuard.phone'].forEach(attr => {
+    schemaTestHelper.testValidAndInvalid(attr, {
+      valid: ['0123456789'],
+      invalid: ['012345678x', '01234567899', '012345678']
+    });
   });
 
   schemaTestHelper.testValidAndInvalid('previousNames', {
@@ -146,7 +151,7 @@ describe('21-527 schema', () => {
     valid: [{
       name: 'unit 123',
       address: fixtures.address,
-      phone: fixtures.phone
+      phone: '0123456789'
     }],
     invalid: [[{
       name: false
