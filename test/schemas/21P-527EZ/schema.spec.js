@@ -103,12 +103,12 @@ describe('21-527 schema', () => {
 
   schemaTestHelper.testValidAndInvalid('vaHospitalTreatments', {
     valid: [[{
-      dateRange: fixtures.dateRange,
+      dates: [fixtures.date, fixtures.date],
       facilityName: 'foo hospital',
       location: 'atlanta'
     }]],
     invalid: [[{
-      dateRange: false
+      dates: false
     }]]
   });
 
