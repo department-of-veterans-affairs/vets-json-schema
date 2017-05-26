@@ -135,6 +135,14 @@ export default {
       }]
     }
   },
+  dateRange: {
+    data: {
+      valid: [fixtures.dateRange],
+      invalid: [{
+        from: false
+      }]
+    }
+  },
   postHighSchoolTrainings: {
     data: {
       valid: [[{
@@ -231,18 +239,6 @@ export default {
       invalid: ['foo']
     }
   },
-  moneyTransfer: {
-    data: {
-      valid: [{
-        yes: true,
-        date: fixtures.date,
-        amount: 123
-      }],
-      invalid: [{
-        yes: 1
-      }]
-    }
-  },
   relationshipAndChildName: {
     data: {
       valid: [fixtures.relationshipAndChildName],
@@ -256,6 +252,7 @@ export default {
       valid: [[{
         dateOfMarriage: fixtures.date,
         locationOfMarriage: 'ny, ny',
+        marriageType: 'common law',
         spouseFullName: fixtures.fullName,
         dateOfSeparation: fixtures.date,
         locationOfSeparation: 'ny, ny',

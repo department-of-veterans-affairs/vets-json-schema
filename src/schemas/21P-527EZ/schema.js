@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'INCOME, NET WORTH, AND EMPLOYMENT STATEMENT',
+  title: 'APPLICATION FOR PENSION',
   type: 'object',
   additionalProperties: false,
   definitions: _.merge(_.pick(definitions,
@@ -83,9 +83,6 @@ let schema = {
       type: 'string',
       format: 'email'
     },
-    locationOfMarriage: {
-      type: 'string'
-    },
     spouseIsVeteran: {
       type: 'boolean'
     },
@@ -97,6 +94,51 @@ let schema = {
     },
     monthlySpousePayment: {
       type: 'integer'
+    },
+    serviceBranch: {
+      type: 'string'
+    },
+    previousNames: {
+      type: 'array',
+      items: schemaHelpers.getDefinition('fullName')
+    },
+    combatSince911: {
+      type: 'boolean'
+    },
+    // 32. I DO NOT want my claim considered for rapid processing under the FDC Program because I plan to submit further evidence in support of my claim.
+    noRapidProcessing: {
+      type: 'boolean'
+    },
+    // 29. I CERTIFY THAT I DO NOT HAVE AN ACCOUNT WITH A FINANCIAL INSTITUTION OR CERTIFIED PAYMENT AGENT
+    noBankAccount: {
+      type: 'boolean'
+    },
+    // 21F. IF YOU INDICATED "OTHER" AS TYPE OF MARRIAGE IN ITEM 21C, PLEASE EXPLAIN:
+    otherMarriage: {
+      type: 'string'
+    },
+    // 13A. ARE YOU CURRENTLY ACTIVATED TO FEDERAL ACTIVE DUTY UNDER THE AUTHORITY OF TITLE 10, U.S.C. (National Guard)?
+    nationalGuardActivation: {
+      type: 'boolean'
+    },
+    nationalGuard: {
+      type: 'object',
+      properties: {
+        name: { type: 'string' },
+        address: schemaHelpers.getDefinition('address'),
+        phone: schemaHelpers.getDefinition('phone')
+      }
+    },
+    // 16A-C. DID YOU RECEIVE ANY TYPE OF SEPARATION/SEVERANCE RETIRED PAY?
+    severancePay: {
+      type: 'object',
+      properties: {
+        amount: { type: 'integer' },
+        type: { type: 'string' }
+      }
+    },
+    placeOfSeparation: {
+      type: 'string'
     },
     disabilities: {
       type: 'array',
@@ -110,37 +152,20 @@ let schema = {
         }
       }
     },
-    disabilityPension: {
-      type: 'boolean'
-    },
-    hospitalizations: {
+    vaHospitalTreatments: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
           dateRange: schemaHelpers.getDefinition('dateRange'),
-          facilityName: {
+          name: {
             type: 'string'
           },
-          address: schemaHelpers.getDefinition('address')
+          location: {
+            type: 'string'
+          }
         }
       }
-    },
-    currentlyEmployed: {
-      type: 'boolean'
-    },
-    lastEmploymentDate: schemaHelpers.getDefinition('date'),
-    selfEmployedBeforeDisability: {
-      type: 'boolean'
-    },
-    selfEmploymentBeforeDisability: {
-      type: 'string'
-    },
-    currentlySelfEmployed: {
-      type: 'boolean'
-    },
-    currentSelfEmployment: {
-      type: 'string'
     },
     jobs: {
       type: 'array',
@@ -164,9 +189,6 @@ let schema = {
           }
         }
       }
-    },
-    highestEducationLevel: {
-      type: 'string'
     },
     children: {
       type: 'array',
@@ -205,42 +227,12 @@ let schema = {
           disabled: {
             type: 'boolean'
           },
+          married: {
+            type: 'boolean'
+          },
           previouslyMarried: {
             type: 'boolean'
           },
-        }
-      }
-    },
-    otherExperience: {
-      type: 'string'
-    },
-    inNursingHome: {
-      type: 'boolean'
-    },
-    nursingHome: {
-      type: 'string'
-    },
-    nursingHomeAddress: schemaHelpers.getDefinition('address'),
-    medicaidCoversNursingHome: {
-      type: 'boolean'
-    },
-    appliedForMedicaid: {
-      type: 'boolean'
-    },
-    disabilityBenefits: {
-      type: 'boolean'
-    },
-    annualIncome: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          interest: {
-            type: 'integer'
-          },
-          workersComp: {
-            type: 'integer'
-          }
         }
       }
     },
@@ -258,14 +250,11 @@ let schema = {
           paidTo: {
             type: 'string'
           },
-          disabilityOrRelationship: {
+          relationship: {
             type: 'string'
           }
         }
       }
-    },
-    remarks: {
-      type: 'string'
     }
   }
 };
@@ -279,16 +268,17 @@ let schema = {
   ['phone', 'nightPhone'],
   ['phone', 'mobilePhone'],
   ['maritalStatus'],
+  ['gender'],
   // TODO: make sure they allow dates like 2017-01-XX
-  ['date', 'dateOfMarriage'],
-  ['fullName', 'spouseFullName'],
+  ['dateRange', 'activeServiceDateRange'],
+  ['dateRange', 'powDateRange'],
+  ['date', 'activationDate'],
+  ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],
   ['address', 'spouseAddress'],
   ['marriages'],
-  ['moneyTransfer', 'recentMoneyTransfer'],
-  ['moneyTransfer', 'largeMoneyTransfer'],
   ['marriages', 'spouseMarriages'],
   ['date', 'otherExpenses.date'],
   ['netWorth'],
@@ -301,21 +291,5 @@ let schema = {
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
-
-(() => {
-  let highestEducationLevelEnum = [];
-
-  _.times(12, (i) => {
-    highestEducationLevelEnum.push(`grade${i + 1}`);
-  });
-
-  _.times(4, (i) => {
-    highestEducationLevelEnum.push(`college${i + 1}`);
-  });
-
-  highestEducationLevelEnum.push('college4+');
-
-  schema.properties.highestEducationLevel.enum = highestEducationLevelEnum;
-})();
 
 export default schema;

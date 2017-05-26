@@ -588,20 +588,6 @@
       }
     }
   },
-  "moneyTransfer": {
-    "type": "object",
-    "properties": {
-      "yes": {
-        "type": "boolean"
-      },
-      "date": {
-        "$ref": "#/definitions/date"
-      },
-      "amount": {
-        "type": "integer"
-      }
-    }
-  },
   "relationshipAndChildName": {
     "type": "object",
     "properties": {
@@ -627,6 +613,9 @@
           "$ref": "#/definitions/date"
         },
         "locationOfMarriage": {
+          "type": "string"
+        },
+        "marriageType": {
           "type": "string"
         },
         "spouseFullName": {

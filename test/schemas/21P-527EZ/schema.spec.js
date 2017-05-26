@@ -4,7 +4,7 @@ import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
 
-const schema = schemas['21-527'];
+const schema = schemas['21P-527EZ'];
 
 let schemaTestHelper = new SchemaTestHelper(schema);
 let sharedTests = new SharedTests(schemaTestHelper);
@@ -13,26 +13,27 @@ describe('21-527 schema', () => {
   [
     'email',
     'maritalStatus',
+    'gender',
     'bankAccount'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
 
-  sharedTests.runTest('fullName', ['veteranFullName', 'spouseFullName']);
+  sharedTests.runTest('fullName', ['veteranFullName']);
 
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
   sharedTests.runTest('phone', ['dayPhone', 'nightPhone', 'mobilePhone']);
 
-  sharedTests.runTest('date', ['dateOfMarriage', 'spouseDateOfBirth']);
+  sharedTests.runTest('date', ['spouseDateOfBirth', 'veteranDateOfBirth', 'activationDate']);
+
+  sharedTests.runTest('dateRange', ['activeServiceDateRange', 'powDateRange']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
 
   sharedTests.runTest('address', ['veteranAddress', 'spouseAddress']);
 
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
-
-  sharedTests.runTest('moneyTransfer', ['recentMoneyTransfer', 'largeMoneyTransfer']);
 
   schemaTestHelper.testValidAndInvalid('children', {
     valid: [[{
@@ -45,6 +46,7 @@ describe('21-527 schema', () => {
       stepchild: true,
       attendingCollege: true,
       disabled: true,
+      married: true,
       previouslyMarried: true,
       childFullName: fixtures.fullName,
       childAddress: fixtures.address,
@@ -84,6 +86,11 @@ describe('21-527 schema', () => {
     }]]
   });
 
+  schemaTestHelper.testValidAndInvalid('previousNames', {
+    valid: [[fixtures.fullName, fixtures.fullName]],
+    invalid: [[false]]
+  });
+
   schemaTestHelper.testValidAndInvalid('disabilities', {
     valid: [[{
       name: 'polio',
@@ -94,11 +101,11 @@ describe('21-527 schema', () => {
     }]]
   });
 
-  schemaTestHelper.testValidAndInvalid('hospitalizations', {
+  schemaTestHelper.testValidAndInvalid('vaHospitalTreatments', {
     valid: [[{
       dateRange: fixtures.dateRange,
       facilityName: 'foo hospital',
-      address: fixtures.address
+      location: 'atlanta'
     }]],
     invalid: [[{
       dateRange: false
@@ -119,11 +126,6 @@ describe('21-527 schema', () => {
     }]]
   });
 
-  schemaTestHelper.testValidAndInvalid('highestEducationLevel', {
-    valid: ['grade1', 'grade12', 'college1', 'college4', 'college4+'],
-    invalid: ['grade0', 'grade13', 'college0', 'college5']
-  });
-
   schemaTestHelper.testValidAndInvalid('monthlyIncome',{
     valid: [{
       relationshipAndChildName: fixtures.relationshipAndChildName,
@@ -140,15 +142,24 @@ describe('21-527 schema', () => {
     }]]
   });
 
-  schemaTestHelper.testValidAndInvalid('annualIncome', {
-    valid: [[{
-      relationshipAndChildName: fixtures.relationshipAndChildName,
-      otherIncome: fixtures.otherIncome,
-      interest: 1,
-      workersComp: 2
-    }]],
+  schemaTestHelper.testValidAndInvalid('nationalGuard',{
+    valid: [{
+      name: 'unit 123',
+      address: fixtures.address,
+      phone: fixtures.phone
+    }],
     invalid: [[{
-      interest: false
+      name: false
+    }]]
+  });
+
+  schemaTestHelper.testValidAndInvalid('severancePay',{
+    valid: [{
+      amount: 123,
+      type: 'cash'
+    }],
+    invalid: [[{
+      amount: false
     }]]
   });
 

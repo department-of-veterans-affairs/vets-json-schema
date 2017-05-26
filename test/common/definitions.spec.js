@@ -249,7 +249,6 @@ describe('schema definitions', () => {
     'currentlyActiveDuty',
     'bankAccountChange',
     'maritalStatus',
-    'moneyTransfer',
     'relationshipAndChildName',
     'marriages'
   ].forEach((definition) => {
