@@ -157,7 +157,10 @@ let schema = {
       items: {
         type: 'object',
         properties: {
-          dateRange: schemaHelpers.getDefinition('dateRange'),
+          dates: {
+            type: 'array',
+            items: schemaHelpers.getDefinition('date')
+          },
           name: {
             type: 'string'
           },
