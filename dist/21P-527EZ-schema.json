@@ -508,8 +508,11 @@
       "items": {
         "type": "object",
         "properties": {
-          "dateRange": {
-            "$ref": "#/definitions/dateRange"
+          "dates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/date"
+            }
           },
           "name": {
             "type": "string"
