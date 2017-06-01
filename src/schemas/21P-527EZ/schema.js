@@ -75,6 +75,10 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    altEmail: {
+      type: 'string',
+      format: 'email'
+    },
     spouseIsVeteran: {
       type: 'boolean'
     },
