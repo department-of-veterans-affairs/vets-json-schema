@@ -19,10 +19,6 @@ let schema = {
       type: 'string',
       pattern: '^\\d{10}$'
     },
-    financialNumber: {
-      type: 'integer',
-      default: 0
-    },
     netWorth: {
       type: 'object',
       properties: {
