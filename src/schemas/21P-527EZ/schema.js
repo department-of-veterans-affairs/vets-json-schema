@@ -2,6 +2,11 @@ import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
 
+const financialNumber = {
+  type: 'integer',
+  default: 0
+};
+
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR PENSION',
@@ -17,12 +22,12 @@ let schema = {
     netWorth: {
       type: 'object',
       properties: {
-        bank: { type: 'integer' },
-        interestBank: { type: 'integer' },
-        ira: { type: 'integer' },
-        stocks: { type: 'integer' },
-        realProperty: { type: 'integer' },
-        otherProperty: { type: 'integer' },
+        bank: financialNumber,
+        interestBank: financialNumber,
+        ira: financialNumber,
+        stocks: financialNumber,
+        realProperty: financialNumber,
+        otherProperty: financialNumber,
         additionalSources: { $ref: '#/definitions/additionalSources' }
       }
     },
@@ -30,6 +35,7 @@ let schema = {
       type: 'array',
       items: {
         type: 'object',
+        required: ['name'],
         properties: {
           name: {
             type: 'string'
@@ -43,39 +49,21 @@ let schema = {
     monthlyIncome: {
       type: 'object',
       properties: {
-        socialSecurity: {
-          type: 'integer'
-        },
-        civilService: {
-          type: 'integer'
-        },
-        railroad: {
-          type: 'integer'
-        },
-        blackLung: {
-          type: 'integer'
-        },
-        serviceRetirement: {
-          type: 'integer'
-        },
-        ssi: {
-          type: 'integer'
-        },
+        socialSecurity: financialNumber,
+        civilService: financialNumber,
+        railroad: financialNumber,
+        blackLung: financialNumber,
+        serviceRetirement: financialNumber,
+        ssi: financialNumber,
         additionalSources: { $ref: '#/definitions/additionalSources' }
       }
     },
     expectedIncome: {
       type: 'object',
       properties: {
-        salary: {
-          type: 'integer'
-        },
-        interest: {
-          type: 'integer'
-        },
-        other: {
-          type: 'integer'
-        },
+        salary: financialNumber,
+        interest: financialNumber,
+        other: financialNumber,
         additionalSources: {
           $ref: '#/definitions/additionalSources'
         }
@@ -84,6 +72,10 @@ let schema = {
   }),
   properties: {
     email: {
+      type: 'string',
+      format: 'email'
+    },
+    altEmail: {
       type: 'string',
       format: 'email'
     },

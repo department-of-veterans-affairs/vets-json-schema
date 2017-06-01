@@ -11,13 +11,14 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-527 schema', () => {
   [
-    'email',
     'maritalStatus',
     'gender',
     'bankAccount'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
+
+  sharedTests.runTest('email', ['email', 'altEmail']);
 
   sharedTests.runTest('fullName', ['veteranFullName']);
 
@@ -81,7 +82,12 @@ describe('21-527 schema', () => {
           name: 1
         }]
       }
-    }]]
+    }],
+      [{
+        netWorth: {
+          additionalSources: [{}]
+        }
+      }]]
   });
 
   ['dayPhone', 'nightPhone', 'mobilePhone', 'nationalGuard.phone'].forEach(attr => {
