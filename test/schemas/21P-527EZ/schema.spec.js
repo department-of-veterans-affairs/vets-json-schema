@@ -81,7 +81,12 @@ describe('21-527 schema', () => {
           name: 1
         }]
       }
-    }]]
+    }],
+      [{
+        netWorth: {
+          additionalSources: [{}]
+        }
+      }]]
   });
 
   ['dayPhone', 'nightPhone', 'mobilePhone', 'nationalGuard.phone'].forEach(attr => {
