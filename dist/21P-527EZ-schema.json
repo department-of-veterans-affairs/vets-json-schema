@@ -494,6 +494,9 @@
         },
         "phone": {
           "$ref": "#/definitions/usaPhone"
+        },
+        "date": {
+          "$ref": "#/definitions/date"
         }
       }
     },
@@ -688,9 +691,6 @@
     },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
-    },
-    "activationDate": {
-      "$ref": "#/definitions/date"
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"

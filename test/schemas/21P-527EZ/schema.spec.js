@@ -24,7 +24,7 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
-  sharedTests.runTest('date', ['spouseDateOfBirth', 'veteranDateOfBirth', 'activationDate']);
+  sharedTests.runTest('date', ['spouseDateOfBirth', 'veteranDateOfBirth', 'nationalGuard.date']);
 
   sharedTests.runTest('dateRange', ['activeServiceDateRange', 'powDateRange']);
 
@@ -157,7 +157,8 @@ describe('21-527 schema', () => {
     valid: [{
       name: 'unit 123',
       address: fixtures.address,
-      phone: '0123456789'
+      phone: '0123456789',
+      date: fixtures.date
     }],
     invalid: [[{
       name: false
