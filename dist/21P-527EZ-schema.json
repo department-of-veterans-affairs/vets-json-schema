@@ -472,6 +472,9 @@
         },
         "phone": {
           "$ref": "#/definitions/usaPhone"
+        },
+        "date": {
+          "$ref": "#/definitions/date"
         }
       }
     },

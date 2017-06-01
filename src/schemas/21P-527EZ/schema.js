@@ -130,7 +130,8 @@ let schema = {
       properties: {
         name: { type: 'string' },
         address: schemaHelpers.getDefinition('address'),
-        phone: schemaHelpers.getDefinition('usaPhone')
+        phone: schemaHelpers.getDefinition('usaPhone'),
+        date: schemaHelpers.getDefinition('date')
       }
     },
     // 16A-C. DID YOU RECEIVE ANY TYPE OF SEPARATION/SEVERANCE RETIRED PAY?
