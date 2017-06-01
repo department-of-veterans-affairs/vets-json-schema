@@ -670,9 +670,6 @@
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
     },
-    "activationDate": {
-      "$ref": "#/definitions/date"
-    },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
     },

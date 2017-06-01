@@ -280,7 +280,6 @@ let schema = {
   // TODO: make sure they allow dates like 2017-01-XX
   ['dateRange', 'activeServiceDateRange'],
   ['dateRange', 'powDateRange'],
-  ['date', 'activationDate'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
   ['ssn', 'spouseSocialSecurityNumber'],
