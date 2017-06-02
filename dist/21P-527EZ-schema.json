@@ -23,22 +23,28 @@
       "type": "object",
       "properties": {
         "bank": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "interestBank": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "ira": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "stocks": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "realProperty": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "otherProperty": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "additionalSources": {
           "$ref": "#/definitions/additionalSources"
@@ -49,6 +55,9 @@
       "type": "array",
       "items": {
         "type": "object",
+        "required": [
+          "name"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -63,22 +72,28 @@
       "type": "object",
       "properties": {
         "socialSecurity": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "civilService": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "railroad": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "blackLung": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "serviceRetirement": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "ssi": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "additionalSources": {
           "$ref": "#/definitions/additionalSources"
@@ -89,13 +104,16 @@
       "type": "object",
       "properties": {
         "salary": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "interest": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "other": {
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "additionalSources": {
           "$ref": "#/definitions/additionalSources"
@@ -425,6 +443,10 @@
       "type": "string",
       "format": "email"
     },
+    "altEmail": {
+      "type": "string",
+      "format": "email"
+    },
     "spouseIsVeteran": {
       "type": "boolean"
     },
@@ -472,6 +494,9 @@
         },
         "phone": {
           "$ref": "#/definitions/usaPhone"
+        },
+        "date": {
+          "$ref": "#/definitions/date"
         }
       }
     },
@@ -663,9 +688,6 @@
     },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
-    },
-    "activationDate": {
-      "$ref": "#/definitions/date"
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
