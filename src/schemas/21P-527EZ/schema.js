@@ -130,8 +130,7 @@ let schema = {
     severancePay: {
       type: 'object',
       properties: {
-        amount: { type: 'integer' },
-        type: { type: 'string' }
+        amount: { type: 'integer' }
       }
     },
     placeOfSeparation: {

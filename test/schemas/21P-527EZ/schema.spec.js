@@ -167,8 +167,7 @@ describe('21-527 schema', () => {
 
   schemaTestHelper.testValidAndInvalid('severancePay',{
     valid: [{
-      amount: 123,
-      type: 'cash'
+      amount: 123
     }],
     invalid: [[{
       amount: false
