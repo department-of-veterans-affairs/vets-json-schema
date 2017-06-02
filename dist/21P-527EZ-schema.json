@@ -480,9 +480,6 @@
       "properties": {
         "amount": {
           "type": "integer"
-        },
-        "type": {
-          "type": "string"
         }
       }
     },
