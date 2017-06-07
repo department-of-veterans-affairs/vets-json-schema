@@ -507,7 +507,14 @@
           "type": "integer"
         },
         "type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "Longevity",
+            "PDRL",
+            "Separation",
+            "Severance",
+            "TDRL"
+          ]
         }
       }
     },
