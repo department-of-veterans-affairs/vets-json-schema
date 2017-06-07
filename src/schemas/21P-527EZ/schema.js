@@ -131,7 +131,16 @@ let schema = {
       type: 'object',
       properties: {
         amount: { type: 'integer' },
-        type: { type: 'string' }
+        type: {
+          type: 'string',
+          enum: [
+            'Longevity',
+            'PDRL',
+            'Separation',
+            'Severance',
+            'TDRL'
+          ]
+        }
       }
     },
     placeOfSeparation: {
