@@ -480,6 +480,9 @@
     "otherMarriage": {
       "type": "string"
     },
+    "spouseOtherMarriage": {
+      "type": "string"
+    },
     "nationalGuardActivation": {
       "type": "boolean"
     },
