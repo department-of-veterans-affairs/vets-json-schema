@@ -250,6 +250,7 @@ export default {
   marriages: {
     data: {
       valid: [[{
+        otherExplanation: 'explanation',
         dateOfMarriage: fixtures.date,
         locationOfMarriage: 'ny, ny',
         marriageType: 'common law',

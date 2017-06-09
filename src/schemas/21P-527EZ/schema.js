@@ -109,10 +109,6 @@ let schema = {
     noBankAccount: {
       type: 'boolean'
     },
-    // 21F. IF YOU INDICATED "OTHER" AS TYPE OF MARRIAGE IN ITEM 21C, PLEASE EXPLAIN:
-    otherMarriage: {
-      type: 'string'
-    },
     // 13A. ARE YOU CURRENTLY ACTIVATED TO FEDERAL ACTIVE DUTY UNDER THE AUTHORITY OF TITLE 10, U.S.C. (National Guard)?
     nationalGuardActivation: {
       type: 'boolean'
