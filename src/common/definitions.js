@@ -381,6 +381,9 @@ const marriages = {
       locationOfMarriage: {
         type: 'string'
       },
+      otherExplanation: {
+        type: 'string'
+      },
       marriageType: {
         type: 'string'
       },

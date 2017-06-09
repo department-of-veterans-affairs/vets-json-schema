@@ -400,6 +400,9 @@
           "locationOfMarriage": {
             "type": "string"
           },
+          "otherExplanation": {
+            "type": "string"
+          },
           "marriageType": {
             "type": "string"
           },
@@ -476,12 +479,6 @@
     },
     "noBankAccount": {
       "type": "boolean"
-    },
-    "otherMarriage": {
-      "type": "string"
-    },
-    "spouseOtherMarriage": {
-      "type": "string"
     },
     "nationalGuardActivation": {
       "type": "boolean"
