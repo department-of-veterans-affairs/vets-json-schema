@@ -21,8 +21,6 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('email', ['claimantEmail']);
 
-  sharedTests.runTest('phone', ['claimantPhone']);
-
   schemaTestHelper.testValidAndInvalid('relationship', {
     valid: [{
       type: 'spouse'

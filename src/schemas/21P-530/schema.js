@@ -8,10 +8,10 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    phone: {
+    usaPhone: {
       type: 'string',
-      pattern: '^[0-9]{10}$'
-    },
+      pattern: '^\\d{10}$'
+    }
   },
   properties: {
     relationship: {
@@ -50,7 +50,7 @@ let schema = {
       type: 'string',
       format: 'email'
     },
-    claimantPhone: schemaHelpers.getDefinition('phone'),
+    claimantPhone: schemaHelpers.getDefinition('usaPhone'),
   }
 };
 
@@ -62,7 +62,7 @@ let schema = {
   ['vaFileNumber'],
   ['date', 'burialDate'],
   ['date', 'deathDate'],
-  ['phone'],
+  ['usaPhone'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
