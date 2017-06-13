@@ -321,6 +321,9 @@
     "deathDate": {
       "$ref": "#/definitions/date"
     },
+    "address": {
+      "$ref": "#/definitions/address"
+    },
     "email": {
       "type": "string",
       "format": "email"
