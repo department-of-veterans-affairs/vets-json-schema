@@ -45,6 +45,7 @@ let schema = {
         }
       }
     },
+    address: schemaHelpers.getDefinition('address'),
     email: {
       type: 'string',
       format: 'email'
