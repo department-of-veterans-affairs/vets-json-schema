@@ -49,9 +49,7 @@ let schema = {
       type: 'string',
       format: 'email'
     },
-    phone: {
-      $ref: '#/definitions/usaPhone'
-    }
+    phone: schemaHelpers.getDefinition('usaPhone'),
   }
 };
 
