@@ -16,6 +16,12 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
 
+  sharedTests.runTest('address', ['address']);
+
+  sharedTests.runTest('email', ['email']);
+
+  sharedTests.runTest('phone', ['phone']);
+
   schemaTestHelper.testValidAndInvalid('relationship', {
     valid: [{
       type: 'spouse'
