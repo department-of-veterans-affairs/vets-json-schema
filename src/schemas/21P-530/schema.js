@@ -55,12 +55,14 @@ let schema = {
 };
 
 [
+  ['address'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
   ['date', 'burialDate'],
   ['date', 'deathDate'],
+  ['usaPhone'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
