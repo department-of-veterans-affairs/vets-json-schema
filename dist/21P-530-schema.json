@@ -321,14 +321,14 @@
     "deathDate": {
       "$ref": "#/definitions/date"
     },
-    "address": {
+    "claimantAddress": {
       "$ref": "#/definitions/address"
     },
-    "email": {
+    "claimantEmail": {
       "type": "string",
       "format": "email"
     },
-    "phone": {
+    "claimantPhone": {
       "$ref": "#/definitions/usaPhone"
     }
   }

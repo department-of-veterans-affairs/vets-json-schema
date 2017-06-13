@@ -45,12 +45,12 @@ let schema = {
         }
       }
     },
-    address: schemaHelpers.getDefinition('address'),
-    email: {
+    claimantAddress: schemaHelpers.getDefinition('address'),
+    claimantEmail: {
       type: 'string',
       format: 'email'
     },
-    phone: schemaHelpers.getDefinition('phone'),
+    claimantPhone: schemaHelpers.getDefinition('phone'),
   }
 };
 

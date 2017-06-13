@@ -11,19 +11,17 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-530 schema', () => {
 
-  [
-    'address',
-    'email',
-    'phone'
-  ].forEach((test) => {
-    sharedTests.runTest(test);
-  });
-
   sharedTests.runTest('fullName', ['claimantFullName', 'veteranFullName']);
 
   sharedTests.runTest('date', ['deathDate', 'burialDate']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
+
+  sharedTests.runTest('address', ['claimantAddress']);
+
+  sharedTests.runTest('email', ['claimantEmail']);
+
+  sharedTests.runTest('phone', ['claimantPhone']);
 
   schemaTestHelper.testValidAndInvalid('relationship', {
     valid: [{
