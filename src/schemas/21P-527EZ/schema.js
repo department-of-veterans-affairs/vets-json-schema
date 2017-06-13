@@ -63,7 +63,6 @@ let schema = {
       properties: {
         salary: financialNumber,
         interest: financialNumber,
-        other: financialNumber,
         additionalSources: {
           $ref: '#/definitions/additionalSources'
         }
