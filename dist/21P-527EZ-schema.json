@@ -111,10 +111,6 @@
           "type": "integer",
           "default": 0
         },
-        "other": {
-          "type": "integer",
-          "default": 0
-        },
         "additionalSources": {
           "$ref": "#/definitions/additionalSources"
         }

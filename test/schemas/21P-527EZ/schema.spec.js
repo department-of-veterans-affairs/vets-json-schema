@@ -137,6 +137,17 @@ describe('21-527 schema', () => {
     }]]
   });
 
+  schemaTestHelper.testValidAndInvalid('expectedIncome', {
+    valid: [{
+      salary: 1,
+      interest: 2,
+      additionalSources: [fixtures.otherIncome]
+    }],
+    invalid: [{
+      salary: true
+    }]
+  });
+
   schemaTestHelper.testValidAndInvalid('monthlyIncome',{
     valid: [{
       relationshipAndChildName: fixtures.relationshipAndChildName,
