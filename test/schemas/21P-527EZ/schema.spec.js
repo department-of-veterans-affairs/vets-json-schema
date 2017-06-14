@@ -12,8 +12,7 @@ let sharedTests = new SharedTests(schemaTestHelper);
 describe('21-527 schema', () => {
   [
     'maritalStatus',
-    'gender',
-    'bankAccount'
+    'gender'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -95,6 +94,18 @@ describe('21-527 schema', () => {
       valid: ['0123456789'],
       invalid: ['012345678x', '01234567899', '012345678']
     });
+  });
+
+  schemaTestHelper.testValidAndInvalid('bankAccount', {
+    valid: [{
+      accountType: 'checking',
+      routingNumber: '123456789',
+      bankName: 'foo',
+      accountNumber: '1234'
+    }],
+    invalid: [{
+      bankName: 1
+    }]
   });
 
   schemaTestHelper.testValidAndInvalid('previousNames', {
