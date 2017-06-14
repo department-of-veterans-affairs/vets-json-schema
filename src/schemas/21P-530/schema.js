@@ -45,7 +45,6 @@ let schema = {
         }
       }
     },
-    claimantAddress: schemaHelpers.getDefinition('address'),
     claimantEmail: {
       type: 'string',
       format: 'email'
@@ -55,14 +54,13 @@ let schema = {
 };
 
 [
-  ['address'],
+  ['address', 'claimantAddress'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
   ['date', 'burialDate'],
   ['date', 'deathDate'],
-  ['usaPhone'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
