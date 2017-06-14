@@ -8,6 +8,10 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
+    usaPhone: {
+      type: 'string',
+      pattern: '^\\d{10}$'
+    }
   },
   properties: {
     relationship: {
@@ -40,11 +44,17 @@ let schema = {
           type: 'string'
         }
       }
-    }
+    },
+    claimantEmail: {
+      type: 'string',
+      format: 'email'
+    },
+    claimantPhone: schemaHelpers.getDefinition('usaPhone'),
   }
 };
 
 [
+  ['address', 'claimantAddress'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
