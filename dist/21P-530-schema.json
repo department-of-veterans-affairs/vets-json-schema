@@ -4,49 +4,9 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "fullName": {
-      "type": "object",
-      "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "middle": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
-        }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
-    },
-    "ssn": {
+    "usaPhone": {
       "type": "string",
-      "pattern": "^[0-9]{9}$"
-    },
-    "vaFileNumber": {
-      "type": "string",
-      "pattern": "^[cC]{0,1}\\d{8}$"
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
+      "pattern": "^\\d{10}$"
     },
     "address": {
       "type": "object",
@@ -256,9 +216,49 @@
         }
       }
     },
-    "usaPhone": {
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "ssn": {
       "type": "string",
-      "pattern": "^\\d{10}$"
+      "pattern": "^[0-9]{9}$"
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{8}$"
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     }
   },
   "properties": {
@@ -303,6 +303,16 @@
         }
       }
     },
+    "claimantEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "claimantPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "claimantAddress": {
+      "$ref": "#/definitions/address"
+    },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },
@@ -320,16 +330,6 @@
     },
     "deathDate": {
       "$ref": "#/definitions/date"
-    },
-    "claimantAddress": {
-      "$ref": "#/definitions/address"
-    },
-    "claimantEmail": {
-      "type": "string",
-      "format": "email"
-    },
-    "claimantPhone": {
-      "$ref": "#/definitions/usaPhone"
     }
   }
 }
