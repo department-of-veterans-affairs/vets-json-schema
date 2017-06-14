@@ -4,6 +4,17 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
     "usaPhone": {
       "type": "string",
       "pattern": "^\\d{10}$"
@@ -300,6 +311,32 @@
         },
         "other": {
           "type": "string"
+        }
+      }
+    },
+    "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "serviceBranch": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "serviceNumber": {
+            "type": "string"
+          },
+          "placeOfEntry": {
+            "type": "string"
+          },
+          "placeOfSeparation": {
+            "type": "string"
+          }
         }
       }
     },

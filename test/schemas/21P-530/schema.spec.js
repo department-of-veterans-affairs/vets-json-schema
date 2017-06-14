@@ -50,4 +50,26 @@ describe('21-530 schema', () => {
       other: 1
     }]
   });
+
+  schemaTestHelper.testValidAndInvalid('toursOfDuty', {
+    valid: [[{
+      serviceBranch: 'Army',
+      dateRange: {
+        to: '2010-01-01',
+        from: '2010-01-02'
+      },
+      rank: 'test',
+      serviceNumber: 'some text',
+      placeOfEntry: 'DC',
+      placeOfSeparation: 'VA'
+    }]],
+    invalid: [[{
+      serviceBranch: 'Army',
+      dateRange: '2010-01-02',
+      rank: 'test',
+      serviceNumber: 'some text',
+      placeOfEntry: 'DC',
+      placeOfSeparation: 'VA'
+    }]]
+  });
 });
