@@ -78,53 +78,53 @@ let schema = {
       format: 'email'
     },
     claimantPhone: schemaHelpers.getDefinition('usaPhone'),
-		burialAllowance: {
-			type: 'boolean'
-		},
-		plotAllowance: {
-			type: 'boolean'
-		},
-		transportation: {
-			type: 'boolean'
-		},
-		amountIncurred: {
-			type: 'number'
-		},
-		burialAllowanceRequested: {
-			type: 'string',
-			'enum': [
-				'nonService',
-				'service',
-				'vaMC'
-			]
-		},
-		burialCost: {
-			type: 'number'
-		},
-		previouslyReceiveAllowance: {
-			type: 'boolean'
-		},
-		incurredExpenses: {
-			type: 'boolean'
-		},
-		benefitsUnclaimedRemains: {
-			type: 'boolean'
-		},
-		placeOfRemains: {
-			type: 'string'
-		},
-		federalCemetary: {
-			type: 'boolean'
-		},
-		stateCemetary: {
-			type: 'boolean'
-		},
-		govtContributions: {
-			type: 'boolean'
-		},
-		amountGovtContribution: {
-			type: 'number'
-		}
+    burialAllowance: {
+      type: 'boolean'
+    },
+    plotAllowance: {
+      type: 'boolean'
+    },
+    transportation: {
+      type: 'boolean'
+    },
+    amountIncurred: {
+      type: 'number'
+    },
+    burialAllowanceRequested: {
+      type: 'string',
+      'enum': [
+        'nonService',
+        'service',
+        'vaMC'
+      ]
+    },
+    burialCost: {
+      type: 'number'
+    },
+    previouslyReceiveAllowance: {
+      type: 'boolean'
+    },
+    incurredExpenses: {
+      type: 'boolean'
+    },
+    benefitsUnclaimedRemains: {
+      type: 'boolean'
+    },
+    placeOfRemains: {
+      type: 'string'
+    },
+    federalCemetary: {
+      type: 'boolean'
+    },
+    stateCemetary: {
+      type: 'boolean'
+    },
+    govtContributions: {
+      type: 'boolean'
+    },
+    amountGovtContribution: {
+      type: 'number'
+    }
   }
 };
 
