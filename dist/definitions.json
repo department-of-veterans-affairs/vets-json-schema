@@ -1,4 +1,8 @@
 {
+  "usaPhone": {
+    "type": "string",
+    "pattern": "^\\d{10}$"
+  },
   "fullName": {
     "type": "object",
     "properties": {

@@ -403,7 +403,13 @@ const marriages = {
   }
 };
 
+const usaPhone = {
+  type: 'string',
+  pattern: '^\\d{10}$'
+};
+
 export default {
+  usaPhone,
   fullName,
   otherIncome,
   address,

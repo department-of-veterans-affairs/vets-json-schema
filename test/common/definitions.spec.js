@@ -248,6 +248,7 @@ describe('schema definitions', () => {
     'toursOfDuty',
     'currentlyActiveDuty',
     'bankAccountChange',
+    'usaPhone',
     'maritalStatus',
     'relationshipAndChildName',
     'marriages'

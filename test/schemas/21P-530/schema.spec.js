@@ -10,6 +10,7 @@ let schemaTestHelper = new SchemaTestHelper(schema);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-530 schema', () => {
+  sharedTests.runTest('usaPhone', ['claimantPhone']);
 
   sharedTests.runTest('fullName', ['claimantFullName', 'veteranFullName']);
 
