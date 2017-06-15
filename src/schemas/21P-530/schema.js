@@ -1,6 +1,32 @@
-import definitions from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
+
+let definitions = _.cloneDeep(originalDefinitions);
+let modifiedToursOfDuty = definitions.toursOfDuty;
+delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
+delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
+delete modifiedToursOfDuty.items.properties.serviceStatus;
+delete modifiedToursOfDuty.items.required;
+
+_.merge(modifiedToursOfDuty, {
+  items: {
+    properties: {
+      rank: {
+        type: 'string'
+      },
+      serviceNumber: {
+        type: 'string'
+      },
+      placeOfEntry: {
+        type: 'string'
+      },
+      placeOfSeparation: {
+        type: 'string'
+      }
+    }
+  }
+});
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -8,6 +34,7 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
+    dateRange: definitions.dateRange,
     usaPhone: {
       type: 'string',
       pattern: '^\\d{10}$'
@@ -44,6 +71,54 @@ let schema = {
           type: 'string'
         }
       }
+    },
+    toursOfDuty: modifiedToursOfDuty,
+    burialAllowance: {
+      type: 'boolean'
+    },
+    plotAllowance: {
+      type: 'boolean'
+    },
+    transportation: {
+      type: 'boolean'
+    },
+    amountIncurred: {
+      type: 'number'
+    },
+    burialAllowanceRequested: {
+      type: 'string',
+      'enum': [
+        'nonService',
+        'service',
+        'vaMC'
+      ]
+    },
+    burialCost: {
+      type: 'number'
+    },
+    previouslyReceivedAllowance: {
+      type: 'boolean'
+    },
+    incurredExpenses: {
+      type: 'boolean'
+    },
+    benefitsUnclaimedRemains: {
+      type: 'boolean'
+    },
+    placeOfRemains: {
+      type: 'string'
+    },
+    federalCemetary: {
+      type: 'boolean'
+    },
+    stateCemetary: {
+      type: 'boolean'
+    },
+    govtContributions: {
+      type: 'boolean'
+    },
+    amountGovtContribution: {
+      type: 'number'
     },
     claimantEmail: {
       type: 'string',

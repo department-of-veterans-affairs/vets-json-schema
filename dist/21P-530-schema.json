@@ -4,6 +4,17 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
     "usaPhone": {
       "type": "string",
       "pattern": "^\\d{10}$"
@@ -302,6 +313,79 @@
           "type": "string"
         }
       }
+    },
+    "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "serviceBranch": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "serviceNumber": {
+            "type": "string"
+          },
+          "placeOfEntry": {
+            "type": "string"
+          },
+          "placeOfSeparation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "burialAllowance": {
+      "type": "boolean"
+    },
+    "plotAllowance": {
+      "type": "boolean"
+    },
+    "transportation": {
+      "type": "boolean"
+    },
+    "amountIncurred": {
+      "type": "number"
+    },
+    "burialAllowanceRequested": {
+      "type": "string",
+      "enum": [
+        "nonService",
+        "service",
+        "vaMC"
+      ]
+    },
+    "burialCost": {
+      "type": "number"
+    },
+    "previouslyReceivedAllowance": {
+      "type": "boolean"
+    },
+    "incurredExpenses": {
+      "type": "boolean"
+    },
+    "benefitsUnclaimedRemains": {
+      "type": "boolean"
+    },
+    "placeOfRemains": {
+      "type": "string"
+    },
+    "federalCemetary": {
+      "type": "boolean"
+    },
+    "stateCemetary": {
+      "type": "boolean"
+    },
+    "govtContributions": {
+      "type": "boolean"
+    },
+    "amountGovtContribution": {
+      "type": "number"
     },
     "claimantEmail": {
       "type": "string",
