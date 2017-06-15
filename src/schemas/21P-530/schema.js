@@ -101,7 +101,7 @@ let schema = {
     burialCost: {
       type: 'number'
     },
-    previouslyReceiveAllowance: {
+    previouslyReceivedAllowance: {
       type: 'boolean'
     },
     incurredExpenses: {
