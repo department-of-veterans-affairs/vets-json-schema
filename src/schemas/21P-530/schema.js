@@ -49,6 +49,10 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    'view:claimantEmailConfirmation': {
+      type: 'string',
+      format: 'email'
+    },
     claimantPhone: schemaHelpers.getDefinition('usaPhone'),
   }
 };

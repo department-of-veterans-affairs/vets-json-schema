@@ -19,7 +19,7 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('address', ['claimantAddress']);
 
-  sharedTests.runTest('email', ['claimantEmail']);
+  sharedTests.runTest('email', ['claimantEmail', 'view:claimantEmailConfirmation']);
 
   schemaTestHelper.testValidAndInvalid('relationship', {
     valid: [{
