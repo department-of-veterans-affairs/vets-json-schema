@@ -72,4 +72,28 @@ describe('21-530 schema', () => {
       placeOfSeparation: 'VA'
     }]]
   });
+
+  ['federalCemetary', 'stateCemetary', 'govtContributions', 'previouslyReceivedAllowance', 'incurredExpenses', 'benefitsUnclaimedRemains', 'burialAllowance', 'plotAllowance', 'transportation'].forEach(attr => {
+    schemaTestHelper.testValidAndInvalid(attr, {
+      valid: [true, false],
+      invalid: ['012345678x', 1]
+    });
+  });
+
+  ['amountIncurred', 'burialCost', 'amountGovtContribution'].forEach(attr => {
+    schemaTestHelper.testValidAndInvalid(attr, {
+      valid: [3, 3.5],
+      invalid: ['012345678x', false]
+    });
+  });
+
+  schemaTestHelper.testValidAndInvalid('burialAllowanceRequested', {
+    valid: ['nonService', 'service', 'vaMC'],
+    invalid: ['whatever', 3, false]
+  });
+
+  schemaTestHelper.testValidAndInvalid('placeOfRemains', {
+    valid: ['whatever', '1'],
+    invalid: [3, false]
+  });
 });
