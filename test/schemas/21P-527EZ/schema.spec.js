@@ -18,6 +18,8 @@ describe('21-527 schema', () => {
     sharedTests.runTest(test);
   });
 
+  sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone', 'mobilePhone', 'nationalGuard.phone']);
+
   sharedTests.runTest('email', ['email', 'altEmail']);
 
   sharedTests.runTest('fullName', ['veteranFullName']);
@@ -88,13 +90,6 @@ describe('21-527 schema', () => {
           additionalSources: [{}]
         }
       }]]
-  });
-
-  ['dayPhone', 'nightPhone', 'mobilePhone', 'nationalGuard.phone'].forEach(attr => {
-    schemaTestHelper.testValidAndInvalid(attr, {
-      valid: ['0123456789'],
-      invalid: ['012345678x', '01234567899', '012345678']
-    });
   });
 
   schemaTestHelper.testValidAndInvalid('previousNames', {

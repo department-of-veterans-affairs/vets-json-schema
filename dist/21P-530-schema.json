@@ -15,10 +15,6 @@
         }
       }
     },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
-    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -227,6 +223,10 @@
         }
       }
     },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -395,11 +395,11 @@
       "type": "string",
       "format": "email"
     },
-    "claimantPhone": {
-      "$ref": "#/definitions/usaPhone"
-    },
     "claimantAddress": {
       "$ref": "#/definitions/address"
+    },
+    "claimantPhone": {
+      "$ref": "#/definitions/usaPhone"
     },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"

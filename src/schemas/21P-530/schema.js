@@ -34,11 +34,7 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    dateRange: definitions.dateRange,
-    usaPhone: {
-      type: 'string',
-      pattern: '^\\d{10}$'
-    }
+    dateRange: definitions.dateRange
   },
   properties: {
     relationship: {
@@ -127,13 +123,13 @@ let schema = {
     'view:claimantEmailConfirmation': {
       type: 'string',
       format: 'email'
-    },
-    claimantPhone: schemaHelpers.getDefinition('usaPhone'),
+    }
   }
 };
 
 [
   ['address', 'claimantAddress'],
+  ['usaPhone', 'claimantPhone'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
