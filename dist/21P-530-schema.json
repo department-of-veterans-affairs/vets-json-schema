@@ -307,6 +307,10 @@
       "type": "string",
       "format": "email"
     },
+    "view:claimantEmailConfirmation": {
+      "type": "string",
+      "format": "email"
+    },
     "claimantPhone": {
       "$ref": "#/definitions/usaPhone"
     },
