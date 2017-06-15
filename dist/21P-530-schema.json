@@ -340,10 +340,6 @@
         }
       }
     },
-    "claimantEmail": {
-      "type": "string",
-      "format": "email"
-    },
     "burialAllowance": {
       "type": "boolean"
     },
@@ -390,6 +386,14 @@
     },
     "amountGovtContribution": {
       "type": "number"
+    },
+    "claimantEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "view:claimantEmailConfirmation": {
+      "type": "string",
+      "format": "email"
     },
     "claimantAddress": {
       "$ref": "#/definitions/address"

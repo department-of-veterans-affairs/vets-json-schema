@@ -69,10 +69,6 @@ let schema = {
       }
     },
     toursOfDuty: modifiedToursOfDuty,
-    claimantEmail: {
-      type: 'string',
-      format: 'email'
-    },
     burialAllowance: {
       type: 'boolean'
     },
@@ -119,6 +115,14 @@ let schema = {
     },
     amountGovtContribution: {
       type: 'number'
+    },
+    claimantEmail: {
+      type: 'string',
+      format: 'email'
+    },
+    'view:claimantEmailConfirmation': {
+      type: 'string',
+      format: 'email'
     }
   }
 };
