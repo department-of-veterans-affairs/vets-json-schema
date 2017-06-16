@@ -35,9 +35,10 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 
-  schemaTestHelper.testValidAndInvalid('children', {
+  schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [[{
-      childFullName: fixtures.fullName,
+      fullName: fixtures.fullName,
+      relationship: 'child',
       childDateOfBirth: fixtures.date,
       childPlaceOfBirth: 'ny, ny',
       childSocialSecurityNumber: fixtures.ssn,
@@ -74,7 +75,7 @@ describe('21-527 schema', () => {
       }
     }]],
     invalid: [[{
-      childFullName: 1,
+      fullName: 1,
       monthlyIncome: {
         civilService: 'what'
       },

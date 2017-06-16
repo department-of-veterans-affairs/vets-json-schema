@@ -580,13 +580,20 @@
         }
       }
     },
-    "children": {
+    "dependents": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "childFullName": {
+          "fullName": {
             "$ref": "#/definitions/fullName"
+          },
+          "relationship": {
+            "type": "string",
+            "enum": [
+              "child",
+              "parent"
+            ]
           },
           "childDateOfBirth": {
             "$ref": "#/definitions/date"
