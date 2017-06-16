@@ -1,6 +1,9 @@
-import definitions from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
+
+let definitions = _.cloneDeep(originalDefinitions);
+definitions.bankAccount.properties.bankName = { type: 'string' };
 
 const financialNumber = {
   type: 'integer',
@@ -13,7 +16,8 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.merge(_.pick(definitions,
-    'dateRange'
+    'dateRange',
+    'bankAccount'
   ), {
     netWorth: {
       type: 'object',

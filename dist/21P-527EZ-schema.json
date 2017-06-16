@@ -15,6 +15,28 @@
         }
       }
     },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "bankName": {
+          "type": "string"
+        }
+      }
+    },
     "netWorth": {
       "type": "object",
       "properties": {
@@ -414,25 +436,6 @@
           "reasonForSeparation": {
             "type": "string"
           }
-        }
-      }
-    },
-    "bankAccount": {
-      "type": "object",
-      "properties": {
-        "accountType": {
-          "type": "string",
-          "enum": [
-            "checking",
-            "savings"
-          ]
-        },
-        "routingNumber": {
-          "type": "string",
-          "pattern": "^\\d{9}$"
-        },
-        "accountNumber": {
-          "type": "string"
         }
       }
     }
