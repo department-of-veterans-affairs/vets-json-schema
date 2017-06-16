@@ -52,6 +52,11 @@ describe('21-530 schema', () => {
     }]
   });
 
+  schemaTestHelper.testValidAndInvalid('previousNames', {
+    valid: [[fixtures.fullName, fixtures.fullName]],
+    invalid: [[false]]
+  });
+
   schemaTestHelper.testValidAndInvalid('toursOfDuty', {
     valid: [[{
       serviceBranch: 'Army',
