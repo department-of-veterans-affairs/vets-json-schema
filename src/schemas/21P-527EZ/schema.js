@@ -194,12 +194,19 @@ let schema = {
         }
       }
     },
-    children: {
+    dependents: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          childFullName: schemaHelpers.getDefinition('fullName'),
+          fullName: schemaHelpers.getDefinition('fullName'),
+          relationship: {
+            type: 'string',
+            enum: [
+              'child',
+              'parent'
+            ]
+          },
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childNotInHousehold: {
             type: 'boolean'
