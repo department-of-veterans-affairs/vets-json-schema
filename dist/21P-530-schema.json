@@ -340,6 +340,12 @@
         }
       }
     },
+    "previousNames": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fullName"
+      }
+    },
     "claimantEmail": {
       "type": "string",
       "format": "email"

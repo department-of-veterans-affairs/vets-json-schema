@@ -69,6 +69,10 @@ let schema = {
       }
     },
     toursOfDuty: modifiedToursOfDuty,
+    previousNames: {
+      type: 'array',
+      items: schemaHelpers.getDefinition('fullName')
+    },
     claimantEmail: {
       type: 'string',
       format: 'email'
