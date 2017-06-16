@@ -19,10 +19,6 @@ let schema = {
     'dateRange',
     'bankAccount'
   ), {
-    usaPhone: {
-      type: 'string',
-      pattern: '^\\d{10}$'
-    },
     netWorth: {
       type: 'object',
       properties: {

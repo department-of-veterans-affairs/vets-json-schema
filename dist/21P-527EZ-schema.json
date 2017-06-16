@@ -37,10 +37,6 @@
         }
       }
     },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
-    },
     "netWorth": {
       "type": "object",
       "properties": {
@@ -385,6 +381,10 @@
           "maxLength": 51
         }
       }
+    },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
     },
     "maritalStatus": {
       "type": "string",

@@ -78,6 +78,12 @@ export default {
       }]
     }
   },
+  usaPhone: {
+    data: {
+      valid: ['0123456789'],
+      invalid: ['012345678x', '01234567899', '012345678']
+    }
+  },
   email: {
     data: {
       valid: [
