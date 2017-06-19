@@ -35,6 +35,8 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 
+  sharedTests.runTest('files', ['files']);
+
   schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [[{
       fullName: fixtures.fullName,

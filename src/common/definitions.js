@@ -408,6 +408,24 @@ const usaPhone = {
   pattern: '^\\d{10}$'
 };
 
+const files = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string'
+      },
+      size: {
+        type: 'integer'
+      },
+      confirmationCode: {
+        type: 'string'
+      }
+    }
+  }
+};
+
 export default {
   usaPhone,
   fullName,
@@ -436,5 +454,6 @@ export default {
   maritalStatus,
   netWorthAccount,
   relationshipAndChildName,
-  marriages
+  marriages,
+  files
 };

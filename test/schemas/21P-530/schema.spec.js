@@ -22,6 +22,8 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('email', ['claimantEmail']);
 
+  sharedTests.runTest('files', ['deathCertificate', 'transportationReceipts']);
+
   schemaTestHelper.testValidAndInvalid('relationship', {
     valid: [{
       type: 'spouse'

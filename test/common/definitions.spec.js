@@ -251,7 +251,8 @@ describe('schema definitions', () => {
     'usaPhone',
     'maritalStatus',
     'relationshipAndChildName',
-    'marriages'
+    'marriages',
+    'files'
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
   });
