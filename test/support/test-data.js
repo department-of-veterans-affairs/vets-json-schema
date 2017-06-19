@@ -303,5 +303,17 @@ export default {
         }]
       ],
     }
+  },
+  files: {
+    data: {
+      valid: [[{
+        confirmationCode: 'testing',
+        name: 'testing',
+        size: 1
+      }]],
+      invalid: [[{
+        size: 'asdf'
+      }]]
+    }
   }
 };

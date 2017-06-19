@@ -136,6 +136,8 @@ let schema = {
   ['vaFileNumber'],
   ['date', 'burialDate'],
   ['date', 'deathDate'],
+  ['files', 'deathCertificate'],
+  ['files', 'transportationReceipts']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

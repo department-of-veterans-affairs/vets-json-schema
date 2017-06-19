@@ -298,6 +298,7 @@ let schema = {
   ['monthlyIncome', 'spouseMonthlyIncome'],
   ['expectedIncome', 'spouseExpectedIncome'],
   ['bankAccount'],
+  ['files'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

@@ -255,4 +255,15 @@ describe('schema definitions', () => {
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
   });
+
+  testValidAndInvalidDefinitions('files', {
+    valid: [[{
+      confirmationCode: 'testing',
+      name: 'testing',
+      size: 1
+    }]],
+    invalid: [[{
+      size: 'asdf'
+    }]]
+  });
 });
