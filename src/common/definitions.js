@@ -32,7 +32,7 @@ const fullName = {
 const address = (() => {
   const countries = constants.countries.map(object => object.value);
   const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
-  const countryStateProperites = _.map(constants.states, (value, key) => ({
+  const countryStateProperties = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
         type: 'string',
@@ -48,7 +48,7 @@ const address = (() => {
       }
     }
   }));
-  countryStateProperites.push({
+  countryStateProperties.push({
     properties: {
       country: {
         not: {
@@ -69,7 +69,7 @@ const address = (() => {
 
   return {
     type: 'object',
-    oneOf: countryStateProperites,
+    oneOf: countryStateProperties,
     properties: {
       street: {
         type: 'string',
