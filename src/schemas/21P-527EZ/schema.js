@@ -200,7 +200,7 @@ let schema = {
         type: 'object',
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
-          relationship: {
+          dependentRelationship: {
             type: 'string',
             enum: [
               'child',
@@ -223,14 +223,13 @@ let schema = {
             type: 'string'
           },
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
-          biological: {
-            type: 'boolean'
-          },
-          adopted: {
-            type: 'boolean'
-          },
-          stepchild: {
-            type: 'boolean'
+          childRelationship: {
+            type: 'string',
+            enum: [
+              'biological',
+              'adopted',
+              'stepchild'
+            ]
           },
           attendingCollege: {
             type: 'boolean'
