@@ -112,10 +112,10 @@ let schema = {
     placeOfRemains: {
       type: 'string'
     },
-    federalCemetary: {
+    federalCemetery: {
       type: 'boolean'
     },
-    stateCemetary: {
+    stateCemetery: {
       type: 'boolean'
     },
     govtContributions: {
