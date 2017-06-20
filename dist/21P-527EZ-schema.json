@@ -605,7 +605,7 @@
           "fullName": {
             "$ref": "#/definitions/fullName"
           },
-          "relationship": {
+          "dependentRelationship": {
             "type": "string",
             "enum": [
               "child",
@@ -642,14 +642,13 @@
           "childSocialSecurityNumber": {
             "$ref": "#/definitions/ssn"
           },
-          "biological": {
-            "type": "boolean"
-          },
-          "adopted": {
-            "type": "boolean"
-          },
-          "stepchild": {
-            "type": "boolean"
+          "childRelationship": {
+            "type": "string",
+            "enum": [
+              "biological",
+              "adopted",
+              "stepchild"
+            ]
           },
           "attendingCollege": {
             "type": "boolean"
