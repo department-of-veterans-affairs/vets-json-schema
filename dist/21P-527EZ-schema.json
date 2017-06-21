@@ -615,7 +615,7 @@
           "childDateOfBirth": {
             "$ref": "#/definitions/date"
           },
-          "childNotInHousehold": {
+          "childInHousehold": {
             "type": "boolean"
           },
           "childAddress": {
