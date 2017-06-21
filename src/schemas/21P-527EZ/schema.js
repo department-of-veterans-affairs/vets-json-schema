@@ -208,7 +208,7 @@ let schema = {
             ]
           },
           childDateOfBirth: schemaHelpers.getDefinition('date'),
-          childNotInHousehold: {
+          childInHousehold: {
             type: 'boolean'
           },
           childAddress: schemaHelpers.getDefinition('address'),

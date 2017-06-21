@@ -50,6 +50,7 @@ describe('21-527 schema', () => {
       married: true,
       previouslyMarried: true,
       childFullName: fixtures.fullName,
+      childInHousehold: true,
       childAddress: fixtures.address,
       personWhoLivesWithChild: fixtures.fullName,
       monthlyPayment: 1,
