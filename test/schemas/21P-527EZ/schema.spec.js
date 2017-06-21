@@ -52,7 +52,6 @@ describe('21-527 schema', () => {
       childFullName: fixtures.fullName,
       childInHousehold: true,
       childAddress: fixtures.address,
-      personWhoLivesWithChild: fixtures.fullName,
       monthlyPayment: 1,
       monthlyIncome: {
         socialSecurity: 1,

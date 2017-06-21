@@ -212,7 +212,7 @@ let schema = {
             type: 'boolean'
           },
           childAddress: schemaHelpers.getDefinition('address'),
-          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
+          personWhoLivesWithChild: _.omit(definitions.fullName, 'required'),
           monthlyPayment: {
             type: 'integer'
           },
