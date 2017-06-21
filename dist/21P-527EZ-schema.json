@@ -622,7 +622,32 @@
             "$ref": "#/definitions/address"
           },
           "personWhoLivesWithChild": {
-            "$ref": "#/definitions/fullName"
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "middle": {
+                "type": "string"
+              },
+              "last": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "suffix": {
+                "type": "string",
+                "enum": [
+                  "Jr.",
+                  "Sr.",
+                  "II",
+                  "III",
+                  "IV"
+                ]
+              }
+            }
           },
           "monthlyPayment": {
             "type": "integer"
