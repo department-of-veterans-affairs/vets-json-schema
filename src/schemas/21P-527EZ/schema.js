@@ -27,7 +27,6 @@ let schema = {
         ira: financialNumber,
         stocks: financialNumber,
         realProperty: financialNumber,
-        otherProperty: financialNumber,
         additionalSources: { $ref: '#/definitions/additionalSources' }
       }
     },
