@@ -5,8 +5,11 @@ import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['21P-527EZ'];
+const schemaDefaults = {
+  privacyAgreementAccepted: true
+};
 
-let schemaTestHelper = new SchemaTestHelper(schema);
+let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-527 schema', () => {

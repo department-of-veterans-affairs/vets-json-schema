@@ -266,10 +266,12 @@ let schema = {
         }
       }
     }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
 
 [
+  ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],

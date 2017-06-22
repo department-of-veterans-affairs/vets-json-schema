@@ -15,6 +15,12 @@
         }
       }
     },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -414,6 +420,9 @@
     "amountGovtContribution": {
       "type": "number"
     },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
     "claimantAddress": {
       "$ref": "#/definitions/address"
     },
@@ -444,5 +453,8 @@
     "transportationReceipts": {
       "$ref": "#/definitions/files"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }

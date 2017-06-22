@@ -134,6 +134,12 @@
         }
       }
     },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -688,6 +694,9 @@
         }
       }
     },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
@@ -766,5 +775,8 @@
     "files": {
       "$ref": "#/definitions/files"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }

@@ -124,10 +124,12 @@ let schema = {
     amountGovtContribution: {
       type: 'number'
     }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
 
 [
+  ['privacyAgreementAccepted'],
   ['address', 'claimantAddress'],
   ['usaPhone', 'claimantPhone'],
   ['fullName', 'claimantFullName'],
