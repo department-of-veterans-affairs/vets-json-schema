@@ -107,7 +107,7 @@ let schema = {
       }
     },
     toursOfDuty: modifiedToursOfDuty,
-    desiredCemetary: {
+    desiredCemetery: {
       type: 'string'
     },
     currentlyBuried: {
@@ -122,12 +122,16 @@ let schema = {
           name: {
             type: 'string'
           },
-          cemetary: {
+          cemetery: {
             type: 'string'
           }
         }
       }
     },
+    email: {
+      type: 'string',
+      format: 'email'
+   },
     previousNames: {
       type: 'array',
       items: schemaHelpers.getDefinition('fullName')
@@ -144,7 +148,9 @@ let schema = {
   ['date', 'sponsorDateOfBirth'],
   ['date', 'sponsorDateOfDeath'],
   ['address', 'sponsorAddress'],
-  ['gender', 'sponsorGender']
+  ['gender', 'sponsorGender'],
+  ['address', 'personalAddress'],
+  ['phone', 'phoneNumber']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
