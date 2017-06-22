@@ -505,6 +505,9 @@
     "nationalGuardActivation": {
       "type": "boolean"
     },
+    "hasVisitedVAMC": {
+      "type": "boolean"
+    },
     "nationalGuard": {
       "type": "object",
       "properties": {
@@ -553,26 +556,6 @@
           },
           "disabilityStartDate": {
             "$ref": "#/definitions/date"
-          }
-        }
-      }
-    },
-    "vaHospitalTreatments": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "dates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/date"
-            }
-          },
-          "name": {
-            "type": "string"
-          },
-          "location": {
-            "type": "string"
           }
         }
       }

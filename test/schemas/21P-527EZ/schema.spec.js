@@ -123,17 +123,6 @@ describe('21-527 schema', () => {
     }]]
   });
 
-  schemaTestHelper.testValidAndInvalid('vaHospitalTreatments', {
-    valid: [[{
-      dates: [fixtures.date, fixtures.date],
-      facilityName: 'foo hospital',
-      location: 'atlanta'
-    }]],
-    invalid: [[{
-      dates: false
-    }]]
-  });
-
   schemaTestHelper.testValidAndInvalid('jobs', {
     valid: [[{
       employer: 'foo corp',
