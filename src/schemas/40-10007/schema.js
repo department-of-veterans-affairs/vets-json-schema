@@ -5,10 +5,10 @@ import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
 let modifiedToursOfDuty = definitions.toursOfDuty;
+modifiedToursOfDuty.items.required = ['serviceBranch'];
 delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
 delete modifiedToursOfDuty.items.properties.serviceStatus;
-delete modifiedToursOfDuty.items.required;
 
 _.merge(modifiedToursOfDuty, {
   items: {
