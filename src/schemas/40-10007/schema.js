@@ -26,7 +26,7 @@ _.merge(modifiedToursOfDuty, {
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETARY',
+  title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
   type: 'object',
   additionalProperties: false,
   definitions: {
