@@ -107,6 +107,27 @@ let schema = {
       }
     },
     toursOfDuty: modifiedToursOfDuty,
+    desiredCemetary: {
+      type: 'string'
+    },
+    currentlyBuried: {
+      type: 'string',
+      'enum': ['Y', 'N', 'U']
+    },
+    eligibleBuried: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          },
+          cemetary: {
+            type: 'string'
+          }
+        }
+      }
+    },
     previousNames: {
       type: 'array',
       items: schemaHelpers.getDefinition('fullName')
