@@ -112,6 +112,9 @@ let schema = {
     nationalGuardActivation: {
       type: 'boolean'
     },
+    hasVisitedVAMC: {
+      type: 'boolean'
+    },
     nationalGuard: {
       type: 'object',
       properties: {
@@ -150,24 +153,6 @@ let schema = {
             type: 'string'
           },
           disabilityStartDate: schemaHelpers.getDefinition('date')
-        }
-      }
-    },
-    vaHospitalTreatments: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          dates: {
-            type: 'array',
-            items: schemaHelpers.getDefinition('date')
-          },
-          name: {
-            type: 'string'
-          },
-          location: {
-            type: 'string'
-          }
         }
       }
     },
@@ -266,10 +251,12 @@ let schema = {
         }
       }
     }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
 
 [
+  ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
