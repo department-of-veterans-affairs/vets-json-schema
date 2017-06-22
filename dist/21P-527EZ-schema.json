@@ -60,10 +60,6 @@
           "type": "integer",
           "default": 0
         },
-        "otherProperty": {
-          "type": "integer",
-          "default": 0
-        },
         "additionalSources": {
           "$ref": "#/definitions/additionalSources"
         }
