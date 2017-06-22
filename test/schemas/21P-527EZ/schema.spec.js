@@ -74,8 +74,7 @@ describe('21-527 schema', () => {
         ira: 2,
         stocks: 2,
         business: 2,
-        realProperty: 123,
-        otherProperty: 12
+        realProperty: 123
       }
     }]],
     invalid: [[{
