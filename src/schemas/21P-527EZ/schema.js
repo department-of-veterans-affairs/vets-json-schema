@@ -17,7 +17,8 @@ let schema = {
   additionalProperties: false,
   definitions: _.merge(_.pick(definitions,
     'dateRange',
-    'bankAccount'
+    'bankAccount',
+    'date'
   ), {
     netWorth: {
       type: 'object',
@@ -65,6 +66,26 @@ let schema = {
         interest: financialNumber,
         additionalSources: {
           $ref: '#/definitions/additionalSources'
+        }
+      }
+    },
+    otherExpenses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          amount: {
+            type: 'integer'
+          },
+          purpose: {
+            type: 'string'
+          },
+          paidTo: {
+            type: 'string'
+          },
+          date: {
+            $ref: '#/definitions/date'
+          }
         }
       }
     }
@@ -204,6 +225,7 @@ let schema = {
           monthlyIncome: { $ref: '#/definitions/monthlyIncome' },
           expectedIncome: { $ref: '#/definitions/expectedIncome' },
           netWorth: { $ref: '#/definitions/netWorth' },
+          otherExpenses: { $ref: '#/definitions/otherExpenses' },
           childPlaceOfBirth: {
             type: 'string'
           },
@@ -231,26 +253,6 @@ let schema = {
         }
       }
     },
-    otherExpenses: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          amount: {
-            type: 'integer'
-          },
-          purpose: {
-            type: 'string'
-          },
-          paidTo: {
-            type: 'string'
-          },
-          relationship: {
-            type: 'string'
-          }
-        }
-      }
-    }
   },
   required: ['privacyAgreementAccepted']
 };
@@ -276,13 +278,14 @@ let schema = {
   ['address', 'spouseAddress'],
   ['marriages'],
   ['marriages', 'spouseMarriages'],
-  ['date', 'otherExpenses.date'],
   ['netWorth'],
   ['monthlyIncome'],
   ['expectedIncome'],
+  ['otherExpenses'],
   ['netWorth', 'spouseNetWorth'],
   ['monthlyIncome', 'spouseMonthlyIncome'],
   ['expectedIncome', 'spouseExpectedIncome'],
+  ['otherExpenses', 'spouseOtherExpenses'],
   ['bankAccount'],
   ['files'],
 ].forEach((args) => {
