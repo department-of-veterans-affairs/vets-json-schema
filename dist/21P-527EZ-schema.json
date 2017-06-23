@@ -37,6 +37,10 @@
         }
       }
     },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
     "netWorth": {
       "type": "object",
       "properties": {
@@ -131,6 +135,26 @@
         },
         "additionalSources": {
           "$ref": "#/definitions/additionalSources"
+        }
+      }
+    },
+    "otherExpenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "paidTo": {
+            "type": "string"
+          },
+          "date": {
+            "$ref": "#/definitions/date"
+          }
         }
       }
     },
@@ -409,10 +433,6 @@
         "M"
       ]
     },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
     "marriages": {
       "type": "array",
       "items": {
@@ -625,6 +645,9 @@
           "netWorth": {
             "$ref": "#/definitions/netWorth"
           },
+          "otherExpenses": {
+            "$ref": "#/definitions/otherExpenses"
+          },
           "childPlaceOfBirth": {
             "type": "string"
           },
@@ -650,29 +673,6 @@
           },
           "previouslyMarried": {
             "type": "boolean"
-          }
-        }
-      }
-    },
-    "otherExpenses": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "integer"
-          },
-          "purpose": {
-            "type": "string"
-          },
-          "paidTo": {
-            "type": "string"
-          },
-          "relationship": {
-            "type": "string"
-          },
-          "date": {
-            "$ref": "#/definitions/date"
           }
         }
       }
@@ -743,6 +743,9 @@
     "expectedIncome": {
       "$ref": "#/definitions/expectedIncome"
     },
+    "otherExpenses": {
+      "$ref": "#/definitions/otherExpenses"
+    },
     "spouseNetWorth": {
       "$ref": "#/definitions/netWorth"
     },
@@ -751,6 +754,9 @@
     },
     "spouseExpectedIncome": {
       "$ref": "#/definitions/expectedIncome"
+    },
+    "spouseOtherExpenses": {
+      "$ref": "#/definitions/otherExpenses"
     },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
