@@ -185,16 +185,19 @@ describe('21-527 schema', () => {
     }]]
   });
 
-  schemaTestHelper.testValidAndInvalid('otherExpenses', {
-    valid: [[{
-      amount: 1,
-      date: fixtures.date,
-      purpose: 'doctor',
-      paidTo: 'doctor',
-      disabilityOrRelationship: 'disability'
-    }]],
-    invalid: [[{
-      amount: false
-    }]]
-  });
+  ['otherExpenses', 'spouseOtherExpenses']
+    .forEach(field => {
+      schemaTestHelper.testValidAndInvalid(field, {
+        valid: [[{
+          amount: 1,
+          date: fixtures.date,
+          purpose: 'doctor',
+          paidTo: 'doctor',
+          disabilityOrRelationship: 'disability'
+        }]],
+        invalid: [[{
+          amount: false
+        }]]
+      });
+    });
 });
