@@ -28,8 +28,6 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
-  sharedTests.runTest('date', ['spouseDateOfBirth', 'veteranDateOfBirth', 'nationalGuard.date']);
-
   sharedTests.runTest('dateRange', ['activeServiceDateRange', 'powDateRange']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
@@ -39,6 +37,13 @@ describe('21-527 schema', () => {
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 
   sharedTests.runTest('files', ['files']);
+
+  ['spouseDateOfBirth', 'veteranDateOfBirth', 'nationalGuard.date'].forEach((field) => {
+    schemaTestHelper.testValidAndInvalid(field, {
+      valid: ['1990-01-01'],
+      invalid: ['1/1/1990']
+    })
+  });
 
   schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [[{
