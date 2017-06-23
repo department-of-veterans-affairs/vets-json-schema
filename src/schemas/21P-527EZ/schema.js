@@ -153,9 +153,9 @@ let schema = {
           type: 'string',
           enum: [
             'Longevity',
-            'PDRL',
             'Separation',
             'Severance',
+            'PDRL',
             'TDRL'
           ]
         }
