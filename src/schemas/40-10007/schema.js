@@ -131,10 +131,6 @@ let schema = {
     email: {
       type: 'string',
       format: 'email'
-   },
-    previousNames: {
-      type: 'array',
-      items: schemaHelpers.getDefinition('fullName')
     },
   }
 };
@@ -150,7 +146,10 @@ let schema = {
   ['address', 'sponsorAddress'],
   ['gender', 'sponsorGender'],
   ['address', 'personalAddress'],
-  ['phone', 'phoneNumber']
+  ['phone', 'phoneNumber'],
+  ['fullName', 'preparerFullName'],
+  ['address', 'preparerAddress'],
+  ['phone', 'preparerPhoneNumber']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
