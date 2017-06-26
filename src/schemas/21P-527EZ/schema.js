@@ -17,9 +17,12 @@ let schema = {
   additionalProperties: false,
   definitions: _.merge(_.pick(definitions,
     'dateRange',
-    'bankAccount',
-    'date'
+    'bankAccount'
   ), {
+    date: {
+      pattern: '^\\d{4}-\\d{2}-\\d{2}$',
+      type: 'string'
+    },
     netWorth: {
       type: 'object',
       properties: {
