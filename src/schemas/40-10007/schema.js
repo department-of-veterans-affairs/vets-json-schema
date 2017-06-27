@@ -147,6 +147,7 @@ let schema = {
   ['gender', 'sponsorGender'],
   ['address', 'personalAddress'],
   ['phone', 'phoneNumber'],
+  ['files', 'documents'],
   ['fullName', 'preparerFullName'],
   ['address', 'preparerAddress'],
   ['phone', 'preparerPhoneNumber']
