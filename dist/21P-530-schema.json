@@ -420,6 +420,9 @@
     "amountGovtContribution": {
       "type": "number"
     },
+    "placeOfBirth": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
@@ -445,6 +448,9 @@
       "$ref": "#/definitions/date"
     },
     "deathDate": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
     },
     "deathCertificate": {

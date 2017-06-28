@@ -123,6 +123,9 @@ let schema = {
     },
     amountGovtContribution: {
       type: 'number'
+    },
+    placeOfBirth: {
+      type: 'string'
     }
   },
   required: ['privacyAgreementAccepted']
@@ -138,6 +141,7 @@ let schema = {
   ['vaFileNumber'],
   ['date', 'burialDate'],
   ['date', 'deathDate'],
+  ['date', 'veteranDateOfBirth'],
   ['files', 'deathCertificate'],
   ['files', 'transportationReceipts']
 ].forEach((args) => {
