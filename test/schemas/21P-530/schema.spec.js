@@ -21,11 +21,24 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
 
-  sharedTests.runTest('address', ['claimantAddress']);
-
   sharedTests.runTest('email', ['claimantEmail']);
 
   sharedTests.runTest('files', ['deathCertificate', 'transportationReceipts']);
+
+  schemaTestHelper.testValidAndInvalid('claimantAddress', {
+    valid: [{
+      street: 'foo',
+      aptNum: '12A',
+      city: 'city',
+      state: 'KY',
+      country: 'US',
+      postalCode1: '10000',
+      postalCode2: '1234'
+    }],
+    invalid: [{
+      street: false
+    }]
+  });
 
   schemaTestHelper.testValidAndInvalid('relationship', {
     valid: [{

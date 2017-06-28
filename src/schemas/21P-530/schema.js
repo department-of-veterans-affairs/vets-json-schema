@@ -34,6 +34,42 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
+    address: {
+      type: 'object',
+      properties: {
+        street: {
+          type: 'string'
+        },
+        aptNum: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 5
+        },
+        city: {
+          type: 'string'
+        },
+        state: {
+          type: 'string',
+          minLength: 2,
+          maxLength: 2
+        },
+        country: {
+          type: 'string',
+          minLength: 2,
+          maxLength: 2
+        },
+        postalCode1: {
+          type: 'string',
+          minLength: 5,
+          maxLength: 5
+        },
+        postalCode2: {
+          type: 'string',
+          minLength: 4,
+          maxLength: 4
+        }
+      }
+    },
     dateRange: definitions.dateRange
   },
   properties: {
