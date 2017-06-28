@@ -5,8 +5,11 @@ import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['21P-530'];
+const schemaDefaults = {
+  privacyAgreementAccepted: true
+};
 
-let schemaTestHelper = new SchemaTestHelper(schema);
+let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-530 schema', () => {
@@ -14,7 +17,7 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('fullName', ['claimantFullName', 'veteranFullName']);
 
-  sharedTests.runTest('date', ['deathDate', 'burialDate']);
+  sharedTests.runTest('date', ['deathDate', 'burialDate', 'veteranDateOfBirth']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
 

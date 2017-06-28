@@ -37,6 +37,10 @@
         }
       }
     },
+    "date": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "type": "string"
+    },
     "netWorth": {
       "type": "object",
       "properties": {
@@ -57,10 +61,6 @@
           "default": 0
         },
         "realProperty": {
-          "type": "integer",
-          "default": 0
-        },
-        "otherProperty": {
           "type": "integer",
           "default": 0
         },
@@ -133,6 +133,32 @@
           "$ref": "#/definitions/additionalSources"
         }
       }
+    },
+    "otherExpenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "paidTo": {
+            "type": "string"
+          },
+          "date": {
+            "$ref": "#/definitions/date"
+          }
+        }
+      }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
     },
     "fullName": {
       "type": "object",
@@ -403,10 +429,6 @@
         "M"
       ]
     },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
     "marriages": {
       "type": "array",
       "items": {
@@ -499,6 +521,9 @@
     "nationalGuardActivation": {
       "type": "boolean"
     },
+    "hasVisitedVAMC": {
+      "type": "boolean"
+    },
     "nationalGuard": {
       "type": "object",
       "properties": {
@@ -526,9 +551,9 @@
           "type": "string",
           "enum": [
             "Longevity",
-            "PDRL",
             "Separation",
             "Severance",
+            "PDRL",
             "TDRL"
           ]
         }
@@ -547,26 +572,6 @@
           },
           "disabilityStartDate": {
             "$ref": "#/definitions/date"
-          }
-        }
-      }
-    },
-    "vaHospitalTreatments": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "dates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/date"
-            }
-          },
-          "name": {
-            "type": "string"
-          },
-          "location": {
-            "type": "string"
           }
         }
       }
@@ -615,7 +620,7 @@
           "childDateOfBirth": {
             "$ref": "#/definitions/date"
           },
-          "childNotInHousehold": {
+          "childInHousehold": {
             "type": "boolean"
           },
           "childAddress": {
@@ -635,6 +640,9 @@
           },
           "netWorth": {
             "$ref": "#/definitions/netWorth"
+          },
+          "otherExpenses": {
+            "$ref": "#/definitions/otherExpenses"
           },
           "childPlaceOfBirth": {
             "type": "string"
@@ -665,28 +673,8 @@
         }
       }
     },
-    "otherExpenses": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "integer"
-          },
-          "purpose": {
-            "type": "string"
-          },
-          "paidTo": {
-            "type": "string"
-          },
-          "relationship": {
-            "type": "string"
-          },
-          "date": {
-            "$ref": "#/definitions/date"
-          }
-        }
-      }
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
@@ -751,6 +739,9 @@
     "expectedIncome": {
       "$ref": "#/definitions/expectedIncome"
     },
+    "otherExpenses": {
+      "$ref": "#/definitions/otherExpenses"
+    },
     "spouseNetWorth": {
       "$ref": "#/definitions/netWorth"
     },
@@ -760,11 +751,17 @@
     "spouseExpectedIncome": {
       "$ref": "#/definitions/expectedIncome"
     },
+    "spouseOtherExpenses": {
+      "$ref": "#/definitions/otherExpenses"
+    },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
     },
     "files": {
       "$ref": "#/definitions/files"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }

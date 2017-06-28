@@ -5,8 +5,11 @@ import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['21P-527EZ'];
+const schemaDefaults = {
+  privacyAgreementAccepted: true
+};
 
-let schemaTestHelper = new SchemaTestHelper(schema);
+let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-527 schema', () => {
@@ -25,8 +28,6 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
-  sharedTests.runTest('date', ['spouseDateOfBirth', 'veteranDateOfBirth', 'nationalGuard.date']);
-
   sharedTests.runTest('dateRange', ['activeServiceDateRange', 'powDateRange']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
@@ -36,6 +37,13 @@ describe('21-527 schema', () => {
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 
   sharedTests.runTest('files', ['files']);
+
+  ['spouseDateOfBirth', 'veteranDateOfBirth', 'nationalGuard.date'].forEach((field) => {
+    schemaTestHelper.testValidAndInvalid(field, {
+      valid: ['1990-01-01'],
+      invalid: ['1/1/1990']
+    })
+  });
 
   schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [[{
@@ -50,6 +58,7 @@ describe('21-527 schema', () => {
       married: true,
       previouslyMarried: true,
       childFullName: fixtures.fullName,
+      childInHousehold: true,
       childAddress: fixtures.address,
       personWhoLivesWithChild: fixtures.fullName,
       monthlyPayment: 1,
@@ -70,8 +79,7 @@ describe('21-527 schema', () => {
         ira: 2,
         stocks: 2,
         business: 2,
-        realProperty: 123,
-        otherProperty: 12
+        realProperty: 123
       }
     }]],
     invalid: [[{
@@ -116,17 +124,6 @@ describe('21-527 schema', () => {
     }]],
     invalid: [[{
       name: false
-    }]]
-  });
-
-  schemaTestHelper.testValidAndInvalid('vaHospitalTreatments', {
-    valid: [[{
-      dates: [fixtures.date, fixtures.date],
-      facilityName: 'foo hospital',
-      location: 'atlanta'
-    }]],
-    invalid: [[{
-      dates: false
     }]]
   });
 
@@ -193,16 +190,19 @@ describe('21-527 schema', () => {
     }]]
   });
 
-  schemaTestHelper.testValidAndInvalid('otherExpenses', {
-    valid: [[{
-      amount: 1,
-      date: fixtures.date,
-      purpose: 'doctor',
-      paidTo: 'doctor',
-      disabilityOrRelationship: 'disability'
-    }]],
-    invalid: [[{
-      amount: false
-    }]]
-  });
+  ['otherExpenses', 'spouseOtherExpenses']
+    .forEach(field => {
+      schemaTestHelper.testValidAndInvalid(field, {
+        valid: [[{
+          amount: 1,
+          date: fixtures.date,
+          purpose: 'doctor',
+          paidTo: 'doctor',
+          disabilityOrRelationship: 'disability'
+        }]],
+        invalid: [[{
+          amount: false
+        }]]
+      });
+    });
 });

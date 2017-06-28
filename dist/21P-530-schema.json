@@ -15,6 +15,12 @@
         }
       }
     },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -414,6 +420,12 @@
     "amountGovtContribution": {
       "type": "number"
     },
+    "placeOfBirth": {
+      "type": "string"
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
     "claimantAddress": {
       "$ref": "#/definitions/address"
     },
@@ -438,11 +450,17 @@
     "deathDate": {
       "$ref": "#/definitions/date"
     },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
     "deathCertificate": {
       "$ref": "#/definitions/files"
     },
     "transportationReceipts": {
       "$ref": "#/definitions/files"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }

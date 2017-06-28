@@ -19,6 +19,10 @@ let schema = {
     'dateRange',
     'bankAccount'
   ), {
+    date: {
+      pattern: '^\\d{4}-\\d{2}-\\d{2}$',
+      type: 'string'
+    },
     netWorth: {
       type: 'object',
       properties: {
@@ -27,7 +31,6 @@ let schema = {
         ira: financialNumber,
         stocks: financialNumber,
         realProperty: financialNumber,
-        otherProperty: financialNumber,
         additionalSources: { $ref: '#/definitions/additionalSources' }
       }
     },
@@ -65,6 +68,26 @@ let schema = {
         interest: financialNumber,
         additionalSources: {
           $ref: '#/definitions/additionalSources'
+        }
+      }
+    },
+    otherExpenses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          amount: {
+            type: 'integer'
+          },
+          purpose: {
+            type: 'string'
+          },
+          paidTo: {
+            type: 'string'
+          },
+          date: {
+            $ref: '#/definitions/date'
+          }
         }
       }
     }
@@ -112,6 +135,9 @@ let schema = {
     nationalGuardActivation: {
       type: 'boolean'
     },
+    hasVisitedVAMC: {
+      type: 'boolean'
+    },
     nationalGuard: {
       type: 'object',
       properties: {
@@ -130,9 +156,9 @@ let schema = {
           type: 'string',
           enum: [
             'Longevity',
-            'PDRL',
             'Separation',
             'Severance',
+            'PDRL',
             'TDRL'
           ]
         }
@@ -150,24 +176,6 @@ let schema = {
             type: 'string'
           },
           disabilityStartDate: schemaHelpers.getDefinition('date')
-        }
-      }
-    },
-    vaHospitalTreatments: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          dates: {
-            type: 'array',
-            items: schemaHelpers.getDefinition('date')
-          },
-          name: {
-            type: 'string'
-          },
-          location: {
-            type: 'string'
-          }
         }
       }
     },
@@ -208,7 +216,7 @@ let schema = {
             ]
           },
           childDateOfBirth: schemaHelpers.getDefinition('date'),
-          childNotInHousehold: {
+          childInHousehold: {
             type: 'boolean'
           },
           childAddress: schemaHelpers.getDefinition('address'),
@@ -219,6 +227,7 @@ let schema = {
           monthlyIncome: { $ref: '#/definitions/monthlyIncome' },
           expectedIncome: { $ref: '#/definitions/expectedIncome' },
           netWorth: { $ref: '#/definitions/netWorth' },
+          otherExpenses: { $ref: '#/definitions/otherExpenses' },
           childPlaceOfBirth: {
             type: 'string'
           },
@@ -246,30 +255,12 @@ let schema = {
         }
       }
     },
-    otherExpenses: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          amount: {
-            type: 'integer'
-          },
-          purpose: {
-            type: 'string'
-          },
-          paidTo: {
-            type: 'string'
-          },
-          relationship: {
-            type: 'string'
-          }
-        }
-      }
-    }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
 
 [
+  ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
@@ -289,13 +280,14 @@ let schema = {
   ['address', 'spouseAddress'],
   ['marriages'],
   ['marriages', 'spouseMarriages'],
-  ['date', 'otherExpenses.date'],
   ['netWorth'],
   ['monthlyIncome'],
   ['expectedIncome'],
+  ['otherExpenses'],
   ['netWorth', 'spouseNetWorth'],
   ['monthlyIncome', 'spouseMonthlyIncome'],
   ['expectedIncome', 'spouseExpectedIncome'],
+  ['otherExpenses', 'spouseOtherExpenses'],
   ['bankAccount'],
   ['files'],
 ].forEach((args) => {
