@@ -43,6 +43,14 @@
     },
     "netWorth": {
       "type": "object",
+      "required": [
+        "bank",
+        "interestBank",
+        "ira",
+        "stocks",
+        "realProperty",
+        "additionalSources"
+      ],
       "properties": {
         "bank": {
           "type": "integer",
@@ -88,6 +96,14 @@
     },
     "monthlyIncome": {
       "type": "object",
+      "required": [
+        "socialSecurity",
+        "civilService",
+        "railroad",
+        "blackLung",
+        "serviceRetirement",
+        "ssi"
+      ],
       "properties": {
         "socialSecurity": {
           "type": "integer",
@@ -120,6 +136,10 @@
     },
     "expectedIncome": {
       "type": "object",
+      "required": [
+        "salary",
+        "interest"
+      ],
       "properties": {
         "salary": {
           "type": "integer",
