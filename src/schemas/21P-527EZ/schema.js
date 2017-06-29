@@ -25,6 +25,7 @@ let schema = {
     },
     netWorth: {
       type: 'object',
+      required: ['bank', 'interestBank', 'ira', 'stocks', 'realProperty', 'additionalSources'],
       properties: {
         bank: financialNumber,
         interestBank: financialNumber,
@@ -51,6 +52,7 @@ let schema = {
     },
     monthlyIncome: {
       type: 'object',
+      required: ['socialSecurity', 'civilService', 'railroad', 'blackLung', 'serviceRetirement', 'ssi'],
       properties: {
         socialSecurity: financialNumber,
         civilService: financialNumber,
@@ -63,6 +65,7 @@ let schema = {
     },
     expectedIncome: {
       type: 'object',
+      required: ['salary', 'interest'],
       properties: {
         salary: financialNumber,
         interest: financialNumber,
