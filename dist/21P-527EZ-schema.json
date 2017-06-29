@@ -48,8 +48,7 @@
         "interestBank",
         "ira",
         "stocks",
-        "realProperty",
-        "additionalSources"
+        "realProperty"
       ],
       "properties": {
         "bank": {

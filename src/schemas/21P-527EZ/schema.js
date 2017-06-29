@@ -25,7 +25,7 @@ let schema = {
     },
     netWorth: {
       type: 'object',
-      required: ['bank', 'interestBank', 'ira', 'stocks', 'realProperty', 'additionalSources'],
+      required: ['bank', 'interestBank', 'ira', 'stocks', 'realProperty'],
       properties: {
         bank: financialNumber,
         interestBank: financialNumber,
