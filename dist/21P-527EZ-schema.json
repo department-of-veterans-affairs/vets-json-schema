@@ -610,13 +610,6 @@
           "fullName": {
             "$ref": "#/definitions/fullName"
           },
-          "dependentRelationship": {
-            "type": "string",
-            "enum": [
-              "child",
-              "parent"
-            ]
-          },
           "childDateOfBirth": {
             "$ref": "#/definitions/date"
           },

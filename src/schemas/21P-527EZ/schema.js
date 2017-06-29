@@ -208,13 +208,6 @@ let schema = {
         type: 'object',
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
-          dependentRelationship: {
-            type: 'string',
-            enum: [
-              'child',
-              'parent'
-            ]
-          },
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childInHousehold: {
             type: 'boolean'
