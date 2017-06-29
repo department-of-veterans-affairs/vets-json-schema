@@ -17,7 +17,7 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('fullName', ['claimantFullName', 'veteranFullName']);
 
-  sharedTests.runTest('date', ['deathDate', 'burialDate']);
+  sharedTests.runTest('date', ['deathDate', 'burialDate', 'veteranDateOfBirth']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
 
