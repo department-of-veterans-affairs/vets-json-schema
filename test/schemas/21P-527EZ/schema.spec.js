@@ -48,7 +48,6 @@ describe('21-527 schema', () => {
   schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [[{
       fullName: fixtures.fullName,
-      dependentRelationship: 'child',
       childDateOfBirth: fixtures.date,
       childPlaceOfBirth: 'ny, ny',
       childSocialSecurityNumber: fixtures.ssn,
