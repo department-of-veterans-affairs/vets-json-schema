@@ -103,9 +103,6 @@ let schema = {
     previouslyReceivedAllowance: {
       type: 'boolean'
     },
-    incurredExpenses: {
-      type: 'boolean'
-    },
     benefitsUnclaimedRemains: {
       type: 'boolean'
     },
