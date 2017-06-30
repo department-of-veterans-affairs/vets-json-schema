@@ -43,6 +43,13 @@
     },
     "netWorth": {
       "type": "object",
+      "required": [
+        "bank",
+        "interestBank",
+        "ira",
+        "stocks",
+        "realProperty"
+      ],
       "properties": {
         "bank": {
           "type": "integer",
@@ -88,6 +95,14 @@
     },
     "monthlyIncome": {
       "type": "object",
+      "required": [
+        "socialSecurity",
+        "civilService",
+        "railroad",
+        "blackLung",
+        "serviceRetirement",
+        "ssi"
+      ],
       "properties": {
         "socialSecurity": {
           "type": "integer",
@@ -120,6 +135,10 @@
     },
     "expectedIncome": {
       "type": "object",
+      "required": [
+        "salary",
+        "interest"
+      ],
       "properties": {
         "salary": {
           "type": "integer",
@@ -609,13 +628,6 @@
         "properties": {
           "fullName": {
             "$ref": "#/definitions/fullName"
-          },
-          "dependentRelationship": {
-            "type": "string",
-            "enum": [
-              "child",
-              "parent"
-            ]
           },
           "childDateOfBirth": {
             "$ref": "#/definitions/date"

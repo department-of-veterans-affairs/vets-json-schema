@@ -97,7 +97,7 @@ describe('21-530 schema', () => {
     }]]
   });
 
-  ['federalCemetery', 'stateCemetery', 'govtContributions', 'previouslyReceivedAllowance', 'incurredExpenses', 'benefitsUnclaimedRemains', 'burialAllowance', 'plotAllowance', 'transportation'].forEach(attr => {
+  ['federalCemetery', 'stateCemetery', 'govtContributions', 'previouslyReceivedAllowance', 'benefitsUnclaimedRemains', 'burialAllowance', 'plotAllowance', 'transportation'].forEach(attr => {
     schemaTestHelper.testValidAndInvalid(attr, {
       valid: [true, false],
       invalid: ['012345678x', 1]

@@ -48,7 +48,6 @@ describe('21-527 schema', () => {
   schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [[{
       fullName: fixtures.fullName,
-      dependentRelationship: 'child',
       childDateOfBirth: fixtures.date,
       childPlaceOfBirth: 'ny, ny',
       childSocialSecurityNumber: fixtures.ssn,
@@ -65,7 +64,7 @@ describe('21-527 schema', () => {
       monthlyIncome: {
         socialSecurity: 1,
         railroad: 1,
-        blackLunk: 0,
+        blackLung: 0,
         serviceRetirement: 0,
         civilService: 5,
         ssi: 1,
@@ -78,7 +77,7 @@ describe('21-527 schema', () => {
         bank: 2,
         ira: 2,
         stocks: 2,
-        business: 2,
+        interestBank: 2,
         realProperty: 123
       }
     }]],
@@ -158,7 +157,7 @@ describe('21-527 schema', () => {
       socialSecurity: 1,
       civilService: 1,
       railroad: 0,
-      military: 0,
+      serviceRetirement: 0,
       blackLung: 0,
       ssi: 1,
       otherIncome: fixtures.otherIncome
