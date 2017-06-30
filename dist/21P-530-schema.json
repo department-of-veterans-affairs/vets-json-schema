@@ -423,6 +423,9 @@
     "placeOfBirth": {
       "type": "string"
     },
+    "officialPosition": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

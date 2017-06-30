@@ -126,6 +126,9 @@ let schema = {
     },
     placeOfBirth: {
       type: 'string'
+    },
+    officialPosition: {
+      type: 'string'
     }
   },
   required: ['privacyAgreementAccepted']
