@@ -519,8 +519,19 @@
     "monthlySpousePayment": {
       "type": "integer"
     },
-    "serviceBranch": {
-      "type": "string"
+    "servicePeriods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceBranch": {
+            "type": "string"
+          },
+          "activeServiceDateRange": {
+            "$ref": "#/definitions/dateRange"
+          }
+        }
+      }
     },
     "previousNames": {
       "type": "array",
@@ -714,9 +725,6 @@
     },
     "gender": {
       "$ref": "#/definitions/gender"
-    },
-    "activeServiceDateRange": {
-      "$ref": "#/definitions/dateRange"
     },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
