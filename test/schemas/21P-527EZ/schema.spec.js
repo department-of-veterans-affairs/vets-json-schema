@@ -28,7 +28,7 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
 
-  sharedTests.runTest('dateRange', ['activeServiceDateRange', 'powDateRange']);
+  sharedTests.runTest('dateRange', ['powDateRange']);
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
 
@@ -137,6 +137,17 @@ describe('21-527 schema', () => {
     }]],
     invalid: [[{
       employer: 1
+    }]]
+  });
+
+  schemaTestHelper.testValidAndInvalid('servicePeriods', {
+    valid: [[{
+      activeServiceDateRange: fixtures.dateRange,
+      serviceBranch: 'Army'
+    }]],
+    invalid: [[{
+      activeServiceDateRange: fixtures.dateRange,
+      serviceBranch: 3
     }]]
   });
 

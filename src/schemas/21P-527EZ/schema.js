@@ -116,8 +116,18 @@ let schema = {
     monthlySpousePayment: {
       type: 'integer'
     },
-    serviceBranch: {
-      type: 'string'
+    // 12a-c, but multiple items
+    servicePeriods: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          serviceBranch: {
+            type: 'string'
+          },
+          activeServiceDateRange: schemaHelpers.getDefinition('dateRange')
+        }
+      }
     },
     previousNames: {
       type: 'array',
@@ -266,8 +276,6 @@ let schema = {
   ['usaPhone', 'mobilePhone'],
   ['maritalStatus'],
   ['gender'],
-  // TODO: make sure they allow dates like 2017-01-XX
-  ['dateRange', 'activeServiceDateRange'],
   ['dateRange', 'powDateRange'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
