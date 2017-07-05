@@ -47,6 +47,9 @@ let schema = {
         },
         other: {
           type: 'string'
+        },
+        isEntity: {
+          type: 'boolean'
         }
       }
     },
@@ -130,9 +133,6 @@ let schema = {
     firmName: {
       type: 'string'
     },
-    isEntity: {
-      type: 'boolean'
-    }
   },
   required: ['privacyAgreementAccepted']
 };

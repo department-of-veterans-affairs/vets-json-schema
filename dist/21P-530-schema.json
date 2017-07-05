@@ -314,6 +314,9 @@
         },
         "other": {
           "type": "string"
+        },
+        "isEntity": {
+          "type": "boolean"
         }
       }
     },
@@ -425,9 +428,6 @@
     },
     "firmName": {
       "type": "string"
-    },
-    "isEntity": {
-      "type": "boolean"
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
