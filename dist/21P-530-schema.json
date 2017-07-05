@@ -423,6 +423,12 @@
     "officialPosition": {
       "type": "string"
     },
+    "firmName": {
+      "type": "string"
+    },
+    "isEntity": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

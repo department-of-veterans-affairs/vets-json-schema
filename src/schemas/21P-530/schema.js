@@ -126,6 +126,12 @@ let schema = {
     },
     officialPosition: {
       type: 'string'
+    },
+    firmName: {
+      type: 'string'
+    },
+    isEntity: {
+      type: 'boolean'
     }
   },
   required: ['privacyAgreementAccepted']
