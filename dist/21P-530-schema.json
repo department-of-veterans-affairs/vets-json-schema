@@ -314,6 +314,9 @@
         },
         "other": {
           "type": "string"
+        },
+        "isEntity": {
+          "type": "boolean"
         }
       }
     },
@@ -421,6 +424,9 @@
       "type": "string"
     },
     "officialPosition": {
+      "type": "string"
+    },
+    "firmName": {
       "type": "string"
     },
     "privacyAgreementAccepted": {
