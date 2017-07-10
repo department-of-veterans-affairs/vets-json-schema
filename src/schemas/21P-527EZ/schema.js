@@ -152,6 +152,7 @@ let schema = {
       type: 'array',
       items: {
         type: 'object',
+        required: ['location'],
         properties: {
           location: {
             type: 'string'
