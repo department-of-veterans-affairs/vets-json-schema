@@ -148,8 +148,17 @@ let schema = {
     nationalGuardActivation: {
       type: 'boolean'
     },
-    hasVisitedVAMC: {
-      type: 'boolean'
+    vamcTreatmentCenters: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['location'],
+        properties: {
+          location: {
+            type: 'string'
+          }
+        }
+      }
     },
     nationalGuard: {
       type: 'object',

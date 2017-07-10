@@ -151,6 +151,15 @@ describe('21-527 schema', () => {
     }]]
   });
 
+  schemaTestHelper.testValidAndInvalid('vamcTreatmentCenters', {
+    valid: [[{
+      location: 'Maryland'
+    }]],
+    invalid: [[{
+      location: 3
+    }]]
+  });
+
   schemaTestHelper.testValidAndInvalid('expectedIncome', {
     valid: [{
       salary: 1,
