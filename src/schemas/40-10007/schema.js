@@ -17,7 +17,7 @@ _.merge(modifiedToursOfDuty, {
         type: 'string',
         'enum': constants.dischargeTypes.map(option => option.value)
       },
-      rank: {
+      highestRank: {
         type: 'string'
       }
     }
@@ -29,131 +29,143 @@ let schema = {
   title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
   type: 'object',
   additionalProperties: false,
-  definitions: {
-    dateRange: definitions.dateRange
-  },
+  definitions: _.pick(definitions, [
+    'address',
+    'date',
+    'dateRange',
+    'files',
+    'fullName',
+    'gender',
+    'phone',
+    'ssn',
+    'vaFileNumber'
+  ]),
   properties: {
-    relationship: {
-      type: 'object',
-      required: ['type'],
-      properties: {
-        type: {
-          type: 'string',
-          enum: [
-            'servicemember',
-            'spouseOrChild',
-            'other'
-          ]
-        },
-        other: {
-          type: 'string'
-        }
-      }
-    },
-    veteranMaidenName: {
-      type: 'string'
-    },
-    sponsorMilitaryServiceNumber: {
-      type: 'string'
-    },
-    sponsorVAClaimNumber: {
-      type: 'string'
-    },
-    sponsorPlaceOfBirth: {
-      type: 'string'
-    },
-    sponsorDeceased: {
-      type: 'string',
-      'enum': ['Y', 'N', 'U']
-    },
-    sponsorGender: {
-      type: 'string',
-      'enum': ['F', 'M']
-    },
-    sponsorMaritalStatus: {
-      type: 'string',
-      'enum': [
-        'single',
-        'separated',
-        'married',
-        'divorced',
-        'widowed'
-      ]
-    },
-    sponsorMilitaryStatus: {
-      type: 'object',
-      properties: {
-        veteran: {
-          type: 'boolean'
-        },
-        retiredActiveDuty: {
-          type: 'boolean'
-        },
-        diedOnActiveDuty: {
-          type: 'boolean'
-        },
-        retiredReserve: {
-          type: 'boolean'
-        },
-        retiredNationalGuard: {
-          type: 'boolean'
-        },
-        deathInactiveDuty: {
-          type: 'boolean'
-        },
-        other: {
-          type: 'boolean'
-        }
-      }
-    },
-    toursOfDuty: modifiedToursOfDuty,
-    desiredCemetery: {
-      type: 'string'
-    },
-    currentlyBuried: {
-      type: 'string',
-      'enum': ['Y', 'N', 'U']
-    },
-    eligibleBuried: {
+    applications: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          name: {
-            type: 'string'
+          applicant: {
+            type: 'object',
+            properties: {
+              applicantEmail: { type: 'string', format: 'email' },
+              applicantPhoneNumber: schemaHelpers.getDefinition('phone'),
+              applicationRelationshipToClaimant: {
+                type: 'string',
+                'enum': [
+                  'self',
+                  'Authorized Agent/Rep'
+                ]
+              },
+              completingReason: { type: 'string' },
+              mailingAddress: schemaHelpers.getDefinition('address'),
+              name: schemaHelpers.getDefinition('name')
+            }
           },
-          cemetery: {
-            type: 'string'
-          }
+          claimant: {
+            type: 'object',
+            properties: {
+              address: schemaHelpers.getDefinition('address'),
+              dateOfBirth: schemaHelpers.getDefinition('date'),
+              desiredCemetery: { type: 'integer' },
+              email: { type: 'string', format: 'email' },
+              name: schemaHelpers.getDefinition('fullName'),
+              maidenName: { type: 'string' },
+              phoneNumber: schemaHelpers.getDefinition('phone'),
+              relationshipToVet: {
+                type: 'object',
+                required: ['type'],
+                properties: {
+                  type: {
+                    type: 'integer',
+                    enum: [
+                      1, // Veteran
+                      2, // Spouse/Surviving Spouse
+                      3  // Unmarried Adult Child
+                    ]
+                  },
+                  other: { type: 'string' }
+                }
+              },
+              ssn: schemaHelpers.getDefinition('ssn')
+            }
+          },
+          veteran: {
+            type: 'object',
+            properties: {
+              address: schemaHelpers.getDefinition('address'),
+              currentName: schemaHelpers.getDefinition('fullName'),
+              dateOfBirth: schemaHelpers.getDefinition('date'),
+              dateOfDeath: schemaHelpers.getDefinition('date'),
+              gender: schemaHelpers.getDefinition('gender'),
+              isDeceased: {
+                type: 'string',
+                'enum': ['yes', 'no', 'unsure']
+              },
+              maritalStatus: {
+                type: 'string',
+                'enum': [
+                  'Single',
+                  'Separated',
+                  'Married',
+                  'Divorced',
+                  'Widowed'
+                ]
+              },
+              militaryServiceNumber: { type: 'string' },
+              militaryStatus: {
+                type: 'object',
+                properties: {
+                  veteran: { type: 'boolean' },
+                  retiredActiveDuty: { type: 'boolean' },
+                  diedOnActiveDuty: { type: 'boolean' },
+                  retiredReserve: { type: 'boolean' },
+                  retiredNationalGuard: { type: 'boolean' },
+                  deathInactiveDuty: { type: 'boolean' },
+                  other: { type: 'boolean' }
+                }
+              },
+              placeOfBirth: { type: 'string' },
+              serviceName: schemaHelpers.getDefinition('fullName'),
+              serviceRecords: modifiedToursOfDuty,
+              ssn: schemaHelpers.getDefinition('ssn'),
+              vaClaimNumber: schemaHelpers.getDefinition('vaFileNumber'),
+            }
+          },
+          hasCurrentlyBuried: {
+            type: 'string',
+            'enum': [
+              '1', // Yes
+              '2', // No
+              '3'  // Don't know
+            ]
+          },
+          currentlyBuriedPersons: {
+            type: 'array',
+            minItems: 0,
+            items: {
+              type: 'object',
+              required: ['name'],
+              properties: {
+                cemeteryNumber: { type: 'string', pattern: '^\d{3}$' },
+                name: { type: 'string' }
+              }
+            }
+          },
+          hasAttachments: {
+            type: 'string',
+            'enum': [
+              'true',
+              'false'
+            ]
+          },
+          attachments: schemaHelpers.getDefinition('files')
         }
       }
-    },
-    email: {
-      type: 'string',
-      format: 'email'
-    },
+    }
   }
 };
-
-[
-  ['fullName', 'veteranFullName'],
-  ['ssn', 'veteranSocialSecurityNumber'],
-  ['date', 'veteranDateOfBirth'],
-  ['fullName', 'sponsorFullName'],
-  ['ssn', 'sponsorSocialSecurityNumber'],
-  ['date', 'sponsorDateOfBirth'],
-  ['date', 'sponsorDateOfDeath'],
-  ['address', 'sponsorAddress'],
-  ['gender', 'sponsorGender'],
-  ['address', 'personalAddress'],
-  ['phone', 'phoneNumber'],
-  ['files', 'documents'],
-  ['fullName', 'preparerFullName'],
-  ['address', 'preparerAddress'],
-  ['phone', 'preparerPhoneNumber']
-].forEach((args) => {
-  schemaHelpers.addDefinitionToSchema(schema, ...args);
-});
 
 export default schema;
 
