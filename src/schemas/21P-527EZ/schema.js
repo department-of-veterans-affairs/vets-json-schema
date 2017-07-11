@@ -25,6 +25,7 @@ let schema = {
     },
     netWorth: {
       type: 'object',
+      required: ['bank', 'interestBank', 'ira', 'stocks', 'realProperty'],
       properties: {
         bank: financialNumber,
         interestBank: financialNumber,
@@ -51,6 +52,7 @@ let schema = {
     },
     monthlyIncome: {
       type: 'object',
+      required: ['socialSecurity', 'civilService', 'railroad', 'blackLung', 'serviceRetirement', 'ssi'],
       properties: {
         socialSecurity: financialNumber,
         civilService: financialNumber,
@@ -63,6 +65,7 @@ let schema = {
     },
     expectedIncome: {
       type: 'object',
+      required: ['salary', 'interest'],
       properties: {
         salary: financialNumber,
         interest: financialNumber,
@@ -113,8 +116,18 @@ let schema = {
     monthlySpousePayment: {
       type: 'integer'
     },
-    serviceBranch: {
-      type: 'string'
+    // 12a-c, but multiple items
+    servicePeriods: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          serviceBranch: {
+            type: 'string'
+          },
+          activeServiceDateRange: schemaHelpers.getDefinition('dateRange')
+        }
+      }
     },
     previousNames: {
       type: 'array',
@@ -135,8 +148,17 @@ let schema = {
     nationalGuardActivation: {
       type: 'boolean'
     },
-    hasVisitedVAMC: {
-      type: 'boolean'
+    vamcTreatmentCenters: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['location'],
+        properties: {
+          location: {
+            type: 'string'
+          }
+        }
+      }
     },
     nationalGuard: {
       type: 'object',
@@ -208,13 +230,6 @@ let schema = {
         type: 'object',
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
-          dependentRelationship: {
-            type: 'string',
-            enum: [
-              'child',
-              'parent'
-            ]
-          },
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childInHousehold: {
             type: 'boolean'
@@ -270,8 +285,6 @@ let schema = {
   ['usaPhone', 'mobilePhone'],
   ['maritalStatus'],
   ['gender'],
-  // TODO: make sure they allow dates like 2017-01-XX
-  ['dateRange', 'activeServiceDateRange'],
   ['dateRange', 'powDateRange'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],

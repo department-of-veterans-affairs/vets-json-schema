@@ -314,6 +314,9 @@
         },
         "other": {
           "type": "string"
+        },
+        "isEntity": {
+          "type": "boolean"
         }
       }
     },
@@ -399,9 +402,6 @@
     "previouslyReceivedAllowance": {
       "type": "boolean"
     },
-    "incurredExpenses": {
-      "type": "boolean"
-    },
     "benefitsUnclaimedRemains": {
       "type": "boolean"
     },
@@ -421,6 +421,12 @@
       "type": "number"
     },
     "placeOfBirth": {
+      "type": "string"
+    },
+    "officialPosition": {
+      "type": "string"
+    },
+    "firmName": {
       "type": "string"
     },
     "privacyAgreementAccepted": {

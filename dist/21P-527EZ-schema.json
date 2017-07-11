@@ -43,6 +43,13 @@
     },
     "netWorth": {
       "type": "object",
+      "required": [
+        "bank",
+        "interestBank",
+        "ira",
+        "stocks",
+        "realProperty"
+      ],
       "properties": {
         "bank": {
           "type": "integer",
@@ -88,6 +95,14 @@
     },
     "monthlyIncome": {
       "type": "object",
+      "required": [
+        "socialSecurity",
+        "civilService",
+        "railroad",
+        "blackLung",
+        "serviceRetirement",
+        "ssi"
+      ],
       "properties": {
         "socialSecurity": {
           "type": "integer",
@@ -120,6 +135,10 @@
     },
     "expectedIncome": {
       "type": "object",
+      "required": [
+        "salary",
+        "interest"
+      ],
       "properties": {
         "salary": {
           "type": "integer",
@@ -500,8 +519,19 @@
     "monthlySpousePayment": {
       "type": "integer"
     },
-    "serviceBranch": {
-      "type": "string"
+    "servicePeriods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceBranch": {
+            "type": "string"
+          },
+          "activeServiceDateRange": {
+            "$ref": "#/definitions/dateRange"
+          }
+        }
+      }
     },
     "previousNames": {
       "type": "array",
@@ -521,8 +551,19 @@
     "nationalGuardActivation": {
       "type": "boolean"
     },
-    "hasVisitedVAMC": {
-      "type": "boolean"
+    "vamcTreatmentCenters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "location"
+        ],
+        "properties": {
+          "location": {
+            "type": "string"
+          }
+        }
+      }
     },
     "nationalGuard": {
       "type": "object",
@@ -610,13 +651,6 @@
           "fullName": {
             "$ref": "#/definitions/fullName"
           },
-          "dependentRelationship": {
-            "type": "string",
-            "enum": [
-              "child",
-              "parent"
-            ]
-          },
           "childDateOfBirth": {
             "$ref": "#/definitions/date"
           },
@@ -702,9 +736,6 @@
     },
     "gender": {
       "$ref": "#/definitions/gender"
-    },
-    "activeServiceDateRange": {
-      "$ref": "#/definitions/dateRange"
     },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"

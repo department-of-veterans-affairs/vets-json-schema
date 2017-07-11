@@ -47,6 +47,9 @@ let schema = {
         },
         other: {
           type: 'string'
+        },
+        isEntity: {
+          type: 'boolean'
         }
       }
     },
@@ -103,9 +106,6 @@ let schema = {
     previouslyReceivedAllowance: {
       type: 'boolean'
     },
-    incurredExpenses: {
-      type: 'boolean'
-    },
     benefitsUnclaimedRemains: {
       type: 'boolean'
     },
@@ -126,7 +126,13 @@ let schema = {
     },
     placeOfBirth: {
       type: 'string'
-    }
+    },
+    officialPosition: {
+      type: 'string'
+    },
+    firmName: {
+      type: 'string'
+    },
   },
   required: ['privacyAgreementAccepted']
 };
