@@ -60,7 +60,7 @@ let schema = {
               },
               completingReason: { type: 'string' },
               mailingAddress: schemaHelpers.getDefinition('address'),
-              name: schemaHelpers.getDefinition('name')
+              name: schemaHelpers.getDefinition('fullName')
             }
           },
           claimant: {
@@ -148,7 +148,7 @@ let schema = {
               type: 'object',
               required: ['name'],
               properties: {
-                cemeteryNumber: { type: 'string', pattern: '^\d{3}$' },
+                cemeteryNumber: { type: 'string', pattern: '^\\d{3}$' },
                 name: { type: 'string' }
               }
             }
