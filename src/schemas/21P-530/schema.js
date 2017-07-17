@@ -95,8 +95,8 @@ let schema = {
     burialAllowanceRequested: {
       type: 'string',
       'enum': [
-        'nonService',
         'service',
+        'nonService',
         'vaMC'
       ]
     },
