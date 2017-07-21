@@ -24,81 +24,115 @@ _.merge(modifiedToursOfDuty, {
   }
 });
 
+definitions =  _.pick(definitions, [
+  'address',
+  'date',
+  'dateRange',
+  'files',
+  'fullName',
+  'phone',
+  'ssn',
+  'vaFileNumber'
+]);
+
+definitions.fullName.properties.first.maxLength = 15;
+definitions.fullName.properties.last.maxLength = 25;
+definitions.fullName.properties.middle.maxLength = 25;
+definitions.fullName.properties.maiden = { type: 'string', maxLength: 15 };
+
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, [
-    'address',
-    'date',
-    'dateRange',
-    'files',
-    'fullName',
-    'gender',
-    'phone',
-    'ssn',
-    'vaFileNumber'
-  ]),
+  definitions,
   properties: {
     applications: {
       type: 'array',
       items: {
         type: 'object',
+        required: [
+          'applicant',
+          'claimant',
+          'currentlyBuriedPersons',
+          'hasAttachments',
+          'hasCurrentlyBuried',
+          'veteran'
+        ],
         properties: {
           applicant: {
             type: 'object',
+            required: [
+              'applicantEmail',
+              'applicantPhoneNumber',
+              'applicantRelationshipToClaimant',
+              'mailingAddress'
+            ],
             properties: {
               applicantEmail: { type: 'string', format: 'email' },
               applicantPhoneNumber: schemaHelpers.getDefinition('phone'),
-              applicationRelationshipToClaimant: {
+              applicantRelationshipToClaimant: {
                 type: 'string',
                 'enum': [
-                  'self',
+                  'Self',
                   'Authorized Agent/Rep'
                 ]
               },
-              completingReason: { type: 'string' },
+              completingReason: { type: 'string', maxLength: 256 },
               mailingAddress: schemaHelpers.getDefinition('address'),
               name: schemaHelpers.getDefinition('fullName')
             }
           },
           claimant: {
             type: 'object',
+            required: [
+              'address',
+              'dateOfBirth',
+              'name',
+              'relationshipToVet',
+              'ssn'
+            ],
             properties: {
               address: schemaHelpers.getDefinition('address'),
-              dateOfBirth: schemaHelpers.getDefinition('date'),
-              desiredCemetery: { type: 'integer' },
+              dateOfBirth: { type: 'string', format: 'date' },
+              desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
               email: { type: 'string', format: 'email' },
               name: schemaHelpers.getDefinition('fullName'),
               maidenName: { type: 'string' },
               phoneNumber: schemaHelpers.getDefinition('phone'),
               relationshipToVet: {
-                type: 'object',
-                required: ['type'],
-                properties: {
-                  type: {
-                    type: 'integer',
-                    enum: [
-                      1, // Veteran
-                      2, // Spouse/Surviving Spouse
-                      3  // Unmarried Adult Child
-                    ]
-                  },
-                  other: { type: 'string' }
-                }
+                type: 'string',
+                'enum': [
+                  '1', // Veteran
+                  '2', // Spouse/Surviving Spouse
+                  '3', // Unmarried Adult Child
+                  '4'  // Other
+                ]
               },
               ssn: schemaHelpers.getDefinition('ssn')
             }
           },
           veteran: {
             type: 'object',
+            required: [
+              'currentName',
+              'gender',
+              'isDeceased',
+              'maritalStatus',
+              'serviceName',
+              'serviceRecords',
+              'ssn',
+              'militaryStatus'
+            ],
             properties: {
               address: schemaHelpers.getDefinition('address'),
               currentName: schemaHelpers.getDefinition('fullName'),
-              dateOfBirth: schemaHelpers.getDefinition('date'),
-              dateOfDeath: schemaHelpers.getDefinition('date'),
-              gender: schemaHelpers.getDefinition('gender'),
+              dateOfBirth: { type: 'string', format: 'date' },
+              dateOfDeath: { type: 'string', format: 'date' },
+              gender: {
+                type: 'string',
+                'enum': ['Female', 'Male']
+              },
               isDeceased: {
                 type: 'string',
                 'enum': ['yes', 'no', 'unsure']
@@ -113,7 +147,7 @@ let schema = {
                   'Widowed'
                 ]
               },
-              militaryServiceNumber: { type: 'string' },
+              militaryServiceNumber: { type: 'string', maxLength: 9 },
               militaryStatus: {
                 type: 'object',
                 properties: {
@@ -126,7 +160,7 @@ let schema = {
                   other: { type: 'boolean' }
                 }
               },
-              placeOfBirth: { type: 'string' },
+              placeOfBirth: { type: 'string', maxLength: 100 },
               serviceName: schemaHelpers.getDefinition('fullName'),
               serviceRecords: modifiedToursOfDuty,
               ssn: schemaHelpers.getDefinition('ssn'),
@@ -153,13 +187,7 @@ let schema = {
               }
             }
           },
-          hasAttachments: {
-            type: 'string',
-            'enum': [
-              'true',
-              'false'
-            ]
-          },
+          hasAttachments: { type: 'boolean' },
           attachments: schemaHelpers.getDefinition('files')
         }
       }
