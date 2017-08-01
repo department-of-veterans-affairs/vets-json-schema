@@ -216,8 +216,7 @@ describe('21-527 schema', () => {
           amount: 1,
           date: fixtures.date,
           purpose: 'doctor',
-          paidTo: 'doctor',
-          disabilityOrRelationship: 'disability'
+          paidTo: 'doctor'
         }]],
         invalid: [[{
           amount: false
