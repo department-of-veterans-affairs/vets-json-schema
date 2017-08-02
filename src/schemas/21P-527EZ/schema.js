@@ -77,9 +77,9 @@ let schema = {
     otherExpenses: {
       type: 'array',
       minItems: 1,
-      required: ['amount', 'purpose', 'paidTo', 'date'],
       items: {
         type: 'object',
+        required: ['amount', 'purpose', 'paidTo', 'date'],
         properties: {
           amount: {
             type: 'integer'
