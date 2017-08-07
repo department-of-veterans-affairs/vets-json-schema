@@ -6,7 +6,7 @@ let definitions = _.cloneDeep(originalDefinitions);
 definitions.bankAccount.properties.bankName = { type: 'string' };
 
 const financialNumber = {
-  type: 'integer',
+  type: 'number',
   default: 0
 };
 
@@ -45,7 +45,7 @@ let schema = {
             type: 'string'
           },
           amount: {
-            type: 'integer'
+            type: 'number'
           }
         }
       }
@@ -82,7 +82,7 @@ let schema = {
         required: ['amount', 'purpose', 'paidTo', 'date'],
         properties: {
           amount: {
-            type: 'integer'
+            type: 'number'
           },
           purpose: {
             type: 'string'
@@ -116,7 +116,7 @@ let schema = {
       type: 'string'
     },
     monthlySpousePayment: {
-      type: 'integer'
+      type: 'number'
     },
     // 12a-c, but multiple items
     servicePeriods: {
@@ -175,7 +175,7 @@ let schema = {
     severancePay: {
       type: 'object',
       properties: {
-        amount: { type: 'integer' },
+        amount: { type: 'number' },
         type: {
           type: 'string',
           enum: [
@@ -221,7 +221,7 @@ let schema = {
             type: 'string'
           },
           annualEarnings: {
-            type: 'integer'
+            type: 'number'
           }
         }
       }
@@ -239,7 +239,7 @@ let schema = {
           childAddress: schemaHelpers.getDefinition('address'),
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
           monthlyPayment: {
-            type: 'integer'
+            type: 'number'
           },
           monthlyIncome: { $ref: '#/definitions/monthlyIncome' },
           expectedIncome: { $ref: '#/definitions/expectedIncome' },
