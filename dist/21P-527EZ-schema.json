@@ -52,23 +52,23 @@
       ],
       "properties": {
         "bank": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "interestBank": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "ira": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "stocks": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "realProperty": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "additionalSources": {
@@ -88,7 +88,7 @@
             "type": "string"
           },
           "amount": {
-            "type": "integer"
+            "type": "number"
           }
         }
       }
@@ -105,27 +105,27 @@
       ],
       "properties": {
         "socialSecurity": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "civilService": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "railroad": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "blackLung": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "serviceRetirement": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "ssi": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "additionalSources": {
@@ -141,11 +141,11 @@
       ],
       "properties": {
         "salary": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "interest": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "additionalSources": {
@@ -166,7 +166,7 @@
         ],
         "properties": {
           "amount": {
-            "type": "integer"
+            "type": "number"
           },
           "purpose": {
             "type": "string"
@@ -524,7 +524,7 @@
       "type": "string"
     },
     "monthlySpousePayment": {
-      "type": "integer"
+      "type": "number"
     },
     "servicePeriods": {
       "type": "array",
@@ -593,7 +593,7 @@
       "type": "object",
       "properties": {
         "amount": {
-          "type": "integer"
+          "type": "number"
         },
         "type": {
           "type": "string",
@@ -645,7 +645,7 @@
             "type": "string"
           },
           "annualEarnings": {
-            "type": "integer"
+            "type": "number"
           }
         }
       }
@@ -671,7 +671,7 @@
             "$ref": "#/definitions/fullName"
           },
           "monthlyPayment": {
-            "type": "integer"
+            "type": "number"
           },
           "monthlyIncome": {
             "$ref": "#/definitions/monthlyIncome"
