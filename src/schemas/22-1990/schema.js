@@ -47,7 +47,7 @@ let schema = {
     },
     benefitsRelinquished: {
       type: 'string',
-      'enum': ['chapter1607', 'unknown', ..._.without(benefits, 'chapter33', 'chapter32')]
+      'enum': ['unknown', ..._.without(benefits, 'chapter33', 'chapter32'), 'chapter1607']
     },
     veteranFullName: {
       $ref: '#/definitions/fullName'

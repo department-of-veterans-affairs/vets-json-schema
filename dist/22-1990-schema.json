@@ -518,10 +518,10 @@
     "benefitsRelinquished": {
       "type": "string",
       "enum": [
-        "chapter1607",
         "unknown",
         "chapter30",
-        "chapter1606"
+        "chapter1606",
+        "chapter1607"
       ]
     },
     "veteranFullName": {
