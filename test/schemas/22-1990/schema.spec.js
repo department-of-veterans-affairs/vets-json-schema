@@ -94,7 +94,7 @@ describe('education benefits json schema', () => {
     schemaTestHelper.testValidAndInvalid('currentlyActiveDuty', {
       valid: [{
         yes: true,
-        onTerminalLeave: true,
+        onTerminalLeave: true
       }],
       invalid: [{
         yes: 1

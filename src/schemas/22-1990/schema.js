@@ -193,7 +193,7 @@ let schema = {
 };
 
 [
-  ['toursOfDuty'],
+  ['toursOfDuty']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
