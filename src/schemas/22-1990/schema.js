@@ -118,6 +118,17 @@ let schema = {
     serviceAcademyGraduationYear: {
       $ref: '#/definitions/year'
     },
+    currentlyActiveDuty: {
+      type: 'object',
+      properties: {
+        yes: {
+          type: 'boolean'
+        },
+        onTerminalLeave: {
+          type: 'boolean'
+        }
+      }
+    },
     seniorRotc: {
       type: 'object',
       properties: {
@@ -182,8 +193,7 @@ let schema = {
 };
 
 [
-  ['toursOfDuty'],
-  ['currentlyActiveDuty']
+  ['toursOfDuty']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
