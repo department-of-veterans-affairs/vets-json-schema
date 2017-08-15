@@ -34,7 +34,8 @@ describe('education benefits json schema', () => {
     'educationType',
     'nonMilitaryJobs',
     'secondaryContact',
-    'toursOfDuty'
+    'toursOfDuty',
+    'currentlyActiveDuty'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -86,18 +87,6 @@ describe('education benefits json schema', () => {
       }],
       invalid: [{
         commissionYear: 1981
-      }]
-    });
-  });
-  
-  context('currentlyActiveDuty', () => {
-    schemaTestHelper.testValidAndInvalid('currentlyActiveDuty', {
-      valid: [{
-        yes: true,
-        onTerminalLeave: true
-      }],
-      invalid: [{
-        yes: 1
       }]
     });
   });

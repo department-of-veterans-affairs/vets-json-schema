@@ -499,6 +499,20 @@
           "serviceBranch"
         ]
       }
+    },
+    "currentlyActiveDuty": {
+      "type": "object",
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "onTerminalLeave": {
+          "type": "boolean"
+        },
+        "nonVaAssistance": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "additionalProperties": false,
@@ -593,17 +607,6 @@
     "serviceAcademyGraduationYear": {
       "$ref": "#/definitions/year"
     },
-    "currentlyActiveDuty": {
-      "type": "object",
-      "properties": {
-        "yes": {
-          "type": "boolean"
-        },
-        "onTerminalLeave": {
-          "type": "boolean"
-        }
-      }
-    },
     "seniorRotc": {
       "type": "object",
       "properties": {
@@ -667,6 +670,9 @@
     },
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
+    },
+    "currentlyActiveDuty": {
+      "$ref": "#/definitions/currentlyActiveDuty"
     }
   },
   "required": [
