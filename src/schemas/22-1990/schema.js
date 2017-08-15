@@ -138,8 +138,10 @@ let schema = {
             }
           }
         }
-      },
-      required: ['rotcScholarshipAmounts']
+      }
+    },
+    seniorRotcCommissioned: {
+      type: 'boolean'
     },
     seniorRotcScholarshipProgram: {
       type: 'boolean'
