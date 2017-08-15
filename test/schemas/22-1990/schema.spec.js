@@ -86,7 +86,7 @@ describe('education benefits json schema', () => {
         }]
       }],
       invalid: [{
-        commissionYear: 1981
+        commissionYear: 800
       }]
     });
   });
