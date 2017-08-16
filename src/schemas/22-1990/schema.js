@@ -140,9 +140,6 @@ let schema = {
         }
       }
     },
-    seniorRotcCommissioned: {
-      type: 'boolean'
-    },
     seniorRotcScholarshipProgram: {
       type: 'boolean'
     },

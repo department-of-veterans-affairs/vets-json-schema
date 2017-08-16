@@ -629,9 +629,6 @@
         }
       }
     },
-    "seniorRotcCommissioned": {
-      "type": "boolean"
-    },
     "seniorRotcScholarshipProgram": {
       "type": "boolean"
     },
