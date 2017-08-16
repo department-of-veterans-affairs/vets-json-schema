@@ -331,6 +331,20 @@
         "tuitionTopUp"
       ]
     },
+    "educationProgram": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "educationType": {
+          "$ref": "#/definitions/educationType"
+        }
+      }
+    },
     "preferredContactMethod": {
       "type": "string",
       "enum": [
@@ -597,6 +611,9 @@
     },
     "educationType": {
       "$ref": "#/definitions/educationType"
+    },
+    "educationProgram": {
+      "$ref": "#/definitions/educationProgram"
     },
     "highSchoolOrGedCompletionDate": {
       "$ref": "#/definitions/date"

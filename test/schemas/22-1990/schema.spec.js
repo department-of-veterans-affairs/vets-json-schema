@@ -32,6 +32,7 @@ describe('education benefits json schema', () => {
     'school',
     'postHighSchoolTrainings',
     'educationType',
+    'educationProgram',
     'nonMilitaryJobs',
     'secondaryContact',
     'toursOfDuty',
