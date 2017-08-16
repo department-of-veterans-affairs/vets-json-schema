@@ -25,6 +25,7 @@ let schema = {
     'date',
     'dateRange',
     'educationType',
+    'educationProgram',
     'preferredContactMethod',
     'privacyAgreementAccepted',
     'gender',
@@ -108,6 +109,9 @@ let schema = {
     },
     educationType: {
       $ref: '#/definitions/educationType'
+    },
+    educationProgram: {
+      $ref: '#/definitions/educationProgram'
     },
     highSchoolOrGedCompletionDate: {
       $ref: '#/definitions/date'
