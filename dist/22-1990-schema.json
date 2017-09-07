@@ -644,10 +644,7 @@
             }
           }
         }
-      },
-      "required": [
-        "rotcScholarshipAmounts"
-      ]
+      }
     },
     "seniorRotcScholarshipProgram": {
       "type": "boolean"

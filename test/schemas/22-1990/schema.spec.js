@@ -85,9 +85,11 @@ describe('education benefits json schema', () => {
           year: 1999,
           amount: 99.99
         }]
+      }, {
+        commissionYear: 1981
       }],
       invalid: [{
-        commissionYear: 1981
+        commissionYear: 'a'
       }]
     });
   });
