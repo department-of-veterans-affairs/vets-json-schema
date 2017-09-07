@@ -142,8 +142,7 @@ let schema = {
             }
           }
         }
-      },
-      required: ['rotcScholarshipAmounts']
+      }
     },
     seniorRotcScholarshipProgram: {
       type: 'boolean'
