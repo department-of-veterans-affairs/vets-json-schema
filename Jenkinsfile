@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'vets-website-linting'
-  }
+  agent any
 
   stages {
     stage('Checkout Code') {
