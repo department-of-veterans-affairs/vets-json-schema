@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'vets-website-linting'
+    label 'vetsgov-general-purpose'
   }
 
   stages {
