@@ -271,7 +271,7 @@
     },
     "vaFileNumber": {
       "type": "string",
-      "pattern": "^[cC]{0,1}\\d{8}$"
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
     },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
