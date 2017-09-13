@@ -262,7 +262,7 @@ const secondaryContact = {
 
 const vaFileNumber = {
   type: 'string',
-  pattern: '^[cC]{0,1}\\d{8}$'
+  pattern: '^[cC]{0,1}\\d{7,9}$'
 };
 
 const relationship = {
