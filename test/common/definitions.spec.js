@@ -207,13 +207,20 @@ describe('schema definitions', () => {
 
   testValidAndInvalidDefinitions('vaFileNumber', {
     valid: [
+      '1234567',
       '12345678',
+      '123456789',
+      'c1234567',
       'c12345678',
+      'c123456789',
+      'C1234567',
       'C12345678',
+      'C123456789',
     ],
     invalid: [
       '123',
       'd12345678',
+      '1234567890',
     ]
   });
 
