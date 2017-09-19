@@ -1595,7 +1595,11 @@ const childRelationships = [
   'Daughter',
   'Son',
   'Stepson',
-  'Stepdaughter'
+  'Stepdaughter',
+  'Father',
+  'Mother',
+  'Spouse',
+  'Other'
 ];
 
 const yesNo = [
