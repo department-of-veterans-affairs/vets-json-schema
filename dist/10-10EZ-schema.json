@@ -226,10 +226,14 @@
         },
         "childRelation": {
           "enum": [
+            "Spouse",
             "Daughter",
             "Son",
             "Stepson",
-            "Stepdaughter"
+            "Stepdaughter",
+            "Father",
+            "Mother",
+            "Other"
           ],
           "type": "string"
         },
