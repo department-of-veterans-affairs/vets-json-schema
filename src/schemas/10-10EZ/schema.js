@@ -81,7 +81,7 @@ let schema = {
           $ref: '#/definitions/fullName'
         },
         childRelation: {
-          'enum': constants.childRelationships,
+          'enum': constants.dependentRelationships,
           type: 'string',
         },
         childSocialSecurityNumber: {
@@ -106,6 +106,51 @@ let schema = {
           type: 'boolean'
         },
         childReceivedSupportLastYear: {
+          type: 'boolean'
+        },
+        grossIncome: {
+          $ref: '#/definitions/monetaryValue'
+        },
+        netIncome: {
+          $ref: '#/definitions/monetaryValue'
+        },
+        otherIncome: {
+          $ref: '#/definitions/monetaryValue'
+        },
+      }
+    },
+    dependent: {
+      type: 'object',
+      properties: {
+        fullName: {
+          $ref: '#/definitions/fullName'
+        },
+        relation: {
+          'enum': constants.dependentRelationships,
+          type: 'string',
+        },
+        socialSecurityNumber: {
+          $ref: '#/definitions/ssn'
+        },
+        becameDependent: {
+          $ref: '#/definitions/date'
+        },
+        dateOfBirth: {
+          $ref: '#/definitions/date'
+        },
+        disabledBefore18: {
+          type: 'boolean'
+        },
+        attendedSchoolLastYear: {
+          type: 'boolean'
+        },
+        educationExpenses: {
+          $ref: '#/definitions/monetaryValue'
+        },
+        cohabitedLastYear: {
+          type: 'boolean'
+        },
+        receivedSupportLastYear: {
           type: 'boolean'
         },
         grossIncome: {
@@ -307,7 +352,13 @@ let schema = {
     children: {
       type: 'array',
       items: {
-        $ref: '#/definitions/child'
+        $ref: '#/definitions/dependent'
+      },
+    },
+    dependents: {
+      type: 'array',
+      items: {
+        $ref: '#/definitions/dependent'
       },
     },
     veteranGrossIncome: {
