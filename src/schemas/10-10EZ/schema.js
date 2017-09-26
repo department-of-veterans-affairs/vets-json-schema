@@ -352,7 +352,7 @@ let schema = {
     children: {
       type: 'array',
       items: {
-        $ref: '#/definitions/dependent'
+        $ref: '#/definitions/child'
       },
     },
     dependents: {
