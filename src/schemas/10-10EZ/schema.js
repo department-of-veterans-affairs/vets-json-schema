@@ -125,7 +125,7 @@ let schema = {
         fullName: {
           $ref: '#/definitions/fullName'
         },
-        relation: {
+        dependentRelation: {
           'enum': constants.dependentRelationships,
           type: 'string',
         },
@@ -144,7 +144,7 @@ let schema = {
         attendedSchoolLastYear: {
           type: 'boolean'
         },
-        educationExpenses: {
+        dependentEducationExpenses: {
           $ref: '#/definitions/monetaryValue'
         },
         cohabitedLastYear: {

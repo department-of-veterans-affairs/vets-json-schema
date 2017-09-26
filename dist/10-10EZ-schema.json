@@ -278,7 +278,7 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
-        "relation": {
+        "dependentRelation": {
           "enum": [
             "Daughter",
             "Son",
@@ -306,7 +306,7 @@
         "attendedSchoolLastYear": {
           "type": "boolean"
         },
-        "educationExpenses": {
+        "dependentEducationExpenses": {
           "$ref": "#/definitions/monetaryValue"
         },
         "cohabitedLastYear": {
