@@ -1591,7 +1591,7 @@ const vaMedicalFacilities = {
   ],
 };
 
-const childRelationships = [
+const dependentRelationships = [
   'Daughter',
   'Son',
   'Stepson',
@@ -1620,7 +1620,7 @@ module.exports = {
   months,
   days,
   vaMedicalFacilities,
-  childRelationships,
+  dependentRelationships,
   yesNo,
   usaStates
 };
