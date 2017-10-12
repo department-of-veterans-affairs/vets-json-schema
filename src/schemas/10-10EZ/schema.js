@@ -74,51 +74,6 @@ let schema = {
         'country'
       ]
     },
-    child: {
-      type: 'object',
-      properties: {
-        childFullName: {
-          $ref: '#/definitions/fullName'
-        },
-        childRelation: {
-          'enum': constants.dependentRelationships,
-          type: 'string',
-        },
-        childSocialSecurityNumber: {
-          $ref: '#/definitions/ssn'
-        },
-        childBecameDependent: {
-          $ref: '#/definitions/date'
-        },
-        childDateOfBirth: {
-          $ref: '#/definitions/date'
-        },
-        childDisabledBefore18: {
-          type: 'boolean'
-        },
-        childAttendedSchoolLastYear: {
-          type: 'boolean'
-        },
-        childEducationExpenses: {
-          $ref: '#/definitions/monetaryValue'
-        },
-        childCohabitedLastYear: {
-          type: 'boolean'
-        },
-        childReceivedSupportLastYear: {
-          type: 'boolean'
-        },
-        grossIncome: {
-          $ref: '#/definitions/monetaryValue'
-        },
-        netIncome: {
-          $ref: '#/definitions/monetaryValue'
-        },
-        otherIncome: {
-          $ref: '#/definitions/monetaryValue'
-        },
-      }
-    },
     dependent: {
       type: 'object',
       properties: {
@@ -348,12 +303,6 @@ let schema = {
     },
     spousePhone: {
       $ref: '#/definitions/phone'
-    },
-    children: {
-      type: 'array',
-      items: {
-        $ref: '#/definitions/child'
-      },
     },
     dependents: {
       type: 'array',
