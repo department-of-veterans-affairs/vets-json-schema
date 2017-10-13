@@ -35,10 +35,21 @@ definitions =  _.pick(definitions, [
   'vaFileNumber'
 ]);
 
+definitions.email = {
+  type: 'string',
+  pattern: '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+'
+};
+
 definitions.fullName.properties.first.maxLength = 15;
 definitions.fullName.properties.last.maxLength = 25;
 definitions.fullName.properties.middle.maxLength = 25;
 definitions.fullName.properties.maiden = { type: 'string', maxLength: 15 };
+
+definitions.phone.minLength = 0;
+definitions.phone.maxLength = 20;
+definitions.phone.pattern = '[0-9+\\s-]{0,20}';
+
+definitions.ssn.pattern = '\\d{3}-\\d{2}-\\d{4}';
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -66,10 +77,11 @@ let schema = {
               'applicantEmail',
               'applicantPhoneNumber',
               'applicantRelationshipToClaimant',
-              'mailingAddress'
+              'mailingAddress',
+              'name'
             ],
             properties: {
-              applicantEmail: { type: 'string', format: 'email' },
+              applicantEmail: schemaHelpers.getDefinition('email'),
               applicantPhoneNumber: schemaHelpers.getDefinition('phone'),
               applicantRelationshipToClaimant: {
                 type: 'string',
@@ -96,9 +108,8 @@ let schema = {
               address: schemaHelpers.getDefinition('address'),
               dateOfBirth: { type: 'string', format: 'date' },
               desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
-              email: { type: 'string', format: 'email' },
+              email: schemaHelpers.getDefinition('email'),
               name: schemaHelpers.getDefinition('fullName'),
-              maidenName: { type: 'string' },
               phoneNumber: schemaHelpers.getDefinition('phone'),
               relationshipToVet: {
                 type: 'string',
