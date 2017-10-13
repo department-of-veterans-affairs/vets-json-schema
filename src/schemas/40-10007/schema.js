@@ -26,7 +26,6 @@ _.merge(modifiedToursOfDuty, {
 
 definitions =  _.pick(definitions, [
   'address',
-  'date',
   'dateRange',
   'files',
   'fullName',
@@ -34,6 +33,16 @@ definitions =  _.pick(definitions, [
   'ssn',
   'vaFileNumber'
 ]);
+
+definitions.address.required = ['street'];
+definitions.address.properties.street.maxLength = 35;
+definitions.address.properties.street2.maxLength = 35;
+definitions.address.properties.city.maxLength = 30;
+
+definitions.date = {
+  type: 'string',
+  format: 'date'
+};
 
 definitions.email = {
   type: 'string',
@@ -106,7 +115,7 @@ let schema = {
             ],
             properties: {
               address: schemaHelpers.getDefinition('address'),
-              dateOfBirth: { type: 'string', format: 'date' },
+              dateOfBirth: schemaHelpers.getDefinition('date'),
               desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
               email: schemaHelpers.getDefinition('email'),
               name: schemaHelpers.getDefinition('fullName'),
@@ -138,8 +147,8 @@ let schema = {
             properties: {
               address: schemaHelpers.getDefinition('address'),
               currentName: schemaHelpers.getDefinition('fullName'),
-              dateOfBirth: { type: 'string', format: 'date' },
-              dateOfDeath: { type: 'string', format: 'date' },
+              dateOfBirth: schemaHelpers.getDefinition('date'),
+              dateOfDeath: schemaHelpers.getDefinition('date'),
               gender: {
                 type: 'string',
                 'enum': ['Female', 'Male']
