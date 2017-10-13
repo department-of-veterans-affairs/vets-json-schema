@@ -46,12 +46,13 @@ definitions.date = {
 
 definitions.email = {
   type: 'string',
+  maxLength: 50,
   pattern: '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+'
 };
 
 definitions.fullName.properties.first.maxLength = 15;
 definitions.fullName.properties.last.maxLength = 25;
-definitions.fullName.properties.middle.maxLength = 25;
+definitions.fullName.properties.middle.maxLength = 15;
 definitions.fullName.properties.maiden = { type: 'string', maxLength: 15 };
 
 definitions.phone.minLength = 0;
