@@ -198,23 +198,22 @@
         "street": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50
+          "maxLength": 35
         },
         "street2": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50
+          "maxLength": 35
         },
         "city": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 51
+          "maxLength": 30
         }
-      }
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
+      },
+      "required": [
+        "street"
+      ]
     },
     "dateRange": {
       "type": "object",
@@ -254,7 +253,7 @@
         },
         "middle": {
           "type": "string",
-          "maxLength": 25
+          "maxLength": 15
         },
         "last": {
           "type": "string",
@@ -283,15 +282,26 @@
     },
     "phone": {
       "type": "string",
-      "minLength": 10
+      "minLength": 0,
+      "maxLength": 20,
+      "pattern": "[0-9+\\s-]{0,20}"
     },
     "ssn": {
       "type": "string",
-      "pattern": "^[0-9]{9}$"
+      "pattern": "\\d{3}-\\d{2}-\\d{4}"
     },
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 50,
+      "pattern": "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+"
     }
   },
   "properties": {
@@ -314,12 +324,12 @@
               "applicantEmail",
               "applicantPhoneNumber",
               "applicantRelationshipToClaimant",
-              "mailingAddress"
+              "mailingAddress",
+              "name"
             ],
             "properties": {
               "applicantEmail": {
-                "type": "string",
-                "format": "email"
+                "$ref": "#/definitions/email"
               },
               "applicantPhoneNumber": {
                 "$ref": "#/definitions/phone"
@@ -357,22 +367,17 @@
                 "$ref": "#/definitions/address"
               },
               "dateOfBirth": {
-                "type": "string",
-                "format": "date"
+                "$ref": "#/definitions/date"
               },
               "desiredCemetery": {
                 "type": "string",
                 "pattern": "^\\d{3}$"
               },
               "email": {
-                "type": "string",
-                "format": "email"
+                "$ref": "#/definitions/email"
               },
               "name": {
                 "$ref": "#/definitions/fullName"
-              },
-              "maidenName": {
-                "type": "string"
               },
               "phoneNumber": {
                 "$ref": "#/definitions/phone"
@@ -411,12 +416,10 @@
                 "$ref": "#/definitions/fullName"
               },
               "dateOfBirth": {
-                "type": "string",
-                "format": "date"
+                "$ref": "#/definitions/date"
               },
               "dateOfDeath": {
-                "type": "string",
-                "format": "date"
+                "$ref": "#/definitions/date"
               },
               "gender": {
                 "type": "string",
@@ -494,12 +497,13 @@
                     "dischargeType": {
                       "type": "string",
                       "enum": [
-                        "honorable",
-                        "general",
-                        "other",
-                        "bad-conduct",
-                        "dishonorable",
-                        "undesirable"
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7"
                       ]
                     },
                     "highestRank": {
