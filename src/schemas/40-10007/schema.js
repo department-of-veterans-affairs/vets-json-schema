@@ -178,16 +178,20 @@ let schema = {
               },
               militaryServiceNumber: { type: 'string', maxLength: 9 },
               militaryStatus: {
-                type: 'object',
-                properties: {
-                  veteran: { type: 'boolean' },
-                  retiredActiveDuty: { type: 'boolean' },
-                  diedOnActiveDuty: { type: 'boolean' },
-                  retiredReserve: { type: 'boolean' },
-                  retiredNationalGuard: { type: 'boolean' },
-                  deathInactiveDuty: { type: 'boolean' },
-                  other: { type: 'boolean' }
-                }
+                type: 'string',
+                minLength: 1,
+                maxLength: 1,
+                'enum': [
+                  'A',
+                  'R',
+                  'S',
+                  'V',
+                  'X',
+                  'E',
+                  'D',
+                  'O',
+                  'I'
+                ]
               },
               placeOfBirth: { type: 'string', maxLength: 100 },
               serviceName: schemaHelpers.getDefinition('fullName'),
