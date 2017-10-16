@@ -15,7 +15,15 @@ _.merge(modifiedToursOfDuty, {
     properties: {
       dischargeType: {
         type: 'string',
-        'enum': constants.dischargeTypes.map(option => option.value)
+        'enum': [
+          '1', // Honorable
+          '2', // General
+          '3', // Entry Level Separation/Uncharacterized
+          '4', // Other Than Honorable
+          '5', // Bad Conduct
+          '6', // Dishonorable
+          '7'  // Other
+        ]
       },
       highestRank: {
         type: 'string'
