@@ -514,10 +514,10 @@
     "vaCompensationType": {
       "type": "string",
       "enum": [
-        "none",
-        "pension",
         "lowDisability",
-        "highDisability"
+        "highDisability",
+        "pension",
+        "none"
       ]
     },
     "isEssentialAcaCoverage": {
