@@ -232,6 +232,10 @@ let schema = {
     receivesVaPension: {
       type: 'boolean'
     },
+    vaCompensationType: {
+      type: 'string',
+      enum: ['lowDisability', 'highDisability', 'pension', 'none']
+    },
     isEssentialAcaCoverage: {
       type: 'boolean'
     },
