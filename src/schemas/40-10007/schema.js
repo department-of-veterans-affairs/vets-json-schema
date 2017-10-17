@@ -182,15 +182,15 @@ let schema = {
                 minLength: 1,
                 maxLength: 1,
                 'enum': [
-                  'A',
-                  'R',
-                  'S',
-                  'V',
-                  'X',
-                  'E',
-                  'D',
-                  'O',
-                  'I'
+                  'A', // Active Duty
+                  'R', // Retired
+                  'S', // Reserve/National Guard
+                  'V', // Veteran
+                  'X', // Other (Or Unknown)
+                  'E', // Retired Active Duty
+                  'D', // Died On Active Duty
+                  'O', // Retired Reserve Or National Guard
+                  'I'  // Death Related To Inactive Duty Training
                 ]
               },
               placeOfBirth: { type: 'string', maxLength: 100 },
