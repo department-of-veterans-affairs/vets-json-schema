@@ -223,14 +223,9 @@ let schema = {
       type: 'string',
       'enum': constants.maritalStatuses
     },
-    isVaServiceConnected: {
-      type: 'boolean'
-    },
-    compensableVaServiceConnected: {
-      type: 'boolean'
-    },
-    receivesVaPension: {
-      type: 'boolean'
+    vaCompensationType: {
+      type: 'string',
+      enum: ['none', 'pension', 'lowDisability', 'highDisability']
     },
     isEssentialAcaCoverage: {
       type: 'boolean'
@@ -408,6 +403,7 @@ let schema = {
     'veteranDateOfBirth',
     'gender',
     'maritalStatus',
+    'vaCompensationType',
     'vaMedicalFacility',
     'isSpanishHispanicLatino',
     'veteranAddress',

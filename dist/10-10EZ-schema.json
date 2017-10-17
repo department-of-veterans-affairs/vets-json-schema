@@ -502,14 +502,14 @@
     "maritalStatus": {
       "$ref": "#/definitions/maritalStatus"
     },
-    "isVaServiceConnected": {
-      "type": "boolean"
-    },
-    "compensableVaServiceConnected": {
-      "type": "boolean"
-    },
-    "receivesVaPension": {
-      "type": "boolean"
+    "vaCompensationType": {
+      "type": "string",
+      "enum": [
+        "none",
+        "pension",
+        "lowDisability",
+        "highDisability"
+      ]
     },
     "isEssentialAcaCoverage": {
       "type": "boolean"
@@ -1757,6 +1757,7 @@
     "veteranDateOfBirth",
     "gender",
     "maritalStatus",
+    "vaCompensationType",
     "vaMedicalFacility",
     "isSpanishHispanicLatino",
     "veteranAddress",
