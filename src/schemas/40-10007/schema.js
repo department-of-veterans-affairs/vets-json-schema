@@ -15,7 +15,15 @@ _.merge(modifiedToursOfDuty, {
     properties: {
       dischargeType: {
         type: 'string',
-        'enum': constants.dischargeTypes.map(option => option.value)
+        'enum': [
+          '1', // Honorable
+          '2', // General
+          '3', // Entry Level Separation/Uncharacterized
+          '4', // Other Than Honorable
+          '5', // Bad Conduct
+          '6', // Dishonorable
+          '7'  // Other
+        ]
       },
       highestRank: {
         type: 'string'
@@ -26,7 +34,6 @@ _.merge(modifiedToursOfDuty, {
 
 definitions =  _.pick(definitions, [
   'address',
-  'date',
   'dateRange',
   'files',
   'fullName',
@@ -35,10 +42,32 @@ definitions =  _.pick(definitions, [
   'vaFileNumber'
 ]);
 
+definitions.address.required = ['street'];
+definitions.address.properties.street.maxLength = 35;
+definitions.address.properties.street2.maxLength = 35;
+definitions.address.properties.city.maxLength = 30;
+
+definitions.date = {
+  type: 'string',
+  format: 'date'
+};
+
+definitions.email = {
+  type: 'string',
+  maxLength: 50,
+  pattern: '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+'
+};
+
 definitions.fullName.properties.first.maxLength = 15;
 definitions.fullName.properties.last.maxLength = 25;
-definitions.fullName.properties.middle.maxLength = 25;
+definitions.fullName.properties.middle.maxLength = 15;
 definitions.fullName.properties.maiden = { type: 'string', maxLength: 15 };
+
+definitions.phone.minLength = 0;
+definitions.phone.maxLength = 20;
+definitions.phone.pattern = '[0-9+\\s-]{0,20}';
+
+definitions.ssn.pattern = '\\d{3}-\\d{2}-\\d{4}';
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -66,10 +95,11 @@ let schema = {
               'applicantEmail',
               'applicantPhoneNumber',
               'applicantRelationshipToClaimant',
-              'mailingAddress'
+              'mailingAddress',
+              'name'
             ],
             properties: {
-              applicantEmail: { type: 'string', format: 'email' },
+              applicantEmail: schemaHelpers.getDefinition('email'),
               applicantPhoneNumber: schemaHelpers.getDefinition('phone'),
               applicantRelationshipToClaimant: {
                 type: 'string',
@@ -94,11 +124,10 @@ let schema = {
             ],
             properties: {
               address: schemaHelpers.getDefinition('address'),
-              dateOfBirth: { type: 'string', format: 'date' },
+              dateOfBirth: schemaHelpers.getDefinition('date'),
               desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
-              email: { type: 'string', format: 'email' },
+              email: schemaHelpers.getDefinition('email'),
               name: schemaHelpers.getDefinition('fullName'),
-              maidenName: { type: 'string' },
               phoneNumber: schemaHelpers.getDefinition('phone'),
               relationshipToVet: {
                 type: 'string',
@@ -127,8 +156,8 @@ let schema = {
             properties: {
               address: schemaHelpers.getDefinition('address'),
               currentName: schemaHelpers.getDefinition('fullName'),
-              dateOfBirth: { type: 'string', format: 'date' },
-              dateOfDeath: { type: 'string', format: 'date' },
+              dateOfBirth: schemaHelpers.getDefinition('date'),
+              dateOfDeath: schemaHelpers.getDefinition('date'),
               gender: {
                 type: 'string',
                 'enum': ['Female', 'Male']
@@ -149,16 +178,20 @@ let schema = {
               },
               militaryServiceNumber: { type: 'string', maxLength: 9 },
               militaryStatus: {
-                type: 'object',
-                properties: {
-                  veteran: { type: 'boolean' },
-                  retiredActiveDuty: { type: 'boolean' },
-                  diedOnActiveDuty: { type: 'boolean' },
-                  retiredReserve: { type: 'boolean' },
-                  retiredNationalGuard: { type: 'boolean' },
-                  deathInactiveDuty: { type: 'boolean' },
-                  other: { type: 'boolean' }
-                }
+                type: 'string',
+                minLength: 1,
+                maxLength: 1,
+                'enum': [
+                  'A', // Active Duty
+                  'R', // Retired
+                  'S', // Reserve/National Guard
+                  'V', // Veteran
+                  'X', // Other (Or Unknown)
+                  'E', // Retired Active Duty
+                  'D', // Died On Active Duty
+                  'O', // Retired Reserve Or National Guard
+                  'I'  // Death Related To Inactive Duty Training
+                ]
               },
               placeOfBirth: { type: 'string', maxLength: 100 },
               serviceName: schemaHelpers.getDefinition('fullName'),
