@@ -216,7 +216,7 @@ let schema = {
               required: ['name'],
               properties: {
                 cemeteryNumber: { type: 'string', pattern: '^\\d{3}$' },
-                name: { type: 'string' }
+                name: schemaHelpers.getDefinition('fullName')
               }
             }
           },
@@ -229,4 +229,3 @@ let schema = {
 };
 
 export default schema;
-
