@@ -223,15 +223,6 @@ let schema = {
       type: 'string',
       'enum': constants.maritalStatuses
     },
-    isVaServiceConnected: {
-      type: 'boolean'
-    },
-    compensableVaServiceConnected: {
-      type: 'boolean'
-    },
-    receivesVaPension: {
-      type: 'boolean'
-    },
     vaCompensationType: {
       type: 'string',
       enum: ['lowDisability', 'highDisability', 'pension', 'none']
