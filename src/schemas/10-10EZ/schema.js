@@ -403,7 +403,6 @@ let schema = {
     'veteranDateOfBirth',
     'gender',
     'maritalStatus',
-    'vaMedicalFacility',
     'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
