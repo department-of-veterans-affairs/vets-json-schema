@@ -144,7 +144,6 @@ let schema = {
       required: [
         'applicant',
         'claimant',
-        'currentlyBuriedPersons',
         'hasAttachments',
         'hasCurrentlyBuried',
         'veteran'
