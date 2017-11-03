@@ -23,6 +23,7 @@ describe('ncs benefits schema', () => {
     'phone',
     'email',
     'bankAccount',
+    'vaFileNumber',
     'educationProgram',
     'currentlyActiveDuty',
     'toursOfDuty',
