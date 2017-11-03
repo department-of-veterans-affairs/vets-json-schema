@@ -514,6 +514,10 @@
         ]
       }
     },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
     "currentlyActiveDuty": {
       "type": "object",
       "properties": {
@@ -684,6 +688,9 @@
     },
     "toursOfDuty": {
       "$ref": "#/definitions/toursOfDuty"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
     },
     "currentlyActiveDuty": {
       "$ref": "#/definitions/currentlyActiveDuty"

@@ -27,6 +27,7 @@ describe('education benefits json schema', () => {
     'fullName',
     'gender',
     'bankAccount',
+    'vaFileNumber',
     'date',
     'email',
     'school',

@@ -186,6 +186,7 @@ let schema = {
 
 [
   ['toursOfDuty'],
+  ['vaFileNumber'],
   ['currentlyActiveDuty']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
