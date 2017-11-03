@@ -277,8 +277,8 @@ let schema = {
             type: 'object',
             required: ['name'],
             properties: {
-              cemeteryNumber: { type: 'string', pattern: '^\\d{3}$' },
-              name: schemaHelpers.getDefinition('fullName')
+              name: schemaHelpers.getDefinition('fullName'),
+              cemeteryNumber: { type: 'string', pattern: '^\\d{3}$' }
             }
           }
         },
