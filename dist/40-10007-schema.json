@@ -552,12 +552,16 @@
                   },
                   "highestRank": {
                     "type": "string"
+                  },
+                  "nationalGuardState": {
+                    "type": "string"
                   }
                 },
                 "required": [
                   "serviceBranch"
                 ]
-              }
+              },
+              "minItems": 1
             },
             "ssn": {
               "$ref": "#/definitions/ssn"

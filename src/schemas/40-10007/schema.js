@@ -6,6 +6,32 @@ import _ from 'lodash';
 let definitions = _.cloneDeep(originalDefinitions);
 let modifiedToursOfDuty = definitions.toursOfDuty;
 
+_.merge(modifiedToursOfDuty, {
+  minItems: 1,
+  items: {
+    properties: {
+      dischargeType: {
+        type: 'string',
+        'enum': [
+          '1', // Honorable
+          '2', // General
+          '3', // Entry Level Separation/Uncharacterized
+          '4', // Other Than Honorable
+          '5', // Bad Conduct
+          '6', // Dishonorable
+          '7'  // Other
+        ]
+      },
+      highestRank: {
+        type: 'string'
+      },
+      nationalGuardState: {
+        type: 'string'
+      }
+    }
+  }
+});
+
 // All Branches active during WWII and later as returned by EOAS getBranchesOfService
 modifiedToursOfDuty.items.required = ['serviceBranch'];
 modifiedToursOfDuty.items.properties.serviceBranch = {
@@ -72,28 +98,6 @@ modifiedToursOfDuty.items.properties.serviceBranch = {
 delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
 delete modifiedToursOfDuty.items.properties.serviceStatus;
-
-_.merge(modifiedToursOfDuty, {
-  items: {
-    properties: {
-      dischargeType: {
-        type: 'string',
-        'enum': [
-          '1', // Honorable
-          '2', // General
-          '3', // Entry Level Separation/Uncharacterized
-          '4', // Other Than Honorable
-          '5', // Bad Conduct
-          '6', // Dishonorable
-          '7'  // Other
-        ]
-      },
-      highestRank: {
-        type: 'string'
-      }
-    }
-  }
-});
 
 definitions =  _.pick(definitions, [
   'address',
