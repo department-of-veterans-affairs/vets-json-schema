@@ -552,12 +552,16 @@
                   },
                   "highestRank": {
                     "type": "string"
+                  },
+                  "nationalGuardState": {
+                    "type": "string"
                   }
                 },
                 "required": [
                   "serviceBranch"
                 ]
-              }
+              },
+              "minItems": 1
             },
             "ssn": {
               "$ref": "#/definitions/ssn"
@@ -577,19 +581,18 @@
         },
         "currentlyBuriedPersons": {
           "type": "array",
-          "minItems": 0,
           "items": {
             "type": "object",
             "required": [
               "name"
             ],
             "properties": {
+              "name": {
+                "$ref": "#/definitions/fullName"
+              },
               "cemeteryNumber": {
                 "type": "string",
                 "pattern": "^\\d{3}$"
-              },
-              "name": {
-                "$ref": "#/definitions/fullName"
               }
             }
           }
