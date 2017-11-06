@@ -146,7 +146,6 @@ let schema = {
       required: [
         'applicant',
         'claimant',
-        'hasAttachments',
         'hasCurrentlyBuried',
         'veteran'
       ],
