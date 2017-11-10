@@ -596,11 +596,18 @@
             }
           }
         },
-        "hasAttachments": {
-          "type": "boolean"
-        },
-        "attachments": {
-          "$ref": "#/definitions/files"
+        "preneedAttachments": {
+          "$ref": "#/definitions/files",
+          "attachmentId": {
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "5",
+              "6"
+            ]
+          }
         }
       }
     }

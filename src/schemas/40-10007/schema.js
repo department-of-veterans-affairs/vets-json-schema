@@ -280,8 +280,19 @@ let schema = {
             }
           }
         },
-        hasAttachments: { type: 'boolean' },
-        attachments: schemaHelpers.getDefinition('files')
+        preneedAttachments: _.merge(schemaHelpers.getDefinition('files'), {
+          attachmentId: {
+            type: 'string',
+            enum: [
+              '1',
+              '2',
+              '3',
+              // Skipping 4 because it says "VA PRENEED FORM" and that doesn't seem useful?
+              '5',
+              '6'
+            ]
+          }
+        })
       }
     }
   }
