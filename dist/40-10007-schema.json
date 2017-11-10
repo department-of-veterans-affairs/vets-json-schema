@@ -599,10 +599,17 @@
         "preneedAttachments": {
           "type": "array",
           "items": {
-            "required": [
-              "attachmentId"
-            ],
+            "type": "object",
             "properties": {
+              "name": {
+                "type": "string"
+              },
+              "size": {
+                "type": "integer"
+              },
+              "confirmationCode": {
+                "type": "string"
+              },
               "attachmentId": {
                 "type": "string",
                 "enum": [
@@ -613,7 +620,10 @@
                   "6"
                 ]
               }
-            }
+            },
+            "required": [
+              "attachmentId"
+            ]
           }
         }
       }

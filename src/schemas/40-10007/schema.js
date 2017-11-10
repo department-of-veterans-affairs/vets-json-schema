@@ -280,7 +280,7 @@ let schema = {
             }
           }
         },
-        preneedAttachments: Object.assign({}, originalDefinitions.files, {
+        preneedAttachments: _.merge({}, originalDefinitions.files, {
           items: {
             required: ['attachmentId'],
             properties: {
