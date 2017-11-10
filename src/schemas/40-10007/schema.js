@@ -283,7 +283,7 @@ let schema = {
         preneedAttachments: _.merge(schemaHelpers.getDefinition('files'), {
           attachmentId: {
             type: 'string',
-            enum: [
+            'enum': [
               '1',
               '2',
               '3',
