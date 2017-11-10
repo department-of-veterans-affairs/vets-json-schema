@@ -597,15 +597,32 @@
           }
         },
         "preneedAttachments": {
-          "$ref": "#/definitions/files",
-          "attachmentId": {
-            "type": "string",
-            "enum": [
-              "1",
-              "2",
-              "3",
-              "5",
-              "6"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "size": {
+                "type": "integer"
+              },
+              "confirmationCode": {
+                "type": "string"
+              },
+              "attachmentId": {
+                "type": "string",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "5",
+                  "6"
+                ]
+              }
+            },
+            "required": [
+              "attachmentId"
             ]
           }
         }

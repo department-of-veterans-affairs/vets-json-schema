@@ -280,17 +280,22 @@ let schema = {
             }
           }
         },
-        preneedAttachments: _.merge(schemaHelpers.getDefinition('files'), {
-          attachmentId: {
-            type: 'string',
-            'enum': [
-              '1',
-              '2',
-              '3',
-              // Skipping 4 because it says "VA PRENEED FORM" and that doesn't seem useful?
-              '5',
-              '6'
-            ]
+        preneedAttachments: _.merge(originalDefinitions.files, {
+          items: {
+            required: ['attachmentId'],
+            properties: {
+              attachmentId: {
+                type: 'string',
+                'enum': [
+                  '1',
+                  '2',
+                  '3',
+                  // Skipping 4 because it says "VA PRENEED FORM" and that doesn't seem useful?
+                  '5',
+                  '6'
+                ]
+              }
+            }
           }
         })
       }
