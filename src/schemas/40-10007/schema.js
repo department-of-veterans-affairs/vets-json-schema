@@ -282,18 +282,10 @@ let schema = {
         },
         preneedAttachments: _.merge({}, originalDefinitions.files, {
           items: {
-            required: ['attachmentId'],
+            required: ['attachmentId', 'confirmationCode'],
             properties: {
               attachmentId: {
-                type: 'string',
-                'enum': [
-                  '1',
-                  '2',
-                  '3',
-                  // Skipping 4 because it says "VA PRENEED FORM" and that doesn't seem useful?
-                  '5',
-                  '6'
-                ]
+                type: 'string'
               }
             }
           }

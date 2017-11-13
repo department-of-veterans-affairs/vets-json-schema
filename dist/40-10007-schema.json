@@ -611,18 +611,12 @@
                 "type": "string"
               },
               "attachmentId": {
-                "type": "string",
-                "enum": [
-                  "1",
-                  "2",
-                  "3",
-                  "5",
-                  "6"
-                ]
+                "type": "string"
               }
             },
             "required": [
-              "attachmentId"
+              "attachmentId",
+              "confirmationCode"
             ]
           }
         }
