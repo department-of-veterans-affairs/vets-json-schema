@@ -280,8 +280,16 @@ let schema = {
             }
           }
         },
-        hasAttachments: { type: 'boolean' },
-        attachments: schemaHelpers.getDefinition('files')
+        preneedAttachments: _.merge({}, originalDefinitions.files, {
+          items: {
+            required: ['attachmentId', 'confirmationCode'],
+            properties: {
+              attachmentId: {
+                type: 'string'
+              }
+            }
+          }
+        })
       }
     }
   }
