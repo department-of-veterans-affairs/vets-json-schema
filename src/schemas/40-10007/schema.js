@@ -118,8 +118,7 @@ definitions.date = {
 
 definitions.email = {
   type: 'string',
-  maxLength: 50,
-  pattern: '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+'
+  format: 'email'
 };
 
 definitions.fullName.properties.first.maxLength = 15;
