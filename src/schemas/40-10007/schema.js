@@ -28,7 +28,7 @@ _.merge(modifiedToursOfDuty, {
           'FP', // CIVILIAN FERRY PILOT
           'CS', // CIVILIAN W/STRATEGIC SVC (OSS)
           'CV', // CIVILIAN WAKE ISLAND NAS
-          'XG',  // US COAST GUARD RESERVE
+          'XG', // US COAST GUARD RESERVE
           'CB', // DEFENSE OF BATAAN
           'FF', // FOREIGN FORCES
           'GP', // GUAM COMBAT PATROL
@@ -66,7 +66,7 @@ _.merge(modifiedToursOfDuty, {
           'WP', // WOMEN AIR FORCE SERVICE PILOTS
           'WA', // WOMEN'S ARMY AUX CORPS
           'WS', // WOMEN'S ARMY CORPS
-          'WR', // WOMEN'S RESERVE OF NAVY,MC,CG
+          'WR' // WOMEN'S RESERVE OF NAVY,MC,CG
         ]
       },
       dischargeType: {
