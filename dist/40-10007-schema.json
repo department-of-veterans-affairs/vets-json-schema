@@ -269,10 +269,6 @@
             "III",
             "IV"
           ]
-        },
-        "maiden": {
-          "type": "string",
-          "maxLength": 15
         }
       },
       "required": [
@@ -300,7 +296,8 @@
     },
     "email": {
       "type": "string",
-      "format": "email"
+      "maxLength": 50,
+      "pattern": "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+"
     }
   },
   "properties": {
