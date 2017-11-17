@@ -170,7 +170,14 @@ let schema = {
             },
             completingReason: { type: 'string', maxLength: 256 },
             mailingAddress: schemaHelpers.getDefinition('address'),
-            name: schemaHelpers.getDefinition('fullName')
+            name: _.merge(definitions.fullName, {
+              properties: {
+                maiden: {
+                  type: 'string',
+                  maxLength: 15
+                }
+              }
+            })
           }
         },
         claimant: {

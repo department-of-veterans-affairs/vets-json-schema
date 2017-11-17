@@ -269,6 +269,10 @@
             "III",
             "IV"
           ]
+        },
+        "maiden": {
+          "type": "string",
+          "maxLength": 15
         }
       },
       "required": [
@@ -341,7 +345,41 @@
               "$ref": "#/definitions/address"
             },
             "name": {
-              "$ref": "#/definitions/fullName"
+              "type": "object",
+              "properties": {
+                "first": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 15
+                },
+                "middle": {
+                  "type": "string",
+                  "maxLength": 15
+                },
+                "last": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 25
+                },
+                "suffix": {
+                  "type": "string",
+                  "enum": [
+                    "Jr.",
+                    "Sr.",
+                    "II",
+                    "III",
+                    "IV"
+                  ]
+                },
+                "maiden": {
+                  "type": "string",
+                  "maxLength": 15
+                }
+              },
+              "required": [
+                "first",
+                "last"
+              ]
             }
           }
         },
