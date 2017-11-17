@@ -15,6 +15,7 @@ _.merge(modifiedToursOfDuty, {
         'enum': [
           'AL', // ALLIED FORCES
           'CC', // AMERICAN FIELD SERVICE
+          'FS', // AMERICAN FIELD SERVICE
           'FT', // AMERICAN VOL GRP FLYING TIGERS
           'ES', // AMERICAN VOLUNTEER GUARD
           'CM', // CADET OR MIDSHIPMAN
