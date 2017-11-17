@@ -13,61 +13,61 @@ _.merge(modifiedToursOfDuty, {
       serviceBranch: {
         // All branches active during WWII and later as returned by EOAS getBranchesOfService
         'enum': [
-          'AC', // US ARMY AIR CORPS
-          'AF', // US AIR FORCE
-          'AR', // US ARMY
-          'CG', // US COAST GUARD
-          'CV', // CIVILIAN WAKE ISLAND NAS
-          'FP', // CIVILIAN FERRY PILOT
-          'MM', // US MERCHANT MARINE
-          'PH', // US PUBLIC HEALTH SERVICE
-          'NN', // NAVY NURSE CORPS
-          'WA', // WOMEN'S ARMY AUX CORPS
-          'WS', // WOMEN'S ARMY CORPS
-          'CF', // ROYAL CANADIAN AIR FORCE
-          'RO', // ROTC OF ARMY NAVY OR AF
-          'CA', // US CITIZEN WHO SERVED W/ALLIES
-          'WR', // WOMEN'S RESERVE OF NAVY,MC,CG
-          'CS', // CIVILIAN W/STRATEGIC SVC (OSS)
-          'KC', // QRTRMASTER CORPS KESWICK CREW
-          'CB', // DEFENSE OF BATAAN
-          'CO', // US ARMY TRANSPORT SERVICE
-          'CI', // CIV ID FRIEND/FOE (IFF) TECH
-          'CC', // AMERICAN FIELD SERVICE
-          'GS', // CIV CREW OF USCGS VESSELS
-          'FT', // AMERICAN VOL GRP FLYING TIGERS
-          'CE', // ROYAL CANADIAN CORPS SIGNAL
-          'C2', // CIV AIR TRANSPORT CMD (UNITED)
-          'C3', // CIV AIR TRANSPORT CMD (TWA)
-          'C4', // CIV AIR TRANSPORT CMD (VULTEE)
-          'C5', // CIV AIR TRANSPRT CMD(AMERICAN)
-          'C7', // CIV AIR TRANSPORT COMMAND (NORTHWEST)
-          'CD', // US NAVY TRANSPORT SERVICE
-          'NM', // NON-MILITARY CIVILIAN
           'AL', // ALLIED FORCES
+          'CC', // AMERICAN FIELD SERVICE
+          'FS', // AMERICAN FIELD SERVICE
+          'FT', // AMERICAN VOL GRP FLYING TIGERS
+          'ES', // AMERICAN VOLUNTEER GUARD
+          'CM', // CADET OR MIDSHIPMAN
+          'C3', // CIV AIR TRANSPORT CMD (TWA)
+          'C2', // CIV AIR TRANSPORT CMD (UNITED)
+          'C4', // CIV AIR TRANSPORT CMD (VULTEE)
+          'C7', // CIV AIR TRANSPORT COMMAND (NORTHWEST)
+          'C5', // CIV AIR TRANSPRT CMD(AMERICAN)
+          'GS', // CIV CREW OF USCGS VESSELS
+          'CI', // CIV ID FRIEND/FOE (IFF) TECH
+          'FP', // CIVILIAN FERRY PILOT
+          'CS', // CIVILIAN W/STRATEGIC SVC (OSS)
+          'CV', // CIVILIAN WAKE ISLAND NAS
+          'XG', // US COAST GUARD RESERVE
+          'CB', // DEFENSE OF BATAAN
+          'FF', // FOREIGN FORCES
+          'GP', // GUAM COMBAT PATROL
+          'MO', // MERCHANT SN IN OPER MULBERRY
+          'NO', // NATIONAL OCEAN/ATMOSPHER ADMIN
+          'NN', // NAVY NURSE CORPS
+          'NM', // NON-MILITARY CIVILIAN
+          'PA', // PHILIPPINE ARMY
+          'PG', // PHILIPPINE GUERILLA
+          'KC', // QRTRMASTER CORPS KESWICK CREW
+          'PS', // REGULAR PHILIPPINE SCOUTS
+          'RO', // ROTC OF ARMY NAVY OR AF
+          'CF', // ROYAL CANADIAN AIR FORCE
+          'CE', // ROYAL CANADIAN CORPS SIGNAL
+          'AF', // US AIR FORCE
+          'XF', // US AIR FORCE RESERVE
+          'AG', // US AIR NATIONAL GUARD
+          'AR', // US ARMY
+          'AC', // US ARMY AIR CORPS
           'AA', // US ARMY AIR FORCES
           'AT', // US ARMY AIR FORCES (ATC)
-          'GP', // GUAM COMBAT PATROL
-          'MC', // US MARINE CORPS
-          'NO', // NATIONAL OCEAN/ATMOSPHER ADMIN
-          'PS', // REGULAR PHILIPPINE SCOUTS
-          'CM', // CADET OR MIDSHIPMAN
-          'WP', // WOMEN AIR FORCE SERVICE PILOTS
-          'GU', // WAKE ISLAND DEFENDERS-GUAM
-          'MO', // MERCHANT SN IN OPER MULBERRY
-          'FS', // AMERICAN FIELD SERVICE
-          'ES', // AMERICAN VOLUNTEER GUARD
-          'FF', // FOREIGN FORCES
-          'GC', // US COAST & GEODETIC SURVEY
-          'PA', // PHILIPPINE ARMY
-          'AG', // US AIR NATIONAL GUARD
           'NG', // US ARMY NATIONAL GUARD
-          'PG', // PHILIPPINE GUERILLA
-          'XA', // US NAVY RESERVE
           'XR', // US ARMY RESERVE
-          'XF', // US AIR FORCE RESERVE
+          'CO', // US ARMY TRANSPORT SERVICE
+          'CA', // US CITIZEN WHO SERVED W/ALLIES
+          'GC', // US COAST & GEODETIC SURVEY
+          'CG', // US COAST GUARD
           'XC', // US MARINE CORP RESERVE
-          'XG'  // US COAST GUARD RESERVE
+          'MC', // US MARINE CORPS
+          'MM', // US MERCHANT MARINE
+          'XA', // US NAVY RESERVE
+          'CD', // US NAVY TRANSPORT SERVICE
+          'PH', // US PUBLIC HEALTH SERVICE
+          'GU', // WAKE ISLAND DEFENDERS-GUAM
+          'WP', // WOMEN AIR FORCE SERVICE PILOTS
+          'WA', // WOMEN'S ARMY AUX CORPS
+          'WS', // WOMEN'S ARMY CORPS
+          'WR' // WOMEN'S RESERVE OF NAVY,MC,CG
         ]
       },
       dischargeType: {
@@ -126,7 +126,6 @@ definitions.email = {
 definitions.fullName.properties.first.maxLength = 15;
 definitions.fullName.properties.last.maxLength = 25;
 definitions.fullName.properties.middle.maxLength = 15;
-definitions.fullName.properties.maiden = { type: 'string', maxLength: 15 };
 
 definitions.phone.minLength = 0;
 definitions.phone.maxLength = 20;
@@ -188,7 +187,14 @@ let schema = {
             dateOfBirth: schemaHelpers.getDefinition('date'),
             desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
             email: schemaHelpers.getDefinition('email'),
-            name: schemaHelpers.getDefinition('fullName'),
+            name: _.merge(definitions.fullName, {
+              properties: {
+                maiden: {
+                  type: 'string',
+                  maxLength: 15
+                }
+              }
+            }),
             phoneNumber: schemaHelpers.getDefinition('phone'),
             relationshipToVet: {
               type: 'string',
@@ -216,7 +222,14 @@ let schema = {
           ],
           properties: {
             address: schemaHelpers.getDefinition('address'),
-            currentName: schemaHelpers.getDefinition('fullName'),
+            currentName: _.merge(definitions.fullName, {
+              properties: {
+                maiden: {
+                  type: 'string',
+                  maxLength: 15
+                }
+              }
+            }),
             dateOfBirth: schemaHelpers.getDefinition('date'),
             dateOfDeath: schemaHelpers.getDefinition('date'),
             gender: {
@@ -244,14 +257,14 @@ let schema = {
               maxLength: 1,
               'enum': [
                 'A', // Active Duty
-                'R', // Retired
-                'S', // Reserve/National Guard
-                'V', // Veteran
-                'X', // Other (Or Unknown)
-                'E', // Retired Active Duty
+                'I', // Death Related To Inactive Duty Training
                 'D', // Died On Active Duty
+                'S', // Reserve/National Guard
+                'R', // Retired
+                'E', // Retired Active Duty
                 'O', // Retired Reserve Or National Guard
-                'I'  // Death Related To Inactive Duty Training
+                'V', // Veteran
+                'X'  // Other (Or Unknown)
               ]
             },
             placeOfBirth: { type: 'string', maxLength: 100 },
