@@ -187,7 +187,7 @@ let schema = {
             dateOfBirth: schemaHelpers.getDefinition('date'),
             desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
             email: schemaHelpers.getDefinition('email'),
-            name: _.merge(definitions.fullName, {
+            name: _.merge({}, definitions.fullName, {
               properties: {
                 maiden: {
                   type: 'string',
@@ -222,7 +222,7 @@ let schema = {
           ],
           properties: {
             address: schemaHelpers.getDefinition('address'),
-            currentName: _.merge(definitions.fullName, {
+            currentName: _.merge({}, definitions.fullName, {
               properties: {
                 maiden: {
                   type: 'string',

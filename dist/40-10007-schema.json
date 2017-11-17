@@ -269,10 +269,6 @@
             "III",
             "IV"
           ]
-        },
-        "maiden": {
-          "type": "string",
-          "maxLength": 15
         }
       },
       "required": [
