@@ -520,14 +520,14 @@
               "maxLength": 1,
               "enum": [
                 "A",
-                "R",
-                "S",
-                "V",
-                "X",
-                "E",
+                "I",
                 "D",
+                "S",
+                "R",
+                "E",
                 "O",
-                "I"
+                "V",
+                "X"
               ]
             },
             "placeOfBirth": {
