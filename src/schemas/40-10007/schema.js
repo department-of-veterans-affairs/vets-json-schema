@@ -170,14 +170,7 @@ let schema = {
             },
             completingReason: { type: 'string', maxLength: 256 },
             mailingAddress: schemaHelpers.getDefinition('address'),
-            name: _.merge(definitions.fullName, {
-              properties: {
-                maiden: {
-                  type: 'string',
-                  maxLength: 15
-                }
-              }
-            })
+            name: schemaHelpers.getDefinition('fullName')
           }
         },
         claimant: {
@@ -194,7 +187,14 @@ let schema = {
             dateOfBirth: schemaHelpers.getDefinition('date'),
             desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
             email: schemaHelpers.getDefinition('email'),
-            name: schemaHelpers.getDefinition('fullName'),
+            name: _.merge(definitions.fullName, {
+              properties: {
+                maiden: {
+                  type: 'string',
+                  maxLength: 15
+                }
+              }
+            }),
             phoneNumber: schemaHelpers.getDefinition('phone'),
             relationshipToVet: {
               type: 'string',
@@ -222,7 +222,14 @@ let schema = {
           ],
           properties: {
             address: schemaHelpers.getDefinition('address'),
-            currentName: schemaHelpers.getDefinition('fullName'),
+            currentName: _.merge(definitions.fullName, {
+              properties: {
+                maiden: {
+                  type: 'string',
+                  maxLength: 15
+                }
+              }
+            }),
             dateOfBirth: schemaHelpers.getDefinition('date'),
             dateOfDeath: schemaHelpers.getDefinition('date'),
             gender: {

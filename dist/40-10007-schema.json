@@ -345,6 +345,34 @@
               "$ref": "#/definitions/address"
             },
             "name": {
+              "$ref": "#/definitions/fullName"
+            }
+          }
+        },
+        "claimant": {
+          "type": "object",
+          "required": [
+            "address",
+            "dateOfBirth",
+            "name",
+            "relationshipToVet",
+            "ssn"
+          ],
+          "properties": {
+            "address": {
+              "$ref": "#/definitions/address"
+            },
+            "dateOfBirth": {
+              "$ref": "#/definitions/date"
+            },
+            "desiredCemetery": {
+              "type": "string",
+              "pattern": "^\\d{3}$"
+            },
+            "email": {
+              "$ref": "#/definitions/email"
+            },
+            "name": {
               "type": "object",
               "properties": {
                 "first": {
@@ -380,34 +408,6 @@
                 "first",
                 "last"
               ]
-            }
-          }
-        },
-        "claimant": {
-          "type": "object",
-          "required": [
-            "address",
-            "dateOfBirth",
-            "name",
-            "relationshipToVet",
-            "ssn"
-          ],
-          "properties": {
-            "address": {
-              "$ref": "#/definitions/address"
-            },
-            "dateOfBirth": {
-              "$ref": "#/definitions/date"
-            },
-            "desiredCemetery": {
-              "type": "string",
-              "pattern": "^\\d{3}$"
-            },
-            "email": {
-              "$ref": "#/definitions/email"
-            },
-            "name": {
-              "$ref": "#/definitions/fullName"
             },
             "phoneNumber": {
               "$ref": "#/definitions/phone"
@@ -443,7 +443,41 @@
               "$ref": "#/definitions/address"
             },
             "currentName": {
-              "$ref": "#/definitions/fullName"
+              "type": "object",
+              "properties": {
+                "first": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 15
+                },
+                "middle": {
+                  "type": "string",
+                  "maxLength": 15
+                },
+                "last": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 25
+                },
+                "suffix": {
+                  "type": "string",
+                  "enum": [
+                    "Jr.",
+                    "Sr.",
+                    "II",
+                    "III",
+                    "IV"
+                  ]
+                },
+                "maiden": {
+                  "type": "string",
+                  "maxLength": 15
+                }
+              },
+              "required": [
+                "first",
+                "last"
+              ]
             },
             "dateOfBirth": {
               "$ref": "#/definitions/date"
