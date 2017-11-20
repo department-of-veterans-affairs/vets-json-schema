@@ -14,7 +14,6 @@ _.merge(modifiedToursOfDuty, {
         // All branches active during WWII and later as returned by EOAS getBranchesOfService
         'enum': [
           'AL', // ALLIED FORCES
-          'CC', // AMERICAN FIELD SERVICE
           'FS', // AMERICAN FIELD SERVICE
           'FT', // AMERICAN VOL GRP FLYING TIGERS
           'ES', // AMERICAN VOLUNTEER GUARD
@@ -55,6 +54,7 @@ _.merge(modifiedToursOfDuty, {
           'XR', // US ARMY RESERVE
           'CO', // US ARMY TRANSPORT SERVICE
           'CA', // US CITIZEN WHO SERVED W/ALLIES
+          'CC', // US CIV OF AFS WWII
           'GC', // US COAST & GEODETIC SURVEY
           'CG', // US COAST GUARD
           'XC', // US MARINE CORP RESERVE
