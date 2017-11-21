@@ -152,8 +152,6 @@ let schema = {
         applicant: {
           type: 'object',
           required: [
-            'applicantEmail',
-            'applicantPhoneNumber',
             'applicantRelationshipToClaimant',
             'mailingAddress',
             'name'
