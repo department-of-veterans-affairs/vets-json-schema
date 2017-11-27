@@ -153,6 +153,8 @@ let schema = {
           type: 'object',
           required: [
             'applicantRelationshipToClaimant',
+            'applicantEmail',
+            'applicantPhoneNumber',
             'mailingAddress',
             'name'
           ],
