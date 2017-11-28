@@ -48,6 +48,38 @@ let schema = {
     yearsOfEducation: {
       type: 'number',
     },
+    previousPrograms: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          program: {
+            type: 'string'
+          },
+          date: {
+            $ref: '#/definitions/date'
+          }
+        }
+      }
+    },
+    employerAddress: {
+      $ref: '#/definitions/address'
+    },
+    jobDuties: {
+      type: 'array',
+      items: 'string'
+    },
+    monthlyIncome: {
+      type: 'number'
+    },
+    hospitalAddress: {
+      $ref: '#/definitions/address'
+    },
+    disabilityRating: {
+      type: 'number'
+    },
+
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
     }
