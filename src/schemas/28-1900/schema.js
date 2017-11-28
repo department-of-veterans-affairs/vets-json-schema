@@ -79,7 +79,6 @@ let schema = {
     disabilityRating: {
       type: 'number'
     },
-
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
     }
