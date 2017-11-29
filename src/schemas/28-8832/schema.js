@@ -14,15 +14,69 @@ let schema = {
         'phone',
         'ssn',
         'date',
-        'privacyAgreementAccepted'
+        'privacyAgreementAccepted',
+        'gender'
     ]),
     properties: {
-
+        applicantFullName: {
+            $ref: '#/definition/fullName'
+        },
+        applicantSocialSecurityNumber: {
+            $ref: '#/definition/ssn'
+        },
+        applicantGender: {
+            $ref: '#/definition/gender'
+        },
+        applicantEmail: {
+            $ref: '#/definition/email'
+        },
+        applicantDateOfBirth: {
+            $ref: '#/definition/date'
+        },
+        applicantRelationshipToVeteran: {
+            // TODO: Build relationship enum for form
+        },
+        applicantHomePhone: {
+            $ref: '#/definition/phone'
+        },
+        applicantMobilePhone: {
+            $ref: '#/definition/phone'
+        },
+        applicantAddress: {
+            $ref: '#/definition/address'
+        },
+        seekingRestorativeTraining: {
+            type: 'boolean'
+        },
+        seekingVocationalTraining: {
+            type: 'boolean'
+        },
+        receivedPamphlet: {
+            type: 'boolean'
+        },
+        veteranFullName: {
+            $ref: '#/definition/fullName'
+        },
+        veteranSocialSecurityNumber: {
+            $ref: '#/definition/ssn'
+        },
+        veteranDateOfBirth: {
+            $ref: '#/definition/date'
+        },
+        veteranServiceBranch: {
+            type: 'string'
+        },
+        veteranDateofDeathMIAPOW: {  // date of death, M.I.A., or P.O.W.
+            $ref: '#/definition/date'
+        }
     },
     required: ['privacyAgreementAccepted']
 };
 
-[].forEach((args) => {
+[
+    ['vaFileNumber'],
+    ['vaFileNumber', 'veteranVaFileNumber']
+].forEach((args) => {
     schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
