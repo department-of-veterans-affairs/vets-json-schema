@@ -324,11 +324,57 @@
     "veteranDateofDeathMIAPOW": {
       "$ref": "#/definition/date"
     },
+    "divorceOrAnnulmentPending": {
+      "type": "boolean"
+    },
+    "applicantAgeAtRemarriage": {
+      "type": "number"
+    },
+    "previousBenefitApplications": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "previousBenefitsVeteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "serviceHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceBranch": {
+            "type": "string"
+          },
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "dischargeType": {
+            "type": "string",
+            "enum": [
+              "honorable",
+              "general",
+              "other",
+              "bad-conduct",
+              "dishonorable",
+              "undesirable"
+            ]
+          }
+        }
+      }
+    },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
     "veteranVaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
+    },
+    "previousBenefitsVaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
     }
   },
   "required": [

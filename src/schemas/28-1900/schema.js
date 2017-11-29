@@ -68,10 +68,13 @@ let schema = {
     },
     jobDuties: {
       type: 'array',
-      items: 'string'
+      items: {
+        type: 'string'
+      }
     },
     monthlyIncome: {
-      type: 'number'
+      type: 'number',
+      minimum: 0
     },
     hospitalAddress: {
       $ref: '#/definitions/address'
@@ -79,8 +82,23 @@ let schema = {
     disabilityRating: {
       type: 'number'
     },
-    privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
+    serviceHistory: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          serviceBranch: {
+            type: 'string'
+          },
+          dateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          dischargeType: {
+            type: 'string',
+            'enum': constants.dischargeTypes.map(option => option.value)
+          },
+        }
+      }
     }
   },
   required: ['privacyAgreementAccepted', 'veteranFullName']
@@ -88,6 +106,7 @@ let schema = {
 
 [
   ['vaFileNumber'],
+  ['privacyAgreementAccepted']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
