@@ -256,23 +256,34 @@
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
         true
       ]
-    },
-    "vaFileNumber": {
-      "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
     }
   },
   "properties": {
     "veteranFullName": {
-      "$ref": "#/definition/fullName"
+      "$ref": "#/definitions/fullName"
     },
     "veteranSocialSecurityNumber": {
-      "$ref": "#/definition/ssn"
+      "$ref": "#/definitions/ssn"
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
@@ -366,7 +377,6 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted",
-    "veteranFullName"
+    "privacyAgreementAccepted"
   ]
 }

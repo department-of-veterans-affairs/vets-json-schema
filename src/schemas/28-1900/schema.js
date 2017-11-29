@@ -14,14 +14,14 @@ let schema = {
     'phone',
     'ssn',
     'date',
-    'privacyAgreementAccepted'
+    'dateRange'
   ]),
   properties: {
     veteranFullName: {
-      $ref: '#/definition/fullName'
+      $ref: '#/definitions/fullName'
     },
     veteranSocialSecurityNumber: {
-      $ref: '#/definition/ssn'
+      $ref: '#/definitions/ssn'
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date'
@@ -101,7 +101,7 @@ let schema = {
       }
     }
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName']
+  required: ['privacyAgreementAccepted']
 };
 
 [

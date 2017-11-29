@@ -14,36 +14,37 @@ let schema = {
     'phone',
     'ssn',
     'date',
-    'privacyAgreementAccepted',
+    'dateRange',
     'gender'
   ]),
   properties: {
     applicantFullName: {
-      $ref: '#/definition/fullName'
+      $ref: '#/definitions/fullName'
     },
     applicantSocialSecurityNumber: {
-      $ref: '#/definition/ssn'
+      $ref: '#/definitions/ssn'
     },
     applicantGender: {
-      $ref: '#/definition/gender'
+      $ref: '#/definitions/gender'
     },
     applicantEmail: {
-      $ref: '#/definition/email'
+      type: 'string',
+      format: 'email'
     },
     applicantDateOfBirth: {
-      $ref: '#/definition/date'
+      $ref: '#/definitions/date'
     },
     applicantRelationshipToVeteran: {
-      // TODO: Build relationship enum for form
+      type: 'string'
     },
     applicantHomePhone: {
-      $ref: '#/definition/phone'
+      $ref: '#/definitions/phone'
     },
     applicantMobilePhone: {
-      $ref: '#/definition/phone'
+      $ref: '#/definitions/phone'
     },
     applicantAddress: {
-      $ref: '#/definition/address'
+      $ref: '#/definitions/address'
     },
     seekingRestorativeTraining: {
       type: 'boolean'
@@ -55,19 +56,19 @@ let schema = {
       type: 'boolean'
     },
     veteranFullName: {
-      $ref: '#/definition/fullName'
+      $ref: '#/definitions/fullName'
     },
     veteranSocialSecurityNumber: {
-      $ref: '#/definition/ssn'
+      $ref: '#/definitions/ssn'
     },
     veteranDateOfBirth: {
-      $ref: '#/definition/date'
+      $ref: '#/definitions/date'
     },
     veteranServiceBranch: {
       type: 'string'
     },
     veteranDateofDeathMIAPOW: {  // date of death, M.I.A., or P.O.W.
-      $ref: '#/definition/date'
+      $ref: '#/definitions/date'
     },
     divorceOrAnnulmentPending: {
       type: 'boolean',
