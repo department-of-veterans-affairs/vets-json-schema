@@ -12,7 +12,7 @@ let schemaTestHelper = new SchemaTestHelper(
 );
 let sharedTests = new SharedTests(schemaTestHelper);
 
-describe('educational/vocational counseling schema', () => {
+describe('disabled veterans vocational rehabilitation schema', () => {
   [
     ['fullName', ['veteranFullName']],
     ['ssn', ['veteranSocialSecurityNumber']],
