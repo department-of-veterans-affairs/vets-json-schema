@@ -9,7 +9,7 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
-    'dateRange',
+    'dateRange'
   ]),
   properties: {
     applicantEmail: {
@@ -43,24 +43,6 @@ let schema = {
       items: {
         type: 'string'
       }
-    },
-    serviceHistory: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          serviceBranch: {
-            type: 'string'
-          },
-          dateRange: {
-            $ref: '#/definitions/dateRange'
-          },
-          dischargeType: {
-            type: 'string',
-            'enum': constants.dischargeTypes.map(option => option.value)
-          },
-        }
-      }
     }
   },
   required: ['privacyAgreementAccepted']
@@ -82,6 +64,7 @@ let schema = {
   ['vaFileNumber'],
   ['vaFileNumber', 'veteranVaFileNumber'],
   ['vaFileNumber', 'previousBenefitsVaFileNumber'],
+  ['serviceHistory'],
   ['privacyAgreementAccepted']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);

@@ -49,24 +49,6 @@ let schema = {
     },
     disabilityRating: {
       type: 'number'
-    },
-    serviceHistory: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          serviceBranch: {
-            type: 'string'
-          },
-          dateRange: {
-            $ref: '#/definitions/dateRange'
-          },
-          dischargeType: {
-            type: 'string',
-            'enum': constants.dischargeTypes.map(option => option.value)
-          },
-        }
-      }
     }
   },
   required: ['privacyAgreementAccepted']
@@ -83,7 +65,8 @@ let schema = {
   ['address', 'employerAddress'],
   ['address', 'hospitalAddress'],
   ['phone', 'homePhone'],
-  ['phone', 'mobilePhone']
+  ['phone', 'mobilePhone'],
+  ['serviceHistory']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

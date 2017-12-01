@@ -276,6 +276,31 @@
     "phone": {
       "type": "string",
       "minLength": 10
+    },
+    "serviceHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceBranch": {
+            "type": "string"
+          },
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "dischargeType": {
+            "type": "string",
+            "enum": [
+              "honorable",
+              "general",
+              "other",
+              "bad-conduct",
+              "dishonorable",
+              "undesirable"
+            ]
+          }
+        }
+      }
     }
   },
   "properties": {
@@ -316,31 +341,6 @@
     "disabilityRating": {
       "type": "number"
     },
-    "serviceHistory": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "serviceBranch": {
-            "type": "string"
-          },
-          "dateRange": {
-            "$ref": "#/definitions/dateRange"
-          },
-          "dischargeType": {
-            "type": "string",
-            "enum": [
-              "honorable",
-              "general",
-              "other",
-              "bad-conduct",
-              "dishonorable",
-              "undesirable"
-            ]
-          }
-        }
-      }
-    },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
@@ -373,6 +373,9 @@
     },
     "mobilePhone": {
       "$ref": "#/definitions/phone"
+    },
+    "serviceHistory": {
+      "$ref": "#/definitions/serviceHistory"
     }
   },
   "required": [

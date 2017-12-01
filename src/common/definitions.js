@@ -426,6 +426,25 @@ const files = {
   }
 };
 
+const serviceHistory = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      serviceBranch: {
+        type: 'string'
+      },
+      dateRange: {
+        $ref: '#/definitions/dateRange'
+      },
+      dischargeType: {
+        type: 'string',
+        'enum': constants.dischargeTypes.map(option => option.value)
+      },
+    }
+  }
+};
+
 export default {
   usaPhone,
   fullName,
@@ -455,5 +474,6 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   marriages,
-  files
+  files,
+  serviceHistory
 };
