@@ -378,7 +378,7 @@
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
-    "vaFileNumber": {
+    "applicantVaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
     "veteranVaFileNumber": {
@@ -387,7 +387,7 @@
     "previousBenefitsVaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
-    "serviceHistory": {
+    "applicantServiceHistory": {
       "$ref": "#/definitions/serviceHistory"
     },
     "privacyAgreementAccepted": {

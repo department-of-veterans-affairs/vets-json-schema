@@ -37,7 +37,7 @@ let schema = {
     applicantAgeAtRemarriage: {
       type: 'integer',
     },
-    // TODO: Update this once backend requirements are determined
+    // TODO: Determine the correct type to use for previousBenefitApplications
     previousBenefitApplications: {
       type: 'array',
       items: {
@@ -61,10 +61,10 @@ let schema = {
   ['phone', 'applicantMobilePhone'],
   ['ssn', 'applicantSocialSecurityNumber'],
   ['ssn', 'veteranSocialSecurityNumber'],
-  ['vaFileNumber'],
+  ['vaFileNumber', 'applicantVaFileNumber'],
   ['vaFileNumber', 'veteranVaFileNumber'],
   ['vaFileNumber', 'previousBenefitsVaFileNumber'],
-  ['serviceHistory'],
+  ['serviceHistory', 'applicantServiceHistory'],
   ['privacyAgreementAccepted']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);

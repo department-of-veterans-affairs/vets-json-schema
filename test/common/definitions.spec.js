@@ -259,6 +259,7 @@ describe('schema definitions', () => {
     'maritalStatus',
     'relationshipAndChildName',
     'marriages',
+    'serviceHistory',
     'files'
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);

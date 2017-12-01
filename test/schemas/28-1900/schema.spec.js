@@ -20,7 +20,8 @@ describe('disabled veterans vocational rehabilitation schema', () => {
     ['address', ['veteranAddress', 'newVeteranAddress', 'employerAddress', 'hospitalAddress']],
     ['phone', ['homePhone', 'mobilePhone']],
     ['email'],
-    ['vaFileNumber']
+    ['vaFileNumber'],
+    ['serviceHistory']
   ].forEach((args) => {
     sharedTests.runTest(...args); 
   });

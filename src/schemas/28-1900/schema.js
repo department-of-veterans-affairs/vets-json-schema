@@ -32,12 +32,13 @@ let schema = {
             type: 'string'
           },
           date: {
+            // TODO Change if partial dates disallowed
             $ref: '#/definitions/date'
           }
         }
       }
     },
-    jobDuties: {
+    jobDuties: { // TODO Determine the correct type to use for jobDuties
       type: 'array',
       items: {
         type: 'string'
@@ -51,7 +52,7 @@ let schema = {
       type: 'number'
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted'] // TODO Determine set of required fields
 };
 
 [
@@ -59,7 +60,7 @@ let schema = {
   ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
-  ['date', 'veteranDateOfBirth'],
+  ['date', 'veteranDateOfBirth'], // TODO Change if partial dates disallowed
   ['address', 'veteranAddress'],
   ['address', 'newVeteranAddress'],
   ['address', 'employerAddress'],

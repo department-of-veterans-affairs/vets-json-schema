@@ -307,6 +307,30 @@ export default {
       ],
     }
   },
+  serviceHistory: {
+    data: {
+      valid: [
+        [{
+          serviceBranch: 'navy',
+          dateRange: fixtures.dateRange,
+          dischargeType: 'honorable'
+        }]
+      ],
+      invalid: [
+        [{
+          serviceBranch: 'navy',
+          dateRange: { from: 'foo', to: 'bar' },
+          dischargeType: 'honorable'
+        }], [{
+          serviceBranch: 'navy',
+          dateRange: fixtures.dateRange,
+          dischargeType: 'foo'
+        }]
+      ]
+
+    }
+
+  },
   files: {
     data: {
       valid: [[{
