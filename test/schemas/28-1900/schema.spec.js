@@ -20,6 +20,7 @@ describe('educational/vocational counseling schema', () => {
     ['address', ['veteranAddress', 'newVeteranAddress', 'employerAddress', 'hospitalAddress']],
     ['phone', ['homePhone', 'mobilePhone']],
     ['email'],
+    ['vaFileNumber']
   ].forEach((args) => {
     sharedTests.runTest(...args); 
   });
