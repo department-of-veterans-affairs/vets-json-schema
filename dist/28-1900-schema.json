@@ -4,6 +4,31 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -35,6 +60,10 @@
         "first",
         "last"
       ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     },
     "address": {
       "type": "object",
@@ -247,59 +276,9 @@
     "phone": {
       "type": "string",
       "minLength": 10
-    },
-    "ssn": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
-    "dateRange": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
-        },
-        "to": {
-          "$ref": "#/definitions/date"
-        }
-      }
-    },
-    "vaFileNumber": {
-      "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
-    },
-    "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
     }
   },
   "properties": {
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
-    "veteranDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "veteranAddress": {
-      "$ref": "#/definitions/address"
-    },
-    "newVeteranAddress": {
-      "$ref": "#/definitions/address"
-    },
-    "homePhone": {
-      "$ref": "#/definitions/phone"
-    },
-    "mobilePhone": {
-      "$ref": "#/definitions/phone"
-    },
     "email": {
       "type": "string",
       "format": "email"
@@ -308,13 +287,12 @@
       "type": "string"
     },
     "yearsOfEducation": {
-      "type": "number"
+      "type": "integer"
     },
     "previousPrograms": {
       "type": "array",
       "items": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "program": {
             "type": "string"
@@ -325,9 +303,6 @@
         }
       }
     },
-    "employerAddress": {
-      "$ref": "#/definitions/address"
-    },
     "jobDuties": {
       "type": "array",
       "items": {
@@ -337,9 +312,6 @@
     "monthlyIncome": {
       "type": "number",
       "minimum": 0
-    },
-    "hospitalAddress": {
-      "$ref": "#/definitions/address"
     },
     "disabilityRating": {
       "type": "number"
@@ -374,6 +346,33 @@
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "newVeteranAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "employerAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "hospitalAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "homePhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "mobilePhone": {
+      "$ref": "#/definitions/phone"
     }
   },
   "required": [

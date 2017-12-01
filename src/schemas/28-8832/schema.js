@@ -9,42 +9,15 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
-    'fullName',
-    'address',
-    'phone',
-    'ssn',
-    'date',
     'dateRange',
-    'gender'
   ]),
   properties: {
-    applicantFullName: {
-      $ref: '#/definitions/fullName'
-    },
-    applicantSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
-    },
-    applicantGender: {
-      $ref: '#/definitions/gender'
-    },
     applicantEmail: {
       type: 'string',
       format: 'email'
     },
-    applicantDateOfBirth: {
-      $ref: '#/definitions/date'
-    },
     applicantRelationshipToVeteran: {
       type: 'string'
-    },
-    applicantHomePhone: {
-      $ref: '#/definitions/phone'
-    },
-    applicantMobilePhone: {
-      $ref: '#/definitions/phone'
-    },
-    applicantAddress: {
-      $ref: '#/definitions/address'
     },
     seekingRestorativeTraining: {
       type: 'boolean'
@@ -55,35 +28,21 @@ let schema = {
     receivedPamphlet: {
       type: 'boolean'
     },
-    veteranFullName: {
-      $ref: '#/definitions/fullName'
-    },
-    veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
-    },
-    veteranDateOfBirth: {
-      $ref: '#/definitions/date'
-    },
     veteranServiceBranch: {
       type: 'string'
-    },
-    veteranDateofDeathMIAPOW: {  // date of death, M.I.A., or P.O.W.
-      $ref: '#/definitions/date'
     },
     divorceOrAnnulmentPending: {
       type: 'boolean',
     },
     applicantAgeAtRemarriage: {
-      type: 'number',
+      type: 'integer',
     },
+    // TODO: Update this once backend requirements are determined
     previousBenefitApplications: {
       type: 'array',
       items: {
         type: 'string'
       }
-    },
-    previousBenefitsVeteranFullName: {
-      $ref: '#/definitions/fullName'
     },
     serviceHistory: {
       type: 'array',
@@ -108,6 +67,18 @@ let schema = {
 };
 
 [
+  ['address', 'applicantAddress'],
+  ['date', 'applicantDateOfBirth'],
+  ['date', 'veteranDateOfBirth'],
+  ['date', 'veteranDateOfDeathMIAPOW'],
+  ['fullName', 'applicantFullName'],
+  ['fullName', 'veteranFullName'],
+  ['fullName', 'previousVeteranBenefitsFullName'],
+  ['gender', 'applicantGender'],
+  ['phone', 'applicantHomePhone'],
+  ['phone', 'applicantMobilePhone'],
+  ['ssn', 'applicantSocialSecurityNumber'],
+  ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
   ['vaFileNumber', 'veteranVaFileNumber'],
   ['vaFileNumber', 'previousBenefitsVaFileNumber'],

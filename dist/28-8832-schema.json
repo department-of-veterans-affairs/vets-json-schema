@@ -4,37 +4,16 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "fullName": {
+    "dateRange": {
       "type": "object",
       "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
+        "from": {
+          "$ref": "#/definitions/date"
         },
-        "middle": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
+        "to": {
+          "$ref": "#/definitions/date"
         }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
+      }
     },
     "address": {
       "type": "object",
@@ -244,28 +223,41 @@
         }
       }
     },
-    "phone": {
-      "type": "string",
-      "minLength": 10
-    },
-    "ssn": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
-    },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
-    "dateRange": {
+    "fullName": {
       "type": "object",
       "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
         },
-        "to": {
-          "$ref": "#/definitions/date"
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
         }
-      }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "gender": {
       "type": "string",
@@ -273,6 +265,14 @@
         "F",
         "M"
       ]
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     },
     "vaFileNumber": {
       "type": "string",
@@ -286,33 +286,12 @@
     }
   },
   "properties": {
-    "applicantFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "applicantSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
-    "applicantGender": {
-      "$ref": "#/definitions/gender"
-    },
     "applicantEmail": {
       "type": "string",
       "format": "email"
     },
-    "applicantDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
     "applicantRelationshipToVeteran": {
       "type": "string"
-    },
-    "applicantHomePhone": {
-      "$ref": "#/definitions/phone"
-    },
-    "applicantMobilePhone": {
-      "$ref": "#/definitions/phone"
-    },
-    "applicantAddress": {
-      "$ref": "#/definitions/address"
     },
     "seekingRestorativeTraining": {
       "type": "boolean"
@@ -323,35 +302,20 @@
     "receivedPamphlet": {
       "type": "boolean"
     },
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
-    "veteranDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
     "veteranServiceBranch": {
       "type": "string"
-    },
-    "veteranDateofDeathMIAPOW": {
-      "$ref": "#/definitions/date"
     },
     "divorceOrAnnulmentPending": {
       "type": "boolean"
     },
     "applicantAgeAtRemarriage": {
-      "type": "number"
+      "type": "integer"
     },
     "previousBenefitApplications": {
       "type": "array",
       "items": {
         "type": "string"
       }
-    },
-    "previousBenefitsVeteranFullName": {
-      "$ref": "#/definitions/fullName"
     },
     "serviceHistory": {
       "type": "array",
@@ -377,6 +341,42 @@
           }
         }
       }
+    },
+    "applicantAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "applicantDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranDateOfDeathMIAPOW": {
+      "$ref": "#/definitions/date"
+    },
+    "applicantFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "previousVeteranBenefitsFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "applicantGender": {
+      "$ref": "#/definitions/gender"
+    },
+    "applicantHomePhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "applicantMobilePhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "applicantSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"

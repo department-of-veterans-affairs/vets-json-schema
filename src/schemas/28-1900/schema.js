@@ -9,35 +9,10 @@ let schema = {
 	type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
-    'fullName',
-    'address',
-    'phone',
-    'ssn',
     'date',
     'dateRange'
   ]),
   properties: {
-    veteranFullName: {
-      $ref: '#/definitions/fullName'
-    },
-    veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
-    },
-    veteranDateOfBirth: {
-      $ref: '#/definitions/date'
-    },
-    veteranAddress: {
-      $ref: '#/definitions/address'
-    },
-    newVeteranAddress: {
-      $ref: '#/definitions/address'
-    },
-    homePhone: {
-      $ref: '#/definitions/phone'
-    },
-    mobilePhone: {
-      $ref: '#/definitions/phone'
-    },
     email: {
       type: 'string',
       format: 'email'
@@ -46,13 +21,12 @@ let schema = {
       type: 'string',
     },
     yearsOfEducation: {
-      type: 'number',
+      type: 'integer',
     },
     previousPrograms: {
       type: 'array',
       items: {
         type: 'object',
-        additionalProperties: false,
         properties: {
           program: {
             type: 'string'
@@ -63,9 +37,6 @@ let schema = {
         }
       }
     },
-    employerAddress: {
-      $ref: '#/definitions/address'
-    },
     jobDuties: {
       type: 'array',
       items: {
@@ -75,9 +46,6 @@ let schema = {
     monthlyIncome: {
       type: 'number',
       minimum: 0
-    },
-    hospitalAddress: {
-      $ref: '#/definitions/address'
     },
     disabilityRating: {
       type: 'number'
@@ -106,7 +74,16 @@ let schema = {
 
 [
   ['vaFileNumber'],
-  ['privacyAgreementAccepted']
+  ['privacyAgreementAccepted'],
+  ['fullName', 'veteranFullName'],
+  ['ssn', 'veteranSocialSecurityNumber'],
+  ['date', 'veteranDateOfBirth'],
+  ['address', 'veteranAddress'],
+  ['address', 'newVeteranAddress'],
+  ['address', 'employerAddress'],
+  ['address', 'hospitalAddress'],
+  ['phone', 'homePhone'],
+  ['phone', 'mobilePhone']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
