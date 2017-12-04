@@ -45,14 +45,14 @@ let schema = {
       }
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted'] // TODO Determine set of required fields
 };
 
 [
   ['address', 'applicantAddress'],
-  ['date', 'applicantDateOfBirth'],
-  ['date', 'veteranDateOfBirth'],
-  ['date', 'veteranDateOfDeathMIAPOW'],
+  ['date', 'applicantDateOfBirth'], // TODO Change if partial dates disallowed
+  ['date', 'veteranDateOfBirth'], // TODO Change if partial dates disallowed
+  ['date', 'veteranDateOfDeathMIAPOW'], // TODO Change if partial dates disallowed
   ['fullName', 'applicantFullName'],
   ['fullName', 'veteranFullName'],
   ['fullName', 'previousVeteranBenefitsFullName'],
