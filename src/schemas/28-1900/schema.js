@@ -6,7 +6,7 @@ import schemaHelpers from '../../common/schema-helpers';
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DISABLED VETERANS APPLICATION FOR VOCATIONAL REHABILITATION (28-1900)',
-	type: 'object',
+  type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
     'date',
