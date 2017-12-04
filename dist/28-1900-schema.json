@@ -341,6 +341,47 @@
     "disabilityRating": {
       "type": "number"
     },
+    "disabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dtap": {
+      "type": "boolean"
+    },
+    "serviceFlags": {
+      "type": "object",
+      "properties": {
+        "ww2": {
+          "type": "boolean"
+        },
+        "postWw2": {
+          "type": "boolean"
+        },
+        "korea": {
+          "type": "boolean"
+        },
+        "postKorea": {
+          "type": "boolean"
+        },
+        "vietnam": {
+          "type": "boolean"
+        },
+        "postVietnam": {
+          "type": "boolean"
+        },
+        "gulf": {
+          "type": "boolean"
+        },
+        "operationEnduringFreedom": {
+          "type": "boolean"
+        },
+        "operationIraqiFreedom": {
+          "type": "boolean"
+        }
+      }
+    },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },

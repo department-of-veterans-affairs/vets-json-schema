@@ -32,8 +32,7 @@ let schema = {
             type: 'string'
           },
           date: {
-            // TODO Change if partial dates disallowed
-            $ref: '#/definitions/date'
+            $ref: '#/definitions/date' // TODO Change if partial dates disallowed
           }
         }
       }
@@ -50,6 +49,48 @@ let schema = {
     },
     disabilityRating: {
       type: 'number'
+    },
+    disabilities: { // TODO Determine the correct type to use for disabilities
+      type: 'array',
+      items: {
+        type: 'string'
+      }
+    },
+    dtap: { // disabled transition assistance program
+      type: 'boolean'
+    },
+    // TODO We may not need all these booleans depending on stakeholder feedback
+    serviceFlags: { 
+      type: 'object',
+      properties: {
+        ww2: {
+          type: 'boolean'
+        },
+        postWw2: {
+          type: 'boolean'
+        },
+        korea: {
+          type: 'boolean'
+        },
+        postKorea: {
+          type: 'boolean'
+        },
+        vietnam: {
+          type: 'boolean'
+        },
+        postVietnam: {
+          type: 'boolean'
+        },
+        gulf: {
+          type: 'boolean'
+        },
+        operationEnduringFreedom: {
+          type: 'boolean'
+        },
+        operationIraqiFreedom: {
+          type: 'boolean'
+        }
+      }
     }
   },
   required: ['privacyAgreementAccepted'] // TODO Determine set of required fields
