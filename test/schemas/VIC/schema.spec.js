@@ -17,4 +17,5 @@ describe('vic schema', () => {
   });
 
   sharedTests.runTest('fullName', ['veteranFullName']);
+  sharedTests.runTest('address', ['veteranAddress']);
 });

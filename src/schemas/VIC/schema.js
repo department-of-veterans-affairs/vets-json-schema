@@ -18,6 +18,7 @@ let schema = {
 
 [
   ['fullName', 'veteranFullName'],
+  ['address', 'veteranAddress'],
   ['dischargeType']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
