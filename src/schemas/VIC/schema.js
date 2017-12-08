@@ -17,6 +17,12 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    govtIdConfirmationCode: {
+      type: string,
+    },
+    photoConfirmationCode: {
+      type: string,
+    }
   },
 };
 
