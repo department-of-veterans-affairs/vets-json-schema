@@ -13,12 +13,17 @@ let schema = {
     serviceBranch: {
       type: 'string'
     },
+    email: {
+      type: 'string',
+      format: 'email'
+    },
   },
 };
 
 [
   ['fullName', 'veteranFullName'],
   ['address', 'veteranAddress'],
+  ['phone'],
   ['dischargeType']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);

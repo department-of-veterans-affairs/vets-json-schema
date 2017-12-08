@@ -11,11 +11,13 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('vic schema', () => {
   [
-    'dischargeType'
+    'dischargeType',
+    'email',
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
 
   sharedTests.runTest('fullName', ['veteranFullName']);
   sharedTests.runTest('address', ['veteranAddress']);
+  sharedTests.runTest('phone', ['phone']);
 });

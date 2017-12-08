@@ -244,6 +244,10 @@
         }
       }
     },
+    "phone": {
+      "type": "string",
+      "minLength": 10
+    },
     "dischargeType": {
       "type": "string",
       "enum": [
@@ -260,11 +264,18 @@
     "serviceBranch": {
       "type": "string"
     },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
     "veteranAddress": {
       "$ref": "#/definitions/address"
+    },
+    "phone": {
+      "$ref": "#/definitions/phone"
     },
     "dischargeType": {
       "$ref": "#/definitions/dischargeType"
