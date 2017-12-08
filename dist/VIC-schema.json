@@ -35,6 +35,17 @@
         "first",
         "last"
       ]
+    },
+    "dischargeType": {
+      "type": "string",
+      "enum": [
+        "honorable",
+        "general",
+        "other",
+        "bad-conduct",
+        "dishonorable",
+        "undesirable"
+      ]
     }
   },
   "properties": {
@@ -43,6 +54,9 @@
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
+    },
+    "dischargeType": {
+      "$ref": "#/definitions/dischargeType"
     }
   }
 }
