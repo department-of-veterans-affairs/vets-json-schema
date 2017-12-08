@@ -426,6 +426,11 @@ const files = {
   }
 };
 
+const dischargeType = {
+  type: 'string',
+  'enum': constants.dischargeTypes.map(option => option.value)
+};
+
 const serviceHistory = {
   type: 'array',
   items: {
@@ -437,10 +442,7 @@ const serviceHistory = {
       dateRange: {
         $ref: '#/definitions/dateRange'
       },
-      dischargeType: {
-        type: 'string',
-        'enum': constants.dischargeTypes.map(option => option.value)
-      },
+      dischargeType
     }
   }
 };
@@ -457,6 +459,7 @@ export default {
   serviceBefore1977,
   dateRange,
   date,
+  dischargeType,
   educationType,
   preferredContactMethod,
   privacyAgreementAccepted,
