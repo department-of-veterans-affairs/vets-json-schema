@@ -307,6 +307,17 @@ export default {
       ],
     }
   },
+  dischargeType: {
+    data: {
+      valid: [
+        'honorable',
+        'general'
+      ],
+      invalid: [
+        'foo'
+      ]
+    }
+  },
   serviceHistory: {
     data: {
       valid: [

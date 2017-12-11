@@ -326,6 +326,17 @@
     "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
     "type": "string"
   },
+  "dischargeType": {
+    "type": "string",
+    "enum": [
+      "honorable",
+      "general",
+      "other",
+      "bad-conduct",
+      "dishonorable",
+      "undesirable"
+    ]
+  },
   "educationType": {
     "type": "string",
     "enum": [
