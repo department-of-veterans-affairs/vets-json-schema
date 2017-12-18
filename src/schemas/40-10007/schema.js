@@ -60,6 +60,7 @@ _.merge(modifiedToursOfDuty, {
           'XC', // US MARINE CORP RESERVE
           'MC', // US MARINE CORPS
           'MM', // US MERCHANT MARINE
+          'NA', // US NAVY
           'XA', // US NAVY RESERVE
           'CD', // US NAVY TRANSPORT SERVICE
           'PH', // US PUBLIC HEALTH SERVICE
