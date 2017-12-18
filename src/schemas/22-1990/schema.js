@@ -19,7 +19,6 @@ let schema = {
     'fullName',
     'phone',
     'ssn',
-    'school',
     'bankAccount',
     'serviceBefore1977',
     'date',
@@ -97,9 +96,6 @@ let schema = {
     },
     bankAccount: {
       $ref: '#/definitions/bankAccount'
-    },
-    school: {
-      $ref: '#/definitions/school'
     },
     educationStartDate: {
       $ref: '#/definitions/date'

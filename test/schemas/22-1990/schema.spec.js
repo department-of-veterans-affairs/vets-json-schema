@@ -29,7 +29,6 @@ describe('education benefits json schema', () => {
     'bankAccount',
     'date',
     'email',
-    'school',
     'postHighSchoolTrainings',
     'educationType',
     'educationProgram',
@@ -41,7 +40,7 @@ describe('education benefits json schema', () => {
     sharedTests.runTest(test);
   });
 
-  sharedTests.runTest('address', ['veteranAddress', 'secondaryContact.address', 'school.address']);
+  sharedTests.runTest('address', ['veteranAddress', 'secondaryContact.address']);
 
   sharedTests.runTest('phone', ['homePhone', 'mobilePhone', 'secondaryContact.phone']);
 
