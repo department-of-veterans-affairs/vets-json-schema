@@ -255,17 +255,6 @@
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
-    "school": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/address"
-        }
-      }
-    },
     "bankAccount": {
       "type": "object",
       "properties": {
@@ -599,9 +588,6 @@
     },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
-    },
-    "school": {
-      "$ref": "#/definitions/school"
     },
     "educationStartDate": {
       "$ref": "#/definitions/date"
