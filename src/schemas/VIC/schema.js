@@ -23,8 +23,12 @@ let schema = {
     dd214: Object.assign({}, originalDefinitions.files, {
       minItems: 1,
       maxItems: 1
-    })
-  },
+    }),
+    veteranDateOfBirth: {
+      type: 'string',
+      format: 'date'
+    }
+  }
 };
 
 [
@@ -32,7 +36,6 @@ let schema = {
   ['address', 'veteranAddress'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['phone'],
-  ['date', 'dateOfBirth']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
