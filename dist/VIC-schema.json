@@ -244,20 +244,17 @@
         }
       }
     },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
     "phone": {
       "type": "string",
       "minLength": 10
     },
-    "dischargeType": {
-      "type": "string",
-      "enum": [
-        "honorable",
-        "general",
-        "other",
-        "bad-conduct",
-        "dishonorable",
-        "undesirable"
-      ]
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     }
   },
   "properties": {
@@ -268,11 +265,27 @@
       "type": "string",
       "format": "email"
     },
-    "govtIdConfirmationCode": {
+    "photo": {
       "type": "string"
     },
-    "photoConfirmationCode": {
-      "type": "string"
+    "dd214": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 1
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
@@ -280,11 +293,14 @@
     "veteranAddress": {
       "$ref": "#/definitions/address"
     },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
     "phone": {
       "$ref": "#/definitions/phone"
     },
-    "dischargeType": {
-      "$ref": "#/definitions/dischargeType"
+    "dateOfBirth": {
+      "$ref": "#/definitions/date"
     }
   }
 }

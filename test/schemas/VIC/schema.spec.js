@@ -11,7 +11,6 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('vic schema', () => {
   [
-    'dischargeType',
     'email',
   ].forEach((test) => {
     sharedTests.runTest(test);

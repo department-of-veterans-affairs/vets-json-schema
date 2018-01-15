@@ -17,20 +17,22 @@ let schema = {
       type: 'string',
       format: 'email'
     },
-    govtIdConfirmationCode: {
-      type: 'string',
+    photo: {
+      type: 'string'
     },
-    photoConfirmationCode: {
-      type: 'string',
-    }
+    dd214: Object.assign({}, originalDefinitions.files, {
+      minItems: 1,
+      maxItems: 1
+    })
   },
 };
 
 [
   ['fullName', 'veteranFullName'],
   ['address', 'veteranAddress'],
+  ['ssn', 'veteranSocialSecurityNumber'],
   ['phone'],
-  ['dischargeType']
+  ['date', 'dateOfBirth']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
