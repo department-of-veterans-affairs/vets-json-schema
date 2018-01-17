@@ -409,8 +409,7 @@ let schema = {
     'isEnrolledMedicarePartA',
     'lastServiceBranch',
     'lastEntryDate',
-    'lastDischargeDate',
-    'dischargeType'
+    'lastDischargeDate'
   ]
 };
 
