@@ -21,8 +21,7 @@ let schema = {
       type: 'string'
     },
     dd214: Object.assign({}, originalDefinitions.files, {
-      minItems: 1,
-      maxItems: 1
+      minItems: 1
     }),
     veteranDateOfBirth: {
       type: 'string',
