@@ -255,7 +255,24 @@
   },
   "properties": {
     "serviceBranch": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "F",
+        "A",
+        "C",
+        "D",
+        "M",
+        "N",
+        "O",
+        "H",
+        "4",
+        "1",
+        "6",
+        "3",
+        "2",
+        "X",
+        "Z"
+      ]
     },
     "email": {
       "type": "string",
