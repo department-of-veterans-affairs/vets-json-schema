@@ -251,11 +251,35 @@
     "phone": {
       "type": "string",
       "minLength": 10
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
     }
   },
   "properties": {
     "serviceBranch": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "F",
+        "A",
+        "C",
+        "D",
+        "M",
+        "N",
+        "O",
+        "H",
+        "4",
+        "1",
+        "6",
+        "3",
+        "2",
+        "X",
+        "Z"
+      ]
     },
     "email": {
       "type": "string",
@@ -297,6 +321,9 @@
     },
     "phone": {
       "$ref": "#/definitions/phone"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
     }
   }
 }
