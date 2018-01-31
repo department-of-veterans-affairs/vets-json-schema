@@ -16,18 +16,8 @@ let schema = {
         'F', // Air Force
         'A', // Army
         'C', // Coast Guard
-        'D', // DoD
         'M', // Marine Corps
         'N', // Navy
-        'O', // NOAA
-        'H', // Public Health Service
-        '4', // Foreign Air Force
-        '1', // Foreign Army
-        '6', // Foreign Coast Guard
-        '3', // Foreign Marine Corps
-        '2', // Foreign Navy
-        'X', // Other
-        'Z', // Unknown
       ]
     },
     email: {
