@@ -276,23 +276,18 @@
       "format": "email"
     },
     "photo": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "size": {
-            "type": "integer"
-          },
-          "confirmationCode": {
-            "type": "string"
-          }
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "confirmationCode": {
+          "type": "string"
         }
-      },
-      "minItems": 1,
-      "maxItems": 1
+      }
     },
     "dd214": {
       "type": "array",
