@@ -276,7 +276,18 @@
       "format": "email"
     },
     "photo": {
-      "type": "string"
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "confirmationCode": {
+          "type": "string"
+        }
+      }
     },
     "dd214": {
       "type": "array",

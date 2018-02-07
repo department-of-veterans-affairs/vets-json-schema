@@ -24,9 +24,7 @@ let schema = {
       type: 'string',
       format: 'email'
     },
-    photo: {
-      type: 'string'
-    },
+    photo: originalDefinitions.files.items,
     dd214: Object.assign({}, originalDefinitions.files, {
       minItems: 1
     }),
