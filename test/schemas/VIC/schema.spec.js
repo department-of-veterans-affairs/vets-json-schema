@@ -6,7 +6,12 @@ import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['VIC'];
 
-let schemaTestHelper = new SchemaTestHelper(schema);
+let schemaTestHelper = new SchemaTestHelper(
+  schema,
+  {
+    privacyAgreementAccepted: true
+  }
+);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('vic schema', () => {

@@ -32,10 +32,12 @@ let schema = {
       type: 'string',
       format: 'date'
     }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
 
 [
+  ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['address', 'veteranAddress'],
   ['ssn', 'veteranSocialSecurityNumber'],

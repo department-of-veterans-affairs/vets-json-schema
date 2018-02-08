@@ -4,6 +4,12 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -311,6 +317,9 @@
       "type": "string",
       "format": "date"
     },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
@@ -326,5 +335,8 @@
     "gender": {
       "$ref": "#/definitions/gender"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }
