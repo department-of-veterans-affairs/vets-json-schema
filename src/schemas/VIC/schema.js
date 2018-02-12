@@ -26,12 +26,6 @@ const address = (() => {
   countryStateProperties.push({
     properties: {
       country: {
-        not: {
-          type: 'string',
-          'enum': countriesWithStates
-        }
-      },
-      country: {
         type: 'string',
         'enum': countriesWithNoState
       },
