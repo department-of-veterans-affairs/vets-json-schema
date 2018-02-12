@@ -5,7 +5,8 @@ import constants from '../../common/constants';
 
 const address = (() => {
   const countries = constants.salesforceCountries.map(object => object.value);
-  const countriesWithNoState = Object.keys(constants.salesforceStates).filter(x => _.includes(countries, x));
+  const countriesWithStates = Object.keys(constants.salesforceStates).filter(x => _.includes(countries, x));
+  const countriesWithNoState = _.difference(countries, countriesWithStates);
   const countryStateProperties = _.map(constants.salesforceStates, (value, key) => ({
     properties: {
       country: {
@@ -27,8 +28,12 @@ const address = (() => {
       country: {
         not: {
           type: 'string',
-          'enum': countriesWithNoState
+          'enum': countriesWithStates
         }
+      },
+      country: {
+        type: 'string',
+        'enum': countriesWithNoState
       },
       postalCode: {
         type: 'string',

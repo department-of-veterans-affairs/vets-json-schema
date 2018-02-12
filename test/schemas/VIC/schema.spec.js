@@ -44,6 +44,12 @@ schemaTestHelper.testValidAndInvalid('veteranAddress', {
     {
       street: '123 a rd',
       city: 'abc',
+      state: '11',
+      country: 'CHNA'
+    },
+    {
+      street: '123 a rd',
+      city: 'abc',
       state: 'beijing',
       country: 'CHN'
     }
