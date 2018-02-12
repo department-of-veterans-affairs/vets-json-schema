@@ -264,6 +264,1371 @@ const dischargeTypes = [
   { value: 'undesirable', label: 'Undesirable' }
 ];
 
+const salesforceStates = {
+  "BRA": [
+    {
+      "label": "Acre",
+      "value": "AC"
+    },
+    {
+      "label": "Alagoas",
+      "value": "AL"
+    },
+    {
+      "label": "Amapá",
+      "value": "AP"
+    },
+    {
+      "label": "Amazonas",
+      "value": "AM"
+    },
+    {
+      "label": "Bahia",
+      "value": "BA"
+    },
+    {
+      "label": "Ceará",
+      "value": "CE"
+    },
+    {
+      "label": "Distrito Federal",
+      "value": "DF"
+    },
+    {
+      "label": "Espírito Santo",
+      "value": "ES"
+    },
+    {
+      "label": "Goiás",
+      "value": "GO"
+    },
+    {
+      "label": "Maranhão",
+      "value": "MA"
+    },
+    {
+      "label": "Mato Grosso",
+      "value": "MT"
+    },
+    {
+      "label": "Mato Grosso do Sul",
+      "value": "MS"
+    },
+    {
+      "label": "Minas Gerais",
+      "value": "MG"
+    },
+    {
+      "label": "Pará",
+      "value": "PA"
+    },
+    {
+      "label": "Paraíba",
+      "value": "PB"
+    },
+    {
+      "label": "Paraná",
+      "value": "PR"
+    },
+    {
+      "label": "Pernambuco",
+      "value": "PE"
+    },
+    {
+      "label": "Piauí",
+      "value": "PI"
+    },
+    {
+      "label": "Rio de Janeiro",
+      "value": "RJ"
+    },
+    {
+      "label": "Rio Grande do Norte",
+      "value": "RN"
+    },
+    {
+      "label": "Rio Grande do Sul",
+      "value": "RS"
+    },
+    {
+      "label": "Rondônia",
+      "value": "RO"
+    },
+    {
+      "label": "Roraima",
+      "value": "RR"
+    },
+    {
+      "label": "Santa Catarina",
+      "value": "SC"
+    },
+    {
+      "label": "São Paulo",
+      "value": "SP"
+    },
+    {
+      "label": "Sergipe",
+      "value": "SE"
+    },
+    {
+      "label": "Tocantins",
+      "value": "TO"
+    }
+  ],
+  "ITA": [
+    {
+      "label": "Agrigento",
+      "value": "AG"
+    },
+    {
+      "label": "Alessandria",
+      "value": "AL"
+    },
+    {
+      "label": "Ancona",
+      "value": "AN"
+    },
+    {
+      "label": "Aosta",
+      "value": "AO"
+    },
+    {
+      "label": "Arezzo",
+      "value": "AR"
+    },
+    {
+      "label": "Ascoli Piceno",
+      "value": "AP"
+    },
+    {
+      "label": "Asti",
+      "value": "AT"
+    },
+    {
+      "label": "Avellino",
+      "value": "AV"
+    },
+    {
+      "label": "Bari",
+      "value": "BA"
+    },
+    {
+      "label": "Barletta-Andria-Trani",
+      "value": "BT"
+    },
+    {
+      "label": "Belluno",
+      "value": "BL"
+    },
+    {
+      "label": "Benevento",
+      "value": "BN"
+    },
+    {
+      "label": "Bergamo",
+      "value": "BG"
+    },
+    {
+      "label": "Biella",
+      "value": "BI"
+    },
+    {
+      "label": "Bologna",
+      "value": "BO"
+    },
+    {
+      "label": "Bolzano",
+      "value": "BZ"
+    },
+    {
+      "label": "Brescia",
+      "value": "BS"
+    },
+    {
+      "label": "Brindisi",
+      "value": "BR"
+    },
+    {
+      "label": "Cagliari",
+      "value": "CA"
+    },
+    {
+      "label": "Caltanissetta",
+      "value": "CL"
+    },
+    {
+      "label": "Campobasso",
+      "value": "CB"
+    },
+    {
+      "label": "Carbonia-Iglesias",
+      "value": "CI"
+    },
+    {
+      "label": "Caserta",
+      "value": "CE"
+    },
+    {
+      "label": "Catania",
+      "value": "CT"
+    },
+    {
+      "label": "Catanzaro",
+      "value": "CZ"
+    },
+    {
+      "label": "Chieti",
+      "value": "CH"
+    },
+    {
+      "label": "Como",
+      "value": "CO"
+    },
+    {
+      "label": "Cosenza",
+      "value": "CS"
+    },
+    {
+      "label": "Cremona",
+      "value": "CR"
+    },
+    {
+      "label": "Crotone",
+      "value": "KR"
+    },
+    {
+      "label": "Cuneo",
+      "value": "CN"
+    },
+    {
+      "label": "Enna",
+      "value": "EN"
+    },
+    {
+      "label": "Fermo",
+      "value": "FM"
+    },
+    {
+      "label": "Ferrara",
+      "value": "FE"
+    },
+    {
+      "label": "Florence",
+      "value": "FI"
+    },
+    {
+      "label": "Foggia",
+      "value": "FG"
+    },
+    {
+      "label": "Forlì-Cesena",
+      "value": "FC"
+    },
+    {
+      "label": "Frosinone",
+      "value": "FR"
+    },
+    {
+      "label": "Genoa",
+      "value": "GE"
+    },
+    {
+      "label": "Gorizia",
+      "value": "GO"
+    },
+    {
+      "label": "Grosseto",
+      "value": "GR"
+    },
+    {
+      "label": "Imperia",
+      "value": "IM"
+    },
+    {
+      "label": "Isernia",
+      "value": "IS"
+    },
+    {
+      "label": "L'Aquila",
+      "value": "AQ"
+    },
+    {
+      "label": "La Spezia",
+      "value": "SP"
+    },
+    {
+      "label": "Latina",
+      "value": "LT"
+    },
+    {
+      "label": "Lecce",
+      "value": "LE"
+    },
+    {
+      "label": "Lecco",
+      "value": "LC"
+    },
+    {
+      "label": "Livorno",
+      "value": "LI"
+    },
+    {
+      "label": "Lodi",
+      "value": "LO"
+    },
+    {
+      "label": "Lucca",
+      "value": "LU"
+    },
+    {
+      "label": "Macerata",
+      "value": "MC"
+    },
+    {
+      "label": "Mantua",
+      "value": "MN"
+    },
+    {
+      "label": "Massa and Carrara",
+      "value": "MS"
+    },
+    {
+      "label": "Matera",
+      "value": "MT"
+    },
+    {
+      "label": "Medio Campidano",
+      "value": "VS"
+    },
+    {
+      "label": "Messina",
+      "value": "ME"
+    },
+    {
+      "label": "Milan",
+      "value": "MI"
+    },
+    {
+      "label": "Modena",
+      "value": "MO"
+    },
+    {
+      "label": "Monza and Brianza",
+      "value": "MB"
+    },
+    {
+      "label": "Naples",
+      "value": "NA"
+    },
+    {
+      "label": "Novara",
+      "value": "NO"
+    },
+    {
+      "label": "Nuoro",
+      "value": "NU"
+    },
+    {
+      "label": "Ogliastra",
+      "value": "OG"
+    },
+    {
+      "label": "Olbia-Tempio",
+      "value": "OT"
+    },
+    {
+      "label": "Oristano",
+      "value": "OR"
+    },
+    {
+      "label": "Padua",
+      "value": "PD"
+    },
+    {
+      "label": "Palermo",
+      "value": "PA"
+    },
+    {
+      "label": "Parma",
+      "value": "PR"
+    },
+    {
+      "label": "Pavia",
+      "value": "PV"
+    },
+    {
+      "label": "Perugia",
+      "value": "PG"
+    },
+    {
+      "label": "Pesaro and Urbino",
+      "value": "PU"
+    },
+    {
+      "label": "Pescara",
+      "value": "PE"
+    },
+    {
+      "label": "Piacenza",
+      "value": "PC"
+    },
+    {
+      "label": "Pisa",
+      "value": "PI"
+    },
+    {
+      "label": "Pistoia",
+      "value": "PT"
+    },
+    {
+      "label": "Pordenone",
+      "value": "PN"
+    },
+    {
+      "label": "Potenza",
+      "value": "PZ"
+    },
+    {
+      "label": "Prato",
+      "value": "PO"
+    },
+    {
+      "label": "Ragusa",
+      "value": "RG"
+    },
+    {
+      "label": "Ravenna",
+      "value": "RA"
+    },
+    {
+      "label": "Reggio Calabria",
+      "value": "RC"
+    },
+    {
+      "label": "Reggio Emilia",
+      "value": "RE"
+    },
+    {
+      "label": "Rieti",
+      "value": "RI"
+    },
+    {
+      "label": "Rimini",
+      "value": "RN"
+    },
+    {
+      "label": "Rome",
+      "value": "RM"
+    },
+    {
+      "label": "Rovigo",
+      "value": "RO"
+    },
+    {
+      "label": "Salerno",
+      "value": "SA"
+    },
+    {
+      "label": "Sassari",
+      "value": "SS"
+    },
+    {
+      "label": "Savona",
+      "value": "SV"
+    },
+    {
+      "label": "Siena",
+      "value": "SI"
+    },
+    {
+      "label": "Sondrio",
+      "value": "SO"
+    },
+    {
+      "label": "Syracuse",
+      "value": "SR"
+    },
+    {
+      "label": "Taranto",
+      "value": "TA"
+    },
+    {
+      "label": "Teramo",
+      "value": "TE"
+    },
+    {
+      "label": "Terni",
+      "value": "TR"
+    },
+    {
+      "label": "Trapani",
+      "value": "TP"
+    },
+    {
+      "label": "Trento",
+      "value": "TN"
+    },
+    {
+      "label": "Treviso",
+      "value": "TV"
+    },
+    {
+      "label": "Trieste",
+      "value": "TS"
+    },
+    {
+      "label": "Turin",
+      "value": "TO"
+    },
+    {
+      "label": "Udine",
+      "value": "UD"
+    },
+    {
+      "label": "Varese",
+      "value": "VA"
+    },
+    {
+      "label": "Venice",
+      "value": "VE"
+    },
+    {
+      "label": "Verbano-Cusio-Ossola",
+      "value": "VB"
+    },
+    {
+      "label": "Vercelli",
+      "value": "VC"
+    },
+    {
+      "label": "Verona",
+      "value": "VR"
+    },
+    {
+      "label": "Vibo Valentia",
+      "value": "VV"
+    },
+    {
+      "label": "Vicenza",
+      "value": "VI"
+    },
+    {
+      "label": "Viterbo",
+      "value": "VT"
+    }
+  ],
+  "MEX": [
+    {
+      "label": "Aguascalientes",
+      "value": "AG"
+    },
+    {
+      "label": "Baja California",
+      "value": "BC"
+    },
+    {
+      "label": "Baja California Sur",
+      "value": "BS"
+    },
+    {
+      "label": "Campeche",
+      "value": "CM"
+    },
+    {
+      "label": "Chiapas",
+      "value": "CS"
+    },
+    {
+      "label": "Chihuahua",
+      "value": "CH"
+    },
+    {
+      "label": "Coahuila",
+      "value": "CO"
+    },
+    {
+      "label": "Colima",
+      "value": "CL"
+    },
+    {
+      "label": "Durango",
+      "value": "DG"
+    },
+    {
+      "label": "Federal District",
+      "value": "DF"
+    },
+    {
+      "label": "Guanajuato",
+      "value": "GT"
+    },
+    {
+      "label": "Guerrero",
+      "value": "GR"
+    },
+    {
+      "label": "Hidalgo",
+      "value": "HG"
+    },
+    {
+      "label": "Jalisco",
+      "value": "JA"
+    },
+    {
+      "label": "Mexico State",
+      "value": "ME"
+    },
+    {
+      "label": "Michoacán",
+      "value": "MI"
+    },
+    {
+      "label": "Morelos",
+      "value": "MO"
+    },
+    {
+      "label": "Nayarit",
+      "value": "NA"
+    },
+    {
+      "label": "Nuevo León",
+      "value": "NL"
+    },
+    {
+      "label": "Oaxaca",
+      "value": "OA"
+    },
+    {
+      "label": "Puebla",
+      "value": "PB"
+    },
+    {
+      "label": "Querétaro",
+      "value": "QE"
+    },
+    {
+      "label": "Quintana Roo",
+      "value": "QR"
+    },
+    {
+      "label": "San Luis Potosí",
+      "value": "SL"
+    },
+    {
+      "label": "Sinaloa",
+      "value": "SI"
+    },
+    {
+      "label": "Sonora",
+      "value": "SO"
+    },
+    {
+      "label": "Tabasco",
+      "value": "TB"
+    },
+    {
+      "label": "Tamaulipas",
+      "value": "TM"
+    },
+    {
+      "label": "Tlaxcala",
+      "value": "TL"
+    },
+    {
+      "label": "Veracruz",
+      "value": "VE"
+    },
+    {
+      "label": "Yucatán",
+      "value": "YU"
+    },
+    {
+      "label": "Zacatecas",
+      "value": "ZA"
+    }
+  ],
+  "USA": [
+    {
+      "label": "Alabama",
+      "value": "AL"
+    },
+    {
+      "label": "Alaska",
+      "value": "AK"
+    },
+    {
+      "label": "Arizona",
+      "value": "AZ"
+    },
+    {
+      "label": "Arkansas",
+      "value": "AR"
+    },
+    {
+      "label": "California",
+      "value": "CA"
+    },
+    {
+      "label": "Colorado",
+      "value": "CO"
+    },
+    {
+      "label": "Connecticut",
+      "value": "CT"
+    },
+    {
+      "label": "Delaware",
+      "value": "DE"
+    },
+    {
+      "label": "District of Columbia",
+      "value": "DC"
+    },
+    {
+      "label": "Florida",
+      "value": "FL"
+    },
+    {
+      "label": "Georgia",
+      "value": "GA"
+    },
+    {
+      "label": "Hawaii",
+      "value": "HI"
+    },
+    {
+      "label": "Idaho",
+      "value": "ID"
+    },
+    {
+      "label": "Illinois",
+      "value": "IL"
+    },
+    {
+      "label": "Indiana",
+      "value": "IN"
+    },
+    {
+      "label": "Iowa",
+      "value": "IA"
+    },
+    {
+      "label": "Kansas",
+      "value": "KS"
+    },
+    {
+      "label": "Kentucky",
+      "value": "KY"
+    },
+    {
+      "label": "Louisiana",
+      "value": "LA"
+    },
+    {
+      "label": "Maine",
+      "value": "ME"
+    },
+    {
+      "label": "Maryland",
+      "value": "MD"
+    },
+    {
+      "label": "Massachusetts",
+      "value": "MA"
+    },
+    {
+      "label": "Michigan",
+      "value": "MI"
+    },
+    {
+      "label": "Minnesota",
+      "value": "MN"
+    },
+    {
+      "label": "Mississippi",
+      "value": "MS"
+    },
+    {
+      "label": "Missouri",
+      "value": "MO"
+    },
+    {
+      "label": "Montana",
+      "value": "MT"
+    },
+    {
+      "label": "Nebraska",
+      "value": "NE"
+    },
+    {
+      "label": "Nevada",
+      "value": "NV"
+    },
+    {
+      "label": "New Hampshire",
+      "value": "NH"
+    },
+    {
+      "label": "New Jersey",
+      "value": "NJ"
+    },
+    {
+      "label": "New Mexico",
+      "value": "NM"
+    },
+    {
+      "label": "New York",
+      "value": "NY"
+    },
+    {
+      "label": "North Carolina",
+      "value": "NC"
+    },
+    {
+      "label": "North Dakota",
+      "value": "ND"
+    },
+    {
+      "label": "Ohio",
+      "value": "OH"
+    },
+    {
+      "label": "Oklahoma",
+      "value": "OK"
+    },
+    {
+      "label": "Oregon",
+      "value": "OR"
+    },
+    {
+      "label": "Pennsylvania",
+      "value": "PA"
+    },
+    {
+      "label": "Rhode Island",
+      "value": "RI"
+    },
+    {
+      "label": "South Carolina",
+      "value": "SC"
+    },
+    {
+      "label": "South Dakota",
+      "value": "SD"
+    },
+    {
+      "label": "Tennessee",
+      "value": "TN"
+    },
+    {
+      "label": "Texas",
+      "value": "TX"
+    },
+    {
+      "label": "Utah",
+      "value": "UT"
+    },
+    {
+      "label": "Vermont",
+      "value": "VT"
+    },
+    {
+      "label": "Virginia",
+      "value": "VA"
+    },
+    {
+      "label": "Washington",
+      "value": "WA"
+    },
+    {
+      "label": "West Virginia",
+      "value": "WV"
+    },
+    {
+      "label": "Wisconsin",
+      "value": "WI"
+    },
+    {
+      "label": "Wyoming",
+      "value": "WY"
+    }
+  ],
+  "CAN": [
+    {
+      "label": "Alberta",
+      "value": "AB"
+    },
+    {
+      "label": "British Columbia",
+      "value": "BC"
+    },
+    {
+      "label": "Manitoba",
+      "value": "MB"
+    },
+    {
+      "label": "New Brunswick",
+      "value": "NB"
+    },
+    {
+      "label": "Newfoundland and Labrador",
+      "value": "NL"
+    },
+    {
+      "label": "Northwest Territories",
+      "value": "NT"
+    },
+    {
+      "label": "Nova Scotia",
+      "value": "NS"
+    },
+    {
+      "label": "Nunavut",
+      "value": "NU"
+    },
+    {
+      "label": "Ontario",
+      "value": "ON"
+    },
+    {
+      "label": "Prince Edward Island",
+      "value": "PE"
+    },
+    {
+      "label": "Quebec",
+      "value": "QC"
+    },
+    {
+      "label": "Saskatchewan",
+      "value": "SK"
+    },
+    {
+      "label": "Yukon Territories",
+      "value": "YT"
+    }
+  ],
+  "IND": [
+    {
+      "label": "Andaman and Nicobar Islands",
+      "value": "AN"
+    },
+    {
+      "label": "Andhra Pradesh",
+      "value": "AP"
+    },
+    {
+      "label": "Arunachal Pradesh",
+      "value": "AR"
+    },
+    {
+      "label": "Assam",
+      "value": "AS"
+    },
+    {
+      "label": "Bihar",
+      "value": "BR"
+    },
+    {
+      "label": "Chandigarh",
+      "value": "CH"
+    },
+    {
+      "label": "Chhattisgarh",
+      "value": "CT"
+    },
+    {
+      "label": "Dadra and Nagar Haveli",
+      "value": "DN"
+    },
+    {
+      "label": "Daman and Diu",
+      "value": "DD"
+    },
+    {
+      "label": "Delhi",
+      "value": "DL"
+    },
+    {
+      "label": "Goa",
+      "value": "GA"
+    },
+    {
+      "label": "Gujarat",
+      "value": "GJ"
+    },
+    {
+      "label": "Haryana",
+      "value": "HR"
+    },
+    {
+      "label": "Himachal Pradesh",
+      "value": "HP"
+    },
+    {
+      "label": "Jammu and Kashmir",
+      "value": "JK"
+    },
+    {
+      "label": "Jharkhand",
+      "value": "JH"
+    },
+    {
+      "label": "Karnataka",
+      "value": "KA"
+    },
+    {
+      "label": "Kerala",
+      "value": "KL"
+    },
+    {
+      "label": "Lakshadweep",
+      "value": "LD"
+    },
+    {
+      "label": "Madhya Pradesh",
+      "value": "MP"
+    },
+    {
+      "label": "Maharashtra",
+      "value": "MH"
+    },
+    {
+      "label": "Manipur",
+      "value": "MN"
+    },
+    {
+      "label": "Meghalaya",
+      "value": "ML"
+    },
+    {
+      "label": "Mizoram",
+      "value": "MZ"
+    },
+    {
+      "label": "Nagaland",
+      "value": "NL"
+    },
+    {
+      "label": "Odisha",
+      "value": "OR"
+    },
+    {
+      "label": "Puducherry",
+      "value": "PY"
+    },
+    {
+      "label": "Punjab",
+      "value": "PB"
+    },
+    {
+      "label": "Rajasthan",
+      "value": "RJ"
+    },
+    {
+      "label": "Sikkim",
+      "value": "SK"
+    },
+    {
+      "label": "Tamil Nadu",
+      "value": "TN"
+    },
+    {
+      "label": "Tripura",
+      "value": "TR"
+    },
+    {
+      "label": "Uttarakhand",
+      "value": "UT"
+    },
+    {
+      "label": "Uttar Pradesh",
+      "value": "UP"
+    },
+    {
+      "label": "West Bengal",
+      "value": "WB"
+    }
+  ],
+  "CHN": [
+    {
+      "label": "Anhui",
+      "value": "34"
+    },
+    {
+      "label": "Beijing",
+      "value": "11"
+    },
+    {
+      "label": "Chinese Taipei",
+      "value": "71"
+    },
+    {
+      "label": "Chongqing",
+      "value": "50"
+    },
+    {
+      "label": "Fujian",
+      "value": "35"
+    },
+    {
+      "label": "Gansu",
+      "value": "62"
+    },
+    {
+      "label": "Guangdong",
+      "value": "44"
+    },
+    {
+      "label": "Guangxi",
+      "value": "45"
+    },
+    {
+      "label": "Guizhou",
+      "value": "52"
+    },
+    {
+      "label": "Hainan",
+      "value": "46"
+    },
+    {
+      "label": "Hebei",
+      "value": "13"
+    },
+    {
+      "label": "Heilongjiang",
+      "value": "23"
+    },
+    {
+      "label": "Henan",
+      "value": "41"
+    },
+    {
+      "label": "Hong Kong",
+      "value": "91"
+    },
+    {
+      "label": "Hubei",
+      "value": "42"
+    },
+    {
+      "label": "Hunan",
+      "value": "43"
+    },
+    {
+      "label": "Jiangsu",
+      "value": "32"
+    },
+    {
+      "label": "Jiangxi",
+      "value": "36"
+    },
+    {
+      "label": "Jilin",
+      "value": "22"
+    },
+    {
+      "label": "Liaoning",
+      "value": "21"
+    },
+    {
+      "label": "Macao",
+      "value": "92"
+    },
+    {
+      "label": "Nei Mongol",
+      "value": "15"
+    },
+    {
+      "label": "Ningxia",
+      "value": "64"
+    },
+    {
+      "label": "Qinghai",
+      "value": "63"
+    },
+    {
+      "label": "Shaanxi",
+      "value": "61"
+    },
+    {
+      "label": "Shandong",
+      "value": "37"
+    },
+    {
+      "label": "Shanghai",
+      "value": "31"
+    },
+    {
+      "label": "Shanxi",
+      "value": "14"
+    },
+    {
+      "label": "Sichuan",
+      "value": "51"
+    },
+    {
+      "label": "Tianjin",
+      "value": "12"
+    },
+    {
+      "label": "Xinjiang",
+      "value": "65"
+    },
+    {
+      "label": "Xizang",
+      "value": "54"
+    },
+    {
+      "label": "Yunnan",
+      "value": "53"
+    },
+    {
+      "label": "Zhejiang",
+      "value": "33"
+    }
+  ],
+  "AUS": [
+    {
+      "label": "Australian Capital Territory",
+      "value": "ACT"
+    },
+    {
+      "label": "New South Wales",
+      "value": "NSW"
+    },
+    {
+      "label": "Northern Territory",
+      "value": "NT"
+    },
+    {
+      "label": "Queensland",
+      "value": "QLD"
+    },
+    {
+      "label": "South Australia",
+      "value": "SA"
+    },
+    {
+      "label": "Tasmania",
+      "value": "TAS"
+    },
+    {
+      "label": "Victoria",
+      "value": "VIC"
+    },
+    {
+      "label": "Western Australia",
+      "value": "WA"
+    }
+  ],
+  "IRL": [
+    {
+      "label": "Carlow",
+      "value": "CW"
+    },
+    {
+      "label": "Cavan",
+      "value": "CN"
+    },
+    {
+      "label": "Clare",
+      "value": "CE"
+    },
+    {
+      "label": "Cork",
+      "value": "CO"
+    },
+    {
+      "label": "Donegal",
+      "value": "DL"
+    },
+    {
+      "label": "Dublin",
+      "value": "D"
+    },
+    {
+      "label": "Galway",
+      "value": "G"
+    },
+    {
+      "label": "Kerry",
+      "value": "KY"
+    },
+    {
+      "label": "Kildare",
+      "value": "KE"
+    },
+    {
+      "label": "Kilkenny",
+      "value": "KK"
+    },
+    {
+      "label": "Laois",
+      "value": "LS"
+    },
+    {
+      "label": "Leitrim",
+      "value": "LM"
+    },
+    {
+      "label": "Limerick",
+      "value": "LK"
+    },
+    {
+      "label": "Longford",
+      "value": "LD"
+    },
+    {
+      "label": "Louth",
+      "value": "LH"
+    },
+    {
+      "label": "Mayo",
+      "value": "MO"
+    },
+    {
+      "label": "Meath",
+      "value": "MH"
+    },
+    {
+      "label": "Monaghan",
+      "value": "MN"
+    },
+    {
+      "label": "Offaly",
+      "value": "OY"
+    },
+    {
+      "label": "Roscommon",
+      "value": "RN"
+    },
+    {
+      "label": "Sligo",
+      "value": "SO"
+    },
+    {
+      "label": "Tipperary",
+      "value": "TA"
+    },
+    {
+      "label": "Waterford",
+      "value": "WD"
+    },
+    {
+      "label": "Westmeath",
+      "value": "WH"
+    },
+    {
+      "label": "Wexford",
+      "value": "WX"
+    },
+    {
+      "label": "Wicklow",
+      "value": "WW"
+    }
+  ]
+};
+
 const states = {
   CAN: [
     { label: 'Alberta', value: 'AB' },
@@ -1615,6 +2980,7 @@ module.exports = {
   branchesServed,
   dischargeTypes,
   states,
+  salesforceStates,
   suffixes,
   genders,
   months,
