@@ -4,7 +4,7 @@ import _ from 'lodash';
 import constants from '../../common/constants';
 
 const address = (() => {
-  const countries = constants.countries.map(object => object.value);
+  const countries = constants.salesforceCountries.map(object => object.value);
   const countriesWithNoState = Object.keys(constants.salesforceStates).filter(x => _.includes(countries, x));
   const countryStateProperties = _.map(constants.salesforceStates, (value, key) => ({
     properties: {
