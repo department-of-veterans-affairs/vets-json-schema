@@ -25,3 +25,39 @@ describe('vic schema', () => {
   sharedTests.runTest('address', ['veteranAddress']);
   sharedTests.runTest('phone', ['phone']);
 });
+
+schemaTestHelper.testValidAndInvalid('veteranAddress', {
+  valid: [
+    {
+      street: '123 a rd',
+      city: 'abc',
+      country: 'DEU'
+    },
+    {
+      street: '123 a rd',
+      city: 'abc',
+      country: 'USA',
+      state: 'AA'
+    },
+    {
+      street: '123 a rd',
+      city: 'abc',
+      state: '11',
+      country: 'CHN'
+    }
+  ],
+  invalid: [
+    {
+      street: '123 a rd',
+      city: 'abc',
+      state: '11',
+      country: 'CHNA'
+    },
+    {
+      street: '123 a rd',
+      city: 'abc',
+      state: 'beijing',
+      country: 'CHN'
+    }
+  ]
+});
