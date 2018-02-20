@@ -366,10 +366,10 @@
     "applicantGender": {
       "$ref": "#/definitions/gender"
     },
-    "applicantHomePhone": {
+    "applicantPrimaryPhone": {
       "$ref": "#/definitions/phone"
     },
-    "applicantMobilePhone": {
+    "applicantOtherPhone": {
       "$ref": "#/definitions/phone"
     },
     "applicantSocialSecurityNumber": {
