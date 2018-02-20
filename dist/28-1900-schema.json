@@ -382,7 +382,7 @@
         }
       }
     },
-    "vaFileNumber": {
+    "veteranVaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
     "privacyAgreementAccepted": {
