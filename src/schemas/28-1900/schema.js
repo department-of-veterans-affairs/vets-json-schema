@@ -97,7 +97,7 @@ let schema = {
 };
 
 [
-  ['vaFileNumber'],
+  ['vaFileNumber', 'veteranVaFileNumber'],
   ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
