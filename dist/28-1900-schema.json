@@ -334,6 +334,9 @@
         "type": "string"
       }
     },
+    "employer": {
+      "type": "string"
+    },
     "monthlyIncome": {
       "type": "number",
       "minimum": 0

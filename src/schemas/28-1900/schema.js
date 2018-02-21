@@ -43,6 +43,9 @@ let schema = {
         type: 'string'
       }
     },
+    employer: {
+      type: 'string'
+    },
     monthlyIncome: {
       type: 'number',
       minimum: 0
@@ -60,7 +63,7 @@ let schema = {
       type: 'boolean'
     },
     // TODO We may not need all these booleans depending on stakeholder feedback
-    serviceFlags: { 
+    serviceFlags: {
       type: 'object',
       properties: {
         ww2: {
