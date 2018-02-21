@@ -23,6 +23,11 @@ describe('disabled veterans vocational rehabilitation schema', () => {
     ['vaFileNumber', ['veteranVaFileNumber']],
     ['serviceHistory']
   ].forEach((args) => {
-    sharedTests.runTest(...args); 
+    sharedTests.runTest(...args);
   });
+});
+
+schemaTestHelper.testValidAndInvalid('employer', {
+  valid: ['foo corp'],
+  invalid: [1]
 });
