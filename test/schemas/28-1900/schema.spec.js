@@ -31,6 +31,7 @@ schemaTestHelper.testValidAndInvalid('jobDuties', {
   valid: ['duties'],
   invalid: [1]
 });
+
 schemaTestHelper.testValidAndInvalid('employer', {
   valid: ['foo corp'],
   invalid: [1]
