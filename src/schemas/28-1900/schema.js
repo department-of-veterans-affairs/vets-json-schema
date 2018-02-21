@@ -37,11 +37,8 @@ let schema = {
         }
       }
     },
-    jobDuties: { // TODO Determine the correct type to use for jobDuties
-      type: 'array',
-      items: {
-        type: 'string'
-      }
+    jobDuties: {
+      type: 'string',
     },
     employer: {
       type: 'string'

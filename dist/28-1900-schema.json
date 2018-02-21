@@ -329,10 +329,7 @@
       }
     },
     "jobDuties": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "type": "string"
     },
     "employer": {
       "type": "string"
