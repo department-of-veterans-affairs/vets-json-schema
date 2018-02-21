@@ -1,0 +1,10 @@
+let schema = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526b)',
+  type: 'object',
+  definitions: {},
+  properties: {},
+  required: []
+};
+
+export default schema;
