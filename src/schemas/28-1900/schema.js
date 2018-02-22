@@ -22,7 +22,8 @@ let schema = {
       type: 'string',
     },
     yearsOfEducation: {
-      $ref: '#/definitions/year'
+      type: 'integer',
+      minimum: 0
     },
     previousPrograms: {
       type: 'array',
