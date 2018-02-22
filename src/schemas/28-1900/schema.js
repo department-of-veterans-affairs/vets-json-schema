@@ -10,7 +10,8 @@ let schema = {
   additionalProperties: false,
   definitions: _.pick(definitions, [
     'date',
-    'dateRange'
+    'dateRange',
+    'year'
   ]),
   properties: {
     email: {
@@ -21,7 +22,7 @@ let schema = {
       type: 'string',
     },
     yearsOfEducation: {
-      type: 'integer',
+      $ref: '#/definitions/year'
     },
     previousPrograms: {
       type: 'array',
@@ -31,8 +32,11 @@ let schema = {
           program: {
             type: 'string'
           },
-          date: {
-            $ref: '#/definitions/date' // TODO Change if partial dates disallowed
+          yearStarted: {
+            $ref: '#/definitions/year'
+          },
+          yearLeft: {
+            $ref: '#/definitions/year'
           }
         }
       }
