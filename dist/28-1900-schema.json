@@ -19,6 +19,10 @@
         }
       }
     },
+    "year": {
+      "type": "integer",
+      "minimum": 1900
+    },
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
@@ -312,7 +316,8 @@
       "type": "string"
     },
     "yearsOfEducation": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 0
     },
     "previousPrograms": {
       "type": "array",
@@ -322,8 +327,11 @@
           "program": {
             "type": "string"
           },
-          "date": {
-            "$ref": "#/definitions/date"
+          "yearStarted": {
+            "$ref": "#/definitions/year"
+          },
+          "yearLeft": {
+            "$ref": "#/definitions/year"
           }
         }
       }
