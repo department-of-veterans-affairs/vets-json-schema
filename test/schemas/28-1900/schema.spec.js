@@ -18,7 +18,7 @@ describe('disabled veterans vocational rehabilitation schema', () => {
     ['ssn', ['veteranSocialSecurityNumber']],
     ['date', ['veteranDateOfBirth']],
     ['address', ['veteranAddress', 'newVeteranAddress', 'employerAddress', 'hospitalAddress']],
-    ['phone', ['homePhone', 'mobilePhone']],
+    ['phone', ['daytimePhone', 'eveningPhone']],
     ['email'],
     ['vaFileNumber', ['veteranVaFileNumber']],
     ['serviceHistory']

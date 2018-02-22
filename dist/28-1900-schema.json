@@ -417,10 +417,10 @@
     "hospitalAddress": {
       "$ref": "#/definitions/address"
     },
-    "homePhone": {
+    "daytimePhone": {
       "$ref": "#/definitions/phone"
     },
-    "mobilePhone": {
+    "eveningPhone": {
       "$ref": "#/definitions/phone"
     },
     "serviceHistory": {
