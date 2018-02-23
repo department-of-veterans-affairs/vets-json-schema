@@ -120,7 +120,8 @@ let schema = {
       type: 'object',
       properties: {
         emailAddress: {
-          $ref: '#/definitions/email'
+          type: 'string',
+          format: 'email'
         },
         alternateEmailAddress: {
           $ref: '#/definitions/email'
