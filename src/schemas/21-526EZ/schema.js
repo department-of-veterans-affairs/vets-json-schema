@@ -188,12 +188,17 @@ let schema = {
       type: 'object',
       properties: {
         payments: {
-          type: 'object',
-          amount: {
-            type: 'number'
-          },
-          payType: {
-            type: 'string'
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              amount: {
+                type: 'number'
+              },
+              payType: {
+                type: 'string'
+              }
+            }
           }
         },
         receiveCompensationInLieuOfRetired: {
