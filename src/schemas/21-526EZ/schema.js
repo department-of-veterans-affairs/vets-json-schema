@@ -220,19 +220,22 @@ let schema = {
       properties: {
         // This is a little different from the common serviceHistory definition
         servicePeriods: {
-          type: 'object',
-          properties: {
-            serviceBranch: {
-              type: 'string'
-            },
-            // The common definition has these in a `dateRange` object
-            activeDutyBegin: {
-              $ref: '$/definitions/date'
-            },
-            activeDutyEnd: {
-              $ref: '$/definitions/date'
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              serviceBranch: {
+                type: 'string'
+              },
+              // The common definition has these in a `dateRange` object
+              activeDutyBegin: {
+                $ref: '$/definitions/date'
+              },
+              activeDutyEnd: {
+                $ref: '$/definitions/date'
+              }
+              // The common definition has a `dischargeType`
             }
-            // The common definition has a `dischargeType`
           }
         },
         servedInReservesOrNationalGuard: {

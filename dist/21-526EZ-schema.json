@@ -3,10 +3,6 @@
   "title": "SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)",
   "type": "object",
   "definitions": {
-    "email": {
-      "type": "string",
-      "pattern": "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"
-    },
     "directDeposit": {
       "type": "object",
       "properties": {
@@ -86,7 +82,8 @@
       "type": "object",
       "properties": {
         "emailAddress": {
-          "$ref": "#/definitions/email"
+          "type": "string",
+          "format": "email"
         },
         "alternateEmailAddress": {
           "$ref": "#/definitions/email"
@@ -257,12 +254,17 @@
       "type": "object",
       "properties": {
         "payments": {
-          "type": "object",
-          "amount": {
-            "type": "number"
-          },
-          "payType": {
-            "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "number"
+              },
+              "payType": {
+                "type": "string"
+              }
+            }
           }
         },
         "receiveCompensationInLieuOfRetired": {
@@ -283,16 +285,19 @@
       "type": "object",
       "properties": {
         "servicePeriods": {
-          "type": "object",
-          "properties": {
-            "serviceBranch": {
-              "type": "string"
-            },
-            "activeDutyBegin": {
-              "$ref": "$/definitions/date"
-            },
-            "activeDutyEnd": {
-              "$ref": "$/definitions/date"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "serviceBranch": {
+                "type": "string"
+              },
+              "activeDutyBegin": {
+                "$ref": "$/definitions/date"
+              },
+              "activeDutyEnd": {
+                "$ref": "$/definitions/date"
+              }
             }
           }
         },
