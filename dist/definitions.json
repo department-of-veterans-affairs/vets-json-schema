@@ -692,5 +692,9 @@
         }
       }
     }
+  },
+  "year": {
+    "type": "integer",
+    "minimum": 1900
   }
 }

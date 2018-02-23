@@ -447,6 +447,11 @@ const serviceHistory = {
   }
 };
 
+const year = {
+  type: 'integer',
+  minimum: 1900
+};
+
 export default {
   usaPhone,
   fullName,
@@ -478,5 +483,6 @@ export default {
   relationshipAndChildName,
   marriages,
   files,
-  serviceHistory
+  serviceHistory,
+  year
 };

@@ -10,7 +10,8 @@ let schema = {
   additionalProperties: false,
   definitions: _.pick(definitions, [
     'date',
-    'dateRange'
+    'dateRange',
+    'year'
   ]),
   properties: {
     email: {
@@ -22,6 +23,7 @@ let schema = {
     },
     yearsOfEducation: {
       type: 'integer',
+      minimum: 0
     },
     previousPrograms: {
       type: 'array',
@@ -31,8 +33,11 @@ let schema = {
           program: {
             type: 'string'
           },
-          date: {
-            $ref: '#/definitions/date' // TODO Change if partial dates disallowed
+          yearStarted: {
+            $ref: '#/definitions/year'
+          },
+          yearLeft: {
+            $ref: '#/definitions/year'
           }
         }
       }
@@ -106,8 +111,8 @@ let schema = {
   ['address', 'newVeteranAddress'],
   ['address', 'employerAddress'],
   ['address', 'hospitalAddress'],
-  ['phone', 'homePhone'],
-  ['phone', 'mobilePhone'],
+  ['phone', 'daytimePhone'],
+  ['phone', 'eveningPhone'],
   ['serviceHistory']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
