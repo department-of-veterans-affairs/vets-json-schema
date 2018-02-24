@@ -361,50 +361,53 @@
       }
     },
     "disabilities": {
-      "type": "object",
-      "properties": {
-        "disability": {
-          "type": "object",
-          "properties": {
-            "diagnosticText": {
-              "type": "string"
-            },
-            "decisionCode": {
-              "type": "string"
-            },
-            "specialIssues": {
-              "type": "object",
-              "properties": {
-                "specialIssueCode": {
-                  "type": "string"
-                },
-                "specialIssueName": {
-                  "type": "string"
-                }
-              }
-            },
-            "ratedDisabilityId": {
-              "type": "string"
-            },
-            "disabilityActionType": {
-              "type": "string"
-            },
-            "ratingDecisionId": {
-              "type": "string"
-            },
-            "diagnosticCode": {
-              "type": "string"
-            },
-            "secondaryDisabilities": {
-              "type": "array",
-              "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "disability": {
+            "type": "object",
+            "properties": {
+              "diagnosticText": {
+                "type": "string"
+              },
+              "decisionCode": {
+                "type": "string"
+              },
+              "specialIssues": {
                 "type": "object",
                 "properties": {
-                  "diagnosticText": {
+                  "specialIssueCode": {
                     "type": "string"
                   },
-                  "disabilityActionType": {
+                  "specialIssueName": {
                     "type": "string"
+                  }
+                }
+              },
+              "ratedDisabilityId": {
+                "type": "string"
+              },
+              "disabilityActionType": {
+                "type": "string"
+              },
+              "ratingDecisionId": {
+                "type": "string"
+              },
+              "diagnosticCode": {
+                "type": "string"
+              },
+              "secondaryDisabilities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "diagnosticText": {
+                      "type": "string"
+                    },
+                    "disabilityActionType": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -414,47 +417,53 @@
       }
     },
     "treatments": {
-      "type": "object",
-      "properties": {
-        "treatment": {
-          "type": "object",
-          "properties": {
-            "treatmentCenterType": {
-              "type": "string"
-            },
-            "startTreatment": {
-              "$ref": "#/definitions/date"
-            },
-            "endTreatment": {
-              "$ref": "#/definitions/date"
-            },
-            "treatmentCenterCountry": {
-              "type": "string"
-            },
-            "treatmentCenterState": {
-              "type": "string"
-            },
-            "treatmentCenterName": {
-              "type": "string"
-            },
-            "treatmentCenterCity": {
-              "type": "string"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "treatment": {
+            "type": "object",
+            "properties": {
+              "treatmentCenterType": {
+                "type": "string"
+              },
+              "startTreatment": {
+                "$ref": "#/definitions/date"
+              },
+              "endTreatment": {
+                "$ref": "#/definitions/date"
+              },
+              "treatmentCenterCountry": {
+                "type": "string"
+              },
+              "treatmentCenterState": {
+                "type": "string"
+              },
+              "treatmentCenterName": {
+                "type": "string"
+              },
+              "treatmentCenterCity": {
+                "type": "string"
+              }
             }
           }
         }
       }
     },
     "specialCircumstances": {
-      "type": "object",
-      "properties": {
-        "specialCircumstance": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "code": {
-              "type": "string"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "specialCircumstance": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "code": {
+                "type": "string"
+              }
             }
           }
         }

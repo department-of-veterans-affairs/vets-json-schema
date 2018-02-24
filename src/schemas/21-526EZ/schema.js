@@ -299,54 +299,58 @@ let schema = {
         }
       }
     },
+    // Presumably, this should be an array...
     disabilities: {
-      // Any validation here would be great
-      type: 'object', // should be array of objects?
-      properties: {
-        disability: {
-          type: 'object',
-          properties: {
-            diagnosticText: {
-              type: 'string'
-            },
-            decisionCode: {
-              type: 'string'
-            },
-            specialIssues: {
-              type: 'object', // Is this supposed to be an array?
-              properties: {
-                // I get the sneaking suspicion this is going to be an enum
-                specialIssueCode: {
-                  type: 'string'
-                },
-                specialIssueName: {
-                  type: 'string'
-                }
-              }
-            },
-            ratedDisabilityId: {
-              type: 'string'
-            },
-            disabilityActionType: {
-              type: 'string'
-            },
-            ratingDecisionId: {
-              type: 'string'
-            },
-            diagnosticCode: {
-              type: 'string'
-            },
-            // Presumably, this should be an array...
-            secondaryDisabilities: {
-              type: 'array',
-              items: {
-                type: 'object',
+      type: 'array',
+      items: {
+        // Any validation here would be great
+        type: 'object',
+        properties: {
+          disability: { // Really hoping this extra nesting isn't necessary
+            type: 'object',
+            properties: {
+              diagnosticText: {
+                type: 'string'
+              },
+              decisionCode: {
+                type: 'string'
+              },
+              specialIssues: {
+                type: 'object', // Is this supposed to be an array?
                 properties: {
-                  diagnosticText: {
+                  // I get the sneaking suspicion this is going to be an enum
+                  specialIssueCode: {
                     type: 'string'
                   },
-                  disabilityActionType: {
+                  specialIssueName: {
                     type: 'string'
+                  }
+                }
+              },
+              ratedDisabilityId: {
+                type: 'string'
+              },
+              disabilityActionType: {
+                type: 'string'
+              },
+              ratingDecisionId: {
+                type: 'string'
+              },
+              diagnosticCode: {
+                type: 'string'
+              },
+              // Presumably, this should be an array...
+              secondaryDisabilities: {
+                type: 'array',
+                items: {
+                  type: 'object',
+                  properties: {
+                    diagnosticText: {
+                      type: 'string'
+                    },
+                    disabilityActionType: {
+                      type: 'string'
+                    }
                   }
                 }
               }
@@ -355,52 +359,60 @@ let schema = {
         }
       }
     },
+    // Presumably, this should be an array...
     treatments: {
-      type: 'object', // should be array of objects?
-      properties: {
-        treatment: {
-          type: 'object',
-          properties: {
-            treatmentCenterType: {
-              // Enum?
-              type: 'string'
-            },
-            // Can we make this in to a dateRange?
-            startTreatment: {
-              $ref: '#/definitions/date'
-            },
-            endTreatment: {
-              $ref: '#/definitions/date'
-            },
-            // Should this use a dropdown like address?
-            treatmentCenterCountry: {
-              type: 'string'
-            },
-            // Should this use a dropdown like address?
-            treatmentCenterState: {
-              type: 'string'
-            },
-            treatmentCenterName: {
-              type: 'string'
-            },
-            treatmentCenterCity: {
-              type: 'string'
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          treatment: { // Really hoping this extra nesting isn't necessary
+            type: 'object',
+            properties: {
+              treatmentCenterType: {
+                // Enum?
+                type: 'string'
+              },
+              // Can we make this in to a dateRange?
+              startTreatment: {
+                $ref: '#/definitions/date'
+              },
+              endTreatment: {
+                $ref: '#/definitions/date'
+              },
+              // Should this use a dropdown like address?
+              treatmentCenterCountry: {
+                type: 'string'
+              },
+              // Should this use a dropdown like address?
+              treatmentCenterState: {
+                type: 'string'
+              },
+              treatmentCenterName: {
+                type: 'string'
+              },
+              treatmentCenterCity: {
+                type: 'string'
+              }
             }
           }
         }
       }
     },
+    // Presumably, this should be an array...
     specialCircumstances: {
-      type: 'object', // should be array of objects?
-      properties: {
-        specialCircumstance: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string'
-            },
-            code: {
-              type: 'string'
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          specialCircumstance: { // Really hoping this extra nesting isn't necessary
+            type: 'object',
+            properties: {
+              name: {
+                type: 'string'
+              },
+              code: {
+                type: 'string'
+              }
             }
           }
         }
