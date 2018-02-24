@@ -96,7 +96,6 @@ let schema = {
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)',
   type: 'object',
   definitions: {
-    email: definitions.email,
     directDeposit: directDepositDef,
     date: definitions.date,
     // dateRange: definitions.dateRange // hopefully we can use this later
@@ -124,7 +123,8 @@ let schema = {
           format: 'email'
         },
         alternateEmailAddress: {
-          $ref: '#/definitions/email'
+          type: 'string',
+          format: 'email'
         },
         mailingAddress: addressDef,
         primaryPhone: {
