@@ -36,10 +36,10 @@
     "fullPhone": {
       "type": "object",
       "properties": {
-        "areaNbr": {
+        "areaNumber": {
           "type": "string"
         },
-        "phoneNbr": {
+        "phoneNumber": {
           "$ref": "#/definitions/phone"
         }
       }

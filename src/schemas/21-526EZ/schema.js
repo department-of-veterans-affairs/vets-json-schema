@@ -103,11 +103,11 @@ let schema = {
     fullPhone: {
       type: 'object',
       properties: {
-        areaNbr: {
+        areaNumber: {
           type: 'string'
           // Validation?
         },
-        phoneNbr: {
+        phoneNumber: {
           $ref: '#/definitions/phone'
         }
       }
