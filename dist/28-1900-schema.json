@@ -346,6 +346,24 @@
       "type": "number",
       "minimum": 0
     },
+    "dd214": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1
+    },
     "disabilityRating": {
       "type": "number"
     },
