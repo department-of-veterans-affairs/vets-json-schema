@@ -36,3 +36,12 @@ schemaTestHelper.testValidAndInvalid('employer', {
   valid: ['foo corp'],
   invalid: [1]
 });
+
+schemaTestHelper.testValidAndInvalid('dischargeDocuments', {
+  valid: [[{
+    name: 'test',
+    size: 40,
+    confirmationCode: 'testcode'
+  }]],
+  invalid: [[]]
+});
