@@ -53,7 +53,7 @@ let schema = {
       type: 'number',
       minimum: 0
     },
-    dd214: Object.assign({}, originalDefinitions.files, {
+    dischargeDocuments: Object.assign({}, originalDefinitions.files, {
       minItems: 1
     }),
     disabilityRating: {

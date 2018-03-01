@@ -346,7 +346,7 @@
       "type": "number",
       "minimum": 0
     },
-    "dd214": {
+    "dischargeDocuments": {
       "type": "array",
       "items": {
         "type": "object",
