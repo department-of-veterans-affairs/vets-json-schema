@@ -26,4 +26,14 @@ describe('disabled veterans vocational rehabilitation schema', () => {
   ].forEach((args) => {
     sharedTests.runTest(...args);
   });
+  
+  schemaTestHelper.testValidAndInvalid('previousBenefitApplications', {
+    valid: [{
+      other: true,
+      otherExplanation: 'Another benefit application explanation'
+    }],
+    invalid: [{
+      other: 1
+    }]
+  });
 });
