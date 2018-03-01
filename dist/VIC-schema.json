@@ -893,6 +893,9 @@
       "type": "string",
       "format": "date"
     },
+    "processAsAnonymous": {
+      "type": "boolean"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
