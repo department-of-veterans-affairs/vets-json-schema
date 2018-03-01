@@ -36,3 +36,13 @@ schemaTestHelper.testValidAndInvalid('employer', {
   valid: ['foo corp'],
   invalid: [1]
 });
+
+schemaTestHelper.testValidAndInvalid('disabilityRating', {
+  valid: [10],
+  invalid: [15]
+});
+
+schemaTestHelper.testValidAndInvalid('disabilities', {
+  valid: ['Back ache'],
+  invalid: [1]
+});
