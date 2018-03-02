@@ -37,11 +37,24 @@ let schema = {
     applicantAgeAtRemarriage: {
       type: 'integer',
     },
-    // TODO: Determine the correct type to use for previousBenefitApplications
     previousBenefitApplications: {
-      type: 'array',
-      items: {
-        type: 'string'
+      type: 'object',
+      properties: {
+        chapter31: {
+          type: 'boolean'
+        },
+        ownServiceBenefits: {
+          type: 'boolean'
+        },
+        dic: {
+          type: 'boolean'
+        },
+        other: {
+          type: 'boolean'
+        },
+        otherExplanation: {
+          type: 'string'
+        }
       }
     }
   },
