@@ -346,14 +346,42 @@
       "type": "number",
       "minimum": 0
     },
-    "disabilityRating": {
-      "type": "number"
-    },
-    "disabilities": {
+    "dischargeDocuments": {
       "type": "array",
       "items": {
-        "type": "string"
-      }
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "disabilityRating": {
+      "type": "number",
+      "enum": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ]
+    },
+    "disabilities": {
+      "type": "string"
     },
     "dtap": {
       "type": "boolean"

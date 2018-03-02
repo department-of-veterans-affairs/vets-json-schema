@@ -237,18 +237,23 @@
       }
     },
     "attachments": {
-      "type": "object",
-      "docName": {
-        "type": "string"
-      },
-      "dateUploaded": {
-        "type": "string"
-      },
-      "attachmentType": {
-        "type": "string"
-      },
-      "inflightId": {
-        "type": "string"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "docName": {
+            "type": "string"
+          },
+          "dateUploaded": {
+            "type": "string"
+          },
+          "attachmentType": {
+            "type": "string"
+          },
+          "inflightId": {
+            "type": "string"
+          }
+        }
       }
     },
     "militaryPayments": {

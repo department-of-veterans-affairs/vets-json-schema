@@ -89,6 +89,9 @@ let schema = {
     veteranDateOfBirth: {
       type: 'string',
       format: 'date'
+    },
+    processAsAnonymous: {
+      type: 'boolean'
     }
   },
   required: ['privacyAgreementAccepted']

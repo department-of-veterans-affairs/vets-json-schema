@@ -1,6 +1,7 @@
 import constants from '../../common/constants';
 import _ from 'lodash';
 import definitions from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
 let schema = {
@@ -52,14 +53,27 @@ let schema = {
       type: 'number',
       minimum: 0
     },
+    dischargeDocuments: Object.assign({}, originalDefinitions.files, {
+      minItems: 1
+    }),
     disabilityRating: {
-      type: 'number'
+      type: 'number',
+      'enum': [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ]
     },
-    disabilities: { // TODO Determine the correct type to use for disabilities
-      type: 'array',
-      items: {
-        type: 'string'
-      }
+    disabilities: {
+      type: 'string'
     },
     dtap: { // disabled transition assistance program
       type: 'boolean'
