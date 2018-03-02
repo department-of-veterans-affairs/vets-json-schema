@@ -1,6 +1,7 @@
 import constants from '../../common/constants';
 import _ from 'lodash';
 import definitions from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
 let schema = {
@@ -52,6 +53,9 @@ let schema = {
       type: 'number',
       minimum: 0
     },
+    dischargeDocuments: Object.assign({}, originalDefinitions.files, {
+      minItems: 1
+    }),
     disabilityRating: {
       type: 'number',
       'enum': [

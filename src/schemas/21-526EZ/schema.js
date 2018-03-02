@@ -167,21 +167,25 @@ let schema = {
         }
       }
     },
-    // Should this be an array of objects?
     attachments: {
-      type: 'object',
-      // What kind of validation do we use for all of these?
-      docName: {
-        type: 'string'
-      },
-      dateUploaded: {
-        type: 'string'
-      },
-      attachmentType: {
-        type: 'string'
-      },
-      inflightId: {
-        type: 'string'
+      type: 'array',
+      items: {
+        type: 'object',
+        // What kind of validation do we use for all of these?
+        properties: {
+          docName: {
+            type: 'string'
+          },
+          dateUploaded: {
+            type: 'string'
+          },
+          attachmentType: {
+            type: 'string'
+          },
+          inflightId: {
+            type: 'string'
+          }
+        }
       }
     },
     militaryPayments: {

@@ -46,3 +46,12 @@ schemaTestHelper.testValidAndInvalid('disabilities', {
   valid: ['Back ache'],
   invalid: [1]
 });
+
+schemaTestHelper.testValidAndInvalid('dischargeDocuments', {
+  valid: [[{
+    name: 'test',
+    size: 40,
+    confirmationCode: 'testcode'
+  }]],
+  invalid: [[]]
+});
