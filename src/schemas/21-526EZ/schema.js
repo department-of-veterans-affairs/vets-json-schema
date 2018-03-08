@@ -372,8 +372,7 @@ let schema = {
           treatment: { // Really hoping this extra nesting isn't necessary
             type: 'object',
             properties: {
-              treatmentCenterType: {
-                // Enum?
+              treatmentCenterName: {
                 type: 'string'
               },
               // Can we make this in to a dateRange?
@@ -391,10 +390,11 @@ let schema = {
               treatmentCenterState: {
                 type: 'string'
               },
-              treatmentCenterName: {
+              treatmentCenterCity: {
                 type: 'string'
               },
-              treatmentCenterCity: {
+              treatmentCenterType: {
+                // Enum?
                 type: 'string'
               }
             }

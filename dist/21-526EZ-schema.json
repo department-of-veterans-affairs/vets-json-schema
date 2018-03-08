@@ -429,7 +429,7 @@
           "treatment": {
             "type": "object",
             "properties": {
-              "treatmentCenterType": {
+              "treatmentCenterName": {
                 "type": "string"
               },
               "startTreatment": {
@@ -444,10 +444,10 @@
               "treatmentCenterState": {
                 "type": "string"
               },
-              "treatmentCenterName": {
+              "treatmentCenterCity": {
                 "type": "string"
               },
-              "treatmentCenterCity": {
+              "treatmentCenterType": {
                 "type": "string"
               }
             }
