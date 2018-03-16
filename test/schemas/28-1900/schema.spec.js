@@ -55,3 +55,13 @@ schemaTestHelper.testValidAndInvalid('dischargeDocuments', {
   }]],
   invalid: [[]]
 });
+
+schemaTestHelper.testValidAndInvalid('serviceHistory', {
+  valid: [[{
+    serviceBranch: 'branch',
+    dischargeType: 'honorable',
+    from: '1980-12-01',
+    to: '1981-12-01'
+  }]],
+  invalid: [[]]
+});
