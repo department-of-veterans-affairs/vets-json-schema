@@ -69,7 +69,7 @@ let schema = {
   ['fullName', 'applicantFullName'],
   ['fullName', 'veteranFullName'],
   ['fullName', 'previousVeteranBenefitsFullName'],
-  ['gender', 'applicantGender'],
+  ['gender', 'applicantGender', 'veteranGender'],
   ['phone', 'applicantPrimaryPhone'],
   ['phone', 'applicantOtherPhone'],
   ['ssn', 'applicantSocialSecurityNumber'],
