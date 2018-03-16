@@ -280,6 +280,48 @@
     "phone": {
       "type": "string",
       "minLength": 10
+    },
+    "requiredServiceHistory": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "serviceBranch",
+          "dischargeType"
+        ],
+        "properties": {
+          "serviceBranch": {
+            "type": "string"
+          },
+          "dateRange": {
+            "type": "object",
+            "required": [
+              "from",
+              "to"
+            ],
+            "properties": {
+              "from": {
+                "$ref": "#/definitions/date"
+              },
+              "to": {
+                "$ref": "#/definitions/date"
+              }
+            }
+          },
+          "dischargeType": {
+            "type": "string",
+            "enum": [
+              "honorable",
+              "general",
+              "other",
+              "bad-conduct",
+              "dishonorable",
+              "undesirable"
+            ]
+          }
+        }
+      }
     }
   },
   "properties": {
@@ -427,46 +469,7 @@
       "$ref": "#/definitions/phone"
     },
     "serviceHistory": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "serviceBranch": {
-            "type": "string"
-          },
-          "dateRange": {
-            "type": "object",
-            "properties": {
-              "from": {
-                "$ref": "#/definitions/date"
-              },
-              "to": {
-                "$ref": "#/definitions/date"
-              }
-            },
-            "required": [
-              "from",
-              "to"
-            ]
-          },
-          "dischargeType": {
-            "type": "string",
-            "enum": [
-              "honorable",
-              "general",
-              "other",
-              "bad-conduct",
-              "dishonorable",
-              "undesirable"
-            ]
-          }
-        },
-        "required": [
-          "serviceBranch",
-          "dischargeType"
-        ]
-      },
-      "minItems": 1
+      "$ref": "#/definitions/requiredServiceHistory"
     }
   },
   "required": [

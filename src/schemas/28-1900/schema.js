@@ -127,21 +127,9 @@ let schema = {
   ['address', 'hospitalAddress'],
   ['phone', 'daytimePhone'],
   ['phone', 'eveningPhone'],
+  ['requiredServiceHistory', 'serviceHistory']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
-
-const requiredServiceHistory = _.merge(_.cloneDeep(definitions.serviceHistory), {
-  minItems: 1,
-  items: {
-      required: ['serviceBranch', 'dischargeType'],
-  }
-});
-
-requiredServiceHistory.items.properties.dateRange =  _.merge(_.cloneDeep(definitions.dateRange), {
-  required:['from', 'to']
-});
-
-schema.properties.serviceHistory = requiredServiceHistory;
 
 export default schema;
