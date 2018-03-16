@@ -4,6 +4,7 @@ import definitions from '../../common/definitions';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
+
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DISABLED VETERANS APPLICATION FOR VOCATIONAL REHABILITATION (28-1900)',
@@ -127,9 +128,21 @@ let schema = {
   ['address', 'hospitalAddress'],
   ['phone', 'daytimePhone'],
   ['phone', 'eveningPhone'],
-  ['serviceHistory']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
+
+const requiredServiceHistory = _.merge(_.cloneDeep(definitions.serviceHistory), {
+  minItems: 1,
+  items: {
+      required: ['serviceBranch', 'dischargeType'],
+  }
+});
+
+requiredServiceHistory.items.properties.dateRange =  _.merge(_.cloneDeep(definitions.dateRange), {
+  required:['from', 'to']
+});
+
+schema.properties.serviceHistory = requiredServiceHistory;
 
 export default schema;
