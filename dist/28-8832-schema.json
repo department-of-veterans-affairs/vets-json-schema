@@ -380,6 +380,9 @@
     "applicantGender": {
       "$ref": "#/definitions/gender"
     },
+    "veteranGender": {
+      "$ref": "#/definitions/gender"
+    },
     "applicantPrimaryPhone": {
       "$ref": "#/definitions/phone"
     },
