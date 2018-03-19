@@ -127,7 +127,7 @@ let schema = {
   ['address', 'hospitalAddress'],
   ['phone', 'daytimePhone'],
   ['phone', 'eveningPhone'],
-  ['serviceHistory']
+  ['requiredServiceHistory', 'serviceHistory']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

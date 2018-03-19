@@ -447,6 +447,33 @@ const serviceHistory = {
   }
 };
 
+const requiredServiceHistory = {
+  type: 'array',
+  minItems: 1,
+  items: {
+    type: 'object',
+    required: ['serviceBranch', 'dischargeType'],
+    properties: {
+      serviceBranch: {
+        type: 'string'
+      },
+      dateRange: {
+        type: 'object',
+        required: ['from', 'to'],
+        properties: {
+          from: {
+            $ref: '#/definitions/date'
+          },
+          to: {
+            $ref: '#/definitions/date'
+          }
+        }
+      },
+      dischargeType
+    }
+  }
+};
+
 const year = {
   type: 'integer',
   minimum: 1900
@@ -483,6 +510,7 @@ export default {
   relationshipAndChildName,
   marriages,
   files,
+  requiredServiceHistory,
   serviceHistory,
   year
 };
