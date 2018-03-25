@@ -191,13 +191,13 @@ let schema = {
             type: 'string'
           },
           dateUploaded: {
-            type: 'string'
+            $ref: '#/definitions/datetime'
           },
           attachmentType: {
             type: 'string'
           },
           inflightDocumentId: {
-            type: 'string'
+            type: 'number'
           }
         }
       }
@@ -220,13 +220,13 @@ let schema = {
           }
         },
         receiveCompensationInLieuOfRetired: {
-          type: 'boolean' // Is this right?
+          type: 'boolean'
         },
         receivingInactiveDutyTrainingPay: {
-          type: 'boolean' // Is this right?
+          type: 'boolean'
         },
         waveBenifitsToRecInactDutyTraiPay: {
-          type: 'boolean' // Is this right?
+          type: 'boolean'
         }
       }
     },
@@ -286,9 +286,6 @@ let schema = {
         },
         servedInCombatZone: {
           type: 'boolean'
-        },
-        currentlyActiveTitle10: {
-          type: 'boolean' // Is this right?
         },
         separationLocationName: {
           type: 'string'
