@@ -91,13 +91,22 @@ const addressDef = {
 // Apparently we don't need a suffix here.
 const fullNameDef = _.omit('properties.suffix', definitions.fullName);
 
+// Not sure this particular kind of datetime definition will be used anywhere else
+// Pattern matches datetimes like 2018-03-22T17:25:19.191Z where the fractional seconds are optional
+// NOTE: This doesn't catch invalid days like February 30th
+const datetime = {
+  pattern: '(\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?Z',
+  type: 'string'
+}
+
+
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)',
   type: 'object',
   definitions: {
     directDeposit: directDepositDef,
-    date: definitions.date,
+    datetime,
     // dateRange: definitions.dateRange // hopefully we can use this later
     phone: {
       type: 'object',
@@ -130,7 +139,7 @@ let schema = {
           $ref: '#/definitions/phone'
         },
         forwardingAddress: _.set('properties.efctvDt', {
-          $ref: '#/definitions/date'
+          $ref: '#/definitions/datetime'
         }, addressDef),
         homelessness: {
           type: 'object',
@@ -164,7 +173,7 @@ let schema = {
         type: 'object',
         // What kind of validation do we use for all of these?
         properties: {
-          docName: {
+          documentName: {
             type: 'string'
           },
           dateUploaded: {
@@ -224,10 +233,10 @@ let schema = {
               },
               // The common definition has these in a `dateRange` object
               activeDutyBegin: {
-                $ref: '$/definitions/date'
+                $ref: '$/definitions/datetime'
               },
               activeDutyEnd: {
-                $ref: '$/definitions/date'
+                $ref: '$/definitions/datetime'
               }
               // The common definition has a `dischargeType`
             }
@@ -243,7 +252,7 @@ let schema = {
           type: 'string'
         },
         anticipatedSeparationDate: {
-          $ref: '$/definitions/date'
+          $ref: '$/definitions/datetime'
         },
         servedInCombatZone: {
           type: 'boolean'
@@ -252,7 +261,7 @@ let schema = {
           type: 'boolean' // Is this right?
         },
         title10ActivationDate: {
-          $ref: '$/definitions/date'
+          $ref: '$/definitions/datetime'
         },
         title10UnitName: {
           type: 'string'
@@ -280,10 +289,10 @@ let schema = {
             type: 'object',
             properties: {
               confinementBegin: {
-                $ref: '#/definitions/date'
+                $ref: '#/definitions/datetime'
               },
               confinementEnd: {
-                $ref: '#/definitions/date'
+                $ref: '#/definitions/datetime'
               },
               verifiedInd: {
                 type: 'boolean' // Is this right?
@@ -367,10 +376,10 @@ let schema = {
               },
               // Can we make this in to a dateRange?
               startTreatment: {
-                $ref: '#/definitions/date'
+                $ref: '#/definitions/datetime'
               },
               endTreatment: {
-                $ref: '#/definitions/date'
+                $ref: '#/definitions/datetime'
               },
               // Should this use a dropdown like address?
               treatmentCenterCountry: {
