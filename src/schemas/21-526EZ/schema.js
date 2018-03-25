@@ -425,16 +425,14 @@ let schema = {
       items: {
         type: 'object',
         properties: {
-          specialCircumstance: { // Really hoping this extra nesting isn't necessary
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string'
-              },
-              code: {
-                type: 'string'
-              }
-            }
+          name: {
+            type: 'string'
+          },
+          code: {
+            type: 'string'
+          },
+          needed: {
+            type: 'boolean'
           }
         }
       }
