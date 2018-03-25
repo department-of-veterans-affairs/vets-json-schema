@@ -108,6 +108,7 @@ let schema = {
     directDeposit: directDepositDef,
     datetime,
     // dateRange: definitions.dateRange // hopefully we can use this later
+    fullName: definitions.fullName,
     phone: {
       type: 'object',
       properties: {
@@ -120,7 +121,20 @@ let schema = {
         }
       }
     },
-    fullName: definitions.fullName
+    specialIssues: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          code: {
+            type: 'string'
+          },
+          name: {
+            type: 'string'
+          }
+        }
+      }
+    }
   },
   properties: {
     veteran: {
@@ -307,60 +321,65 @@ let schema = {
         }
       }
     },
-    // Presumably, this should be an array...
     disabilities: {
       type: 'array',
       items: {
-        // Any validation here would be great
         type: 'object',
         properties: {
-          disability: { // Really hoping this extra nesting isn't necessary
-            type: 'object',
-            properties: {
-              diagnosticText: {
-                type: 'string'
-              },
-              decisionCode: {
-                type: 'string'
-              },
-              specialIssues: {
-                type: 'object', // Is this supposed to be an array?
-                properties: {
-                  // I get the sneaking suspicion this is going to be an enum
-                  specialIssueCode: {
-                    type: 'string'
-                  },
-                  specialIssueName: {
-                    type: 'string'
-                  }
-                }
-              },
-              ratedDisabilityId: {
-                type: 'string'
-              },
-              disabilityActionType: {
-                type: 'string'
-              },
-              ratingDecisionId: {
-                type: 'string'
-              },
-              diagnosticCode: {
-                type: 'string'
-              },
-              // Presumably, this should be an array...
-              secondaryDisabilities: {
-                type: 'array',
-                items: {
-                  type: 'object',
-                  properties: {
-                    diagnosticText: {
-                      type: 'string'
-                    },
-                    disabilityActionType: {
-                      type: 'string'
-                    }
-                  }
-                }
+          diagnosticText: {
+            type: 'string'
+          },
+          disabilityActionType: {
+            type: 'string'
+          },
+          decisionCode: {
+            type: 'string'
+          },
+          specialIssues: {
+            $ref: '#/definitions/specialIssues'
+          },
+          ratedDisabilityId: {
+            type: 'string'
+          },
+          ratingDecisionId: {
+            type: 'string'
+          },
+          diagnosticCode: {
+            type: 'number'
+          },
+          specialIssueTypeCode: {
+            type: 'string'
+          },
+          secondaryDisabilities: {
+            type: 'array',
+            items: {
+              // It'd be nice to use a diability definition, but we can't continually nest the `secondaryDisabilities` property
+              type: 'object',
+              properties: {
+                diagnosticText: {
+                  type: 'string'
+                },
+                disabilityActionType: {
+                  type: 'string'
+                },
+                decisionCode: {
+                  type: 'string'
+                },
+                specialIssues: {
+                  $ref: '#/definitions/specialIssues'
+                },
+                ratedDisabilityId: {
+                  type: 'string'
+                },
+                ratingDecisionId: {
+                  type: 'string'
+                },
+                diagnosticCode: {
+                  type: 'number'
+                },
+                specialIssueTypeCode: {
+                  type: 'string'
+                },
               }
             }
           }
