@@ -232,27 +232,43 @@ let schema = {
                 type: 'string'
               },
               // The common definition has these in a `dateRange` object
-              activeDutyBegin: {
+              activeDutyBeginDate: {
                 $ref: '$/definitions/datetime'
               },
-              activeDutyEnd: {
+              activeDutyEndDate: {
                 $ref: '$/definitions/datetime'
               }
               // The common definition has a `dischargeType`
             }
           }
         },
-        servedInReservesOrNationalGuard: {
-          type: 'boolean' // Is this right?
-        },
-        obligationTermOfServiceFrom: {
-          type: 'boolean' // Is this right?
-        },
-        obligationTermOfServiceTo: {
-          type: 'string'
-        },
-        anticipatedSeparationDate: {
-          $ref: '$/definitions/datetime'
+        reservesNationalGuardService: {
+          type: 'object',
+          properties: {
+            title10Activation: {
+              type: 'object',
+              properties: {
+                title10ActivationDate: {
+                  $ref: '$/definitions/datetime'
+                },
+                anticipatedSeparationDate: {
+                  $ref: '$/definitions/datetime'
+                },
+              }
+            }
+            obligationTermOfServiceFromDate: {
+              $ref: '$/definitions/datetime'
+            },
+            obligationTermOfServiceToDate: {
+              $ref: '$/definitions/datetime'
+            },
+            unitName: {
+              type: 'string'
+            },
+            unitPhone: {
+              $ref: '#/definitions/phone'
+            },
+          }
         },
         servedInCombatZone: {
           type: 'boolean'
@@ -260,42 +276,31 @@ let schema = {
         currentlyActiveTitle10: {
           type: 'boolean' // Is this right?
         },
-        title10ActivationDate: {
-          $ref: '$/definitions/datetime'
-        },
-        title10UnitName: {
-          type: 'string'
-        },
-        title10Phone: {
-          $ref: '#/definitions/phone'
-        },
         separationLocationName: {
           type: 'string'
         },
         separationLocationCode: {
           type: 'string'
         },
-        // Presumably, this should be an array...
         alternateNames: {
           type: 'array',
           items: {
             $ref: '#/definitions/fullName'
           }
         },
-        // Presumably, this should be an array...
         confinements: {
           type: 'array',
           items: {
             type: 'object',
             properties: {
-              confinementBegin: {
+              confinementBeginDate: {
                 $ref: '#/definitions/datetime'
               },
-              confinementEnd: {
+              confinementEndDate: {
                 $ref: '#/definitions/datetime'
               },
-              verifiedInd: {
-                type: 'boolean' // Is this right?
+              verifiedIndicator: {
+                type: 'boolean'
               }
             }
           }
