@@ -182,7 +182,7 @@ let schema = {
           attachmentType: {
             type: 'string'
           },
-          inflightId: {
+          inflightDocumentId: {
             type: 'string'
           }
         }
