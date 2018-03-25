@@ -99,11 +99,10 @@ let schema = {
     directDeposit: directDepositDef,
     date: definitions.date,
     // dateRange: definitions.dateRange // hopefully we can use this later
-    phone: definitions.phone,
-    fullPhone: {
+    phone: {
       type: 'object',
       properties: {
-        areaNumber: {
+        areaCode: {
           type: 'string'
           // Validation?
         },
@@ -128,7 +127,7 @@ let schema = {
         },
         mailingAddress: addressDef,
         primaryPhone: {
-          $ref: '#/definitions/fullPhone'
+          $ref: '#/definitions/phone'
         },
         forwardingAddress: _.set('properties.efctvDt', {
           $ref: '#/definitions/date'
@@ -146,16 +145,8 @@ let schema = {
                   type: 'string'
                   // maxLength: 51 // Until we know otherwise?
                 },
-                // Should we make this a sub-object called
-                // pointOfContactPhone so we can re-use a definition
-                // for when the validation changes?
-                pointOfContactAreaCode: {
-                  type: 'string'
-                  // What kind of validation goes here?
-                },
-                pointOfContactPhoneNumber: {
-                  type: 'string'
-                  // What kind of validation goes here?
+                primaryPhone: {
+                  $ref: '#/definitions/phone'
                 }
               }
             }
@@ -266,9 +257,8 @@ let schema = {
         title10UnitName: {
           type: 'string'
         },
-        // TODO: Use definition for phone
         title10Phone: {
-          $ref: '#/definitions/fullPhone'
+          $ref: '#/definitions/phone'
         },
         separationLocationName: {
           type: 'string'
