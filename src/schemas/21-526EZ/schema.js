@@ -386,41 +386,35 @@ let schema = {
         }
       }
     },
-    // Presumably, this should be an array...
     treatments: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          treatment: { // Really hoping this extra nesting isn't necessary
-            type: 'object',
-            properties: {
-              treatmentCenterName: {
-                type: 'string'
-              },
-              // Can we make this in to a dateRange?
-              startTreatment: {
-                $ref: '#/definitions/datetime'
-              },
-              endTreatment: {
-                $ref: '#/definitions/datetime'
-              },
-              // Should this use a dropdown like address?
-              treatmentCenterCountry: {
-                type: 'string'
-              },
-              // Should this use a dropdown like address?
-              treatmentCenterState: {
-                type: 'string'
-              },
-              treatmentCenterCity: {
-                type: 'string'
-              },
-              treatmentCenterType: {
-                // Enum?
-                type: 'string'
-              }
-            }
+          treatmentCenterName: {
+            type: 'string'
+          },
+          // Can we make this in to a dateRange?
+          startTreatmentDate: {
+            $ref: '#/definitions/datetime'
+          },
+          endTreatmentDate: {
+            $ref: '#/definitions/datetime'
+          },
+          // Should this use a dropdown like address?
+          treatmentCenterCountry: {
+            type: 'string'
+          },
+          // Should this use a dropdown like address?
+          treatmentCenterState: {
+            type: 'string'
+          },
+          treatmentCenterCity: {
+            type: 'string'
+          },
+          treatmentCenterType: {
+            // Enum?
+            type: 'string'
           }
         }
       }
