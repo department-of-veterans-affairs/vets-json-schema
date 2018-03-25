@@ -152,7 +152,7 @@ let schema = {
         primaryPhone: {
           $ref: '#/definitions/phone'
         },
-        forwardingAddress: _.set('properties.efctvDt', {
+        forwardingAddress: _.set('properties.effectiveDate', {
           $ref: '#/definitions/datetime'
         }, addressDef),
         homelessness: {
