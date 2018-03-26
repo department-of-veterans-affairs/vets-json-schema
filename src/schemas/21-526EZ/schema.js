@@ -6,8 +6,7 @@ import definitions from '../../common/definitions';
 // Common definition doesn't have bank name
 const directDepositDef = _.set('properties.bankName', { type: 'string' }, definitions.bankAccount);
 
-// Until we can use the common address definition...
-// Grab countries and state lists
+// Copy pasta from the common address definition
 const countries = constants.countries.map(object => object.value);
 const countriesWithStateList = Object.keys(constants.states).filter(x => _.includes(countries, x));
 const countryStateProperties = _.map(constants.states, (value, key) => ({
@@ -18,6 +17,7 @@ const countryStateProperties = _.map(constants.states, (value, key) => ({
     },
     state: {
       type: 'string',
+      // TODO: state is only a two-character code
       'enum': value.map(x => x.value)
     }
   }
@@ -32,7 +32,7 @@ countryStateProperties.push({
     },
     state: {
       type: 'string',
-      maxLength: 51 // Is this right?
+      pattern: '^[a-zA-Z]{2}$'
     }
   },
 });
@@ -42,50 +42,55 @@ const addressDef = {
   type: 'object',
   oneOf: countryStateProperties, // holds country and state
   properties: {
+    // These validations (including regular expressions) come from the swagger docs
+    // Should these patterns start with ^ to make sure they apply to the whole string?
     addressLine1: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      // I think the + here means it's required
+      pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
     },
     addressLine2: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      pattern: "([a-zA-Z0-9\-'.,,&#][a-zA-Z0-9\-'.,,&# ]?)*$"
     },
     addressLine3: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      pattern: "([a-zA-Z0-9\-'.,,&#][a-zA-Z0-9\-'.,,&# ]?)*$"
     },
     city: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      // I think the + here means it's required
+      pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
     },
     zipFirstFive: {
-      type: 'number',
-      minLength: 5,
-      maxLength: 5
+      type: 'string',
+      // This validation isn't in the swagger docs
+      pattern: '^\d{5}$'
     },
     zipLastFour: {
-      type: 'number',
-      minLength: 4,
-      maxLength: 4
+      type: 'string',
+      // This validation isn't in the swagger docs
+      pattern: '^\d{4}$'
     },
     militaryPostOfficeTypeCode: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      // Should these be capitalized, or should we make sure they're lower case when we send them to the api?
+      enum: ['apo', 'dpo', 'fpo']
     },
     militaryStateCode: {
       type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      enum: ['AA', 'AE', 'AP']
     },
     type: {
       type: 'string',
-      enum: [
-        // Are these exact?
-        'international',
-        'domestic',
-        'military'
-      ]
+      enum: ['DOMESTIC', 'MILITARY', 'INTERNATIONAL']
     }
-  }
+  },
+  required: ['addressLine1', 'country']
 };
 
 // Apparently we don't need a suffix here.
@@ -114,10 +119,11 @@ let schema = {
       properties: {
         areaCode: {
           type: 'string'
-          // Validation?
+          pattern: '\d{3}'
         },
         phoneNumber: {
-          $ref: '#/definitions/phone'
+          type: 'string',
+          pattern: '\d{7,11}'
         }
       }
     },
@@ -159,14 +165,18 @@ let schema = {
           type: 'object',
           properties: {
             hasPointOfContact: {
-              type: 'boolean'
+              type: 'boolean',
+              // Is this standard to define the default value in the schema?
+              // Is our form library even set up to care about the default like this?
+              default: false // Explicitly set to false instead of undefined
             },
             pointOfContact: {
               type: 'object',
               properties: {
                 pointOfContactName: {
                   type: 'string'
-                  // maxLength: 51 // Until we know otherwise?
+                   maxLength: 100, // Why can this be so long but not the address parts?
+                  pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
                 },
                 primaryPhone: {
                   $ref: '#/definitions/phone'
@@ -177,7 +187,7 @@ let schema = {
         },
         serviceNumber: {
           type: 'string'
-          // What kind of validation goes here?
+          pattern: '^[a-zA-Z0-9]{1,9}$'
         }
       }
     },
@@ -320,6 +330,8 @@ let schema = {
     },
     disabilities: {
       type: 'array',
+      minItems: 1,
+      maxItems: 100,
       items: {
         type: 'object',
         properties: {
@@ -385,6 +397,7 @@ let schema = {
     },
     treatments: {
       type: 'array',
+      maxItems: 100,
       items: {
         type: 'object',
         properties: {
@@ -419,6 +432,7 @@ let schema = {
     // Presumably, this should be an array...
     specialCircumstances: {
       type: 'array',
+      maxItems: 100,
       items: {
         type: 'object',
         properties: {
@@ -435,8 +449,7 @@ let schema = {
       }
     }
   },
-  // Any idea?
-  required: []
+  required: ['veteran', 'disabilities', 'serviceInformation']
 };
 
 export default schema;
