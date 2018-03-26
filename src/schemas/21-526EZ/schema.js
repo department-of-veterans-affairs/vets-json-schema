@@ -281,6 +281,8 @@ let schema = {
         // This is a little different from the common serviceHistory definition
         servicePeriods: {
           type: 'array',
+          minItems: 1,
+          maxItems: 100,
           items: {
             type: 'object',
             properties: {
@@ -295,7 +297,8 @@ let schema = {
                 $ref: '$/definitions/datetime'
               }
               // The common definition has a `dischargeType`
-            }
+            },
+            required: ['serviceBranch', 'activeDutyBeginDate']
           }
         },
         reservesNationalGuardService: {
@@ -319,7 +322,9 @@ let schema = {
               $ref: '$/definitions/datetime'
             },
             unitName: {
-              type: 'string'
+              type: 'string',
+              maxLength: 256,
+              pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
             },
             unitPhone: {
               $ref: '#/definitions/phone'
@@ -327,16 +332,20 @@ let schema = {
           }
         },
         servedInCombatZone: {
-          type: 'boolean'
+          type: 'boolean',
+          default: false
         },
         separationLocationName: {
-          type: 'string'
+          type: 'string',
+          maxLength: 256,
+          pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
         },
         separationLocationCode: {
           type: 'string'
         },
         alternateNames: {
           type: 'array',
+          maxItems: 100,
           items: {
             $ref: '#/definitions/fullName'
           }
@@ -353,12 +362,14 @@ let schema = {
                 $ref: '#/definitions/datetime'
               },
               verifiedIndicator: {
-                type: 'boolean'
+                type: 'boolean',
+                default: false
               }
             }
           }
         }
-      }
+      },
+      required: ['servicePeriods', 'servedInCombatZone']
     },
     disabilities: {
       type: 'array',
