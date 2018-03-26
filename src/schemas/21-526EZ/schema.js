@@ -455,7 +455,9 @@ let schema = {
         type: 'object',
         properties: {
           treatmentCenterName: {
-            type: 'string'
+            type: 'string',
+            maxLength: 100,
+            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
           },
           // Can we make this in to a dateRange?
           startTreatmentDate: {
@@ -470,14 +472,17 @@ let schema = {
           },
           // Should this use a dropdown like address?
           treatmentCenterState: {
-            type: 'string'
+            type: 'string',
+            pattern: '[a-zA-Z]{2}'
           },
           treatmentCenterCity: {
-            type: 'string'
+            type: 'string',
+            maxLength: 100,
+            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
           },
           treatmentCenterType: {
-            // Enum?
-            type: 'string'
+            type: 'string',
+            enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
           }
         }
       }
