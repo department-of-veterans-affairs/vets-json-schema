@@ -217,6 +217,7 @@ let schema = {
       properties: {
         payments: {
           type: 'array',
+          maxItems: 100,
           items: {
             type: 'object',
             properties: {
@@ -224,19 +225,29 @@ let schema = {
                 type: 'number'
               },
               payType: {
-                type: 'string'
+                type: 'string',
+                enum: [
+                  'LONGEVITY',
+                  'TEMPORARY_DISABILITY_RETIRED_LIST',
+                  'PERMANENT_DISABILITY_RETIRED_LIST',
+                  'SEPARATION',
+                  'SEVERANCE'
+                ]
               }
             }
           }
         },
         receiveCompensationInLieuOfRetired: {
-          type: 'boolean'
+          type: 'boolean',
+          default: false
         },
         receivingInactiveDutyTrainingPay: {
-          type: 'boolean'
+          type: 'boolean',
+          default: false
         },
         waveBenifitsToRecInactDutyTraiPay: {
-          type: 'boolean'
+          type: 'boolean',
+          default: false
         }
       }
     },
