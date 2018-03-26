@@ -150,6 +150,7 @@ let schema = {
     },
     specialIssues: {
       type: 'array',
+      maxItems: 100,
       items: {
         type: 'object',
         properties: {
@@ -379,10 +380,13 @@ let schema = {
         type: 'object',
         properties: {
           diagnosticText: {
-            type: 'string'
+            type: 'string',
+            maxLength: 255,
+            pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
           },
           disabilityActionType: {
-            type: 'string'
+            type: 'string',
+            enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
           },
           decisionCode: {
             type: 'string'
@@ -404,15 +408,19 @@ let schema = {
           },
           secondaryDisabilities: {
             type: 'array',
+            maxItems: 100,
             items: {
               // It'd be nice to use a diability definition, but we can't continually nest the `secondaryDisabilities` property
               type: 'object',
               properties: {
                 diagnosticText: {
-                  type: 'string'
+                  type: 'string',
+                  maxLength: 255,
+                  pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
                 },
                 disabilityActionType: {
-                  type: 'string'
+                  type: 'string',
+                  enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
                 },
                 decisionCode: {
                   type: 'string'
@@ -432,10 +440,12 @@ let schema = {
                 specialIssueTypeCode: {
                   type: 'string'
                 },
-              }
+              },
+              required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
             }
           }
-        }
+        },
+        required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
       }
     },
     treatments: {
