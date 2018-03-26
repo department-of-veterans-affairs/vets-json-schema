@@ -103,7 +103,7 @@ const addressDef = {
       enum: ['apo', 'dpo', 'fpo']
     },
     militaryStateCode: {
-      type: 'string'
+      type: 'string',
       enum: ['AA', 'AE', 'AP']
     },
     type: {
@@ -139,7 +139,7 @@ let schema = {
       type: 'object',
       properties: {
         areaCode: {
-          type: 'string'
+          type: 'string',
           pattern: '\d{3}'
         },
         phoneNumber: {
@@ -196,8 +196,8 @@ let schema = {
               type: 'object',
               properties: {
                 pointOfContactName: {
-                  type: 'string'
-                   maxLength: 100, // Why can this be so long but not the address parts?
+                  type: 'string',
+                  maxLength: 100, // Why can this be so long but not the address parts?
                   pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
                 },
                 primaryPhone: {
@@ -208,7 +208,7 @@ let schema = {
           }
         },
         serviceNumber: {
-          type: 'string'
+          type: 'string',
           pattern: '^[a-zA-Z0-9]{1,9}$'
         }
       }
@@ -315,7 +315,7 @@ let schema = {
                   $ref: '$/definitions/datetime'
                 },
               }
-            }
+            },
             obligationTermOfServiceFromDate: {
               $ref: '$/definitions/datetime'
             },
