@@ -501,7 +501,8 @@ let schema = {
             type: 'string'
           },
           needed: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
           }
         }
       }
