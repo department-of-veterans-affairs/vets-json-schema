@@ -3,11 +3,31 @@ import _ from 'lodash/fp';
 import constants from '../../common/constants';
 import definitions from '../../common/definitions';
 
-// Common definition doesn't have bank name
-const directDepositDef = _.set('properties.bankName', { type: 'string' }, definitions.bankAccount);
+// It's different enough that it's easier to rewrite than use the common definition and continue to modify it
+const directDepositDef = {
+  type: 'object',
+  properties: {
+    accountType: {
+      type: 'string',
+      enum: ['CHECKING', 'SAVINGS', 'NOBANK']
+    },
+    accountNumber: {
+      type: 'string',
+      pattern: '^\\d{4,17}$'
+    },
+    routingNumber: {
+      type: 'string',
+      pattern: '^\\d{9}$'
+    },
+    bankName: {
+      type: 'string',
+      maxLength: 35, // Is this going to be enough?
+      pattern: "([a-zA-Z0-9\-'.,# ])+$"
+    }
+  }
+}
 
-// Until we can use the common address definition...
-// Grab countries and state lists
+// Copy pasta from the common address definition
 const countries = constants.countries.map(object => object.value);
 const countriesWithStateList = Object.keys(constants.states).filter(x => _.includes(countries, x));
 const countryStateProperties = _.map(constants.states, (value, key) => ({
@@ -18,6 +38,7 @@ const countryStateProperties = _.map(constants.states, (value, key) => ({
     },
     state: {
       type: 'string',
+      // TODO: state is only a two-character code
       'enum': value.map(x => x.value)
     }
   }
@@ -32,7 +53,7 @@ countryStateProperties.push({
     },
     state: {
       type: 'string',
-      maxLength: 51 // Is this right?
+      pattern: '^[a-zA-Z]{2}$'
     }
   },
 });
@@ -42,54 +63,68 @@ const addressDef = {
   type: 'object',
   oneOf: countryStateProperties, // holds country and state
   properties: {
+    // These validations (including regular expressions) come from the swagger docs
+    // Should these patterns start with ^ to make sure they apply to the whole string?
     addressLine1: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      // I think the + here means it's required
+      pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
     },
     addressLine2: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      pattern: "([a-zA-Z0-9\-'.,,&#][a-zA-Z0-9\-'.,,&# ]?)*$"
     },
     addressLine3: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      pattern: "([a-zA-Z0-9\-'.,,&#][a-zA-Z0-9\-'.,,&# ]?)*$"
     },
     city: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      maxLength: 30, // Is that going to be long enough?
+      // I think the + here means it's required
+      pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
     },
     zipFirstFive: {
-      type: 'number',
-      minLength: 5,
-      maxLength: 5
+      type: 'string',
+      // This validation isn't in the swagger docs
+      pattern: '^\d{5}$'
     },
     zipLastFour: {
-      type: 'number',
-      minLength: 4,
-      maxLength: 4
+      type: 'string',
+      // This validation isn't in the swagger docs
+      pattern: '^\d{4}$'
     },
     militaryPostOfficeTypeCode: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      // Should these be capitalized, or should we make sure they're lower case when we send them to the api?
+      enum: ['apo', 'dpo', 'fpo']
     },
     militaryStateCode: {
-      type: 'string'
-      // maxLength: 51 // Until we know otherwise?
+      type: 'string',
+      enum: ['AA', 'AE', 'AP']
     },
     type: {
       type: 'string',
-      enum: [
-        // Are these exact?
-        'international',
-        'domestic',
-        'military'
-      ]
+      enum: ['DOMESTIC', 'MILITARY', 'INTERNATIONAL']
     }
-  }
+  },
+  required: ['addressLine1', 'country']
 };
 
 // Apparently we don't need a suffix here.
 const fullNameDef = _.omit('properties.suffix', definitions.fullName);
+
+// Not sure this particular kind of datetime definition will be used anywhere else
+// Pattern matches datetimes like 2018-03-22T17:25:19.191Z where the fractional seconds are optional
+// NOTE: This doesn't catch invalid days like February 30th
+const datetime = {
+  pattern: '(\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?Z',
+  type: 'string'
+}
+
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -97,22 +132,37 @@ let schema = {
   type: 'object',
   definitions: {
     directDeposit: directDepositDef,
-    date: definitions.date,
+    datetime,
     // dateRange: definitions.dateRange // hopefully we can use this later
-    phone: definitions.phone,
-    fullPhone: {
+    fullName: definitions.fullName,
+    phone: {
       type: 'object',
       properties: {
-        areaNumber: {
-          type: 'string'
-          // Validation?
+        areaCode: {
+          type: 'string',
+          pattern: '\d{3}'
         },
         phoneNumber: {
-          $ref: '#/definitions/phone'
+          type: 'string',
+          pattern: '\d{7,11}'
         }
       }
     },
-    fullName: definitions.fullName
+    specialIssues: {
+      type: 'array',
+      maxItems: 100,
+      items: {
+        type: 'object',
+        properties: {
+          code: {
+            type: 'string'
+          },
+          name: {
+            type: 'string'
+          }
+        }
+      }
+    }
   },
   properties: {
     veteran: {
@@ -128,42 +178,38 @@ let schema = {
         },
         mailingAddress: addressDef,
         primaryPhone: {
-          $ref: '#/definitions/fullPhone'
+          $ref: '#/definitions/phone'
         },
-        forwardingAddress: _.set('properties.efctvDt', {
-          $ref: '#/definitions/date'
+        forwardingAddress: _.set('properties.effectiveDate', {
+          $ref: '#/definitions/datetime'
         }, addressDef),
         homelessness: {
           type: 'object',
           properties: {
             hasPointOfContact: {
-              type: 'boolean'
+              type: 'boolean',
+              // Is this standard to define the default value in the schema?
+              // Is our form library even set up to care about the default like this?
+              default: false // Explicitly set to false instead of undefined
             },
             pointOfContact: {
               type: 'object',
               properties: {
                 pointOfContactName: {
-                  type: 'string'
-                  // maxLength: 51 // Until we know otherwise?
+                  type: 'string',
+                  maxLength: 100, // Why can this be so long but not the address parts?
+                  pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
                 },
-                // Should we make this a sub-object called
-                // pointOfContactPhone so we can re-use a definition
-                // for when the validation changes?
-                pointOfContactAreaCode: {
-                  type: 'string'
-                  // What kind of validation goes here?
-                },
-                pointOfContactPhoneNumber: {
-                  type: 'string'
-                  // What kind of validation goes here?
+                primaryPhone: {
+                  $ref: '#/definitions/phone'
                 }
               }
             }
           }
         },
         serviceNumber: {
-          type: 'string'
-          // What kind of validation goes here?
+          type: 'string',
+          pattern: '^[a-zA-Z0-9]{1,9}$'
         }
       }
     },
@@ -173,17 +219,17 @@ let schema = {
         type: 'object',
         // What kind of validation do we use for all of these?
         properties: {
-          docName: {
+          documentName: {
             type: 'string'
           },
           dateUploaded: {
-            type: 'string'
+            $ref: '#/definitions/datetime'
           },
           attachmentType: {
             type: 'string'
           },
-          inflightId: {
-            type: 'string'
+          inflightDocumentId: {
+            type: 'number'
           }
         }
       }
@@ -193,6 +239,7 @@ let schema = {
       properties: {
         payments: {
           type: 'array',
+          maxItems: 100,
           items: {
             type: 'object',
             properties: {
@@ -200,19 +247,29 @@ let schema = {
                 type: 'number'
               },
               payType: {
-                type: 'string'
+                type: 'string',
+                enum: [
+                  'LONGEVITY',
+                  'TEMPORARY_DISABILITY_RETIRED_LIST',
+                  'PERMANENT_DISABILITY_RETIRED_LIST',
+                  'SEPARATION',
+                  'SEVERANCE'
+                ]
               }
             }
           }
         },
         receiveCompensationInLieuOfRetired: {
-          type: 'boolean' // Is this right?
+          type: 'boolean',
+          default: false
         },
         receivingInactiveDutyTrainingPay: {
-          type: 'boolean' // Is this right?
+          type: 'boolean',
+          default: false
         },
         waveBenifitsToRecInactDutyTraiPay: {
-          type: 'boolean' // Is this right?
+          type: 'boolean',
+          default: false
         }
       }
     },
@@ -225,6 +282,8 @@ let schema = {
         // This is a little different from the common serviceHistory definition
         servicePeriods: {
           type: 'array',
+          minItems: 1,
+          maxItems: 100,
           items: {
             type: 'object',
             properties: {
@@ -232,172 +291,198 @@ let schema = {
                 type: 'string'
               },
               // The common definition has these in a `dateRange` object
-              activeDutyBegin: {
-                $ref: '$/definitions/date'
+              activeDutyBeginDate: {
+                $ref: '$/definitions/datetime'
               },
-              activeDutyEnd: {
-                $ref: '$/definitions/date'
+              activeDutyEndDate: {
+                $ref: '$/definitions/datetime'
               }
               // The common definition has a `dischargeType`
-            }
+            },
+            required: ['serviceBranch', 'activeDutyBeginDate']
           }
         },
-        servedInReservesOrNationalGuard: {
-          type: 'boolean' // Is this right?
-        },
-        obligationTermOfServiceFrom: {
-          type: 'boolean' // Is this right?
-        },
-        obligationTermOfServiceTo: {
-          type: 'string'
-        },
-        anticipatedSeparationDate: {
-          $ref: '$/definitions/date'
+        reservesNationalGuardService: {
+          type: 'object',
+          properties: {
+            title10Activation: {
+              type: 'object',
+              properties: {
+                title10ActivationDate: {
+                  $ref: '$/definitions/datetime'
+                },
+                anticipatedSeparationDate: {
+                  $ref: '$/definitions/datetime'
+                },
+              }
+            },
+            obligationTermOfServiceFromDate: {
+              $ref: '$/definitions/datetime'
+            },
+            obligationTermOfServiceToDate: {
+              $ref: '$/definitions/datetime'
+            },
+            unitName: {
+              type: 'string',
+              maxLength: 256,
+              pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
+            },
+            unitPhone: {
+              $ref: '#/definitions/phone'
+            },
+          }
         },
         servedInCombatZone: {
-          type: 'boolean'
-        },
-        currentlyActiveTitle10: {
-          type: 'boolean' // Is this right?
-        },
-        title10ActivationDate: {
-          $ref: '$/definitions/date'
-        },
-        title10UnitName: {
-          type: 'string'
-        },
-        // TODO: Use definition for phone
-        title10Phone: {
-          $ref: '#/definitions/fullPhone'
+          type: 'boolean',
+          default: false
         },
         separationLocationName: {
-          type: 'string'
+          type: 'string',
+          maxLength: 256,
+          pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
         },
         separationLocationCode: {
           type: 'string'
         },
-        // Presumably, this should be an array...
         alternateNames: {
           type: 'array',
+          maxItems: 100,
           items: {
             $ref: '#/definitions/fullName'
           }
         },
-        // Presumably, this should be an array...
         confinements: {
           type: 'array',
           items: {
             type: 'object',
             properties: {
-              confinementBegin: {
-                $ref: '#/definitions/date'
+              confinementBeginDate: {
+                $ref: '#/definitions/datetime'
               },
-              confinementEnd: {
-                $ref: '#/definitions/date'
+              confinementEndDate: {
+                $ref: '#/definitions/datetime'
               },
-              verifiedInd: {
-                type: 'boolean' // Is this right?
+              verifiedIndicator: {
+                type: 'boolean',
+                default: false
               }
             }
           }
         }
-      }
+      },
+      required: ['servicePeriods', 'servedInCombatZone']
     },
-    // Presumably, this should be an array...
     disabilities: {
       type: 'array',
+      minItems: 1,
+      maxItems: 100,
       items: {
-        // Any validation here would be great
         type: 'object',
         properties: {
-          disability: { // Really hoping this extra nesting isn't necessary
-            type: 'object',
-            properties: {
-              diagnosticText: {
-                type: 'string'
+          diagnosticText: {
+            type: 'string',
+            maxLength: 255,
+            pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
+          },
+          disabilityActionType: {
+            type: 'string',
+            enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
+          },
+          decisionCode: {
+            type: 'string'
+          },
+          specialIssues: {
+            $ref: '#/definitions/specialIssues'
+          },
+          ratedDisabilityId: {
+            type: 'string'
+          },
+          ratingDecisionId: {
+            type: 'string'
+          },
+          diagnosticCode: {
+            type: 'number'
+          },
+          specialIssueTypeCode: {
+            type: 'string'
+          },
+          secondaryDisabilities: {
+            type: 'array',
+            maxItems: 100,
+            items: {
+              // It'd be nice to use a diability definition, but we can't continually nest the `secondaryDisabilities` property
+              type: 'object',
+              properties: {
+                diagnosticText: {
+                  type: 'string',
+                  maxLength: 255,
+                  pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
+                },
+                disabilityActionType: {
+                  type: 'string',
+                  enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
+                },
+                decisionCode: {
+                  type: 'string'
+                },
+                specialIssues: {
+                  $ref: '#/definitions/specialIssues'
+                },
+                ratedDisabilityId: {
+                  type: 'string'
+                },
+                ratingDecisionId: {
+                  type: 'string'
+                },
+                diagnosticCode: {
+                  type: 'number'
+                },
+                specialIssueTypeCode: {
+                  type: 'string'
+                },
               },
-              decisionCode: {
-                type: 'string'
-              },
-              specialIssues: {
-                type: 'object', // Is this supposed to be an array?
-                properties: {
-                  // I get the sneaking suspicion this is going to be an enum
-                  specialIssueCode: {
-                    type: 'string'
-                  },
-                  specialIssueName: {
-                    type: 'string'
-                  }
-                }
-              },
-              ratedDisabilityId: {
-                type: 'string'
-              },
-              disabilityActionType: {
-                type: 'string'
-              },
-              ratingDecisionId: {
-                type: 'string'
-              },
-              diagnosticCode: {
-                type: 'string'
-              },
-              // Presumably, this should be an array...
-              secondaryDisabilities: {
-                type: 'array',
-                items: {
-                  type: 'object',
-                  properties: {
-                    diagnosticText: {
-                      type: 'string'
-                    },
-                    disabilityActionType: {
-                      type: 'string'
-                    }
-                  }
-                }
-              }
+              required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
             }
           }
-        }
+        },
+        required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
       }
     },
-    // Presumably, this should be an array...
     treatments: {
       type: 'array',
+      maxItems: 100,
       items: {
         type: 'object',
         properties: {
-          treatment: { // Really hoping this extra nesting isn't necessary
-            type: 'object',
-            properties: {
-              treatmentCenterName: {
-                type: 'string'
-              },
-              // Can we make this in to a dateRange?
-              startTreatment: {
-                $ref: '#/definitions/date'
-              },
-              endTreatment: {
-                $ref: '#/definitions/date'
-              },
-              // Should this use a dropdown like address?
-              treatmentCenterCountry: {
-                type: 'string'
-              },
-              // Should this use a dropdown like address?
-              treatmentCenterState: {
-                type: 'string'
-              },
-              treatmentCenterCity: {
-                type: 'string'
-              },
-              treatmentCenterType: {
-                // Enum?
-                type: 'string'
-              }
-            }
+          treatmentCenterName: {
+            type: 'string',
+            maxLength: 100,
+            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+          },
+          // Can we make this in to a dateRange?
+          startTreatmentDate: {
+            $ref: '#/definitions/datetime'
+          },
+          endTreatmentDate: {
+            $ref: '#/definitions/datetime'
+          },
+          // Should this use a dropdown like address?
+          treatmentCenterCountry: {
+            type: 'string'
+          },
+          // Should this use a dropdown like address?
+          treatmentCenterState: {
+            type: 'string',
+            pattern: '[a-zA-Z]{2}'
+          },
+          treatmentCenterCity: {
+            type: 'string',
+            maxLength: 100,
+            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+          },
+          treatmentCenterType: {
+            type: 'string',
+            enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
           }
         }
       }
@@ -405,26 +490,25 @@ let schema = {
     // Presumably, this should be an array...
     specialCircumstances: {
       type: 'array',
+      maxItems: 100,
       items: {
         type: 'object',
         properties: {
-          specialCircumstance: { // Really hoping this extra nesting isn't necessary
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string'
-              },
-              code: {
-                type: 'string'
-              }
-            }
+          name: {
+            type: 'string'
+          },
+          code: {
+            type: 'string'
+          },
+          needed: {
+            type: 'boolean',
+            default: false
           }
         }
       }
     }
   },
-  // Any idea?
-  required: []
+  required: ['veteran', 'disabilities', 'serviceInformation']
 };
 
 export default schema;
