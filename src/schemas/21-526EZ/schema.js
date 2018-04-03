@@ -4,7 +4,31 @@ import constants from '../../common/constants';
 import definitions from '../../common/definitions';
 
 // It's different enough that it's easier to rewrite than use the common definition and continue to modify it
-const directDepositDef = {
+// const directDepositDef = {
+//   type: 'object',
+//   properties: {
+//     accountType: {
+//       type: 'string',
+//       enum: ['CHECKING', 'SAVINGS', 'NOBANK']
+//     },
+//     accountNumber: {
+//       type: 'string',
+//       pattern: '^\\d{4,17}$'
+//     },
+//     routingNumber: {
+//       type: 'string',
+//       pattern: '^\\d{9}$'
+//     },
+//     bankName: {
+//       type: 'string',
+//       maxLength: 35, // Is this going to be enough?
+//       pattern: "([a-zA-Z0-9\-'.,# ])+$"
+//     }
+//   }
+// }
+
+// TODO: Check NOBANK option with EVSS, adapt accountType from common def if not needed
+const uniqueBankFields = {
   type: 'object',
   properties: {
     accountType: {
@@ -15,17 +39,15 @@ const directDepositDef = {
       type: 'string',
       pattern: '^\\d{4,17}$'
     },
-    routingNumber: {
-      type: 'string',
-      pattern: '^\\d{9}$'
-    },
     bankName: {
       type: 'string',
-      maxLength: 35, // Is this going to be enough?
+      maxLength: 35,
       pattern: "([a-zA-Z0-9\-'.,# ])+$"
     }
   }
-}
+};
+
+const directDepositDef = _.merge(definitions.bankAccount, uniqueBankFields);
 
 // Copy pasta from the common address definition
 const countries = constants.countries.map(object => object.value);
