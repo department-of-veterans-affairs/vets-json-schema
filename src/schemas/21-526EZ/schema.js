@@ -24,95 +24,6 @@ const uniqueBankFields = {
   }
 };
 
-const directDepositDef = _.merge(definitions.bankAccount, uniqueBankFields);
-
-// Copy pasta from the common address definition
-const countries = constants.countries.map(object => object.value);
-const countriesWithStateList = Object.keys(constants.states).filter(x => _.includes(countries, x));
-const countryStateProperties = _.map(constants.states, (value, key) => ({
-  properties: {
-    country: {
-      type: 'string',
-      'enum': [key]
-    },
-    state: {
-      type: 'string',
-      // TODO: state is only a two-character code
-      'enum': value.map(x => x.value)
-    }
-  }
-}));
-countryStateProperties.push({
-  properties: {
-    country: {
-      not: {
-        type: 'string',
-        'enum': countriesWithStateList
-      }
-    },
-    state: {
-      type: 'string',
-      pattern: '^[a-zA-Z]{2}$'
-    }
-  },
-});
-
-
-const addressDef = {
-  type: 'object',
-  oneOf: countryStateProperties, // holds country and state
-  properties: {
-    // These validations (including regular expressions) come from the swagger docs
-    // Should these patterns start with ^ to make sure they apply to the whole string?
-    addressLine1: {
-      type: 'string',
-      maxLength: 30, // Is that going to be long enough?
-      // I think the + here means it's required
-      pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
-    },
-    addressLine2: {
-      type: 'string',
-      maxLength: 30, // Is that going to be long enough?
-      pattern: "([a-zA-Z0-9\-'.,,&#][a-zA-Z0-9\-'.,,&# ]?)*$"
-    },
-    addressLine3: {
-      type: 'string',
-      maxLength: 30, // Is that going to be long enough?
-      pattern: "([a-zA-Z0-9\-'.,,&#][a-zA-Z0-9\-'.,,&# ]?)*$"
-    },
-    city: {
-      type: 'string',
-      maxLength: 30, // Is that going to be long enough?
-      // I think the + here means it's required
-      pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
-    },
-    zipFirstFive: {
-      type: 'string',
-      // This validation isn't in the swagger docs
-      pattern: '^\d{5}$'
-    },
-    zipLastFour: {
-      type: 'string',
-      // This validation isn't in the swagger docs
-      pattern: '^\d{4}$'
-    },
-    militaryPostOfficeTypeCode: {
-      type: 'string',
-      // Should these be capitalized, or should we make sure they're lower case when we send them to the api?
-      enum: ['apo', 'dpo', 'fpo']
-    },
-    militaryStateCode: {
-      type: 'string',
-      enum: ['AA', 'AE', 'AP']
-    },
-    type: {
-      type: 'string',
-      enum: ['DOMESTIC', 'MILITARY', 'INTERNATIONAL']
-    }
-  },
-  required: ['addressLine1', 'country']
-};
-
 // Apparently we don't need a suffix here.
 const fullNameDef = _.omit('properties.suffix', definitions.fullName);
 
@@ -124,13 +35,16 @@ const datetime = {
   type: 'string'
 }
 
+// Defined here to enable easy adding of properties for forwardingAddress
+const addressDef = definitions.pciuAddress;
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)',
   type: 'object',
   definitions: {
-    directDeposit: directDepositDef,
+    address: addressDef,
+    directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     datetime,
     // dateRange: definitions.dateRange // hopefully we can use this later
     fullName: definitions.fullName,
@@ -175,7 +89,9 @@ let schema = {
           type: 'string',
           format: 'email'
         },
-        mailingAddress: addressDef,
+        mailingAddress: {
+          $ref: '#/definitions/address'
+        },
         primaryPhone: {
           $ref: '#/definitions/phone'
         },

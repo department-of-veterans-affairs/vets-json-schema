@@ -29,6 +29,7 @@ const fullName = {
   ]
 };
 
+// NOTE: PCIU address has its own, separate definition
 const address = (() => {
   const countries = constants.countries.map(object => object.value);
   const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
@@ -85,6 +86,101 @@ const address = (() => {
         type: 'string',
         minLength: 1,
         maxLength: 51
+      }
+    }
+  };
+})();
+
+// TODO: Ensure country / states list aligns with list from EVSS / PCIU address
+// Shares some code with common definition for 'address' but repeating here to make this easy
+// to delete / update separately as needed
+
+/** 
+ * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
+ * common address definition
+ * @returns {object} json-schema-form compatible schema object that conforms to PCIU address endpoint specs
+ */
+const pciuAddress = (() => {
+  // Please reference the 'states' and 'countries' constants in 'constants.js' in order to make sense
+  // of the following several transformations
+  const pciuCountries = constants.countries.map(object => object.value);
+  const pciuCountriesWithStateList = Object.keys(constants.states).filter(x => _.includes(pciuCountries, x));
+  const pciuCountryStateProperties = _.map(constants.states, (value, key) => ({
+    properties: {
+      country: {
+        type: 'string',
+        'enum': [key] // country name (3-letter code)
+      },
+      state: {
+        type: 'string',
+        // TODO: state is only a two-character code (except MEX states)
+        'enum': value.map(x => x.value) // array of defined states in corresponding country
+      }
+    }
+  }));
+  
+  // Add option for any other country that isn't one of the countries in the states constant
+  // (currently, any country that's not USA, MEX, or CAN)
+  pciuCountryStateProperties.push({
+    properties: {
+      country: {
+        not: {
+          type: 'string',
+          'enum': pciuCountriesWithStateList
+        }
+      },
+      state: {
+        type: 'string',
+        pattern: '^[a-zA-Z]{2}$'
+      }
+    },
+  });
+  
+  // NOTE: Validations from swagger except where noted
+  return {
+    type: 'object',
+    oneOf: pciuCountryStateProperties,
+    required: ['addressLine1', 'country'],
+    properties: {
+      addressLine1: {
+        type: 'string',
+        maxLength: 30,
+        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+      },
+      addressLine2: {
+        type: 'string',
+        maxLength: 30,
+        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+      },
+      addressLine3: {
+        type: 'string',
+        maxLength: 30,
+        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+      },
+      city: {
+        type: 'string',
+        maxLength: 30,
+        pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+      },
+      zipFirstFive: {
+        type: 'string',
+        pattern: '^\d{5}$' // not in swagger docs
+      },
+      zipLastFound: {
+        type: 'string',
+        pattern: '^\d{4}$' // not in swagger docs
+      },
+      militaryPostOfficeTypeCode: {
+        type: 'string',
+        enum: ['APO', 'DPO', 'FPO'] // capitalized per swagger
+      },
+      militaryStateCode: {
+        type: 'string',
+        enum: ['AA', 'AE', 'AP']
+      },
+      type: {
+        type: 'string',
+        enum: ['DOMESTIC', 'MILITARY', 'INTERNATIONAL']
       }
     }
   };
@@ -484,6 +580,7 @@ export default {
   fullName,
   otherIncome,
   address,
+  pciuAddress,
   phone,
   ssn,
   school,
