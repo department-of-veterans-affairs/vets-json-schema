@@ -97,7 +97,8 @@ const address = (() => {
 
 /** 
  * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
- * common address definition
+ * common address definition. Note that this duplicates some code with 'address' common def, but want to
+ * ensure we're not tied to that so duplicating here will make things easy to delete if our approach changes.
  * @returns {object} json-schema-form compatible schema object that conforms to PCIU address endpoint specs
  */
 const pciuAddress = (() => {

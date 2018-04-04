@@ -24,17 +24,6 @@ const uniqueBankFields = {
   }
 };
 
-// Apparently we don't need a suffix here.
-const fullNameDef = _.omit('properties.suffix', definitions.fullName);
-
-// Not sure this particular kind of datetime definition will be used anywhere else
-// Pattern matches datetimes like 2018-03-22T17:25:19.191Z where the fractional seconds are optional
-// NOTE: This doesn't catch invalid days like February 30th
-const datetime = {
-  pattern: '(\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?Z',
-  type: 'string'
-}
-
 // Defined here to enable easy adding of properties for forwardingAddress
 const addressDef = definitions.pciuAddress;
 
@@ -45,9 +34,9 @@ let schema = {
   definitions: {
     address: addressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
-    datetime,
+    date: { definitions },
     // dateRange: definitions.dateRange // hopefully we can use this later
-    fullName: definitions.fullName,
+    fullName: _.omit('properties.suffix', definitions.fullName),
     phone: {
       type: 'object',
       properties: {
@@ -96,7 +85,7 @@ let schema = {
           $ref: '#/definitions/phone'
         },
         forwardingAddress: _.set('properties.effectiveDate', {
-          $ref: '#/definitions/datetime'
+          $ref: '#/definitions/date: definitions.date'
         }, addressDef),
         homelessness: {
           type: 'object',
@@ -138,7 +127,7 @@ let schema = {
             type: 'string'
           },
           dateUploaded: {
-            $ref: '#/definitions/datetime'
+            $ref: '#/definitions/date: definitions.date'
           },
           attachmentType: {
             type: 'string'
@@ -207,10 +196,10 @@ let schema = {
               },
               // The common definition has these in a `dateRange` object
               activeDutyBeginDate: {
-                $ref: '$/definitions/datetime'
+                $ref: '$/definitions/date: definitions.date'
               },
               activeDutyEndDate: {
-                $ref: '$/definitions/datetime'
+                $ref: '$/definitions/date: definitions.date'
               }
               // The common definition has a `dischargeType`
             },
@@ -224,18 +213,18 @@ let schema = {
               type: 'object',
               properties: {
                 title10ActivationDate: {
-                  $ref: '$/definitions/datetime'
+                  $ref: '$/definitions/date: definitions.date'
                 },
                 anticipatedSeparationDate: {
-                  $ref: '$/definitions/datetime'
+                  $ref: '$/definitions/date: definitions.date'
                 },
               }
             },
             obligationTermOfServiceFromDate: {
-              $ref: '$/definitions/datetime'
+              $ref: '$/definitions/date: definitions.date'
             },
             obligationTermOfServiceToDate: {
-              $ref: '$/definitions/datetime'
+              $ref: '$/definitions/date: definitions.date'
             },
             unitName: {
               type: 'string',
@@ -272,10 +261,10 @@ let schema = {
             type: 'object',
             properties: {
               confinementBeginDate: {
-                $ref: '#/definitions/datetime'
+                $ref: '#/definitions/date: definitions.date'
               },
               confinementEndDate: {
-                $ref: '#/definitions/datetime'
+                $ref: '#/definitions/date: definitions.date'
               },
               verifiedIndicator: {
                 type: 'boolean',
@@ -376,10 +365,10 @@ let schema = {
           },
           // Can we make this in to a dateRange?
           startTreatmentDate: {
-            $ref: '#/definitions/datetime'
+            $ref: '#/definitions/date: definitions.date'
           },
           endTreatmentDate: {
-            $ref: '#/definitions/datetime'
+            $ref: '#/definitions/date: definitions.date'
           },
           // Should this use a dropdown like address?
           treatmentCenterCountry: {
