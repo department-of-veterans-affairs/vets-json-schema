@@ -112,8 +112,8 @@ let schema = {
     address: addressDef,
     treatmentCenterAddress: treatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
-    date: { definitions },
-    dateRange: { definitions },
+    date: definitions.date,
+    dateRange: definitions.dateRange,
     disabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
