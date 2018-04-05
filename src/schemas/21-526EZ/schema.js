@@ -124,7 +124,7 @@ let schema = {
     }),
     fullName: fullNameDef,
     // vets-api will split into separate area code & phone number fields
-    phone: Object.assign(definitions.phone, { maxLength: 10 }),
+    phone: Object.assign({}, definitions.phone, { maxLength: 10 }),
     servicePeriods: servicePeriodsDef,
     specialIssues: {
       type: 'array',
