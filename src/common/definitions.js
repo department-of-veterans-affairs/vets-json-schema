@@ -129,22 +129,22 @@ const pciuAddress = (() => {
     properties: {
       addressLine1: {
         type: 'string',
-        maxLength: 30,
+        maxLength: 35,
         pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
       },
       addressLine2: {
         type: 'string',
-        maxLength: 30,
+        maxLength: 35,
         pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
       },
       addressLine3: {
         type: 'string',
-        maxLength: 30,
+        maxLength: 35,
         pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
       },
       city: {
         type: 'string',
-        maxLength: 30,
+        maxLength: 35,
         pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
       },
       zipFirstFive: {
