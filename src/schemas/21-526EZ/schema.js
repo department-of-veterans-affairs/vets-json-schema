@@ -24,6 +24,44 @@ const uniqueBankFields = {
   }
 };
 
+disabilitiesBaseDef = {
+  type: 'array',
+  maxItems: 100,
+  items: {
+    type: 'object',
+    properties: {
+      diagnosticText: {
+        type: 'string',
+        maxLength: 255,
+        pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
+      },
+      disabilityActionType: {
+        type: 'string',
+        enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
+      },
+      decisionCode: {
+        type: 'string'
+      },
+      specialIssues: {
+        $ref: '#/definitions/specialIssues'
+      },
+      ratedDisabilityId: {
+        type: 'string'
+      },
+      ratingDecisionId: {
+        type: 'string'
+      },
+      diagnosticCode: {
+        type: 'number'
+      },
+      specialIssueTypeCode: {
+        type: 'string'
+      },
+    },
+    required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
+  }
+};
+
 /**
  * Modifies the common serviceHistory definition to fit with 526 API reqs. Note
  * that this uses a dateRange whereas 526 requires begin and end dates - this
@@ -56,6 +94,14 @@ let schema = {
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: { definitions },
     dateRange: { definitions },
+    disabilities: _.merge(disabilitiesBaseDef, {
+      minItems: 1,
+      items: {
+        properties: {
+          secondaryDisabilities: disabilitiesBaseDef
+        }
+      }
+    }),
     fullName: _.omit('properties.suffix', definitions.fullName),
     // vets-api will split into separate area code & phone number fields
     phone: { ...definitions.phone, maxLength: 10 },
@@ -261,80 +307,7 @@ let schema = {
       required: ['servicePeriods', 'servedInCombatZone']
     },
     disabilities: {
-      type: 'array',
-      minItems: 1,
-      maxItems: 100,
-      items: {
-        type: 'object',
-        properties: {
-          diagnosticText: {
-            type: 'string',
-            maxLength: 255,
-            pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
-          },
-          disabilityActionType: {
-            type: 'string',
-            enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
-          },
-          decisionCode: {
-            type: 'string'
-          },
-          specialIssues: {
-            $ref: '#/definitions/specialIssues'
-          },
-          ratedDisabilityId: {
-            type: 'string'
-          },
-          ratingDecisionId: {
-            type: 'string'
-          },
-          diagnosticCode: {
-            type: 'number'
-          },
-          specialIssueTypeCode: {
-            type: 'string'
-          },
-          secondaryDisabilities: {
-            type: 'array',
-            maxItems: 100,
-            items: {
-              // It'd be nice to use a diability definition, but we can't continually nest the `secondaryDisabilities` property
-              type: 'object',
-              properties: {
-                diagnosticText: {
-                  type: 'string',
-                  maxLength: 255,
-                  pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
-                },
-                disabilityActionType: {
-                  type: 'string',
-                  enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
-                },
-                decisionCode: {
-                  type: 'string'
-                },
-                specialIssues: {
-                  $ref: '#/definitions/specialIssues'
-                },
-                ratedDisabilityId: {
-                  type: 'string'
-                },
-                ratingDecisionId: {
-                  type: 'string'
-                },
-                diagnosticCode: {
-                  type: 'number'
-                },
-                specialIssueTypeCode: {
-                  type: 'string'
-                },
-              },
-              required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
-            }
-          }
-        },
-        required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
-      }
+      $ref: '#/definitions/disabilities'
     },
     treatments: {
       type: 'array',
