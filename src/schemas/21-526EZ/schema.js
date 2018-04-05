@@ -55,7 +55,7 @@ let schema = {
     address: addressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: { definitions },
-    // dateRange: definitions.dateRange // hopefully we can use this later
+    dateRange: { definitions },
     fullName: _.omit('properties.suffix', definitions.fullName),
     // vets-api will split into separate area code & phone number fields
     phone: { ...definitions.phone, maxLength: 10 },
@@ -95,7 +95,7 @@ let schema = {
           $ref: '#/definitions/phone'
         },
         forwardingAddress: _.set('properties.effectiveDate', {
-          $ref: '#/definitions/date: definitions.date'
+          $ref: '#/definitions/date'
         }, addressDef),
         homelessness: {
           type: 'object',
@@ -137,7 +137,7 @@ let schema = {
             type: 'string'
           },
           dateUploaded: {
-            $ref: '#/definitions/date: definitions.date'
+            $ref: '#/definitions/date'
           },
           attachmentType: {
             type: 'string'
@@ -203,18 +203,15 @@ let schema = {
               type: 'object',
               properties: {
                 title10ActivationDate: {
-                  $ref: '$/definitions/date: definitions.date'
+                  $ref: '$/definitions/date'
                 },
                 anticipatedSeparationDate: {
-                  $ref: '$/definitions/date: definitions.date'
+                  $ref: '$/definitions/date'
                 },
               }
             },
-            obligationTermOfServiceFromDate: {
-              $ref: '$/definitions/date: definitions.date'
-            },
-            obligationTermOfServiceToDate: {
-              $ref: '$/definitions/date: definitions.date'
+            obligationTermOfServiceDateRange: {
+              $ref: '$/definitions/dateRange'
             },
             unitName: {
               type: 'string',
@@ -250,11 +247,8 @@ let schema = {
           items: {
             type: 'object',
             properties: {
-              confinementBeginDate: {
-                $ref: '#/definitions/date: definitions.date'
-              },
-              confinementEndDate: {
-                $ref: '#/definitions/date: definitions.date'
+              confinementDateRange: {
+                $ref: '#/definitions/dateRange'
               },
               verifiedIndicator: {
                 type: 'boolean',
@@ -353,12 +347,8 @@ let schema = {
             maxLength: 100,
             pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
           },
-          // Can we make this in to a dateRange?
-          startTreatmentDate: {
-            $ref: '#/definitions/date: definitions.date'
-          },
-          endTreatmentDate: {
-            $ref: '#/definitions/date: definitions.date'
+          treatmentDateRange: {
+            $ref: '#/definitions/dateRange'
           },
           // Should this use a dropdown like address?
           treatmentCenterCountry: {
