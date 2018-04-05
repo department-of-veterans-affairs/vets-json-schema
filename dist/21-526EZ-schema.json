@@ -308,10 +308,57 @@
         "country"
       ],
       "properties": {
+        "addressLine1": {
+          "type": "string",
+          "maxLength": 35,
+          "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+        },
+        "addressLine2": {
+          "type": "string",
+          "maxLength": 35,
+          "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+        },
+        "addressLine3": {
+          "type": "string",
+          "maxLength": 35,
+          "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+        },
         "city": {
           "type": "string",
           "maxLength": 35,
           "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+        },
+        "zipFirstFive": {
+          "type": "string",
+          "pattern": "^d{5}$"
+        },
+        "zipLastFound": {
+          "type": "string",
+          "pattern": "^d{4}$"
+        },
+        "militaryPostOfficeTypeCode": {
+          "type": "string",
+          "enum": [
+            "APO",
+            "DPO",
+            "FPO"
+          ]
+        },
+        "militaryStateCode": {
+          "type": "string",
+          "enum": [
+            "AA",
+            "AE",
+            "AP"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "DOMESTIC",
+            "MILITARY",
+            "INTERNATIONAL"
+          ]
         }
       }
     },
@@ -620,10 +667,57 @@
         "country"
       ],
       "properties": {
+        "addressLine1": {
+          "type": "string",
+          "maxLength": 35,
+          "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+        },
+        "addressLine2": {
+          "type": "string",
+          "maxLength": 35,
+          "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+        },
+        "addressLine3": {
+          "type": "string",
+          "maxLength": 35,
+          "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+        },
         "city": {
           "type": "string",
           "maxLength": 35,
           "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+        },
+        "zipFirstFive": {
+          "type": "string",
+          "pattern": "^d{5}$"
+        },
+        "zipLastFound": {
+          "type": "string",
+          "pattern": "^d{4}$"
+        },
+        "militaryPostOfficeTypeCode": {
+          "type": "string",
+          "enum": [
+            "APO",
+            "DPO",
+            "FPO"
+          ]
+        },
+        "militaryStateCode": {
+          "type": "string",
+          "enum": [
+            "AA",
+            "AE",
+            "AP"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "DOMESTIC",
+            "MILITARY",
+            "INTERNATIONAL"
+          ]
         }
       }
     },
@@ -778,6 +872,16 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
         }
       },
       "required": [
@@ -1149,10 +1253,57 @@
             "country"
           ],
           "properties": {
+            "addressLine1": {
+              "type": "string",
+              "maxLength": 35,
+              "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+            },
+            "addressLine2": {
+              "type": "string",
+              "maxLength": 35,
+              "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+            },
+            "addressLine3": {
+              "type": "string",
+              "maxLength": 35,
+              "pattern": "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+            },
             "city": {
               "type": "string",
               "maxLength": 35,
               "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+            },
+            "zipFirstFive": {
+              "type": "string",
+              "pattern": "^d{5}$"
+            },
+            "zipLastFound": {
+              "type": "string",
+              "pattern": "^d{4}$"
+            },
+            "militaryPostOfficeTypeCode": {
+              "type": "string",
+              "enum": [
+                "APO",
+                "DPO",
+                "FPO"
+              ]
+            },
+            "militaryStateCode": {
+              "type": "string",
+              "enum": [
+                "AA",
+                "AE",
+                "AP"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "DOMESTIC",
+                "MILITARY",
+                "INTERNATIONAL"
+              ]
             },
             "effectiveDate": {
               "$ref": "#/definitions/date"

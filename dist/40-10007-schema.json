@@ -259,6 +259,16 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 25
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
         }
       },
       "required": [
@@ -375,6 +385,16 @@
                   "minLength": 1,
                   "maxLength": 25
                 },
+                "suffix": {
+                  "type": "string",
+                  "enum": [
+                    "Jr.",
+                    "Sr.",
+                    "II",
+                    "III",
+                    "IV"
+                  ]
+                },
                 "maiden": {
                   "type": "string",
                   "maxLength": 15
@@ -434,6 +454,16 @@
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 25
+                },
+                "suffix": {
+                  "type": "string",
+                  "enum": [
+                    "Jr.",
+                    "Sr.",
+                    "II",
+                    "III",
+                    "IV"
+                  ]
                 },
                 "maiden": {
                   "type": "string",
