@@ -44,25 +44,7 @@ const servicePeriodsDef = ((definitions) => {
   return serviceHistory;
 })(definitions);
 
-// 2. combine properties objects
-const serviceHistoryItems = _.merge({
-  minItems: 1,
-  maxItems: 100,
-  items: {
-    properties: serviceHistoryProperties,
-    required: ['serviceBranch', 'activeDutyBeginDate'] },
-}, definitions.serviceHistory);
-
-const servicePeriods = _.merge(
-  _.omit('dischargeType', definitions.serviceHistory.items.properties),
-  {
-    items: { required: ['serviceBranch', 'dateRange'] },
-    minItems: 1,
-    maxItems: 100
-  }
-);
-
-// Defined here to enable easy adding of properties for forwardingAddress
+// Extracted to enable easy adding of properties for forwardingAddress
 const addressDef = definitions.pciuAddress;
 
 let schema = {
