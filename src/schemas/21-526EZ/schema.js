@@ -69,7 +69,7 @@ disabilitiesBaseDef = {
  * attempts at transforming it non-mutatively were convoluted.
  * @typedef {object} definitions
  * @property {object} serviceHistory
- * @param {object} definitions the common schema definitions file
+ * @param {definitions} definitions the common schema definitions file
  * @returns {object} the servicePeriods schema object
  */
 const servicePeriodsDef = ((definitions) => {
@@ -85,19 +85,25 @@ const servicePeriodsDef = ((definitions) => {
 // Extracted to enable easy adding of properties for forwardingAddress
 const addressDef = definitions.pciuAddress;
 
-const propertiesWithoutSuffix = _.omit('suffix', definitions.fullName.properties);
-const fullNameDef = {
-  ...definitions.fullName,
-  properties: { ...propertiesWithoutSuffix }
-};
+// Strip suffix from fullName common def
+const fullNameDef = Object.assign(definitions.fullName, {
+  properties: _.omit('suffix', definitions.fullName.properties)
+});
 
+/**
+ * Strip address lines from PCIU address def for use with treatment center addresses
+ * @typedef {object} definitions
+ * @property {object} pciuAddress
+ * @param {definitions} definitions from the common schema definitions file
+ * @returns {object} the treatmentCenterAddress schema object
+ */
 const treatmentCenterAddressDef = ((definitions) => {
   const treatmentAddressProperties = _.pick(
     ['city', 'state', 'country'],
     definitions.pciuAddress.properties
   );
 
-  return { ...definitions.pciuAddress, properties: treatmentAddressProperties };
+  return Object.assign(definitions.pciuAddress, { properties: treatmentAddressProperties });
 })(definitions);
 
 let schema = {
@@ -120,7 +126,7 @@ let schema = {
     }),
     fullName: fullNameDef,
     // vets-api will split into separate area code & phone number fields
-    phone: { ...definitions.phone, maxLength: 10 },
+    phone: Object.assign(definitions.phone, { maxLength: 10 }),
     servicePeriods: servicePeriodsDef,
     specialIssues: {
       type: 'array',
