@@ -84,7 +84,7 @@ const servicePeriodsDef = ((definitions) => {
 const addressDef = definitions.pciuAddress;
 
 // Strip suffix from fullName common def
-const fullNameDef = Object.assign(definitions.fullName, {
+const fullNameDef = _.merge(definitions.fullName, {
   properties: _.omit('suffix', definitions.fullName.properties)
 });
 
@@ -101,7 +101,7 @@ const treatmentCenterAddressDef = ((definitions) => {
     definitions.pciuAddress.properties
   );
 
-  return Object.assign(definitions.pciuAddress, { properties: treatmentAddressProperties });
+  return _.merge(definitions.pciuAddress, { properties: treatmentAddressProperties });
 })(definitions);
 
 let schema = {
