@@ -104,6 +104,8 @@ const address = (() => {
 const pciuAddress = (() => {
   // Please reference the 'states' and 'countries' constants in 'constants.js' in order to make sense
   // of the following several transformations
+  // TODO: MVP    - get static list of countries and states from PCIU Address endpoint
+  //       Follow - create custom field 
   const pciuCountries = constants.countries.map(object => object.value);
   const pciuCountriesWithStateList = Object.keys(constants.states).filter(x => _.includes(pciuCountries, x));
   const pciuCountryStateProperties = _.map(constants.states, (value, key) => ({

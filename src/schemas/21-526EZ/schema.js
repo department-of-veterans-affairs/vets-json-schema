@@ -24,6 +24,44 @@ const uniqueBankFields = {
   }
 };
 
+/**
+ * Modifies the common serviceHistory definition to fit with 526 API reqs. Note
+ * that this uses a dateRange whereas 526 requires begin and end dates - this
+ * transformation will be handled by vets-api. This object is deeply nested;
+ * attempts at transforming it non-mutatively were convoluted.
+ * @typedef {object} definitions
+ * @property {object} serviceHistory
+ * @param {object} definitions the common schema definitions file
+ * @returns {object} the servicePeriods schema object
+ */
+const servicePeriodsDef = ((definitions) => {
+  const serviceHistory = _.cloneDeep(definitions.serviceHistory);
+  serviceHistory.minItems = 1;
+  serviceHistory.maxItems = 100;
+  serviceHistory.items.required = ['serviceBranch', 'dateRange'];
+  delete serviceHistory.items.properties.dischargeType
+
+  return serviceHistory;
+})(definitions);
+
+// 2. combine properties objects
+const serviceHistoryItems = _.merge({
+  minItems: 1,
+  maxItems: 100,
+  items: {
+    properties: serviceHistoryProperties,
+    required: ['serviceBranch', 'activeDutyBeginDate'] },
+}, definitions.serviceHistory);
+
+const servicePeriods = _.merge(
+  _.omit('dischargeType', definitions.serviceHistory.items.properties),
+  {
+    items: { required: ['serviceBranch', 'dateRange'] },
+    minItems: 1,
+    maxItems: 100
+  }
+);
+
 // Defined here to enable easy adding of properties for forwardingAddress
 const addressDef = definitions.pciuAddress;
 
@@ -37,19 +75,9 @@ let schema = {
     date: { definitions },
     // dateRange: definitions.dateRange // hopefully we can use this later
     fullName: _.omit('properties.suffix', definitions.fullName),
-    phone: {
-      type: 'object',
-      properties: {
-        areaCode: {
-          type: 'string',
-          pattern: '\d{3}'
-        },
-        phoneNumber: {
-          type: 'string',
-          pattern: '\d{7,11}'
-        }
-      }
-    },
+    // vets-api will split into separate area code & phone number fields
+    phone: { ...definitions.phone, maxLength: 10 },
+    servicePeriods: servicePeriodsDef,
     specialIssues: {
       type: 'array',
       maxItems: 100,
@@ -183,28 +211,8 @@ let schema = {
     serviceInformation: {
       type: 'object',
       properties: {
-        // This is a little different from the common serviceHistory definition
         servicePeriods: {
-          type: 'array',
-          minItems: 1,
-          maxItems: 100,
-          items: {
-            type: 'object',
-            properties: {
-              serviceBranch: {
-                type: 'string'
-              },
-              // The common definition has these in a `dateRange` object
-              activeDutyBeginDate: {
-                $ref: '$/definitions/date: definitions.date'
-              },
-              activeDutyEndDate: {
-                $ref: '$/definitions/date: definitions.date'
-              }
-              // The common definition has a `dischargeType`
-            },
-            required: ['serviceBranch', 'activeDutyBeginDate']
-          }
+          $ref: '#/definitions/servicePeriods'
         },
         reservesNationalGuardService: {
           type: 'object',
