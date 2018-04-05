@@ -85,12 +85,28 @@ const servicePeriodsDef = ((definitions) => {
 // Extracted to enable easy adding of properties for forwardingAddress
 const addressDef = definitions.pciuAddress;
 
+const propertiesWithoutSuffix = _.omit('suffix', definitions.fullName.properties);
+const fullNameDef = {
+  ...definitions.fullName,
+  properties: { ...propertiesWithoutSuffix }
+};
+
+const treatmentCenterAddressDef = ((definitions) => {
+  const treatmentAddressProperties = _.pick(
+    ['city', 'state', 'country'],
+    definitions.pciuAddress.properties
+  );
+
+  return { ...definitions.pciuAddress, properties: treatmentAddressProperties };
+})(definitions);
+
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)',
   type: 'object',
   definitions: {
     address: addressDef,
+    treatmentCenterAddress: treatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: { definitions },
     dateRange: { definitions },
@@ -102,7 +118,7 @@ let schema = {
         }
       }
     }),
-    fullName: _.omit('properties.suffix', definitions.fullName),
+    fullName: fullNameDef,
     // vets-api will split into separate area code & phone number fields
     phone: { ...definitions.phone, maxLength: 10 },
     servicePeriods: servicePeriodsDef,
@@ -323,19 +339,8 @@ let schema = {
           treatmentDateRange: {
             $ref: '#/definitions/dateRange'
           },
-          // Should this use a dropdown like address?
-          treatmentCenterCountry: {
-            type: 'string'
-          },
-          // Should this use a dropdown like address?
-          treatmentCenterState: {
-            type: 'string',
-            pattern: '[a-zA-Z]{2}'
-          },
-          treatmentCenterCity: {
-            type: 'string',
-            maxLength: 100,
-            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+          treatmentCenterAddress: {
+            $ref: '#/definitions/treatmentCenterAddress'
           },
           treatmentCenterType: {
             type: 'string',
