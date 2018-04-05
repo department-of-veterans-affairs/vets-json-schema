@@ -109,7 +109,9 @@ const pciuAddress = (() => {
       },
       state: {
         type: 'string',
-        enum: constants.pciuStates
+        enum: constants.states.USA
+          .concat(constants.statesOnlyInPCIU)
+          .map(state => state.value)
       }
     }
   }, {

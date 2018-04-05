@@ -4196,68 +4196,11 @@ const pciuCountries = [
   "Zimbabwe"
 ];
 
-const pciuStates = [
-  "AK",
-  "AL",
-  "AR",
-  "AS",
-  "AZ",
-  "CA",
-  "CO",
-  "CT",
-  "DC",
-  "DE",
-  "FL",
-  "FM",
-  "GA",
-  "GU",
-  "HI",
-  "IA",
-  "ID",
-  "IL",
-  "IN",
-  "KS",
-  "KY",
-  "LA",
-  "MA",
-  "MD",
-  "ME",
-  "MH",
-  "MI",
-  "MN",
-  "MO",
-  "MP",
-  "MS",
-  "MT",
-  "NC",
-  "ND",
-  "NE",
-  "NH",
-  "NJ",
-  "NM",
-  "NV",
-  "NY",
-  "OH",
-  "OK",
-  "OR",
-  "PA",
-  "PI",
-  "PR",
-  "PW",
-  "RI",
-  "SC",
-  "SD",
-  "TN",
-  "TX",
-  "UM",
-  "UT",
-  "VA",
-  "VI",
-  "VT",
-  "WA",
-  "WI",
-  "WV",
-  "WY"
+// This list represents the states currently available in the `states` PCIU
+// endpoint and not available in the current `states` constant.
+const statesOnlyInPCIU = [
+  { label: "Philippine Islands", value: "PI" },
+  { label: "U.S. Minor Outlying Islands", value: "UM" }
 ];
 
 module.exports = {
@@ -4267,7 +4210,6 @@ module.exports = {
   branchesServed,
   dischargeTypes,
   states,
-  pciuStates,
   salesforceStates,
   salesforceCountries,
   suffixes,
@@ -4277,5 +4219,6 @@ module.exports = {
   vaMedicalFacilities,
   dependentRelationships,
   yesNo,
-  usaStates
+  usaStates,
+  statesOnlyInPCIU
 };
