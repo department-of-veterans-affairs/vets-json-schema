@@ -1,6 +1,4 @@
 import _ from 'lodash/fp';
-
-import constants from '../../common/constants';
 import definitions from '../../common/definitions';
 
 // TODO: Check NOBANK option with EVSS, adapt accountType from common def if not needed
@@ -24,7 +22,7 @@ const uniqueBankFields = {
   }
 };
 
-disabilitiesBaseDef = {
+const disabilitiesBaseDef = {
   type: 'array',
   maxItems: 100,
   items: {
