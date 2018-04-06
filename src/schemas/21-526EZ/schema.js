@@ -141,9 +141,7 @@ let schema = {
     fullName: fullNameDef,
     // vets-api will split into separate area code & phone number fields
     phone: Object.assign({}, definitions.phone, {
-      minLength: 7,
-      maxLength: 7,
-      pattern: "\d{7}"
+      pattern: "\d{7}" // differs from Swagger, but agreement from EVSS to update
     }),
     servicePeriods: servicePeriodsDef,
     specialIssues: {
