@@ -29,6 +29,7 @@ const fullName = {
   ]
 };
 
+// NOTE: PCIU address has its own, separate definition
 const address = (() => {
   const countries = constants.countries.map(object => object.value);
   const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
@@ -85,6 +86,88 @@ const address = (() => {
         type: 'string',
         minLength: 1,
         maxLength: 51
+      }
+    }
+  };
+})();
+
+/** 
+ * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
+ * common address definition. Note that this duplicates some code with 'address' common def, but want to
+ * ensure we're not tied to that so duplicating here will make things easy to delete if our approach changes.
+ * @returns {object} json-schema-form compatible schema object that conforms to PCIU address endpoint specs
+ */
+const pciuAddress = (() => {
+  const USA = 'USA';
+  // TODO: create custom field that will fetch countries / states (post-MVP)
+  const pciuCountryStateProperties = [{
+    // only need a state when country is 'USA'
+    properties: {
+      country: {
+        type: 'string',
+        enum: [USA]
+      },
+      state: {
+        type: 'string',
+        enum: constants.states.USA
+          .concat(constants.statesOnlyInPCIU)
+          .map(state => state.value)
+      }
+    }
+  }, {
+    properties: {
+      country: {
+        type: 'string',
+        enum: constants.pciuCountries.filter(i => i !== USA)
+      }
+    }
+  }];
+  
+  // NOTE: Validations from swagger except where noted
+  return {
+    type: 'object',
+    oneOf: pciuCountryStateProperties,
+    required: ['addressLine1', 'country'],
+    properties: {
+      addressLine1: {
+        type: 'string',
+        maxLength: 35,
+        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+      },
+      addressLine2: {
+        type: 'string',
+        maxLength: 35,
+        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+      },
+      addressLine3: {
+        type: 'string',
+        maxLength: 35,
+        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+      },
+      city: {
+        type: 'string',
+        maxLength: 35,
+        pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+      },
+      zipFirstFive: {
+        type: 'string',
+        pattern: '^\d{5}$' // not in swagger docs
+      },
+      zipLastFound: {
+        type: 'string',
+        pattern: '^\d{4}$' // not in swagger docs
+      },
+      militaryPostOfficeTypeCode: {
+        type: 'string',
+        enum: ['APO', 'DPO', 'FPO']
+      },
+      militaryStateCode: {
+        type: 'string',
+        enum: ['AA', 'AE', 'AP']
+      },
+      type: {
+        type: 'string',
+        enum: ['DOMESTIC', 'MILITARY', 'INTERNATIONAL']
       }
     }
   };
@@ -484,6 +567,7 @@ export default {
   fullName,
   otherIncome,
   address,
+  pciuAddress,
   phone,
   ssn,
   school,
