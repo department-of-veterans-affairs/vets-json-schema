@@ -27,6 +27,7 @@ const disabilitiesBaseDef = {
   maxItems: 100,
   items: {
     type: 'object',
+    required: ['diagnosticText', 'disabilityActionType', 'decisionCode', 'ratedDisabilityId'],
     properties: {
       diagnosticText: {
         type: 'string',
@@ -55,8 +56,7 @@ const disabilitiesBaseDef = {
       specialIssueTypeCode: {
         type: 'string'
       },
-    },
-    required: ['diagnosticText', 'decisionCode', 'ratedDisabilityId']
+    }
   }
 };
 
