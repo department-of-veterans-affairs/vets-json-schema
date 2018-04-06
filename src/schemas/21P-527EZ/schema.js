@@ -273,7 +273,7 @@ let schema = {
       }
     },
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress']
 };
 
 [

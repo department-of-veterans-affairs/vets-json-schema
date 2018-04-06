@@ -1011,6 +1011,8 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "veteranFullName",
+    "veteranAddress"
   ]
 }
