@@ -134,7 +134,7 @@ let schema = {
       type: 'string'
     },
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'claimantAddress', 'veteranFullName']
 };
 
 [

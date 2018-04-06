@@ -470,6 +470,8 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "claimantAddress",
+    "veteranFullName"
   ]
 }
