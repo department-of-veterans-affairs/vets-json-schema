@@ -8,6 +8,7 @@ import { expect } from 'chai';
 const schema = schemas['21P-527EZ'];
 let schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
+delete schemaWithoutRequired.anyOf;
 
 let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);

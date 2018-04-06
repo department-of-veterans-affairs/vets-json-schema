@@ -298,6 +298,18 @@
       }
     }
   },
+  "anyOf": [
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    },
+    {
+      "required": [
+        "veteranSocialSecurityNumber"
+      ]
+    }
+  ],
   "properties": {
     "relationship": {
       "type": "object",

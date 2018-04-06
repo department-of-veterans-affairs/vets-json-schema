@@ -3,6 +3,18 @@
   "title": "APPLICATION FOR PENSION",
   "type": "object",
   "additionalProperties": false,
+  "anyOf": [
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    },
+    {
+      "required": [
+        "veteranSocialSecurityNumber"
+      ]
+    }
+  ],
   "definitions": {
     "dateRange": {
       "type": "object",

@@ -15,6 +15,14 @@ let schema = {
   title: 'APPLICATION FOR PENSION',
   type: 'object',
   additionalProperties: false,
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   definitions: _.merge(_.pick(definitions,
     'dateRange',
     'bankAccount'

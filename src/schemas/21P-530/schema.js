@@ -36,6 +36,14 @@ let schema = {
   definitions: {
     dateRange: definitions.dateRange
   },
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   properties: {
     relationship: {
       type: 'object',
