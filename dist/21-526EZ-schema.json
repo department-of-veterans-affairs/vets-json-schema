@@ -773,6 +773,12 @@
       "maxItems": 100,
       "items": {
         "type": "object",
+        "required": [
+          "diagnosticText",
+          "disabilityActionType",
+          "decisionCode",
+          "ratedDisabilityId"
+        ],
         "properties": {
           "diagnosticText": {
             "type": "string",
@@ -812,6 +818,12 @@
             "maxItems": 100,
             "items": {
               "type": "object",
+              "required": [
+                "diagnosticText",
+                "disabilityActionType",
+                "decisionCode",
+                "ratedDisabilityId"
+              ],
               "properties": {
                 "diagnosticText": {
                   "type": "string",
@@ -846,20 +858,10 @@
                 "specialIssueTypeCode": {
                   "type": "string"
                 }
-              },
-              "required": [
-                "diagnosticText",
-                "decisionCode",
-                "ratedDisabilityId"
-              ]
+              }
             }
           }
-        },
-        "required": [
-          "diagnosticText",
-          "decisionCode",
-          "ratedDisabilityId"
-        ]
+        }
       },
       "minItems": 1
     },
@@ -869,25 +871,18 @@
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "pattern": "([a-zA-Z0-9-'.#][a-zA-Z0-9-'.# ]?)*$"
         },
         "last": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
+          "maxLength": 30,
+          "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
         }
       },
       "required": [
@@ -898,7 +893,7 @@
     "phone": {
       "type": "string",
       "minLength": 10,
-      "maxLength": 10
+      "pattern": "d{7}"
     },
     "servicePeriods": {
       "type": "array",
