@@ -32,7 +32,9 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
 
-  sharedTests.runTest('address', ['veteranAddress', 'spouseAddress']);
+  sharedTests.runTest('address', ['spouseAddress']);
+
+  sharedTests.runTest('addressWithRequiredZip', ['veteranAddress']);
 
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 

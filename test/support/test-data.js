@@ -65,6 +65,22 @@ export default {
       }]
     }
   },
+  addressWithRequiredZip: {
+    data: {
+      valid: [
+        {
+          street: '123 a rd',
+          city: 'abc',
+          state: 'VA',
+          country: 'USA',
+          postalCode: '12345'
+        }
+      ],
+      invalid: [
+        fixtures.address
+      ]
+    }
+  },
   address: {
     fields: ['veteranAddress'],
     data: {

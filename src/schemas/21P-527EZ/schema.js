@@ -281,7 +281,7 @@ let schema = {
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
-  ['address', 'veteranAddress'],
+  ['addressWithRequiredZip', 'veteranAddress'],
   ['usaPhone', 'dayPhone'],
   ['usaPhone', 'nightPhone'],
   ['usaPhone', 'mobilePhone'],
