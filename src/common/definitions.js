@@ -90,6 +90,9 @@ const address = (() => {
   };
 })();
 
+let addressWithRequiredZip = _.cloneDeep(address);
+addressWithRequiredZip.required = ['postalCode'];
+
 const phone = {
   type: 'string',
   minLength: 10
@@ -512,5 +515,6 @@ export default {
   files,
   requiredServiceHistory,
   serviceHistory,
+  addressWithRequiredZip,
   year
 };
