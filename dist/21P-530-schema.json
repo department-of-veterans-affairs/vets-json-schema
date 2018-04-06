@@ -21,7 +21,7 @@
         true
       ]
     },
-    "address": {
+    "addressWithRequiredZip": {
       "type": "object",
       "oneOf": [
         {
@@ -227,7 +227,10 @@
           "minLength": 1,
           "maxLength": 51
         }
-      }
+      },
+      "required": [
+        "postalCode"
+      ]
     },
     "usaPhone": {
       "type": "string",
@@ -433,7 +436,7 @@
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
     "claimantAddress": {
-      "$ref": "#/definitions/address"
+      "$ref": "#/definitions/addressWithRequiredZip"
     },
     "claimantPhone": {
       "$ref": "#/definitions/usaPhone"
