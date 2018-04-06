@@ -1,14 +1,13 @@
 import _ from 'lodash/fp';
 import definitions from '../../common/definitions';
 
-// TODO: Check NOBANK option with EVSS, adapt accountType from common def if not needed
 // TODO: Verify why we don't validate accountNumber in common definition
 const uniqueBankFields = {
   type: 'object',
   properties: {
     accountType: {
       type: 'string',
-      enum: ['CHECKING', 'SAVINGS', 'NOBANK']
+      enum: ['CHECKING', 'SAVINGS', 'NOBANK'] // If NOBANK, no acct/routing num, or bank name.
     },
     accountNumber: {
       type: 'string',
@@ -60,6 +59,10 @@ const disabilitiesBaseDef = {
   }
 };
 
+
+// Extracted to enable easy adding of properties for forwardingAddress
+const addressDef = definitions.pciuAddress;
+
 /**
  * Modifies the common serviceHistory definition to fit with 526 API reqs. Note
  * that this uses a dateRange whereas 526 requires begin and end dates - this
@@ -80,13 +83,26 @@ const servicePeriodsDef = ((definitions) => {
   return serviceHistory;
 })(definitions);
 
-// Extracted to enable easy adding of properties for forwardingAddress
-const addressDef = definitions.pciuAddress;
+/**
+ * Transforms common fullName definition by adding regex validations and
+ * removing suffix property.
+ * @typedef {object} definitions
+ * @property {object} fullName
+ * @param {definitions} definitions the common schema definitions file
+ * @returns {object} the servicePeriods schema object
+ */
+const fullNameDef = ((definitions) => {
+  const fullNameClone = _.cloneDeep(definitions.fullName);
+  delete fullNameClone.properties.suffix;
 
-// Strip suffix from fullName common def
-const fullNameDef = _.merge(definitions.fullName, {
-  properties: _.omit('suffix', definitions.fullName.properties)
-});
+  // These patterns are taken straight from Swagger
+  const firstLastPattern = "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+  fullNameClone.properties.first.pattern = firstLastPattern;
+  fullNameClone.properties.last.pattern = firstLastPattern;
+  fullNameClone.properties.middle.pattern = "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$";
+
+  return fullNameClone;
+})(definitions);
 
 /**
  * Strip address lines from PCIU address def for use with treatment center addresses
@@ -124,7 +140,11 @@ let schema = {
     }),
     fullName: fullNameDef,
     // vets-api will split into separate area code & phone number fields
-    phone: Object.assign({}, definitions.phone, { maxLength: 10 }),
+    phone: Object.assign({}, definitions.phone, {
+      minLength: 7,
+      maxLength: 7,
+      pattern: "\d{7}"
+    }),
     servicePeriods: servicePeriodsDef,
     specialIssues: {
       type: 'array',
