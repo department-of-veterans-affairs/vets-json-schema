@@ -3,17 +3,22 @@ import schemas from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
+import { expect } from 'chai';
 
 const schema = schemas['21P-530'];
-const schemaDefaults = {
-  privacyAgreementAccepted: true
-};
+let schemaWithoutRequired = _.cloneDeep(schema);
+delete schemaWithoutRequired.required;
+delete schemaWithoutRequired.anyOf;
 
-let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
+let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-530 schema', () => {
   sharedTests.runTest('usaPhone', ['claimantPhone']);
+
+  it('should have the right required fields', () => {
+    expect(schema.required).to.deep.equal(['privacyAgreementAccepted', 'claimantAddress', 'veteranFullName']);
+  });
 
   sharedTests.runTest('fullName', ['claimantFullName', 'veteranFullName']);
 
@@ -21,7 +26,7 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
 
-  sharedTests.runTest('address', ['claimantAddress']);
+  sharedTests.runTest('addressWithRequiredZip', ['claimantAddress']);
 
   sharedTests.runTest('email', ['claimantEmail']);
 

@@ -15,6 +15,14 @@ let schema = {
   title: 'APPLICATION FOR PENSION',
   type: 'object',
   additionalProperties: false,
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   definitions: _.merge(_.pick(definitions,
     'dateRange',
     'bankAccount'
@@ -273,7 +281,7 @@ let schema = {
       }
     },
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress']
 };
 
 [
@@ -281,7 +289,7 @@ let schema = {
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
-  ['address', 'veteranAddress'],
+  ['addressWithRequiredZip', 'veteranAddress'],
   ['usaPhone', 'dayPhone'],
   ['usaPhone', 'nightPhone'],
   ['usaPhone', 'mobilePhone'],

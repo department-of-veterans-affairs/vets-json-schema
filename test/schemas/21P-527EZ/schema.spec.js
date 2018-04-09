@@ -3,13 +3,14 @@ import schemas from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
+import { expect } from 'chai';
 
 const schema = schemas['21P-527EZ'];
-const schemaDefaults = {
-  privacyAgreementAccepted: true
-};
+let schemaWithoutRequired = _.cloneDeep(schema);
+delete schemaWithoutRequired.required;
+delete schemaWithoutRequired.anyOf;
 
-let schemaTestHelper = new SchemaTestHelper(schema, schemaDefaults);
+let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-527 schema', () => {
@@ -18,6 +19,10 @@ describe('21-527 schema', () => {
     'gender'
   ].forEach((test) => {
     sharedTests.runTest(test);
+  });
+
+  it('should have the right required fields', () => {
+    expect(schema.required).to.deep.equal(['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress']);
   });
 
   sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone', 'mobilePhone', 'nationalGuard.phone']);
@@ -32,7 +37,9 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
 
-  sharedTests.runTest('address', ['veteranAddress', 'spouseAddress']);
+  sharedTests.runTest('address', ['spouseAddress']);
+
+  sharedTests.runTest('addressWithRequiredZip', ['veteranAddress']);
 
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
 

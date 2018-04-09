@@ -36,6 +36,14 @@ let schema = {
   definitions: {
     dateRange: definitions.dateRange
   },
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   properties: {
     relationship: {
       type: 'object',
@@ -134,12 +142,12 @@ let schema = {
       type: 'string'
     },
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted', 'claimantAddress', 'veteranFullName']
 };
 
 [
   ['privacyAgreementAccepted'],
-  ['address', 'claimantAddress'],
+  ['addressWithRequiredZip', 'claimantAddress'],
   ['usaPhone', 'claimantPhone'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],

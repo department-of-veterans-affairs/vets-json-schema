@@ -91,6 +91,9 @@ const address = (() => {
   };
 })();
 
+let addressWithRequiredZip = _.cloneDeep(address);
+addressWithRequiredZip.required = ['postalCode'];
+
 /** 
  * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
  * common address definition. Note that this duplicates some code with 'address' common def, but want to
@@ -596,5 +599,6 @@ export default {
   files,
   requiredServiceHistory,
   serviceHistory,
+  addressWithRequiredZip,
   year
 };
