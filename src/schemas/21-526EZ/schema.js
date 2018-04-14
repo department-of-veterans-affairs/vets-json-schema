@@ -105,20 +105,25 @@ const fullNameDef = ((definitions) => {
 })(definitions);
 
 /**
- * Strip address lines from PCIU address def for use with treatment center addresses
+ * Modifies PCIU Address for use with treatments schema
  * @typedef {object} definitions
  * @property {object} pciuAddress
  * @param {definitions} definitions from the common schema definitions file
  * @returns {object} the treatmentCenterAddress schema object
  */
-const treatmentCenterAddressDef = ((definitions) => {
-  const treatmentAddressProperties = _.pick(
-    ['city', 'state', 'country'],
-    definitions.pciuAddress.properties
-  );
-
-  return _.merge(definitions.pciuAddress, { properties: treatmentAddressProperties });
+const treatmentCenterAddressDef = (({ pciuAddress }) => {
+  const { type, oneOf, properties } = pciuAddress;
+  return Object.assign({}, {
+    type,
+    oneOf: _.cloneDeep(oneOf),
+    required: ['country'],
+    properties: {
+      city: Object.assign({}, properties.city)
+    }
+  });
 })(definitions);
+
+console.log(treatmentCenterAddressDef);
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
