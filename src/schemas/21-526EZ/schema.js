@@ -28,7 +28,7 @@ const disabilitiesBaseDef = {
     type: 'object',
     required: ['diagnosticText', 'disabilityActionType', 'decisionCode', 'ratedDisabilityId'],
     properties: {
-      diagnosticText: {
+      name: {
         type: 'string',
         maxLength: 255,
         pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
@@ -36,9 +36,6 @@ const disabilitiesBaseDef = {
       disabilityActionType: {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
-      },
-      decisionCode: {
-        type: 'string'
       },
       specialIssues: {
         $ref: '#/definitions/specialIssues'
@@ -55,6 +52,9 @@ const disabilitiesBaseDef = {
       specialIssueTypeCode: {
         type: 'string'
       },
+      classificationCode: {
+        type: 'string'
+      }
     }
   }
 };
@@ -111,11 +111,11 @@ const fullNameDef = ((definitions) => {
  * @param {definitions} definitions from the common schema definitions file
  * @returns {object} the treatmentCenterAddress schema object
  */
-const treatmentCenterAddressDef = (({ pciuAddress }) => {
+const vaTreatmentCenterAddressDef = (({ pciuAddress }) => {
   const { type, oneOf, properties } = pciuAddress;
   return Object.assign({}, {
     type,
-    oneOf: _.cloneDeep(oneOf),
+    oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
     required: ['country'],
     properties: {
       city: Object.assign({}, properties.city)
@@ -123,7 +123,23 @@ const treatmentCenterAddressDef = (({ pciuAddress }) => {
   });
 })(definitions);
 
-console.log(treatmentCenterAddressDef);
+/**
+ * Grab address lines, city and zip from PCIU address common def, then add
+ * country and state properties for 'oneOf' to work properly
+ */
+const privateTreatmentCenterAddressDef = (({ pciuAddress }) => {
+  const { type, oneOf, required, properties } = pciuAddress;
+  
+  return Object.assign({}, {
+    type,
+    oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
+    required,
+    properties: _.pick(
+      ['country', 'addressLine1', 'addressLine2', 'city', 'state', 'zipFirstFive'],
+      properties
+    )
+  });
+})(definitions);
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -131,7 +147,8 @@ let schema = {
   type: 'object',
   definitions: {
     address: addressDef,
-    treatmentCenterAddress: treatmentCenterAddressDef,
+    vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
+    privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: definitions.date,
     dateRange: definitions.dateRange,
@@ -367,11 +384,39 @@ let schema = {
             $ref: '#/definitions/dateRange'
           },
           treatmentCenterAddress: {
-            $ref: '#/definitions/treatmentCenterAddress'
+            $ref: '#/definitions/vaTreatmentCenterAddress'
           },
           treatmentCenterType: {
             type: 'string',
             enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
+          }
+        }
+      }
+    },
+    privateRecordReleases: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['treatmentCenterName'],
+        properties: {
+          treatmentCenterName: {
+            type: 'string',
+            maxLength: 100,
+            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+          },
+          treatmentDateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          treatmentCenterAddress: {
+            $ref: '#/definitions/privateTreatmentCenterAddress'
+          },
+          privateMedicalRecordsReleaseAccepted: {
+            type: 'boolean'
+          },
+          'view:privateMedicalRecordsReleasePermissionRestricted': {
+            type: 'object',
+            'ui:collapsed': true,
+            properties: {}
           }
         }
       }
