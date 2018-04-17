@@ -101,7 +101,7 @@ addressWithRequiredZip.required = ['postalCode'];
  * @returns {object} json-schema-form compatible schema object that conforms to PCIU address endpoint specs
  */
 const pciuAddress = (() => {
-  const USA = 'USA';
+  const onlyUSA = ['USA'];
   const usaStates = constants.states.USA
     .concat(constants.statesOnlyInPCIU)
     .map(state => state.value)
@@ -114,7 +114,7 @@ const pciuAddress = (() => {
     properties: {
       country: {
         type: 'string',
-        enum: [USA]
+        enum: onlyUSA
       },
       state: {
         type: 'string',
@@ -126,7 +126,7 @@ const pciuAddress = (() => {
       country: {
         not: {
           type: 'string',
-          enum: [USA]
+          enum: onlyUSA
         }
       },
       state: {
@@ -149,22 +149,22 @@ const pciuAddress = (() => {
       addressLine1: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       addressLine2: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       addressLine3: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       city: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
       },
       state: {
         type: 'string',
@@ -177,7 +177,7 @@ const pciuAddress = (() => {
       },
       zipLastFour: {
         type: 'string',
-        pattern: '^\d{4}$' // not in swagger docs
+        pattern: '^\\d{4}$' // not in swagger docs
       },
       militaryPostOfficeTypeCode: {
         type: 'string',
