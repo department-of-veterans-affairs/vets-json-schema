@@ -117,9 +117,11 @@ const vaTreatmentCenterAddressDef = (({ pciuAddress }) => {
     type,
     oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
     required: ['country'],
-    properties: {
-      city: Object.assign({}, properties.city)
-    }
+    properties: _.pick([
+      'country',
+      'city',
+      'state'
+    ], properties)
   });
 })(definitions);
 
@@ -394,6 +396,11 @@ let schema = {
       }
     },
     privateRecordReleases: {
+    // These records are sent through an ancillary form and are not directly
+    // submitted via 526. This ancillary submission process has no actual
+    // validations, but we thought keeping them here (especially for address)
+    // would enforce a baseline of data quality which would be in the
+    // submitter's best interest.
       type: 'array',
       items: {
         type: 'object',
@@ -402,7 +409,7 @@ let schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+            pattern: "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           treatmentDateRange: {
             $ref: '#/definitions/dateRange'
@@ -410,13 +417,9 @@ let schema = {
           treatmentCenterAddress: {
             $ref: '#/definitions/privateTreatmentCenterAddress'
           },
-          privateMedicalRecordsReleaseAccepted: {
-            type: 'boolean'
-          },
-          'view:privateMedicalRecordsReleasePermissionRestricted': {
-            type: 'object',
-            'ui:collapsed': true,
-            properties: {}
+          privateMedicalRecordsReleaseRestricted: {
+            type: 'boolean',
+            default: false
           }
         }
       }
