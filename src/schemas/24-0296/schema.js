@@ -8,6 +8,10 @@ let schema = {
   definitions: {
   },
   properties: {
+    institutionName: {
+      type: 'string',
+      maxLength: 30
+    }
   },
   required: ['privacyAgreementAccepted']
 };

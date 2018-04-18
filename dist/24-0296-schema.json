@@ -287,6 +287,10 @@
     }
   },
   "properties": {
+    "institutionName": {
+      "type": "string",
+      "maxLength": 30
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
