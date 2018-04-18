@@ -479,13 +479,9 @@
             "U.S. Minor Outlying Islands"
           ]
         },
-        "zipFirstFive": {
+        "zip": {
           "type": "string",
-          "pattern": "^\\d{5}$"
-        },
-        "zipLastFour": {
-          "type": "string",
-          "pattern": "^\\d{4}$"
+          "pattern": "^\\d{5}(?:[-\\s]\\d{4})?$"
         },
         "militaryPostOfficeTypeCode": {
           "type": "string",
@@ -1446,9 +1442,9 @@
             "U.S. Minor Outlying Islands"
           ]
         },
-        "zipFirstFive": {
+        "zip": {
           "type": "string",
-          "pattern": "^\\d{5}$"
+          "pattern": "^\\d{5}(?:[-\\s]\\d{4})?$"
         }
       }
     },
@@ -2153,13 +2149,9 @@
                 "U.S. Minor Outlying Islands"
               ]
             },
-            "zipFirstFive": {
+            "zip": {
               "type": "string",
-              "pattern": "^\\d{5}$"
-            },
-            "zipLastFour": {
-              "type": "string",
-              "pattern": "^\\d{4}$"
+              "pattern": "^\\d{5}(?:[-\\s]\\d{4})?$"
             },
             "militaryPostOfficeTypeCode": {
               "type": "string",

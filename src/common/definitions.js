@@ -171,13 +171,9 @@ const pciuAddress = (() => {
         'enum': usaStates,
         enumNames: usaStatesLabels
       },
-      zipFirstFive: {
+      zip: {
         type: 'string',
-        pattern: '^\\d{5}$' // not in swagger docs
-      },
-      zipLastFour: {
-        type: 'string',
-        pattern: '^\\d{4}$' // not in swagger docs
+        pattern: '^\\d{5}(?:[-\\s]\\d{4})?$' // combines zipFirstFive + zipLastFour
       },
       militaryPostOfficeTypeCode: {
         type: 'string',

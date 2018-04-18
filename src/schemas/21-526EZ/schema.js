@@ -137,7 +137,7 @@ const privateTreatmentCenterAddressDef = (({ pciuAddress }) => {
     oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
     required,
     properties: _.pick(
-      ['country', 'addressLine1', 'addressLine2', 'city', 'state', 'zipFirstFive'],
+      ['country', 'addressLine1', 'addressLine2', 'city', 'state', 'zip'],
       properties
     )
   });
