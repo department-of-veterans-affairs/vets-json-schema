@@ -16,4 +16,5 @@ describe('21-686C schema', () => {
   sharedTests.runTest('vaFileNumber');
   sharedTests.runTest('address', ['claimantAddress']);
   sharedTests.runTest('email', ['claimantEmail']);
+  sharedTests.runTest('maritalStatus');
 });

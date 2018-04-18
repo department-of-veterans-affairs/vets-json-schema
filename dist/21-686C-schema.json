@@ -251,6 +251,16 @@
           "maxLength": 51
         }
       }
+    },
+    "maritalStatus": {
+      "type": "string",
+      "enum": [
+        "Married",
+        "Never Married",
+        "Separated",
+        "Widowed",
+        "Divorced"
+      ]
     }
   },
   "properties": {
@@ -275,6 +285,9 @@
     },
     "claimantAddress": {
       "$ref": "#/definitions/address"
+    },
+    "maritalStatus": {
+      "$ref": "#/definitions/maritalStatus"
     }
   }
 }
