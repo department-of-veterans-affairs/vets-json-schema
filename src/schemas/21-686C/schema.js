@@ -14,7 +14,10 @@ let schema = {
 
 [
   ['fullName', 'claimantFullName'],
-  ['fullName', 'veteranFullName']
+  ['fullName', 'veteranFullName'],
+  ['ssn', 'veteranSocialSecurityNumber'],
+  ['ssn', 'claimantSocialSecurityNumber'],
+  ['vaFileNumber'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
