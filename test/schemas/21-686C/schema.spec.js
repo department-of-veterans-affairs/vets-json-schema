@@ -17,4 +17,5 @@ describe('21-686C schema', () => {
   sharedTests.runTest('address', ['claimantAddress']);
   sharedTests.runTest('email', ['claimantEmail']);
   sharedTests.runTest('maritalStatus');
+  sharedTests.runTest('date', ['spouseDateOfBirth']);
 });
