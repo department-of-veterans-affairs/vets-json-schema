@@ -11,6 +11,9 @@ let schema = {
     institutionName: {
       type: 'string',
       maxLength: 30
+    },
+    benefitType: {
+      type: 'string'
     }
   },
   required: ['privacyAgreementAccepted']
@@ -26,6 +29,7 @@ let schema = {
   ['ssn','beneficiarySSN'],
   ['vaFileNumber','beneficiaryVAFileNumber'],
   ['date','beneficiaryDOB'],
+  ['address','beneficiaryAddress'],
   ['bankAccount','institutionAccount'],
   ['address','institutionAddress'],
   ['phone','institutionPhone']
