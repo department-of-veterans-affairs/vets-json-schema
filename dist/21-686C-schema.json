@@ -254,6 +254,10 @@
     }
   },
   "properties": {
+    "claimantEmail": {
+      "type": "string",
+      "format": "email"
+    },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },

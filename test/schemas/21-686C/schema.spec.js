@@ -15,4 +15,5 @@ describe('21-686C schema', () => {
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'claimantSocialSecurityNumber']);
   sharedTests.runTest('vaFileNumber');
   sharedTests.runTest('address', ['claimantAddress']);
+  sharedTests.runTest('email', ['claimantEmail']);
 });

@@ -9,6 +9,10 @@ let schema = {
   additionalProperties: false,
   definitions: {},
   properties: {
+    claimantEmail: {
+      type: 'string',
+      format: 'email'
+    }
   }
 };
 
