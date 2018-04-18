@@ -12,6 +12,9 @@ let schema = {
       type: 'string',
       maxLength: 30
     },
+    beneficiaryAddressIsNew: {
+      type: 'boolean'
+    },
     benefitType: {
       type: 'string'
     }

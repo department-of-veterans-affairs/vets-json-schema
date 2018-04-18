@@ -54,25 +54,6 @@
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
-    "bankAccount": {
-      "type": "object",
-      "properties": {
-        "accountType": {
-          "type": "string",
-          "enum": [
-            "checking",
-            "savings"
-          ]
-        },
-        "routingNumber": {
-          "type": "string",
-          "pattern": "^\\d{9}$"
-        },
-        "accountNumber": {
-          "type": "string"
-        }
-      }
-    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -281,6 +262,25 @@
         }
       }
     },
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
+    },
     "phone": {
       "type": "string",
       "minLength": 10
@@ -290,6 +290,12 @@
     "institutionName": {
       "type": "string",
       "maxLength": 30
+    },
+    "beneficiaryAddressIsNew": {
+      "type": "boolean"
+    },
+    "benefitType": {
+      "type": "string"
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
@@ -317,6 +323,9 @@
     },
     "beneficiaryDOB": {
       "$ref": "#/definitions/date"
+    },
+    "beneficiaryAddress": {
+      "$ref": "#/definitions/address"
     },
     "institutionAccount": {
       "$ref": "#/definitions/bankAccount"
