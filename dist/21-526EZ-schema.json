@@ -1491,7 +1491,10 @@
         "to": {
           "$ref": "#/definitions/date"
         }
-      }
+      },
+      "required": [
+        "from"
+      ]
     },
     "disabilities": {
       "type": "array",
@@ -2358,6 +2361,10 @@
       "maxItems": 100,
       "items": {
         "type": "object",
+        "required": [
+          "treatmentCenterName",
+          "treatmentCenterType"
+        ],
         "properties": {
           "treatmentCenterName": {
             "type": "string",

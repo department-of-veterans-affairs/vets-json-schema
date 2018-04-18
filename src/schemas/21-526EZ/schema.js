@@ -153,7 +153,7 @@ let schema = {
     privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: definitions.date,
-    dateRange: definitions.dateRange,
+    dateRange: _.set('required', ['from'], definitions.dateRange), 
     disabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -376,6 +376,7 @@ let schema = {
       maxItems: 100,
       items: {
         type: 'object',
+        required: ['treatmentCenterName', 'treatmentCenterType'],
         properties: {
           treatmentCenterName: {
             type: 'string',
