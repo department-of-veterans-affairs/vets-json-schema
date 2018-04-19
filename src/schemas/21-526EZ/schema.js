@@ -28,7 +28,7 @@ const disabilitiesBaseDef = {
     type: 'object',
     required: ['diagnosticText', 'disabilityActionType', 'decisionCode', 'ratedDisabilityId'],
     properties: {
-      diagnosticText: {
+      name: {
         type: 'string',
         maxLength: 255,
         pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
@@ -36,9 +36,6 @@ const disabilitiesBaseDef = {
       disabilityActionType: {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
-      },
-      decisionCode: {
-        type: 'string'
       },
       specialIssues: {
         $ref: '#/definitions/specialIssues'
@@ -55,6 +52,9 @@ const disabilitiesBaseDef = {
       specialIssueTypeCode: {
         type: 'string'
       },
+      classificationCode: {
+        type: 'string'
+      }
     }
   }
 };
@@ -105,19 +105,42 @@ const fullNameDef = ((definitions) => {
 })(definitions);
 
 /**
- * Strip address lines from PCIU address def for use with treatment center addresses
+ * Modifies PCIU Address for use with treatments schema
  * @typedef {object} definitions
  * @property {object} pciuAddress
  * @param {definitions} definitions from the common schema definitions file
  * @returns {object} the treatmentCenterAddress schema object
  */
-const treatmentCenterAddressDef = ((definitions) => {
-  const treatmentAddressProperties = _.pick(
-    ['city', 'state', 'country'],
-    definitions.pciuAddress.properties
-  );
+const vaTreatmentCenterAddressDef = (({ pciuAddress }) => {
+  const { type, oneOf, properties } = pciuAddress;
+  return Object.assign({}, {
+    type,
+    oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
+    required: ['country'],
+    properties: _.pick([
+      'country',
+      'city',
+      'state'
+    ], properties)
+  });
+})(definitions);
 
-  return _.merge(definitions.pciuAddress, { properties: treatmentAddressProperties });
+/**
+ * Grab address lines, city and zip from PCIU address common def, then add
+ * country and state properties for 'oneOf' to work properly
+ */
+const privateTreatmentCenterAddressDef = (({ pciuAddress }) => {
+  const { type, oneOf, required, properties } = pciuAddress;
+  
+  return Object.assign({}, {
+    type,
+    oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
+    required,
+    properties: _.pick(
+      ['country', 'addressLine1', 'addressLine2', 'city', 'state', 'zip'],
+      properties
+    )
+  });
 })(definitions);
 
 let schema = {
@@ -126,10 +149,11 @@ let schema = {
   type: 'object',
   definitions: {
     address: addressDef,
-    treatmentCenterAddress: treatmentCenterAddressDef,
+    vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
+    privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: definitions.date,
-    dateRange: definitions.dateRange,
+    dateRange: _.set('required', ['from'], definitions.dateRange), 
     disabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -352,6 +376,7 @@ let schema = {
       maxItems: 100,
       items: {
         type: 'object',
+        required: ['treatmentCenterName', 'treatmentCenterType'],
         properties: {
           treatmentCenterName: {
             type: 'string',
@@ -362,11 +387,40 @@ let schema = {
             $ref: '#/definitions/dateRange'
           },
           treatmentCenterAddress: {
-            $ref: '#/definitions/treatmentCenterAddress'
+            $ref: '#/definitions/vaTreatmentCenterAddress'
           },
           treatmentCenterType: {
             type: 'string',
             enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
+          }
+        }
+      }
+    },
+    privateRecordReleases: {
+    // These records are sent through an ancillary form and are not directly
+    // submitted via 526. This ancillary submission process has no actual
+    // validations, but we thought keeping them here (especially for address)
+    // would enforce a baseline of data quality which would be in the
+    // submitter's best interest.
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['treatmentCenterName'],
+        properties: {
+          treatmentCenterName: {
+            type: 'string',
+            maxLength: 100,
+            pattern: "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+          },
+          treatmentDateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          treatmentCenterAddress: {
+            $ref: '#/definitions/privateTreatmentCenterAddress'
+          },
+          privateMedicalRecordsReleaseRestricted: {
+            type: 'boolean',
+            default: false
           }
         }
       }

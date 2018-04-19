@@ -101,27 +101,37 @@ addressWithRequiredZip.required = ['postalCode'];
  * @returns {object} json-schema-form compatible schema object that conforms to PCIU address endpoint specs
  */
 const pciuAddress = (() => {
-  const USA = 'USA';
+  const onlyUSA = ['USA'];
+  const usaStates = constants.states.USA
+    .concat(constants.statesOnlyInPCIU)
+    .map(state => state.value)
+  const usaStatesLabels = constants.states.USA
+    .concat(constants.statesOnlyInPCIU)
+    .map(state => state.label);
   // TODO: create custom field that will fetch countries / states (post-MVP)
   const pciuCountryStateProperties = [{
     // only need a state when country is 'USA'
     properties: {
       country: {
         type: 'string',
-        enum: [USA]
+        enum: onlyUSA
       },
       state: {
         type: 'string',
-        enum: constants.states.USA
-          .concat(constants.statesOnlyInPCIU)
-          .map(state => state.value)
+        enum: usaStates
       }
     }
   }, {
     properties: {
       country: {
+        not: {
+          type: 'string',
+          enum: onlyUSA
+        }
+      },
+      state: {
         type: 'string',
-        enum: constants.pciuCountries.filter(i => i !== USA)
+        maxLength: 35
       }
     }
   }];
@@ -132,33 +142,38 @@ const pciuAddress = (() => {
     oneOf: pciuCountryStateProperties,
     required: ['addressLine1', 'country'],
     properties: {
+      country: {
+        type: 'string',
+        'enum': constants.pciuCountries,
+      },
       addressLine1: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       addressLine2: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       addressLine3: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.,,&#]([a-zA-Z0-9\-'.,,&# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       city: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
       },
-      zipFirstFive: {
+      state: {
         type: 'string',
-        pattern: '^\d{5}$' // not in swagger docs
+        'enum': usaStates,
+        enumNames: usaStatesLabels
       },
-      zipLastFound: {
+      zip: {
         type: 'string',
-        pattern: '^\d{4}$' // not in swagger docs
+        pattern: '^\\d{5}(?:[-\\s]\\d{4})?$' // combines zipFirstFive + zipLastFour
       },
       militaryPostOfficeTypeCode: {
         type: 'string',
