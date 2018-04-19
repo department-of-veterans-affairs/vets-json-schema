@@ -70,6 +70,8 @@ let schema = {
 [
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
+  ['usaPhone', 'dayPhone'],
+  ['usaPhone', 'nightPhone'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['ssn', 'claimantSocialSecurityNumber'],
   ['ssn', 'spouseSocialSecurityNumber'],

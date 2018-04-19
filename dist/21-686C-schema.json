@@ -36,6 +36,10 @@
         "last"
       ]
     },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
@@ -313,6 +317,9 @@
     "monthlySpousePayment": {
       "type": "number"
     },
+    "remarks": {
+      "type": "string"
+    },
     "dependents": {
       "type": "array",
       "items": {
@@ -367,6 +374,12 @@
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
+    },
+    "dayPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "nightPhone": {
+      "$ref": "#/definitions/usaPhone"
     },
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
