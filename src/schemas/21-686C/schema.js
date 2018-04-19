@@ -64,10 +64,12 @@ let schema = {
         }
       }
     }
-  }
+  },
+  required: ['privacyAgreementAccepted']
 };
 
 [
+  ['privacyAgreementAccepted'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['usaPhone', 'dayPhone'],

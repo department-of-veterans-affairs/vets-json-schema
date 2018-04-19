@@ -4,6 +4,12 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -369,6 +375,9 @@
         }
       }
     },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },
@@ -414,5 +423,8 @@
     "spouseMarriages": {
       "$ref": "#/definitions/marriages"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }

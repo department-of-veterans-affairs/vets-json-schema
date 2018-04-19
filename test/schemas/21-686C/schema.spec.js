@@ -6,11 +6,17 @@ import SharedTests from '../../support/shared-tests';
 import { expect } from 'chai';
 
 const schema = schemas['21-686C'];
+let schemaWithoutRequired = _.cloneDeep(schema);
+delete schemaWithoutRequired.required;
 
-let schemaTestHelper = new SchemaTestHelper(schema);
+let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-686C schema', () => {
+  it('should have the right required fields', () => {
+    expect(schema.required).to.deep.equal(['privacyAgreementAccepted']);
+  });
+
   sharedTests.runTest('fullName', ['veteranFullName', 'claimantFullName']);
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'claimantSocialSecurityNumber', 'spouseSocialSecurityNumber']);
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
