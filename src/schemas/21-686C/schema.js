@@ -22,6 +22,45 @@ let schema = {
     monthlySpousePayment: {
       type: 'number'
     },
+    dependents: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          fullName: schemaHelpers.getDefinition('fullName'),
+          childDateOfBirth: schemaHelpers.getDefinition('date'),
+          childInHousehold: {
+            type: 'boolean'
+          },
+          childAddress: schemaHelpers.getDefinition('address'),
+          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
+          childPlaceOfBirth: {
+            type: 'string'
+          },
+          childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+          childRelationship: {
+            type: 'string',
+            enum: [
+              'biological',
+              'adopted',
+              'stepchild'
+            ]
+          },
+          attendingCollege: {
+            type: 'boolean'
+          },
+          disabled: {
+            type: 'boolean'
+          },
+          married: {
+            type: 'boolean'
+          },
+          previouslyMarried: {
+            type: 'boolean'
+          }
+        }
+      }
+    }
   }
 };
 

@@ -313,6 +313,55 @@
     "monthlySpousePayment": {
       "type": "number"
     },
+    "dependents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "childDateOfBirth": {
+            "$ref": "#/definitions/date"
+          },
+          "childInHousehold": {
+            "type": "boolean"
+          },
+          "childAddress": {
+            "$ref": "#/definitions/address"
+          },
+          "personWhoLivesWithChild": {
+            "$ref": "#/definitions/fullName"
+          },
+          "childPlaceOfBirth": {
+            "type": "string"
+          },
+          "childSocialSecurityNumber": {
+            "$ref": "#/definitions/ssn"
+          },
+          "childRelationship": {
+            "type": "string",
+            "enum": [
+              "biological",
+              "adopted",
+              "stepchild"
+            ]
+          },
+          "attendingCollege": {
+            "type": "boolean"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "married": {
+            "type": "boolean"
+          },
+          "previouslyMarried": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },
