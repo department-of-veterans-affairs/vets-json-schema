@@ -289,13 +289,14 @@
   "properties": {
     "institutionName": {
       "type": "string",
-      "maxLength": 30
+      "maxLength": 100
     },
     "beneficiaryAddressIsNew": {
       "type": "boolean"
     },
     "benefitType": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 100
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"

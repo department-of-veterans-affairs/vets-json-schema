@@ -10,13 +10,14 @@ let schema = {
   properties: {
     institutionName: {
       type: 'string',
-      maxLength: 30
+      maxLength: 100
     },
     beneficiaryAddressIsNew: {
       type: 'boolean'
     },
     benefitType: {
-      type: 'string'
+      type: 'string',
+      maxLength: 100
     }
   },
   required: ['privacyAgreementAccepted','veteranFullName','veteranSSN','veteranVAFileNumber','veteranDOB',
@@ -37,8 +38,6 @@ let schema = {
   ['bankAccount','institutionAccount'],
   ['address','institutionAddress'],
   ['phone','institutionPhone']
-  
-
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
