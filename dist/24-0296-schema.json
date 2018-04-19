@@ -321,9 +321,6 @@
     "beneficiaryVAFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
-    "beneficiaryDOB": {
-      "$ref": "#/definitions/date"
-    },
     "beneficiaryAddress": {
       "$ref": "#/definitions/address"
     },
@@ -338,6 +335,20 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "veteranFullName",
+    "veteranSSN",
+    "veteranVAFileNumber",
+    "veteranDOB",
+    "beneficiaryFullName",
+    "beneficiarySSN",
+    "beneficiaryVAFileNumber",
+    "benefitType",
+    "beneficiaryAddress",
+    "beneficiaryAddressIsNew",
+    "institutionName",
+    "institutionAccount",
+    "institutionAddress",
+    "institutionPhone"
   ]
 }

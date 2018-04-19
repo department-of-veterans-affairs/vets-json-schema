@@ -19,7 +19,9 @@ let schema = {
       type: 'string'
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted','veteranFullName','veteranSSN','veteranVAFileNumber','veteranDOB',
+            'beneficiaryFullName','beneficiarySSN','beneficiaryVAFileNumber','benefitType','beneficiaryAddress','beneficiaryAddressIsNew',
+            'institutionName','institutionAccount','institutionAddress','institutionPhone']
 };
 
 [
@@ -31,7 +33,6 @@ let schema = {
   ['fullName','beneficiaryFullName'],
   ['ssn','beneficiarySSN'],
   ['vaFileNumber','beneficiaryVAFileNumber'],
-  ['date','beneficiaryDOB'],
   ['address','beneficiaryAddress'],
   ['bankAccount','institutionAccount'],
   ['address','institutionAddress'],
