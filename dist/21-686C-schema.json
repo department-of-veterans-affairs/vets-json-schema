@@ -333,6 +333,9 @@
     },
     "marriages": {
       "$ref": "#/definitions/marriages"
+    },
+    "spouseMarriages": {
+      "$ref": "#/definitions/marriages"
     }
   }
 }
