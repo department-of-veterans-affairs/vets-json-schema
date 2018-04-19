@@ -12,7 +12,7 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-686C schema', () => {
   sharedTests.runTest('fullName', ['veteranFullName', 'claimantFullName']);
-  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'claimantSocialSecurityNumber']);
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'claimantSocialSecurityNumber', 'spouseSocialSecurityNumber']);
   sharedTests.runTest('vaFileNumber');
   sharedTests.runTest('address', ['claimantAddress']);
   sharedTests.runTest('email', ['claimantEmail']);

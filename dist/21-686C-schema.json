@@ -316,6 +316,9 @@
     "claimantSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
+    "spouseSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },

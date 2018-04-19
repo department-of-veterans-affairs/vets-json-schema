@@ -21,6 +21,7 @@ let schema = {
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['ssn', 'claimantSocialSecurityNumber'],
+  ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber'],
   ['address', 'claimantAddress'],
   ['maritalStatus'],
