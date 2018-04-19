@@ -19,4 +19,25 @@ describe('21-686C schema', () => {
   sharedTests.runTest('maritalStatus');
   sharedTests.runTest('date', ['spouseDateOfBirth']);
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
+
+  schemaTestHelper.testValidAndInvalid('dependents', {
+    valid: [[{
+      fullName: fixtures.fullName,
+      childDateOfBirth: fixtures.date,
+      childPlaceOfBirth: 'ny, ny',
+      childSocialSecurityNumber: fixtures.ssn,
+      childRelationship: 'adopted',
+      attendingCollege: true,
+      disabled: true,
+      married: true,
+      previouslyMarried: true,
+      childFullName: fixtures.fullName,
+      childInHousehold: true,
+      childAddress: fixtures.address,
+      personWhoLivesWithChild: fixtures.fullName
+    }]],
+    invalid: [[{
+      fullName: 1
+    }]]
+  });
 });
