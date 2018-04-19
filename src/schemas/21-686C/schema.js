@@ -19,6 +19,9 @@ let schema = {
     liveWithSpouse: {
       type: 'boolean'
     },
+    monthlySpousePayment: {
+      type: 'number'
+    },
   }
 };
 
@@ -29,6 +32,7 @@ let schema = {
   ['ssn', 'claimantSocialSecurityNumber'],
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber'],
+  ['vaFileNumber', 'spouseVaFileNumber'],
   ['address', 'claimantAddress'],
   ['address', 'spouseAddress'],
   ['maritalStatus'],

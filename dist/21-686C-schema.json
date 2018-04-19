@@ -310,6 +310,9 @@
     "liveWithSpouse": {
       "type": "boolean"
     },
+    "monthlySpousePayment": {
+      "type": "number"
+    },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },
@@ -326,6 +329,9 @@
       "$ref": "#/definitions/ssn"
     },
     "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "spouseVaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
     "claimantAddress": {
