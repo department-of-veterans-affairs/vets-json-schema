@@ -22,6 +22,9 @@ let schema = {
     monthlySpousePayment: {
       type: 'number'
     },
+    remarks: {
+      type: 'string'
+    },
     dependents: {
       type: 'array',
       items: {
