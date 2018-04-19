@@ -333,23 +333,34 @@
     },
     "institutionPhone": {
       "$ref": "#/definitions/phone"
+    },
+    "payeePhone": {
+      "$ref": "#/definitions/phone"
     }
   },
+  "anyOf": [
+    {
+      "required": [
+        "beneficiarySSN"
+      ]
+    },
+    {
+      "required": [
+        "beneficiaryVAFileNumber"
+      ]
+    }
+  ],
   "required": [
     "privacyAgreementAccepted",
     "veteranFullName",
-    "veteranSSN",
-    "veteranVAFileNumber",
     "veteranDOB",
-    "beneficiaryFullName",
-    "beneficiarySSN",
-    "beneficiaryVAFileNumber",
     "benefitType",
     "beneficiaryAddress",
     "beneficiaryAddressIsNew",
     "institutionName",
     "institutionAccount",
     "institutionAddress",
-    "institutionPhone"
+    "institutionPhone",
+    "payeePhone"
   ]
 }

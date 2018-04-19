@@ -20,9 +20,31 @@ let schema = {
       maxLength: 100
     }
   },
-  required: ['privacyAgreementAccepted','veteranFullName','veteranSSN','veteranVAFileNumber','veteranDOB',
-            'beneficiaryFullName','beneficiarySSN','beneficiaryVAFileNumber','benefitType','beneficiaryAddress','beneficiaryAddressIsNew',
-            'institutionName','institutionAccount','institutionAddress','institutionPhone']
+  anyOf: [{
+      'required' : ['veteranSSN']
+    },{
+      'required' : ['veteranVAFileNumber']
+    }
+  ], 
+  anyOf: [{
+      'required' : ['beneficiarySSN']
+    },{
+      'required' : ['beneficiaryVAFileNumber']
+    }
+  ],
+  required: [
+    'privacyAgreementAccepted',
+    'veteranFullName',
+    'veteranDOB',
+    'benefitType',
+    'beneficiaryAddress',
+    'beneficiaryAddressIsNew',
+    'institutionName',
+    'institutionAccount',
+    'institutionAddress',
+    'institutionPhone',
+    'payeePhone'
+  ]
 };
 
 [
@@ -37,7 +59,8 @@ let schema = {
   ['address','beneficiaryAddress'],
   ['bankAccount','institutionAccount'],
   ['address','institutionAddress'],
-  ['phone','institutionPhone']
+  ['phone','institutionPhone'],
+  ['phone','payeePhone']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

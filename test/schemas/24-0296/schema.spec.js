@@ -11,11 +11,9 @@ let schemaTestHelper = new SchemaTestHelper(
   {
     privacyAgreementAccepted: true,
     veteranFullName: {first: 'guy',last: 'guyson'},
-    beneficiaryFullName: {first: 'guy',last: 'guyson'},
-    veteranSSN: '123123123',
+    beneficiaryFullName: {first: 'guy',last: 'guyson'},    
     beneficiarySSN: '123123123',
-    veteranVAFileNumber: 'c11234567',
-    beneficiaryVAFileNumber: 'c11234567',
+    veteranVAFileNumber: 'c11234567',    
     veteranDOB: '2018-04-01',
     institutionAddress: {street: 'A',city: 'A',state: 'NC',postalCode: 'z',country: 'AUS'},
     beneficiaryAddress: {street: 'A',city: 'A',state: 'NC',postalCode: 'z',country: 'USA'},
@@ -23,7 +21,8 @@ let schemaTestHelper = new SchemaTestHelper(
     institutionAccount: {accountType: 'checking',routingNumber: '123123123',accountNumber: 'blech1234'},
     institutionPhone: '1231231231',
     benefitType: 'blech',
-    beneficiaryAddressIsNew: false    
+    beneficiaryAddressIsNew: false,
+    payeePhone: '1231231234'    
   }
 );
 let sharedTests = new SharedTests(schemaTestHelper);
@@ -36,7 +35,7 @@ describe('24-0296 DIRECT DEPOSIT ENROLLMENT', () => {
   sharedTests.runTest('date',['veteranDOB']);
   sharedTests.runTest('address',['beneficiaryAddress','institutionAddress']);
   sharedTests.runTest('bankAccount',['institutionAccount']);
-  sharedTests.runTest('phone',['institutionPhone']);  
+  sharedTests.runTest('phone',['institutionPhone','payeePhone']);  
   
   schemaTestHelper.testValidAndInvalid('institutionName', {
     valid: [
