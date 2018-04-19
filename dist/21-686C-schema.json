@@ -304,6 +304,12 @@
       "type": "string",
       "format": "email"
     },
+    "spouseIsVeteran": {
+      "type": "boolean"
+    },
+    "liveWithSpouse": {
+      "type": "boolean"
+    },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },
@@ -323,6 +329,9 @@
       "$ref": "#/definitions/vaFileNumber"
     },
     "claimantAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "spouseAddress": {
       "$ref": "#/definitions/address"
     },
     "maritalStatus": {

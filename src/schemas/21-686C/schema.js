@@ -12,7 +12,13 @@ let schema = {
     claimantEmail: {
       type: 'string',
       format: 'email'
-    }
+    },
+    spouseIsVeteran: {
+      type: 'boolean'
+    },
+    liveWithSpouse: {
+      type: 'boolean'
+    },
   }
 };
 
@@ -24,6 +30,7 @@ let schema = {
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber'],
   ['address', 'claimantAddress'],
+  ['address', 'spouseAddress'],
   ['maritalStatus'],
   ['date', 'spouseDateOfBirth'],
   ['marriages'],
