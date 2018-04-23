@@ -1470,7 +1470,7 @@
         "bankName": {
           "type": "string",
           "maxLength": 35,
-          "pattern": "([a-zA-Z0-9\\-'.,# ])+$"
+          "pattern": "^([a-zA-Z0-9\\-'.,# ])+$"
         }
       }
     },
@@ -1507,7 +1507,7 @@
           "name": {
             "type": "string",
             "maxLength": 255,
-            "pattern": "([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
+            "pattern": "^([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
           },
           "disabilityActionType": {
             "type": "string",
@@ -1552,7 +1552,7 @@
                 "name": {
                   "type": "string",
                   "maxLength": 255,
-                  "pattern": "([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
+                  "pattern": "^([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
                 },
                 "disabilityActionType": {
                   "type": "string",
@@ -1596,17 +1596,17 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30,
-          "pattern": "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+          "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
         },
         "middle": {
           "type": "string",
-          "pattern": "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+          "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
         },
         "last": {
           "type": "string",
           "minLength": 1,
           "maxLength": 30,
-          "pattern": "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+          "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
         }
       },
       "required": [
@@ -1617,7 +1617,7 @@
     "phone": {
       "type": "string",
       "minLength": 10,
-      "pattern": "\\d{7}"
+      "pattern": "^\\d{7}"
     },
     "servicePeriods": {
       "type": "array",
@@ -2195,7 +2195,7 @@
                 "pointOfContactName": {
                   "type": "string",
                   "maxLength": 100,
-                  "pattern": "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+                  "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
                 },
                 "primaryPhone": {
                   "$ref": "#/definitions/phone"
@@ -2298,7 +2298,7 @@
             "unitName": {
               "type": "string",
               "maxLength": 256,
-              "pattern": "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+              "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
             },
             "unitPhone": {
               "$ref": "#/definitions/phone"
@@ -2312,7 +2312,7 @@
         "separationLocationName": {
           "type": "string",
           "maxLength": 256,
-          "pattern": "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+          "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
         },
         "separationLocationCode": {
           "type": "string"
@@ -2361,7 +2361,7 @@
           "treatmentCenterName": {
             "type": "string",
             "maxLength": 100,
-            "pattern": "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+            "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           "treatmentDateRange": {
             "$ref": "#/definitions/dateRange"
@@ -2390,7 +2390,7 @@
           "treatmentCenterName": {
             "type": "string",
             "maxLength": 100,
-            "pattern": "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+            "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           "treatmentDateRange": {
             "$ref": "#/definitions/dateRange"
