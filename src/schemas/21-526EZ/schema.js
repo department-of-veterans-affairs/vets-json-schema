@@ -444,7 +444,11 @@ let schema = {
           }
         }
       }
-    }
+    },
+    noRapidProcessing: {
+      type: 'boolean',
+      default: false
+    },
   },
   required: ['veteran', 'disabilities', 'serviceInformation']
 };
