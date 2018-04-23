@@ -16,7 +16,7 @@ const uniqueBankFields = {
     bankName: {
       type: 'string',
       maxLength: 35,
-      pattern: "([a-zA-Z0-9\-'.,# ])+$"
+      pattern: "([a-zA-Z0-9\\-'.,# ])+$"
     }
   }
 };
@@ -31,7 +31,7 @@ const disabilitiesBaseDef = {
       name: {
         type: 'string',
         maxLength: 255,
-        pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
+        pattern: "([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
       },
       disabilityActionType: {
         type: 'string',
@@ -96,10 +96,10 @@ const fullNameDef = ((definitions) => {
   delete fullNameClone.properties.suffix;
 
   // These patterns are taken straight from Swagger
-  const firstLastPattern = "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+  const firstLastPattern = "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
   fullNameClone.properties.first.pattern = firstLastPattern;
   fullNameClone.properties.last.pattern = firstLastPattern;
-  fullNameClone.properties.middle.pattern = "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$";
+  fullNameClone.properties.middle.pattern = "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
 
   return fullNameClone;
 })(definitions);
@@ -165,7 +165,7 @@ let schema = {
     fullName: fullNameDef,
     // vets-api will split into separate area code & phone number fields
     phone: Object.assign({}, definitions.phone, {
-      pattern: "\d{7}" // differs from Swagger, but agreement from EVSS to update
+      pattern: "\\d{7}" // differs from Swagger, but agreement from EVSS to update
     }),
     servicePeriods: servicePeriodsDef,
     specialIssues: {
@@ -220,7 +220,7 @@ let schema = {
                 pointOfContactName: {
                   type: 'string',
                   maxLength: 100, // Why can this be so long but not the address parts?
-                  pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
+                  pattern: "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
                 },
                 primaryPhone: {
                   $ref: '#/definitions/phone'
@@ -324,7 +324,7 @@ let schema = {
             unitName: {
               type: 'string',
               maxLength: 256,
-              pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
+              pattern: "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
             },
             unitPhone: {
               $ref: '#/definitions/phone'
@@ -338,7 +338,7 @@ let schema = {
         separationLocationName: {
           type: 'string',
           maxLength: 256,
-          pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
+          pattern: "([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
         },
         separationLocationCode: {
           type: 'string'
@@ -381,7 +381,7 @@ let schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+            pattern: "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           treatmentDateRange: {
             $ref: '#/definitions/dateRange'
