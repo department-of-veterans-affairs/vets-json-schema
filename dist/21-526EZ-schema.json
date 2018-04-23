@@ -2423,6 +2423,10 @@
           }
         }
       }
+    },
+    "noRapidProcessing": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": [
