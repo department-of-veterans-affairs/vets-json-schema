@@ -47,7 +47,7 @@ const disabilitiesBaseDef = {
         type: 'string'
       },
       diagnosticCode: {
-        type: 'number'
+        type: 'string'
       },
       specialIssueTypeCode: {
         type: 'string'

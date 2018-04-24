@@ -1529,7 +1529,7 @@
             "type": "string"
           },
           "diagnosticCode": {
-            "type": "number"
+            "type": "string"
           },
           "specialIssueTypeCode": {
             "type": "string"
@@ -1574,7 +1574,7 @@
                   "type": "string"
                 },
                 "diagnosticCode": {
-                  "type": "number"
+                  "type": "string"
                 },
                 "specialIssueTypeCode": {
                   "type": "string"
