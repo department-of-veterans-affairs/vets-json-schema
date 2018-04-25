@@ -303,6 +303,7 @@ let schema = {
           }
         },
         receiveCompensationInLieuOfRetired: {
+          // I want military retired pay instead of VA compensation
           type: 'boolean',
           default: false
         },
@@ -350,6 +351,9 @@ let schema = {
               required: ['waiveVABenefitsToRetainTrainingPay'],
               properties: {
                 waiveVABenefitsToRetainTrainingPay: {
+                  // I elect to waive VA benefits for the days I accrued
+                  // inactive duty training pay in order to retain my inactive
+                  // duty training pay.
                   type: 'boolean',
                   default: false
                 }
@@ -470,6 +474,7 @@ let schema = {
       }
     },
     applicationExpirationDate: {
+      // 365 days from created date (check how to handle this when submitting new form)
       type: 'string'
     },
     standardClaim: {
@@ -479,6 +484,7 @@ let schema = {
       default: false
     },
     claimantCertification: {
+      // VETERAN/SERVICE MEMBER/ALTERNATE SIGNER SIGNATURE
       type: 'boolean',
       default: false
     }
