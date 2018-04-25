@@ -382,6 +382,7 @@ let schema = {
         },
         confinements: {
           type: 'array',
+          maxItems: 100,
           items: {
             type: 'object',
             properties: {
