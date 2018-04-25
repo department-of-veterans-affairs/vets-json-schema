@@ -2491,9 +2491,6 @@
         }
       }
     },
-    "applicationExpirationDate": {
-      "type": "string"
-    },
     "standardClaim": {
       "type": "boolean",
       "default": false
