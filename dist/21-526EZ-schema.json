@@ -1627,8 +1627,7 @@
     },
     "phone": {
       "type": "string",
-      "minLength": 10,
-      "pattern": "^\\d{7}"
+      "pattern": "^\\d{10}$"
     },
     "servicePeriods": {
       "type": "array",
