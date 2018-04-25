@@ -4,6 +4,7 @@ import definitions from '../../common/definitions';
 // TODO: Verify why we don't validate accountNumber in common definition
 const uniqueBankFields = {
   type: 'object',
+  required: ['accountType', 'accountNumber', 'bankName', 'routingNumber'],
   properties: {
     accountType: {
       type: 'string',
@@ -63,6 +64,12 @@ const disabilitiesBaseDef = {
 // Extracted to enable easy adding of properties for forwardingAddress
 const addressDef = definitions.pciuAddress;
 
+// Some date ranges require both 'from' and 'to' dates
+const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateRange);
+
+// Other date ranges don't
+const dateRangeFromRequired = _.set('required', ['from'], definitions.dateRange);
+
 /**
  * Modifies the common serviceHistory definition to fit with 526 API reqs. Note
  * that this uses a dateRange whereas 526 requires begin and end dates - this
@@ -78,6 +85,7 @@ const servicePeriodsDef = ((definitions) => {
   serviceHistory.minItems = 1;
   serviceHistory.maxItems = 100;
   serviceHistory.items.required = ['serviceBranch', 'dateRange'];
+  serviceHistory.items.properties.dateRange.required = ['from', 'to'];
   delete serviceHistory.items.properties.dischargeType
 
   return serviceHistory;
@@ -153,7 +161,8 @@ let schema = {
     privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: definitions.date,
-    dateRange: _.set('required', ['from'], definitions.dateRange), 
+    dateRangeFromRequired,
+    dateRangeAllRequired,
     disabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -184,9 +193,18 @@ let schema = {
       }
     }
   },
+  required: [
+    'veteran',
+    'serviceInformation',
+    'disabilities',
+    'applicationExpirationDate',
+    'standardClaim',
+    'claimantCertification'
+  ],
   properties: {
     veteran: {
       type: 'object',
+      required: ['emailAddress', 'mailingAddress', 'primaryPhone'],
       properties: {
         emailAddress: {
           type: 'string',
@@ -207,19 +225,19 @@ let schema = {
         }, addressDef),
         homelessness: {
           type: 'object',
+          required: ['hasPointOfContact'],
           properties: {
             hasPointOfContact: {
               type: 'boolean',
-              // Is this standard to define the default value in the schema?
-              // Is our form library even set up to care about the default like this?
-              default: false // Explicitly set to false instead of undefined
+              default: false
             },
             pointOfContact: {
               type: 'object',
+              required: ['pointOfContactName', 'primaryPhone'],
               properties: {
                 pointOfContactName: {
                   type: 'string',
-                  maxLength: 100, // Why can this be so long but not the address parts?
+                  maxLength: 100,
                   pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
                 },
                 primaryPhone: {
@@ -236,6 +254,7 @@ let schema = {
       }
     },
     attachments: {
+      // Uploaded through a separate vets-api endpoint, not part of 526 submit
       type: 'array',
       items: {
         type: 'object',
@@ -258,12 +277,14 @@ let schema = {
     },
     militaryPayments: {
       type: 'object',
+      required: ['payments', 'receiveCompensationInLieuOfRetired'],
       properties: {
         payments: {
           type: 'array',
           maxItems: 100,
           items: {
             type: 'object',
+            required: ['payType', 'amount'],
             properties: {
               amount: {
                 type: 'number'
@@ -285,14 +306,6 @@ let schema = {
           type: 'boolean',
           default: false
         },
-        receivingInactiveDutyTrainingPay: {
-          type: 'boolean',
-          default: false
-        },
-        waveBenifitsToRecInactDutyTraiPay: {
-          type: 'boolean',
-          default: false
-        }
       }
     },
     directDeposit: {
@@ -300,15 +313,18 @@ let schema = {
     },
     serviceInformation: {
       type: 'object',
+      required: ['servicePeriods', 'servedInCombatZone'],
       properties: {
         servicePeriods: {
           $ref: '#/definitions/servicePeriods'
         },
         reservesNationalGuardService: {
           type: 'object',
+          required: ['obligationTermOfServiceDateRange', 'unitName', 'unitPhone', ],
           properties: {
             title10Activation: {
               type: 'object',
+              required: ['title10ActivationDate', 'anticipatedSeparationDate'],
               properties: {
                 title10ActivationDate: {
                   $ref: '$/definitions/date'
@@ -319,7 +335,7 @@ let schema = {
               }
             },
             obligationTermOfServiceDateRange: {
-              $ref: '$/definitions/dateRange'
+              $ref: '$/definitions/dateRangeAllRequired'
             },
             unitName: {
               type: 'string',
@@ -329,6 +345,16 @@ let schema = {
             unitPhone: {
               $ref: '#/definitions/phone'
             },
+            inactiveDutyTrainingPay: {
+              type: 'object',
+              required: ['waiveVABenefitsToRetainTrainingPay'],
+              properties: {
+                waiveVABenefitsToRetainTrainingPay: {
+                  type: 'boolean',
+                  default: false
+                }
+              }
+            }
           }
         },
         servedInCombatZone: {
@@ -356,7 +382,7 @@ let schema = {
             type: 'object',
             properties: {
               confinementDateRange: {
-                $ref: '#/definitions/dateRange'
+                $ref: '#/definitions/dateRangeAllRequired'
               },
               verifiedIndicator: {
                 type: 'boolean',
@@ -365,8 +391,7 @@ let schema = {
             }
           }
         }
-      },
-      required: ['servicePeriods', 'servedInCombatZone']
+      }
     },
     disabilities: {
       $ref: '#/definitions/disabilities'
@@ -384,7 +409,7 @@ let schema = {
             pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRange'
+            $ref: '#/definitions/dateRangeFromRequired'
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/vaTreatmentCenterAddress'
@@ -413,7 +438,7 @@ let schema = {
             pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRange'
+            $ref: '#/definitions/dateRangeFromRequired'
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/privateTreatmentCenterAddress'
@@ -425,7 +450,6 @@ let schema = {
         }
       }
     },
-    // Presumably, this should be an array...
     specialCircumstances: {
       type: 'array',
       maxItems: 100,
@@ -446,11 +470,22 @@ let schema = {
       }
     },
     noRapidProcessing: {
+      // Ancillary form, not part of 526 submit endpoint data
       type: 'boolean',
       default: false
     },
+    applicationExpirationDate: {
+      type: 'string'
+    },
+    standardClaim: {
+      type: 'boolean',
+      default: false
+    },
+    claimantCertification: {
+      type: 'boolean',
+      default: false
+    }
   },
-  required: ['veteran', 'disabilities', 'serviceInformation']
 };
 
 export default schema;

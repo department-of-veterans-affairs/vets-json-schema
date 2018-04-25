@@ -1472,13 +1472,19 @@
           "maxLength": 35,
           "pattern": "^([a-zA-Z0-9\\-'.,# ])+$"
         }
-      }
+      },
+      "required": [
+        "accountType",
+        "accountNumber",
+        "bankName",
+        "routingNumber"
+      ]
     },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
-    "dateRange": {
+    "dateRangeFromRequired": {
       "type": "object",
       "properties": {
         "from": {
@@ -1490,6 +1496,21 @@
       },
       "required": [
         "from"
+      ]
+    },
+    "dateRangeAllRequired": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "from",
+        "to"
       ]
     },
     "disabilities": {
@@ -1628,7 +1649,11 @@
             "type": "string"
           },
           "dateRange": {
-            "$ref": "#/definitions/dateRange"
+            "$ref": "#/definitions/dateRange",
+            "required": [
+              "from",
+              "to"
+            ]
           }
         },
         "required": [
@@ -1655,9 +1680,22 @@
       }
     }
   },
+  "required": [
+    "veteran",
+    "serviceInformation",
+    "disabilities",
+    "applicationExpirationDate",
+    "standardClaim",
+    "claimantCertification"
+  ],
   "properties": {
     "veteran": {
       "type": "object",
+      "required": [
+        "emailAddress",
+        "mailingAddress",
+        "primaryPhone"
+      ],
       "properties": {
         "emailAddress": {
           "type": "string",
@@ -2184,6 +2222,9 @@
         },
         "homelessness": {
           "type": "object",
+          "required": [
+            "hasPointOfContact"
+          ],
           "properties": {
             "hasPointOfContact": {
               "type": "boolean",
@@ -2191,6 +2232,10 @@
             },
             "pointOfContact": {
               "type": "object",
+              "required": [
+                "pointOfContactName",
+                "primaryPhone"
+              ],
               "properties": {
                 "pointOfContactName": {
                   "type": "string",
@@ -2232,12 +2277,20 @@
     },
     "militaryPayments": {
       "type": "object",
+      "required": [
+        "payments",
+        "receiveCompensationInLieuOfRetired"
+      ],
       "properties": {
         "payments": {
           "type": "array",
           "maxItems": 100,
           "items": {
             "type": "object",
+            "required": [
+              "payType",
+              "amount"
+            ],
             "properties": {
               "amount": {
                 "type": "number"
@@ -2258,14 +2311,6 @@
         "receiveCompensationInLieuOfRetired": {
           "type": "boolean",
           "default": false
-        },
-        "receivingInactiveDutyTrainingPay": {
-          "type": "boolean",
-          "default": false
-        },
-        "waveBenifitsToRecInactDutyTraiPay": {
-          "type": "boolean",
-          "default": false
         }
       }
     },
@@ -2274,15 +2319,28 @@
     },
     "serviceInformation": {
       "type": "object",
+      "required": [
+        "servicePeriods",
+        "servedInCombatZone"
+      ],
       "properties": {
         "servicePeriods": {
           "$ref": "#/definitions/servicePeriods"
         },
         "reservesNationalGuardService": {
           "type": "object",
+          "required": [
+            "obligationTermOfServiceDateRange",
+            "unitName",
+            "unitPhone"
+          ],
           "properties": {
             "title10Activation": {
               "type": "object",
+              "required": [
+                "title10ActivationDate",
+                "anticipatedSeparationDate"
+              ],
               "properties": {
                 "title10ActivationDate": {
                   "$ref": "$/definitions/date"
@@ -2293,7 +2351,7 @@
               }
             },
             "obligationTermOfServiceDateRange": {
-              "$ref": "$/definitions/dateRange"
+              "$ref": "$/definitions/dateRangeAllRequired"
             },
             "unitName": {
               "type": "string",
@@ -2302,6 +2360,18 @@
             },
             "unitPhone": {
               "$ref": "#/definitions/phone"
+            },
+            "inactiveDutyTrainingPay": {
+              "type": "object",
+              "required": [
+                "waiveVABenefitsToRetainTrainingPay"
+              ],
+              "properties": {
+                "waiveVABenefitsToRetainTrainingPay": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
             }
           }
         },
@@ -2330,7 +2400,7 @@
             "type": "object",
             "properties": {
               "confinementDateRange": {
-                "$ref": "#/definitions/dateRange"
+                "$ref": "#/definitions/dateRangeAllRequired"
               },
               "verifiedIndicator": {
                 "type": "boolean",
@@ -2339,11 +2409,7 @@
             }
           }
         }
-      },
-      "required": [
-        "servicePeriods",
-        "servedInCombatZone"
-      ]
+      }
     },
     "disabilities": {
       "$ref": "#/definitions/disabilities"
@@ -2364,7 +2430,7 @@
             "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           "treatmentDateRange": {
-            "$ref": "#/definitions/dateRange"
+            "$ref": "#/definitions/dateRangeFromRequired"
           },
           "treatmentCenterAddress": {
             "$ref": "#/definitions/vaTreatmentCenterAddress"
@@ -2393,7 +2459,7 @@
             "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           "treatmentDateRange": {
-            "$ref": "#/definitions/dateRange"
+            "$ref": "#/definitions/dateRangeFromRequired"
           },
           "treatmentCenterAddress": {
             "$ref": "#/definitions/privateTreatmentCenterAddress"
@@ -2427,11 +2493,17 @@
     "noRapidProcessing": {
       "type": "boolean",
       "default": false
+    },
+    "applicationExpirationDate": {
+      "type": "string"
+    },
+    "standardClaim": {
+      "type": "boolean",
+      "default": false
+    },
+    "claimantCertification": {
+      "type": "boolean",
+      "default": false
     }
-  },
-  "required": [
-    "veteran",
-    "disabilities",
-    "serviceInformation"
-  ]
+  }
 }
