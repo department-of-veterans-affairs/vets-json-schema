@@ -2490,10 +2490,6 @@
         }
       }
     },
-    "noRapidProcessing": {
-      "type": "boolean",
-      "default": false
-    },
     "applicationExpirationDate": {
       "type": "string"
     },

@@ -469,16 +469,12 @@ let schema = {
         }
       }
     },
-    StandardClaim: {
-      // I DO NOT want my claim considered for rapid processing under the FDC
-      // program because I plan to submit further evidence in support of my claim
-      type: 'boolean',
-      default: false
-    },
     applicationExpirationDate: {
       type: 'string'
     },
     standardClaim: {
+      // I DO NOT want my claim considered for rapid processing under the FDC
+      // program because I plan to submit further evidence in support of my claim
       type: 'boolean',
       default: false
     },
