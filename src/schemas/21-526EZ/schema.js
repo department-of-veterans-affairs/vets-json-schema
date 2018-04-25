@@ -482,6 +482,7 @@ let schema = {
     specialCircumstances: {
       type: 'array',
       maxItems: 100,
+      required: ['name', 'code', 'needed'],
       items: {
         type: 'object',
         properties: {
