@@ -450,35 +450,39 @@ let schema = {
         }
       }
     },
-    privateRecordReleases: {
-    // These records are sent through an ancillary form and are not directly
-    // submitted via 526. This ancillary submission process has no actual
-    // validations, but we thought keeping them here (especially for address)
-    // would enforce a baseline of data quality which would be in the
-    // submitter's best interest.
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['treatmentCenterName'],
-        properties: {
-          treatmentCenterName: {
-            type: 'string',
-            maxLength: 100,
-            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
-          },
-          treatmentDateRange: {
-            $ref: '#/definitions/dateRangeFromRequired'
-          },
-          treatmentCenterAddress: {
-            $ref: '#/definitions/privateTreatmentCenterAddress'
-          },
-          privateMedicalRecordsReleaseRestricted: {
-            type: 'boolean',
-            default: false
-          }
-        }
-      }
-    },
+    /**
+     * Private Medical Record Release Requests are not part of MVP due to
+     * uncertainty surrounding filling PDFs using form data.
+     */
+    // privateRecordReleases: {
+    // // These records are sent through an ancillary form and are not directly
+    // // submitted via 526. This ancillary submission process has no actual
+    // // validations, but we thought keeping them here (especially for address)
+    // // would enforce a baseline of data quality which would be in the
+    // // submitter's best interest.
+    //   type: 'array',
+    //   items: {
+    //     type: 'object',
+    //     required: ['treatmentCenterName'],
+    //     properties: {
+    //       treatmentCenterName: {
+    //         type: 'string',
+    //         maxLength: 100,
+    //         pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+    //       },
+    //       treatmentDateRange: {
+    //         $ref: '#/definitions/dateRangeFromRequired'
+    //       },
+    //       treatmentCenterAddress: {
+    //         $ref: '#/definitions/privateTreatmentCenterAddress'
+    //       },
+    //       privateMedicalRecordsReleaseRestricted: {
+    //         type: 'boolean',
+    //         default: false
+    //       }
+    //     }
+    //   }
+    // },
     specialCircumstances: {
       type: 'array',
       maxItems: 100,
