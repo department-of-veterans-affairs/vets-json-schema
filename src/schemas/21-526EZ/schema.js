@@ -27,7 +27,7 @@ const disabilitiesBaseDef = {
   maxItems: 100,
   items: {
     type: 'object',
-    required: ['diagnosticText', 'disabilityActionType', 'decisionCode', 'ratedDisabilityId'],
+    required: ['name', 'disabilityActionType'],
     properties: {
       name: {
         type: 'string',
@@ -48,10 +48,7 @@ const disabilitiesBaseDef = {
         type: 'string'
       },
       diagnosticCode: {
-        type: 'string'
-      },
-      specialIssueTypeCode: {
-        type: 'string'
+        type: 'number'
       },
       classificationCode: {
         type: 'string'
@@ -182,9 +179,28 @@ let schema = {
       maxItems: 100,
       items: {
         type: 'object',
+        required: ['code', 'name'],
         properties: {
           code: {
-            type: 'string'
+            type: 'string',
+            enum: [
+              'ALS',
+              'AOIV',
+              'AOOV',
+              'ASB',
+              'EHCL',
+              'GW',
+              'HEPC',
+              'MG',
+              'POW',
+              'RDN',
+              'SHAD',
+              'TRM',
+              '38USC1151',
+              'PTSD/1',
+              'PTSD/2',
+              'PTSD/4)'
+            ]
           },
           name: {
             type: 'string'
