@@ -422,23 +422,31 @@ let schema = {
       maxItems: 100,
       items: {
         type: 'object',
-        required: ['treatmentCenterName', 'treatmentCenterType'],
+        required: ['center', 'treatmentDateRange'],
         properties: {
-          treatmentCenterName: {
-            type: 'string',
-            maxLength: 100,
-            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+          center: {
+            type: 'object',
+            required: ['name', 'type', 'treatmentCenterAddress'],
+            properties: {
+              name: {
+                type: 'string',
+                maxLength: 100,
+                pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+              },
+              type: {
+                type: 'string',
+                enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
+              },
+              treatmentCenterAddress: {
+                // maps to 'TreatmentCenter.country/state/city' in Swagger
+                // Only country is required
+                $ref: '#/definitions/vaTreatmentCenterAddress'
+              },
+            }
           },
           treatmentDateRange: {
             $ref: '#/definitions/dateRangeFromRequired'
           },
-          treatmentCenterAddress: {
-            $ref: '#/definitions/vaTreatmentCenterAddress'
-          },
-          treatmentCenterType: {
-            type: 'string',
-            enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
-          }
         }
       }
     },
