@@ -14,10 +14,6 @@ const countryStateProperites = _.map(constants.states, (value, key) => ({
     state: {
       type: 'string',
       'enum': value.map(x => x.value)
-    },
-    zipcode: {
-      type: 'string',
-      maxLength: 50
     }
   }
 }));
@@ -34,10 +30,6 @@ countryStateProperites.push(
         type: 'string',
         maxLength: 51
       },
-      postalCode: {
-        type: 'string',
-        maxLength: 51
-      },
     },
   });
 
@@ -48,6 +40,20 @@ let schema = {
     address: {
       type: 'object',
       oneOf: countryStateProperites,
+      anyOf: [
+        {
+          properties: {
+            postalCode: {
+              type: 'string',
+              maxLength: 51
+            },
+            zipcode: {
+              type: 'string',
+              maxLength: 50
+            }
+          }
+        }
+      ],
       properties: {
         street: {
           type: 'string',
@@ -66,7 +72,7 @@ let schema = {
           type: 'string',
           minLength: 1,
           maxLength: 51
-        }
+        },
       },
       required: [
         'street',

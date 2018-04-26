@@ -30,10 +30,6 @@
                 "SK",
                 "YT"
               ]
-            },
-            "zipcode": {
-              "type": "string",
-              "maxLength": 50
             }
           }
         },
@@ -81,10 +77,6 @@
                 "yucatan",
                 "zacatecas"
               ]
-            },
-            "zipcode": {
-              "type": "string",
-              "maxLength": 50
             }
           }
         },
@@ -162,10 +154,6 @@
                 "WI",
                 "WY"
               ]
-            },
-            "zipcode": {
-              "type": "string",
-              "maxLength": 50
             }
           }
         },
@@ -184,10 +172,20 @@
             "provinceCode": {
               "type": "string",
               "maxLength": 51
-            },
+            }
+          }
+        }
+      ],
+      "anyOf": [
+        {
+          "properties": {
             "postalCode": {
               "type": "string",
               "maxLength": 51
+            },
+            "zipcode": {
+              "type": "string",
+              "maxLength": 50
             }
           }
         }
