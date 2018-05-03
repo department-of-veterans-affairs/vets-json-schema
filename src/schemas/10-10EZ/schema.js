@@ -40,20 +40,6 @@ let schema = {
     address: {
       type: 'object',
       oneOf: countryStateProperites,
-      anyOf: [
-        {
-          properties: {
-            postalCode: {
-              type: 'string',
-              maxLength: 51
-            },
-            zipcode: {
-              type: 'string',
-              maxLength: 50
-            }
-          }
-        }
-      ],
       properties: {
         street: {
           type: 'string',
@@ -73,6 +59,10 @@ let schema = {
           minLength: 1,
           maxLength: 51
         },
+        postalCode: {
+          type: 'string',
+          maxLength: 51
+        }
       },
       required: [
         'street',
