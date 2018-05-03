@@ -1470,15 +1470,21 @@
         "bankName": {
           "type": "string",
           "maxLength": 35,
-          "pattern": "([a-zA-Z0-9-'.,# ])+$"
+          "pattern": "^([a-zA-Z0-9\\-'.,# ])+$"
         }
-      }
+      },
+      "required": [
+        "accountType",
+        "accountNumber",
+        "bankName",
+        "routingNumber"
+      ]
     },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
-    "dateRange": {
+    "dateRangeFromRequired": {
       "type": "object",
       "properties": {
         "from": {
@@ -1492,22 +1498,35 @@
         "from"
       ]
     },
+    "dateRangeAllRequired": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ]
+    },
     "disabilities": {
       "type": "array",
       "maxItems": 100,
       "items": {
         "type": "object",
         "required": [
-          "diagnosticText",
-          "disabilityActionType",
-          "decisionCode",
-          "ratedDisabilityId"
+          "name",
+          "disabilityActionType"
         ],
         "properties": {
           "name": {
             "type": "string",
             "maxLength": 255,
-            "pattern": "([a-zA-Z0-9-'.,#]([a-zA-Z0-9-',.# ])?)+$"
+            "pattern": "^([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
           },
           "disabilityActionType": {
             "type": "string",
@@ -1531,9 +1550,6 @@
           "diagnosticCode": {
             "type": "number"
           },
-          "specialIssueTypeCode": {
-            "type": "string"
-          },
           "classificationCode": {
             "type": "string"
           },
@@ -1543,16 +1559,14 @@
             "items": {
               "type": "object",
               "required": [
-                "diagnosticText",
-                "disabilityActionType",
-                "decisionCode",
-                "ratedDisabilityId"
+                "name",
+                "disabilityActionType"
               ],
               "properties": {
                 "name": {
                   "type": "string",
                   "maxLength": 255,
-                  "pattern": "([a-zA-Z0-9-'.,#]([a-zA-Z0-9-',.# ])?)+$"
+                  "pattern": "^([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
                 },
                 "disabilityActionType": {
                   "type": "string",
@@ -1576,9 +1590,6 @@
                 "diagnosticCode": {
                   "type": "number"
                 },
-                "specialIssueTypeCode": {
-                  "type": "string"
-                },
                 "classificationCode": {
                   "type": "string"
                 }
@@ -1596,17 +1607,17 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30,
-          "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+          "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
         },
         "middle": {
           "type": "string",
-          "pattern": "([a-zA-Z0-9-'.#][a-zA-Z0-9-'.# ]?)*$"
+          "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
         },
         "last": {
           "type": "string",
           "minLength": 1,
           "maxLength": 30,
-          "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+          "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
         }
       },
       "required": [
@@ -1616,8 +1627,7 @@
     },
     "phone": {
       "type": "string",
-      "minLength": 10,
-      "pattern": "d{7}"
+      "pattern": "^\\d{10}$"
     },
     "servicePeriods": {
       "type": "array",
@@ -1628,7 +1638,11 @@
             "type": "string"
           },
           "dateRange": {
-            "$ref": "#/definitions/dateRange"
+            "$ref": "#/definitions/dateRange",
+            "required": [
+              "from",
+              "to"
+            ]
           }
         },
         "required": [
@@ -1644,9 +1658,31 @@
       "maxItems": 100,
       "items": {
         "type": "object",
+        "required": [
+          "code",
+          "name"
+        ],
         "properties": {
           "code": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "ALS",
+              "AOIV",
+              "AOOV",
+              "ASB",
+              "EHCL",
+              "GW",
+              "HEPC",
+              "MG",
+              "POW",
+              "RDN",
+              "SHAD",
+              "TRM",
+              "38USC1151",
+              "PTSD/1",
+              "PTSD/2",
+              "PTSD/4)"
+            ]
           },
           "name": {
             "type": "string"
@@ -1655,9 +1691,22 @@
       }
     }
   },
+  "required": [
+    "veteran",
+    "serviceInformation",
+    "disabilities",
+    "applicationExpirationDate",
+    "standardClaim",
+    "claimantCertification"
+  ],
   "properties": {
     "veteran": {
       "type": "object",
+      "required": [
+        "emailAddress",
+        "mailingAddress",
+        "primaryPhone"
+      ],
       "properties": {
         "emailAddress": {
           "type": "string",
@@ -2184,6 +2233,9 @@
         },
         "homelessness": {
           "type": "object",
+          "required": [
+            "hasPointOfContact"
+          ],
           "properties": {
             "hasPointOfContact": {
               "type": "boolean",
@@ -2191,11 +2243,15 @@
             },
             "pointOfContact": {
               "type": "object",
+              "required": [
+                "pointOfContactName",
+                "primaryPhone"
+              ],
               "properties": {
                 "pointOfContactName": {
                   "type": "string",
                   "maxLength": 100,
-                  "pattern": "([a-zA-Z0-9-'.#][a-zA-Z0-9-'.# ]?)*$"
+                  "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
                 },
                 "primaryPhone": {
                   "$ref": "#/definitions/phone"
@@ -2232,12 +2288,20 @@
     },
     "militaryPayments": {
       "type": "object",
+      "required": [
+        "payments",
+        "receiveCompensationInLieuOfRetired"
+      ],
       "properties": {
         "payments": {
           "type": "array",
           "maxItems": 100,
           "items": {
             "type": "object",
+            "required": [
+              "payType",
+              "amount"
+            ],
             "properties": {
               "amount": {
                 "type": "number"
@@ -2258,14 +2322,6 @@
         "receiveCompensationInLieuOfRetired": {
           "type": "boolean",
           "default": false
-        },
-        "receivingInactiveDutyTrainingPay": {
-          "type": "boolean",
-          "default": false
-        },
-        "waveBenifitsToRecInactDutyTraiPay": {
-          "type": "boolean",
-          "default": false
         }
       }
     },
@@ -2274,15 +2330,28 @@
     },
     "serviceInformation": {
       "type": "object",
+      "required": [
+        "servicePeriods",
+        "servedInCombatZone"
+      ],
       "properties": {
         "servicePeriods": {
           "$ref": "#/definitions/servicePeriods"
         },
         "reservesNationalGuardService": {
           "type": "object",
+          "required": [
+            "obligationTermOfServiceDateRange",
+            "unitName",
+            "unitPhone"
+          ],
           "properties": {
             "title10Activation": {
               "type": "object",
+              "required": [
+                "title10ActivationDate",
+                "anticipatedSeparationDate"
+              ],
               "properties": {
                 "title10ActivationDate": {
                   "$ref": "$/definitions/date"
@@ -2293,15 +2362,27 @@
               }
             },
             "obligationTermOfServiceDateRange": {
-              "$ref": "$/definitions/dateRange"
+              "$ref": "$/definitions/dateRangeAllRequired"
             },
             "unitName": {
               "type": "string",
               "maxLength": 256,
-              "pattern": "([a-zA-Z0-9-'.#][a-zA-Z0-9-'.# ]?)*$"
+              "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
             },
             "unitPhone": {
               "$ref": "#/definitions/phone"
+            },
+            "inactiveDutyTrainingPay": {
+              "type": "object",
+              "required": [
+                "waiveVABenefitsToRetainTrainingPay"
+              ],
+              "properties": {
+                "waiveVABenefitsToRetainTrainingPay": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
             }
           }
         },
@@ -2312,7 +2393,7 @@
         "separationLocationName": {
           "type": "string",
           "maxLength": 256,
-          "pattern": "([a-zA-Z0-9-'.#][a-zA-Z0-9-'.# ]?)*$"
+          "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
         },
         "separationLocationCode": {
           "type": "string"
@@ -2326,11 +2407,12 @@
         },
         "confinements": {
           "type": "array",
+          "maxItems": 100,
           "items": {
             "type": "object",
             "properties": {
               "confinementDateRange": {
-                "$ref": "#/definitions/dateRange"
+                "$ref": "#/definitions/dateRangeAllRequired"
               },
               "verifiedIndicator": {
                 "type": "boolean",
@@ -2339,11 +2421,7 @@
             }
           }
         }
-      },
-      "required": [
-        "servicePeriods",
-        "servedInCombatZone"
-      ]
+      }
     },
     "disabilities": {
       "$ref": "#/definitions/disabilities"
@@ -2361,10 +2439,10 @@
           "treatmentCenterName": {
             "type": "string",
             "maxLength": 100,
-            "pattern": "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+            "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           "treatmentDateRange": {
-            "$ref": "#/definitions/dateRange"
+            "$ref": "#/definitions/dateRangeFromRequired"
           },
           "treatmentCenterAddress": {
             "$ref": "#/definitions/vaTreatmentCenterAddress"
@@ -2390,10 +2468,10 @@
           "treatmentCenterName": {
             "type": "string",
             "maxLength": 100,
-            "pattern": "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+            "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           "treatmentDateRange": {
-            "$ref": "#/definitions/dateRange"
+            "$ref": "#/definitions/dateRangeFromRequired"
           },
           "treatmentCenterAddress": {
             "$ref": "#/definitions/privateTreatmentCenterAddress"
@@ -2408,6 +2486,11 @@
     "specialCircumstances": {
       "type": "array",
       "maxItems": 100,
+      "required": [
+        "name",
+        "code",
+        "needed"
+      ],
       "items": {
         "type": "object",
         "properties": {
@@ -2423,11 +2506,14 @@
           }
         }
       }
+    },
+    "standardClaim": {
+      "type": "boolean",
+      "default": false
+    },
+    "claimantCertification": {
+      "type": "boolean",
+      "default": false
     }
-  },
-  "required": [
-    "veteran",
-    "disabilities",
-    "serviceInformation"
-  ]
+  }
 }
