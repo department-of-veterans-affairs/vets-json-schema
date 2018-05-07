@@ -341,15 +341,15 @@ let schema = {
               required: ['title10ActivationDate', 'anticipatedSeparationDate'],
               properties: {
                 title10ActivationDate: {
-                  $ref: '$/definitions/date'
+                  $ref: '#/definitions/date'
                 },
                 anticipatedSeparationDate: {
-                  $ref: '$/definitions/date'
+                  $ref: '#/definitions/date'
                 },
               }
             },
             obligationTermOfServiceDateRange: {
-              $ref: '$/definitions/dateRangeAllRequired'
+              $ref: '#/definitions/dateRangeAllRequired'
             },
             unitName: {
               type: 'string',
