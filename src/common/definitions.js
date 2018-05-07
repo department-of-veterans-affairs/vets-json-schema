@@ -136,7 +136,7 @@ const pciuAddress = (() => {
     }
   }];
   
-  // NOTE: Validations from swagger except where noted
+  // NOTE: Validations copied from swagger except where noted
   return {
     type: 'object',
     oneOf: pciuCountryStateProperties,
@@ -149,29 +149,29 @@ const pciuAddress = (() => {
       addressLine1: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
+        pattern: "^([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       addressLine2: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
+        pattern: "^([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       addressLine3: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
+        pattern: "^([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
       },
       city: {
         type: 'string',
         maxLength: 35,
-        pattern: "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+        pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
       },
       state: {
         type: 'string',
         'enum': usaStates,
         enumNames: usaStatesLabels
       },
-      zip: {
+      zipCode: {
         type: 'string',
         pattern: '^\\d{5}(?:[-\\s]\\d{4})?$' // combines zipFirstFive + zipLastFour
       },
