@@ -176,20 +176,6 @@
           }
         }
       ],
-      "anyOf": [
-        {
-          "properties": {
-            "postalCode": {
-              "type": "string",
-              "maxLength": 51
-            },
-            "zipcode": {
-              "type": "string",
-              "maxLength": 50
-            }
-          }
-        }
-      ],
       "properties": {
         "street": {
           "type": "string",
@@ -207,6 +193,10 @@
         "city": {
           "type": "string",
           "minLength": 1,
+          "maxLength": 51
+        },
+        "postalCode": {
+          "type": "string",
           "maxLength": 51
         }
       },
