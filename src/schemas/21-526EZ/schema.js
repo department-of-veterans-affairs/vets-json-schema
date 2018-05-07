@@ -4,6 +4,7 @@ import definitions from '../../common/definitions';
 // TODO: Verify why we don't validate accountNumber in common definition
 const uniqueBankFields = {
   type: 'object',
+  required: ['accountType', 'accountNumber', 'bankName', 'routingNumber'],
   properties: {
     accountType: {
       type: 'string',
@@ -16,7 +17,7 @@ const uniqueBankFields = {
     bankName: {
       type: 'string',
       maxLength: 35,
-      pattern: "([a-zA-Z0-9\-'.,# ])+$"
+      pattern: "^([a-zA-Z0-9\\-'.,# ])+$"
     }
   }
 };
@@ -26,12 +27,12 @@ const disabilitiesBaseDef = {
   maxItems: 100,
   items: {
     type: 'object',
-    required: ['diagnosticText', 'disabilityActionType', 'decisionCode', 'ratedDisabilityId'],
+    required: ['name', 'disabilityActionType'],
     properties: {
       name: {
         type: 'string',
         maxLength: 255,
-        pattern: "([a-zA-Z0-9\-'.,#]([a-zA-Z0-9\-',.# ])?)+$"
+        pattern: "^([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
       },
       disabilityActionType: {
         type: 'string',
@@ -49,9 +50,6 @@ const disabilitiesBaseDef = {
       diagnosticCode: {
         type: 'number'
       },
-      specialIssueTypeCode: {
-        type: 'string'
-      },
       classificationCode: {
         type: 'string'
       }
@@ -62,6 +60,12 @@ const disabilitiesBaseDef = {
 
 // Extracted to enable easy adding of properties for forwardingAddress
 const addressDef = definitions.pciuAddress;
+
+// Some date ranges require both 'from' and 'to' dates
+const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateRange);
+
+// Other date ranges don't
+const dateRangeFromRequired = _.set('required', ['from'], definitions.dateRange);
 
 /**
  * Modifies the common serviceHistory definition to fit with 526 API reqs. Note
@@ -78,6 +82,7 @@ const servicePeriodsDef = ((definitions) => {
   serviceHistory.minItems = 1;
   serviceHistory.maxItems = 100;
   serviceHistory.items.required = ['serviceBranch', 'dateRange'];
+  serviceHistory.items.properties.dateRange.required = ['from', 'to'];
   delete serviceHistory.items.properties.dischargeType
 
   return serviceHistory;
@@ -96,10 +101,10 @@ const fullNameDef = ((definitions) => {
   delete fullNameClone.properties.suffix;
 
   // These patterns are taken straight from Swagger
-  const firstLastPattern = "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+  const firstLastPattern = "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
   fullNameClone.properties.first.pattern = firstLastPattern;
   fullNameClone.properties.last.pattern = firstLastPattern;
-  fullNameClone.properties.middle.pattern = "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$";
+  fullNameClone.properties.middle.pattern = "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
 
   return fullNameClone;
 })(definitions);
@@ -153,7 +158,8 @@ let schema = {
     privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: definitions.date,
-    dateRange: _.set('required', ['from'], definitions.dateRange), 
+    dateRangeFromRequired,
+    dateRangeAllRequired,
     disabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -163,19 +169,35 @@ let schema = {
       }
     }),
     fullName: fullNameDef,
-    // vets-api will split into separate area code & phone number fields
-    phone: Object.assign({}, definitions.phone, {
-      pattern: "\d{7}" // differs from Swagger, but agreement from EVSS to update
-    }),
+    phone: definitions.usaPhone,
     servicePeriods: servicePeriodsDef,
     specialIssues: {
       type: 'array',
       maxItems: 100,
       items: {
         type: 'object',
+        required: ['code', 'name'],
         properties: {
           code: {
-            type: 'string'
+            type: 'string',
+            enum: [
+              'ALS',
+              'AOIV',
+              'AOOV',
+              'ASB',
+              'EHCL',
+              'GW',
+              'HEPC',
+              'MG',
+              'POW',
+              'RDN',
+              'SHAD',
+              'TRM',
+              '38USC1151',
+              'PTSD/1',
+              'PTSD/2',
+              'PTSD/4)'
+            ]
           },
           name: {
             type: 'string'
@@ -184,9 +206,18 @@ let schema = {
       }
     }
   },
+  required: [
+    'veteran',
+    'serviceInformation',
+    'disabilities',
+    'applicationExpirationDate',
+    'standardClaim',
+    'claimantCertification'
+  ],
   properties: {
     veteran: {
       type: 'object',
+      required: ['emailAddress', 'mailingAddress', 'primaryPhone'],
       properties: {
         emailAddress: {
           type: 'string',
@@ -207,20 +238,20 @@ let schema = {
         }, addressDef),
         homelessness: {
           type: 'object',
+          required: ['hasPointOfContact'],
           properties: {
             hasPointOfContact: {
               type: 'boolean',
-              // Is this standard to define the default value in the schema?
-              // Is our form library even set up to care about the default like this?
-              default: false // Explicitly set to false instead of undefined
+              default: false
             },
             pointOfContact: {
               type: 'object',
+              required: ['pointOfContactName', 'primaryPhone'],
               properties: {
                 pointOfContactName: {
                   type: 'string',
-                  maxLength: 100, // Why can this be so long but not the address parts?
-                  pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
+                  maxLength: 100,
+                  pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
                 },
                 primaryPhone: {
                   $ref: '#/definitions/phone'
@@ -236,6 +267,7 @@ let schema = {
       }
     },
     attachments: {
+      // Uploaded through a separate vets-api endpoint, not part of 526 submit
       type: 'array',
       items: {
         type: 'object',
@@ -258,12 +290,14 @@ let schema = {
     },
     militaryPayments: {
       type: 'object',
+      required: ['payments', 'receiveCompensationInLieuOfRetired'],
       properties: {
         payments: {
           type: 'array',
           maxItems: 100,
           items: {
             type: 'object',
+            required: ['payType', 'amount'],
             properties: {
               amount: {
                 type: 'number'
@@ -282,17 +316,10 @@ let schema = {
           }
         },
         receiveCompensationInLieuOfRetired: {
+          // I want military retired pay instead of VA compensation
           type: 'boolean',
           default: false
         },
-        receivingInactiveDutyTrainingPay: {
-          type: 'boolean',
-          default: false
-        },
-        waveBenifitsToRecInactDutyTraiPay: {
-          type: 'boolean',
-          default: false
-        }
       }
     },
     directDeposit: {
@@ -300,15 +327,18 @@ let schema = {
     },
     serviceInformation: {
       type: 'object',
+      required: ['servicePeriods', 'servedInCombatZone'],
       properties: {
         servicePeriods: {
           $ref: '#/definitions/servicePeriods'
         },
         reservesNationalGuardService: {
           type: 'object',
+          required: ['obligationTermOfServiceDateRange', 'unitName', 'unitPhone', ],
           properties: {
             title10Activation: {
               type: 'object',
+              required: ['title10ActivationDate', 'anticipatedSeparationDate'],
               properties: {
                 title10ActivationDate: {
                   $ref: '$/definitions/date'
@@ -319,16 +349,29 @@ let schema = {
               }
             },
             obligationTermOfServiceDateRange: {
-              $ref: '$/definitions/dateRange'
+              $ref: '$/definitions/dateRangeAllRequired'
             },
             unitName: {
               type: 'string',
               maxLength: 256,
-              pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
+              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
             },
             unitPhone: {
               $ref: '#/definitions/phone'
             },
+            inactiveDutyTrainingPay: {
+              type: 'object',
+              required: ['waiveVABenefitsToRetainTrainingPay'],
+              properties: {
+                waiveVABenefitsToRetainTrainingPay: {
+                  // I elect to waive VA benefits for the days I accrued
+                  // inactive duty training pay in order to retain my inactive
+                  // duty training pay.
+                  type: 'boolean',
+                  default: false
+                }
+              }
+            }
           }
         },
         servedInCombatZone: {
@@ -338,7 +381,7 @@ let schema = {
         separationLocationName: {
           type: 'string',
           maxLength: 256,
-          pattern: "([a-zA-Z0-9\-'.#][a-zA-Z0-9\-'.# ]?)*$"
+          pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
         },
         separationLocationCode: {
           type: 'string'
@@ -352,11 +395,12 @@ let schema = {
         },
         confinements: {
           type: 'array',
+          maxItems: 100,
           items: {
             type: 'object',
             properties: {
               confinementDateRange: {
-                $ref: '#/definitions/dateRange'
+                $ref: '#/definitions/dateRangeAllRequired'
               },
               verifiedIndicator: {
                 type: 'boolean',
@@ -365,8 +409,7 @@ let schema = {
             }
           }
         }
-      },
-      required: ['servicePeriods', 'servedInCombatZone']
+      }
     },
     disabilities: {
       $ref: '#/definitions/disabilities'
@@ -381,10 +424,10 @@ let schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "([a-zA-Z0-9\-'.#]([a-zA-Z0-9\-'.# ])?)+$"
+            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRange'
+            $ref: '#/definitions/dateRangeFromRequired'
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/vaTreatmentCenterAddress'
@@ -410,10 +453,10 @@ let schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRange'
+            $ref: '#/definitions/dateRangeFromRequired'
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/privateTreatmentCenterAddress'
@@ -425,10 +468,10 @@ let schema = {
         }
       }
     },
-    // Presumably, this should be an array...
     specialCircumstances: {
       type: 'array',
       maxItems: 100,
+      required: ['name', 'code', 'needed'],
       items: {
         type: 'object',
         properties: {
@@ -444,9 +487,19 @@ let schema = {
           }
         }
       }
+    },
+    standardClaim: {
+      // I DO NOT want my claim considered for rapid processing under the FDC
+      // program because I plan to submit further evidence in support of my claim
+      type: 'boolean',
+      default: false
+    },
+    claimantCertification: {
+      // VETERAN/SERVICE MEMBER/ALTERNATE SIGNER SIGNATURE
+      type: 'boolean',
+      default: false
     }
   },
-  required: ['veteran', 'disabilities', 'serviceInformation']
 };
 
 export default schema;
