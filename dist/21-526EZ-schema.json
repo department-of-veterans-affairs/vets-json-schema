@@ -481,7 +481,7 @@
         },
         "zipCode": {
           "type": "string",
-          "pattern": "^\\d{5}(?:[-\\s]\\d{4})?$"
+          "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
         },
         "militaryPostOfficeTypeCode": {
           "type": "string",
@@ -1444,7 +1444,7 @@
         },
         "zipCode": {
           "type": "string",
-          "pattern": "^\\d{5}(?:[-\\s]\\d{4})?$"
+          "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
         }
       }
     },
@@ -2211,7 +2211,7 @@
             },
             "zipCode": {
               "type": "string",
-              "pattern": "^\\d{5}(?:[-\\s]\\d{4})?$"
+              "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
             },
             "militaryPostOfficeTypeCode": {
               "type": "string",

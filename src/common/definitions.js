@@ -173,7 +173,7 @@ const pciuAddress = (() => {
       },
       zipCode: {
         type: 'string',
-        pattern: '^\\d{5}(?:[-\\s]\\d{4})?$' // combines zipFirstFive + zipLastFour
+        pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$' // combines zipFirstFive + zipLastFour
       },
       militaryPostOfficeTypeCode: {
         type: 'string',
