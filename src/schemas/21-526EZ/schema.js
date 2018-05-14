@@ -142,7 +142,7 @@ const privateTreatmentCenterAddressDef = (({ pciuAddress }) => {
     oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
     required,
     properties: _.pick(
-      ['country', 'addressLine1', 'addressLine2', 'city', 'state', 'zip'],
+      ['country', 'addressLine1', 'addressLine2', 'city', 'state', 'zipCode'],
       properties
     )
   });
@@ -158,6 +158,7 @@ let schema = {
     privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: definitions.date,
+    dateRange: definitions.dateRange,
     dateRangeFromRequired,
     dateRangeAllRequired,
     disabilities: _.merge(disabilitiesBaseDef, {
