@@ -1640,30 +1640,6 @@
       "type": "string",
       "pattern": "^\\d{10}$"
     },
-    "servicePeriods": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "serviceBranch": {
-            "type": "string"
-          },
-          "dateRange": {
-            "$ref": "#/definitions/dateRange",
-            "required": [
-              "from",
-              "to"
-            ]
-          }
-        },
-        "required": [
-          "serviceBranch",
-          "dateRange"
-        ]
-      },
-      "minItems": 1,
-      "maxItems": 100
-    },
     "specialIssues": {
       "type": "array",
       "maxItems": 100,
@@ -2347,7 +2323,34 @@
       ],
       "properties": {
         "servicePeriods": {
-          "$ref": "#/definitions/servicePeriods"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "serviceBranch": {
+                "type": "string",
+                "enum": [
+                  "Air Force",
+                  "Air Force Reserves",
+                  "Army",
+                  "Army Reserves",
+                  "Coast Guard",
+                  "Coast Guard Reserves",
+                  "Marine Corp",
+                  "Marine Corps Reserves",
+                  "Navy",
+                  "Navy Reserves",
+                  "NOAA",
+                  "USPHS",
+                  "Army National Guard",
+                  "Air National Guard"
+                ]
+              },
+              "dateRange": {
+                "$ref": "#/definitions/dateRangeAllRequired"
+              }
+            }
+          }
         },
         "reservesNationalGuardService": {
           "type": "object",
