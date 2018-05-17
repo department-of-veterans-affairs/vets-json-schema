@@ -318,18 +318,18 @@ let schema = {
                 enum: [
                   'Air Force',
                   'Air Force Reserve',
+                  'Air National Guard',
                   'Army',
+                  'Army National Guard',
                   'Army Reserve',
                   'Coast Guard',
                   'Coast Guard Reserve',
                   'Marine Corps',
                   'Marine Corps Reserve',
+                  'National Oceanic and Atmospheric Administration',
                   'Navy',
                   'Navy Reserve',
-                  'NOAA',
-                  'USPHS',
-                  'Army National Guard',
-                  'Air National Guard'
+                  'Public Health Service'
                 ]
               },
               dateRange: {
