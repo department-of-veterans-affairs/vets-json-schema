@@ -79,6 +79,17 @@ describe('healthcare-application json schema', () => {
     it('doesnt allow 1 letter last names', () => {
       expect(fullNameValidation({ first: 'foo', last: 'b' })).to.be.false;
     });
+
+    it('doesn\'t allow names with only spaces', () => {
+      expect(fullNameValidation({ first: '   ', last: '  ' })).to.be.false;
+    });
+  });
+
+  describe('address', () => {
+    const addressValidation = definitionValidator('address');
+    it('doesn\'t allow street, cities, or provinces with only spaces', () => {
+      expect(addressValidation({ street: '   ', city: '    ', country: '     ', provinceCode: '     ' })).to.be.false;
+    });
   });
 
   describe('provider', () => {

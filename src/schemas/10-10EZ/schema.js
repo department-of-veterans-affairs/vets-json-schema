@@ -28,6 +28,7 @@ countryStateProperites.push(
       },
       provinceCode: {
         type: 'string',
+        pattern: '^.*\\S.*',
         maxLength: 51
       },
     },
@@ -43,6 +44,8 @@ let schema = {
       properties: {
         street: {
           type: 'string',
+          pattern: '^.*\\S.*',
+          minLength: 2,
           minLength: 1,
           maxLength: 50
         },
@@ -56,6 +59,8 @@ let schema = {
         },
         city: {
           type: 'string',
+          pattern: '^.*\\S.*',
+          minLength: 2,
           minLength: 1,
           maxLength: 51
         },
@@ -124,6 +129,7 @@ let schema = {
       properties: {
         first: {
           type: 'string',
+          pattern: '^.*\\S.*',
           minLength: 1,
           maxLength: 30
         },
@@ -132,6 +138,7 @@ let schema = {
         },
         last: {
           type: 'string',
+          pattern: '^.*\\S.*',
           minLength: 2,
           maxLength: 30
         },
