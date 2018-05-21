@@ -310,8 +310,11 @@ let schema = {
       properties: {
         servicePeriods: {
           type: 'array',
+          minItems: 1,
+          maxItems: 100,
           items: {
             type: 'object',
+            required: ['serviceBranch', 'dateRange'],
             properties: {
               serviceBranch: {
                 type: 'string',
