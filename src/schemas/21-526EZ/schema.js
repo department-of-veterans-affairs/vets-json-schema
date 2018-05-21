@@ -329,7 +329,7 @@ let schema = {
                   'Coast Guard Reserve',
                   'Marine Corps',
                   'Marine Corps Reserve',
-                  'National Oceanic and Atmospheric Administration',
+                  'NOAA',
                   'Navy',
                   'Navy Reserve',
                   'Public Health Service'
