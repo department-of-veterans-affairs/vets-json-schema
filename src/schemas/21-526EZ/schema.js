@@ -68,27 +68,6 @@ const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateR
 const dateRangeFromRequired = _.set('required', ['from'], definitions.dateRange);
 
 /**
- * Modifies the common serviceHistory definition to fit with 526 API reqs. Note
- * that this uses a dateRange whereas 526 requires begin and end dates - this
- * transformation will be handled by vets-api. This object is deeply nested;
- * attempts at transforming it non-mutatively were convoluted.
- * @typedef {object} definitions
- * @property {object} serviceHistory
- * @param {definitions} definitions the common schema definitions file
- * @returns {object} the servicePeriods schema object
- */
-const servicePeriodsDef = ((definitions) => {
-  const serviceHistory = _.cloneDeep(definitions.serviceHistory);
-  serviceHistory.minItems = 1;
-  serviceHistory.maxItems = 100;
-  serviceHistory.items.required = ['serviceBranch', 'dateRange'];
-  serviceHistory.items.properties.dateRange.required = ['from', 'to'];
-  delete serviceHistory.items.properties.dischargeType
-
-  return serviceHistory;
-})(definitions);
-
-/**
  * Transforms common fullName definition by adding regex validations and
  * removing suffix property.
  * @typedef {object} definitions
@@ -171,7 +150,6 @@ let schema = {
     }),
     fullName: fullNameDef,
     phone: definitions.usaPhone,
-    servicePeriods: servicePeriodsDef,
     specialIssues: {
       type: 'array',
       maxItems: 100,
@@ -331,7 +309,37 @@ let schema = {
       required: ['servicePeriods', 'servedInCombatZone'],
       properties: {
         servicePeriods: {
-          $ref: '#/definitions/servicePeriods'
+          type: 'array',
+          minItems: 1,
+          maxItems: 100,
+          items: {
+            type: 'object',
+            required: ['serviceBranch', 'dateRange'],
+            properties: {
+              serviceBranch: {
+                type: 'string',
+                enum: [
+                  'Air Force',
+                  'Air Force Reserve',
+                  'Air National Guard',
+                  'Army',
+                  'Army National Guard',
+                  'Army Reserve',
+                  'Coast Guard',
+                  'Coast Guard Reserve',
+                  'Marine Corps',
+                  'Marine Corps Reserve',
+                  'NOAA',
+                  'Navy',
+                  'Navy Reserve',
+                  'Public Health Service'
+                ]
+              },
+              dateRange: {
+                $ref: '#/definitions/dateRangeAllRequired'
+              }
+            }
+          }
         },
         reservesNationalGuardService: {
           type: 'object',
