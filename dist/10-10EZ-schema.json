@@ -171,6 +171,7 @@
             },
             "provinceCode": {
               "type": "string",
+              "pattern": "^.*\\S.*",
               "maxLength": 51
             }
           }
@@ -179,6 +180,7 @@
       "properties": {
         "street": {
           "type": "string",
+          "pattern": "^.*\\S.*",
           "minLength": 1,
           "maxLength": 50
         },
@@ -192,6 +194,7 @@
         },
         "city": {
           "type": "string",
+          "pattern": "^.*\\S.*",
           "minLength": 1,
           "maxLength": 51
         },
@@ -269,6 +272,7 @@
       "properties": {
         "first": {
           "type": "string",
+          "pattern": "^.*\\S.*",
           "minLength": 1,
           "maxLength": 30
         },
@@ -277,6 +281,7 @@
         },
         "last": {
           "type": "string",
+          "pattern": "^.*\\S.*",
           "minLength": 2,
           "maxLength": 30
         },
