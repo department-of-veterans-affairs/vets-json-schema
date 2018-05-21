@@ -45,7 +45,6 @@ let schema = {
         street: {
           type: 'string',
           pattern: '^.*\\S.*',
-          minLength: 2,
           minLength: 1,
           maxLength: 50
         },
@@ -60,7 +59,6 @@ let schema = {
         city: {
           type: 'string',
           pattern: '^.*\\S.*',
-          minLength: 2,
           minLength: 1,
           maxLength: 51
         },
