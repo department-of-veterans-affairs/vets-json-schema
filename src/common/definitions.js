@@ -29,6 +29,18 @@ const fullName = {
   ]
 };
 
+const usaPostalCode = {
+  type: 'string',
+  anyOf: [
+    {
+      pattern: '^\\d{5}$'
+    },
+    {
+      pattern: '^\\d{5}-\\d{4}$'
+    }
+  ]
+};
+
 // NOTE: PCIU address has its own, separate definition
 const address = (() => {
   const countries = constants.countries.map(object => object.value);
@@ -614,6 +626,7 @@ export default {
   files,
   requiredServiceHistory,
   serviceHistory,
+  usaPostalCode,
   addressWithRequiredZip,
   year
 };

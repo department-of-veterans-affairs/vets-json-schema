@@ -162,6 +162,11 @@ describe('schema definitions', () => {
     ]
   });
 
+  testValidAndInvalidDefinitions('usaPostalCode', {
+    valid: ['12345', '12345-1234'],
+    invalid: ['1234', '12345 1234', '12345-123']
+  });
+
   testValidAndInvalidDefinitions('educationType', {
     valid: ['college', 'correspondence'],
     invalid: ['foo']
