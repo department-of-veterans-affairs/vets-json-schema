@@ -103,10 +103,19 @@ const address = (() => {
   };
 })();
 
+let centralMailAddress = _.cloneDeep(address);
+for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
+  let properties = centralMailAddress.oneOf[i].properties;
+
+  if (properties.country.enum && properties.country.enum[0] === 'USA') {
+    properties.postalCode = usaPostalCode;
+  }
+};
+
 let addressWithRequiredZip = _.cloneDeep(address);
 addressWithRequiredZip.required = ['postalCode'];
 
-/** 
+/**
  * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
  * common address definition. Note that this duplicates some code with 'address' common def, but want to
  * ensure we're not tied to that so duplicating here will make things easy to delete if our approach changes.
@@ -147,7 +156,7 @@ const pciuAddress = (() => {
       }
     }
   }];
-  
+
   // NOTE: Validations copied from swagger except where noted
   return {
     type: 'object',
@@ -628,5 +637,6 @@ export default {
   serviceHistory,
   usaPostalCode,
   addressWithRequiredZip,
+  centralMailAddress,
   year
 };
