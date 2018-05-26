@@ -81,12 +81,19 @@ export default {
           country: 'USA'
         }
       ],
-      invalid: [{
-        street: '123 a rd',
-        city: 'abc',
-        postalCode: '12345 1245',
-        country: 'USA'
-      }]
+      invalid: [
+        {
+          street: '123 a rd',
+          city: 'abc',
+          postalCode: '12345 1245',
+          country: 'USA'
+        },
+        {
+          street: '123 a rd',
+          city: 'abc',
+          country: 'USA'
+        },
+      ]
     }
   },
   address: {
