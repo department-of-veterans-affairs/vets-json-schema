@@ -111,7 +111,7 @@ for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
   if (properties.country.enum && properties.country.enum[0] === 'USA') {
     properties.postalCode = usaPostalCode;
   }
-};
+}
 
 /**
  * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
