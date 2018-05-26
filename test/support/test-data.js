@@ -81,6 +81,30 @@ export default {
       ]
     }
   },
+  centralMailAddress: {
+    data: {
+      valid: [
+        {
+          street: '123 a rd',
+          city: 'abc',
+          postalCode: '12345-1234',
+          country: 'USA'
+        },
+        {
+          street: '123 a rd',
+          city: 'abc',
+          postalCode: '12345',
+          country: 'USA'
+        }
+      ],
+      invalid: [{
+        street: '123 a rd',
+        city: 'abc',
+        postalCode: '12345 1245',
+        country: 'USA'
+      }]
+    }
+  },
   address: {
     fields: ['veteranAddress'],
     data: {

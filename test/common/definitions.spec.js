@@ -281,6 +281,7 @@ describe('schema definitions', () => {
     'marriages',
     'serviceHistory',
     'dischargeType',
+    'centralMailAddress',
     'files'
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
