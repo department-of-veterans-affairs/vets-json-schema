@@ -104,6 +104,7 @@ const address = (() => {
 })();
 
 let centralMailAddress = _.cloneDeep(address);
+centralMailAddress.required = ['postalCode'];
 for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
   let properties = centralMailAddress.oneOf[i].properties;
 
@@ -111,9 +112,6 @@ for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
     properties.postalCode = usaPostalCode;
   }
 };
-
-let addressWithRequiredZip = _.cloneDeep(address);
-addressWithRequiredZip.required = ['postalCode'];
 
 /**
  * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
@@ -636,7 +634,6 @@ export default {
   requiredServiceHistory,
   serviceHistory,
   usaPostalCode,
-  addressWithRequiredZip,
   centralMailAddress,
   year
 };

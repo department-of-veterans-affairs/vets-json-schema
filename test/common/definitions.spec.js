@@ -53,21 +53,6 @@ describe('schema definitions', () => {
     ]
   });
 
-  testValidAndInvalidDefinitions('addressWithRequiredZip', {
-    valid: [
-      {
-        street: '123 a rd',
-        city: 'abc',
-        state: 'VA',
-        country: 'USA',
-        postalCode: '12345'
-      }
-    ],
-    invalid: [
-      fixtures.address
-    ]
-  });
-
   testValidAndInvalidDefinitions('phone', {
     valid: ['5555555555', '555-555-5555', '555 555 5555'],
     invalid: ['1234']
