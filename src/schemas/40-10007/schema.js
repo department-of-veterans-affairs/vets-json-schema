@@ -109,9 +109,9 @@ definitions =  _.pick(definitions, [
 ]);
 
 definitions.address.required = ['street'];
-definitions.address.properties.street.maxLength = 35;
-definitions.address.properties.street2.maxLength = 35;
-definitions.address.properties.city.maxLength = 30;
+definitions.address.properties.street.maxLength = 20;
+definitions.address.properties.street2.maxLength = 20;
+definitions.address.properties.city.maxLength = 20;
 
 definitions.date = {
   type: 'string',
