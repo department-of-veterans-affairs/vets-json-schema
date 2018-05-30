@@ -238,7 +238,7 @@
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
     },
-    "addressWithRequiredZip": {
+    "centralMailAddress": {
       "type": "object",
       "oneOf": [
         {
@@ -401,7 +401,14 @@
             },
             "postalCode": {
               "type": "string",
-              "maxLength": 10
+              "anyOf": [
+                {
+                  "pattern": "^\\d{5}$"
+                },
+                {
+                  "pattern": "^\\d{5}-\\d{4}$"
+                }
+              ]
             }
           }
         },
@@ -950,7 +957,7 @@
       "$ref": "#/definitions/vaFileNumber"
     },
     "veteranAddress": {
-      "$ref": "#/definitions/addressWithRequiredZip"
+      "$ref": "#/definitions/centralMailAddress"
     },
     "dayPhone": {
       "$ref": "#/definitions/usaPhone"

@@ -53,21 +53,6 @@ describe('schema definitions', () => {
     ]
   });
 
-  testValidAndInvalidDefinitions('addressWithRequiredZip', {
-    valid: [
-      {
-        street: '123 a rd',
-        city: 'abc',
-        state: 'VA',
-        country: 'USA',
-        postalCode: '12345'
-      }
-    ],
-    invalid: [
-      fixtures.address
-    ]
-  });
-
   testValidAndInvalidDefinitions('phone', {
     valid: ['5555555555', '555-555-5555', '555 555 5555'],
     invalid: ['1234']
@@ -160,6 +145,11 @@ describe('schema definitions', () => {
       '2000-00-01',
       '2000-01-9'
     ]
+  });
+
+  testValidAndInvalidDefinitions('usaPostalCode', {
+    valid: ['12345', '12345-1234'],
+    invalid: ['1234', '12345 1234', '12345-123']
   });
 
   testValidAndInvalidDefinitions('educationType', {
@@ -276,6 +266,7 @@ describe('schema definitions', () => {
     'marriages',
     'serviceHistory',
     'dischargeType',
+    'centralMailAddress',
     'files'
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);

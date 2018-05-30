@@ -65,19 +65,34 @@ export default {
       }]
     }
   },
-  addressWithRequiredZip: {
+  centralMailAddress: {
     data: {
       valid: [
         {
           street: '123 a rd',
           city: 'abc',
-          state: 'VA',
-          country: 'USA',
-          postalCode: '12345'
+          postalCode: '12345-1234',
+          country: 'USA'
+        },
+        {
+          street: '123 a rd',
+          city: 'abc',
+          postalCode: '12345',
+          country: 'USA'
         }
       ],
       invalid: [
-        fixtures.address
+        {
+          street: '123 a rd',
+          city: 'abc',
+          postalCode: '12345 1245',
+          country: 'USA'
+        },
+        {
+          street: '123 a rd',
+          city: 'abc',
+          country: 'USA'
+        },
       ]
     }
   },

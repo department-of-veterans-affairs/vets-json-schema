@@ -1241,7 +1241,18 @@
       }
     }
   },
-  "addressWithRequiredZip": {
+  "usaPostalCode": {
+    "type": "string",
+    "anyOf": [
+      {
+        "pattern": "^\\d{5}$"
+      },
+      {
+        "pattern": "^\\d{5}-\\d{4}$"
+      }
+    ]
+  },
+  "centralMailAddress": {
     "type": "object",
     "oneOf": [
       {
@@ -1404,7 +1415,14 @@
           },
           "postalCode": {
             "type": "string",
-            "maxLength": 10
+            "anyOf": [
+              {
+                "pattern": "^\\d{5}$"
+              },
+              {
+                "pattern": "^\\d{5}-\\d{4}$"
+              }
+            ]
           }
         }
       },

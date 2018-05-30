@@ -147,7 +147,7 @@ let schema = {
 
 [
   ['privacyAgreementAccepted'],
-  ['addressWithRequiredZip', 'claimantAddress'],
+  ['centralMailAddress', 'claimantAddress'],
   ['usaPhone', 'claimantPhone'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
