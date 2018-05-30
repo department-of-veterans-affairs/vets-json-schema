@@ -26,7 +26,7 @@ describe('21-530 schema', () => {
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
 
-  sharedTests.runTest('addressWithRequiredZip', ['claimantAddress']);
+  sharedTests.runTest('centralMailAddress', ['claimantAddress']);
 
   sharedTests.runTest('email', ['claimantEmail']);
 
