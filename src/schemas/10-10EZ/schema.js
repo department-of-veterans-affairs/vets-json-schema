@@ -27,11 +27,10 @@ countryStateProperites.push(
           'enum': countriesWithAnyState
         }
       },
-      provinceCode: {
+      provinceCode: Object.assign({
         type: 'string',
-        pattern: '^.*\\S.*',
         maxLength: 51
-      },
+      }, definitions.rejectOnlyWhitespace),
     },
   });
 
@@ -43,12 +42,11 @@ let schema = {
       type: 'object',
       oneOf: countryStateProperites,
       properties: {
-        street: {
+        street: Object.assign({
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 1,
           maxLength: 50
-        },
+        }, definitions.rejectOnlyWhitespace),
         street2: {
           type: 'string',
           maxLength: 50
@@ -57,12 +55,11 @@ let schema = {
           type: 'string',
           maxLength: 50
         },
-        city: {
+        city: Object.assign({
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 1,
           maxLength: 51
-        },
+        }, definitions.rejectOnlyWhitespace),
         postalCode: {
           type: 'string',
           maxLength: 51
@@ -126,21 +123,19 @@ let schema = {
     fullName: {
       type: 'object',
       properties: {
-        first: {
+        first: Object.assign({
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 1,
           maxLength: 30
-        },
+        }, definitions.rejectOnlyWhitespace),
         middle: {
           type: 'string'
         },
-        last: {
+        last: Object.assign({
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 2,
           maxLength: 30
-        },
+        }, definitions.rejectOnlyWhitespace),
         suffix: {
           type: 'string',
           'enum': constants.suffixes
