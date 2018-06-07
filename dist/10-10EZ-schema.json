@@ -323,11 +323,13 @@
         },
         "insurancePolicyNumber": {
           "type": "string",
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "^.*\\S.*"
         },
         "insuranceGroupCode": {
           "type": "string",
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "^.*\\S.*"
         }
       },
       "anyOf": [

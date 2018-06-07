@@ -1,6 +1,7 @@
 import constants from '../../common/constants';
 import _ from 'lodash';
 import schemaHelpers from '../../common/schema-helpers';
+import definitions from '../../common/definitions';
 
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
 const countries = constants.countries.map(object => object.value);
@@ -170,14 +171,14 @@ let schema = {
           type: 'string',
           maxLength: 50
         },
-        insurancePolicyNumber: {
+        insurancePolicyNumber: Object.assign({
           type: 'string',
           maxLength: 30
-        },
-        insuranceGroupCode: {
+        }, definitions.rejectOnlyWhitespace),
+        insuranceGroupCode: Object.assign({
           type: 'string',
           maxLength: 30
-        },
+        }, definitions.rejectOnlyWhitespace),
       },
       anyOf: [
         {

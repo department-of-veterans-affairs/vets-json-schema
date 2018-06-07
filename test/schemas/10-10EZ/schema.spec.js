@@ -121,6 +121,11 @@ describe('healthcare-application json schema', () => {
       expect(providerValidation({ insuranceGroupCode: '123' })).to.be.true;
       expect(providerValidation({})).to.be.false;
     });
+
+    it('doesnt allow only spaces for insurancePolicyNumber or insuranceGroupCode', () => {
+      expect(providerValidation({ insuranceGroupCode: ' ' })).to.be.false;
+      expect(providerValidation({ insurancePolicyNumber: ' ' })).to.be.false;
+    });
   });
 
   schemaTestHelper.testValidAndInvalid('email', {
