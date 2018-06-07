@@ -329,7 +329,19 @@
           "type": "string",
           "maxLength": 30
         }
-      }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "insurancePolicyNumber"
+          ]
+        },
+        {
+          "required": [
+            "insuranceGroupCode"
+          ]
+        }
+      ]
     },
     "ssn": {
       "oneOf": [

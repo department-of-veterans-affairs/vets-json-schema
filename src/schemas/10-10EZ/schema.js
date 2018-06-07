@@ -179,6 +179,18 @@ let schema = {
           maxLength: 30
         },
       },
+      anyOf: [
+        {
+          "required": [
+            "insurancePolicyNumber"
+          ]
+        },
+        {
+          "required": [
+            "insuranceGroupCode"
+          ]
+        }
+      ]
     },
     ssn: {
       oneOf: [
