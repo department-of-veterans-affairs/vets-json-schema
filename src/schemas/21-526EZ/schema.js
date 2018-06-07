@@ -221,20 +221,19 @@ let schema = {
         }, addressDef),
         homelessness: {
           type: 'object',
-          required: ['hasPointOfContact'],
+          required: ['isHomeless'],
           properties: {
-            hasPointOfContact: {
-              type: 'boolean',
-              default: false
+            isHomeless: {
+              type: 'boolean'
             },
             pointOfContact: {
               type: 'object',
-              required: ['pointOfContactName', 'primaryPhone'],
               properties: {
                 pointOfContactName: {
                   type: 'string',
+                  minLength: 1,
                   maxLength: 100,
-                  pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+                  pattern: '^([a-zA-Z0-9-/]+( ?))*$'
                 },
                 primaryPhone: {
                   $ref: '#/definitions/phone'
