@@ -115,6 +115,12 @@ describe('healthcare-application json schema', () => {
         expect(providerValidation(Object.assign({}, policyNumber, { [providerField]: stringGenerate(providerFieldMaxLength + 1) }))).to.be.false;
       });
     });
+
+    it('requires policy number or group code', () => {
+      expect(providerValidation({ insurancePolicyNumber: '123' })).to.be.true;
+      expect(providerValidation({ insuranceGroupCode: '123' })).to.be.true;
+      expect(providerValidation({})).to.be.false;
+    });
   });
 
   schemaTestHelper.testValidAndInvalid('email', {
