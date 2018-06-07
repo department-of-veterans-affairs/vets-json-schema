@@ -105,7 +105,7 @@ describe('healthcare-application json schema', () => {
       const providerFieldMaxLength = providerFieldData[1];
       const policyNumber = {
         insurancePolicyNumber: '123'
-      }
+      };
 
       it(`allows ${providerField} with less than ${providerFieldMaxLength} chars`, () => {
         expect(providerValidation(Object.assign({}, policyNumber, { [providerField]: stringGenerate(providerFieldMaxLength) }))).to.be.true;
