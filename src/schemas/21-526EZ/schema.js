@@ -1,27 +1,6 @@
 import _ from 'lodash/fp';
 import definitions from '../../common/definitions';
 
-// TODO: Verify why we don't validate accountNumber in common definition
-const uniqueBankFields = {
-  type: 'object',
-  required: ['accountType', 'accountNumber', 'bankName', 'routingNumber'],
-  properties: {
-    accountType: {
-      type: 'string',
-      enum: ['CHECKING', 'SAVINGS', 'NOBANK'] // If NOBANK, no acct/routing num, or bank name.
-    },
-    accountNumber: {
-      type: 'string',
-      pattern: '^\\d{4,17}$'
-    },
-    bankName: {
-      type: 'string',
-      maxLength: 35,
-      pattern: "^([a-zA-Z0-9\\-'.,# ])+$"
-    }
-  }
-};
-
 const disabilitiesBaseDef = {
   type: 'array',
   maxItems: 100,
@@ -115,7 +94,7 @@ const vaTreatmentCenterAddressDef = (({ pciuAddress }) => {
  */
 const privateTreatmentCenterAddressDef = (({ pciuAddress }) => {
   const { type, oneOf, required, properties } = pciuAddress;
-  
+
   return Object.assign({}, {
     type,
     oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
@@ -135,7 +114,6 @@ let schema = {
     address: addressDef,
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
-    directDeposit: _.merge(definitions.bankAccount, uniqueBankFields),
     date: definitions.date,
     dateRange: definitions.dateRange,
     dateRangeFromRequired,
@@ -303,9 +281,6 @@ let schema = {
           default: false
         },
       }
-    },
-    directDeposit: {
-      $ref: '#/definitions/directDeposit'
     },
     serviceInformation: {
       type: 'object',
