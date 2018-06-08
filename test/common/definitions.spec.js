@@ -258,6 +258,7 @@ describe('schema definitions', () => {
 
   [
     'toursOfDuty',
+    'centralMailVaFile',
     'currentlyActiveDuty',
     'bankAccountChange',
     'usaPhone',
