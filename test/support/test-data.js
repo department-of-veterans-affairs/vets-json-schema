@@ -226,6 +226,19 @@ export default {
       }]
     }
   },
+  centralMailVaFile: {
+    data: {
+      valid: [
+        '12345678',
+        '123456789'
+      ],
+      invalid: [
+        '1234567',
+        '1234567890',
+        'C12345678'
+      ]
+    }
+  },
   vaFileNumber: {
     data: {
       valid: [

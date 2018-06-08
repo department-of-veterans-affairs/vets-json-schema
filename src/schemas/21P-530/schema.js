@@ -152,7 +152,7 @@ let schema = {
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
-  ['vaFileNumber'],
+  ['centralMailVaFile', 'vaFileNumber'],
   ['date', 'burialDate'],
   ['date', 'deathDate'],
   ['date', 'veteranDateOfBirth'],

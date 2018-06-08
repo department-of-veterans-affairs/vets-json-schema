@@ -385,6 +385,11 @@ const vaFileNumber = {
   pattern: '^[cC]{0,1}\\d{7,9}$'
 };
 
+const centralMailVaFile = {
+  type: 'string',
+  pattern: '^\\d{8,9}$'
+};
+
 const relationship = {
   type: 'string',
   'enum': ['spouse', 'child']
@@ -608,6 +613,7 @@ export default {
   phone,
   ssn,
   school,
+  centralMailVaFile,
   bankAccount,
   serviceBefore1977,
   dateRange,

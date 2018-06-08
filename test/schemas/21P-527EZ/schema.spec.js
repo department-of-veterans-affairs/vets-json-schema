@@ -35,7 +35,7 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('dateRange', ['powDateRange']);
 
-  sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
+  sharedTests.runTest('centralMailVaFile', ['vaFileNumber', 'spouseVaFileNumber']);
 
   sharedTests.runTest('address', ['spouseAddress']);
 
