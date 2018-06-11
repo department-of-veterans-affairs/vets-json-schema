@@ -27,10 +27,11 @@ countryStateProperites.push(
           'enum': countriesWithAnyState
         }
       },
-      provinceCode: Object.assign({
+      provinceCode: {
         type: 'string',
-        maxLength: 51
-      }, definitions.rejectOnlyWhitespace),
+        maxLength: 51,
+        ...definitions.rejectOnlyWhitespace
+      },
     },
   });
 

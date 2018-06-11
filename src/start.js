@@ -1,4 +1,4 @@
-require('babel-register');
+require('@babel/register');
 
 switch(process.argv[2]) {
   case 'build':
