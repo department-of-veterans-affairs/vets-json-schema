@@ -234,9 +234,9 @@
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
-    "vaFileNumber": {
+    "centralMailVaFile": {
       "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
+      "pattern": "^\\d{8,9}$"
     },
     "centralMailAddress": {
       "type": "object",
@@ -954,7 +954,7 @@
       "$ref": "#/definitions/ssn"
     },
     "vaFileNumber": {
-      "$ref": "#/definitions/vaFileNumber"
+      "$ref": "#/definitions/centralMailVaFile"
     },
     "veteranAddress": {
       "$ref": "#/definitions/centralMailAddress"
@@ -987,7 +987,7 @@
       "$ref": "#/definitions/ssn"
     },
     "spouseVaFileNumber": {
-      "$ref": "#/definitions/vaFileNumber"
+      "$ref": "#/definitions/centralMailVaFile"
     },
     "spouseAddress": {
       "$ref": "#/definitions/address"
