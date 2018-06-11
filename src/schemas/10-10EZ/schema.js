@@ -43,11 +43,12 @@ let schema = {
       type: 'object',
       oneOf: countryStateProperites,
       properties: {
-        street: Object.assign({
+        street: {
           type: 'string',
           minLength: 1,
-          maxLength: 50
-        }, definitions.rejectOnlyWhitespace),
+          maxLength: 50,
+          ...definitions.rejectOnlyWhitespace
+        },
         street2: {
           type: 'string',
           maxLength: 50
@@ -56,11 +57,12 @@ let schema = {
           type: 'string',
           maxLength: 50
         },
-        city: Object.assign({
+        city: {
           type: 'string',
           minLength: 1,
-          maxLength: 51
-        }, definitions.rejectOnlyWhitespace),
+          maxLength: 51,
+          ...definitions.rejectOnlyWhitespace
+        },
         postalCode: {
           type: 'string',
           maxLength: 51
@@ -124,19 +126,21 @@ let schema = {
     fullName: {
       type: 'object',
       properties: {
-        first: Object.assign({
+        first: {
           type: 'string',
           minLength: 1,
-          maxLength: 30
-        }, definitions.rejectOnlyWhitespace),
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
+        },
         middle: {
           type: 'string'
         },
-        last: Object.assign({
+        last: {
           type: 'string',
           minLength: 2,
-          maxLength: 30
-        }, definitions.rejectOnlyWhitespace),
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
+        },
         suffix: {
           type: 'string',
           'enum': constants.suffixes
@@ -167,14 +171,16 @@ let schema = {
           type: 'string',
           maxLength: 50
         },
-        insurancePolicyNumber: Object.assign({
+        insurancePolicyNumber: {
           type: 'string',
-          maxLength: 30
-        }, definitions.rejectOnlyWhitespace),
-        insuranceGroupCode: Object.assign({
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
+        },
+        insuranceGroupCode: {
           type: 'string',
-          maxLength: 30
-        }, definitions.rejectOnlyWhitespace),
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
+        },
       },
       anyOf: [
         {
