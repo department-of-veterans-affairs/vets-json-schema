@@ -29,6 +29,10 @@ const fullName = {
   ]
 };
 
+const rejectOnlyWhitespace = {
+  pattern: '^.*\\S.*'
+};
+
 const usaPostalCode = {
   type: 'string',
   anyOf: [
@@ -618,6 +622,7 @@ export default {
   serviceBefore1977,
   dateRange,
   date,
+  rejectOnlyWhitespace,
   dischargeType,
   educationType,
   preferredContactMethod,

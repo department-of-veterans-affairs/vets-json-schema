@@ -1,6 +1,7 @@
 import constants from '../../common/constants';
 import _ from 'lodash';
 import schemaHelpers from '../../common/schema-helpers';
+import definitions from '../../common/definitions';
 
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
 const countries = constants.countries.map(object => object.value);
@@ -28,8 +29,8 @@ countryStateProperites.push(
       },
       provinceCode: {
         type: 'string',
-        pattern: '^.*\\S.*',
-        maxLength: 51
+        maxLength: 51,
+        ...definitions.rejectOnlyWhitespace
       },
     },
   });
@@ -44,9 +45,9 @@ let schema = {
       properties: {
         street: {
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 1,
-          maxLength: 50
+          maxLength: 50,
+          ...definitions.rejectOnlyWhitespace
         },
         street2: {
           type: 'string',
@@ -58,9 +59,9 @@ let schema = {
         },
         city: {
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 1,
-          maxLength: 51
+          maxLength: 51,
+          ...definitions.rejectOnlyWhitespace
         },
         postalCode: {
           type: 'string',
@@ -127,18 +128,18 @@ let schema = {
       properties: {
         first: {
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 1,
-          maxLength: 30
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
         },
         middle: {
           type: 'string'
         },
         last: {
           type: 'string',
-          pattern: '^.*\\S.*',
           minLength: 2,
-          maxLength: 30
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
         },
         suffix: {
           type: 'string',
@@ -172,13 +173,27 @@ let schema = {
         },
         insurancePolicyNumber: {
           type: 'string',
-          maxLength: 30
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
         },
         insuranceGroupCode: {
           type: 'string',
-          maxLength: 30
+          maxLength: 30,
+          ...definitions.rejectOnlyWhitespace
         },
       },
+      anyOf: [
+        {
+          "required": [
+            "insurancePolicyNumber"
+          ]
+        },
+        {
+          "required": [
+            "insuranceGroupCode"
+          ]
+        }
+      ]
     },
     ssn: {
       oneOf: [
