@@ -286,9 +286,9 @@
       "type": "string",
       "pattern": "^\\d{3}-\\d{2}-\\d{4}$"
     },
-    "vaFileNumber": {
+    "centralMailVaFile": {
       "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
+      "pattern": "^\\d{8,9}$"
     },
     "date": {
       "type": "string",
@@ -631,7 +631,7 @@
               "$ref": "#/definitions/ssn"
             },
             "vaClaimNumber": {
-              "$ref": "#/definitions/vaFileNumber"
+              "$ref": "#/definitions/centralMailVaFile"
             }
           }
         },
