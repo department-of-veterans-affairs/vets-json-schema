@@ -10,11 +10,14 @@ delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.properties.application.required;
 delete schemaWithoutRequired.properties.application.properties.applicant.required;
 delete schemaWithoutRequired.properties.application.properties.claimant.required;
+delete schemaWithoutRequired.properties.application.properties.veteran.required;
 
 let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('preneeds schema', () => {
+  sharedTests.runTest('centralMailVaFile', ['application.veteran.vaClaimNumber']);
+
   schemaTestHelper.testValidAndInvalid('application.applicant.applicantEmail', {
     valid: [
       'foo@foo.com',
