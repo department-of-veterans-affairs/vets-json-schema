@@ -105,7 +105,7 @@ definitions =  _.pick(definitions, [
   'fullName',
   'phone',
   'ssn',
-  'vaFileNumber'
+  'centralMailVaFile'
 ]);
 
 definitions.address.required = ['street'];
@@ -272,7 +272,7 @@ let schema = {
             serviceName: schemaHelpers.getDefinition('fullName'),
             serviceRecords: modifiedToursOfDuty,
             ssn: schemaHelpers.getDefinition('ssn'),
-            vaClaimNumber: schemaHelpers.getDefinition('vaFileNumber'),
+            vaClaimNumber: schemaHelpers.getDefinition('centralMailVaFile'),
           }
         },
         hasCurrentlyBuried: {
