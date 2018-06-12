@@ -130,9 +130,9 @@ definitions.fullName.properties.middle.maxLength = 15;
 
 definitions.phone.minLength = 0;
 definitions.phone.maxLength = 20;
-definitions.phone.pattern = '[0-9+\\s-]{0,20}';
+definitions.phone.pattern = '^[0-9+\\s-]{0,20}$';
 
-definitions.ssn.pattern = '\\d{3}-\\d{2}-\\d{4}';
+definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',

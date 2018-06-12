@@ -280,11 +280,11 @@
       "type": "string",
       "minLength": 0,
       "maxLength": 20,
-      "pattern": "[0-9+\\s-]{0,20}"
+      "pattern": "^[0-9+\\s-]{0,20}$"
     },
     "ssn": {
       "type": "string",
-      "pattern": "\\d{3}-\\d{2}-\\d{4}"
+      "pattern": "^\\d{3}-\\d{2}-\\d{4}$"
     },
     "vaFileNumber": {
       "type": "string",

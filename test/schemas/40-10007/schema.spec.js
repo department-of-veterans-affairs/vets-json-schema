@@ -9,6 +9,7 @@ let schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.properties.application.required;
 delete schemaWithoutRequired.properties.application.properties.applicant.required;
+delete schemaWithoutRequired.properties.application.properties.claimant.required;
 
 let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
@@ -24,6 +25,24 @@ describe('preneeds schema', () => {
     invalid: [
       'bad',
       '$bad@bad.com'
+    ]
+  });
+
+  schemaTestHelper.testValidAndInvalid('application.applicant.applicantPhoneNumber', {
+    valid: [
+      '415555-2671'
+    ],
+    invalid: [
+      'bad'
+    ]
+  });
+
+  schemaTestHelper.testValidAndInvalid('application.claimant.ssn', {
+    valid: [
+      '000-12-3456'
+    ],
+    invalid: [
+      'bad'
     ]
   });
 });
