@@ -45,7 +45,6 @@ const usaPostalCode = {
   ]
 };
 
-// NOTE: PCIU address has its own, separate definition
 const address = (() => {
   const countries = constants.countries.map(object => object.value);
   const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
@@ -116,103 +115,6 @@ for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
     properties.postalCode = usaPostalCode;
   }
 }
-
-/**
- * Assembles schema for PCIU Addresses, which have properties and validations that differ from the standard
- * common address definition. Note that this duplicates some code with 'address' common def, but want to
- * ensure we're not tied to that so duplicating here will make things easy to delete if our approach changes.
- * @returns {object} json-schema-form compatible schema object that conforms to PCIU address endpoint specs
- */
-const pciuAddress = (() => {
-  const onlyUSA = ['USA'];
-  const usaStates = constants.states.USA
-    .concat(constants.statesOnlyInPCIU)
-    .map(state => state.value)
-  const usaStatesLabels = constants.states.USA
-    .concat(constants.statesOnlyInPCIU)
-    .map(state => state.label);
-  // TODO: create custom field that will fetch countries / states (post-MVP)
-  const pciuCountryStateProperties = [{
-    // only need a state when country is 'USA'
-    properties: {
-      country: {
-        type: 'string',
-        enum: onlyUSA
-      },
-      state: {
-        type: 'string',
-        enum: usaStates
-      }
-    }
-  }, {
-    properties: {
-      country: {
-        not: {
-          type: 'string',
-          enum: onlyUSA
-        }
-      },
-      state: {
-        type: 'string',
-        maxLength: 35
-      }
-    }
-  }];
-
-  // NOTE: Validations copied from swagger except where noted
-  return {
-    type: 'object',
-    oneOf: pciuCountryStateProperties,
-    required: ['addressLine1', 'country'],
-    properties: {
-      country: {
-        type: 'string',
-        'enum': constants.pciuCountries,
-      },
-      addressLine1: {
-        type: 'string',
-        maxLength: 35,
-        pattern: "^([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
-      },
-      addressLine2: {
-        type: 'string',
-        maxLength: 35,
-        pattern: "^([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
-      },
-      addressLine3: {
-        type: 'string',
-        maxLength: 35,
-        pattern: "^([a-zA-Z0-9\\-'.,,&#]([a-zA-Z0-9\\-'.,,&# ])?)+$"
-      },
-      city: {
-        type: 'string',
-        maxLength: 35,
-        pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
-      },
-      state: {
-        type: 'string',
-        'enum': usaStates,
-        enumNames: usaStatesLabels
-      },
-      zipCode: {
-        type: 'string',
-        pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$' // combines zipFirstFive + zipLastFour
-      },
-      militaryPostOfficeTypeCode: {
-        type: 'string',
-        enum: ['APO', 'DPO', 'FPO']
-      },
-      militaryStateCode: {
-        type: 'string',
-        enum: ['AA', 'AE', 'AP']
-      },
-      type: {
-        type: 'string',
-        enum: ['DOMESTIC', 'MILITARY', 'INTERNATIONAL']
-      }
-    }
-  };
-})();
 
 const phone = {
   type: 'string',
@@ -613,7 +515,6 @@ export default {
   fullName,
   otherIncome,
   address,
-  pciuAddress,
   phone,
   ssn,
   school,
