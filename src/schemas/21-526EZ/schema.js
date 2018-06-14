@@ -1,5 +1,9 @@
 import _ from 'lodash/fp';
 import definitions from '../../common/definitions';
+import {
+  pciuCountries,
+  pciuStates
+} from '../../common/constants';
 
 const disabilitiesBaseDef = {
   type: 'array',
@@ -36,9 +40,44 @@ const disabilitiesBaseDef = {
   }
 };
 
-
-// Extracted to enable easy adding of properties for forwardingAddress
-const addressDef = definitions.pciuAddress;
+const addressBaseDef = {
+  type: 'object',
+  required: ['country', 'city', 'addressLine1'],
+  properties: {
+    country: {
+      type: 'string',
+      'enum': pciuCountries
+    },
+    addressLine1: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+    },
+    addressLine2: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+    },
+    addressLine3: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "([a-zA-Z0-9-'.,,&#]([a-zA-Z0-9-'.,,&# ])?)+$"
+    },
+    city: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+    },
+    state: {
+      type: 'string',
+      'enum': pciuStates
+    },
+    zipCode: {
+      type: 'string',
+      pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
+    }
+  }
+};
 
 // Some date ranges require both 'from' and 'to' dates
 const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateRange);
@@ -111,7 +150,7 @@ let schema = {
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)',
   type: 'object',
   definitions: {
-    address: addressDef,
+    address: addressBaseDef,
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     date: definitions.date,
@@ -196,7 +235,7 @@ let schema = {
         },
         forwardingAddress: _.set('properties.effectiveDate', {
           $ref: '#/definitions/date'
-        }, addressDef),
+        }, _.omit('required', addressBaseDef)),
         homelessness: {
           type: 'object',
           required: ['isHomeless'],
