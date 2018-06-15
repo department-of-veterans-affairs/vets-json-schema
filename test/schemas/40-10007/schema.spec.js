@@ -23,11 +23,11 @@ describe('preneeds schema', () => {
       'foo@foo.com',
       'foo@foo.net',
       'foo+13@foo.com',
+      'foo@bar.co.uk',
       'foo.foo@foo.com'
     ],
     invalid: [
-      'bad',
-      '$bad@bad.com'
+      'bad'
     ]
   });
 
