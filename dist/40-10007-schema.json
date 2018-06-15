@@ -293,11 +293,6 @@
     "date": {
       "type": "string",
       "format": "date"
-    },
-    "email": {
-      "type": "string",
-      "maxLength": 50,
-      "pattern": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+$"
     }
   },
   "properties": {
@@ -321,7 +316,9 @@
           ],
           "properties": {
             "applicantEmail": {
-              "$ref": "#/definitions/email"
+              "type": "string",
+              "maxLength": 50,
+              "format": "email"
             },
             "applicantPhoneNumber": {
               "$ref": "#/definitions/phone"
@@ -366,7 +363,9 @@
               "pattern": "^\\d{3}$"
             },
             "email": {
-              "$ref": "#/definitions/email"
+              "type": "string",
+              "maxLength": 50,
+              "format": "email"
             },
             "name": {
               "type": "object",

@@ -108,6 +108,12 @@ definitions =  _.pick(definitions, [
   'centralMailVaFile'
 ]);
 
+const emailFormat = {
+  type: 'string',
+  maxLength: 50,
+  format: 'email'
+};
+
 definitions.address.required = ['street'];
 definitions.address.properties.street.maxLength = 20;
 definitions.address.properties.street2.maxLength = 20;
@@ -116,12 +122,6 @@ definitions.address.properties.city.maxLength = 20;
 definitions.date = {
   type: 'string',
   format: 'date'
-};
-
-definitions.email = {
-  type: 'string',
-  maxLength: 50,
-  pattern: '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_+-]+\\.[a-zA-Z]+$'
 };
 
 definitions.fullName.properties.first.maxLength = 15;
@@ -160,7 +160,7 @@ let schema = {
             'name'
           ],
           properties: {
-            applicantEmail: schemaHelpers.getDefinition('email'),
+            applicantEmail: emailFormat,
             applicantPhoneNumber: schemaHelpers.getDefinition('phone'),
             applicantRelationshipToClaimant: {
               type: 'string',
@@ -187,7 +187,7 @@ let schema = {
             address: schemaHelpers.getDefinition('address'),
             dateOfBirth: schemaHelpers.getDefinition('date'),
             desiredCemetery: { type: 'string', pattern: '^\\d{3}$' },
-            email: schemaHelpers.getDefinition('email'),
+            email: emailFormat,
             name: _.merge({}, definitions.fullName, {
               properties: {
                 maiden: {
