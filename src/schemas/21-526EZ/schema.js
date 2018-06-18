@@ -1,5 +1,9 @@
 import _ from 'lodash/fp';
 import definitions from '../../common/definitions';
+import {
+  pciuCountries,
+  pciuStates
+} from '../../common/constants';
 
 const disabilitiesBaseDef = {
   type: 'array',
@@ -36,9 +40,46 @@ const disabilitiesBaseDef = {
   }
 };
 
-
-// Extracted to enable easy adding of properties for forwardingAddress
-const addressDef = definitions.pciuAddress;
+const addressBaseDef = {
+  type: 'object',
+  required: ['country', 'city', 'addressLine1'],
+  properties: {
+    country: {
+      type: 'string',
+      'enum': pciuCountries,
+      default: 'USA'
+    },
+    addressLine1: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
+    },
+    addressLine2: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
+    },
+    addressLine3: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
+    },
+    city: {
+      type: 'string',
+      maxLength: 35,
+      pattern: "^([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
+    },
+    state: {
+      type: 'string',
+      'enum': pciuStates.map(state => state.value),
+      enumNames: pciuStates.map(state => state.label)
+    },
+    zipCode: {
+      type: 'string',
+      pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
+    }
+  }
+};
 
 // Some date ranges require both 'from' and 'to' dates
 const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateRange);
@@ -68,17 +109,14 @@ const fullNameDef = ((definitions) => {
 })(definitions);
 
 /**
- * Modifies PCIU Address for use with treatments schema
- * @typedef {object} definitions
- * @property {object} pciuAddress
- * @param {definitions} definitions from the common schema definitions file
+ * Modifies address schema for use with treatments schema
+ * @property {object} addressSchema
  * @returns {object} the treatmentCenterAddress schema object
  */
-const vaTreatmentCenterAddressDef = (({ pciuAddress }) => {
-  const { type, oneOf, properties } = pciuAddress;
+const vaTreatmentCenterAddressDef = ((addressSchema) => {
+  const { type, properties } = addressSchema;
   return Object.assign({}, {
     type,
-    oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
     required: ['country'],
     properties: _.pick([
       'country',
@@ -86,34 +124,15 @@ const vaTreatmentCenterAddressDef = (({ pciuAddress }) => {
       'state'
     ], properties)
   });
-})(definitions);
-
-/**
- * Grab address lines, city and zip from PCIU address common def, then add
- * country and state properties for 'oneOf' to work properly
- */
-const privateTreatmentCenterAddressDef = (({ pciuAddress }) => {
-  const { type, oneOf, required, properties } = pciuAddress;
-
-  return Object.assign({}, {
-    type,
-    oneOf: oneOf.map((obj) => _.cloneDeep(obj)),
-    required,
-    properties: _.pick(
-      ['country', 'addressLine1', 'addressLine2', 'city', 'state', 'zipCode'],
-      properties
-    )
-  });
-})(definitions);
+})(addressBaseDef);
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)',
   type: 'object',
   definitions: {
-    address: addressDef,
+    address: addressBaseDef,
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
-    privateTreatmentCenterAddress: privateTreatmentCenterAddressDef,
     date: definitions.date,
     dateRange: definitions.dateRange,
     dateRangeFromRequired,
@@ -196,7 +215,7 @@ let schema = {
         },
         forwardingAddress: _.set('properties.effectiveDate', {
           $ref: '#/definitions/date'
-        }, addressDef),
+        }, _.omit('required', addressBaseDef)),
         homelessness: {
           type: 'object',
           required: ['isHomeless'],
@@ -422,35 +441,6 @@ let schema = {
           treatmentCenterType: {
             type: 'string',
             enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
-          }
-        }
-      }
-    },
-    privateRecordReleases: {
-    // These records are sent through an ancillary form and are not directly
-    // submitted via 526. This ancillary submission process has no actual
-    // validations, but we thought keeping them here (especially for address)
-    // would enforce a baseline of data quality which would be in the
-    // submitter's best interest.
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['treatmentCenterName'],
-        properties: {
-          treatmentCenterName: {
-            type: 'string',
-            maxLength: 100,
-            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
-          },
-          treatmentDateRange: {
-            $ref: '#/definitions/dateRangeFromRequired'
-          },
-          treatmentCenterAddress: {
-            $ref: '#/definitions/privateTreatmentCenterAddress'
-          },
-          privateMedicalRecordsReleaseRestricted: {
-            type: 'boolean',
-            default: false
           }
         }
       }

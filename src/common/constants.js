@@ -4203,6 +4203,10 @@ const statesOnlyInPCIU = [
   { label: "U.S. Minor Outlying Islands", value: "UM" }
 ];
 
+const pciuStates = states.USA
+  .concat(statesOnlyInPCIU)
+  .sort((stateA, stateB) => (stateA.label - stateB.label));
+
 module.exports = {
   countries,
   pciuCountries,
@@ -4210,6 +4214,7 @@ module.exports = {
   branchesServed,
   dischargeTypes,
   states,
+  pciuStates,
   salesforceStates,
   salesforceCountries,
   suffixes,
@@ -4220,5 +4225,4 @@ module.exports = {
   dependentRelationships,
   yesNo,
   usaStates,
-  statesOnlyInPCIU
 };
