@@ -46,7 +46,8 @@ const addressBaseDef = {
   properties: {
     country: {
       type: 'string',
-      'enum': pciuCountries
+      'enum': pciuCountries,
+      default: 'USA'
     },
     addressLine1: {
       type: 'string',
@@ -70,7 +71,8 @@ const addressBaseDef = {
     },
     state: {
       type: 'string',
-      'enum': pciuStates
+      'enum': pciuStates.map(state => state.value),
+      enumNames: pciuStates.map(state => state.label)
     },
     zipCode: {
       type: 'string',
@@ -107,7 +109,7 @@ const fullNameDef = ((definitions) => {
 })(definitions);
 
 /**
- * Modifies base for use with treatments schema
+ * Modifies address schema for use with treatments schema
  * @property {object} addressSchema
  * @returns {object} the treatmentCenterAddress schema object
  */
