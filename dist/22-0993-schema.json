@@ -65,7 +65,7 @@
       "$ref": "#/definitions/privacyAgreementAccepted"
     }
   },
-  "oneOf": [
+  "anyOf": [
     {
       "required": [
         "vaFileNumber"

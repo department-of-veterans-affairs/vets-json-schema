@@ -7,7 +7,7 @@ let schema = {
   definitions: {},
   additionalProperties: false,
   properties: {},
-  oneOf: [
+  anyOf: [
     {
       "required" : ["vaFileNumber"]
     },
