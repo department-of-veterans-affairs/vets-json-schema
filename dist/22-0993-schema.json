@@ -39,6 +39,10 @@
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -54,10 +58,25 @@
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     }
   },
+  "oneOf": [
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    },
+    {
+      "required": [
+        "veteranSocialSecurityNumber"
+      ]
+    }
+  ],
   "required": [
     "privacyAgreementAccepted",
     "veteranFullName"

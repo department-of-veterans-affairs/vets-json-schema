@@ -9,16 +9,26 @@ let schema = {
   definitions: _.pick(definitions, [
     'fullName',
     'ssn',
+    'vaFileNumber',
     'privacyAgreementAccepted'
   ]),
   additionalProperties: false,
   properties: {},
+  oneOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
+  ],
   required: ['privacyAgreementAccepted', 'veteranFullName']
 };
 
 [
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
+  ['vaFileNumber'],
   ['privacyAgreementAccepted']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
