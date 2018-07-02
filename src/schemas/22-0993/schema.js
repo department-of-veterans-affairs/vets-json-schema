@@ -1,17 +1,10 @@
-import _ from 'lodash';
-import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'REQUEST TO OPT-OUT OF INFORMATION SHARING WITH EDUCATIONAL INSTITUTIONS (VA FORM 22-0993)',
   type: 'object',
-  definitions: _.pick(definitions, [
-    'fullName',
-    'ssn',
-    'vaFileNumber',
-    'privacyAgreementAccepted'
-  ]),
+  definitions: {},
   additionalProperties: false,
   properties: {},
   oneOf: [
