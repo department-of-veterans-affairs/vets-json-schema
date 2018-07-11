@@ -7,7 +7,7 @@ const schema = schemas['22-0993'];
 
 const schemaDefaults = {
   privacyAgreementAccepted: true,
-  veteranFullName: {
+  claimantFullName: {
     first: 'bob',
     last: 'smith'
   }
@@ -17,8 +17,13 @@ let schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefau
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('Colmery Act Opt-Out json schema', () => {
-  sharedTests.runTest('vaFileNumber');
-  sharedTests.runTest('fullName', ['veteranFullName']);
-  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
-  (new SharedTests(new SchemaTestHelper(schema, schemaDefaults))).requireSsnOrFile();
+  [
+    ['vaFileNumber'],
+    ['fullName', ['claimantFullName']],
+    ['ssn', ['claimantSocialSecurityNumber']]
+  ].forEach((test) => {
+    sharedTests.runTest(...test);
+  });
+
+  (new SharedTests(new SchemaTestHelper(schema, schemaDefaults))).requireSsnOrFile('claimantSocialSecurityNumber');
 });

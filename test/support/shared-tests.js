@@ -6,16 +6,16 @@ export default class SharedTests {
     this.schemaTestHelper = schemaTestHelper;
   }
 
-  requireSsnOrFile() {
+  requireSsnOrFile(ssnName = 'veteranSocialSecurityNumber') {
     it('should require ssn or file number', () => {
       expect(this.schemaTestHelper.validateSchema({})).to.equal(false);
       expect(this.schemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
 
       [
-        { veteranSocialSecurityNumber: '123456789' },
+        { [ssnName]: '123456789' },
         { vaFileNumber: '12345678' },
         {
-          veteranSocialSecurityNumber: '123456789',
+          [ssnName]: '123456789',
           vaFileNumber: '12345678'
         }
       ].forEach((schemaData) => {
