@@ -52,10 +52,10 @@
   },
   "additionalProperties": false,
   "properties": {
-    "veteranFullName": {
+    "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },
-    "veteranSocialSecurityNumber": {
+    "claimantSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
     "vaFileNumber": {
@@ -73,12 +73,12 @@
     },
     {
       "required": [
-        "veteranSocialSecurityNumber"
+        "claimantSocialSecurityNumber"
       ]
     }
   ],
   "required": [
     "privacyAgreementAccepted",
-    "veteranFullName"
+    "claimantFullName"
   ]
 }

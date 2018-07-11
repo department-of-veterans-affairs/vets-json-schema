@@ -12,15 +12,15 @@ let schema = {
       "required" : ["vaFileNumber"]
     },
     {
-      "required" : ["veteranSocialSecurityNumber"]
+      "required" : ["claimantSocialSecurityNumber"]
     }
   ],
-  required: ['privacyAgreementAccepted', 'veteranFullName']
+  required: ['privacyAgreementAccepted', 'claimantFullName']
 };
 
 [
-  ['fullName', 'veteranFullName'],
-  ['ssn', 'veteranSocialSecurityNumber'],
+  ['fullName', 'claimantFullName'],
+  ['ssn', 'claimantSocialSecurityNumber'],
   ['vaFileNumber'],
   ['privacyAgreementAccepted']
 ].forEach((args) => {
