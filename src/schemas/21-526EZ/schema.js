@@ -51,22 +51,22 @@ const addressBaseDef = {
     },
     addressLine1: {
       type: 'string',
-      maxLength: 35,
+      maxLength: 20,
       pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
     },
     addressLine2: {
       type: 'string',
-      maxLength: 35,
+      maxLength: 20,
       pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
     },
     addressLine3: {
       type: 'string',
-      maxLength: 35,
+      maxLength: 20,
       pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
     },
     city: {
       type: 'string',
-      maxLength: 35,
+      maxLength: 30,
       pattern: "^([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
     },
     state: {
@@ -213,9 +213,26 @@ let schema = {
         primaryPhone: {
           $ref: '#/definitions/phone'
         },
+        // Forwarding address differs from mailing address in a few key ways:
+        // 1. Address lines 1-3 are max 20 chars instead of 35
+        // 2. The UI is such that requiring fields must be done in the UI schema
+        // 3. There is an effectiveDate property that specifies the date at which
+        //    the forwarding address should start to be used
         forwardingAddress: _.set('properties.effectiveDate', {
           $ref: '#/definitions/date'
-        }, _.omit('required', addressBaseDef)),
+        }, _.omit('required', _.merge(addressBaseDef, {
+          properties: {
+            addressLine1: {
+              maxLength: 35
+            },
+            addressLine2: {
+              maxLength: 35
+            },
+            addressLine3: {
+              maxLength: 35
+            }
+          }
+        }))),
         homelessness: {
           type: 'object',
           required: ['isHomeless'],
