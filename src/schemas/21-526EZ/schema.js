@@ -14,8 +14,6 @@ const disabilitiesBaseDef = {
     properties: {
       name: {
         type: 'string',
-        maxLength: 255,
-        pattern: "^([a-zA-Z0-9\\-'.,#]([a-zA-Z0-9\\-',.# ])?)+$"
       },
       disabilityActionType: {
         type: 'string',
@@ -172,7 +170,7 @@ let schema = {
               '38USC1151',
               'PTSD/1',
               'PTSD/2',
-              'PTSD/4)'
+              'PTSD/4'
             ]
           },
           name: {
