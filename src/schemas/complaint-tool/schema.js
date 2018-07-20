@@ -8,8 +8,8 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    fullName: _.merge({}, definitions.fullName, {
-      properties: {
+    fullName: _.merge({}, definitions.fullName, { // TODO: our common definition includes "II" (inclusion pending stakeholder feedback), lacks "Other"
+      properties: { // First, Middle, Last (100 limit, each)
         prefix: {
           type: 'string',
           'enum': [
@@ -19,19 +19,23 @@ let schema = {
             'Dr.',
             'Other'
           ]
+        },
+        suffix: {
+          type: 'string',
+          'enum': ['Other']
         }
       }
     })
   },
-  required: [
-    'onBehalfOf',
-    'educationDetails',
-    'issue',
-    'issueDescription',
-    'issueResolution'
+  required: [ // no fields are required for submission, though several are required by design on FE
+    // 'onBehalfOf',
+    // 'educationDetails',
+    // 'issue',
+    // 'issueDescription',
+    // 'issueResolution'
   ],
   properties: {
-    onBehalfOf: {
+    onBehalfOf: {  // Type: text (255 limit)
       type: 'string',
       'enum': [
         'Myself',
@@ -39,7 +43,7 @@ let schema = {
         'Anonymous'
       ]
     },
-    serviceBranch: {
+    serviceBranch: { // Type: text (255 limit)
       type: 'string',
       'enum': [
         'Army',
@@ -50,7 +54,7 @@ let schema = {
         'NOAA/PHS'
       ]
     },
-    serviceAffiliation: { // TODO: resolve this design, this is a radio button in the prototype
+    serviceAffiliation: { // Type: text (255 limit)
       type: 'string',
       'enum': [
         'Service Member',
@@ -63,77 +67,67 @@ let schema = {
       '$ref': '#/definitions/fullName'
     },
     email: {
-      type: 'string',  // TODO: determine if there is a length limit
+      type: 'string',  // Type: email (no length limit)
       format: 'email'
     },
-    profileData: {
-      activeICN: {
-        type: 'number'
-      },
-      historicalICN: { // TODO: should this be "historicalICNs" (plural)?
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            ICN: {
-              type: 'number'
-            }
-          }
-        }
-      },
-      secID: {
-        type: 'string'
-      },
-      SSN: definitions.ssn
-    },
     educationDetails: {
-      required: [
-        'school',
-        'programs'
+      required: [ // no fields are required for submission, though several are required by design on FE
+        // 'school',
+        // 'programs'
       ],
       school: definitions.school,
-      programs: { // TODO: Needs to be translated into an array of strings, verify should still be included (no longer included in provided list)
+      programs: { // TODO: Needs to be translated into a (comma) delimited string, and spelled out if within 255 limit 
         type: 'object',
         properties: {
-          chapter30ActiveDuty: {
+          'MGIB-AD Ch 30': {
             type: 'boolean'
+            // title: 'Montgomery GI Bill - Active Duty (MGIB) (Ch. 30)'
           },
-          chapter30SelectedReserve: {
+          'MGIB-SR Ch 1606': {
             type: 'boolean'
+            // title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR) (Ch. 1606)'
           },
-          chapter31: {
+          'VRE Ch 31': {
             type: 'boolean'
+            // title: 'Vocational Rehabilitation and Employment (VR&E) (Ch. 31)'
           },
-          chapter33: {
+          'Post- 9/11 Ch 33': {
             type: 'boolean'
+            // title: 'Post-9/11 GI Bill (Ch. 33)'
           },
-          chapter35: {
+          'DEA Ch 35': {
             type: 'boolean'
+            // title: 'Survivors & Dependents Assistance (DEA) (Ch. 35)'
           },
-          tuitionAssistanceTopUp: {
+          TATU: {
             type: 'boolean'
+            // title: 'Tuition Assistance Top-Up'
           }
         }
       },
-      assistance: { // TODO: Needs to be translated into an array of strings, verify should still be included (no longer included in provided list)
+      assistance: { // TODO: Needs to be translated into a (comma) delimited string (255 limit), abbr provided to support content changes
         type: 'object',
         properties: {
           TA: {
             type: 'boolean'
+            // title: Federal Tuition Assistance (TA)
           },
-          TAAGR: {
+          'TA-AGR': {
             type: 'boolean'
+            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties 
           },
           MyCAA: {
             type: 'boolean'
+            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties 
           },
-          federalFinancialAid: {
+          FFA: {
             type: 'boolean'
+            // title: Federal Financial Aid 
           }
         }
       }
     },
-    issue: { // TODO: verify list, as provided list does not match design (e.g. post-graduation)
+    issue: { 
       type: 'string',
       'enum': [
         'Recruiting/Marketing Practices',
@@ -149,7 +143,7 @@ let schema = {
     },
     issueDescription: {
       type: 'string',
-      maxLength: 1000
+      maxLength: 32000
     },
     issueResolution: {
       type: 'string',
@@ -159,11 +153,11 @@ let schema = {
 };
 
 [
-  ['privacyAgreementAccepted'], // should this be removed on the BE?
-  ['usaPhone', 'phone'],
-  ['address'],
+  ['privacyAgreementAccepted'],
+  ['usaPhone', 'phone'], // TODO: note validation requirements pending feedback
+  ['address'], // TODO: note length limits pending feedback
   ['dateRange', 'serviceDateRange'], // TODO: Date format needs to be transformed to enteredDuty & releaseFromDuty
-  ['date', 'dob'], // TODO: reconcile design and example request, which is an enum list
+  ['date', 'dob'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
