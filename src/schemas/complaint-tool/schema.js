@@ -220,7 +220,7 @@ let schema = {
           }
         }
       },
-      programs: { // TODO: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
+      programs: { // TRANSLATE: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
         type: 'object', // FE validation requires at least one selected
         properties: { // TODO: confirm with stakeholders that "VA Education Programs (e.g. GI Bill)" shouldn't be an option, or if an acronym should be provided
           'MGIB-AD Ch 30': {
