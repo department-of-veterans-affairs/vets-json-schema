@@ -1,0 +1,425 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GI BILL SCHOOL FEEDBACK TOOL",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "onBehalfOf",
+    "educationDetails",
+    "issue",
+    "issueDescription",
+    "issueResolution"
+  ],
+  "properties": {
+    "address": {
+      "type": "object",
+      "required": [
+        "street",
+        "city",
+        "state",
+        "postalCode",
+        "country"
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "street2": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 25
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "Alabama",
+            "Alaska",
+            "Arizona",
+            "Arkansas",
+            "California",
+            "Colorado",
+            "Connecticut",
+            "Delaware",
+            "District of Columbia",
+            "Florida",
+            "Georgia",
+            "Hawaii",
+            "Idaho",
+            "Illinois",
+            "Indiana",
+            "Iowa",
+            "Kansas",
+            "Kentucky",
+            "Louisiana",
+            "Maine",
+            "Maryland",
+            "Massachusetts",
+            "Michigan",
+            "Minnesota",
+            "Mississippi",
+            "Missouri",
+            "Montana",
+            "Nebraska",
+            "Nevada",
+            "New Hampshire",
+            "New Jersey",
+            "New Mexico",
+            "New York",
+            "North Carolina",
+            "North Dakota",
+            "Ohio",
+            "Oklahoma",
+            "Oregon",
+            "Pennsylvania",
+            "Rhode Island",
+            "South Carolina",
+            "South Dakota",
+            "Tennessee",
+            "Texas",
+            "Utah",
+            "Vermont",
+            "Virginia",
+            "Washington",
+            "West Virginia",
+            "Wisconsin",
+            "Wyoming"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}$"
+        },
+        "country": {
+          "type": "string",
+          "enum": [
+            "US"
+          ]
+        }
+      }
+    },
+    "onBehalfOf": {
+      "type": "string",
+      "enum": [
+        "Myself",
+        "Someone else",
+        "Anonymous"
+      ]
+    },
+    "serviceBranch": {
+      "type": "string",
+      "enum": [
+        "Army",
+        "Navy",
+        "Marines",
+        "Air Force",
+        "Coast Guard",
+        "NOAA/PHS"
+      ]
+    },
+    "serviceAffiliation": {
+      "type": "string",
+      "enum": [
+        "Service Member",
+        "Spouse or Family Member",
+        "Veteran",
+        "Other"
+      ]
+    },
+    "fullName": {
+      "properties": {
+        "middle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "prefix": {
+          "type": "string",
+          "enum": [
+            "Mr.",
+            "Mrs.",
+            "Ms.",
+            "Dr.",
+            "Other"
+          ]
+        },
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "III",
+            "IV",
+            "Sr.",
+            "Other"
+          ]
+        }
+      },
+      "type": "object",
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "educationDetails": {
+      "type": "object",
+      "required": [
+        "school",
+        "programs"
+      ],
+      "school": {
+        "type": "object",
+        "properties": {
+          "required": [
+            "name"
+          ],
+          "address": {
+            "type": "object",
+            "required": [
+              "street",
+              "city",
+              "state",
+              "postalCode",
+              "country"
+            ],
+            "properties": {
+              "street": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "street2": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "city": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "Alabama",
+                  "Alaska",
+                  "Arizona",
+                  "Arkansas",
+                  "California",
+                  "Colorado",
+                  "Connecticut",
+                  "Delaware",
+                  "District of Columbia",
+                  "Florida",
+                  "Georgia",
+                  "Hawaii",
+                  "Idaho",
+                  "Illinois",
+                  "Indiana",
+                  "Iowa",
+                  "Kansas",
+                  "Kentucky",
+                  "Louisiana",
+                  "Maine",
+                  "Maryland",
+                  "Massachusetts",
+                  "Michigan",
+                  "Minnesota",
+                  "Mississippi",
+                  "Missouri",
+                  "Montana",
+                  "Nebraska",
+                  "Nevada",
+                  "New Hampshire",
+                  "New Jersey",
+                  "New Mexico",
+                  "New York",
+                  "North Carolina",
+                  "North Dakota",
+                  "Ohio",
+                  "Oklahoma",
+                  "Oregon",
+                  "Pennsylvania",
+                  "Rhode Island",
+                  "South Carolina",
+                  "South Dakota",
+                  "Tennessee",
+                  "Texas",
+                  "Utah",
+                  "Vermont",
+                  "Virginia",
+                  "Washington",
+                  "West Virginia",
+                  "Wisconsin",
+                  "Wyoming"
+                ]
+              },
+              "postalCode": {
+                "type": "string",
+                "pattern": "^\\d{5}$"
+              },
+              "country": {
+                "type": "string",
+                "enum": [
+                  "US"
+                ]
+              }
+            }
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "facilityCode": {
+            "type": "string"
+          }
+        }
+      },
+      "programs": {
+        "type": "object",
+        "properties": {
+          "MGIB-AD Ch 30": {
+            "type": "boolean"
+          },
+          "MGIB-SR Ch 1606": {
+            "type": "boolean"
+          },
+          "VRE Ch 31": {
+            "type": "boolean"
+          },
+          "Post- 9/11 Ch 33": {
+            "type": "boolean"
+          },
+          "DEA Ch 35": {
+            "type": "boolean"
+          },
+          "TATU": {
+            "type": "boolean"
+          }
+        }
+      },
+      "assistance": {
+        "type": "object",
+        "properties": {
+          "TA": {
+            "type": "boolean"
+          },
+          "TA-AGR": {
+            "type": "boolean"
+          },
+          "MyCAA": {
+            "type": "boolean"
+          },
+          "FFA": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "properties": {
+        "Recruiting/Marketing Practices": {
+          "type": "boolean"
+        },
+        "Student Loans": {
+          "type": "boolean"
+        },
+        "Quality of Education": {
+          "type": "boolean"
+        },
+        "Transfer of Credits": {
+          "type": "boolean"
+        },
+        "Accreditation": {
+          "type": "boolean"
+        },
+        "Post-graduation Job Opportunities": {
+          "type": "boolean"
+        },
+        "Grade Policy": {
+          "type": "boolean"
+        },
+        "Refund Issues": {
+          "type": "boolean"
+        },
+        "Financial Issues (e.g. Tuition/Fee charges)": {
+          "type": "boolean"
+        },
+        "Change in degree plan/requirements": {
+          "type": "boolean"
+        },
+        "Release of Transcripts": {
+          "type": "boolean"
+        }
+      }
+    },
+    "issueDescription": {
+      "type": "string",
+      "maxLength": 32000
+    },
+    "issueResolution": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "phone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "serviceDateRange": {
+      "$ref": "#/definitions/dateRange"
+    },
+    "dob": {
+      "$ref": "#/definitions/date"
+    }
+  }
+}
