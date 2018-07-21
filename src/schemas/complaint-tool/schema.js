@@ -2,39 +2,120 @@ import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
 
+
+const GIBSFTStates = [
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'District of Columbia',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming'
+];
+
+// The common definition includes "II" and lacks "Other"
+const fullName = _.set(definitions.fullName, 'properties.suffix', { 
+  type: 'string',
+  'enum': [
+    'Jr.',
+    'III',
+    'IV',
+    'Sr.',
+    'Other'
+  ]
+});
+
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'GI BILL SCHOOL COMPLAINT TOOL',
+  title: 'GI BILL SCHOOL FEEDBACK TOOL',
   type: 'object',
   additionalProperties: false,
-  definitions: {
-    fullName: _.merge({}, definitions.fullName, { // TODO: our common definition includes "II" (inclusion pending stakeholder feedback), lacks "Other"
-      properties: { // First, Middle, Last (100 limit, each)
-        prefix: {
-          type: 'string',
-          'enum': [
-            'Mr.',
-            'Mrs.',
-            'Ms.',
-            'Dr.',
-            'Other'
-          ]
-        },
-        suffix: {
-          type: 'string',
-          'enum': ['Other']
-        }
-      }
-    })
-  },
+  definitions: {},
   required: [ // no fields are required for submission, though several are required by design on FE
-    // 'onBehalfOf',
-    // 'educationDetails',
-    // 'issue',
-    // 'issueDescription',
-    // 'issueResolution'
+    'onBehalfOf',
+    'educationDetails',
+    'issue',
+    'issueDescription',
+    'issueResolution'
   ],
   properties: {
+    address: {
+      type: 'object',
+      required: ['street', 'city', 'state', 'postalCode', 'country'],
+      properties: {
+        street: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 1000 // TODO: confirm length limit with stakeholders 
+        },
+        street2: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 1000 // TODO: confirm length limit with stakeholders 
+        },
+        city: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 25
+        },
+        state: {  // TODO: verify validation as abbreviations or words
+          type: 'string',
+          'enum': GIBSFTStates
+        },
+        postalCode: {  // TYPE: text (5)
+          type: 'string',
+          pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+        },
+        country: { // TODO: determine if this option should be presented to users if only 'US' is allowed
+          type: 'string',
+          'enum': ['US'] // Only US addresses are supported
+        }
+      }
+    },
     onBehalfOf: {  // Type: text (255 limit)
       type: 'string',
       'enum': [
@@ -63,22 +144,83 @@ let schema = {
         'Other'
       ]
     },
-    fullName: {
-      '$ref': '#/definitions/fullName'
-    },
+    fullName: _.merge({}, fullName, { // First, Middle, Last (100 limit, each)
+      properties: { // common definition sets first and last maxLength to 30 (within submission limit)
+        middle: { // common definition doesn't set middle maxLength
+          type: 'string',
+          minLength: 1,
+          maxLength: 30
+        },
+        prefix: { // common definition doesn't set prefix
+          type: 'string',
+          'enum': [
+            'Mr.',
+            'Mrs.',
+            'Ms.',
+            'Dr.',
+            'Other'
+          ]
+        }
+      }
+    }),
     email: {
       type: 'string',  // Type: email (no length limit)
       format: 'email'
     },
     educationDetails: {
       required: [ // no fields are required for submission, though several are required by design on FE
-        // 'school',
-        // 'programs'
+        'school',
+        'programs'
       ],
-      school: definitions.school,
-      programs: { // TODO: Needs to be translated into a (comma) delimited string, and spelled out if within 255 limit 
+      school: {
         type: 'object',
         properties: {
+          address: {
+            type: 'object',
+            required: ['street', 'city', 'state', 'postalCode', 'country'],
+            properties: {
+              street: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 255 // TODO: confirm length limit with stakeholders 
+              },
+              street2: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 255 // TODO: confirm length limit with stakeholders 
+              },
+              city: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 255
+              },
+              state: {  // TODO: verify validation as abbreviations or words
+                type: 'string',
+                'enum': GIBSFTStates
+              },
+              postalCode: {  // TYPE: text (255)
+                type: 'string',
+                pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+              },
+              country: { // TODO: determine if this option should be presented to users if only 'US' is allowed
+                type: 'string',
+                'enum': ['US'] // Only US addresses are supported
+              }
+            }
+          },
+          name: { // Type: text (255)
+            type: 'string',
+            minLength: 1,
+            maxLength: 255
+          },
+          facilityCode: {  // TRANSLATE: Used to obtain school address
+            type: 'string'
+          }
+        }
+      },
+      programs: { // TODO: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
+        type: 'object',
+        properties: { // TODO: confirm with stakeholders that "VA Education Programs (e.g. GI Bill)" shouldn't be an option, or if an acronym should be provided
           'MGIB-AD Ch 30': {
             type: 'boolean'
             // title: 'Montgomery GI Bill - Active Duty (MGIB) (Ch. 30)'
@@ -91,7 +233,7 @@ let schema = {
             type: 'boolean'
             // title: 'Vocational Rehabilitation and Employment (VR&E) (Ch. 31)'
           },
-          'Post- 9/11 Ch 33': {
+          'Post- 9/11 Ch 33': { // TODO: verify with stakeholders that space should be removed after dash
             type: 'boolean'
             // title: 'Post-9/11 GI Bill (Ch. 33)'
           },
@@ -105,7 +247,7 @@ let schema = {
           }
         }
       },
-      assistance: { // TODO: Needs to be translated into a (comma) delimited string (255 limit), abbr provided to support content changes
+      assistance: { // TODO: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
         type: 'object',
         properties: {
           TA: {
@@ -118,7 +260,7 @@ let schema = {
           },
           MyCAA: {
             type: 'boolean'
-            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties 
+            // title: Military Spouse Career Advancement Accounts
           },
           FFA: {
             type: 'boolean'
@@ -128,18 +270,42 @@ let schema = {
       }
     },
     issue: { 
-      type: 'string',
-      'enum': [
-        'Recruiting/Marketing Practices',
-        'Accreditation',
-        'Financial Issues (e.g. Tuition/Fee Charges)',
-        'Student Loans',
-        'Post-Graduation Job Opportunities',
-        'Change in degree/plan requirements',
-        'Quality of Education',
-        'Grade Policy',
-        'Release of Transcripts'
-      ]
+      type: 'object',
+      properties: {
+        'Recruiting/Marketing Practices': {
+          type: 'boolean'
+        },
+        'Student Loans': {
+          type: 'boolean'
+        },
+        'Quality of Education': {
+          type: 'boolean'
+        },
+        'Transfer of Credits': { // TODO: determine why missing in design
+          type: 'boolean'
+        },
+        'Accreditation': {
+          type: 'boolean'
+        },
+        'Post-graduation Job Opportunities': { // TODO: resolve discrepancy "Post-graduation;Job Opportunities"
+          type: 'boolean'
+        },
+        'Grade Policy': {
+          type: 'boolean'
+        },
+        'Refund Issues': { // TODO: determine why missing in design
+          type: 'boolean'
+        },
+        'Financial Issues (e.g. Tuition/Fee charges)': {
+          type: 'boolean'
+        },
+        'Change in degree plan/requirements': {
+          type: 'boolean'
+        },
+        'Release of Transcripts': {
+          type: 'boolean'
+        }
+      }
     },
     issueDescription: {
       type: 'string',
@@ -152,12 +318,12 @@ let schema = {
   }
 };
 
+ // TODO: clarify with stakeholders what Vets.gov ID – 20 limit refers to
 [
   ['privacyAgreementAccepted'],
-  ['usaPhone', 'phone'], // TODO: note validation requirements pending feedback
-  ['address'], // TODO: note length limits pending feedback
-  ['dateRange', 'serviceDateRange'], // TODO: Date format needs to be transformed to enteredDuty & releaseFromDuty
-  ['date', 'dob'],
+  ['usaPhone', 'phone'], // Type: 10 digit number (no whitespace, etc.)
+  ['dateRange', 'serviceDateRange'], // TRANSLATE: Date must be flattened to enteredDuty & releaseFromDuty (both type: date)
+  ['date', 'dob'], // Type: date
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
