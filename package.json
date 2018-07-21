@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "node src/start build",
-    "test": "mocha '/Users/clairehsu/Projects/vets-json-schema/test/schemas/complaint-tool/schema.spec.js'",
+    "test": "mocha 'test/**/*.spec.js'",
     "watch": "node src/start watch"
   },
   "main": "dist/schemas.js",
