@@ -168,6 +168,7 @@ let schema = {
       format: 'email'
     },
     educationDetails: {
+      type: 'object',
       required: [ // no fields are required for submission, though several are required by design on FE
         'school',
         'programs'

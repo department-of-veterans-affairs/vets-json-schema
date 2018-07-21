@@ -208,6 +208,7 @@
       "format": "email"
     },
     "educationDetails": {
+      "type": "object",
       "required": [
         "school",
         "programs"
