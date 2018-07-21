@@ -1,13 +1,13 @@
 {
   "name": "vets-json-schema",
-  "version": "3.61.0",
+  "version": "3.62.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
   },
   "scripts": {
     "build": "node src/start build",
-    "test": "mocha 'test/**/*.spec.js'",
+    "test": "mocha '/Users/clairehsu/Projects/vets-json-schema/test/schemas/complaint-tool/schema.spec.js'",
     "watch": "node src/start watch"
   },
   "main": "dist/schemas.js",

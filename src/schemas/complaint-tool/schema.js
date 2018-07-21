@@ -1,6 +1,6 @@
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash';
+import _ from 'lodash/fp';
 
 
 const GIBSFTStates = [
@@ -58,7 +58,7 @@ const GIBSFTStates = [
 ];
 
 // The common definition includes "II" and lacks "Other"
-const fullName = _.set(definitions.fullName, 'properties.suffix', { 
+const fullName = _.set('properties.suffix', { 
   type: 'string',
   'enum': [
     'Jr.',
@@ -67,7 +67,7 @@ const fullName = _.set(definitions.fullName, 'properties.suffix', {
     'Sr.',
     'Other'
   ]
-});
+}, definitions.fullName);
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -110,7 +110,7 @@ let schema = {
           type: 'string',
           pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
         },
-        country: { // TODO: determine if this option should be presented to users if only 'US' is allowed
+        country: { // TODO: determine validation, picklist? 
           type: 'string',
           'enum': ['US'] // Only US addresses are supported
         }
@@ -144,7 +144,7 @@ let schema = {
         'Other'
       ]
     },
-    fullName: _.merge({}, fullName, { // First, Middle, Last (100 limit, each)
+    fullName: _.merge({ // First, Middle, Last (100 limit, each)
       properties: { // common definition sets first and last maxLength to 30 (within submission limit)
         middle: { // common definition doesn't set middle maxLength
           type: 'string',
@@ -162,7 +162,7 @@ let schema = {
           ]
         }
       }
-    }),
+    }, fullName),
     email: {
       type: 'string',  // Type: email (no length limit)
       format: 'email'
@@ -175,6 +175,7 @@ let schema = {
       school: {
         type: 'object',
         properties: {
+          required: ['name'], // address or facilityCode are also required on FE
           address: {
             type: 'object',
             required: ['street', 'city', 'state', 'postalCode', 'country'],
@@ -202,7 +203,7 @@ let schema = {
                 type: 'string',
                 pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
               },
-              country: { // TODO: determine if this option should be presented to users if only 'US' is allowed
+              country: { // TODO: determine validation, picklist?
                 type: 'string',
                 'enum': ['US'] // Only US addresses are supported
               }
@@ -219,7 +220,7 @@ let schema = {
         }
       },
       programs: { // TODO: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
-        type: 'object',
+        type: 'object', // FE validation requires at least one selected
         properties: { // TODO: confirm with stakeholders that "VA Education Programs (e.g. GI Bill)" shouldn't be an option, or if an acronym should be provided
           'MGIB-AD Ch 30': {
             type: 'boolean'
@@ -269,8 +270,8 @@ let schema = {
         }
       }
     },
-    issue: { 
-      type: 'object',
+    issue: {  // TRANSLATE to array 
+      type: 'object', // FE validation requires at least one selected
       properties: {
         'Recruiting/Marketing Practices': {
           type: 'boolean'
