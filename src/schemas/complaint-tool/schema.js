@@ -198,7 +198,8 @@ let schema = {
           },
           country: {
             type: 'string',
-            'enum': ['US'] // Only 'US' addresses are supported
+            'enum': ['US'], // Only 'US' addresses are supported
+            enumNames: ['United States']
           },
           name: { // Type: text (255)
             type: 'string',
