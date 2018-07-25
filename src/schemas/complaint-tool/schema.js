@@ -58,7 +58,7 @@ const GIBSFTStates = [
 ];
 
 // The common definition includes "II" and lacks "Other"
-const fullName = _.set('properties.suffix', { 
+const fullName = _.set('properties.suffix', {
   type: 'string',
   'enum': [
     'Jr.',
@@ -83,39 +83,41 @@ let schema = {
     'issueResolution'
   ],
   properties: {
-    address: {
-      type: 'object',
-      required: ['street', 'city', 'state', 'postalCode', 'country'],
-      properties: {
-        street: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 1000 // TODO: confirm length limit with stakeholders 
-        },
-        street2: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 1000 // TODO: confirm length limit with stakeholders 
-        },
-        city: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 25
-        },
-        state: {  // TODO: verify validation as abbreviations or words
-          type: 'string',
-          'enum': GIBSFTStates
-        },
-        postalCode: {  // TYPE: text (5)
-          type: 'string',
-          pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-        },
-        country: { // TODO: determine validation, picklist? 
-          type: 'string',
-          'enum': ['US'] // Only US addresses are supported
-        }
-      }
+    // TODO: add conditional address requirements
+    address1: { // TYPE: text (499)
+      type: 'string',
+      minLength: 1,
+      maxLength: 499 // address1 + address2 length must be <1000
     },
+    address2: { // TYPE: text (499)
+      type: 'string',
+      minLength: 1,
+      maxLength: 499 // address1 + address2 length must be <1000
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 25
+    },
+    state: {  // TODO: verify validation as abbreviations or words
+      type: 'string',
+      enum: GIBSFTStates
+    },
+    postalCode: {  // TYPE: text (5)
+      type: 'string',
+      pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+    },
+    country: { // TODO: determine validation, picklist?
+      type: 'string',
+      'enum': ['US'] // Only US addresses are supported
+    },
+    // address: { // TRANSLATE: properties on address need to be lifted to the root properties object. Also street and street2
+    //   type: 'object',
+    //   required: ['street', 'city', 'state', 'postalCode', 'country'],
+    //   properties: {
+
+    //   }
+    // },
     onBehalfOf: {  // Type: text (255 limit)
       type: 'string',
       'enum': [
@@ -184,12 +186,12 @@ let schema = {
               street: {
                 type: 'string',
                 minLength: 1,
-                maxLength: 255 // TODO: confirm length limit with stakeholders 
+                maxLength: 255 // TODO: confirm length limit with stakeholders
               },
               street2: {
                 type: 'string',
                 minLength: 1,
-                maxLength: 255 // TODO: confirm length limit with stakeholders 
+                maxLength: 255 // TODO: confirm length limit with stakeholders
               },
               city: {
                 type: 'string',
@@ -258,7 +260,7 @@ let schema = {
           },
           'TA-AGR': {
             type: 'boolean'
-            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties 
+            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties
           },
           MyCAA: {
             type: 'boolean'
@@ -266,12 +268,12 @@ let schema = {
           },
           FFA: {
             type: 'boolean'
-            // title: Federal Financial Aid 
+            // title: Federal Financial Aid
           }
         }
       }
     },
-    issue: {  // TRANSLATE to array 
+    issue: {  // TRANSLATE to array
       type: 'object', // FE validation requires at least one selected
       properties: {
         'Recruiting/Marketing Practices': {
