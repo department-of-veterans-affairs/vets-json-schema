@@ -2,60 +2,59 @@ import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash/fp';
 
-
-const GIBSFTStates = [
-  'Alabama',
-  'Alaska',
-  'Arizona',
-  'Arkansas',
-  'California',
-  'Colorado',
-  'Connecticut',
-  'Delaware',
-  'District of Columbia',
-  'Florida',
-  'Georgia',
-  'Hawaii',
-  'Idaho',
-  'Illinois',
-  'Indiana',
-  'Iowa',
-  'Kansas',
-  'Kentucky',
-  'Louisiana',
-  'Maine',
-  'Maryland',
-  'Massachusetts',
-  'Michigan',
-  'Minnesota',
-  'Mississippi',
-  'Missouri',
-  'Montana',
-  'Nebraska',
-  'Nevada',
-  'New Hampshire',
-  'New Jersey',
-  'New Mexico',
-  'New York',
-  'North Carolina',
-  'North Dakota',
-  'Ohio',
-  'Oklahoma',
-  'Oregon',
-  'Pennsylvania',
-  'Rhode Island',
-  'South Carolina',
-  'South Dakota',
-  'Tennessee',
-  'Texas',
-  'Utah',
-  'Vermont',
-  'Virginia',
-  'Washington',
-  'West Virginia',
-  'Wisconsin',
-  'Wyoming'
-];
+const allStates = [
+  { full: 'Alabama', abbreviation: 'AL' },
+  { full: 'Alaska', abbreviation: 'AK' },
+  { full: 'Arizona', abbreviation: 'AZ' },
+  { full: 'Arkansas', abbreviation: 'AR' },
+  { full: 'California', abbreviation: 'CA' },
+  { full: 'Colorado', abbreviation: 'CO' },
+  { full: 'Connecticut', abbreviation: 'CT' },
+  { full: 'Delaware', abbreviation: 'DE' },
+  { full: 'District Of Columbia', abbreviation: 'DC' },
+  { full: 'Florida', abbreviation: 'FL' },
+  { full: 'Georgia', abbreviation: 'GA' },
+  { full: 'Hawaii', abbreviation: 'HI' },
+  { full: 'Idaho', abbreviation: 'ID' },
+  { full: 'Illinois', abbreviation: 'IL' },
+  { full: 'Indiana', abbreviation: 'IN' },
+  { full: 'Iowa', abbreviation: 'IA' },
+  { full: 'Kansas', abbreviation: 'KS' },
+  { full: 'Kentucky', abbreviation: 'KY' },
+  { full: 'Louisiana', abbreviation: 'LA' },
+  { full: 'Maine', abbreviation: 'ME' },
+  { full: 'Maryland', abbreviation: 'MD' },
+  { full: 'Massachusetts', abbreviation: 'MA' },
+  { full: 'Michigan', abbreviation: 'MI' },
+  { full: 'Minnesota', abbreviation: 'MN' },
+  { full: 'Mississippi', abbreviation: 'MS' },
+  { full: 'Missouri', abbreviation: 'MO' },
+  { full: 'Montana', abbreviation: 'MT' },
+  { full: 'Nebraska', abbreviation: 'NE' },
+  { full: 'Nevada', abbreviation: 'NV' },
+  { full: 'New Hampshire', abbreviation: 'NH' },
+  { full: 'New Jersey', abbreviation: 'NJ' },
+  { full: 'New Mexico', abbreviation: 'NM' },
+  { full: 'New York', abbreviation: 'NY' },
+  { full: 'North Carolina', abbreviation: 'NC' },
+  { full: 'North Dakota', abbreviation: 'ND' },
+  { full: 'Ohio', abbreviation: 'OH' },
+  { full: 'Oklahoma', abbreviation: 'OK' },
+  { full: 'Oregon', abbreviation: 'OR' },
+  { full: 'Pennsylvania', abbreviation: 'PA' },
+  { full: 'Rhode Island', abbreviation: 'RI' },
+  { full: 'South Carolina', abbreviation: 'SC' },
+  { full: 'South Dakota', abbreviation: 'SD' },
+  { full: 'Tennessee', abbreviation: 'TN' },
+  { full: 'Texas', abbreviation: 'TX' },
+  { full: 'Utah', abbreviation: 'UT' },
+  { full: 'Vermont', abbreviation: 'VT' },
+  { full: 'Virginia', abbreviation: 'VA' },
+  { full: 'Washington', abbreviation: 'WA' },
+  { full: 'West Virginia', abbreviation: 'WV' },
+  { full: 'Wisconsin', abbreviation: 'WI' },
+  { full: 'Wyoming', abbreviation: 'WY' }
+]
 
 // The common definition includes "II" and lacks "Other"
 const fullName = _.set('properties.suffix', {
@@ -99,9 +98,10 @@ let schema = {
       minLength: 1,
       maxLength: 25
     },
-    state: {  // TODO: verify validation as abbreviations or words
+    state: { // backend requires abbreviated state names
       type: 'string',
-      enum: GIBSFTStates
+      'enum': allStates.map(state => state.abbreviation),
+      enumNames: allStates.map(state => state.full)
     },
     postalCode: {  // TYPE: text (5)
       type: 'string',
@@ -198,9 +198,9 @@ let schema = {
                 minLength: 1,
                 maxLength: 255
               },
-              state: {  // TODO: verify validation as abbreviations or words
+              state: { // backend requires the full state names
                 type: 'string',
-                'enum': GIBSFTStates
+                'enum': allStates.map(state => state.full),
               },
               postalCode: {  // TYPE: text (255)
                 type: 'string',
