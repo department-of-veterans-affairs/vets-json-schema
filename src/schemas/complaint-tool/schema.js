@@ -82,23 +82,23 @@ let schema = {
     'issueResolution'
   ],
   properties: {
-    // TODO: add conditional address requirements
-    address1: { // TYPE: text (499)
+    // TRANSLATE: address and address2 must be combined into a single comma separated string property named 'address'
+    address: { // TYPE: text (499)
       type: 'string',
       minLength: 1,
-      maxLength: 499 // address1 + address2 length must be <1000
+      maxLength: 499 // address + address2 length must be < 1000
     },
     address2: { // TYPE: text (499)
       type: 'string',
       minLength: 1,
-      maxLength: 499 // address1 + address2 length must be <1000
+      maxLength: 499 // address + address2 length must be < 1000
     },
     city: {
       type: 'string',
       minLength: 1,
       maxLength: 25
     },
-    state: { // backend requires abbreviated state names
+    state: { // backend requires abbreviated state names for applicant address
       type: 'string',
       'enum': allStates.map(state => state.abbreviation),
       enumNames: allStates.map(state => state.full)
@@ -107,17 +107,11 @@ let schema = {
       type: 'string',
       pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
     },
-    country: { // TODO: determine validation, picklist?
+    country: {
       type: 'string',
-      'enum': ['US'] // Only US addresses are supported
+      'enum': ['US'], // Only 'US' is accepted
+      enumNames: ['United States']
     },
-    // address: { // TRANSLATE: properties on address need to be lifted to the root properties object. Also street and street2
-    //   type: 'object',
-    //   required: ['street', 'city', 'state', 'postalCode', 'country'],
-    //   properties: {
-
-    //   }
-    // },
     onBehalfOf: {  // Type: text (255 limit)
       type: 'string',
       'enum': [
@@ -179,38 +173,32 @@ let schema = {
         type: 'object',
         properties: {
           required: ['name'], // address or facilityCode are also required on FE
-          address: {
-            type: 'object',
-            required: ['street', 'city', 'state', 'postalCode', 'country'],
-            properties: {
-              street: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 255 // TODO: confirm length limit with stakeholders
-              },
-              street2: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 255 // TODO: confirm length limit with stakeholders
-              },
-              city: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 255
-              },
-              state: { // backend requires the full state names
-                type: 'string',
-                'enum': allStates.map(state => state.full),
-              },
-              postalCode: {  // TYPE: text (255)
-                type: 'string',
-                pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-              },
-              country: { // TODO: determine validation, picklist?
-                type: 'string',
-                'enum': ['US'] // Only US addresses are supported
-              }
-            }
+          address: { // TRANSLATE: address and address2 must be combined into a single comma separated string property named 'address'
+            type: 'string',
+            minLength: 1,
+            maxLength: 126 // address + address2 length must be < 255
+          },
+          address2: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 126 // address + address2 length must be < 255
+          },
+          city: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 255
+          },
+          state: { // backend requires the full state names for the school address
+            type: 'string',
+            'enum': allStates.map(state => state.full),
+          },
+          postalCode: {  // TYPE: text (255)
+            type: 'string',
+            pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+          },
+          country: {
+            type: 'string',
+            'enum': ['US'] // Only 'US' addresses are supported
           },
           name: { // Type: text (255)
             type: 'string',
@@ -222,9 +210,9 @@ let schema = {
           }
         }
       },
-      programs: { // TRANSLATE: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
+      programs: { // TRANSLATE into an array of semicolon separated strings (255 limit)
         type: 'object', // FE validation requires at least one selected
-        properties: { // TODO: confirm with stakeholders that "VA Education Programs (e.g. GI Bill)" shouldn't be an option, or if an acronym should be provided
+        properties: {
           'MGIB-AD Ch 30': {
             type: 'boolean'
             // title: 'Montgomery GI Bill - Active Duty (MGIB) (Ch. 30)'
@@ -237,7 +225,7 @@ let schema = {
             type: 'boolean'
             // title: 'Vocational Rehabilitation and Employment (VR&E) (Ch. 31)'
           },
-          'Post- 9/11 Ch 33': { // TODO: verify with stakeholders that space should be removed after dash
+          'Post-9/11 Ch 33': {
             type: 'boolean'
             // title: 'Post-9/11 GI Bill (Ch. 33)'
           },
@@ -251,7 +239,7 @@ let schema = {
           }
         }
       },
-      assistance: { // TODO: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
+      assistance: { // TRANSLATE into a semicolon separated string (255 limit)
         type: 'object',
         properties: {
           TA: {
@@ -273,7 +261,7 @@ let schema = {
         }
       }
     },
-    issue: {  // TRANSLATE to array
+    issue: {  // TRANSLATE into array
       type: 'object', // FE validation requires at least one selected
       properties: {
         'Recruiting/Marketing Practices': {
@@ -285,19 +273,19 @@ let schema = {
         'Quality of Education': {
           type: 'boolean'
         },
-        'Transfer of Credits': { // TODO: determine why missing in design
+        'Transfer of Credits': {
           type: 'boolean'
         },
         'Accreditation': {
           type: 'boolean'
         },
-        'Post-graduation Job Opportunities': { // TODO: resolve discrepancy "Post-graduation;Job Opportunities"
+        'Post-graduation Job Opportunities': {
           type: 'boolean'
         },
         'Grade Policy': {
           type: 'boolean'
         },
-        'Refund Issues': { // TODO: determine why missing in design
+        'Refund Issues': {
           type: 'boolean'
         },
         'Financial Issues (e.g. Tuition/Fee charges)': {
@@ -322,7 +310,7 @@ let schema = {
   }
 };
 
- // TODO: clarify with stakeholders what Vets.gov ID – 20 limit refers to
+
 [
   ['privacyAgreementAccepted'],
   ['usaPhone', 'phone'], // Type: 10 digit number (no whitespace, etc.)
