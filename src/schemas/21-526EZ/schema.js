@@ -355,11 +355,25 @@ let schema = {
         },
         reservesNationalGuardService: {
           type: 'object',
-          required: ['obligationTermOfServiceDateRange', 'unitName', 'unitPhone', ],
+          required: ['unitName', 'obligationTermOfServiceDateRange', 'waiveVABenefitsToRetainTrainingPay'],
           properties: {
+            unitName: {
+              type: 'string',
+              maxLength: 256,
+              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+            },
+            obligationTermOfServiceDateRange: {
+              $ref: '#/definitions/dateRangeAllRequired'
+            },
+            waiveVABenefitsToRetainTrainingPay: {
+              // I elect to waive VA benefits for the days I accrued
+              // inactive duty training pay in order to retain my inactive
+              // duty training pay.
+              type: 'boolean',
+              default: false
+            },
             title10Activation: {
               type: 'object',
-              required: ['title10ActivationDate', 'anticipatedSeparationDate'],
               properties: {
                 title10ActivationDate: {
                   $ref: '#/definitions/date'
@@ -367,30 +381,6 @@ let schema = {
                 anticipatedSeparationDate: {
                   $ref: '#/definitions/date'
                 },
-              }
-            },
-            obligationTermOfServiceDateRange: {
-              $ref: '#/definitions/dateRangeAllRequired'
-            },
-            unitName: {
-              type: 'string',
-              maxLength: 256,
-              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
-            },
-            unitPhone: {
-              $ref: '#/definitions/phone'
-            },
-            inactiveDutyTrainingPay: {
-              type: 'object',
-              required: ['waiveVABenefitsToRetainTrainingPay'],
-              properties: {
-                waiveVABenefitsToRetainTrainingPay: {
-                  // I elect to waive VA benefits for the days I accrued
-                  // inactive duty training pay in order to retain my inactive
-                  // duty training pay.
-                  type: 'boolean',
-                  default: false
-                }
               }
             }
           }
