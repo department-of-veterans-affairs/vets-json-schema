@@ -173,7 +173,8 @@
       ],
       "enumNames": [
         "United States"
-      ]
+      ],
+      "default": "US"
     },
     "onBehalfOf": {
       "type": "string",
@@ -345,7 +346,8 @@
             ],
             "enumNames": [
               "United States"
-            ]
+            ],
+            "default": "US"
           },
           "name": {
             "type": "string",
@@ -361,22 +363,28 @@
         "type": "object",
         "properties": {
           "MGIB-AD Ch 30": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "MGIB-SR Ch 1606": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "VRE Ch 31": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Post-9/11 Ch 33": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "DEA Ch 35": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "TATU": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -384,16 +392,20 @@
         "type": "object",
         "properties": {
           "TA": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "TA-AGR": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "MyCAA": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "FFA": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           }
         }
       }
@@ -402,37 +414,48 @@
       "type": "object",
       "properties": {
         "Recruiting/Marketing Practices": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Student Loans": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Quality of Education": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Transfer of Credits": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Accreditation": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Post-graduation Job Opportunities": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Grade Policy": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Refund Issues": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Financial Issues (e.g. Tuition/Fee charges)": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Change in degree plan/requirements": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Release of Transcripts": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         }
       }
     },
