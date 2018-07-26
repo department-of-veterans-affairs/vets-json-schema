@@ -2,63 +2,62 @@ import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash/fp';
 
-
-const GIBSFTStates = [
-  'Alabama',
-  'Alaska',
-  'Arizona',
-  'Arkansas',
-  'California',
-  'Colorado',
-  'Connecticut',
-  'Delaware',
-  'District of Columbia',
-  'Florida',
-  'Georgia',
-  'Hawaii',
-  'Idaho',
-  'Illinois',
-  'Indiana',
-  'Iowa',
-  'Kansas',
-  'Kentucky',
-  'Louisiana',
-  'Maine',
-  'Maryland',
-  'Massachusetts',
-  'Michigan',
-  'Minnesota',
-  'Mississippi',
-  'Missouri',
-  'Montana',
-  'Nebraska',
-  'Nevada',
-  'New Hampshire',
-  'New Jersey',
-  'New Mexico',
-  'New York',
-  'North Carolina',
-  'North Dakota',
-  'Ohio',
-  'Oklahoma',
-  'Oregon',
-  'Pennsylvania',
-  'Rhode Island',
-  'South Carolina',
-  'South Dakota',
-  'Tennessee',
-  'Texas',
-  'Utah',
-  'Vermont',
-  'Virginia',
-  'Washington',
-  'West Virginia',
-  'Wisconsin',
-  'Wyoming'
-];
+const allStates = [
+  { full: 'Alabama', abbreviation: 'AL' },
+  { full: 'Alaska', abbreviation: 'AK' },
+  { full: 'Arizona', abbreviation: 'AZ' },
+  { full: 'Arkansas', abbreviation: 'AR' },
+  { full: 'California', abbreviation: 'CA' },
+  { full: 'Colorado', abbreviation: 'CO' },
+  { full: 'Connecticut', abbreviation: 'CT' },
+  { full: 'Delaware', abbreviation: 'DE' },
+  { full: 'District Of Columbia', abbreviation: 'DC' },
+  { full: 'Florida', abbreviation: 'FL' },
+  { full: 'Georgia', abbreviation: 'GA' },
+  { full: 'Hawaii', abbreviation: 'HI' },
+  { full: 'Idaho', abbreviation: 'ID' },
+  { full: 'Illinois', abbreviation: 'IL' },
+  { full: 'Indiana', abbreviation: 'IN' },
+  { full: 'Iowa', abbreviation: 'IA' },
+  { full: 'Kansas', abbreviation: 'KS' },
+  { full: 'Kentucky', abbreviation: 'KY' },
+  { full: 'Louisiana', abbreviation: 'LA' },
+  { full: 'Maine', abbreviation: 'ME' },
+  { full: 'Maryland', abbreviation: 'MD' },
+  { full: 'Massachusetts', abbreviation: 'MA' },
+  { full: 'Michigan', abbreviation: 'MI' },
+  { full: 'Minnesota', abbreviation: 'MN' },
+  { full: 'Mississippi', abbreviation: 'MS' },
+  { full: 'Missouri', abbreviation: 'MO' },
+  { full: 'Montana', abbreviation: 'MT' },
+  { full: 'Nebraska', abbreviation: 'NE' },
+  { full: 'Nevada', abbreviation: 'NV' },
+  { full: 'New Hampshire', abbreviation: 'NH' },
+  { full: 'New Jersey', abbreviation: 'NJ' },
+  { full: 'New Mexico', abbreviation: 'NM' },
+  { full: 'New York', abbreviation: 'NY' },
+  { full: 'North Carolina', abbreviation: 'NC' },
+  { full: 'North Dakota', abbreviation: 'ND' },
+  { full: 'Ohio', abbreviation: 'OH' },
+  { full: 'Oklahoma', abbreviation: 'OK' },
+  { full: 'Oregon', abbreviation: 'OR' },
+  { full: 'Pennsylvania', abbreviation: 'PA' },
+  { full: 'Rhode Island', abbreviation: 'RI' },
+  { full: 'South Carolina', abbreviation: 'SC' },
+  { full: 'South Dakota', abbreviation: 'SD' },
+  { full: 'Tennessee', abbreviation: 'TN' },
+  { full: 'Texas', abbreviation: 'TX' },
+  { full: 'Utah', abbreviation: 'UT' },
+  { full: 'Vermont', abbreviation: 'VT' },
+  { full: 'Virginia', abbreviation: 'VA' },
+  { full: 'Washington', abbreviation: 'WA' },
+  { full: 'West Virginia', abbreviation: 'WV' },
+  { full: 'Wisconsin', abbreviation: 'WI' },
+  { full: 'Wyoming', abbreviation: 'WY' }
+]
 
 // The common definition includes "II" and lacks "Other"
-const fullName = _.set('properties.suffix', { 
+const fullName = _.set('properties.suffix', {
   type: 'string',
   'enum': [
     'Jr.',
@@ -83,38 +82,36 @@ let schema = {
     'issueResolution'
   ],
   properties: {
-    address: {
-      type: 'object',
-      required: ['street', 'city', 'state', 'postalCode', 'country'],
-      properties: {
-        street: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 1000 // TODO: confirm length limit with stakeholders 
-        },
-        street2: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 1000 // TODO: confirm length limit with stakeholders 
-        },
-        city: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 25
-        },
-        state: {  // TODO: verify validation as abbreviations or words
-          type: 'string',
-          'enum': GIBSFTStates
-        },
-        postalCode: {  // TYPE: text (5)
-          type: 'string',
-          pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-        },
-        country: { // TODO: determine validation, picklist? 
-          type: 'string',
-          'enum': ['US'] // Only US addresses are supported
-        }
-      }
+    // TRANSLATE: given 'address': '123 Main St.' and 'address2': 'APT 23' then the final translated 'address' should be '123 Main St., APT 23'
+    address: { // TYPE: text (499)
+      type: 'string',
+      minLength: 1,
+      maxLength: 499 // address + address2 length must be < 1000
+    },
+    address2: { // TYPE: text (499)
+      type: 'string',
+      minLength: 1,
+      maxLength: 499 // address + address2 length must be < 1000
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 25
+    },
+    state: { // backend requires abbreviated state names for applicant address
+      type: 'string',
+      'enum': allStates.map(state => state.abbreviation),
+      enumNames: allStates.map(state => state.full)
+    },
+    postalCode: {  // TYPE: text (5)
+      type: 'string',
+      pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+    },
+    country: {
+      type: 'string',
+      'enum': ['US'], // Only 'US' is accepted
+      enumNames: ['United States'],
+      default: 'US'
     },
     onBehalfOf: {  // Type: text (255 limit)
       type: 'string',
@@ -177,38 +174,34 @@ let schema = {
         type: 'object',
         properties: {
           required: ['name'], // address or facilityCode are also required on FE
-          address: {
-            type: 'object',
-            required: ['street', 'city', 'state', 'postalCode', 'country'],
-            properties: {
-              street: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 255 // TODO: confirm length limit with stakeholders 
-              },
-              street2: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 255 // TODO: confirm length limit with stakeholders 
-              },
-              city: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 255
-              },
-              state: {  // TODO: verify validation as abbreviations or words
-                type: 'string',
-                'enum': GIBSFTStates
-              },
-              postalCode: {  // TYPE: text (255)
-                type: 'string',
-                pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-              },
-              country: { // TODO: determine validation, picklist?
-                type: 'string',
-                'enum': ['US'] // Only US addresses are supported
-              }
-            }
+          address: { // TRANSLATE: given 'address': '123 Main St.' and 'address2': 'APT 23' then the final translated 'address' should be '123 Main St., APT 23'
+            type: 'string',
+            minLength: 1,
+            maxLength: 126 // address + address2 length must be < 255
+          },
+          address2: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 126 // address + address2 length must be < 255
+          },
+          city: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 255
+          },
+          state: { // backend requires the full state names for the school address
+            type: 'string',
+            'enum': allStates.map(state => state.full),
+          },
+          postalCode: {  // TYPE: text (255)
+            type: 'string',
+            pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+          },
+          country: {
+            type: 'string',
+            'enum': ['US'], // Only 'US' addresses are supported
+            enumNames: ['United States'],
+            default: 'US'
           },
           name: { // Type: text (255)
             type: 'string',
@@ -220,92 +213,113 @@ let schema = {
           }
         }
       },
-      programs: { // TRANSLATE: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
+      programs: { // TRANSLATE into an array of semicolon separated strings (255 limit)
         type: 'object', // FE validation requires at least one selected
-        properties: { // TODO: confirm with stakeholders that "VA Education Programs (e.g. GI Bill)" shouldn't be an option, or if an acronym should be provided
+        properties: {
           'MGIB-AD Ch 30': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Montgomery GI Bill - Active Duty (MGIB) (Ch. 30)'
           },
           'MGIB-SR Ch 1606': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR) (Ch. 1606)'
           },
           'VRE Ch 31': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Vocational Rehabilitation and Employment (VR&E) (Ch. 31)'
           },
-          'Post- 9/11 Ch 33': { // TODO: verify with stakeholders that space should be removed after dash
-            type: 'boolean'
+          'Post-9/11 Ch 33': {
+            type: 'boolean',
+            default: false
             // title: 'Post-9/11 GI Bill (Ch. 33)'
           },
           'DEA Ch 35': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Survivors & Dependents Assistance (DEA) (Ch. 35)'
           },
           TATU: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Tuition Assistance Top-Up'
           }
         }
       },
-      assistance: { // TODO: Needs to be translated into an array of strings?? clarify with stakeholders (255 limit)
+      assistance: { // TRANSLATE into a semicolon separated string (255 limit)
         type: 'object',
         properties: {
           TA: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: Federal Tuition Assistance (TA)
           },
           'TA-AGR': {
-            type: 'boolean'
-            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties 
+            type: 'boolean',
+            default: false
+            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties
           },
           MyCAA: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: Military Spouse Career Advancement Accounts
           },
           FFA: {
-            type: 'boolean'
-            // title: Federal Financial Aid 
+            type: 'boolean',
+            default: false
+            // title: Federal Financial Aid
           }
         }
       }
     },
-    issue: {  // TRANSLATE to array 
+    issue: {  // TRANSLATE into array
       type: 'object', // FE validation requires at least one selected
       properties: {
         'Recruiting/Marketing Practices': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Student Loans': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Quality of Education': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
-        'Transfer of Credits': { // TODO: determine why missing in design
-          type: 'boolean'
+        'Transfer of Credits': {
+            type: 'boolean',
+            default: false
         },
         'Accreditation': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
-        'Post-graduation Job Opportunities': { // TODO: resolve discrepancy "Post-graduation;Job Opportunities"
-          type: 'boolean'
+        'Post-graduation Job Opportunities': {
+            type: 'boolean',
+            default: false
         },
         'Grade Policy': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
-        'Refund Issues': { // TODO: determine why missing in design
-          type: 'boolean'
+        'Refund Issues': {
+            type: 'boolean',
+            default: false
         },
         'Financial Issues (e.g. Tuition/Fee charges)': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Change in degree plan/requirements': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Release of Transcripts': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         }
       }
     },
@@ -320,7 +334,7 @@ let schema = {
   }
 };
 
- // TODO: clarify with stakeholders what Vets.gov ID – 20 limit refers to
+
 [
   ['privacyAgreementAccepted'],
   ['usaPhone', 'phone'], // Type: 10 digit number (no whitespace, etc.)

@@ -28,37 +28,56 @@ describe('complaint tool schema', () => {
     invalid: [[false]]
   });
 
+  // test postalCode
+  schemaTestHelper.testValidAndInvalid('postalCode', {
+    valid: ['12345'],
+    invalid: ['1234']
+  });  
+  
   // test address
   schemaTestHelper.testValidAndInvalid('address', {
     valid: [
-      {
-        street: '123 a rd',
-        city: 'abc',
-        state: 'Missouri',
-        postalCode: '12345',
-        country: 'US'
-      },
-      {
-        street: '123 a rd',
-        city: 'abc',
-        state: 'Missouri',
-        postalCode: '12345',
-        country: 'US'
-      }
+      '123 Forest Road'
     ],
     invalid: [
-      {
-        street: '123 a rd',
-        city: 'abc',
-        postalCode: '12345 1245',
-        country: 'USA'
-      },
-      {
-        street: '123 a rd',
-        city: 'abc',
-        country: 'USA'
-      }
+      true
     ]
+  });
+  
+  // test address2
+  schemaTestHelper.testValidAndInvalid('address2', {
+    valid: [
+      '123 Forest Road'
+    ],
+    invalid: [
+      true
+    ]
+  });
+
+  // test city
+  schemaTestHelper.testValidAndInvalid('city', {
+    valid: [
+      'Springfield'
+    ],
+    invalid: [
+      true
+    ]
+  });
+    
+  // test state
+  schemaTestHelper.testValidAndInvalid('state', {
+    valid: [
+      'CA'
+    ],
+    invalid: [
+      'California'
+    ]
+  });
+
+  // test country
+  schemaTestHelper.testValidAndInvalid('country', {
+    valid: [ 'US' ],
+    invalid: [ 'USA' ]
   });
 
   // test onBehalfOf
@@ -82,16 +101,6 @@ describe('complaint tool schema', () => {
   });
 
   // test serviceAffiliation
-  schemaTestHelper.testValidAndInvalid('serviceAffiliation', {
-    valid: [
-      'Veteran'
-    ],
-    invalid: [
-      'Neighbor'
-    ]
-  });
-
-  // test education details
   schemaTestHelper.testValidAndInvalid('serviceAffiliation', {
     valid: [
       'Veteran'
@@ -135,13 +144,11 @@ describe('complaint tool schema', () => {
   schemaTestHelper.testValidAndInvalid('educationDetails', {
     valid: [{
       school: {
-        address: {
-          street: '123 a rd',
-          city: 'abc',
-          state: 'Missouri',
-          postalCode: '12345',
-          country: 'US'
-        },
+        address: '123 a rd',
+        city: 'abc',
+        state: 'Missouri',
+        postalCode: '12345',
+        country: 'US',
         name: 'Veteran school name',
       },
       programs: {
@@ -153,12 +160,10 @@ describe('complaint tool schema', () => {
     }],
     invalid: [{
       school: {
-        address: {
-          street: '123 a rd',
-          city: 'abc',
-          postalCode: '12345 1245',
-          country: 'USA'
-        },
+        address: '123 a rd',
+        city: 'abc',
+        postalCode: '12345 1245',
+        country: 'USA',
         name: 324,
       },
       // programs: {

@@ -39,97 +39,142 @@
   ],
   "properties": {
     "address": {
-      "type": "object",
-      "required": [
-        "street",
-        "city",
-        "state",
-        "postalCode",
-        "country"
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 499
+    },
+    "address2": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 499
+    },
+    "city": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 25
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "AL",
+        "AK",
+        "AZ",
+        "AR",
+        "CA",
+        "CO",
+        "CT",
+        "DE",
+        "DC",
+        "FL",
+        "GA",
+        "HI",
+        "ID",
+        "IL",
+        "IN",
+        "IA",
+        "KS",
+        "KY",
+        "LA",
+        "ME",
+        "MD",
+        "MA",
+        "MI",
+        "MN",
+        "MS",
+        "MO",
+        "MT",
+        "NE",
+        "NV",
+        "NH",
+        "NJ",
+        "NM",
+        "NY",
+        "NC",
+        "ND",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "RI",
+        "SC",
+        "SD",
+        "TN",
+        "TX",
+        "UT",
+        "VT",
+        "VA",
+        "WA",
+        "WV",
+        "WI",
+        "WY"
       ],
-      "properties": {
-        "street": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 1000
-        },
-        "street2": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 1000
-        },
-        "city": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25
-        },
-        "state": {
-          "type": "string",
-          "enum": [
-            "Alabama",
-            "Alaska",
-            "Arizona",
-            "Arkansas",
-            "California",
-            "Colorado",
-            "Connecticut",
-            "Delaware",
-            "District of Columbia",
-            "Florida",
-            "Georgia",
-            "Hawaii",
-            "Idaho",
-            "Illinois",
-            "Indiana",
-            "Iowa",
-            "Kansas",
-            "Kentucky",
-            "Louisiana",
-            "Maine",
-            "Maryland",
-            "Massachusetts",
-            "Michigan",
-            "Minnesota",
-            "Mississippi",
-            "Missouri",
-            "Montana",
-            "Nebraska",
-            "Nevada",
-            "New Hampshire",
-            "New Jersey",
-            "New Mexico",
-            "New York",
-            "North Carolina",
-            "North Dakota",
-            "Ohio",
-            "Oklahoma",
-            "Oregon",
-            "Pennsylvania",
-            "Rhode Island",
-            "South Carolina",
-            "South Dakota",
-            "Tennessee",
-            "Texas",
-            "Utah",
-            "Vermont",
-            "Virginia",
-            "Washington",
-            "West Virginia",
-            "Wisconsin",
-            "Wyoming"
-          ]
-        },
-        "postalCode": {
-          "type": "string",
-          "pattern": "^\\d{5}$"
-        },
-        "country": {
-          "type": "string",
-          "enum": [
-            "US"
-          ]
-        }
-      }
+      "enumNames": [
+        "Alabama",
+        "Alaska",
+        "Arizona",
+        "Arkansas",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "District Of Columbia",
+        "Florida",
+        "Georgia",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Louisiana",
+        "Maine",
+        "Maryland",
+        "Massachusetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Carolina",
+        "North Dakota",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Pennsylvania",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming"
+      ]
+    },
+    "postalCode": {
+      "type": "string",
+      "pattern": "^\\d{5}$"
+    },
+    "country": {
+      "type": "string",
+      "enum": [
+        "US"
+      ],
+      "enumNames": [
+        "United States"
+      ],
+      "default": "US"
     },
     "onBehalfOf": {
       "type": "string",
@@ -220,97 +265,89 @@
             "name"
           ],
           "address": {
-            "type": "object",
-            "required": [
-              "street",
-              "city",
-              "state",
-              "postalCode",
-              "country"
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 126
+          },
+          "address2": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 126
+          },
+          "city": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "Alabama",
+              "Alaska",
+              "Arizona",
+              "Arkansas",
+              "California",
+              "Colorado",
+              "Connecticut",
+              "Delaware",
+              "District Of Columbia",
+              "Florida",
+              "Georgia",
+              "Hawaii",
+              "Idaho",
+              "Illinois",
+              "Indiana",
+              "Iowa",
+              "Kansas",
+              "Kentucky",
+              "Louisiana",
+              "Maine",
+              "Maryland",
+              "Massachusetts",
+              "Michigan",
+              "Minnesota",
+              "Mississippi",
+              "Missouri",
+              "Montana",
+              "Nebraska",
+              "Nevada",
+              "New Hampshire",
+              "New Jersey",
+              "New Mexico",
+              "New York",
+              "North Carolina",
+              "North Dakota",
+              "Ohio",
+              "Oklahoma",
+              "Oregon",
+              "Pennsylvania",
+              "Rhode Island",
+              "South Carolina",
+              "South Dakota",
+              "Tennessee",
+              "Texas",
+              "Utah",
+              "Vermont",
+              "Virginia",
+              "Washington",
+              "West Virginia",
+              "Wisconsin",
+              "Wyoming"
+            ]
+          },
+          "postalCode": {
+            "type": "string",
+            "pattern": "^\\d{5}$"
+          },
+          "country": {
+            "type": "string",
+            "enum": [
+              "US"
             ],
-            "properties": {
-              "street": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 255
-              },
-              "street2": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 255
-              },
-              "city": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 255
-              },
-              "state": {
-                "type": "string",
-                "enum": [
-                  "Alabama",
-                  "Alaska",
-                  "Arizona",
-                  "Arkansas",
-                  "California",
-                  "Colorado",
-                  "Connecticut",
-                  "Delaware",
-                  "District of Columbia",
-                  "Florida",
-                  "Georgia",
-                  "Hawaii",
-                  "Idaho",
-                  "Illinois",
-                  "Indiana",
-                  "Iowa",
-                  "Kansas",
-                  "Kentucky",
-                  "Louisiana",
-                  "Maine",
-                  "Maryland",
-                  "Massachusetts",
-                  "Michigan",
-                  "Minnesota",
-                  "Mississippi",
-                  "Missouri",
-                  "Montana",
-                  "Nebraska",
-                  "Nevada",
-                  "New Hampshire",
-                  "New Jersey",
-                  "New Mexico",
-                  "New York",
-                  "North Carolina",
-                  "North Dakota",
-                  "Ohio",
-                  "Oklahoma",
-                  "Oregon",
-                  "Pennsylvania",
-                  "Rhode Island",
-                  "South Carolina",
-                  "South Dakota",
-                  "Tennessee",
-                  "Texas",
-                  "Utah",
-                  "Vermont",
-                  "Virginia",
-                  "Washington",
-                  "West Virginia",
-                  "Wisconsin",
-                  "Wyoming"
-                ]
-              },
-              "postalCode": {
-                "type": "string",
-                "pattern": "^\\d{5}$"
-              },
-              "country": {
-                "type": "string",
-                "enum": [
-                  "US"
-                ]
-              }
-            }
+            "enumNames": [
+              "United States"
+            ],
+            "default": "US"
           },
           "name": {
             "type": "string",
@@ -326,22 +363,28 @@
         "type": "object",
         "properties": {
           "MGIB-AD Ch 30": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "MGIB-SR Ch 1606": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "VRE Ch 31": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
-          "Post- 9/11 Ch 33": {
-            "type": "boolean"
+          "Post-9/11 Ch 33": {
+            "type": "boolean",
+            "default": false
           },
           "DEA Ch 35": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "TATU": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -349,16 +392,20 @@
         "type": "object",
         "properties": {
           "TA": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "TA-AGR": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "MyCAA": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "FFA": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           }
         }
       }
@@ -367,37 +414,48 @@
       "type": "object",
       "properties": {
         "Recruiting/Marketing Practices": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Student Loans": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Quality of Education": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Transfer of Credits": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Accreditation": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Post-graduation Job Opportunities": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Grade Policy": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Refund Issues": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Financial Issues (e.g. Tuition/Fee charges)": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Change in degree plan/requirements": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "Release of Transcripts": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         }
       }
     },
