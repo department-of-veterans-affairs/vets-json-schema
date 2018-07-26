@@ -21,6 +21,16 @@ describe('complaint tool schema', () => {
   sharedTests.runTest('date', ['dob']);
   sharedTests.runTest('usaPhone', ['phone']);
   sharedTests.runTest('dateRange', ['serviceDateRange']);
+
+  schemaTestHelper.testValidAndInvalid('address', {
+    valid: [_.merge({}, fixtures.address, {
+      country: 'US',
+      state: 'CA',
+      postalCode: '23423'
+    })],
+    invalid: [[false]]
+  });
+
   schemaTestHelper.testValidAndInvalid('fullName', {
     valid: [_.merge({}, fixtures.fullName, {
       prefix: 'Mr.'
@@ -28,59 +38,6 @@ describe('complaint tool schema', () => {
     invalid: [[false]]
   });
 
-  // test postalCode
-  schemaTestHelper.testValidAndInvalid('postalCode', {
-    valid: ['12345'],
-    invalid: ['1234']
-  });  
-  
-  // test address
-  schemaTestHelper.testValidAndInvalid('address', {
-    valid: [
-      '123 Forest Road'
-    ],
-    invalid: [
-      true
-    ]
-  });
-  
-  // test address2
-  schemaTestHelper.testValidAndInvalid('address2', {
-    valid: [
-      '123 Forest Road'
-    ],
-    invalid: [
-      true
-    ]
-  });
-
-  // test city
-  schemaTestHelper.testValidAndInvalid('city', {
-    valid: [
-      'Springfield'
-    ],
-    invalid: [
-      true
-    ]
-  });
-    
-  // test state
-  schemaTestHelper.testValidAndInvalid('state', {
-    valid: [
-      'CA'
-    ],
-    invalid: [
-      'California'
-    ]
-  });
-
-  // test country
-  schemaTestHelper.testValidAndInvalid('country', {
-    valid: [ 'US' ],
-    invalid: [ 'USA' ]
-  });
-
-  // test onBehalfOf
   schemaTestHelper.testValidAndInvalid('onBehalfOf', {
     valid: [
       'Myself'
@@ -90,7 +47,6 @@ describe('complaint tool schema', () => {
     ]
   });
 
-  // test serviceBranch
   schemaTestHelper.testValidAndInvalid('serviceBranch', {
     valid: [
       'Army'
@@ -100,7 +56,6 @@ describe('complaint tool schema', () => {
     ]
   });
 
-  // test serviceAffiliation
   schemaTestHelper.testValidAndInvalid('serviceAffiliation', {
     valid: [
       'Veteran'
@@ -110,7 +65,6 @@ describe('complaint tool schema', () => {
     ]
   });
 
-  // test issue
   schemaTestHelper.testValidAndInvalid('issue', {
     valid: [{
       'Recruiting/Marketing Practices': true
@@ -120,7 +74,6 @@ describe('complaint tool schema', () => {
     }]
   });
 
-  // test issue description
   schemaTestHelper.testValidAndInvalid('issueDescription', {
     valid: [
       'Veteran'
@@ -130,7 +83,6 @@ describe('complaint tool schema', () => {
     ]
   });
 
-  // test issue resolution
   schemaTestHelper.testValidAndInvalid('issueResolution', {
     valid: [
       'Veteran'
@@ -140,16 +92,17 @@ describe('complaint tool schema', () => {
     ]
   });
 
-  // test education details
   schemaTestHelper.testValidAndInvalid('educationDetails', {
     valid: [{
       school: {
-        address: '123 a rd',
-        city: 'abc',
-        state: 'Missouri',
-        postalCode: '12345',
-        country: 'US',
-        name: 'Veteran school name',
+        address: {
+          street: '123 a rd',
+          city: 'abc',
+          state: 'Missouri',
+          postalCode: '12345',
+          country: 'US'
+        },
+        name: 'Veteran school name'
       },
       programs: {
         'MGIB-AD Ch 30': true
@@ -160,10 +113,12 @@ describe('complaint tool schema', () => {
     }],
     invalid: [{
       school: {
-        address: '123 a rd',
-        city: 'abc',
-        postalCode: '12345 1245',
-        country: 'USA',
+        address: {
+          street: '123 a rd',
+          city: 'abc',
+          postalCode: '12345 1245',
+          country: 'USA'
+        },
         name: 324,
       },
       // programs: {
