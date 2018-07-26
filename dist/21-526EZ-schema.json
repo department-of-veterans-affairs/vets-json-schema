@@ -1520,8 +1520,7 @@
               "$ref": "#/definitions/dateRangeAllRequired"
             },
             "waiveVABenefitsToRetainTrainingPay": {
-              "type": "boolean",
-              "default": false
+              "type": "boolean"
             },
             "title10Activation": {
               "type": "object",

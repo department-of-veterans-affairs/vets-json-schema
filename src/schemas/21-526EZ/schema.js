@@ -370,7 +370,6 @@ let schema = {
               // inactive duty training pay in order to retain my inactive
               // duty training pay.
               type: 'boolean',
-              default: false
             },
             title10Activation: {
               type: 'object',
