@@ -110,7 +110,8 @@ let schema = {
     country: {
       type: 'string',
       'enum': ['US'], // Only 'US' is accepted
-      enumNames: ['United States']
+      enumNames: ['United States'],
+      default: 'US'
     },
     onBehalfOf: {  // Type: text (255 limit)
       type: 'string',
@@ -199,7 +200,8 @@ let schema = {
           country: {
             type: 'string',
             'enum': ['US'], // Only 'US' addresses are supported
-            enumNames: ['United States']
+            enumNames: ['United States'],
+            default: 'US'
           },
           name: { // Type: text (255)
             type: 'string',
@@ -215,27 +217,33 @@ let schema = {
         type: 'object', // FE validation requires at least one selected
         properties: {
           'MGIB-AD Ch 30': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Montgomery GI Bill - Active Duty (MGIB) (Ch. 30)'
           },
           'MGIB-SR Ch 1606': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR) (Ch. 1606)'
           },
           'VRE Ch 31': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Vocational Rehabilitation and Employment (VR&E) (Ch. 31)'
           },
           'Post-9/11 Ch 33': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Post-9/11 GI Bill (Ch. 33)'
           },
           'DEA Ch 35': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Survivors & Dependents Assistance (DEA) (Ch. 35)'
           },
           TATU: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: 'Tuition Assistance Top-Up'
           }
         }
@@ -244,19 +252,23 @@ let schema = {
         type: 'object',
         properties: {
           TA: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: Federal Tuition Assistance (TA)
           },
           'TA-AGR': {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties
           },
           MyCAA: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: Military Spouse Career Advancement Accounts
           },
           FFA: {
-            type: 'boolean'
+            type: 'boolean',
+            default: false
             // title: Federal Financial Aid
           }
         }
@@ -266,37 +278,48 @@ let schema = {
       type: 'object', // FE validation requires at least one selected
       properties: {
         'Recruiting/Marketing Practices': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Student Loans': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Quality of Education': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Transfer of Credits': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Accreditation': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Post-graduation Job Opportunities': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Grade Policy': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Refund Issues': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Financial Issues (e.g. Tuition/Fee charges)': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Change in degree plan/requirements': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         },
         'Release of Transcripts': {
-          type: 'boolean'
+            type: 'boolean',
+            default: false
         }
       }
     },
