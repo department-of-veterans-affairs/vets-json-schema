@@ -82,7 +82,7 @@ let schema = {
     'issueResolution'
   ],
   properties: {
-    // TRANSLATE: address and address2 must be combined into a single comma separated string property named 'address'
+    // TRANSLATE: given 'address': '123 Main St.' and 'address2': 'APT 23' then the final translated 'address' should be '123 Main St., APT 23'
     address: { // TYPE: text (499)
       type: 'string',
       minLength: 1,
@@ -174,7 +174,7 @@ let schema = {
         type: 'object',
         properties: {
           required: ['name'], // address or facilityCode are also required on FE
-          address: { // TRANSLATE: address and address2 must be combined into a single comma separated string property named 'address'
+          address: { // TRANSLATE: given 'address': '123 Main St.' and 'address2': 'APT 23' then the final translated 'address' should be '123 Main St., APT 23'
             type: 'string',
             minLength: 1,
             maxLength: 126 // address + address2 length must be < 255
