@@ -82,36 +82,41 @@ let schema = {
     'issueResolution'
   ],
   properties: {
-    // TRANSLATE: given 'address': '123 Main St.' and 'address2': 'APT 23' then the final translated 'address' should be '123 Main St., APT 23'
-    address: { // TYPE: text (499)
-      type: 'string',
-      minLength: 1,
-      maxLength: 499 // address + address2 length must be < 1000
-    },
-    address2: { // TYPE: text (499)
-      type: 'string',
-      minLength: 1,
-      maxLength: 499 // address + address2 length must be < 1000
-    },
-    city: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 25
-    },
-    state: { // backend requires abbreviated state names for applicant address
-      type: 'string',
-      'enum': allStates.map(state => state.abbreviation),
-      enumNames: allStates.map(state => state.full)
-    },
-    postalCode: {  // TYPE: text (5)
-      type: 'string',
-      pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-    },
-    country: {
-      type: 'string',
-      'enum': ['US'], // Only 'US' is accepted
-      enumNames: ['United States'],
-      default: 'US'
+    address: {
+      type: 'object',
+      required: ['street', 'city', 'state', 'country', 'postalCode'],
+      properties: {
+        street: { // TYPE: text (499)
+          type: 'string',
+          minLength: 1,
+          maxLength: 499 // address + address2 length must be < 1000
+        },
+        street2: { // TYPE: text (499)
+          type: 'string',
+          minLength: 1,
+          maxLength: 499 // address + address2 length must be < 1000
+        },
+        city: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 25
+        },
+        state: { // backend requires abbreviated state names for applicant address
+          type: 'string',
+          'enum': allStates.map(state => state.abbreviation),
+          enumNames: allStates.map(state => state.full)
+        },
+        postalCode: {  // TYPE: text (5)
+          type: 'string',
+          pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+        },
+        country: {
+          type: 'string',
+          'enum': ['US'], // Only 'US' is accepted
+          enumNames: ['United States'],
+          default: 'US'
+        }
+      }
     },
     onBehalfOf: {  // Type: text (255 limit)
       type: 'string',
@@ -174,34 +179,40 @@ let schema = {
         type: 'object',
         properties: {
           required: ['name'], // address or facilityCode are also required on FE
-          address: { // TRANSLATE: given 'address': '123 Main St.' and 'address2': 'APT 23' then the final translated 'address' should be '123 Main St., APT 23'
-            type: 'string',
-            minLength: 1,
-            maxLength: 126 // address + address2 length must be < 255
-          },
-          address2: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 126 // address + address2 length must be < 255
-          },
-          city: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 255
-          },
-          state: { // backend requires the full state names for the school address
-            type: 'string',
-            'enum': allStates.map(state => state.full),
-          },
-          postalCode: {  // TYPE: text (255)
-            type: 'string',
-            pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-          },
-          country: {
-            type: 'string',
-            'enum': ['US'], // Only 'US' addresses are supported
-            enumNames: ['United States'],
-            default: 'US'
+          address: {
+            type: 'object',
+            required: ['street', 'city', 'state', 'country', 'postalCode'],
+            properties: {
+              street: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 126 // address + address2 length must be < 255
+              },
+              street2: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 126 // address + address2 length must be < 255
+              },
+              city: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 255
+              },
+              state: { // backend requires the full state names for the school address
+                type: 'string',
+                'enum': allStates.map(state => state.full),
+              },
+              postalCode: {  // TYPE: text (255)
+                type: 'string',
+                pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+              },
+              country: {
+                type: 'string',
+                'enum': ['US'], // Only 'US' addresses are supported
+                enumNames: ['United States'],
+                default: 'US'
+              }
+            }
           },
           name: { // Type: text (255)
             type: 'string',
@@ -213,7 +224,7 @@ let schema = {
           }
         }
       },
-      programs: { // TRANSLATE into an array of semicolon separated strings (255 limit)
+      programs: { // TRANSLATE into array of strings
         type: 'object', // FE validation requires at least one selected
         properties: {
           'MGIB-AD Ch 30': {
@@ -248,7 +259,7 @@ let schema = {
           }
         }
       },
-      assistance: { // TRANSLATE into a semicolon separated string (255 limit)
+      assistance: { // TRANSLATE into array of strings
         type: 'object',
         properties: {
           TA: {
@@ -274,7 +285,7 @@ let schema = {
         }
       }
     },
-    issue: {  // TRANSLATE into array
+    issue: {  // TRANSLATE into array of strings
       type: 'object', // FE validation requires at least one selected
       properties: {
         'Recruiting/Marketing Practices': {
