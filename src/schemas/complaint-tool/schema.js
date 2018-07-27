@@ -288,7 +288,7 @@ let schema = {
     },
     issue: {  // TRANSLATE into array of strings
       type: 'object', // FE validation requires at least one selected
-      properties: {
+      properties: { // TODO: obtain updated options based on sample request
         'Recruiting/Marketing Practices': {
             type: 'boolean',
             default: false
