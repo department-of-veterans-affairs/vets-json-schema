@@ -98,7 +98,7 @@ describe('complaint tool schema', () => {
         address: {
           street: '123 a rd',
           city: 'abc',
-          state: 'Missouri',
+          state: 'MO',
           postalCode: '12345',
           country: 'US'
         },

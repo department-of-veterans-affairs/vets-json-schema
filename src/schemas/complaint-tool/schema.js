@@ -198,9 +198,10 @@ let schema = {
                 minLength: 1,
                 maxLength: 255
               },
-              state: { // backend requires the full state names for the school address
+              state: { // TODO: confirm with stakeholders whether backend requires the full state names for the school address
                 type: 'string',
-                'enum': allStates.map(state => state.full),
+                'enum': allStates.map(state => state.abbreviation),
+                enumNames: allStates.map(state => state.full)
               },
               postalCode: {  // TYPE: text (255)
                 type: 'string',
