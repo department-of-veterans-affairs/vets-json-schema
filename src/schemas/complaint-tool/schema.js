@@ -165,7 +165,11 @@ let schema = {
         }
       }
     }, fullName),
-    email: {
+    anonymousEmail: { // TRANSLATE rename "email" if present
+      type: 'string',  // Type: email (no length limit)
+      format: 'email'
+    },
+    applicantEmail: { // TRANSLATE rename "email" if present
       type: 'string',  // Type: email (no length limit)
       format: 'email'
     },
