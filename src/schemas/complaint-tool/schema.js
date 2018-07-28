@@ -165,7 +165,11 @@ let schema = {
         }
       }
     }, fullName),
-    email: {
+    anonymousEmail: { // TRANSLATE rename "email" if present
+      type: 'string',  // Type: email (no length limit)
+      format: 'email'
+    },
+    applicantEmail: { // TRANSLATE rename "email" if present
       type: 'string',  // Type: email (no length limit)
       format: 'email'
     },
@@ -289,47 +293,47 @@ let schema = {
     issue: {  // TRANSLATE into array of strings
       type: 'object', // FE validation requires at least one selected
       properties: { // TODO: obtain updated options based on sample request
-        'Recruiting/Marketing Practices': {
+        'recruiting': {
             type: 'boolean',
             default: false
         },
-        'Student Loans': {
+        'studentLoans': {
             type: 'boolean',
             default: false
         },
-        'Quality of Education': {
+        'quality': {
             type: 'boolean',
             default: false
         },
-        'Transfer of Credits': {
+        'creditTransfer': {
             type: 'boolean',
             default: false
         },
-        'Accreditation': {
+        'accreditation': {
             type: 'boolean',
             default: false
         },
-        'Post-graduation Job Opportunities': {
+        'jobOpportunities': {
             type: 'boolean',
             default: false
         },
-        'Grade Policy': {
+        'gradePolicy': {
             type: 'boolean',
             default: false
         },
-        'Refund Issues': {
+        'refundIssues': {
             type: 'boolean',
             default: false
         },
-        'Financial Issues (e.g. Tuition/Fee charges)': {
+        'financialIssues': {
             type: 'boolean',
             default: false
         },
-        'Change in degree plan/requirements': {
+        'changeInDegree': {
             type: 'boolean',
             default: false
         },
-        'Release of Transcripts': {
+        'transcriptRelease': {
             type: 'boolean',
             default: false
         }

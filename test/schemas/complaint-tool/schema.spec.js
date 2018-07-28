@@ -12,12 +12,7 @@ let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('complaint tool schema', () => {
-  [
-    'email',
-  ].forEach((test) => {
-    sharedTests.runTest(test);
-  });
-
+  sharedTests.runTest('email', ['anonymousEmail', 'applicantEmail']);
   sharedTests.runTest('date', ['dob']);
   sharedTests.runTest('usaPhone', ['phone']);
   sharedTests.runTest('dateRange', ['serviceDateRange']);
@@ -67,10 +62,10 @@ describe('complaint tool schema', () => {
 
   schemaTestHelper.testValidAndInvalid('issue', {
     valid: [{
-      'Recruiting/Marketing Practices': true
+      'recruiting': true
     }],
     invalid: [{
-      'Recruiting/Marketing Practices': 3
+      'recruiting': 3
     }]
   });
 

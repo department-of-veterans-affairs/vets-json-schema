@@ -260,7 +260,11 @@
         "last"
       ]
     },
-    "email": {
+    "anonymousEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "applicantEmail": {
       "type": "string",
       "format": "email"
     },
@@ -490,47 +494,47 @@
     "issue": {
       "type": "object",
       "properties": {
-        "Recruiting/Marketing Practices": {
+        "recruiting": {
           "type": "boolean",
           "default": false
         },
-        "Student Loans": {
+        "studentLoans": {
           "type": "boolean",
           "default": false
         },
-        "Quality of Education": {
+        "quality": {
           "type": "boolean",
           "default": false
         },
-        "Transfer of Credits": {
+        "creditTransfer": {
           "type": "boolean",
           "default": false
         },
-        "Accreditation": {
+        "accreditation": {
           "type": "boolean",
           "default": false
         },
-        "Post-graduation Job Opportunities": {
+        "jobOpportunities": {
           "type": "boolean",
           "default": false
         },
-        "Grade Policy": {
+        "gradePolicy": {
           "type": "boolean",
           "default": false
         },
-        "Refund Issues": {
+        "refundIssues": {
           "type": "boolean",
           "default": false
         },
-        "Financial Issues (e.g. Tuition/Fee charges)": {
+        "financialIssues": {
           "type": "boolean",
           "default": false
         },
-        "Change in degree plan/requirements": {
+        "changeInDegree": {
           "type": "boolean",
           "default": false
         },
-        "Release of Transcripts": {
+        "transcriptRelease": {
           "type": "boolean",
           "default": false
         }
