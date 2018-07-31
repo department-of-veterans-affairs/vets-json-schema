@@ -1405,18 +1405,73 @@
       "type": "array",
       "items": {
         "type": "object",
+        "required": [
+          "name",
+          "attachmentId"
+        ],
         "properties": {
-          "documentName": {
+          "name": {
             "type": "string"
           },
-          "dateUploaded": {
-            "$ref": "#/definitions/date"
-          },
-          "attachmentType": {
+          "confirmationCode": {
             "type": "string"
           },
-          "inflightDocumentId": {
-            "type": "number"
+          "attachmentId": {
+            "type": "string",
+            "enum": [
+              "L015",
+              "L018",
+              "L029",
+              "L702",
+              "L703",
+              "L034",
+              "L478",
+              "L048",
+              "L049",
+              "L023",
+              "L070",
+              "L450",
+              "L451",
+              "L222",
+              "L228",
+              "L229",
+              "L102",
+              "L107",
+              "L827",
+              "L115",
+              "L117",
+              "L159",
+              "L133",
+              "L139",
+              "L149"
+            ],
+            "enumNames": [
+              "Buddy/Lay Statement",
+              "Civilian Police Reports",
+              "Copy of a DD214",
+              "Disability Benefits Questionnaire (DBQ)",
+              "Goldmann Perimetry Chart/Field Of Vision Chart",
+              "Military Personnel Record",
+              "Medical Treatment Records - Furnished by SSA",
+              "Medical Treatment Record - Government Facility",
+              "Medical Treatment Record - Non-Government Facility",
+              "Other Correspondence",
+              "Photographs",
+              "STR - Dental - Photocopy",
+              "STR - Medical - Photocopy",
+              "VA Form 21-0779 - Request for Nursing Home Information in Connection with Claim for Aid & Attendance",
+              "VA Form 21-0781 - Statement in Support of Claim for PTSD",
+              "VA Form 21-0781a - Statement in Support of Claim for PTSD Secondary to Personal Assault",
+              "VA Form 21-2680 - Examination for Housebound Status or Permanent Need for Regular Aid & Attendance",
+              "VA Form 21-4142 - Authorization To Disclose Information",
+              "VA Form 21-4142a - General Release for Medical Provider Information",
+              "VA Form 21-4192 - Request for Employment Information in Connection with Claim for Disability",
+              "VA Form 21-4502 - Application for Automobile or Other Conveyance and Adaptive Equipment Under 38 U.S.C. 3901-3904",
+              "VA Form 26-4555 - Application in Acquiring Specially Adapted Housing or Special Home Adaptation Grant",
+              "VA Form 21-674 - Request for Approval of School Attendance",
+              "VA Form 21-686c - Declaration of Status of Dependents",
+              "VA Form 21-8940 - Veterans Application for Increased Compensation Based on Un-employability"
+            ]
           }
         }
       }
