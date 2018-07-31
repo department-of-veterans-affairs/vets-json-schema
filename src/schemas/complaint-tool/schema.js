@@ -303,6 +303,10 @@ let schema = {
     issue: {  // TRANSLATE into array of strings
       type: 'object', // FE validation requires at least one selected
       properties: { // TODO: obtain updated options based on sample request
+        'other': {
+          type: 'boolean',
+          default: false
+        },
         'recruiting': {
           type: 'boolean',
           default: false

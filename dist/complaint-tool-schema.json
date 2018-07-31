@@ -510,6 +510,10 @@
     "issue": {
       "type": "object",
       "properties": {
+        "other": {
+          "type": "boolean",
+          "default": false
+        },
         "recruiting": {
           "type": "boolean",
           "default": false
