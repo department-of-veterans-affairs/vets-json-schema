@@ -181,53 +181,63 @@ let schema = {
       ],
       school: {
         type: 'object',
-        properties: {
-          required: ['name'], // address or facilityCode are also required on FE
-          address: {
+        oneOf: [{
+          schoolInformation: {
             type: 'object',
-            required: ['street', 'city', 'state', 'country', 'postalCode'],
+            required: ['address', 'name'],
             properties: {
-              street: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 126 // address + address2 length must be < 255
+              address: {
+                type: 'object',
+                required: ['street', 'city', 'state', 'country', 'postalCode'],
+                properties: {
+                  street: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 126 // address + address2 length must be < 255
+                  },
+                  street2: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 126 // address + address2 length must be < 255
+                  },
+                  city: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 255
+                  },
+                  state: { // TODO: confirm with stakeholders whether backend requires the full state names for the school address
+                    type: 'string',
+                    'enum': allStates.map(state => state.abbreviation),
+                    enumNames: allStates.map(state => state.full)
+                  },
+                  postalCode: {  // TYPE: text (255)
+                    type: 'string',
+                    pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+                  },
+                  country: {
+                    type: 'string',
+                    'enum': ['US'], // Only 'US' addresses are supported
+                    enumNames: ['United States'],
+                    default: 'US'
+                  }
+                }
               },
-              street2: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 126 // address + address2 length must be < 255
-              },
-              city: {
+              name: { // Type: text (255)
                 type: 'string',
                 minLength: 1,
                 maxLength: 255
               },
-              state: { // TODO: confirm with stakeholders whether backend requires the full state names for the school address
-                type: 'string',
-                'enum': allStates.map(state => state.abbreviation),
-                enumNames: allStates.map(state => state.full)
-              },
-              postalCode: {  // TYPE: text (255)
-                type: 'string',
-                pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-              },
-              country: {
-                type: 'string',
-                'enum': ['US'], // Only 'US' addresses are supported
-                enumNames: ['United States'],
-                default: 'US'
-              }
+            }
+          }
+        }, {
+          type: 'object',
+          properties: {
+            facilityCode: {  // TRANSLATE: Used to obtain school address
+              type: 'string'
             }
           },
-          name: { // Type: text (255)
-            type: 'string',
-            minLength: 1,
-            maxLength: 255
-          },
-          facilityCode: {  // TRANSLATE: Used to obtain school address
-            type: 'string'
-          }
-        }
+          required: ['facilityCode']
+        }]
       },
       programs: { // TRANSLATE into array of strings
         type: 'object', // FE validation requires at least one selected
@@ -293,49 +303,53 @@ let schema = {
     issue: {  // TRANSLATE into array of strings
       type: 'object', // FE validation requires at least one selected
       properties: { // TODO: obtain updated options based on sample request
+        'other': {
+          type: 'boolean',
+          default: false
+        },
         'recruiting': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'studentLoans': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'quality': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'creditTransfer': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'accreditation': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'jobOpportunities': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'gradePolicy': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'refundIssues': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'financialIssues': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'changeInDegree': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         },
         'transcriptRelease': {
-            type: 'boolean',
-            default: false
+          type: 'boolean',
+          default: false
         }
       }
     },
