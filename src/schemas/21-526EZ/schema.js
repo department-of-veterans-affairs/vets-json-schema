@@ -2,7 +2,8 @@ import _ from 'lodash/fp';
 import definitions from '../../common/definitions';
 import {
   pciuCountries,
-  pciuStates
+  pciuStates,
+  documentTypes526
 } from '../../common/constants';
 
 const disabilitiesBaseDef = {
@@ -261,23 +262,23 @@ let schema = {
       }
     },
     attachments: {
-      // Uploaded through a separate vets-api endpoint, not part of 526 submit
       type: 'array',
       items: {
         type: 'object',
-        // What kind of validation do we use for all of these?
+        required: ['name', 'attachmentId'],
         properties: {
-          documentName: {
+          // This is the document name schema - FileField requires this specific name be used
+          name: {
             type: 'string'
           },
-          dateUploaded: {
-            $ref: '#/definitions/date'
-          },
-          attachmentType: {
+          confirmationCode: {
             type: 'string'
           },
-          inflightDocumentId: {
-            type: 'number'
+          // This is the document type schema - FileField requires this specific name be used
+          attachmentId: {
+            type: 'string',
+            'enum': documentTypes526.map(doc => doc.value),
+            enumNames: documentTypes526.map(doc => doc.label),
           }
         }
       }
