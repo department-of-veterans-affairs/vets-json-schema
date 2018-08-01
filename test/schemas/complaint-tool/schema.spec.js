@@ -105,6 +105,17 @@ describe('complaint tool schema', () => {
       assistance: {
         TA: true
       }
+    },
+      {
+     school: {
+       facilityCode: '343434',
+      },
+      programs: {
+        'MGIB-AD Ch 30': true
+      },
+      assistance: {
+        TA: true
+      }
     }],
     invalid: [{
       school: {
@@ -115,6 +126,7 @@ describe('complaint tool schema', () => {
           country: 'USA'
         },
         name: 324,
+        facilityCode: '343343'
       },
       // programs: {
       //   'MGIB-AD Ch 30': 'orange'
