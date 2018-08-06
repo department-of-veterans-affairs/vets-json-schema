@@ -4,6 +4,10 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -24,10 +28,6 @@
           "$ref": "#/definitions/date"
         }
       }
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
     }
   },
   "required": [
@@ -210,9 +210,10 @@
     "serviceAffiliation": {
       "type": "string",
       "enum": [
-        "Service Member",
-        "Spouse or Family Member",
+        "Servicemember",
         "Veteran",
+        "Spouse",
+        "Child",
         "Other"
       ]
     },
@@ -576,9 +577,6 @@
     },
     "serviceDateRange": {
       "$ref": "#/definitions/dateRange"
-    },
-    "dob": {
-      "$ref": "#/definitions/date"
     }
   }
 }
