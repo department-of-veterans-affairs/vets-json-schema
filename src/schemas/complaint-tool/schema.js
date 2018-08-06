@@ -73,7 +73,9 @@ let schema = {
   title: 'GI BILL SCHOOL FEEDBACK TOOL',
   type: 'object',
   additionalProperties: false,
-  definitions: {},
+  definitions: {
+    date: definitions.date
+  },
   required: [ // no fields are required for submission, though several are required by design on FE
     'onBehalfOf',
     'educationDetails',
@@ -140,9 +142,10 @@ let schema = {
     serviceAffiliation: { // Type: text (255 limit)
       type: 'string',
       'enum': [
-        'Service Member',
-        'Spouse or Family Member',
+        'Servicemember',
         'Veteran',
+        'Spouse',
+        'Child',
         'Other'
       ]
     },
@@ -368,8 +371,7 @@ let schema = {
 [
   ['privacyAgreementAccepted'],
   ['usaPhone', 'phone'], // Type: 10 digit number (no whitespace, etc.)
-  ['dateRange', 'serviceDateRange'], // TRANSLATE: Date must be flattened to enteredDuty & releaseFromDuty (both type: date)
-  ['date', 'dob'], // Type: date
+  ['dateRange', 'serviceDateRange'] // TRANSLATE: Date must be flattened to enteredDuty & releaseFromDuty (both type: date)
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

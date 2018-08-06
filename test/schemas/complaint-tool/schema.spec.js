@@ -13,7 +13,6 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('complaint tool schema', () => {
   sharedTests.runTest('email', ['anonymousEmail', 'applicantEmail']);
-  sharedTests.runTest('date', ['dob']);
   sharedTests.runTest('usaPhone', ['phone']);
   sharedTests.runTest('dateRange', ['serviceDateRange']);
 
