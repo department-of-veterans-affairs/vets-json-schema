@@ -1,6 +1,10 @@
+import _ from 'lodash/fp';
+
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash/fp';
+import constants from '../../common/constants';
+
+const countries = constants.salesforceCountries;
 
 const allStates = [
   { full: 'Alabama', abbreviation: 'AL' },
@@ -67,6 +71,86 @@ const fullName = _.set('properties.suffix', {
     'Other'
   ]
 }, definitions.fullName);
+
+const USA = countries.find(country => country.value === 'USA');
+const nonUSACountries = countries.filter(country => country.value !== 'USA');
+
+const domesticSchoolAddress = {
+  type: 'object',
+  required: ['street', 'city', 'state', 'country', 'postalCode'],
+  properties: {
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 126 // street + street2 length must be < 255
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 126 // street + street2 length must be < 255
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 255
+    },
+    state: {
+      type: 'string',
+      'enum': allStates.map(state => state.abbreviation), // backend accepts abbreviated state names
+      enumNames: allStates.map(state => state.full)
+    },
+    postalCode: {  // TYPE: text (255)
+      type: 'string',
+      pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+    },
+    country: {
+      type: 'string',
+      'enum': [USA].map(country => country.value),
+      enumNames: [USA].map(country => country.label),
+      default: USA.value
+    }
+  }
+};
+
+// TRANSLATE: all international address fields into street, street2, and country
+const internationalSchoolAddress = {
+  type: 'object',
+  required: ['street', 'city', 'country'],
+  properties: {
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 80
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 80
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 40
+    },
+    state: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 19
+    },
+    postalCode: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30
+    },
+    country: {
+      type: 'string',
+      'enum': nonUSACountries.map(country => country.value),
+      enumNames: nonUSACountries.map(country => country.label),
+    }
+  }
+};
+
+const schoolAddress = [domesticSchoolAddress, internationalSchoolAddress];
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -188,43 +272,8 @@ let schema = {
           schoolInformation: {
             type: 'object',
             required: ['address', 'name'],
+            oneOf: schoolAddress,
             properties: {
-              address: {
-                type: 'object',
-                required: ['street', 'city', 'state', 'country', 'postalCode'],
-                properties: {
-                  street: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 126 // address + address2 length must be < 255
-                  },
-                  street2: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 126 // address + address2 length must be < 255
-                  },
-                  city: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 255
-                  },
-                  state: { // TODO: confirm with stakeholders whether backend requires the full state names for the school address
-                    type: 'string',
-                    'enum': allStates.map(state => state.abbreviation),
-                    enumNames: allStates.map(state => state.full)
-                  },
-                  postalCode: {  // TYPE: text (255)
-                    type: 'string',
-                    pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-                  },
-                  country: {
-                    type: 'string',
-                    'enum': ['US'], // Only 'US' addresses are supported
-                    enumNames: ['United States'],
-                    default: 'US'
-                  }
-                }
-              },
               name: { // Type: text (255)
                 type: 'string',
                 minLength: 1,
