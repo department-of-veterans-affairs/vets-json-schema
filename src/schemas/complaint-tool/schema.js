@@ -1,6 +1,10 @@
+import _ from 'lodash/fp';
+
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash/fp';
+import constants from '../../common/constants';
+
+const countries = constants.salesforceCountries.map(object => object.value);
 
 const allStates = [
   { full: 'Alabama', abbreviation: 'AL' },
@@ -189,39 +193,38 @@ let schema = {
             type: 'object',
             required: ['address', 'name'],
             properties: {
-              address: {
+              address: { // TRANSLATE: all international address fields into street, street2, and country
                 type: 'object',
                 required: ['street', 'city', 'state', 'country', 'postalCode'],
                 properties: {
                   street: {
                     type: 'string',
                     minLength: 1,
-                    maxLength: 126 // address + address2 length must be < 255
+                    maxLength: 126 // street + street2 length must be < 255 (INTL 80 on FE)
                   },
                   street2: {
                     type: 'string',
                     minLength: 1,
-                    maxLength: 126 // address + address2 length must be < 255
+                    maxLength: 126 // street + street2 length must be < 255 (INTL 80 on FE)
                   },
                   city: {
                     type: 'string',
                     minLength: 1,
-                    maxLength: 255
+                    maxLength: 255 // INTL: maxLength 30 on FE
                   },
-                  state: { // TODO: confirm with stakeholders whether backend requires the full state names for the school address
-                    type: 'string',
-                    'enum': allStates.map(state => state.abbreviation),
+                  state: {
+                    type: 'string',  //  INTL: maxLength 29 on FE, no enums
+                    'enum': allStates.map(state => state.abbreviation), // backend accepts abbreviated state names
                     enumNames: allStates.map(state => state.full)
                   },
                   postalCode: {  // TYPE: text (255)
-                    type: 'string',
+                    type: 'string', //  INTL: maxLength 30 on FE, no pattern
                     pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
                   },
                   country: {
                     type: 'string',
-                    'enum': ['US'], // Only 'US' addresses are supported
-                    enumNames: ['United States'],
-                    default: 'US'
+                    'enum': countries,
+                    default: 'USA'
                   }
                 }
               },
