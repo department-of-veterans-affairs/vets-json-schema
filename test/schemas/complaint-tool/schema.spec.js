@@ -43,7 +43,7 @@ describe('complaint tool schema', () => {
 
   schemaTestHelper.testValidAndInvalid('serviceBranch', {
     valid: [
-      'Army'
+      'army'
     ],
     invalid: [
       3

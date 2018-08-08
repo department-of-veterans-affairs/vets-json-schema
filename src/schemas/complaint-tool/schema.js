@@ -4,7 +4,7 @@ import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import constants from '../../common/constants';
 
-const countries = constants.salesforceCountries;
+const { salesforceCountries: countries, branchesServed } = constants;
 
 const allStates = [
   { full: 'Alabama', abbreviation: 'AL' },
@@ -79,6 +79,12 @@ const domesticSchoolAddress = {
   type: 'object',
   required: ['street', 'city', 'state', 'country', 'postalCode'],
   properties: {
+    country: {
+      type: 'string',
+      'enum': [USA].map(country => country.value), // TODO: verify new validation requirements
+      enumNames: [USA].map(country => country.label),
+      default: USA.value
+    },
     street: {
       type: 'string',
       minLength: 1,
@@ -102,12 +108,6 @@ const domesticSchoolAddress = {
     postalCode: {  // TYPE: text (255)
       type: 'string',
       pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-    },
-    country: {
-      type: 'string',
-      'enum': [USA].map(country => country.value),
-      enumNames: [USA].map(country => country.label),
-      default: USA.value
     }
   }
 };
@@ -117,6 +117,11 @@ const internationalSchoolAddress = {
   type: 'object',
   required: ['street', 'city', 'country'],
   properties: {
+    country: {
+      type: 'string',
+      'enum': nonUSACountries.map(country => country.value), // TODO: verify new validation requirements
+      enumNames: nonUSACountries.map(country => country.label),
+    },
     street: {
       type: 'string',
       minLength: 1,
@@ -141,11 +146,6 @@ const internationalSchoolAddress = {
       type: 'string',
       minLength: 1,
       maxLength: 30
-    },
-    country: {
-      type: 'string',
-      'enum': nonUSACountries.map(country => country.value),
-      enumNames: nonUSACountries.map(country => country.label),
     }
   }
 };
@@ -172,6 +172,12 @@ let schema = {
       type: 'object',
       required: ['street', 'city', 'state', 'country', 'postalCode'],
       properties: {
+        country: {
+          type: 'string',
+          'enum': ['US'], // Only 'US' is accepted
+          enumNames: ['United States'],
+          default: 'US'
+        },
         street: { // TYPE: text (499)
           type: 'string',
           minLength: 1,
@@ -195,12 +201,6 @@ let schema = {
         postalCode: {  // TYPE: text (5)
           type: 'string',
           pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-        },
-        country: {
-          type: 'string',
-          'enum': ['US'], // Only 'US' is accepted
-          enumNames: ['United States'],
-          default: 'US'
         }
       }
     },
@@ -214,14 +214,7 @@ let schema = {
     },
     serviceBranch: { // Type: text (255 limit)
       type: 'string',
-      'enum': [
-        'Army',
-        'Navy',
-        'Marines',
-        'Air Force',
-        'Coast Guard',
-        'NOAA/PHS'
-      ]
+      'enum': branchesServed.map(option => option.value) // TODO: verify valid options
     },
     serviceAffiliation: { // Type: text (255 limit)
       type: 'string',
@@ -254,7 +247,7 @@ let schema = {
     }, fullName),
     anonymousEmail: { // TRANSLATE rename "email" if present
       type: 'string',  // Type: email (no length limit)
-      format: 'email'
+      format: 'email' // HACK: email is displayed in mutually exclusive situations on the FE, so the forms library deletes/disables the field. We are splitting it into two fields to get around that, and translating the data/renaming the field on submit.
     },
     applicantEmail: { // TRANSLATE rename "email" if present
       type: 'string',  // Type: email (no length limit)

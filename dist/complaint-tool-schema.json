@@ -48,6 +48,16 @@
         "postalCode"
       ],
       "properties": {
+        "country": {
+          "type": "string",
+          "enum": [
+            "US"
+          ],
+          "enumNames": [
+            "United States"
+          ],
+          "default": "US"
+        },
         "street": {
           "type": "string",
           "minLength": 1,
@@ -175,16 +185,6 @@
         "postalCode": {
           "type": "string",
           "pattern": "^\\d{5}$"
-        },
-        "country": {
-          "type": "string",
-          "enum": [
-            "US"
-          ],
-          "enumNames": [
-            "United States"
-          ],
-          "default": "US"
         }
       }
     },
@@ -199,12 +199,19 @@
     "serviceBranch": {
       "type": "string",
       "enum": [
-        "Army",
-        "Navy",
-        "Marines",
-        "Air Force",
-        "Coast Guard",
-        "NOAA/PHS"
+        "air force",
+        "army",
+        "coast guard",
+        "marine corps",
+        "merchant seaman",
+        "navy",
+        "noaa",
+        "usphs",
+        "f.commonwealth",
+        "f.guerilla",
+        "f.scouts new",
+        "f.scouts old",
+        "other"
       ]
     },
     "serviceAffiliation": {
@@ -296,6 +303,16 @@
                     "postalCode"
                   ],
                   "properties": {
+                    "country": {
+                      "type": "string",
+                      "enum": [
+                        "USA"
+                      ],
+                      "enumNames": [
+                        "United States"
+                      ],
+                      "default": "USA"
+                    },
                     "street": {
                       "type": "string",
                       "minLength": 1,
@@ -423,16 +440,6 @@
                     "postalCode": {
                       "type": "string",
                       "pattern": "^\\d{5}$"
-                    },
-                    "country": {
-                      "type": "string",
-                      "enum": [
-                        "USA"
-                      ],
-                      "enumNames": [
-                        "United States"
-                      ],
-                      "default": "USA"
                     }
                   }
                 },
@@ -444,31 +451,6 @@
                     "country"
                   ],
                   "properties": {
-                    "street": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 80
-                    },
-                    "street2": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 80
-                    },
-                    "city": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 40
-                    },
-                    "state": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 19
-                    },
-                    "postalCode": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 30
-                    },
                     "country": {
                       "type": "string",
                       "enum": [
@@ -951,6 +933,31 @@
                         "Zambia",
                         "Zimbabwe"
                       ]
+                    },
+                    "street": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    },
+                    "street2": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    },
+                    "city": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "state": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 19
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
                     }
                   }
                 }
