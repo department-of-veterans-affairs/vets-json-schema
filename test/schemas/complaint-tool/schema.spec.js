@@ -43,7 +43,7 @@ describe('complaint tool schema', () => {
 
   schemaTestHelper.testValidAndInvalid('serviceBranch', {
     valid: [
-      'Army'
+      'army'
     ],
     invalid: [
       3
@@ -92,9 +92,7 @@ describe('complaint tool schema', () => {
         address: {
           street: '123 a rd',
           city: 'abc',
-          state: 'MO',
-          postalCode: '12345',
-          country: 'US'
+          country: 'GBR'
         },
         name: 'Veteran school name'
       },

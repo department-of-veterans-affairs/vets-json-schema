@@ -1,6 +1,10 @@
+import _ from 'lodash/fp';
+
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash/fp';
+import constants from '../../common/constants';
+
+const { salesforceCountries: countries, branchesServed } = constants;
 
 const allStates = [
   { full: 'Alabama', abbreviation: 'AL' },
@@ -68,6 +72,86 @@ const fullName = _.set('properties.suffix', {
   ]
 }, definitions.fullName);
 
+const USA = countries.find(country => country.value === 'USA');
+const nonUSACountries = countries.filter(country => country.value !== 'USA');
+
+const domesticSchoolAddress = {
+  type: 'object',
+  required: ['street', 'city', 'state', 'country', 'postalCode'],
+  properties: {
+    country: {
+      type: 'string',
+      'enum': [USA].map(country => country.value), // TODO: verify new validation requirements
+      enumNames: [USA].map(country => country.label),
+      default: USA.value
+    },
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 126 // street + street2 length must be < 255
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 126 // street + street2 length must be < 255
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 255
+    },
+    state: {
+      type: 'string',
+      'enum': allStates.map(state => state.abbreviation), // backend accepts abbreviated state names
+      enumNames: allStates.map(state => state.full)
+    },
+    postalCode: {  // TYPE: text (255)
+      type: 'string',
+      pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
+    }
+  }
+};
+
+// TRANSLATE: all international address fields into street, street2, and country
+const internationalSchoolAddress = {
+  type: 'object',
+  required: ['street', 'city', 'country'],
+  properties: {
+    country: {
+      type: 'string',
+      'enum': nonUSACountries.map(country => country.value), // TODO: verify new validation requirements
+      enumNames: nonUSACountries.map(country => country.label),
+    },
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 80
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 80
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 40
+    },
+    state: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 19
+    },
+    postalCode: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30
+    }
+  }
+};
+
+const schoolAddress = [domesticSchoolAddress, internationalSchoolAddress];
+
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'GI BILL SCHOOL FEEDBACK TOOL',
@@ -88,6 +172,12 @@ let schema = {
       type: 'object',
       required: ['street', 'city', 'state', 'country', 'postalCode'],
       properties: {
+        country: {
+          type: 'string',
+          'enum': ['US'], // Only 'US' is accepted
+          enumNames: ['United States'],
+          default: 'US'
+        },
         street: { // TYPE: text (499)
           type: 'string',
           minLength: 1,
@@ -111,12 +201,6 @@ let schema = {
         postalCode: {  // TYPE: text (5)
           type: 'string',
           pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-        },
-        country: {
-          type: 'string',
-          'enum': ['US'], // Only 'US' is accepted
-          enumNames: ['United States'],
-          default: 'US'
         }
       }
     },
@@ -130,14 +214,7 @@ let schema = {
     },
     serviceBranch: { // Type: text (255 limit)
       type: 'string',
-      'enum': [
-        'Army',
-        'Navy',
-        'Marines',
-        'Air Force',
-        'Coast Guard',
-        'NOAA/PHS'
-      ]
+      'enum': branchesServed.map(option => option.value) // TODO: verify valid options
     },
     serviceAffiliation: { // Type: text (255 limit)
       type: 'string',
@@ -170,7 +247,7 @@ let schema = {
     }, fullName),
     anonymousEmail: { // TRANSLATE rename "email" if present
       type: 'string',  // Type: email (no length limit)
-      format: 'email'
+      format: 'email' // HACK: email is displayed in mutually exclusive situations on the FE, so the forms library deletes/disables the field. We are splitting it into two fields to get around that, and translating the data/renaming the field on submit.
     },
     applicantEmail: { // TRANSLATE rename "email" if present
       type: 'string',  // Type: email (no length limit)
@@ -188,43 +265,8 @@ let schema = {
           schoolInformation: {
             type: 'object',
             required: ['address', 'name'],
+            oneOf: schoolAddress,
             properties: {
-              address: {
-                type: 'object',
-                required: ['street', 'city', 'state', 'country', 'postalCode'],
-                properties: {
-                  street: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 126 // address + address2 length must be < 255
-                  },
-                  street2: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 126 // address + address2 length must be < 255
-                  },
-                  city: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 255
-                  },
-                  state: { // TODO: confirm with stakeholders whether backend requires the full state names for the school address
-                    type: 'string',
-                    'enum': allStates.map(state => state.abbreviation),
-                    enumNames: allStates.map(state => state.full)
-                  },
-                  postalCode: {  // TYPE: text (255)
-                    type: 'string',
-                    pattern: '^\\d{5}$' // common definition pattern (meets submission requirements)
-                  },
-                  country: {
-                    type: 'string',
-                    'enum': ['US'], // Only 'US' addresses are supported
-                    enumNames: ['United States'],
-                    default: 'US'
-                  }
-                }
-              },
               name: { // Type: text (255)
                 type: 'string',
                 minLength: 1,
