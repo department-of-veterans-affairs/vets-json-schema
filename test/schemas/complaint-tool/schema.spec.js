@@ -120,7 +120,7 @@ describe('complaint tool schema', () => {
           street: '123 a rd',
           city: 'abc',
           postalCode: '12345 1245',
-          country: 'USA'
+          country: 'United States'
         },
         name: 324,
         facilityCode: '343343'

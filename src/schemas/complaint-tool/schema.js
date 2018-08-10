@@ -80,10 +80,9 @@ const domesticSchoolAddress = {
   required: ['street', 'city', 'state', 'country', 'postalCode'],
   properties: {
     country: {
-      type: 'string',
-      'enum': [USA].map(country => country.value), // TODO: verify new validation requirements
-      enumNames: [USA].map(country => country.label),
-      default: USA.value
+      type: 'string', // TYPE: text (255)
+      'enum': [USA.label],
+      default: USA.label
     },
     street: {
       type: 'string',
@@ -118,9 +117,8 @@ const internationalSchoolAddress = {
   required: ['street', 'city', 'country'],
   properties: {
     country: {
-      type: 'string',
-      'enum': nonUSACountries.map(country => country.value), // TODO: verify new validation requirements
-      enumNames: nonUSACountries.map(country => country.label),
+      type: 'string', // TYPE: text (255)
+      'enum': nonUSACountries.map(country => country.label),
     },
     street: {
       type: 'string',
@@ -174,8 +172,8 @@ let schema = {
       properties: {
         country: {
           type: 'string',
-          'enum': ['US'], // Only 'US' is accepted
-          enumNames: ['United States'],
+          'enum': ['US'],
+          enumNames: USA.label,
           default: 'US'
         },
         street: { // TYPE: text (499)
