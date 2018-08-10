@@ -4,7 +4,7 @@ import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import constants from '../../common/constants';
 
-const { salesforceCountries: countries, branchesServed } = constants;
+const { salesforceCountries: countries } = constants;
 
 const allStates = [
   { full: 'Alabama', abbreviation: 'AL' },
@@ -214,7 +214,15 @@ let schema = {
     },
     serviceBranch: { // Type: text (255 limit)
       type: 'string',
-      'enum': branchesServed.map(option => option.value) // TODO: verify valid options
+      enum: [
+        'Air Force',
+        'Army',
+        'Coast Guard',
+        'Marine Corps',
+        'Navy',
+        'NOAA',
+        'Public Health Service'
+      ]
     },
     serviceAffiliation: { // Type: text (255 limit)
       type: 'string',

@@ -199,19 +199,13 @@
     "serviceBranch": {
       "type": "string",
       "enum": [
-        "air force",
-        "army",
-        "coast guard",
-        "marine corps",
-        "merchant seaman",
-        "navy",
-        "noaa",
-        "usphs",
-        "f.commonwealth",
-        "f.guerilla",
-        "f.scouts new",
-        "f.scouts old",
-        "other"
+        "Air Force",
+        "Army",
+        "Coast Guard",
+        "Marine Corps",
+        "Navy",
+        "NOAA",
+        "Public Health Service"
       ]
     },
     "serviceAffiliation": {
