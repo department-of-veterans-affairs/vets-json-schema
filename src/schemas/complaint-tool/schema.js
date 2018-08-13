@@ -173,7 +173,7 @@ let schema = {
         country: {
           type: 'string',
           'enum': ['US'],
-          enumNames: USA.label,
+          enumNames: [USA.label],
           default: 'US'
         },
         street: { // TYPE: text (499)
