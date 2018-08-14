@@ -186,7 +186,6 @@ let schema = {
     'serviceInformation',
     'disabilities',
     'standardClaim',
-    'claimantCertification'
   ],
   properties: {
     veteran: {
@@ -472,11 +471,6 @@ let schema = {
     standardClaim: {
       // I DO NOT want my claim considered for rapid processing under the FDC
       // program because I plan to submit further evidence in support of my claim
-      type: 'boolean',
-      default: false
-    },
-    claimantCertification: {
-      // VETERAN/SERVICE MEMBER/ALTERNATE SIGNER SIGNATURE
       type: 'boolean',
       default: false
     }

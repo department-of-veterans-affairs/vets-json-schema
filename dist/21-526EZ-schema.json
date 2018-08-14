@@ -954,8 +954,7 @@
     "veteran",
     "serviceInformation",
     "disabilities",
-    "standardClaim",
-    "claimantCertification"
+    "standardClaim"
   ],
   "properties": {
     "veteran": {
@@ -1685,10 +1684,6 @@
       }
     },
     "standardClaim": {
-      "type": "boolean",
-      "default": false
-    },
-    "claimantCertification": {
       "type": "boolean",
       "default": false
     }
