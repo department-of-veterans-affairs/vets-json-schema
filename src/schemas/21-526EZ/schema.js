@@ -185,7 +185,6 @@ let schema = {
     'veteran',
     'serviceInformation',
     'disabilities',
-    'applicationExpirationDate',
     'standardClaim',
     'claimantCertification'
   ],
