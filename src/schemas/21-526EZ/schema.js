@@ -185,7 +185,7 @@ let schema = {
     'veteran',
     'serviceInformation',
     'disabilities',
-    'standardClaim',
+    'standardClaim'
   ],
   properties: {
     veteran: {
