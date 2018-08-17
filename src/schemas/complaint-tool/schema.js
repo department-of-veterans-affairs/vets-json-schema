@@ -208,6 +208,11 @@ let schema = {
         'Myself',
         'Someone else',
         'Anonymous'
+      ],
+      enumNames: [
+        'Myself',
+        'Someone else',
+        'I want to submit my feedback anonymously'
       ]
     },
     serviceBranch: { // Type: text (255 limit)
@@ -261,67 +266,70 @@ let schema = {
     },
     educationDetails: {
       type: 'object',
-      required: [ // no fields are required for submission, though several are required by design on FE
+      required: [
         'school',
         'programs'
       ],
       school: {
         type: 'object',
         oneOf: [{
-          schoolInformation: {
-            type: 'object',
-            required: ['address', 'name'],
-            oneOf: schoolAddress,
-            properties: {
-              name: { // Type: text (255)
-                type: 'string',
-                minLength: 1,
-                maxLength: 255
-              },
-            }
+          type: 'object',
+          required: ['address', 'name'],
+          oneOf: schoolAddress,
+          properties: {
+            name: { // Type: text (255)
+              type: 'string',
+              minLength: 1,
+              maxLength: 255
+            },
           }
         }, {
           type: 'object',
+          required: ['facilityCode'],
           properties: {
             facilityCode: {  // TRANSLATE: Used to obtain school address
               type: 'string'
             }
-          },
-          required: ['facilityCode']
+          }
         }]
       },
       programs: { // TRANSLATE into array of strings
         type: 'object', // FE validation requires at least one selected
         properties: {
+          'Post-9/11 Ch 33': {
+            type: 'boolean',
+            default: false,
+            title: 'Post-9/11 GI Bill (Chapter 33)'
+          },
           'MGIB-AD Ch 30': {
             type: 'boolean',
-            default: false
-            // title: 'Montgomery GI Bill - Active Duty (MGIB) (Ch. 30)'
+            default: false,
+            title: 'Montgomery GI Bill - Active Duty (MGIB-AD, Chapter 30)'
           },
           'MGIB-SR Ch 1606': {
             type: 'boolean',
-            default: false
-            // title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR) (Ch. 1606)'
-          },
-          'VRE Ch 31': {
-            type: 'boolean',
-            default: false
-            // title: 'Vocational Rehabilitation and Employment (VR&E) (Ch. 31)'
-          },
-          'Post-9/11 Ch 33': {
-            type: 'boolean',
-            default: false
-            // title: 'Post-9/11 GI Bill (Ch. 33)'
-          },
-          'DEA Ch 35': {
-            type: 'boolean',
-            default: false
-            // title: 'Survivors & Dependents Assistance (DEA) (Ch. 35)'
+            default: false,
+            title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR, Chapter 1606)'
           },
           TATU: {
             type: 'boolean',
-            default: false
-            // title: 'Tuition Assistance Top-Up'
+            default: false,
+            title: 'Tuition Assistance Top-Up'
+          },
+          REAP: {
+            type: 'boolean',
+            default: false,
+            title: 'Reserve Educational Assistance Program (REAP) (Chapter 1607)'
+          },
+          'DEA Ch 35': {
+            type: 'boolean',
+            default: false,
+            title: 'Survivors’ and Dependents’ Assistance (DEA) (Chapter 35)'
+          },
+          'VRE Ch 31': {
+            type: 'boolean',
+            default: false,
+            title: 'Vocational Rehabilitation and Employment (VR&E) (Chapter 31)'
           }
         }
       },
@@ -330,23 +338,23 @@ let schema = {
         properties: {
           TA: {
             type: 'boolean',
-            default: false
-            // title: Federal Tuition Assistance (TA)
+            default: false,
+            title: 'Federal Tuition Assistance (TA)'
           },
           'TA-AGR': {
             type: 'boolean',
-            default: false
-            // title: State Funded Tuition Assistance (TA) for Service members performing Active Guard and Reserve (AGR) duties
+            default: false,
+            title: 'State-funded Tuition Assistance (TA) for Servicemembers on Active Guard and Reserve (AGR) duties'
           },
           MyCAA: {
             type: 'boolean',
-            default: false
-            // title: Military Spouse Career Advancement Accounts
+            default: false,
+            title: 'Military Spouse Career Advancement Accounts (MyCAA)'
           },
           FFA: {
             type: 'boolean',
-            default: false
-            // title: Federal Financial Aid
+            default: false,
+            title: 'Federal financial aid'
           }
         }
       }
