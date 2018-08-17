@@ -53,7 +53,9 @@
           "enum": [
             "US"
           ],
-          "enumNames": "United States",
+          "enumNames": [
+            "United States"
+          ],
           "default": "US"
         },
         "street": {

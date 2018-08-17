@@ -46,16 +46,16 @@ let schema = {
         street: {
           type: 'string',
           minLength: 1,
-          maxLength: 50,
+          maxLength: 30,
           ...definitions.rejectOnlyWhitespace
         },
         street2: {
           type: 'string',
-          maxLength: 50
+          maxLength: 30
         },
         street3: {
           type: 'string',
-          maxLength: 50
+          maxLength: 30
         },
         city: {
           type: 'string',
