@@ -76,7 +76,6 @@ const USA = countries.find(country => country.value === 'USA');
 const nonUSACountries = countries.filter(country => country.value !== 'USA');
 
 const domesticSchoolAddress = {
-  type: 'object',
   required: ['street', 'city', 'state', 'country', 'postalCode'],
   properties: {
     country: {
@@ -113,7 +112,6 @@ const domesticSchoolAddress = {
 
 // TRANSLATE: all international address fields into street, street2, and country
 const internationalSchoolAddress = {
-  type: 'object',
   required: ['street', 'city', 'country'],
   properties: {
     country: {
@@ -273,18 +271,19 @@ let schema = {
       school: {
         type: 'object',
         oneOf: [{
-          type: 'object',
           required: ['address', 'name'],
-          oneOf: schoolAddress,
           properties: {
+            address: {
+              type: 'object',
+              oneOf: schoolAddress
+            },
             name: { // Type: text (255)
               type: 'string',
               minLength: 1,
               maxLength: 255
-            },
+            }
           }
         }, {
-          type: 'object',
           required: ['facilityCode'],
           properties: {
             facilityCode: {  // TRANSLATE: Used to obtain school address
