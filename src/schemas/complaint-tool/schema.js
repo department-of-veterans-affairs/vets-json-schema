@@ -136,7 +136,7 @@ const internationalSchoolAddress = {
     state: {
       type: 'string',
       minLength: 1,
-      maxLength: 19
+      maxLength: 20
     },
     postalCode: {
       type: 'string',
