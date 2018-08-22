@@ -102,8 +102,29 @@ describe('complaint tool schema', () => {
       assistance: {
         TA: true
       }
-    },
-      {
+    }],
+    invalid: [{
+      school: {
+        address: {
+          street: '123 a rd',
+          city: 'abc',
+          postalCode: '12345 1245',
+          country: 'United States'
+        },
+        name: 324,
+        facilityCode: '343343'
+      },
+      // programs: {
+      //   'MGIB-AD Ch 30': 'orange'
+      // },
+      assistance: {
+        TA: 3
+      }
+    }]
+  });
+
+  schemaTestHelper.testValidAndInvalid('educationDetails', {
+    valid: [{
      school: {
        facilityCode: '343434',
       },
@@ -132,5 +153,5 @@ describe('complaint tool schema', () => {
         TA: 3
       }
     }]
-  });
+  });  
 });

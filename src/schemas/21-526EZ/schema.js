@@ -317,7 +317,7 @@ let schema = {
     },
     serviceInformation: {
       type: 'object',
-      required: ['servicePeriods', 'servedInCombatZone'],
+      required: ['servicePeriods'],
       properties: {
         servicePeriods: {
           type: 'array',
@@ -383,10 +383,6 @@ let schema = {
             }
           }
         },
-        servedInCombatZone: {
-          type: 'boolean',
-          default: false
-        },
         separationLocationName: {
           type: 'string',
           maxLength: 256,
@@ -428,7 +424,7 @@ let schema = {
       maxItems: 100,
       items: {
         type: 'object',
-        required: ['treatmentCenterName', 'treatmentCenterType'],
+        required: ['treatmentCenterName'],
         properties: {
           treatmentCenterName: {
             type: 'string',
@@ -441,10 +437,6 @@ let schema = {
           treatmentCenterAddress: {
             $ref: '#/definitions/vaTreatmentCenterAddress'
           },
-          treatmentCenterType: {
-            type: 'string',
-            enum: ['VA_MEDICAL_CENTER', 'DOD_MTF']
-          }
         }
       }
     },
