@@ -1,0 +1,877 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GI BILL SCHOOL FEEDBACK TOOL",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    }
+  },
+  "required": [
+    "onBehalfOf",
+    "educationDetails",
+    "issue",
+    "issueDescription",
+    "issueResolution"
+  ],
+  "properties": {
+    "address": {
+      "type": "object",
+      "required": [
+        "street",
+        "city",
+        "state",
+        "country",
+        "postalCode"
+      ],
+      "properties": {
+        "country": {
+          "type": "string",
+          "enum": [
+            "US"
+          ],
+          "enumNames": [
+            "United States"
+          ],
+          "default": "US"
+        },
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 499
+        },
+        "street2": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 499
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 25
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL",
+            "AK",
+            "AZ",
+            "AR",
+            "CA",
+            "CO",
+            "CT",
+            "DE",
+            "DC",
+            "FL",
+            "GA",
+            "HI",
+            "ID",
+            "IL",
+            "IN",
+            "IA",
+            "KS",
+            "KY",
+            "LA",
+            "ME",
+            "MD",
+            "MA",
+            "MI",
+            "MN",
+            "MS",
+            "MO",
+            "MT",
+            "NE",
+            "NV",
+            "NH",
+            "NJ",
+            "NM",
+            "NY",
+            "NC",
+            "ND",
+            "OH",
+            "OK",
+            "OR",
+            "PA",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VT",
+            "VA",
+            "WA",
+            "WV",
+            "WI",
+            "WY"
+          ],
+          "enumNames": [
+            "Alabama",
+            "Alaska",
+            "Arizona",
+            "Arkansas",
+            "California",
+            "Colorado",
+            "Connecticut",
+            "Delaware",
+            "District Of Columbia",
+            "Florida",
+            "Georgia",
+            "Hawaii",
+            "Idaho",
+            "Illinois",
+            "Indiana",
+            "Iowa",
+            "Kansas",
+            "Kentucky",
+            "Louisiana",
+            "Maine",
+            "Maryland",
+            "Massachusetts",
+            "Michigan",
+            "Minnesota",
+            "Mississippi",
+            "Missouri",
+            "Montana",
+            "Nebraska",
+            "Nevada",
+            "New Hampshire",
+            "New Jersey",
+            "New Mexico",
+            "New York",
+            "North Carolina",
+            "North Dakota",
+            "Ohio",
+            "Oklahoma",
+            "Oregon",
+            "Pennsylvania",
+            "Rhode Island",
+            "South Carolina",
+            "South Dakota",
+            "Tennessee",
+            "Texas",
+            "Utah",
+            "Vermont",
+            "Virginia",
+            "Washington",
+            "West Virginia",
+            "Wisconsin",
+            "Wyoming"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}$"
+        }
+      }
+    },
+    "onBehalfOf": {
+      "type": "string",
+      "enum": [
+        "Myself",
+        "Someone else",
+        "Anonymous"
+      ],
+      "enumNames": [
+        "Myself",
+        "Someone else",
+        "I want to submit my feedback anonymously"
+      ]
+    },
+    "serviceBranch": {
+      "type": "string",
+      "enum": [
+        "Air Force",
+        "Army",
+        "Coast Guard",
+        "Marine Corps",
+        "Navy",
+        "NOAA",
+        "Public Health Service"
+      ]
+    },
+    "serviceAffiliation": {
+      "type": "string",
+      "enum": [
+        "Servicemember",
+        "Veteran",
+        "Spouse",
+        "Child",
+        "Other"
+      ]
+    },
+    "fullName": {
+      "properties": {
+        "middle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "prefix": {
+          "type": "string",
+          "enum": [
+            "Mr.",
+            "Mrs.",
+            "Ms.",
+            "Dr.",
+            "Other"
+          ]
+        },
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "III",
+            "IV",
+            "Sr.",
+            "Other"
+          ]
+        }
+      },
+      "type": "object",
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "anonymousEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "applicantEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "educationDetails": {
+      "type": "object",
+      "required": [
+        "school",
+        "programs"
+      ],
+      "school": {
+        "type": "object",
+        "oneOf": [
+          {
+            "required": [
+              "address",
+              "name"
+            ],
+            "properties": {
+              "address": {
+                "type": "object",
+                "oneOf": [
+                  {
+                    "required": [
+                      "street",
+                      "city",
+                      "state",
+                      "country",
+                      "postalCode"
+                    ],
+                    "properties": {
+                      "country": {
+                        "type": "string",
+                        "enum": [
+                          "United States"
+                        ],
+                        "default": "United States"
+                      },
+                      "street": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 126
+                      },
+                      "street2": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 126
+                      },
+                      "city": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                      },
+                      "state": {
+                        "type": "string",
+                        "enum": [
+                          "AL",
+                          "AK",
+                          "AZ",
+                          "AR",
+                          "CA",
+                          "CO",
+                          "CT",
+                          "DE",
+                          "DC",
+                          "FL",
+                          "GA",
+                          "HI",
+                          "ID",
+                          "IL",
+                          "IN",
+                          "IA",
+                          "KS",
+                          "KY",
+                          "LA",
+                          "ME",
+                          "MD",
+                          "MA",
+                          "MI",
+                          "MN",
+                          "MS",
+                          "MO",
+                          "MT",
+                          "NE",
+                          "NV",
+                          "NH",
+                          "NJ",
+                          "NM",
+                          "NY",
+                          "NC",
+                          "ND",
+                          "OH",
+                          "OK",
+                          "OR",
+                          "PA",
+                          "RI",
+                          "SC",
+                          "SD",
+                          "TN",
+                          "TX",
+                          "UT",
+                          "VT",
+                          "VA",
+                          "WA",
+                          "WV",
+                          "WI",
+                          "WY"
+                        ],
+                        "enumNames": [
+                          "Alabama",
+                          "Alaska",
+                          "Arizona",
+                          "Arkansas",
+                          "California",
+                          "Colorado",
+                          "Connecticut",
+                          "Delaware",
+                          "District Of Columbia",
+                          "Florida",
+                          "Georgia",
+                          "Hawaii",
+                          "Idaho",
+                          "Illinois",
+                          "Indiana",
+                          "Iowa",
+                          "Kansas",
+                          "Kentucky",
+                          "Louisiana",
+                          "Maine",
+                          "Maryland",
+                          "Massachusetts",
+                          "Michigan",
+                          "Minnesota",
+                          "Mississippi",
+                          "Missouri",
+                          "Montana",
+                          "Nebraska",
+                          "Nevada",
+                          "New Hampshire",
+                          "New Jersey",
+                          "New Mexico",
+                          "New York",
+                          "North Carolina",
+                          "North Dakota",
+                          "Ohio",
+                          "Oklahoma",
+                          "Oregon",
+                          "Pennsylvania",
+                          "Rhode Island",
+                          "South Carolina",
+                          "South Dakota",
+                          "Tennessee",
+                          "Texas",
+                          "Utah",
+                          "Vermont",
+                          "Virginia",
+                          "Washington",
+                          "West Virginia",
+                          "Wisconsin",
+                          "Wyoming"
+                        ]
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "pattern": "^\\d{5}$"
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "street",
+                      "city",
+                      "country"
+                    ],
+                    "properties": {
+                      "country": {
+                        "type": "string",
+                        "enum": [
+                          "Afghanistan",
+                          "Aland Islands",
+                          "Albania",
+                          "Algeria",
+                          "Andorra",
+                          "Angola",
+                          "Anguilla",
+                          "Antarctica",
+                          "Antigua and Barbuda",
+                          "Argentina",
+                          "Armenia",
+                          "Aruba",
+                          "Australia",
+                          "Austria",
+                          "Azerbaijan",
+                          "Bahamas",
+                          "Bahrain",
+                          "Bangladesh",
+                          "Barbados",
+                          "Belarus",
+                          "Belgium",
+                          "Belize",
+                          "Benin",
+                          "Bermuda",
+                          "Bhutan",
+                          "Bolivia, Plurinational State of",
+                          "Bonaire, Sint Eustatius and Saba",
+                          "Bosnia and Herzegovina",
+                          "Botswana",
+                          "Bouvet Island",
+                          "Brazil",
+                          "British Indian Ocean Territory",
+                          "Brunei Darussalam",
+                          "Bulgaria",
+                          "Burkina Faso",
+                          "Burundi",
+                          "Cambodia",
+                          "Cameroon",
+                          "Canada",
+                          "Cape Verde",
+                          "Cayman Islands",
+                          "Central African Republic",
+                          "Chad",
+                          "Chile",
+                          "China",
+                          "Chinese Taipei",
+                          "Christmas Island",
+                          "Cocos (Keeling) Islands",
+                          "Colombia",
+                          "Comoros",
+                          "Congo",
+                          "Congo, the Democratic Republic of the",
+                          "Cook Islands",
+                          "Costa Rica",
+                          "Cote d'Ivoire",
+                          "Croatia",
+                          "Cuba",
+                          "Curaçao",
+                          "Cyprus",
+                          "Czech Republic",
+                          "Denmark",
+                          "Djibouti",
+                          "Dominica",
+                          "Dominican Republic",
+                          "Ecuador",
+                          "Egypt",
+                          "El Salvador",
+                          "Equatorial Guinea",
+                          "Eritrea",
+                          "Estonia",
+                          "Ethiopia",
+                          "Falkland Islands (Malvinas)",
+                          "Faroe Islands",
+                          "Fiji",
+                          "Finland",
+                          "France",
+                          "French Guiana",
+                          "French Polynesia",
+                          "French Southern Territories",
+                          "Gabon",
+                          "Gambia",
+                          "Georgia",
+                          "Germany",
+                          "Ghana",
+                          "Gibraltar",
+                          "Greece",
+                          "Greenland",
+                          "Grenada",
+                          "Guadeloupe",
+                          "Guatemala",
+                          "Guernsey",
+                          "Guinea",
+                          "Guinea-Bissau",
+                          "Guyana",
+                          "Haiti",
+                          "Heard Island and McDonald Islands",
+                          "Holy See (Vatican City State)",
+                          "Honduras",
+                          "Hungary",
+                          "Iceland",
+                          "India",
+                          "Indonesia",
+                          "Iran, Islamic Republic of",
+                          "Iraq",
+                          "Ireland",
+                          "Isle of Man",
+                          "Israel",
+                          "Italy",
+                          "Jamaica",
+                          "Japan",
+                          "Jersey",
+                          "Jordan",
+                          "Kazakhstan",
+                          "Kenya",
+                          "Kiribati",
+                          "Korea, Democratic People's Republic of",
+                          "Korea, Republic of",
+                          "Kuwait",
+                          "Kyrgyzstan",
+                          "Lao People's Democratic Republic",
+                          "Latvia",
+                          "Lebanon",
+                          "Lesotho",
+                          "Liberia",
+                          "Libyan Arab Jamahiriya",
+                          "Liechtenstein",
+                          "Lithuania",
+                          "Luxembourg",
+                          "Macao",
+                          "Macedonia, the former Yugoslav Republic of",
+                          "Madagascar",
+                          "Malawi",
+                          "Malaysia",
+                          "Maldives",
+                          "Mali",
+                          "Malta",
+                          "Martinique",
+                          "Mauritania",
+                          "Mauritius",
+                          "Mayotte",
+                          "Mexico",
+                          "Moldova, Republic of",
+                          "Monaco",
+                          "Mongolia",
+                          "Montenegro",
+                          "Montserrat",
+                          "Morocco",
+                          "Mozambique",
+                          "Myanmar",
+                          "Namibia",
+                          "Nauru",
+                          "Nepal",
+                          "Netherlands",
+                          "New Caledonia",
+                          "New Zealand",
+                          "Nicaragua",
+                          "Niger",
+                          "Nigeria",
+                          "Niue",
+                          "Norfolk Island",
+                          "Norway",
+                          "Oman",
+                          "Pakistan",
+                          "Palestinian Territory, Occupied",
+                          "Panama",
+                          "Papua New Guinea",
+                          "Paraguay",
+                          "Peru",
+                          "Philippines",
+                          "Pitcairn",
+                          "Poland",
+                          "Portugal",
+                          "Qatar",
+                          "Reunion",
+                          "Romania",
+                          "Russian Federation",
+                          "Rwanda",
+                          "Saint Barthélemy",
+                          "Saint Helena, Ascension and Tristan da Cunha",
+                          "Saint Kitts and Nevis",
+                          "Saint Lucia",
+                          "Saint Martin (French part)",
+                          "Saint Pierre and Miquelon",
+                          "Saint Vincent and the Grenadines",
+                          "Samoa",
+                          "San Marino",
+                          "Sao Tome and Principe",
+                          "Saudi Arabia",
+                          "Senegal",
+                          "Serbia",
+                          "Seychelles",
+                          "Sierra Leone",
+                          "Singapore",
+                          "Sint Maarten (Dutch part)",
+                          "Slovakia",
+                          "Slovenia",
+                          "Solomon Islands",
+                          "Somalia",
+                          "South Africa",
+                          "South Georgia and the South Sandwich Islands",
+                          "South Sudan",
+                          "Spain",
+                          "Sri Lanka",
+                          "Sudan",
+                          "Suriname",
+                          "Svalbard and Jan Mayen",
+                          "Swaziland",
+                          "Sweden",
+                          "Switzerland",
+                          "Syrian Arab Republic",
+                          "Tajikistan",
+                          "Tanzania, United Republic of",
+                          "Thailand",
+                          "Timor-Leste",
+                          "Togo",
+                          "Tokelau",
+                          "Tonga",
+                          "Trinidad and Tobago",
+                          "Tunisia",
+                          "Turkey",
+                          "Turkmenistan",
+                          "Turks and Caicos Islands",
+                          "Tuvalu",
+                          "Uganda",
+                          "Ukraine",
+                          "United Arab Emirates",
+                          "United Kingdom",
+                          "Uruguay",
+                          "Uzbekistan",
+                          "Vanuatu",
+                          "Venezuela, Bolivarian Republic of",
+                          "Viet Nam",
+                          "Virgin Islands, British",
+                          "Wallis and Futuna",
+                          "Western Sahara",
+                          "Yemen",
+                          "Zambia",
+                          "Zimbabwe"
+                        ]
+                      },
+                      "street": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                      },
+                      "street2": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                      },
+                      "city": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 40
+                      },
+                      "state": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 20
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 30
+                      }
+                    }
+                  }
+                ]
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              }
+            }
+          },
+          {
+            "required": [
+              "facilityCode"
+            ],
+            "properties": {
+              "facilityCode": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "programs": {
+        "type": "object",
+        "properties": {
+          "Post-9/11 Ch 33": {
+            "type": "boolean",
+            "default": false,
+            "title": "Post-9/11 GI Bill (Chapter 33)"
+          },
+          "MGIB-AD Ch 30": {
+            "type": "boolean",
+            "default": false,
+            "title": "Montgomery GI Bill - Active Duty (MGIB-AD, Chapter 30)"
+          },
+          "MGIB-SR Ch 1606": {
+            "type": "boolean",
+            "default": false,
+            "title": "Montgomery GI Bill - Selected Reserve (MGIB-SR, Chapter 1606)"
+          },
+          "TATU": {
+            "type": "boolean",
+            "default": false,
+            "title": "Tuition Assistance Top-Up"
+          },
+          "REAP": {
+            "type": "boolean",
+            "default": false,
+            "title": "Reserve Educational Assistance Program (REAP) (Chapter 1607)"
+          },
+          "DEA Ch 35": {
+            "type": "boolean",
+            "default": false,
+            "title": "Survivors’ and Dependents’ Assistance (DEA) (Chapter 35)"
+          },
+          "VRE Ch 31": {
+            "type": "boolean",
+            "default": false,
+            "title": "Vocational Rehabilitation and Employment (VR&E) (Chapter 31)"
+          }
+        }
+      },
+      "assistance": {
+        "type": "object",
+        "properties": {
+          "TA": {
+            "type": "boolean",
+            "default": false,
+            "title": "Federal Tuition Assistance (TA)"
+          },
+          "TA-AGR": {
+            "type": "boolean",
+            "default": false,
+            "title": "State-funded Tuition Assistance (TA) for Servicemembers on Active Guard and Reserve (AGR) duties"
+          },
+          "MyCAA": {
+            "type": "boolean",
+            "default": false,
+            "title": "Military Spouse Career Advancement Accounts (MyCAA)"
+          },
+          "FFA": {
+            "type": "boolean",
+            "default": false,
+            "title": "Federal financial aid"
+          }
+        }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "properties": {
+        "other": {
+          "type": "boolean",
+          "default": false
+        },
+        "recruiting": {
+          "type": "boolean",
+          "default": false
+        },
+        "studentLoans": {
+          "type": "boolean",
+          "default": false
+        },
+        "quality": {
+          "type": "boolean",
+          "default": false
+        },
+        "creditTransfer": {
+          "type": "boolean",
+          "default": false
+        },
+        "accreditation": {
+          "type": "boolean",
+          "default": false
+        },
+        "jobOpportunities": {
+          "type": "boolean",
+          "default": false
+        },
+        "gradePolicy": {
+          "type": "boolean",
+          "default": false
+        },
+        "refundIssues": {
+          "type": "boolean",
+          "default": false
+        },
+        "financialIssues": {
+          "type": "boolean",
+          "default": false
+        },
+        "changeInDegree": {
+          "type": "boolean",
+          "default": false
+        },
+        "transcriptRelease": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "issueDescription": {
+      "type": "string",
+      "maxLength": 32000
+    },
+    "issueResolution": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "phone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "serviceDateRange": {
+      "$ref": "#/definitions/dateRange"
+    }
+  }
+}
