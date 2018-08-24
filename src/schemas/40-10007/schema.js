@@ -1,6 +1,7 @@
 import constants from '../../common/constants';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
+import { usaStates } from '../../common/constants';
 import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
@@ -88,7 +89,7 @@ _.merge(modifiedToursOfDuty, {
       },
       nationalGuardState: {
         type: 'string',
-        maxLength: 3
+        'enum': usaStates
       }
     }
   }
