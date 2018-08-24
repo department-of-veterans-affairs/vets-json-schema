@@ -4,7 +4,7 @@ import fixtures from '../../support/fixtures';
 import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
 
-const schema = schemas['complaint-tool'];
+const schema = schemas['FEEDBACK-TOOL'];
 let schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 
