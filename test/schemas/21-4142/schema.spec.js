@@ -6,39 +6,56 @@ import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['21-4142'];
 
+const schemaDefaults = {
+    privacyAgreementAccepted: true
+};
+
 let schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.anyOf;
 
-let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
+let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired, schemaDefaults);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-4142 schema', () => {
 
-    // Veteran Full Name
-    sharedTests.runTest('fullName', ['claimantFullName']);
+  [
+    'email',
+    'vaFileNumber'
+  ].forEach((test) => {
+    sharedTests.runTest(test);
+  });
 
-    // Veteran Social Security Number
-    sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
+  // Veteran Full Name
+  sharedTests.runTest('fullName', ['veteranFullName']);
 
-    // Veteran VA File Number
-    sharedTests.runTest('centralMailVaFile', ['veteranVaFileNumber']);
+  // Veteran Social Security Number
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
 
-    // Veteran Date of Birth
-    sharedTests.runTest('date', ['veteranDateOfBirth']);
+  // Veteran Date of Birth
+  sharedTests.runTest('date', ['veteranDateOfBirth']);
 
-    // Veteran Address
-    sharedTests.runTest('centralMailAddress', ['claimantAddress']);
+  // Veteran Address
+  sharedTests.runTest('address', ['veteranAddress']);
 
-    // Veteran Phone
-    sharedTests.runTest('phone', ['applicantPrimaryPhone']);
+  // Veteran Phone
+  sharedTests.runTest('phone', ['phone']);
 
-    // Veteran Email
-    sharedTests.runTest('email', ['claimantEmail']);
-});
-
-//Limited Consent
-schemaTestHelper.testValidAndInvalid('limitedConsent', {
-    valid: ['whatever'],
+  //Limited Consent
+  schemaTestHelper.testValidAndInvalid('limitedConsent', {
+    valid: ['consent limited to whatever'],
     invalid: [3, false]
+  });
+
+  //Provider Facility
+  schemaTestHelper.testValidAndInvalid('providerFacility', {
+    valid: [[{
+      providerFacilityName: 'we fix u',
+      treatmentDateRange: fixtures.dateRange,
+      providerFacilityAddress: fixtures.address,
+    }]],
+    invalid: [[{
+      providerFacilityName: 1
+    }]]
+  });
 });
