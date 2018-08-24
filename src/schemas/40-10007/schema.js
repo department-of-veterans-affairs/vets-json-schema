@@ -87,7 +87,8 @@ _.merge(modifiedToursOfDuty, {
         type: 'string'
       },
       nationalGuardState: {
-        type: 'string'
+        type: 'string',
+        maxLength: 3
       }
     }
   }
