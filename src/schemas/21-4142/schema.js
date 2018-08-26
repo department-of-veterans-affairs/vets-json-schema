@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import schemaHelpers from '../../common/schema-helpers';
 import _ from "lodash";
 
 
@@ -8,14 +9,9 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
-    'fullName',
-    'ssn',
-    'vaFileNumber',
-    'date',
     'address',
     'phone',
-    'dateRange',
-    'privacyAgreementAccepted'
+    'dateRange'
   ]),
   anyOf: [
     {
@@ -26,24 +22,9 @@ let schema = {
     }
   ],
   properties: {
-    veteranFullName: {
-      $ref: '#/definitions/fullName'
-    },
-    veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
-    },
-    vaFileNumber: {
-      $ref: '#/definitions/vaFileNumber'
-    },
-    veteranDateOfBirth: {
-      $ref: '#/definitions/date'
-    },
-    veteranAddress: {
-      $ref: '#/definitions/address'
-    },
     email: {
       type: 'string',
-    format: 'email'
+      format: 'email'
     },
     phone: {
       $ref: '#/definitions/phone'
@@ -67,12 +48,20 @@ let schema = {
           }
         }
       }
-    },
-    privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
     }
   },
   required: ['privacyAgreementAccepted', 'veteranFullName']
 };
+
+[
+  ['privacyAgreementAccepted'],
+  ['fullName', 'veteranFullName'],
+  ['ssn', 'veteranSocialSecurityNumber'],
+  ['vaFileNumber'],
+  ['date', 'veteranDateOfBirth'],
+  ['address', 'veteranAddress']
+].forEach((args) => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
 
 export default schema;

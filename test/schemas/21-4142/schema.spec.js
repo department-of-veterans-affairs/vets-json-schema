@@ -7,7 +7,7 @@ import SharedTests from '../../support/shared-tests';
 const schema = schemas['21-4142'];
 
 const schemaDefaults = {
-    privacyAgreementAccepted: true
+  privacyAgreementAccepted: true
 };
 
 let schemaWithoutRequired = _.cloneDeep(schema);

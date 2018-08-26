@@ -4,50 +4,6 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "fullName": {
-      "type": "object",
-      "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "middle": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
-        }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
-    },
-    "ssn": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
-    },
-    "vaFileNumber": {
-      "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -276,6 +232,50 @@
       "enum": [
         true
       ]
+    },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     }
   },
   "anyOf": [
@@ -291,21 +291,6 @@
     }
   ],
   "properties": {
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
-    "vaFileNumber": {
-      "$ref": "#/definitions/vaFileNumber"
-    },
-    "veteranDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "veteranAddress": {
-      "$ref": "#/definitions/address"
-    },
     "email": {
       "type": "string",
       "format": "email"
@@ -335,6 +320,21 @@
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranAddress": {
+      "$ref": "#/definitions/address"
     }
   },
   "required": [
