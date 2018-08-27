@@ -1,11 +1,17 @@
 import constants from '../../common/constants';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import { usaStates } from '../../common/constants';
+import { states50AndDC } from '../../common/constants';
 import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
 let modifiedToursOfDuty = definitions.toursOfDuty;
+
+const nationalGuardStates = states50AndDC.concat([
+  { label: 'Guam', value: 'GU' },
+  { label: 'Puerto Rico', value: 'PR' },
+  { label: 'Virgin Islands', value: 'VI' }
+]).sort((stateA, stateB) => (stateA.label.localeCompare(stateB.label)))
 
 _.merge(modifiedToursOfDuty, {
   minItems: 1,
@@ -89,7 +95,9 @@ _.merge(modifiedToursOfDuty, {
       },
       nationalGuardState: {
         type: 'string',
-        'enum': usaStates
+        maxLength: 3,
+        'enum': nationalGuardStates.map(state => state.value),
+        enumNames: nationalGuardStates.map(state => state.label) 
       }
     }
   }

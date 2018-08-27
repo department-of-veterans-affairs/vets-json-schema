@@ -6,60 +6,6 @@ import constants from '../../common/constants';
 
 const { salesforceCountries: countries } = constants;
 
-const allStates = [
-  { full: 'Alabama', abbreviation: 'AL' },
-  { full: 'Alaska', abbreviation: 'AK' },
-  { full: 'Arizona', abbreviation: 'AZ' },
-  { full: 'Arkansas', abbreviation: 'AR' },
-  { full: 'California', abbreviation: 'CA' },
-  { full: 'Colorado', abbreviation: 'CO' },
-  { full: 'Connecticut', abbreviation: 'CT' },
-  { full: 'Delaware', abbreviation: 'DE' },
-  { full: 'District Of Columbia', abbreviation: 'DC' },
-  { full: 'Florida', abbreviation: 'FL' },
-  { full: 'Georgia', abbreviation: 'GA' },
-  { full: 'Hawaii', abbreviation: 'HI' },
-  { full: 'Idaho', abbreviation: 'ID' },
-  { full: 'Illinois', abbreviation: 'IL' },
-  { full: 'Indiana', abbreviation: 'IN' },
-  { full: 'Iowa', abbreviation: 'IA' },
-  { full: 'Kansas', abbreviation: 'KS' },
-  { full: 'Kentucky', abbreviation: 'KY' },
-  { full: 'Louisiana', abbreviation: 'LA' },
-  { full: 'Maine', abbreviation: 'ME' },
-  { full: 'Maryland', abbreviation: 'MD' },
-  { full: 'Massachusetts', abbreviation: 'MA' },
-  { full: 'Michigan', abbreviation: 'MI' },
-  { full: 'Minnesota', abbreviation: 'MN' },
-  { full: 'Mississippi', abbreviation: 'MS' },
-  { full: 'Missouri', abbreviation: 'MO' },
-  { full: 'Montana', abbreviation: 'MT' },
-  { full: 'Nebraska', abbreviation: 'NE' },
-  { full: 'Nevada', abbreviation: 'NV' },
-  { full: 'New Hampshire', abbreviation: 'NH' },
-  { full: 'New Jersey', abbreviation: 'NJ' },
-  { full: 'New Mexico', abbreviation: 'NM' },
-  { full: 'New York', abbreviation: 'NY' },
-  { full: 'North Carolina', abbreviation: 'NC' },
-  { full: 'North Dakota', abbreviation: 'ND' },
-  { full: 'Ohio', abbreviation: 'OH' },
-  { full: 'Oklahoma', abbreviation: 'OK' },
-  { full: 'Oregon', abbreviation: 'OR' },
-  { full: 'Pennsylvania', abbreviation: 'PA' },
-  { full: 'Rhode Island', abbreviation: 'RI' },
-  { full: 'South Carolina', abbreviation: 'SC' },
-  { full: 'South Dakota', abbreviation: 'SD' },
-  { full: 'Tennessee', abbreviation: 'TN' },
-  { full: 'Texas', abbreviation: 'TX' },
-  { full: 'Utah', abbreviation: 'UT' },
-  { full: 'Vermont', abbreviation: 'VT' },
-  { full: 'Virginia', abbreviation: 'VA' },
-  { full: 'Washington', abbreviation: 'WA' },
-  { full: 'West Virginia', abbreviation: 'WV' },
-  { full: 'Wisconsin', abbreviation: 'WI' },
-  { full: 'Wyoming', abbreviation: 'WY' }
-]
-
 // The common definition includes "II" and lacks "Other"
 const fullName = _.set('properties.suffix', {
   type: 'string',
@@ -100,8 +46,8 @@ const domesticSchoolAddress = {
     },
     state: {
       type: 'string',
-      'enum': allStates.map(state => state.abbreviation), // backend accepts abbreviated state names
-      enumNames: allStates.map(state => state.full)
+      'enum': constants.states50AndDC.map(state => state.value), // backend accepts abbreviated state names
+      enumNames: constants.states50AndDC.map(state => state.label)
     },
     postalCode: {  // TYPE: text (255)
       type: 'string',
@@ -191,8 +137,8 @@ let schema = {
         },
         state: { // backend requires abbreviated state names for applicant address
           type: 'string',
-          'enum': allStates.map(state => state.abbreviation),
-          enumNames: allStates.map(state => state.full)
+          'enum': constants.states50AndDC.map(state => state.value),
+          enumNames: constants.states50AndDC.map(state => state.label)
         },
         postalCode: {  // TYPE: text (5)
           type: 'string',
