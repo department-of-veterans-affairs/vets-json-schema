@@ -20,8 +20,7 @@ let sharedTests = new SharedTests(schemaTestHelper);
 describe('21-4142 schema', () => {
 
   [
-    'email',
-    'vaFileNumber'
+    'email'
   ].forEach((test) => {
     sharedTests.runTest(test);
   });
@@ -32,14 +31,17 @@ describe('21-4142 schema', () => {
   // Veteran Social Security Number
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
 
+  // Veteran VA File Number
+  sharedTests.runTest('centralMailVaFile', ['vaFileNumber']);
+
   // Veteran Date of Birth
   sharedTests.runTest('date', ['veteranDateOfBirth']);
 
   // Veteran Address
-  sharedTests.runTest('address', ['veteranAddress']);
+  sharedTests.runTest('centralMailAddress', ['veteranAddress']);
 
   // Veteran Phone
-  sharedTests.runTest('phone', ['phone']);
+  sharedTests.runTest('phone', ['veteranPhone']);
 
   //Limited Consent
   schemaTestHelper.testValidAndInvalid('limitedConsent', {

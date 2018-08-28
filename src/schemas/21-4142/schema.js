@@ -10,7 +10,6 @@ let schema = {
   additionalProperties: false,
   definitions: _.pick(definitions, [
     'address',
-    'phone',
     'dateRange'
   ]),
   anyOf: [
@@ -25,9 +24,6 @@ let schema = {
     email: {
       type: 'string',
       format: 'email'
-    },
-    phone: {
-      $ref: '#/definitions/phone'
     },
     limitedConsent: {
       type: 'string'
@@ -57,9 +53,10 @@ let schema = {
   ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
-  ['vaFileNumber'],
+  ['centralMailVaFile', 'vaFileNumber'],
   ['date', 'veteranDateOfBirth'],
-  ['address', 'veteranAddress']
+  ['centralMailAddress', 'veteranAddress'],
+  ['phone', 'veteranPhone'],
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
