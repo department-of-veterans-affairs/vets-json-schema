@@ -20,9 +20,6 @@ const disabilitiesBaseDef = {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
       },
-      specialIssues: {
-        $ref: '#/definitions/specialIssues'
-      },
       ratedDisabilityId: {
         type: 'string'
       },
@@ -145,41 +142,7 @@ let schema = {
       }
     }),
     fullName: fullNameDef,
-    phone: definitions.usaPhone,
-    specialIssues: {
-      type: 'array',
-      maxItems: 100,
-      items: {
-        type: 'object',
-        required: ['code', 'name'],
-        properties: {
-          code: {
-            type: 'string',
-            enum: [
-              'ALS',
-              'AOIV',
-              'AOOV',
-              'ASB',
-              'EHCL',
-              'GW',
-              'HEPC',
-              'MG',
-              'POW',
-              'RDN',
-              'SHAD',
-              'TRM',
-              '38USC1151',
-              'PTSD/1',
-              'PTSD/2',
-              'PTSD/4'
-            ]
-          },
-          name: {
-            type: 'string'
-          }
-        }
-      }
-    }
+    phone: definitions.usaPhone
   },
   required: [
     'veteran',
