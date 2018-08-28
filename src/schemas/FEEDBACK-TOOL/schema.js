@@ -270,27 +270,18 @@ let schema = {
       ],
       school: {
         type: 'object',
-        oneOf: [{
-          required: ['address', 'name'],
-          properties: {
-            address: {
-              type: 'object',
-              oneOf: schoolAddress
-            },
-            name: { // Type: text (255)
-              type: 'string',
-              minLength: 1,
-              maxLength: 255
-            }
+        required: ['address', 'name'],
+        properties: {
+          address: {
+            type: 'object',
+            oneOf: schoolAddress
+          },
+          name: { // Type: text (255)
+            type: 'string',
+            minLength: 1,
+            maxLength: 255
           }
-        }, {
-          required: ['facilityCode'],
-          properties: {
-            facilityCode: {  // TRANSLATE: Used to obtain school address
-              type: 'string'
-            }
-          }
-        }]
+        }
       },
       programs: { // TRANSLATE into array of strings
         type: 'object', // FE validation requires at least one selected
