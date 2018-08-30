@@ -6,15 +6,11 @@ import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['21-4142'];
 
-const schemaDefaults = {
-  privacyAgreementAccepted: true
-};
-
 let schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.anyOf;
 
-let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired, schemaDefaults);
+let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-4142 schema', () => {
