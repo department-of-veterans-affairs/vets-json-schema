@@ -32,12 +32,17 @@ const domesticSchoolAddress = {
     street: {
       type: 'string',
       minLength: 1,
-      maxLength: 126 // street + street2 length must be < 255
+      maxLength: 84 // street + street2 + street3 length must be < 255
     },
     street2: {
       type: 'string',
       minLength: 1,
-      maxLength: 126 // street + street2 length must be < 255
+      maxLength: 84 // street + street2 + street3 length must be < 255
+    },
+    street3: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 84 // street + street2 + street3 length must be < 255
     },
     city: {
       type: 'string',
@@ -67,12 +72,17 @@ const internationalSchoolAddress = {
     street: {
       type: 'string',
       minLength: 1,
-      maxLength: 80
+      maxLength: 53
     },
     street2: {
       type: 'string',
       minLength: 1,
-      maxLength: 80
+      maxLength: 53
+    },
+    street3: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 53
     },
     city: {
       type: 'string',
@@ -92,7 +102,55 @@ const internationalSchoolAddress = {
   }
 };
 
-const schoolAddress = [domesticSchoolAddress, internationalSchoolAddress];
+// TRANSLATE: all search tool address fields into street, street2, and country
+const searchToolSchoolAddress = {
+  required: ['viaSearchTool', 'street', 'city', 'country'],
+  properties: {
+    viaSearchTool: {
+      type: 'boolean',
+      'enum': [
+        true
+      ]
+    },
+    country: {
+      type: 'string', // TYPE: text (255)
+      minLength: 1,
+      maxLength: 255
+    },
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 53
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 53
+    },
+    street3: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 53
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 40
+    },
+    state: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 20
+    },
+    postalCode: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30
+    }
+  }
+}
+
+const schoolAddresses = [domesticSchoolAddress, internationalSchoolAddress, searchToolSchoolAddress];
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -214,83 +272,85 @@ let schema = {
         'school',
         'programs'
       ],
-      school: {
-        type: 'object',
-        required: ['address', 'name'],
-        properties: {
-          address: {
-            type: 'object',
-            oneOf: schoolAddress
-          },
-          name: { // Type: text (255)
-            type: 'string',
-            minLength: 1,
-            maxLength: 255
+      properties: {
+        school: {
+          type: 'object',
+          required: ['address', 'name'],
+          properties: {
+            address: {
+              type: 'object',
+              oneOf: schoolAddresses
+            },
+            name: { // Type: text (255)
+              type: 'string',
+              minLength: 1,
+              maxLength: 255
+            }
           }
-        }
-      },
-      programs: { // TRANSLATE into array of strings
-        type: 'object', // FE validation requires at least one selected
-        properties: {
-          'Post-9/11 Ch 33': {
-            type: 'boolean',
-            default: false,
-            title: 'Post-9/11 GI Bill (Chapter 33)'
-          },
-          'MGIB-AD Ch 30': {
-            type: 'boolean',
-            default: false,
-            title: 'Montgomery GI Bill - Active Duty (MGIB-AD, Chapter 30)'
-          },
-          'MGIB-SR Ch 1606': {
-            type: 'boolean',
-            default: false,
-            title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR, Chapter 1606)'
-          },
-          TATU: {
-            type: 'boolean',
-            default: false,
-            title: 'Tuition Assistance Top-Up'
-          },
-          REAP: {
-            type: 'boolean',
-            default: false,
-            title: 'Reserve Educational Assistance Program (REAP) (Chapter 1607)'
-          },
-          'DEA Ch 35': {
-            type: 'boolean',
-            default: false,
-            title: 'Survivors’ and Dependents’ Assistance (DEA) (Chapter 35)'
-          },
-          'VRE Ch 31': {
-            type: 'boolean',
-            default: false,
-            title: 'Vocational Rehabilitation and Employment (VR&E) (Chapter 31)'
+        },
+        programs: { // TRANSLATE into array of strings
+          type: 'object', // FE validation requires at least one selected
+          properties: {
+            'Post-9/11 Ch 33': {
+              type: 'boolean',
+              default: false,
+              title: 'Post-9/11 GI Bill (Chapter 33)'
+            },
+            'MGIB-AD Ch 30': {
+              type: 'boolean',
+              default: false,
+              title: 'Montgomery GI Bill - Active Duty (MGIB-AD, Chapter 30)'
+            },
+            'MGIB-SR Ch 1606': {
+              type: 'boolean',
+              default: false,
+              title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR, Chapter 1606)'
+            },
+            TATU: {
+              type: 'boolean',
+              default: false,
+              title: 'Tuition Assistance Top-Up'
+            },
+            REAP: {
+              type: 'boolean',
+              default: false,
+              title: 'Reserve Educational Assistance Program (REAP) (Chapter 1607)'
+            },
+            'DEA Ch 35': {
+              type: 'boolean',
+              default: false,
+              title: 'Survivors’ and Dependents’ Assistance (DEA) (Chapter 35)'
+            },
+            'VRE Ch 31': {
+              type: 'boolean',
+              default: false,
+              title: 'Vocational Rehabilitation and Employment (VR&E) (Chapter 31)'
+            }
           }
-        }
-      },
-      assistance: { // TRANSLATE into array of strings
-        type: 'object',
-        properties: {
-          TA: {
-            type: 'boolean',
-            default: false,
-            title: 'Federal Tuition Assistance (TA)'
-          },
-          'TA-AGR': {
-            type: 'boolean',
-            default: false,
-            title: 'State-funded Tuition Assistance (TA) for Servicemembers on Active Guard and Reserve (AGR) duties'
-          },
-          MyCAA: {
-            type: 'boolean',
-            default: false,
-            title: 'Military Spouse Career Advancement Accounts (MyCAA)'
-          },
-          FFA: {
-            type: 'boolean',
-            default: false,
-            title: 'Federal financial aid'
+        },
+        assistance: { // TRANSLATE into array of strings
+          type: 'object',
+          properties: {
+            TA: {
+              type: 'boolean',
+              default: false,
+              title: 'Federal Tuition Assistance (TA)'
+            },
+            'TA-AGR': {
+              type: 'boolean',
+              default: false,
+              title: 'State-funded Tuition Assistance (TA) for Servicemembers on Active Guard and Reserve (AGR) duties'
+            },
+            MyCAA: {
+              type: 'boolean',
+              default: false,
+              title: 'Military Spouse Career Advancement Accounts (MyCAA)'
+            },
+            FFA: {
+              type: 'boolean',
+              default: false,
+              title: 'Federal financial aid'
+            }
           }
         }
       }
