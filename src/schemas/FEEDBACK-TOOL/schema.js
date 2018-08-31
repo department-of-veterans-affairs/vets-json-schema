@@ -26,7 +26,8 @@ const domesticSchoolAddress = {
   properties: {
     country: {
       type: 'string', // TYPE: text (255)
-      'enum': [USA.label],
+      'enum': [USA.label.toUpperCase()],
+      enumNames: [USA.label],
       default: USA.label
     },
     street: {
@@ -62,7 +63,8 @@ const internationalSchoolAddress = {
   properties: {
     country: {
       type: 'string', // TYPE: text (255)
-      'enum': nonUSACountries.map(country => country.label),
+      'enum': nonUSACountries.map(country => country.label.toUpperCase()),
+      enumNames: nonUSACountries.map(country => country.label),
     },
     street: {
       type: 'string',
