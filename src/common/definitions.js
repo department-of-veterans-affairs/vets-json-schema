@@ -539,27 +539,8 @@ const form_21_4142 = {
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
-    },
-    veteranFullName: {
-      $ref: '#/definitions/fullName'
-    },
-    veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
-    },
-    vaFileNumber: {
-      $ref: '#/definitions/centralMailVaFile'
-    },
-    veteranDateOfBirth: {
-      $ref: '#/definitions/date'
-    },
-    veteranAddress: {
-      $ref: '#/definitions/centralMailAddress'
-    },
-    veteranPhone: {
-      $ref: '#/definitions/phone'
     }
-  },
-  required: ['privacyAgreementAccepted', 'veteranFullName']
+  }
 };
 
 
