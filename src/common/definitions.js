@@ -510,18 +510,15 @@ const year = {
   minimum: 1900
 };
 
-const form_21_4142 = {
+const form4142 = {
   type: 'object',
   properties: {
-    email: {
-      type: 'string',
-      format: 'email'
-    },
     limitedConsent: {
       type: 'string'
     },
     providerFacility: {
       type: 'array',
+      required: ['providerFacilityName','treatmentDateRange','providerFacilityAddress'],
       items: {
         type: 'object',
         properties: {
@@ -582,5 +579,5 @@ export default {
   usaPostalCode,
   centralMailAddress,
   year,
-  form_21_4142
+  form4142
 };

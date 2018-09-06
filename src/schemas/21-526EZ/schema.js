@@ -142,7 +142,8 @@ let schema = {
       }
     }),
     fullName: fullNameDef,
-    phone: definitions.usaPhone
+    phone: definitions.usaPhone,
+    form4142: definitions.form4142
   },
   required: [
     'veteran',
@@ -431,8 +432,8 @@ let schema = {
       type: 'boolean',
       default: false
     },
-    form_21_4142: {
-      $ref: '#/definitions/form_21_4142'
+    form4142: {
+      $ref: '#/definitions/form4142'
     }
   },
 };

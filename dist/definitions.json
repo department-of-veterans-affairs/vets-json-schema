@@ -975,7 +975,7 @@
     "type": "integer",
     "minimum": 1900
   },
-  "form_21_4142": {
+  "form4142": {
     "type": "object",
     "properties": {
       "limitedConsent": {
@@ -983,6 +983,11 @@
       },
       "providerFacility": {
         "type": "array",
+        "required": [
+          "providerFacilityName",
+          "treatmentDateRange",
+          "providerFacilityAddress"
+        ],
         "items": {
           "type": "object",
           "properties": {
