@@ -219,7 +219,8 @@ let schema = {
         serviceNumber: {
           type: 'string',
           pattern: '^[a-zA-Z0-9]{1,9}$'
-        }
+        },
+
       }
     },
     attachments: {
@@ -429,6 +430,9 @@ let schema = {
       // program because I plan to submit further evidence in support of my claim
       type: 'boolean',
       default: false
+    },
+    form_21_4142: {
+      $ref: '#/definitions/form_21_4142'
     }
   },
 };

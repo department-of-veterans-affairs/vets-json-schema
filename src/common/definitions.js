@@ -510,6 +510,59 @@ const year = {
   minimum: 1900
 };
 
+const form_21_4142 = {
+  type: 'object',
+  properties: {
+    email: {
+      type: 'string',
+      format: 'email'
+    },
+    limitedConsent: {
+      type: 'string'
+    },
+    providerFacility: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          providerFacilityName: {
+            type: 'string'
+          },
+          treatmentDateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          providerFacilityAddress: {
+            $ref: '#/definitions/address'
+          }
+        }
+      }
+    },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted'
+    },
+    veteranFullName: {
+      $ref: '#/definitions/fullName'
+    },
+    veteranSocialSecurityNumber: {
+      $ref: '#/definitions/ssn'
+    },
+    vaFileNumber: {
+      $ref: '#/definitions/centralMailVaFile'
+    },
+    veteranDateOfBirth: {
+      $ref: '#/definitions/date'
+    },
+    veteranAddress: {
+      $ref: '#/definitions/centralMailAddress'
+    },
+    veteranPhone: {
+      $ref: '#/definitions/phone'
+    }
+  },
+  required: ['privacyAgreementAccepted', 'veteranFullName']
+};
+
+
 export default {
   usaPhone,
   fullName,
@@ -547,5 +600,6 @@ export default {
   serviceHistory,
   usaPostalCode,
   centralMailAddress,
-  year
+  year,
+  form_21_4142
 };
