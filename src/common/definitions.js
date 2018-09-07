@@ -510,6 +510,37 @@ const year = {
   minimum: 1900
 };
 
+const form4142 = {
+  type: 'object',
+  properties: {
+    limitedConsent: {
+      type: 'string'
+    },
+    providerFacility: {
+      type: 'array',
+      required: ['providerFacilityName','treatmentDateRange','providerFacilityAddress'],
+      items: {
+        type: 'object',
+        properties: {
+          providerFacilityName: {
+            type: 'string'
+          },
+          treatmentDateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          providerFacilityAddress: {
+            $ref: '#/definitions/address'
+          }
+        }
+      }
+    },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted'
+    }
+  }
+};
+
+
 export default {
   usaPhone,
   fullName,
@@ -547,5 +578,6 @@ export default {
   serviceHistory,
   usaPostalCode,
   centralMailAddress,
-  year
+  year,
+  form4142
 };

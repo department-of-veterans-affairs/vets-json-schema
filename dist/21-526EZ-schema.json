@@ -905,6 +905,39 @@
     "phone": {
       "type": "string",
       "pattern": "^\\d{10}$"
+    },
+    "form4142": {
+      "type": "object",
+      "properties": {
+        "limitedConsent": {
+          "type": "string"
+        },
+        "providerFacility": {
+          "type": "array",
+          "required": [
+            "providerFacilityName",
+            "treatmentDateRange",
+            "providerFacilityAddress"
+          ],
+          "items": {
+            "type": "object",
+            "properties": {
+              "providerFacilityName": {
+                "type": "string"
+              },
+              "treatmentDateRange": {
+                "$ref": "#/definitions/dateRange"
+              },
+              "providerFacilityAddress": {
+                "$ref": "#/definitions/address"
+              }
+            }
+          }
+        },
+        "privacyAgreementAccepted": {
+          "$ref": "#/definitions/privacyAgreementAccepted"
+        }
+      }
     }
   },
   "required": [
@@ -1631,6 +1664,9 @@
     "standardClaim": {
       "type": "boolean",
       "default": false
+    },
+    "form4142": {
+      "$ref": "#/definitions/form4142"
     }
   }
 }

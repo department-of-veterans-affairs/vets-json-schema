@@ -142,7 +142,8 @@ let schema = {
       }
     }),
     fullName: fullNameDef,
-    phone: definitions.usaPhone
+    phone: definitions.usaPhone,
+    form4142: definitions.form4142
   },
   required: [
     'veteran',
@@ -219,7 +220,8 @@ let schema = {
         serviceNumber: {
           type: 'string',
           pattern: '^[a-zA-Z0-9]{1,9}$'
-        }
+        },
+
       }
     },
     attachments: {
@@ -429,6 +431,9 @@ let schema = {
       // program because I plan to submit further evidence in support of my claim
       type: 'boolean',
       default: false
+    },
+    form4142: {
+      $ref: '#/definitions/form4142'
     }
   },
 };

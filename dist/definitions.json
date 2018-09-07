@@ -974,5 +974,38 @@
   "year": {
     "type": "integer",
     "minimum": 1900
+  },
+  "form4142": {
+    "type": "object",
+    "properties": {
+      "limitedConsent": {
+        "type": "string"
+      },
+      "providerFacility": {
+        "type": "array",
+        "required": [
+          "providerFacilityName",
+          "treatmentDateRange",
+          "providerFacilityAddress"
+        ],
+        "items": {
+          "type": "object",
+          "properties": {
+            "providerFacilityName": {
+              "type": "string"
+            },
+            "treatmentDateRange": {
+              "$ref": "#/definitions/dateRange"
+            },
+            "providerFacilityAddress": {
+              "$ref": "#/definitions/address"
+            }
+          }
+        }
+      },
+      "privacyAgreementAccepted": {
+        "$ref": "#/definitions/privacyAgreementAccepted"
+      }
+    }
   }
 }
