@@ -139,7 +139,6 @@ describe('feedback tool schema', () => {
       {
         school: {
           address: {
-            viaSearchTool: true,
             street: '254 PHAYATHAI ROAD',
             street2: 'ENGINEERING BLDG 2',
             street3: 'ROOM 107    10330',
@@ -233,7 +232,6 @@ describe('feedback tool schema', () => {
       {
         school: {
           address: {
-            viaSearchTool: true,
             street: '254 PHAYATHAI ROAD',
             street2: 'ENGINEERING BLDG 2, ROOM 107    10330',
             country: 'ANY OLD COUNTRY WILL DO!'

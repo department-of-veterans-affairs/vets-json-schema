@@ -727,18 +727,11 @@
                 },
                 {
                   "required": [
-                    "viaSearchTool",
                     "street",
                     "city",
                     "country"
                   ],
                   "properties": {
-                    "viaSearchTool": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "country": {
                       "type": "string",
                       "minLength": 1,

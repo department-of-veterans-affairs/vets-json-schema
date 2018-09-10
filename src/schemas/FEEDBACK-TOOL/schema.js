@@ -21,6 +21,39 @@ const fullName = _.set('properties.suffix', {
 const USA = countries.find(country => country.value === 'USA');
 const nonUSACountries = countries.filter(country => country.value !== 'USA');
 
+const internationalAddressFields = {
+  street: {
+    type: 'string',
+    minLength: 1,
+    maxLength: 52
+  },
+  street2: {
+    type: 'string',
+    minLength: 1,
+    maxLength: 52
+  },
+  street3: {
+    type: 'string',
+    minLength: 1,
+    maxLength: 52
+  },
+  city: {
+    type: 'string',
+    minLength: 1,
+    maxLength: 40
+  },
+  state: {
+    type: 'string',
+    minLength: 1,
+    maxLength: 20
+  },
+  postalCode: {
+    type: 'string',
+    minLength: 1,
+    maxLength: 30
+  }
+}
+
 const domesticSchoolAddress = {
   required: ['street', 'city', 'state', 'country', 'postalCode'],
   properties: {
@@ -69,84 +102,20 @@ const internationalSchoolAddress = {
       type: 'string', // TYPE: text (255)
       'enum': nonUSACountries.map(country => country.label),
     },
-    street: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 52
-    },
-    street2: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 52
-    },
-    street3: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 52
-    },
-    city: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 40
-    },
-    state: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 20
-    },
-    postalCode: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 30
-    }
+    ...internationalAddressFields
   }
 };
 
 // TRANSLATE: all search tool address fields into street, street2, and country
 const searchToolSchoolAddress = {
-  required: ['viaSearchTool', 'street', 'city', 'country'],
+  required: ['street', 'city', 'country'],
   properties: {
-    viaSearchTool: {
-      type: 'boolean',
-      'enum': [
-        true
-      ]
-    },
     country: {
       type: 'string', // TYPE: text (255)
       minLength: 1,
       maxLength: 255
     },
-    street: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 52
-    },
-    street2: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 52
-    },
-    street3: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 52
-    },
-    city: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 40
-    },
-    state: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 20
-    },
-    postalCode: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 30
-    }
+    ...internationalAddressFields
   }
 }
 
