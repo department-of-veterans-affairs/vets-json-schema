@@ -72,17 +72,17 @@ const internationalSchoolAddress = {
     street: {
       type: 'string',
       minLength: 1,
-      maxLength: 53
+      maxLength: 52
     },
     street2: {
       type: 'string',
       minLength: 1,
-      maxLength: 53
+      maxLength: 52
     },
     street3: {
       type: 'string',
       minLength: 1,
-      maxLength: 53
+      maxLength: 52
     },
     city: {
       type: 'string',
@@ -120,17 +120,17 @@ const searchToolSchoolAddress = {
     street: {
       type: 'string',
       minLength: 1,
-      maxLength: 53
+      maxLength: 52
     },
     street2: {
       type: 'string',
       minLength: 1,
-      maxLength: 53
+      maxLength: 52
     },
     street3: {
       type: 'string',
       minLength: 1,
-      maxLength: 53
+      maxLength: 52
     },
     city: {
       type: 'string',
