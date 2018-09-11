@@ -43,7 +43,7 @@ export default class SchemaTestHelper {
       const valid = fieldType === 'valid';
 
       fields[fieldType].forEach((values) => {
-        it(`should${valid ? '' : 'nt'} allow ${parentKey} with ${JSON.stringify(values)}`, () => {
+        it(`should${valid ? '' : "n't"} allow ${parentKey} with ${JSON.stringify(values)}`, () => {
           this.schemaExpect(valid, objectBuilder(parentKey, values));
         });
       });
