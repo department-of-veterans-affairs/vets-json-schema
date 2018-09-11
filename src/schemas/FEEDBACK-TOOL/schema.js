@@ -248,7 +248,7 @@ let schema = {
           properties: {
             address: {
               type: 'object',
-              oneOf: schoolAddresses
+              anyOf: schoolAddresses
             },
             name: { // Type: text (255)
               type: 'string',

@@ -166,68 +166,6 @@ describe('feedback tool schema', () => {
           name: 'Yale',
         },
       },
-      // invalid postal code - too long
-      {
-        school: {
-          address: {
-            street: '123 a rd',
-            city: 'abc',
-            state: 'CA',
-            postalCode: '12345 1234',
-            country: 'United States'
-          },
-          name: 'Yale',
-        },
-        programs: {
-          'MGIB-AD Ch 30': true
-        }
-      },
-      // invalid postal code - not numbers
-      {
-        school: {
-          address: {
-            street: '123 a rd',
-            city: 'abc',
-            state: 'CA',
-            postalCode: 'abcde',
-            country: 'United States'
-          },
-          name: 'Yale',
-        },
-        programs: {
-          'MGIB-AD Ch 30': true
-        }
-      },
-      // missing postalCode
-      {
-        school: {
-          address: {
-            street: '123 a rd',
-            city: 'abc',
-            state: 'CA',
-            country: 'United States'
-          },
-          name: 'Yale',
-        },
-        programs: {
-          'MGIB-AD Ch 30': true
-        }
-      },
-      // missing state
-      {
-        school: {
-          address: {
-            street: '123 a rd',
-            city: 'abc',
-            postalCode: '12345',
-            country: 'United States'
-          },
-          name: 'Yale',
-        },
-        programs: {
-          'MGIB-AD Ch 30': true
-        }
-      },
       // invalid search tool address - missing city
       {
         school: {

@@ -291,7 +291,7 @@
           "properties": {
             "address": {
               "type": "object",
-              "oneOf": [
+              "anyOf": [
                 {
                   "required": [
                     "street",
