@@ -127,7 +127,8 @@ let schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    date: definitions.date
+    date: definitions.date,
+    ssnLastFour: definitions.ssnLastFour,
   },
   required: [ // no fields are required for submission, though several are required by design on FE
     'onBehalfOf',
@@ -227,6 +228,9 @@ let schema = {
         }
       }
     }, fullName),
+    socialSecurityNumberLastFour: {
+      $ref: '#/definitions/ssnLastFour'
+    },
     anonymousEmail: { // TRANSLATE rename "email" if present
       type: 'string',  // Type: email (no length limit)
       format: 'email' // HACK: email is displayed in mutually exclusive situations on the FE, so the forms library deletes/disables the field. We are splitting it into two fields to get around that, and translating the data/renaming the field on submit.

@@ -8,6 +8,10 @@
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
+    "ssnLastFour": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$"
+    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -266,6 +270,9 @@
         "first",
         "last"
       ]
+    },
+    "socialSecurityNumberLastFour": {
+      "$ref": "#/definitions/ssnLastFour"
     },
     "anonymousEmail": {
       "type": "string",

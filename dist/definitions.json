@@ -262,6 +262,10 @@
     "type": "string",
     "pattern": "^[0-9]{9}$"
   },
+  "ssnLastFour": {
+    "type": "string",
+    "pattern": "^[0-9]{4}$"
+  },
   "school": {
     "type": "object",
     "properties": {
