@@ -39,6 +39,7 @@ describe('feedback tool schema', () => {
     ],
     invalid: [
       '',
+      '0000',
       '1',
       '12',
       '123',
