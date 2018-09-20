@@ -1,4 +1,3 @@
-import constants from '../../common/constants';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import { states50AndDC } from '../../common/constants';
