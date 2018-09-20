@@ -126,9 +126,11 @@ const ssn = {
   pattern: '^[0-9]{9}$'
 };
 
+// The last four digits (or serial number) must be a number from 0001 to 9999
+// https://www.ssa.gov/history/ssn/geocard.html
 const ssnLastFour = {
   type: 'string',
-  pattern: '^[0-9]{4}$'
+  pattern: '^(?!0000)[0-9]{4}$'
 };
 
 const school = {

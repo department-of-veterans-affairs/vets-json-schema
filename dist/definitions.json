@@ -264,7 +264,7 @@
   },
   "ssnLastFour": {
     "type": "string",
-    "pattern": "^[0-9]{4}$"
+    "pattern": "^(?!0000)[0-9]{4}$"
   },
   "school": {
     "type": "object",
