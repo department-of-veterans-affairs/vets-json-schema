@@ -91,7 +91,8 @@ _.merge(modifiedToursOfDuty, {
         ]
       },
       highestRank: {
-        type: 'string'
+        type: 'string',
+        maxLength: 20
       },
       nationalGuardState: {
         type: 'string',
@@ -124,10 +125,14 @@ const emailFormat = {
   format: 'email'
 };
 
-definitions.address.required = ['street'];
+definitions.address.required = ['street', 'city', 'state', 'postalCode'];
 definitions.address.properties.street.maxLength = 20;
 definitions.address.properties.street2.maxLength = 20;
 definitions.address.properties.city.maxLength = 20;
+definitions.address.oneOf.forEach((obj) => {
+  obj.properties.postalCode.maxLength = 5;
+  obj.properties.state.maxLength = 3;
+});
 
 definitions.date = {
   type: 'string',
@@ -137,6 +142,7 @@ definitions.date = {
 definitions.fullName.properties.first.maxLength = 15;
 definitions.fullName.properties.last.maxLength = 25;
 definitions.fullName.properties.middle.maxLength = 15;
+definitions.fullName.properties.suffix.maxLength = 3;
 
 definitions.phone.minLength = 0;
 definitions.phone.maxLength = 20;
@@ -310,6 +316,9 @@ let schema = {
             properties: {
               attachmentId: {
                 type: 'string'
+              },
+              name: {
+                maxLength: 50
               }
             }
           }

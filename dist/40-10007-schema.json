@@ -31,11 +31,12 @@
                 "QC",
                 "SK",
                 "YT"
-              ]
+              ],
+              "maxLength": 3
             },
             "postalCode": {
               "type": "string",
-              "maxLength": 10
+              "maxLength": 5
             }
           }
         },
@@ -82,11 +83,12 @@
                 "veracruz",
                 "yucatan",
                 "zacatecas"
-              ]
+              ],
+              "maxLength": 3
             },
             "postalCode": {
               "type": "string",
-              "maxLength": 10
+              "maxLength": 5
             }
           }
         },
@@ -163,11 +165,12 @@
                 "WV",
                 "WI",
                 "WY"
-              ]
+              ],
+              "maxLength": 3
             },
             "postalCode": {
               "type": "string",
-              "maxLength": 10
+              "maxLength": 5
             }
           }
         },
@@ -185,11 +188,11 @@
             },
             "state": {
               "type": "string",
-              "maxLength": 51
+              "maxLength": 3
             },
             "postalCode": {
               "type": "string",
-              "maxLength": 51
+              "maxLength": 5
             }
           }
         }
@@ -212,7 +215,10 @@
         }
       },
       "required": [
-        "street"
+        "street",
+        "city",
+        "state",
+        "postalCode"
       ]
     },
     "dateRange": {
@@ -268,7 +274,8 @@
             "II",
             "III",
             "IV"
-          ]
+          ],
+          "maxLength": 3
         }
       },
       "required": [
@@ -392,7 +399,8 @@
                     "II",
                     "III",
                     "IV"
-                  ]
+                  ],
+                  "maxLength": 3
                 },
                 "maiden": {
                   "type": "string",
@@ -462,7 +470,8 @@
                     "II",
                     "III",
                     "IV"
-                  ]
+                  ],
+                  "maxLength": 3
                 },
                 "maiden": {
                   "type": "string",
@@ -614,7 +623,8 @@
                     ]
                   },
                   "highestRank": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 20
                   },
                   "nationalGuardState": {
                     "type": "string",
@@ -779,7 +789,8 @@
             "type": "object",
             "properties": {
               "name": {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               "size": {
                 "type": "integer"
