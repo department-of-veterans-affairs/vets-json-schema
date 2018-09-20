@@ -126,6 +126,11 @@ const ssn = {
   pattern: '^[0-9]{9}$'
 };
 
+const ssnLastFour = {
+  type: 'string',
+  pattern: '^[0-9]{4}$'
+};
+
 const school = {
   type: 'object',
   properties: {
@@ -548,6 +553,7 @@ export default {
   address,
   phone,
   ssn,
+  ssnLastFour,
   school,
   centralMailVaFile,
   bankAccount,
