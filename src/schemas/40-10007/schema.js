@@ -311,7 +311,7 @@ let schema = {
         },
         preneedAttachments: _.merge({}, originalDefinitions.files, {
           items: {
-            required: ['attachmentId', 'confirmationCode'],
+            required: ['attachmentId', 'confirmationCode', 'name'],
             properties: {
               attachmentId: {
                 type: 'string'
