@@ -129,7 +129,7 @@ definitions.address.properties.street.maxLength = 20;
 definitions.address.properties.street2.maxLength = 20;
 definitions.address.properties.city.maxLength = 20;
 definitions.address.oneOf.forEach((obj) => {
-  obj.properties.postalCode.maxLength = 5;
+  obj.properties.postalCode.maxLength = 10;
   obj.properties.state.maxLength = 3;
 });
 
