@@ -799,12 +799,27 @@
                 "type": "string"
               },
               "attachmentId": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "5",
+                  "6"
+                ],
+                "enumNames": [
+                  "Discharge",
+                  "Marriage related",
+                  "Dependent related",
+                  "Letter",
+                  "Other"
+                ]
               }
             },
             "required": [
               "attachmentId",
-              "confirmationCode"
+              "confirmationCode",
+              "name"
             ]
           }
         }
