@@ -533,10 +533,18 @@ const form4142 = {
             type: 'string'
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRange'
+            type: 'array',
+            properties: {
+              from: {
+                $ref: '#/definitions/date'
+              },
+              to: {
+                $ref: '#/definitions/date'
+              }
+            }
           },
           providerFacilityAddress: {
-            $ref: '#/definitions/address'
+            $ref: '#/definitions/centralMailAddress'
           }
         }
       }

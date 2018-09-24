@@ -143,7 +143,8 @@ let schema = {
     }),
     fullName: fullNameDef,
     phone: definitions.usaPhone,
-    form4142: definitions.form4142
+    form4142: definitions.form4142,
+    centralMailAddress: definitions.centralMailAddress
   },
   required: [
     'veteran',
@@ -386,7 +387,7 @@ let schema = {
     },
     treatments: {
       type: 'array',
-      minItems: 1,
+      minItems: 0,
       maxItems: 100,
       items: {
         type: 'object',
