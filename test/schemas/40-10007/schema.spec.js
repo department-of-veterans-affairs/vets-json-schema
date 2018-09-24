@@ -55,7 +55,7 @@ describe('preneeds schema', () => {
         {
           street: '123 main',
           city: 'Shelbyville',
-          postalCode: '11111',
+          postalCode: '11111-9876',
           state: 'AK',
           country: 'USA'
         }
@@ -73,7 +73,7 @@ describe('preneeds schema', () => {
           // zip too long
           street: '123 main',
           city: 'Shelbyville',
-          postalCode: '11111-8765',
+          postalCode: '11111-87658989',
           state: 'AK',
           country: 'USA'
         },
