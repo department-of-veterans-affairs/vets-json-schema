@@ -434,9 +434,6 @@ let schema = {
     },
     form4142: {
       $ref: '#/definitions/form4142'
-    },
-    form0781: {
-      $ref: '#/definitions/form0781'
     }
   },
 };
