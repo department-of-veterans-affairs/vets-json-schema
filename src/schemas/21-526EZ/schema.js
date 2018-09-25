@@ -387,7 +387,6 @@ let schema = {
     },
     treatments: {
       type: 'array',
-      minItems: 0,
       maxItems: 100,
       items: {
         type: 'object',
