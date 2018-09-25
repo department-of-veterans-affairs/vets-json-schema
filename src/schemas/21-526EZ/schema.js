@@ -144,6 +144,10 @@ let schema = {
     fullName: fullNameDef,
     phone: definitions.usaPhone,
     form4142: definitions.form4142,
+    // Private Provider Facility Address for forms 4142/4142A 
+    // uses Central Mail Address Schema properties as the
+    // document is submitted to Central Mail (ICMHS)
+    // Refer to definitions.js $ref: '#/definitions/centralMailAddress'
     centralMailAddress: definitions.centralMailAddress
   },
   required: [
