@@ -351,23 +351,17 @@
             "anyOf": [
               {
                 "required": [
-                  "childCountryOfBirthCode",
+                  "childCountryOfBirthDropdown",
                   "childCityOfBirth",
                   "childStateOfBirth"
                 ],
                 "properties": {
-                  "childCountryOfBirthCode": {
+                  "childCountryOfBirthDropdown": {
                     "type": "string",
                     "enum": [
                       "United States"
                     ],
                     "default": "United States"
-                  },
-                  "childCountryOfBirthText": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "minLength": 1,
-                    "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*][\\w ]+$"
                   },
                   "childCityOfBirth": {
                     "type": "string",
@@ -446,11 +440,11 @@
               },
               {
                 "required": [
-                  "childCountryOfBirthCode",
+                  "childCountryOfBirthDropdown",
                   "childCountryOfBirthText"
                 ],
                 "properties": {
-                  "childCountryOfBirthCode": {
+                  "childCountryOfBirthDropdown": {
                     "type": "string",
                     "enum": [
                       "Not in list"
@@ -467,10 +461,10 @@
               },
               {
                 "required": [
-                  "childCountryOfBirthCode"
+                  "childCountryOfBirthDropdown"
                 ],
                 "properties": {
-                  "childCountryOfBirthCode": {
+                  "childCountryOfBirthDropdown": {
                     "type": "string",
                     "enum": [
                       "Afghanistan",

@@ -60,9 +60,9 @@ let schema = {
             type: 'object',
             anyOf: [
               {
-                required: ['childCountryOfBirthCode', 'childCityOfBirth', 'childStateOfBirth'],
+                required: ['childCountryOfBirthDropdown', 'childCityOfBirth', 'childStateOfBirth'],
                 properties: {
-                  childCountryOfBirthCode: {
+                  childCountryOfBirthDropdown: {
                     type: 'string',
                     'enum': [USA.label],
                     default: USA.label
@@ -81,9 +81,9 @@ let schema = {
                 }
               },
               {
-                required: ['childCountryOfBirthCode', 'childCountryOfBirthText'],
+                required: ['childCountryOfBirthDropdown', 'childCountryOfBirthText'],
                 properties: {
-                  childCountryOfBirthCode: {
+                  childCountryOfBirthDropdown: {
                     type: 'string',
                     'enum': ['Not in list'],
                     default: 'Not in list'
@@ -97,9 +97,9 @@ let schema = {
                 }
               },
               {
-                required: ['childCountryOfBirthCode'],
+                required: ['childCountryOfBirthDropdown'],
                 properties: {
-                  childCountryOfBirthCode: {
+                  childCountryOfBirthDropdown: {
                     type: 'string',
                     'enum': nonUSACountries.map(country => country.label)
                   }
