@@ -1,6 +1,24 @@
 import definitions from '../../common/definitions';
+import { countries, states50AndDC } from '../../common/constants';
 import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
+
+const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*][\\w ]+$';
+const USA = countries.find(country => country.value === 'USA');
+const nonUSACountries = countries.filter(country => country.value !== 'USA');
+
+const states = states50AndDC.concat([
+  { label: 'American Samoa', value: 'AS' },
+  { label: 'Federated States Of Micronesia', value: 'FM' },
+  { label: 'Guam', value: 'GU' },
+  { label: 'Marshall Islands', value: 'MH' },
+  { label: 'Northern Mariana Islands', value: 'MP' },
+  { label: 'Palau', value: 'PW' },
+  { label: "Philippines", value: "PI" },
+  { label: 'Puerto Rico', value: 'PR' },
+  { label: "U.S. Minor Outlying Islands", value: "UM" },
+  { label: 'Virgin Islands', value: 'VI' }
+]).sort((stateA, stateB) => (stateA.label.localeCompare(stateB.label)))
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -37,8 +55,61 @@ let schema = {
           },
           childAddress: schemaHelpers.getDefinition('address'),
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
+
           childPlaceOfBirth: {
-            type: 'string'
+            type: 'object',
+            anyOf: [
+              {
+                required: ['childCountryOfBirthCode', 'childCityOfBirth', 'childStateOfBirth'],
+                properties: {
+                  childCountryOfBirthCode: {
+                    type: 'string',
+                    'enum': [USA.label],
+                    default: USA.label
+                  },
+                  childCountryOfBirthText: {
+                    type: 'string',
+                    maxLength: 50,
+                    minLength: 1,
+                    pattern: textRegex
+                  },
+                  childCityOfBirth: {
+                    maxLength: 30,
+                    minLength: 1,
+                    pattern: textRegex
+                  },
+                  childStateOfBirth: {
+                    maxLength: 50,
+                    'enum': states.map(country => country.label)
+                  }
+                }
+              },
+              {
+                required: ['childCountryOfBirthCode', 'childCountryOfBirthText'],
+                properties: {
+                  childCountryOfBirthCode: {
+                    type: 'string',
+                    'enum': ['Not in list'],
+                    default: 'Not in list'
+                  },
+                  childCountryOfBirthText: {
+                    type: 'string',
+                    maxLength: 50,
+                    minLength: 1,
+                    pattern: textRegex
+                  }
+                }
+              },
+              {
+                required: ['childCountryOfBirthCode'],
+                properties: {
+                  childCountryOfBirthCode: {
+                    type: 'string',
+                    'enum': nonUSACountries.map(country => country.label)
+                  }
+                }
+              }
+            ]
           },
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
           childRelationship: {
