@@ -67,12 +67,6 @@ let schema = {
                     'enum': [USA.label],
                     default: USA.label
                   },
-                  childCountryOfBirthText: {
-                    type: 'string',
-                    maxLength: 50,
-                    minLength: 1,
-                    pattern: textRegex
-                  },
                   childCityOfBirth: {
                     type: 'string',
                     maxLength: 30,
