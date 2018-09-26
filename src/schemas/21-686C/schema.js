@@ -74,11 +74,13 @@ let schema = {
                     pattern: textRegex
                   },
                   childCityOfBirth: {
+                    type: 'string',
                     maxLength: 30,
                     minLength: 1,
                     pattern: textRegex
                   },
                   childStateOfBirth: {
+                    type: 'string',
                     maxLength: 50,
                     'enum': states.map(country => country.label)
                   }

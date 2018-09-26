@@ -370,11 +370,13 @@
                     "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*][\\w ]+$"
                   },
                   "childCityOfBirth": {
+                    "type": "string",
                     "maxLength": 30,
                     "minLength": 1,
                     "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*][\\w ]+$"
                   },
                   "childStateOfBirth": {
+                    "type": "string",
                     "maxLength": 50,
                     "enum": [
                       "Alabama",
