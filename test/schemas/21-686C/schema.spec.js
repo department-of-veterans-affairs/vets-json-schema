@@ -31,7 +31,11 @@ describe('21-686C schema', () => {
     valid: [[{
       fullName: fixtures.fullName,
       childDateOfBirth: fixtures.date,
-      childPlaceOfBirth: 'ny, ny',
+      childPlaceOfBirth: {
+        childCountryOfBirthDropdown: 'United States',
+        childCityOfBirth: 'somewhere',
+        childStateOfBirth: 'Virginia'
+      },
       childSocialSecurityNumber: fixtures.ssn,
       childRelationship: 'adopted',
       attendingCollege: true,
