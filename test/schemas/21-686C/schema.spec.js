@@ -32,7 +32,7 @@ describe('21-686C schema', () => {
       fullName: fixtures.fullName,
       childDateOfBirth: fixtures.date,
       childPlaceOfBirth: {
-        childCountryOfBirthDropdown: 'United States',
+        childCountryOfBirthDropdown: 'USA',
         childCityOfBirth: 'somewhere',
         childStateOfBirth: 'Virginia'
       },
