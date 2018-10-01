@@ -135,6 +135,7 @@ let schema = {
     'educationDetails',
     'issue',
     'issueDescription',
+    'privacyAgreementAccepted',
     'issueResolution'
   ],
   properties: {
