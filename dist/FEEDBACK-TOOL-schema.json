@@ -39,6 +39,7 @@
     "educationDetails",
     "issue",
     "issueDescription",
+    "privacyAgreementAccepted",
     "issueResolution"
   ],
   "properties": {
