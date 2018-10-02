@@ -255,6 +255,9 @@ let schema = {
               type: 'object',
               anyOf: schoolAddresses
             },
+            facilityCode: {
+              type: 'string',
+            },
             name: { // Type: text (255)
               type: 'string',
               minLength: 1,

@@ -161,6 +161,7 @@ describe('feedback tool schema', () => {
             city: 'BANGKOK',
             country: 'ANY OLD COUNTRY WILL DO!'
           },
+          facilityCode: '123AB',
           name: 'CHULALONGKORN-ENGINEERING'
         },
         programs: {
