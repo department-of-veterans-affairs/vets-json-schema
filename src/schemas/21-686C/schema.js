@@ -2,12 +2,12 @@ import schemaHelpers from '../../common/schema-helpers';
 import originalDefinitions from '../../common/definitions';
 import _ from 'lodash';
 
-// lists of countries and states from EVSS ReferenceDataService
-const countryUSA = "USA";  // DOMESTIC
-const countryMilitary = "Military Address"; // MILITARY
-const countryNotInList = "Country Not In List"; // INTERNATIONAL (for any other selection)
+const countryUSA = "USA";  // if selected, addressType should be 'DOMESTIC'
+const countryMilitary = "Military Address"; // if selected, addressType should be 'MILITARY'
+const countryNotInList = "Country Not In List"; // if selected, addressType should be 'INTERNATIONAL'
 
-// INTERNATIONAL seelctions
+// lists of countries and states are from EVSS ReferenceDataService
+// if any of these countries are selected, addressType should be 'INTERNATIONAL'
 const countriesForeign = [
   "Afghanistan",
   "Albania",
