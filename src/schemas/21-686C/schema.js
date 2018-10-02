@@ -295,6 +295,9 @@ definitions =  _.pick(definitions, ['fullName']);
 definitions.fullName.properties.first.pattern = textRegex
 definitions.fullName.properties.last.pattern = textRegex
 definitions.fullName.properties.middle.pattern = textRegex
+definitions.fullName.properties.first.maxLength = 30
+definitions.fullName.properties.last.maxLength = 30
+definitions.fullName.properties.middle.maxLength = 20
 
 const commonAddressFields = {
   required: ['addressType', 'street', 'city', 'country'],
