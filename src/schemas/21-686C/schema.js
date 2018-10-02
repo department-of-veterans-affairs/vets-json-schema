@@ -1,9 +1,9 @@
 import schemaHelpers from '../../common/schema-helpers';
 import originalDefinitions from '../../common/definitions';
+import constants from '../../common/constants';
 import _ from 'lodash';
 
 const countryUSA = "USA";  // if selected, addressType should be 'DOMESTIC'
-const countryMilitary = "Military Address"; // if selected, addressType should be 'MILITARY'
 const countryNotInList = "Country Not In List"; // if selected, addressType should be 'INTERNATIONAL'
 
 // lists of countries and states are from EVSS ReferenceDataService
@@ -222,69 +222,10 @@ const countriesForeign = [
   "Zimbabwe"
 ]
 
-const states = [
-  { value: "AK", label: "Alaska"},
-  { value: "AL", label: "Alabama"},
-  { value: "AR", label: "Arkansas"},
-  { value: "AS", label: "American Samoa"},
-  { value: "AZ", label: "Arizona"},
-  { value: "CA", label: "California"},
-  { value: "CO", label: "Colorado"},
-  { value: "CT", label: "Connecticut"},
-  { value: "DC", label: "District of Columbia"},
-  { value: "DE", label: "Delaware"},
-  { value: "FL", label: "Florida"},
-  { value: "FM", label: "Federated Micronesia"},
-  { value: "GA", label: "Georgia"},
-  { value: "GU", label: "Guam"},
-  { value: "HI", label: "Hawaii"},
-  { value: "IA", label: "Iowa"},
-  { value: "ID", label: "Idaho"},
-  { value: "IL", label: "Illinois"},
-  { value: "IN", label: "Indiana"},
-  { value: "KS", label: "Kansas"},
-  { value: "KY", label: "Kentucky"},
-  { value: "LA", label: "Louisiana"},
-  { value: "MA", label: "Massachusetts"},
-  { value: "MD", label: "Maryland"},
-  { value: "ME", label: "Maine"},
-  { value: "MH", label: "Marshall Islands"},
-  { value: "MI", label: "Michigan"},
-  { value: "MN", label: "Minnesota"},
-  { value: "MO", label: "Missouri"},
-  { value: "MP", label: "Northern Mariana Islands"},
-  { value: "MS", label: "Mississippi"},
-  { value: "MT", label: "Montana"},
-  { value: "NC", label: "North Carolina"},
-  { value: "ND", label: "North Dakota"},
-  { value: "NE", label: "Nebraska"},
-  { value: "NH", label: "New Hampshire"},
-  { value: "NJ", label: "New Jersey"},
-  { value: "NM", label: "New Mexico"},
-  { value: "NV", label: "Nevada"},
-  { value: "NY", label: "New York"},
-  { value: "OH", label: "Ohio"},
-  { value: "OK", label: "Oklahoma"},
-  { value: "OR", label: "Oregon"},
-  { value: "PA", label: "Pennsylvania"},
-  { value: "PI", label: "Philippine Islands"},
-  { value: "PR", label: "Puerto Rico"},
-  { value: "PW", label: "Palau"},
-  { value: "RI", label: "Rhode Island"},
-  { value: "SC", label: "South Carolina"},
-  { value: "SD", label: "South Dakota"},
-  { value: "TN", label: "Tennessee"},
-  { value: "TX", label: "Texas"},
-  { value: "UM", label: "United States Minor Outlying Islands"},
-  { value: "UT", label: "Utah"},
-  { value: "VA", label: "Virginia"},
-  { value: "VI", label: "US Virgin Islands"},
-  { value: "VT", label: "Vermont"},
-  { value: "WA", label: "Washington"},
-  { value: "WI", label: "Wisconsin"},
-  { value: "WV", label: "West Virginia"},
-  { value: "WY", label: "Wyoming"}
-]
+const { states: constStates } = constants;
+const states = constStates.USA.concat(
+  [{ value: "UM", label: "United States Minor Outlying Islands"}]
+).sort((stateA, stateB) => (stateA.label.localeCompare(stateB.label)))
 
 const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
@@ -339,7 +280,7 @@ const commonAddressFields = {
     country: {
       type: 'string',
       maxLength: 50,
-      'enum': [countryUSA, countryMilitary, countryNotInList].concat(countriesForeign)
+      'enum': [countryUSA, countryNotInList].concat(countriesForeign)
     }
   }
 }
