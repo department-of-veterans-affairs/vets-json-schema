@@ -1,10 +1,15 @@
 import schemaHelpers from '../../common/schema-helpers';
+import originalDefinitions from '../../common/definitions';
 import _ from 'lodash';
 
-const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*][\\w ]+$';
-
 // lists of countries and states from EVSS ReferenceDataService
-const countries = [
+const countryUSA = "USA";  // DOMESTIC
+const countryMilitary = "Military Address"; // MILITARY
+const countryNotInList = "Country Not In List"; // INTERNATIONAL (for any other selection)
+
+// INTERNATIONAL seelctions
+const countriesForeign = [
+  "Afghanistan",
   "Albania",
   "Algeria",
   "Angola",
@@ -201,7 +206,6 @@ const countries = [
   "Turkey (Adana only)",
   "Turkey (except Adana)",
   "Turkmenistan",
-  "USA",
   "Uganda",
   "Ukraine",
   "United Arab Emirates",
@@ -219,78 +223,259 @@ const countries = [
 ]
 
 const states = [
-  "Alabama",
-  "Alaska",
-  "American Samoa",
-  "Arizona",
-  "Arkansas",
-  "Armed Forces (AE)",
-  "Armed Forces Americas",
-  "Armed Forces Pacific",
-  "California",
-  "Colorado",
-  "Connecticut",
-  "Delaware",
-  "District Of Columbia",
-  "Florida",
-  "Georgia",
-  "Guam",
-  "Hawaii",
-  "Idaho",
-  "Illinois",
-  "Iowa",
-  "Kansas",
-  "Kentucky",
-  "Louisiana",
-  "Maine",
-  "Maryland",
-  "Massachusetts",
-  "Michigan",
-  "Minnesota",
-  "Mississippi",
-  "Missouri",
-  "Montana",
-  "Nebraska",
-  "Nevada",
-  "New Hampshire",
-  "New Jersey",
-  "New Mexico",
-  "New York",
-  "North Carolina",
-  "North Dakota",
-  "Ohio",
-  "Oklahoma",
-  "Oregon",
-  "Pennsylvania",
-  "Puerto Rico",
-  "Rhode Island",
-  "South Carolina",
-  "South Dakota",
-  "Tennessee",
-  "Texas",
-  "Utah",
-  "Vermont",
-  "Virgin Islands",
-  "Virginia",
-  "Washington",
-  "West Virginia",
-  "Wisconsin",
-  "Wyoming"
+  { value: "AK", label: "Alaska"},
+  { value: "AL", label: "Alabama"},
+  { value: "AR", label: "Arkansas"},
+  { value: "AS", label: "American Samoa"},
+  { value: "AZ", label: "Arizona"},
+  { value: "CA", label: "California"},
+  { value: "CO", label: "Colorado"},
+  { value: "CT", label: "Connecticut"},
+  { value: "DC", label: "District of Columbia"},
+  { value: "DE", label: "Delaware"},
+  { value: "FL", label: "Florida"},
+  { value: "FM", label: "Federated Micronesia"},
+  { value: "GA", label: "Georgia"},
+  { value: "GU", label: "Guam"},
+  { value: "HI", label: "Hawaii"},
+  { value: "IA", label: "Iowa"},
+  { value: "ID", label: "Idaho"},
+  { value: "IL", label: "Illinois"},
+  { value: "IN", label: "Indiana"},
+  { value: "KS", label: "Kansas"},
+  { value: "KY", label: "Kentucky"},
+  { value: "LA", label: "Louisiana"},
+  { value: "MA", label: "Massachusetts"},
+  { value: "MD", label: "Maryland"},
+  { value: "ME", label: "Maine"},
+  { value: "MH", label: "Marshall Islands"},
+  { value: "MI", label: "Michigan"},
+  { value: "MN", label: "Minnesota"},
+  { value: "MO", label: "Missouri"},
+  { value: "MP", label: "Northern Mariana Islands"},
+  { value: "MS", label: "Mississippi"},
+  { value: "MT", label: "Montana"},
+  { value: "NC", label: "North Carolina"},
+  { value: "ND", label: "North Dakota"},
+  { value: "NE", label: "Nebraska"},
+  { value: "NH", label: "New Hampshire"},
+  { value: "NJ", label: "New Jersey"},
+  { value: "NM", label: "New Mexico"},
+  { value: "NV", label: "Nevada"},
+  { value: "NY", label: "New York"},
+  { value: "OH", label: "Ohio"},
+  { value: "OK", label: "Oklahoma"},
+  { value: "OR", label: "Oregon"},
+  { value: "PA", label: "Pennsylvania"},
+  { value: "PI", label: "Philippine Islands"},
+  { value: "PR", label: "Puerto Rico"},
+  { value: "PW", label: "Palau"},
+  { value: "RI", label: "Rhode Island"},
+  { value: "SC", label: "South Carolina"},
+  { value: "SD", label: "South Dakota"},
+  { value: "TN", label: "Tennessee"},
+  { value: "TX", label: "Texas"},
+  { value: "UM", label: "United States Minor Outlying Islands"},
+  { value: "UT", label: "Utah"},
+  { value: "VA", label: "Virginia"},
+  { value: "VI", label: "US Virgin Islands"},
+  { value: "VT", label: "Vermont"},
+  { value: "WA", label: "Washington"},
+  { value: "WI", label: "Wisconsin"},
+  { value: "WV", label: "West Virginia"},
+  { value: "WY", label: "Wyoming"}
 ]
 
-const USA = countries.find(country => country === 'USA');
-const nonUSACountries = countries.filter(country => country !== 'USA');
+const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
+const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
+
+let definitions = _.cloneDeep(originalDefinitions);
+definitions =  _.pick(definitions, ['fullName']);
+
+definitions.fullName.properties.first.pattern = textRegex
+definitions.fullName.properties.last.pattern = textRegex
+definitions.fullName.properties.middle.pattern = textRegex
+
+const commonAddressFields = {
+  required: ['addressType', 'street', 'city', 'country'],
+  properties: {
+    addressType: {
+      type: 'string',
+      'enum': [
+        'DOMESTIC',
+        'MILITARY',
+        'INTERNATIONAL'
+      ],
+      enumNames: [
+        'Domestic',
+        'Military',
+        'International'
+      ]
+    },
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 20,
+      pattern: textAndNumbersRegex
+    },
+    street2: {
+      type: 'string',
+      maxLength: 20,
+      pattern: textAndNumbersRegex
+    },
+    street3: {
+      type: 'string',
+      maxLength: 20,
+      pattern: textAndNumbersRegex
+    },
+    city: {
+      type: 'string',
+      maxLength: 30,
+      pattern: textRegex
+    },
+    country: {
+      type: 'string',
+      maxLength: 50,
+      'enum': [countryUSA, countryMilitary, countryNotInList].concat(countriesForeign)
+    }
+  }
+}
+
+const postalCode = {
+  type: 'string',
+  maxLength: 10,
+  pattern: '^[0-9]{5,10}$'
+};
+
+const domesticAddress = {
+  required: [...commonAddressFields.required, 'state', 'postalCode'],
+  properties: {
+    ...commonAddressFields.properties,
+    addressType: {
+      type: 'string',
+      'enum': ['DOMESTIC'],
+      default: 'DOMESTIC'  
+    },
+    state: {
+      type: 'string',
+      maxLength: 50,
+      'enum': states.map(state => state.value),
+      enumNames: states.map(state => state.label)
+    },
+    postalCode,
+    country: {
+      type: 'string',
+      maxLength: 50,
+      default: countryUSA
+    }
+  },
+  additionalProperties: false
+}
+
+const militaryAddress = {
+  required: [...commonAddressFields.required, 'postOffice', 'postalType', 'postalCode'],
+  properties: {
+    ...commonAddressFields.properties, 
+    addressType: {
+      type: 'string',
+      enum: ['MILITARY'],
+      default: 'MILITARY'  
+    },
+    postOffice: {
+      type: 'string',
+      'enum': [
+        'APO',
+        'DPO',
+        'FPO'
+      ],
+      enumNames: [
+        'Ashore Post Office',
+        'Diplomatic Post Office',
+        'Fleet Post Office'
+      ]
+      
+    },
+    postalType: {
+      type: 'string',
+      'enum': [
+        'AA',
+        'AE',
+        'AP'
+      ],
+      enumNames: [
+        'Armed Forces Americas (except Canada)',
+        'Armed Forces Europe, Middle East, Canada & Africa',
+        'Armed Forces Pacific'
+      ]
+    },
+    postalCode
+  },
+  additionalProperties: false
+}
+
+
+const internationalAddressDropDown = {
+  required: [...commonAddressFields.required],
+  properties: {
+    ...commonAddressFields.properties,
+    addressType: {
+      type: 'string',
+      enum: ['INTERNATIONAL'],
+      default: 'INTERNATIONAL'
+    },
+    country: {
+      type: 'string',
+      'enum': countriesForeign
+    }
+  },
+  additionalProperties: false
+}
+
+const internationalAddressText = {
+  required: [...commonAddressFields.required, 'countryText'],
+  properties: {
+    ...commonAddressFields.properties,
+    addressType: {
+      type: 'string',
+      enum: ['INTERNATIONAL'],
+      default: 'INTERNATIONAL'
+    },
+    country: {
+      type: 'string',
+      'enum': [countryNotInList],
+      default: countryNotInList
+    },
+    countryText: {
+      type: 'string',
+      maxLength: 50,
+      minLength: 1,
+      pattern: textRegex
+    }
+  },
+  additionalProperties: false
+}
+
+
+
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DECLARATION OF STATUS OF DEPENDENTS',
   type: 'object',
   additionalProperties: false,
-  definitions: {},
+  definitions,
   properties: {
+    claimantAddress: {
+      type: 'object',
+      oneOf: [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText]
+    },
     claimantEmail: {
       type: 'string',
       format: 'email'
+    },
+    spouseAddress: {
+      type: 'object',
+      oneOf: [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText]
     },
     spouseIsVeteran: {
       type: 'boolean'
@@ -308,66 +493,18 @@ let schema = {
       type: 'array',
       items: {
         type: 'object',
+        additionalProperties: false,
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childInHousehold: {
             type: 'boolean'
           },
-          childAddress: schemaHelpers.getDefinition('address'),
-          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
-
-          childPlaceOfBirth: {
+          childAddress: {
             type: 'object',
-            anyOf: [
-              {
-                required: ['childCountryOfBirthDropdown', 'childCityOfBirth', 'childStateOfBirth'],
-                properties: {
-                  childCountryOfBirthDropdown: {
-                    type: 'string',
-                    'enum': [USA],
-                    default: USA
-                  },
-                  childCityOfBirth: {
-                    type: 'string',
-                    maxLength: 30,
-                    minLength: 1,
-                    pattern: textRegex
-                  },
-                  childStateOfBirth: {
-                    type: 'string',
-                    maxLength: 50,
-                    'enum': states
-                  }
-                }
-              },
-              {
-                required: ['childCountryOfBirthDropdown', 'childCountryOfBirthText'],
-                properties: {
-                  childCountryOfBirthDropdown: {
-                    type: 'string',
-                    'enum': ['Not in list'],
-                    default: 'Not in list'
-                  },
-                  childCountryOfBirthText: {
-                    type: 'string',
-                    maxLength: 50,
-                    minLength: 1,
-                    pattern: textRegex
-                  }
-                }
-              },
-              {
-                required: ['childCountryOfBirthDropdown'],
-                properties: {
-                  childCountryOfBirthDropdown: {
-                    type: 'string',
-                    'enum': nonUSACountries
-                  }
-                }
-              }
-            ]
+            oneOf: [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText]
           },
+          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
           childRelationship: {
             type: 'string',
@@ -388,6 +525,61 @@ let schema = {
           },
           previouslyMarried: {
             type: 'boolean'
+          },
+          childPlaceOfBirth: {
+            type: 'object',
+            oneOf: [
+              {
+                required: ['childCountryOfBirthDropdown', 'childCityOfBirth', 'childStateOfBirth'],
+                properties: {
+                  childCountryOfBirthDropdown: {
+                    type: 'string',
+                    'enum': [countryUSA],
+                    default: countryUSA
+                  },
+                  childCityOfBirth: {
+                    type: 'string',
+                    maxLength: 30,
+                    minLength: 1,
+                    pattern: textRegex
+                  },
+                  childStateOfBirth: {
+                    type: 'string',
+                    maxLength: 50,
+                    'enum': states.map(state => state.value),
+                    enumNames: states.map(state => state.label)
+                  }
+                },
+                additionalProperties: false
+              },
+              {
+                required: ['childCountryOfBirthDropdown', 'childCountryOfBirthText'],
+                properties: {
+                  childCountryOfBirthDropdown: {
+                    type: 'string',
+                    'enum': [countryNotInList],
+                    default: countryNotInList
+                  },
+                  childCountryOfBirthText: {
+                    type: 'string',
+                    maxLength: 50,
+                    minLength: 1,
+                    pattern: textRegex
+                  }
+                },
+                additionalProperties: false
+              },
+              {
+                required: ['childCountryOfBirthDropdown'],
+                properties: {
+                  childCountryOfBirthDropdown: {
+                    type: 'string',
+                    'enum': countriesForeign
+                  }
+                },
+                additionalProperties: false
+              }
+            ]
           }
         }
       }
@@ -407,8 +599,6 @@ let schema = {
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],
-  ['address', 'claimantAddress'],
-  ['address', 'spouseAddress'],
   ['maritalStatus'],
   ['date', 'spouseDateOfBirth'],
   ['marriages'],
