@@ -779,6 +779,9 @@
                 }
               ]
             },
+            "facilityCode": {
+              "type": "string"
+            },
             "name": {
               "type": "string",
               "minLength": 1,
