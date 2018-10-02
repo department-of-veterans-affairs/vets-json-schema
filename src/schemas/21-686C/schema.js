@@ -288,7 +288,7 @@ const commonAddressFields = {
 const postalCode = {
   type: 'string',
   maxLength: 10,
-  pattern: '^[0-9]{5,10}$'
+  pattern: '(^\\d{5}(?:[-]\\d{4})?$)?'
 };
 
 const domesticAddress = {
