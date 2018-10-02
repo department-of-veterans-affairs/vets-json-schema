@@ -459,7 +459,7 @@ const internationalAddressText = {
 }
 
 
-
+const addressDefs = [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText];
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -470,7 +470,7 @@ let schema = {
   properties: {
     claimantAddress: {
       type: 'object',
-      oneOf: [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText]
+      oneOf: addressDefs
     },
     claimantEmail: {
       type: 'string',
@@ -478,7 +478,7 @@ let schema = {
     },
     spouseAddress: {
       type: 'object',
-      oneOf: [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText]
+      oneOf: addressDefs
     },
     spouseIsVeteran: {
       type: 'boolean'
@@ -505,7 +505,7 @@ let schema = {
           },
           childAddress: {
             type: 'object',
-            oneOf: [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText]
+            oneOf: addressDefs
           },
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
