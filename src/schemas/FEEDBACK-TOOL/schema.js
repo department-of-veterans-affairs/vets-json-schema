@@ -135,6 +135,7 @@ let schema = {
     'educationDetails',
     'issue',
     'issueDescription',
+    'privacyAgreementAccepted',
     'issueResolution'
   ],
   properties: {
@@ -253,6 +254,9 @@ let schema = {
             address: {
               type: 'object',
               anyOf: schoolAddresses
+            },
+            facilityCode: {
+              type: 'string',
             },
             name: { // Type: text (255)
               type: 'string',

@@ -39,6 +39,7 @@
     "educationDetails",
     "issue",
     "issueDescription",
+    "privacyAgreementAccepted",
     "issueResolution"
   ],
   "properties": {
@@ -777,6 +778,9 @@
                   }
                 }
               ]
+            },
+            "facilityCode": {
+              "type": "string"
             },
             "name": {
               "type": "string",
