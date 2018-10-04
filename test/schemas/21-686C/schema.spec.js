@@ -17,10 +17,10 @@ describe('21-686C schema', () => {
     expect(schema.required).to.deep.equal(['privacyAgreementAccepted']);
   });
 
-  sharedTests.runTest('fullName', ['veteranFullName', 'claimantFullName']);
-  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'claimantSocialSecurityNumber', 'spouseSocialSecurityNumber']);
+  sharedTests.runTest('fullName', ['veteranFullName']);
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
-  sharedTests.runTest('email', ['claimantEmail']);
+  sharedTests.runTest('email', ['veteranEmail']);
   sharedTests.runTest('maritalStatus');
   sharedTests.runTest('date', ['spouseDateOfBirth']);
   sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
@@ -85,7 +85,7 @@ describe('21-686C schema', () => {
     ]
   });
 
-  schemaTestHelper.testValidAndInvalid('claimantAddress', {
+  schemaTestHelper.testValidAndInvalid('veteranAddress', {
     valid: [
       {
         addressType: 'DOMESTIC',
