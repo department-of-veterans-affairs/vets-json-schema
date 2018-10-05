@@ -285,220 +285,228 @@ const commonAddressFields = {
   }
 }
 
-const postalCode = {
-  type: 'string',
-  maxLength: 10,
-  pattern: '(^\\d{5}(?:[-]\\d{4})?$)?'
-};
-
-const domesticAddress = {
-  required: [...commonAddressFields.required, 'state', 'postalCode'],
-  properties: {
-    ...commonAddressFields.properties,
-    addressType: {
-      type: 'string',
-      'enum': ['DOMESTIC'],
-      default: 'DOMESTIC'  
-    },
-    state: {
-      type: 'string',
-      maxLength: 50,
-      'enum': states.map(state => state.value),
-      enumNames: states.map(state => state.label)
-    },
-    postalCode,
-    country: {
-      type: 'string',
-      maxLength: 50,
-      default: countryUSA
-    }
-  },
-  additionalProperties: false
-}
-
-const militaryAddress = {
-  required: [...commonAddressFields.required, 'postOffice', 'postalType', 'postalCode'],
-  properties: {
-    ...commonAddressFields.properties, 
-    addressType: {
-      type: 'string',
-      enum: ['MILITARY'],
-      default: 'MILITARY'  
-    },
-    postOffice: {
-      type: 'string',
-      'enum': [
-        'APO',
-        'DPO',
-        'FPO'
-      ],
-      enumNames: [
-        'Ashore Post Office',
-        'Diplomatic Post Office',
-        'Fleet Post Office'
-      ]
-      
-    },
-    postalType: {
-      type: 'string',
-      'enum': [
-        'AA',
-        'AE',
-        'AP'
-      ],
-      enumNames: [
-        'Armed Forces Americas (except Canada)',
-        'Armed Forces Europe, Middle East, Canada & Africa',
-        'Armed Forces Pacific'
-      ]
-    },
-    postalCode
-  },
-  additionalProperties: false
-}
-
-
-const internationalAddressDropDown = {
-  required: [...commonAddressFields.required],
-  properties: {
-    ...commonAddressFields.properties,
-    addressType: {
-      type: 'string',
-      enum: ['INTERNATIONAL'],
-      default: 'INTERNATIONAL'
-    },
-    country: {
-      type: 'string',
-      'enum': countriesForeign
-    }
-  },
-  additionalProperties: false
-}
-
-const internationalAddressText = {
-  required: [...commonAddressFields.required, 'countryText'],
-  properties: {
-    ...commonAddressFields.properties,
-    addressType: {
-      type: 'string',
-      enum: ['INTERNATIONAL'],
-      default: 'INTERNATIONAL'
-    },
-    country: {
-      type: 'string',
-      'enum': [countryNotInList],
-      default: countryNotInList
-    },
-    countryText: {
-      type: 'string',
-      maxLength: 50,
-      minLength: 1,
-      pattern: textRegex
-    }
-  },
-  additionalProperties: false
-}
-
-
-
-
-const location = {
-  type: 'object',
-  oneOf: [
-    {
-      required: ['countryDropdown', 'city', 'state'],
-      properties: {
-        countryDropdown: {
-          type: 'string',
-          'enum': [countryUSA],
-          default: countryUSA
-        },
-        city: {
-          type: 'string',
-          maxLength: 30,
-          minLength: 1,
-          pattern: textRegex
-        },
-        state: {
-          type: 'string',
-          maxLength: 50,
-          'enum': states50AndDC.map(state => state.value),
-          enumNames: states50AndDC.map(state => state.label)
-        }
-      },
-      additionalProperties: false
-    },
-    {
-      required: ['countryDropdown', 'countryText'],
-      properties: {
-        countryDropdown: {
-          type: 'string',
-          'enum': [countryNotInList],
-          default: countryNotInList
-        },
-        countryText: {
-          type: 'string',
-          maxLength: 50,
-          minLength: 1,
-          pattern: textRegex
-        }
-      },
-      additionalProperties: false
-    },
-    {
-      required: ['countryDropdown'],
-      properties: {
-        countryDropdown: {
-          type: 'string',
-          'enum': countriesForeign
-        }
-      },
-      additionalProperties: false
-    }
-  ]
-}
-
-
-
 const commonMarriageDef = {
   required: ['dateOfMarriage', 'locationOfMarriage', 'spouseFullName'],
   properties: {
     dateOfMarriage: schemaHelpers.getDefinition('date'),
-    locationOfMarriage: location,
+    locationOfMarriage: {
+      $ref: '#/definitions/location'
+    },
     spouseFullName: schemaHelpers.getDefinition('fullName')
   }
 }
 
-const previousMarriages = {
-  type: 'array',
-  items: {
-    type: 'object',
-    required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
-    required: ['reasonForSeparation'],
-    properties: {
-      ...commonMarriageDef.properties,
-      reasonForSeparation: {
-        type: 'string',
-        'enum': [
-          'Death',
-          'Divorce',
-          'Other'
-        ]
-      },
-      dateOfSeparation: schemaHelpers.getDefinition('date'),
-      locationOfSeparation: location
-    }
-  }
-};
-
-const addressDefs = [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText];
+// const addressDefs = [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText];
+const addressDefs = [
+  { $ref: '#/definitions/domesticAddress' },
+  { $ref: '#/definitions/militaryAddress' },
+  { $ref: '#/definitions/internationalAddressDropDown' },
+  { $ref: '#/definitions/internationalAddressText' }
+]
 
 let schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DECLARATION OF STATUS OF DEPENDENTS',
   type: 'object',
   additionalProperties: false,
-  definitions,
+  definitions: _.merge(_.pick(definitions, 'fullName'),
+    {
+      domesticAddress: {
+        type: 'object',
+        required: [...commonAddressFields.required, 'state', 'postalCode'],
+        properties: {
+          ...commonAddressFields.properties,
+          addressType: {
+            type: 'string',
+            'enum': ['DOMESTIC'],
+            default: 'DOMESTIC'  
+          },
+          state: {
+            type: 'string',
+            maxLength: 50,
+            'enum': states.map(state => state.value),
+            enumNames: states.map(state => state.label)
+          },
+          postalCode: {
+            $ref: '#/definitions/postalCode'
+          },
+          country: {
+            type: 'string',
+            maxLength: 50,
+            default: countryUSA
+          }
+        },
+        additionalProperties: false
+      },
+      militaryAddress: {
+        type: 'object',
+        required: [...commonAddressFields.required, 'postOffice', 'postalType', 'postalCode'],
+        properties: {
+          ...commonAddressFields.properties, 
+          addressType: {
+            type: 'string',
+            enum: ['MILITARY'],
+            default: 'MILITARY'  
+          },
+          postOffice: {
+            type: 'string',
+            'enum': [
+              'APO',
+              'DPO',
+              'FPO'
+            ],
+            enumNames: [
+              'Ashore Post Office',
+              'Diplomatic Post Office',
+              'Fleet Post Office'
+            ]
+            
+          },
+          postalType: {
+            type: 'string',
+            'enum': [
+              'AA',
+              'AE',
+              'AP'
+            ],
+            enumNames: [
+              'Armed Forces Americas (except Canada)',
+              'Armed Forces Europe, Middle East, Canada & Africa',
+              'Armed Forces Pacific'
+            ]
+          },
+          postalCode: {
+            $ref: '#/definitions/postalCode'
+          },
+        },
+        additionalProperties: false
+      },
+      internationalAddressDropDown: {
+        type: 'object',
+        required: [...commonAddressFields.required],
+        properties: {
+          ...commonAddressFields.properties,
+          addressType: {
+            type: 'string',
+            enum: ['INTERNATIONAL'],
+            default: 'INTERNATIONAL'
+          },
+          country: {
+            type: 'string',
+            'enum': countriesForeign
+          }
+        },
+        additionalProperties: false
+      },
+      internationalAddressText: {
+        type: 'object',
+        required: [...commonAddressFields.required, 'countryText'],
+        properties: {
+          ...commonAddressFields.properties,
+          addressType: {
+            type: 'string',
+            enum: ['INTERNATIONAL'],
+            default: 'INTERNATIONAL'
+          },
+          country: {
+            type: 'string',
+            'enum': [countryNotInList],
+            default: countryNotInList
+          },
+          countryText: {
+            type: 'string',
+            maxLength: 50,
+            minLength: 1,
+            pattern: textRegex
+          }
+        },
+        additionalProperties: false
+      },
+      postalCode: {
+        type: 'string',
+        maxLength: 10,
+        pattern: '(^\\d{5}(?:[-]\\d{4})?$)?'
+      },
+      location: {
+        type: 'object',
+        oneOf: [
+          {
+            required: ['countryDropdown', 'city', 'state'],
+            properties: {
+              countryDropdown: {
+                type: 'string',
+                'enum': [countryUSA],
+                default: countryUSA
+              },
+              city: {
+                type: 'string',
+                maxLength: 30,
+                minLength: 1,
+                pattern: textRegex
+              },
+              state: {
+                type: 'string',
+                maxLength: 50,
+                'enum': states50AndDC.map(state => state.value),
+                enumNames: states50AndDC.map(state => state.label)
+              }
+            },
+            additionalProperties: false
+          },
+          {
+            required: ['countryDropdown', 'countryText'],
+            properties: {
+              countryDropdown: {
+                type: 'string',
+                'enum': [countryNotInList],
+                default: countryNotInList
+              },
+              countryText: {
+                type: 'string',
+                maxLength: 50,
+                minLength: 1,
+                pattern: textRegex
+              }
+            },
+            additionalProperties: false
+          },
+          {
+            required: ['countryDropdown'],
+            properties: {
+              countryDropdown: {
+                type: 'string',
+                'enum': countriesForeign
+              }
+            },
+            additionalProperties: false
+          }
+        ]
+      },
+      previousMarriages: {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
+          required: ['reasonForSeparation'],
+          properties: {
+            ...commonMarriageDef.properties,
+            reasonForSeparation: {
+              type: 'string',
+              'enum': [
+                'Death',
+                'Divorce',
+                'Other'
+              ]
+            },
+            dateOfSeparation: schemaHelpers.getDefinition('date'),
+            locationOfSeparation: {
+              $ref: '#/definitions/location'
+            }
+          }
+        }
+      }
+    }
+  ),
   properties: {
     veteranAddress: {
       type: 'object',
@@ -516,8 +524,12 @@ let schema = {
         spouseSocialSecurityNumber: schemaHelpers.getDefinition('ssn')
       }
     },
-    previousMarriages,
-    spouseMarriages: previousMarriages,
+    previousMarriages: {
+      $ref: '#/definitions/previousMarriages'
+    },
+    spouseMarriages: {
+      $ref: '#/definitions/previousMarriages'
+    },
     spouseAddress: {
       type: 'object',
       oneOf: addressDefs
@@ -542,7 +554,9 @@ let schema = {
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
-          childPlaceOfBirth: location,
+          childPlaceOfBirth: {
+            $ref: '#/definitions/location'
+          },
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
           childRelationship: {
             type: 'string',
