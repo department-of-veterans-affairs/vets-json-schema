@@ -23,7 +23,7 @@ describe('21-686C schema', () => {
   });
 
   sharedTests.runTest('fullName', ['veteranFullName']);
-  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
   sharedTests.runTest('email', ['veteranEmail']);
   sharedTests.runTest('maritalStatus');

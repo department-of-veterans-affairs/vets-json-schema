@@ -601,7 +601,6 @@ let schema = {
   ['usaPhone', 'dayPhone'],
   ['usaPhone', 'nightPhone'],
   ['ssn', 'veteranSocialSecurityNumber'],
-  ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],
   ['maritalStatus'],
