@@ -409,11 +409,11 @@ let schema = {
   additionalProperties: false,
   definitions,
   properties: {
-    claimantAddress: {
+    veteranAddress: {
       type: 'object',
       oneOf: addressDefs
     },
-    claimantEmail: {
+    veteranEmail: {
       type: 'string',
       format: 'email'
     },
@@ -554,12 +554,10 @@ let schema = {
 
 [
   ['privacyAgreementAccepted'],
-  ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['usaPhone', 'dayPhone'],
   ['usaPhone', 'nightPhone'],
   ['ssn', 'veteranSocialSecurityNumber'],
-  ['ssn', 'claimantSocialSecurityNumber'],
   ['ssn', 'spouseSocialSecurityNumber'],
   ['vaFileNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],
