@@ -106,7 +106,7 @@
     }
   },
   "properties": {
-    "claimantAddress": {
+    "veteranAddress": {
       "type": "object",
       "oneOf": [
         {
@@ -896,7 +896,7 @@
         }
       ]
     },
-    "claimantEmail": {
+    "veteranEmail": {
       "type": "string",
       "format": "email"
     },
@@ -2947,9 +2947,6 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
-    "claimantFullName": {
-      "$ref": "#/definitions/fullName"
-    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
@@ -2960,9 +2957,6 @@
       "$ref": "#/definitions/usaPhone"
     },
     "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
-    "claimantSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
     "spouseSocialSecurityNumber": {
