@@ -2530,6 +2530,9 @@
           "married": {
             "type": "boolean"
           },
+          "marriedDate": {
+            "$ref": "#/definitions/date"
+          },
           "previouslyMarried": {
             "type": "boolean"
           },

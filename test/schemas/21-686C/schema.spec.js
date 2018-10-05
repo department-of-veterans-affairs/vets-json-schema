@@ -34,6 +34,7 @@ describe('21-686C schema', () => {
     attendingCollege: true,
     disabled: true,
     married: true,
+    marriedDate: fixtures.date,
     previouslyMarried: true,
     childInHousehold: true,
     childAddress: Object.assign(fixtures.address, {addressType: 'DOMESTIC', state: 'TX', postalCode: '344546767'}),

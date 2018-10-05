@@ -467,6 +467,7 @@ let schema = {
           married: {
             type: 'boolean'
           },
+          marriedDate: schemaHelpers.getDefinition('date'),
           previouslyMarried: {
             type: 'boolean'
           },
