@@ -222,7 +222,7 @@ const countriesForeign = [
   "Zimbabwe"
 ]
 
-const { states: constStates } = constants;
+const { states: constStates, states50AndDC } = constants;
 const states = constStates.USA.concat(
   [{ value: "UM", label: "United States Minor Outlying Islands"}]
 ).sort((stateA, stateB) => (stateA.label.localeCompare(stateB.label)))
@@ -400,6 +400,97 @@ const internationalAddressText = {
 }
 
 
+
+
+const location = {
+  type: 'object',
+  oneOf: [
+    {
+      required: ['countryDropdown', 'city', 'state'],
+      properties: {
+        countryDropdown: {
+          type: 'string',
+          'enum': [countryUSA],
+          default: countryUSA
+        },
+        city: {
+          type: 'string',
+          maxLength: 30,
+          minLength: 1,
+          pattern: textRegex
+        },
+        state: {
+          type: 'string',
+          maxLength: 50,
+          'enum': states50AndDC.map(state => state.value),
+          enumNames: states50AndDC.map(state => state.label)
+        }
+      },
+      additionalProperties: false
+    },
+    {
+      required: ['countryDropdown', 'countryText'],
+      properties: {
+        countryDropdown: {
+          type: 'string',
+          'enum': [countryNotInList],
+          default: countryNotInList
+        },
+        countryText: {
+          type: 'string',
+          maxLength: 50,
+          minLength: 1,
+          pattern: textRegex
+        }
+      },
+      additionalProperties: false
+    },
+    {
+      required: ['countryDropdown'],
+      properties: {
+        countryDropdown: {
+          type: 'string',
+          'enum': countriesForeign
+        }
+      },
+      additionalProperties: false
+    }
+  ]
+}
+
+
+
+const commonMarriageDef = {
+  required: ['dateOfMarriage', 'locationOfMarriage', 'spouseFullName'],
+  properties: {
+    dateOfMarriage: schemaHelpers.getDefinition('date'),
+    locationOfMarriage: location,
+    spouseFullName: schemaHelpers.getDefinition('fullName')
+  }
+}
+
+const previousMarriages = {
+  type: 'array',
+  items: {
+    type: 'object',
+    required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
+    required: ['reasonForSeparation'],
+    properties: {
+      ...commonMarriageDef.properties,
+      reasonForSeparation: {
+        type: 'string',
+        'enum': [
+          'Death',
+          'Divorce',
+          'Other'
+        ]
+      },
+      dateOfSeparation: schemaHelpers.getDefinition('date'),
+      locationOfSeparation: location
+    }
+  }
+};
+
 const addressDefs = [domesticAddress, militaryAddress, internationalAddressDropDown, internationalAddressText];
 
 let schema = {
@@ -417,6 +508,16 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    currentMarriage: {
+      type: 'object',
+      required: [...commonMarriageDef.required, 'spouseSocialSecurityNumber'],
+      properties: {
+        ...commonMarriageDef.properties,
+        spouseSocialSecurityNumber: schemaHelpers.getDefinition('ssn')
+      }
+    },
+    previousMarriages,
+    spouseMarriages: previousMarriages,
     spouseAddress: {
       type: 'object',
       oneOf: addressDefs
@@ -441,14 +542,7 @@ let schema = {
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
-          childInHousehold: {
-            type: 'boolean'
-          },
-          childAddress: {
-            type: 'object',
-            oneOf: addressDefs
-          },
-          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
+          childPlaceOfBirth: location,
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
           childRelationship: {
             type: 'string',
@@ -464,72 +558,25 @@ let schema = {
           disabled: {
             type: 'boolean'
           },
-          married: {
-            type: 'boolean'
-          },
           previouslyMarried: {
             type: 'boolean'
           },
-          childPlaceOfBirth: {
+          childInHousehold: {
+            type: 'boolean'
+          },
+          childAddress: {
             type: 'object',
-            oneOf: [
-              {
-                required: ['childCountryOfBirthDropdown', 'childCityOfBirth', 'childStateOfBirth'],
-                properties: {
-                  childCountryOfBirthDropdown: {
-                    type: 'string',
-                    'enum': [countryUSA],
-                    default: countryUSA
-                  },
-                  childCityOfBirth: {
-                    type: 'string',
-                    maxLength: 30,
-                    minLength: 1,
-                    pattern: textRegex
-                  },
-                  childStateOfBirth: {
-                    type: 'string',
-                    maxLength: 50,
-                    'enum': states.map(state => state.value),
-                    enumNames: states.map(state => state.label)
-                  }
-                },
-                additionalProperties: false
-              },
-              {
-                required: ['childCountryOfBirthDropdown', 'childCountryOfBirthText'],
-                properties: {
-                  childCountryOfBirthDropdown: {
-                    type: 'string',
-                    'enum': [countryNotInList],
-                    default: countryNotInList
-                  },
-                  childCountryOfBirthText: {
-                    type: 'string',
-                    maxLength: 50,
-                    minLength: 1,
-                    pattern: textRegex
-                  }
-                },
-                additionalProperties: false
-              },
-              {
-                required: ['childCountryOfBirthDropdown'],
-                properties: {
-                  childCountryOfBirthDropdown: {
-                    type: 'string',
-                    'enum': countriesForeign
-                  }
-                },
-                additionalProperties: false
-              }
-            ]
-          }
+            oneOf: addressDefs
+          },
+          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName')
         }
       }
     }
   },
-  required: ['privacyAgreementAccepted']
+  required: [
+    'privacyAgreementAccepted',
+
+  ]
 };
 
 [
@@ -542,9 +589,7 @@ let schema = {
   ['vaFileNumber'],
   ['vaFileNumber', 'spouseVaFileNumber'],
   ['maritalStatus'],
-  ['date', 'spouseDateOfBirth'],
-  ['marriages'],
-  ['marriages', 'spouseMarriages']
+  ['date', 'spouseDateOfBirth']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
