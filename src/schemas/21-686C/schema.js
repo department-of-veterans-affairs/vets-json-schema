@@ -309,7 +309,7 @@ let schema = {
   title: 'DECLARATION OF STATUS OF DEPENDENTS',
   type: 'object',
   additionalProperties: false,
-  definitions: _.merge(_.pick(definitions, 'fullName'),
+  definitions: _.merge(definitions,
     {
       domesticAddress: {
         type: 'object',
