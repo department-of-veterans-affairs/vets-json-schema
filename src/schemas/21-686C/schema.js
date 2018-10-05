@@ -592,6 +592,14 @@ let schema = {
     'veteranFullName',
     'veteranAddress',
     'maritalStatus'
+  ],
+  anyOf: [
+    {
+      "required" : ["vaFileNumber"]
+    },
+    {
+      "required" : ["veteranSocialSecurityNumber"]
+    }
   ]
 };
 
