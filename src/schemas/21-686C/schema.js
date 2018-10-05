@@ -589,7 +589,9 @@ let schema = {
   },
   required: [
     'privacyAgreementAccepted',
-
+    'veteranFullName',
+    'veteranAddress',
+    'maritalStatus'
   ]
 };
 

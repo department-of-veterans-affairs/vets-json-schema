@@ -14,7 +14,12 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-686C schema', () => {
   it('should have the right required fields', () => {
-    expect(schema.required).to.deep.equal(['privacyAgreementAccepted']);
+    expect(schema.required).to.deep.equal([
+      'privacyAgreementAccepted',
+      'veteranFullName',
+      'veteranAddress',
+      'maritalStatus'
+    ])
   });
 
   sharedTests.runTest('fullName', ['veteranFullName']);

@@ -1454,6 +1454,9 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "veteranFullName",
+    "veteranAddress",
+    "maritalStatus"
   ]
 }
