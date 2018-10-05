@@ -443,6 +443,7 @@ let schema = {
             required: ['marriedDate'],
             properties: {
               married: {
+                type: 'boolean',
                 enum: [true]
               }
             }
@@ -450,6 +451,7 @@ let schema = {
           {
             properties: {
               married: {
+                type: 'boolean',
                 enum: [false]
               }
             }
