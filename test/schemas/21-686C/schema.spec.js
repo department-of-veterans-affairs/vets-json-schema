@@ -70,6 +70,7 @@ describe('21-686C schema', () => {
     ],
     invalid: [
       [{ fullName: 1 }],
+      [_.omit(validDependent, 'marriedDate')],
       [Object.assign({}, validDependent, {
         childPlaceOfBirth: {
           childCountryOfBirthDropdown: 'Canada',

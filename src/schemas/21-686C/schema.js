@@ -438,6 +438,23 @@ let schema = {
       items: {
         type: 'object',
         additionalProperties: false,
+        oneOf: [
+          {
+            required: ['marriedDate'],
+            properties: {
+              married: {
+                enum: [true]
+              }
+            }
+          },
+          {
+            properties: {
+              married: {
+                enum: [false]
+              }
+            }
+          }
+        ],
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
