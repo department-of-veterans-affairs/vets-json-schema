@@ -495,6 +495,7 @@ let schema = {
               'enum': [
                 'Death',
                 'Divorce',
+                'None',
                 'Other'
               ]
             },
