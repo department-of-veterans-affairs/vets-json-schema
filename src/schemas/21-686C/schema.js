@@ -282,7 +282,6 @@ let schema = {
               'enum': [
                 'Death',
                 'Divorce',
-                'None',
                 'Other'
               ]
             },
@@ -332,7 +331,8 @@ let schema = {
       type: 'number'
     },
     remarks: {
-      type: 'string'
+      type: 'string',
+      maxLength: 500
     },
     dependents: {
       type: 'array',

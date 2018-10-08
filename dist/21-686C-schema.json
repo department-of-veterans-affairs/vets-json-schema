@@ -1236,7 +1236,6 @@
             "enum": [
               "Death",
               "Divorce",
-              "None",
               "Other"
             ]
           },
@@ -1360,7 +1359,8 @@
       "type": "number"
     },
     "remarks": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 500
     },
     "dependents": {
       "type": "array",
