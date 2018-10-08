@@ -106,7 +106,7 @@ let schema = {
           addressType: {
             type: 'string',
             'enum': ['DOMESTIC'],
-            default: 'DOMESTIC'  
+            default: 'DOMESTIC'
           },
           state: {
             type: 'string',
@@ -129,11 +129,11 @@ let schema = {
         type: 'object',
         required: [...commonAddressFields.required, 'postOffice', 'postalType', 'postalCode'],
         properties: {
-          ...commonAddressFields.properties, 
+          ...commonAddressFields.properties,
           addressType: {
             type: 'string',
             enum: ['MILITARY'],
-            default: 'MILITARY'  
+            default: 'MILITARY'
           },
           postOffice: {
             type: 'string',
@@ -147,7 +147,6 @@ let schema = {
               'Diplomatic Post Office',
               'Fleet Post Office'
             ]
-            
           },
           postalType: {
             type: 'string',
@@ -212,7 +211,7 @@ let schema = {
       postalCode: {
         type: 'string',
         maxLength: 10,
-        pattern: '(^\\d{5}(?:[-]\\d{4})?$)?'
+        pattern: '^\\d{5}(?:[- ]?\\d{4})?$'
       },
       location: {
         type: 'object',
