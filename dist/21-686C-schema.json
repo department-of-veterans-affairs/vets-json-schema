@@ -1219,7 +1219,12 @@
       "items": {
         "type": "object",
         "required": [
-          "reasonForSeparation"
+          "dateOfMarriage",
+          "locationOfMarriage",
+          "spouseFullName",
+          "reasonForSeparation",
+          "dateOfSeparation",
+          "locationOfSeparation"
         ],
         "properties": {
           "dateOfMarriage": {
