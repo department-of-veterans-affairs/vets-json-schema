@@ -1372,6 +1372,31 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "marriedDate"
+            ],
+            "properties": {
+              "previouslyMarried": {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "previouslyMarried": {
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            }
+          }
+        ],
         "properties": {
           "fullName": {
             "$ref": "#/definitions/fullName"
@@ -1401,6 +1426,9 @@
           },
           "previouslyMarried": {
             "type": "boolean"
+          },
+          "marriedDate": {
+            "$ref": "#/definitions/date"
           },
           "childInHousehold": {
             "type": "boolean"

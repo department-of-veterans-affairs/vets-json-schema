@@ -38,6 +38,7 @@ describe('21-686C schema', () => {
     childRelationship: 'adopted',
     attendingCollege: true,
     disabled: true,
+    marriedDate: fixtures.date,
     previouslyMarried: true,
     childInHousehold: true,
     childAddress: Object.assign(fixtures.address, {addressType: 'DOMESTIC', state: 'TX', postalCode: '344546767'}),
@@ -122,6 +123,7 @@ describe('21-686C schema', () => {
     ],
     invalid: [
       [{ fullName: 1 }],
+      [_.omit(validDependent, 'marriedDate')],
       [Object.assign({}, validDependent, {
         childPlaceOfBirth: {
           countryDropdown: 'Canada',

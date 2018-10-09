@@ -337,6 +337,25 @@ let schema = {
       items: {
         type: 'object',
         additionalProperties: false,
+        oneOf: [
+          {
+            required: ['marriedDate'],
+            properties: {
+              previouslyMarried: {
+                type: 'boolean',
+                enum: [true]
+              }
+            }
+          },
+          {
+            properties: {
+              previouslyMarried: {
+                type: 'boolean',
+                enum: [false]
+              }
+            }
+          }
+        ],
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
@@ -361,6 +380,7 @@ let schema = {
           previouslyMarried: {
             type: 'boolean'
           },
+          marriedDate: schemaHelpers.getDefinition('date'),
           childInHousehold: {
             type: 'boolean'
           },
