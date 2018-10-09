@@ -10,15 +10,19 @@
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$",
+          "maxLength": 20
         },
         "last": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
         "suffix": {
           "type": "string",
