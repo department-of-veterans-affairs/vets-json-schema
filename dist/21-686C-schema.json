@@ -1270,7 +1270,7 @@
               "explainSeparation": {
                 "type": "string",
                 "maxLength": 500,
-                "patter": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+                "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
               }
             }
           }

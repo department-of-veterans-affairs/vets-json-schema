@@ -305,7 +305,7 @@ let schema = {
                 explainSeparation: {
                   type: 'string',
                   maxLength: 500,
-                  patter: textAndNumbersRegex
+                  pattern: textAndNumbersRegex
                 }
               }
             }
@@ -336,6 +336,7 @@ let schema = {
             'NOSSNASSIGNEDBYSSA'
           ],
           enumNames: [
+            // TODO: review these wordings with @peggygannon 
             'Spouse who is not a US citizen, not residing in the US',
             'Spouse who is not a US citizen, residing in the US'
           ]
@@ -429,6 +430,7 @@ let schema = {
               'NOSSNASSIGNEDBYSSA'
             ],
             enumNames: [
+              // TODO: review these wordings with @peggygannon 
               'Child who is not a US citizen, not residing in the US',
               'Child who is not a US citizen, residing in the US'
             ]
