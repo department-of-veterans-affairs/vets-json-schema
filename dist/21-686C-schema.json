@@ -10,19 +10,15 @@
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "maxLength": 30
         },
         "middle": {
-          "type": "string",
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$",
-          "maxLength": 20
+          "type": "string"
         },
         "last": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "maxLength": 30
         },
         "suffix": {
           "type": "string",
@@ -1219,7 +1215,12 @@
       "items": {
         "type": "object",
         "required": [
-          "reasonForSeparation"
+          "dateOfMarriage",
+          "locationOfMarriage",
+          "spouseFullName",
+          "reasonForSeparation",
+          "dateOfSeparation",
+          "locationOfSeparation"
         ],
         "properties": {
           "dateOfMarriage": {

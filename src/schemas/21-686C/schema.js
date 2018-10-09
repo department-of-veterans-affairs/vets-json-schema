@@ -273,7 +273,6 @@ let schema = {
         items: {
           type: 'object',
           required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
-          required: ['reasonForSeparation'],
           properties: {
             ...commonMarriageDef.properties,
             reasonForSeparation: {

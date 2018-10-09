@@ -77,7 +77,7 @@ describe('21-686C schema', () => {
             countryDropdown: 'Country Not In List',
             countryText: 'My Island'
           },
-          spouseFullname: fixtures.fullName,
+          spouseFullName: fixtures.fullName,
           reasonForSeparation: 'Divorce',
           dateOfSeparation: fixtures.date,
           locationOfSeparation: {
