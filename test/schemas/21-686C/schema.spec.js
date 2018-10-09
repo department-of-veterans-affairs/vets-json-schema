@@ -8,22 +8,27 @@ import { expect } from 'chai';
 const schema = schemas['21-686C'];
 let schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
+delete schemaWithoutRequired.anyOf;
 
 let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-686C schema', () => {
   it('should have the right required fields', () => {
-    expect(schema.required).to.deep.equal(['privacyAgreementAccepted']);
+    expect(schema.required).to.deep.equal([
+      'privacyAgreementAccepted',
+      'veteranFullName',
+      'veteranAddress',
+      'maritalStatus'
+    ])
   });
 
   sharedTests.runTest('fullName', ['veteranFullName']);
-  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber', 'spouseSocialSecurityNumber']);
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
   sharedTests.runTest('email', ['veteranEmail']);
   sharedTests.runTest('maritalStatus');
   sharedTests.runTest('date', ['spouseDateOfBirth']);
-  sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
   sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone']);
 
   const validDependent = {
@@ -33,7 +38,6 @@ describe('21-686C schema', () => {
     childRelationship: 'adopted',
     attendingCollege: true,
     disabled: true,
-    married: true,
     marriedDate: fixtures.date,
     previouslyMarried: true,
     childInHousehold: true,
@@ -41,29 +45,78 @@ describe('21-686C schema', () => {
     personWhoLivesWithChild: fixtures.fullName
   }
 
+  schemaTestHelper.testValidAndInvalid('currentMarriage', {
+    valid: [
+      {
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: {
+          countryDropdown: 'Canada'
+        },
+        spouseFullName: fixtures.fullName,
+        spouseSocialSecurityNumber: fixtures.ssn
+      }
+    ],
+    invalid: [
+      {
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: {
+          countryDropdown: 'Country Not In List',
+          countryText: 'My Island'
+        },
+        spouseFullname: fixtures.fullName,
+        spouseSocialSecurityNumber: 'blah'
+      }
+    ]
+  });
+
+  schemaTestHelper.testValidAndInvalid('previousMarriages', {
+    valid: [
+      [
+        {
+          dateOfMarriage: fixtures.date,
+          locationOfMarriage: {
+            countryDropdown: 'Country Not In List',
+            countryText: 'My Island'
+          },
+          spouseFullName: fixtures.fullName,
+          reasonForSeparation: 'Divorce',
+          dateOfSeparation: fixtures.date,
+          locationOfSeparation: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA'
+          }
+        }
+      ]
+    ],
+    invalid: [
+      [{reasonForSeparation: 'fadsf'}]
+    ]
+  });
+
   schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [
       [
         Object.assign({}, validDependent, {
           childPlaceOfBirth: {
-            childCountryOfBirthDropdown: 'USA',
-            childCityOfBirth: 'somewhere',
-            childStateOfBirth: 'VA'
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA'
           }
         })
       ],
       [
         Object.assign({}, validDependent, {
           childPlaceOfBirth: {
-            childCountryOfBirthDropdown: 'Country Not In List',
-            childCountryOfBirthText: 'somewhere'
+            countryDropdown: 'Country Not In List',
+            countryText: 'somewhere'
           }
         })
       ],
       [
         Object.assign({}, validDependent, {
           childPlaceOfBirth: {
-            childCountryOfBirthDropdown: 'Canada'
+            countryDropdown: 'Canada'
           }
         })
       ]
@@ -73,15 +126,15 @@ describe('21-686C schema', () => {
       [_.omit(validDependent, 'marriedDate')],
       [Object.assign({}, validDependent, {
         childPlaceOfBirth: {
-          childCountryOfBirthDropdown: 'Canada',
-          childCityOfBirth: 'somewhere',
-          childStateOfBirth: 'VA'
+          countryDropdown: 'Canada',
+          city: 'somewhere',
+          state: 'VA'
         }
       })],
       [Object.assign({}, validDependent, {
         childPlaceOfBirth: {
-          childCountryOfBirthDropdown: 'Country Not In List',
-          childCityOfBirth: 'somewhere'
+          countryDropdown: 'Country Not In List',
+          city: 'somewhere'
         }
       })]
     ]
