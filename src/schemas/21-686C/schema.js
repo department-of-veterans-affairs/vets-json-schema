@@ -29,7 +29,7 @@ definitions.fullName.properties.last.maxLength = 30
 definitions.fullName.properties.middle.maxLength = 20
 
 const commonAddressFields = {
-  required: ['addressType', 'street', 'city', 'country'],
+  required: ['street', 'city', 'country'],
   properties: {
     addressType: {
       type: 'string',
@@ -273,7 +273,7 @@ let schema = {
         type: 'array',
         items: {
           type: 'object',
-          required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
+          required: [],
           properties: {
             ...commonMarriageDef.properties,
             dateOfSeparation: schemaHelpers.getDefinition('date'),

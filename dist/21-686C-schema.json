@@ -43,7 +43,6 @@
     "domesticAddress": {
       "type": "object",
       "required": [
-        "addressType",
         "street",
         "city",
         "country",
@@ -227,7 +226,6 @@
     "militaryAddress": {
       "type": "object",
       "required": [
-        "addressType",
         "street",
         "city",
         "country",
@@ -518,7 +516,6 @@
     "internationalAddressDropDown": {
       "type": "object",
       "required": [
-        "addressType",
         "street",
         "city",
         "country"
@@ -774,7 +771,6 @@
     "internationalAddressText": {
       "type": "object",
       "required": [
-        "addressType",
         "street",
         "city",
         "country",
@@ -1219,14 +1215,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "dateOfMarriage",
-          "locationOfMarriage",
-          "spouseFullName",
-          "reasonForSeparation",
-          "dateOfSeparation",
-          "locationOfSeparation"
-        ],
+        "required": [],
         "properties": {
           "dateOfMarriage": {
             "$ref": "#/definitions/date"
