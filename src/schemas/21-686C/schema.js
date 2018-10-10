@@ -215,6 +215,7 @@ let schema = {
       },
       location: {
         type: 'object',
+        properties: {},
         oneOf: [
           {
             required: ['countryDropdown', 'city', 'state'],
@@ -275,19 +276,40 @@ let schema = {
           required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
           properties: {
             ...commonMarriageDef.properties,
-            reasonForSeparation: {
-              type: 'string',
-              'enum': [
-                'Death',
-                'Divorce',
-                'Other'
-              ]
-            },
             dateOfSeparation: schemaHelpers.getDefinition('date'),
             locationOfSeparation: {
               $ref: '#/definitions/location'
             }
-          }
+          },
+          oneOf: [
+            {
+              properties: {
+                reasonForSeparation: {
+                  type: 'string',
+                  'enum': [
+                    'Death',
+                    'Divorce'
+                  ]
+                }
+              }
+            },
+            {
+              required: ['explainSeparation'],
+              properties: {
+                reasonForSeparation: {
+                  type: 'string',
+                  'enum': [
+                    'Other'
+                  ]
+                },
+                explainSeparation: {
+                  type: 'string',
+                  maxLength: 500,
+                  pattern: textAndNumbersRegex
+                }
+              }
+            }
+          ]
         }
       }
     }
@@ -306,8 +328,40 @@ let schema = {
       required: [...commonMarriageDef.required, 'spouseSocialSecurityNumber'],
       properties: {
         ...commonMarriageDef.properties,
-        spouseSocialSecurityNumber: schemaHelpers.getDefinition('ssn')
-      }
+        spouseSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+        spouseHasNoSsnReason: {
+          type: 'string',
+          'enum': [
+            'NONRESIDENTALIEN',
+            'NOSSNASSIGNEDBYSSA'
+          ],
+          enumNames: [
+            // TODO: review these wordings with @peggygannon 
+            'Spouse who is not a US citizen, not residing in the US',
+            'Spouse who is not a US citizen, residing in the US'
+          ]
+        }
+      },
+      oneOf: [
+        {
+          required: ['spouseHasNoSsnReason'],
+          properties: {
+            spouseHasNoSsn: {
+              type: 'boolean',
+              enum: [true]
+            },
+            
+          }
+        },
+        {
+          properties: {
+            spouseHasNoSsn: {
+              type: 'boolean',
+              enum: [false]
+            }
+          }
+        }
+      ]
     },
     previousMarriages: {
       $ref: '#/definitions/previousMarriages'
@@ -336,26 +390,6 @@ let schema = {
       type: 'array',
       items: {
         type: 'object',
-        additionalProperties: false,
-        oneOf: [
-          {
-            required: ['marriedDate'],
-            properties: {
-              previouslyMarried: {
-                type: 'boolean',
-                enum: [true]
-              }
-            }
-          },
-          {
-            properties: {
-              previouslyMarried: {
-                type: 'boolean',
-                enum: [false]
-              }
-            }
-          }
-        ],
         properties: {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
@@ -388,8 +422,67 @@ let schema = {
             type: 'object',
             oneOf: addressDefs
           },
-          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName')
-        }
+          personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
+          childHasNoSsnReason: {
+            type: 'string',
+            'enum': [
+              'NONRESIDENTALIEN',
+              'NOSSNASSIGNEDBYSSA'
+            ],
+            enumNames: [
+              // TODO: review these wordings with @peggygannon 
+              'Child who is not a US citizen, not residing in the US',
+              'Child who is not a US citizen, residing in the US'
+            ]
+          }
+
+        },
+        allOf: [
+          {
+            type: 'object',
+            oneOf: [
+              {
+                required: ['marriedDate'],
+                properties: {
+                  previouslyMarried: {
+                    type: 'boolean',
+                    enum: [true]
+                  }
+                }
+              },
+              {
+                properties: {
+                  previouslyMarried: {
+                    type: 'boolean',
+                    enum: [false]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            type: 'object',
+            oneOf: [
+              {
+                required: ['childHasNoSsnReason'],
+                properties: {
+                  childHasNoSsn: {
+                    type: 'boolean',
+                    enum: [true]
+                  }
+                },
+              },
+              {
+                properties: {
+                  childHasNoSsn: {
+                    type: 'boolean',
+                    enum: [false]
+                  }
+                },
+              }
+            ]
+          }
+        ]
       }
     }
   },

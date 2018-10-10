@@ -832,6 +832,7 @@
     },
     "location": {
       "type": "object",
+      "properties": {},
       "oneOf": [
         {
           "required": [
@@ -1236,21 +1237,44 @@
           "spouseFullName": {
             "$ref": "#/definitions/fullName"
           },
-          "reasonForSeparation": {
-            "type": "string",
-            "enum": [
-              "Death",
-              "Divorce",
-              "Other"
-            ]
-          },
           "dateOfSeparation": {
             "$ref": "#/definitions/date"
           },
           "locationOfSeparation": {
             "$ref": "#/definitions/location"
           }
-        }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "reasonForSeparation": {
+                "type": "string",
+                "enum": [
+                  "Death",
+                  "Divorce"
+                ]
+              }
+            }
+          },
+          {
+            "required": [
+              "explainSeparation"
+            ],
+            "properties": {
+              "reasonForSeparation": {
+                "type": "string",
+                "enum": [
+                  "Other"
+                ]
+              },
+              "explainSeparation": {
+                "type": "string",
+                "maxLength": 500,
+                "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+              }
+            }
+          }
+        ]
       }
     },
     "privacyAgreementAccepted": {
@@ -1328,8 +1352,44 @@
         },
         "spouseSocialSecurityNumber": {
           "$ref": "#/definitions/ssn"
+        },
+        "spouseHasNoSsnReason": {
+          "type": "string",
+          "enum": [
+            "NONRESIDENTALIEN",
+            "NOSSNASSIGNEDBYSSA"
+          ],
+          "enumNames": [
+            "Spouse who is not a US citizen, not residing in the US",
+            "Spouse who is not a US citizen, residing in the US"
+          ]
         }
-      }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "spouseHasNoSsnReason"
+          ],
+          "properties": {
+            "spouseHasNoSsn": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "spouseHasNoSsn": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            }
+          }
+        }
+      ]
     },
     "previousMarriages": {
       "$ref": "#/definitions/previousMarriages"
@@ -1371,32 +1431,6 @@
       "type": "array",
       "items": {
         "type": "object",
-        "additionalProperties": false,
-        "oneOf": [
-          {
-            "required": [
-              "marriedDate"
-            ],
-            "properties": {
-              "previouslyMarried": {
-                "type": "boolean",
-                "enum": [
-                  true
-                ]
-              }
-            }
-          },
-          {
-            "properties": {
-              "previouslyMarried": {
-                "type": "boolean",
-                "enum": [
-                  false
-                ]
-              }
-            }
-          }
-        ],
         "properties": {
           "fullName": {
             "$ref": "#/definitions/fullName"
@@ -1452,8 +1486,77 @@
           },
           "personWhoLivesWithChild": {
             "$ref": "#/definitions/fullName"
+          },
+          "childHasNoSsnReason": {
+            "type": "string",
+            "enum": [
+              "NONRESIDENTALIEN",
+              "NOSSNASSIGNEDBYSSA"
+            ],
+            "enumNames": [
+              "Child who is not a US citizen, not residing in the US",
+              "Child who is not a US citizen, residing in the US"
+            ]
           }
-        }
+        },
+        "allOf": [
+          {
+            "type": "object",
+            "oneOf": [
+              {
+                "required": [
+                  "marriedDate"
+                ],
+                "properties": {
+                  "previouslyMarried": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "previouslyMarried": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "oneOf": [
+              {
+                "required": [
+                  "childHasNoSsnReason"
+                ],
+                "properties": {
+                  "childHasNoSsn": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "childHasNoSsn": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
       }
     },
     "privacyAgreementAccepted": {

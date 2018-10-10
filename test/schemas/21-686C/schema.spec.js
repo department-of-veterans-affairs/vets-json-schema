@@ -42,6 +42,8 @@ describe('21-686C schema', () => {
     previouslyMarried: true,
     childInHousehold: true,
     childAddress: Object.assign(fixtures.address, {addressType: 'DOMESTIC', state: 'TX', postalCode: '344546767'}),
+    childHasNoSsn: true,
+    childHasNoSsnReason: 'NONRESIDENTALIEN',
     personWhoLivesWithChild: fixtures.fullName
   }
 
@@ -86,11 +88,45 @@ describe('21-686C schema', () => {
             city: 'somewhere',
             state: 'VA'
           }
+        },
+        {
+          dateOfMarriage: fixtures.date,
+          locationOfMarriage: {
+            countryDropdown: 'Country Not In List',
+            countryText: 'My Island'
+          },
+          spouseFullName: fixtures.fullName,
+          reasonForSeparation: 'Other',
+          explainSeparation: 'irreconcilable differences',
+          dateOfSeparation: fixtures.date,
+          locationOfSeparation: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA'
+          }
         }
       ]
     ],
     invalid: [
-      [{reasonForSeparation: 'fadsf'}]
+      [
+        {reasonForSeparation: 'fadsf'},
+        // 'Other' without explanation
+        {
+          dateOfMarriage: fixtures.date,
+          locationOfMarriage: {
+            countryDropdown: 'Country Not In List',
+            countryText: 'My Island'
+          },
+          spouseFullName: fixtures.fullName,
+          reasonForSeparation: 'Other',
+          dateOfSeparation: fixtures.date,
+          locationOfSeparation: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA'
+          }
+        }
+      ]
     ]
   });
 
@@ -124,6 +160,7 @@ describe('21-686C schema', () => {
     invalid: [
       [{ fullName: 1 }],
       [_.omit(validDependent, 'marriedDate')],
+      [_.omit(validDependent, 'childHasNoSsnReason')],
       [Object.assign({}, validDependent, {
         childPlaceOfBirth: {
           countryDropdown: 'Canada',
