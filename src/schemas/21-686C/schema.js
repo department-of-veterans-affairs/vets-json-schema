@@ -379,13 +379,6 @@ let schema = {
     liveWithSpouse: {
       type: 'boolean'
     },
-    monthlySpousePayment: {
-      type: 'number'
-    },
-    remarks: {
-      type: 'string',
-      maxLength: 500
-    },
     dependents: {
       type: 'array',
       items: {
