@@ -1337,8 +1337,7 @@
       "required": [
         "dateOfMarriage",
         "locationOfMarriage",
-        "spouseFullName",
-        "spouseSocialSecurityNumber"
+        "spouseFullName"
       ],
       "properties": {
         "dateOfMarriage": {

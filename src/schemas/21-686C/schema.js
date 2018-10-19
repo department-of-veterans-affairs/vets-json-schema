@@ -325,7 +325,7 @@ let schema = {
     },
     currentMarriage: {
       type: 'object',
-      required: [...commonMarriageDef.required, 'spouseSocialSecurityNumber'],
+      required: commonMarriageDef.required,
       properties: {
         ...commonMarriageDef.properties,
         spouseSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
@@ -336,7 +336,7 @@ let schema = {
             'NOSSNASSIGNEDBYSSA'
           ],
           enumNames: [
-            // TODO: review these wordings with @peggygannon 
+            // TODO: review these wordings with @peggygannon
             'Spouse who is not a US citizen, not residing in the US',
             'Spouse who is not a US citizen, residing in the US'
           ]
@@ -350,7 +350,7 @@ let schema = {
               type: 'boolean',
               enum: [true]
             },
-            
+
           }
         },
         {
@@ -423,7 +423,7 @@ let schema = {
               'NOSSNASSIGNEDBYSSA'
             ],
             enumNames: [
-              // TODO: review these wordings with @peggygannon 
+              // TODO: review these wordings with @peggygannon
               'Child who is not a US citizen, not residing in the US',
               'Child who is not a US citizen, residing in the US'
             ]
