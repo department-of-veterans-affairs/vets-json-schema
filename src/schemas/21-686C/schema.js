@@ -354,6 +354,7 @@ let schema = {
           }
         },
         {
+          required: ['spouseSocialSecurityNumber'],
           properties: {
             spouseHasNoSsn: {
               type: 'boolean',

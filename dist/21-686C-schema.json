@@ -1379,6 +1379,9 @@
           }
         },
         {
+          "required": [
+            "spouseSocialSecurityNumber"
+          ],
           "properties": {
             "spouseHasNoSsn": {
               "type": "boolean",

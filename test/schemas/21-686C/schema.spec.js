@@ -56,9 +56,25 @@ describe('21-686C schema', () => {
         },
         spouseFullName: fixtures.fullName,
         spouseSocialSecurityNumber: fixtures.ssn
+      },
+      {
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: {
+          countryDropdown: 'Canada'
+        },
+        spouseFullName: fixtures.fullName,
+        spouseHasNoSsn: true,
+        spouseHasNoSsnReason: 'NONRESIDENTALIEN'
       }
     ],
     invalid: [
+      {
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: {
+          countryDropdown: 'Canada'
+        },
+        spouseFullName: fixtures.fullName
+      },
       {
         dateOfMarriage: fixtures.date,
         locationOfMarriage: {
