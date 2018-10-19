@@ -1337,8 +1337,7 @@
       "required": [
         "dateOfMarriage",
         "locationOfMarriage",
-        "spouseFullName",
-        "spouseSocialSecurityNumber"
+        "spouseFullName"
       ],
       "properties": {
         "dateOfMarriage": {
@@ -1380,6 +1379,9 @@
           }
         },
         {
+          "required": [
+            "spouseSocialSecurityNumber"
+          ],
           "properties": {
             "spouseHasNoSsn": {
               "type": "boolean",
