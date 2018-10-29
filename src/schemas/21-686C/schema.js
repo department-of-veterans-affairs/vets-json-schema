@@ -19,7 +19,7 @@ const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 
 let definitions = _.cloneDeep(originalDefinitions);
-definitions =  _.pick(definitions, ['fullName']);
+definitions =  _.pick(definitions, 'fullName', 'date');
 
 definitions.fullName.properties.first.pattern = textRegex
 definitions.fullName.properties.last.pattern = textRegex
@@ -98,6 +98,21 @@ let schema = {
   additionalProperties: false,
   definitions: _.merge(definitions,
     {
+      phone: {
+        type: 'string',
+        pattern: '^[-0-9]{10,12}$'
+      },
+      ssn: {
+        oneOf: [
+          {
+            type: 'string',
+            pattern: '^[0-9]{9}$'
+          }, {
+            type: 'string',
+            pattern: '^[0-9]{3}-[0-9]{2}-[0-9]{4}$'
+          }
+        ]
+      },
       domesticAddress: {
         type: 'object',
         required: [...commonAddressFields.required, 'state', 'postalCode'],
@@ -315,6 +330,8 @@ let schema = {
     }
   ),
   properties: {
+    dayPhone: { $ref: '#/definitions/phone' },
+    nightPhone: { $ref: '#/definitions/phone' },
     veteranAddress: {
       type: 'object',
       oneOf: addressDefs
@@ -323,12 +340,43 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
+    maritalStatus: {
+      type: 'string',
+      'enum': [
+        'MARRIED',
+        'DIVORCED',
+        'WIDOWED',
+        'SEPARATED',
+        'NEVERMARRIED'
+      ],
+      enumNames: [
+        'Married',
+        'Divorced',
+        'Widowed',
+        'Separated',
+        'Never Married'
+      ]
+    },
     currentMarriage: {
       type: 'object',
       required: commonMarriageDef.required,
       properties: {
         ...commonMarriageDef.properties,
-        spouseSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+        spouseMarriages: {
+          $ref: '#/definitions/previousMarriages'
+        },
+        spouseAddress: {
+          type: 'object',
+          anyOf: addressDefs
+        },
+        spouseIsVeteran: {
+          type: 'boolean'
+        },
+        liveWithSpouse: {
+          type: 'boolean'
+        },
+        spouseSocialSecurityNumber: { $ref: '#/definitions/ssn' },
         spouseHasNoSsnReason: {
           type: 'string',
           'enum': [
@@ -340,9 +388,11 @@ let schema = {
             'Spouse who is not a US citizen, not residing in the US',
             'Spouse who is not a US citizen, residing in the US'
           ]
-        }
+        },
+        spouseDateOfBirth: schemaHelpers.getDefinition('date'),
+        spouseVaFileNumber: schemaHelpers.getDefinition('vaFileNumber')
       },
-      oneOf: [
+      anyOf: [
         {
           required: ['spouseHasNoSsnReason'],
           properties: {
@@ -367,19 +417,6 @@ let schema = {
     previousMarriages: {
       $ref: '#/definitions/previousMarriages'
     },
-    spouseMarriages: {
-      $ref: '#/definitions/previousMarriages'
-    },
-    spouseAddress: {
-      type: 'object',
-      oneOf: addressDefs
-    },
-    spouseIsVeteran: {
-      type: 'boolean'
-    },
-    liveWithSpouse: {
-      type: 'boolean'
-    },
     dependents: {
       type: 'array',
       items: {
@@ -390,7 +427,7 @@ let schema = {
           childPlaceOfBirth: {
             $ref: '#/definitions/location'
           },
-          childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+          childSocialSecurityNumber: { $ref: '#/definitions/ssn' },
           childRelationship: {
             type: 'string',
             enum: [
@@ -499,13 +536,7 @@ let schema = {
 [
   ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
-  ['usaPhone', 'dayPhone'],
-  ['usaPhone', 'nightPhone'],
-  ['ssn', 'veteranSocialSecurityNumber'],
-  ['vaFileNumber'],
-  ['vaFileNumber', 'spouseVaFileNumber'],
-  ['maritalStatus'],
-  ['date', 'spouseDateOfBirth']
+  ['vaFileNumber']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
