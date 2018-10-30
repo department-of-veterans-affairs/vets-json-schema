@@ -19,7 +19,7 @@ const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 
 let definitions = _.cloneDeep(originalDefinitions);
-definitions =  _.pick(definitions, 'fullName', 'date');
+definitions =  _.pick(definitions, 'fullName', 'date', 'ssn');
 
 definitions.fullName.properties.first.pattern = textRegex
 definitions.fullName.properties.last.pattern = textRegex
@@ -101,17 +101,6 @@ let schema = {
       phone: {
         type: 'string',
         pattern: '^[-0-9]{10,12}$'
-      },
-      ssn: {
-        oneOf: [
-          {
-            type: 'string',
-            pattern: '^[0-9]{9}$'
-          }, {
-            type: 'string',
-            pattern: '^[0-9]{3}-[0-9]{2}-[0-9]{4}$'
-          }
-        ]
       },
       domesticAddress: {
         type: 'object',
