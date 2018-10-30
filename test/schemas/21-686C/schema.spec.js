@@ -26,6 +26,7 @@ describe('21-686C schema', () => {
   sharedTests.runTest('fullName', ['veteranFullName']);
   sharedTests.runTest('email', ['veteranEmail']);
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber'])
 
   const validDependent = {
     fullName: fixtures.fullName,
@@ -42,12 +43,6 @@ describe('21-686C schema', () => {
     childHasNoSsnReason: 'NONRESIDENTALIEN',
     personWhoLivesWithChild: fixtures.fullName
   }
-
-  
-  schemaTestHelper.testValidAndInvalid('veteranSocialSecurityNumber', {
-    valid: ['435456543', '344-34-3454'],
-    invalid: ['01234567898']
-  });
 
   schemaTestHelper.testValidAndInvalid('currentMarriage', {
     valid: [
