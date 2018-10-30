@@ -24,12 +24,10 @@ describe('21-686C schema', () => {
   });
 
   sharedTests.runTest('fullName', ['veteranFullName']);
-  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
-  sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'spouseVaFileNumber']);
   sharedTests.runTest('email', ['veteranEmail']);
-  sharedTests.runTest('maritalStatus');
-  sharedTests.runTest('date', ['spouseDateOfBirth']);
-  sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone']);
+  sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber'])
+  sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone'])
 
   const validDependent = {
     fullName: fixtures.fullName,
@@ -55,7 +53,8 @@ describe('21-686C schema', () => {
           countryDropdown: 'Canada'
         },
         spouseFullName: fixtures.fullName,
-        spouseSocialSecurityNumber: fixtures.ssn
+        spouseSocialSecurityNumber: fixtures.ssn,
+        spouseVaFileNumber: 'C1234567'
       },
       {
         dateOfMarriage: fixtures.date,
@@ -83,10 +82,35 @@ describe('21-686C schema', () => {
         },
         spouseFullname: fixtures.fullName,
         spouseSocialSecurityNumber: 'blah'
-      }
+      },
+      // invalid spouseVaFileNumber
+      {
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: {
+          countryDropdown: 'Canada'
+        },
+        spouseFullName: fixtures.fullName,
+        spouseSocialSecurityNumber: fixtures.ssn,
+        spouseVaFileNumber: 'C12345679999'
+      },
+      // invalid spouseDateOfBirth
+      {
+        dateOfMarriage: fixtures.date,
+        locationOfMarriage: {
+          countryDropdown: 'Canada'
+        },
+        spouseFullName: fixtures.fullName,
+        spouseSocialSecurityNumber: fixtures.ssn,
+        spouseDateOfBirth: 'in the past'
+      },
     ]
   });
 
+  schemaTestHelper.testValidAndInvalid('maritalStatus', {
+    valid: ['MARRIED', 'DIVORCED', 'WIDOWED', 'SEPARATED', 'NEVERMARRIED'],
+    invalid: ['Divorce']
+  });
+  
   schemaTestHelper.testValidAndInvalid('previousMarriages', {
     valid: [
       [
