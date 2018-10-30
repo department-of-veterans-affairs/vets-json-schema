@@ -27,6 +27,7 @@ describe('21-686C schema', () => {
   sharedTests.runTest('email', ['veteranEmail']);
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
   sharedTests.runTest('ssn', ['veteranSocialSecurityNumber'])
+  sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone'])
 
   const validDependent = {
     fullName: fixtures.fullName,
@@ -103,13 +104,6 @@ describe('21-686C schema', () => {
         spouseDateOfBirth: 'in the past'
       },
     ]
-  });
-
-  ['dayPhone', 'nightPhone'].forEach(attr => {
-    schemaTestHelper.testValidAndInvalid(attr, {
-      valid: ['111-222-3444', '5554445454'],
-      invalid: ['(555) 444-5656']
-    });
   });
 
   schemaTestHelper.testValidAndInvalid('maritalStatus', {

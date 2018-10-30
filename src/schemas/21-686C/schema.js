@@ -98,10 +98,6 @@ let schema = {
   additionalProperties: false,
   definitions: _.merge(definitions,
     {
-      phone: {
-        type: 'string',
-        pattern: '^[-0-9]{10,12}$'
-      },
       domesticAddress: {
         type: 'object',
         required: [...commonAddressFields.required, 'state', 'postalCode'],
@@ -319,8 +315,6 @@ let schema = {
     }
   ),
   properties: {
-    dayPhone: { $ref: '#/definitions/phone' },
-    nightPhone: { $ref: '#/definitions/phone' },
     veteranAddress: {
       type: 'object',
       oneOf: addressDefs
@@ -525,6 +519,8 @@ let schema = {
 [
   ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
+  ['usaPhone', 'dayPhone'],
+  ['usaPhone', 'nightPhone'],
   ['vaFileNumber']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);

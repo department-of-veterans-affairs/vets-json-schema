@@ -48,10 +48,6 @@
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
-    "phone": {
-      "type": "string",
-      "pattern": "^[-0-9]{10,12}$"
-    },
     "domesticAddress": {
       "type": "object",
       "required": [
@@ -1295,18 +1291,16 @@
         true
       ]
     },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
     }
   },
   "properties": {
-    "dayPhone": {
-      "$ref": "#/definitions/phone"
-    },
-    "nightPhone": {
-      "$ref": "#/definitions/phone"
-    },
     "veteranAddress": {
       "type": "object",
       "oneOf": [
@@ -1581,6 +1575,12 @@
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
+    },
+    "dayPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "nightPhone": {
+      "$ref": "#/definitions/usaPhone"
     },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
