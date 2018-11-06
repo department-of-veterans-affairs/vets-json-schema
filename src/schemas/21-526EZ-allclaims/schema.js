@@ -460,10 +460,10 @@ const schema = {
       type: 'boolean',
       default: false
     },
-    ptsd781: {
+    ptsd781Attachment: {
       $ref: '#/definitions/ptsdAttachment'
     },
-    ptsd781a: {
+    ptsd781aAttachment: {
       $ref: '#/definitions/ptsdAttachment'
     },
     form4142: {
