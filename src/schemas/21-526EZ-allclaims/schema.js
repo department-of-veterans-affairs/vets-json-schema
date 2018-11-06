@@ -153,11 +153,9 @@ const schema = {
   properties: {
     alternateNames: {
       type: 'array',
-      minItems: 1,
       maxItems: 100,
       items: {
         type: 'object',
-        required: ['first', 'last'],
         properties: {
           first: {
             type: 'string',
@@ -219,11 +217,7 @@ const schema = {
         },
         reservesNationalGuardService: {
           type: 'object',
-          required: [
-            'unitName',
-            'obligationTermOfServiceDateRange',
-            'waiveVABenefitsToRetainTrainingPay'
-          ],
+          required: ['unitName', 'obligationTermOfServiceDateRange'],
           properties: {
             unitName: {
               type: 'string',
@@ -238,9 +232,6 @@ const schema = {
             },
             obligationTermOfServiceDateRange: {
               $ref: '#/definitions/dateRangeAllRequired'
-            },
-            receivingTrainingPay: {
-              type: 'boolean'
             },
             title10Activation: {
               type: 'object',
@@ -281,6 +272,9 @@ const schema = {
       type: 'string',
       enum: serviceBranches
     },
+    hasTrainingPay: {
+      type: 'boolean'
+    },
     waiveTrainingPay: {
       type: 'boolean'
     },
@@ -291,7 +285,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['condition', 'cause', 'disabilityStartDate'],
+        required: ['condition', 'cause'],
         properties: {
           condition: {
             type: 'string'

@@ -908,14 +908,9 @@
   "properties": {
     "alternateNames": {
       "type": "array",
-      "minItems": 1,
       "maxItems": 100,
       "items": {
         "type": "object",
-        "required": [
-          "first",
-          "last"
-        ],
         "properties": {
           "first": {
             "type": "string",
@@ -984,8 +979,7 @@
           "type": "object",
           "required": [
             "unitName",
-            "obligationTermOfServiceDateRange",
-            "waiveVABenefitsToRetainTrainingPay"
+            "obligationTermOfServiceDateRange"
           ],
           "properties": {
             "unitName": {
@@ -1001,9 +995,6 @@
             },
             "obligationTermOfServiceDateRange": {
               "$ref": "#/definitions/dateRangeAllRequired"
-            },
-            "receivingTrainingPay": {
-              "type": "boolean"
             },
             "title10Activation": {
               "type": "object",
@@ -1060,6 +1051,9 @@
         "Public Health Service"
       ]
     },
+    "hasTrainingPay": {
+      "type": "boolean"
+    },
     "waiveTrainingPay": {
       "type": "boolean"
     },
@@ -1072,8 +1066,7 @@
         "type": "object",
         "required": [
           "condition",
-          "cause",
-          "disabilityStartDate"
+          "cause"
         ],
         "properties": {
           "condition": {
