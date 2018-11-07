@@ -23,16 +23,6 @@
           "minLength": 1,
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
         }
       },
       "required": [
@@ -54,7 +44,7 @@
         "addressType",
         "street",
         "city",
-        "country",
+        "countryDropdown",
         "state",
         "postalCode"
       ],
@@ -87,7 +77,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "maxLength": 50,
           "default": "USA"
@@ -238,7 +228,7 @@
         "addressType",
         "street",
         "city",
-        "country",
+        "countryDropdown",
         "postOffice",
         "postalType",
         "postalCode"
@@ -272,7 +262,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "maxLength": 50,
           "enum": [
@@ -529,7 +519,7 @@
         "addressType",
         "street",
         "city",
-        "country"
+        "countryDropdown"
       ],
       "properties": {
         "addressType": {
@@ -560,7 +550,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "enum": [
             "Afghanistan",
@@ -785,7 +775,7 @@
         "addressType",
         "street",
         "city",
-        "country",
+        "countryDropdown",
         "countryText"
       ],
       "properties": {
@@ -817,7 +807,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "enum": [
             "Country Not In List"
