@@ -21,15 +21,16 @@ const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 let definitions = _.cloneDeep(originalDefinitions);
 definitions =  _.pick(definitions, 'fullName', 'date', 'ssn');
 
-definitions.fullName.properties.first.pattern = textRegex
-definitions.fullName.properties.last.pattern = textRegex
-definitions.fullName.properties.middle.pattern = textRegex
-definitions.fullName.properties.first.maxLength = 30
-definitions.fullName.properties.last.maxLength = 30
-definitions.fullName.properties.middle.maxLength = 20
+definitions.fullName.properties.first.pattern = textRegex;
+definitions.fullName.properties.last.pattern = textRegex;
+definitions.fullName.properties.middle.pattern = textRegex;
+definitions.fullName.properties.first.maxLength = 30;
+definitions.fullName.properties.last.maxLength = 30;
+definitions.fullName.properties.middle.maxLength = 20;
+delete definitions.fullName.properties.suffix;
 
 const commonAddressFields = {
-  required: ['addressType', 'street', 'city', 'country'],
+  required: ['addressType', 'street', 'city', 'countryDropdown'],
   properties: {
     addressType: {
       type: 'string',
@@ -65,7 +66,7 @@ const commonAddressFields = {
       maxLength: 30,
       pattern: textRegex
     },
-    country: {
+    countryDropdown: {
       type: 'string',
       maxLength: 50,
       'enum': [countryUSA, countryNotInList].concat(nonUSACountries)
@@ -117,7 +118,7 @@ let schema = {
           postalCode: {
             $ref: '#/definitions/postalCode'
           },
-          country: {
+          countryDropdown: {
             type: 'string',
             maxLength: 50,
             default: countryUSA
@@ -177,7 +178,7 @@ let schema = {
             enum: ['INTERNATIONAL'],
             default: 'INTERNATIONAL'
           },
-          country: {
+          countryDropdown: {
             type: 'string',
             'enum': nonUSACountries
           }
@@ -194,7 +195,7 @@ let schema = {
             enum: ['INTERNATIONAL'],
             default: 'INTERNATIONAL'
           },
-          country: {
+          countryDropdown: {
             type: 'string',
             'enum': [countryNotInList],
             default: countryNotInList

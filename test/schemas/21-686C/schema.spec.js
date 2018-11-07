@@ -39,9 +39,15 @@ describe('21-686C schema', () => {
     marriedDate: fixtures.date,
     previouslyMarried: true,
     childInHousehold: true,
-    childAddress: Object.assign(fixtures.address, {addressType: 'DOMESTIC', state: 'TX', postalCode: '344546767'}),
-    childHasNoSsn: true,
-    childHasNoSsnReason: 'NONRESIDENTALIEN',
+    childAddress: {
+      street: '123 a rd',
+      city: 'abc',
+      countryDropdown: 'USA',
+      addressType: 'DOMESTIC',
+      state: 'TX',
+      postalCode: '344546767'
+    },
+    childHasNoSsn: false,
     personWhoLivesWithChild: fixtures.fullName
   }
 
@@ -200,7 +206,7 @@ describe('21-686C schema', () => {
     invalid: [
       [{ fullName: 1 }],
       [_.omit(validDependent, 'marriedDate')],
-      [_.omit(validDependent, 'childHasNoSsnReason')],
+      [Object.assign({}, _.omit(validDependent, 'childHasNoSsnReason'), {childHasNoSsn: true})],
       [Object.assign({}, validDependent, {
         childPlaceOfBirth: {
           countryDropdown: 'Canada',
@@ -223,7 +229,7 @@ describe('21-686C schema', () => {
         addressType: 'DOMESTIC',
         street: '123 main st.',
         city: 'anywhere',
-        country: 'USA',
+        countryDropdown: 'USA',
         state: 'KY',
         postalCode: '55555'
       },
@@ -231,7 +237,7 @@ describe('21-686C schema', () => {
         addressType: 'MILITARY',
         street: '123 main st.',
         city: 'anywhere',
-        country: 'USA',
+        countryDropdown: 'USA',
         postOffice: 'APO',
         postalType: 'AA',
         postalCode: '55555'
@@ -240,13 +246,13 @@ describe('21-686C schema', () => {
         addressType: 'INTERNATIONAL',
         street: '123 main st.',
         city: 'anywhere',
-        country: 'Canada',
+        countryDropdown: 'Canada',
       },
       {
         addressType: 'INTERNATIONAL',
         street: '123 main st.',
         city: 'anywhere',
-        country: 'Country Not In List',
+        countryDropdown: 'Country Not In List',
         countryText: 'Independent Nation of Myself'
       },
     ],
@@ -256,7 +262,7 @@ describe('21-686C schema', () => {
         addressType: 'INTERNATIONAL',
         street: '123 main st.',
         city: 'anywhere',
-        country: 'USA',
+        countryDropdown: 'USA',
       },
 
       // INTERNATIONAL (Country Not In List) with state and postalCode
@@ -264,7 +270,7 @@ describe('21-686C schema', () => {
         addressType: 'INTERNATIONAL',
         street: '123 main st.',
         city: 'anywhere',
-        country: 'Country Not In List',
+        countryDropdown: 'Country Not In List',
         state: 'KY',
         postalCode: '55555'
       },
@@ -275,7 +281,7 @@ describe('21-686C schema', () => {
         street: '123 main st.',
         city: 'anywhere',
         state: 'KY',
-        country: 'Bangladesh'
+        countryDropdown: 'Bangladesh'
       },
 
       // INTERNATIONAL with selected country (allowed) and countryText (not allowed)
@@ -283,7 +289,7 @@ describe('21-686C schema', () => {
         addressType: 'INTERNATIONAL',
         street: '123 main st.',
         city: 'anywhere',
-        country: 'Canada',
+        countryDropdown: 'Canada',
         countryText: 'Independent Nation of Myself'
       },
 
@@ -292,7 +298,7 @@ describe('21-686C schema', () => {
         addressType: 'DOMESTIC',
         street: '123 main st.',
         city: 'any  where',
-        country: 'USA',
+        countryDropdown: 'USA',
         state: 'KY',
         postalCode: '55555'
       }
