@@ -14,7 +14,7 @@ const disabilitiesBaseDef = {
     required: ['name', 'disabilityActionType'],
     properties: {
       name: {
-        type: 'string',
+        type: 'string'
       },
       disabilityActionType: {
         type: 'string',
@@ -42,7 +42,7 @@ const addressBaseDef = {
   properties: {
     country: {
       type: 'string',
-      'enum': pciuCountries,
+      enum: pciuCountries,
       default: 'USA'
     },
     addressLine1: {
@@ -67,7 +67,7 @@ const addressBaseDef = {
     },
     state: {
       type: 'string',
-      'enum': pciuStates.map(state => state.value),
+      enum: pciuStates.map(state => state.value),
       enumNames: pciuStates.map(state => state.label)
     },
     zipCode: {
@@ -78,10 +78,18 @@ const addressBaseDef = {
 };
 
 // Some date ranges require both 'from' and 'to' dates
-const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateRange);
+const dateRangeAllRequired = _.set(
+  'required',
+  ['from', 'to'],
+  definitions.dateRange
+);
 
 // Other date ranges don't
-const dateRangeFromRequired = _.set('required', ['from'], definitions.dateRange);
+const dateRangeFromRequired = _.set(
+  'required',
+  ['from'],
+  definitions.dateRange
+);
 
 /**
  * Transforms common fullName definition by adding regex validations and
@@ -91,15 +99,16 @@ const dateRangeFromRequired = _.set('required', ['from'], definitions.dateRange)
  * @param {definitions} definitions the common schema definitions file
  * @returns {object} the servicePeriods schema object
  */
-const fullNameDef = ((definitions) => {
+const fullNameDef = (definitions => {
   const fullNameClone = _.cloneDeep(definitions.fullName);
   delete fullNameClone.properties.suffix;
 
   // These patterns are taken straight from Swagger
-  const firstLastPattern = "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+  const firstLastPattern = "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$";
   fullNameClone.properties.first.pattern = firstLastPattern;
   fullNameClone.properties.last.pattern = firstLastPattern;
-  fullNameClone.properties.middle.pattern = "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
+  fullNameClone.properties.middle.pattern =
+    "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
 
   return fullNameClone;
 })(definitions);
@@ -109,17 +118,16 @@ const fullNameDef = ((definitions) => {
  * @property {object} addressSchema
  * @returns {object} the treatmentCenterAddress schema object
  */
-const vaTreatmentCenterAddressDef = ((addressSchema) => {
+const vaTreatmentCenterAddressDef = (addressSchema => {
   const { type, properties } = addressSchema;
-  return Object.assign({}, {
-    type,
-    required: ['country'],
-    properties: _.pick([
-      'country',
-      'city',
-      'state'
-    ], properties)
-  });
+  return Object.assign(
+    {},
+    {
+      type,
+      required: ['country'],
+      properties: _.pick(['country', 'city', 'state'], properties)
+    }
+  );
 })(addressBaseDef);
 
 let schema = {
@@ -144,18 +152,13 @@ let schema = {
     fullName: fullNameDef,
     phone: definitions.usaPhone,
     form4142: definitions.form4142,
-    // Private Provider Facility Address for forms 4142/4142A 
+    // Private Provider Facility Address for forms 4142/4142A
     // uses Central Mail Address Schema properties as the
     // document is submitted to Central Mail (ICMHS)
     // Refer to definitions.js $ref: '#/definitions/centralMailAddress'
     centralMailAddress: definitions.centralMailAddress
   },
-  required: [
-    'veteran',
-    'serviceInformation',
-    'disabilities',
-    'standardClaim'
-  ],
+  required: ['veteran', 'serviceInformation', 'disabilities', 'standardClaim'],
   properties: {
     veteran: {
       type: 'object',
@@ -165,13 +168,15 @@ let schema = {
           type: 'string',
           minLength: 6,
           maxLength: 80,
-          pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+          pattern:
+            '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
         },
         alternateEmailAddress: {
           type: 'string',
           format: 'email',
           maxLength: 80,
-          pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+          pattern:
+            '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
         },
         mailingAddress: {
           $ref: '#/definitions/address'
@@ -184,21 +189,28 @@ let schema = {
         // 2. The UI is such that requiring fields must be done in the UI schema
         // 3. There is an effectiveDate property that specifies the date at which
         //    the forwarding address should start to be used
-        forwardingAddress: _.set('properties.effectiveDate', {
-          $ref: '#/definitions/date'
-        }, _.omit('required', _.merge(addressBaseDef, {
-          properties: {
-            addressLine1: {
-              maxLength: 35
-            },
-            addressLine2: {
-              maxLength: 35
-            },
-            addressLine3: {
-              maxLength: 35
-            }
-          }
-        }))),
+        forwardingAddress: _.set(
+          'properties.effectiveDate',
+          {
+            $ref: '#/definitions/date'
+          },
+          _.omit(
+            'required',
+            _.merge(addressBaseDef, {
+              properties: {
+                addressLine1: {
+                  maxLength: 35
+                },
+                addressLine2: {
+                  maxLength: 35
+                },
+                addressLine3: {
+                  maxLength: 35
+                }
+              }
+            })
+          )
+        ),
         homelessness: {
           type: 'object',
           required: ['isHomeless'],
@@ -225,8 +237,7 @@ let schema = {
         serviceNumber: {
           type: 'string',
           pattern: '^[a-zA-Z0-9]{1,9}$'
-        },
-
+        }
       }
     },
     attachments: {
@@ -245,8 +256,8 @@ let schema = {
           // This is the document type schema - FileField requires this specific name be used
           attachmentId: {
             type: 'string',
-            'enum': documentTypes526.map(doc => doc.value),
-            enumNames: documentTypes526.map(doc => doc.label),
+            enum: documentTypes526.map(doc => doc.value),
+            enumNames: documentTypes526.map(doc => doc.label)
           }
         }
       }
@@ -282,7 +293,7 @@ let schema = {
           // I want military retired pay instead of VA compensation
           type: 'boolean',
           default: false
-        },
+        }
       }
     },
     serviceInformation: {
@@ -324,7 +335,11 @@ let schema = {
         },
         reservesNationalGuardService: {
           type: 'object',
-          required: ['unitName', 'obligationTermOfServiceDateRange', 'waiveVABenefitsToRetainTrainingPay'],
+          required: [
+            'unitName',
+            'obligationTermOfServiceDateRange',
+            'waiveVABenefitsToRetainTrainingPay'
+          ],
           properties: {
             unitName: {
               type: 'string',
@@ -338,7 +353,7 @@ let schema = {
               // I elect to waive VA benefits for the days I accrued
               // inactive duty training pay in order to retain my inactive
               // duty training pay.
-              type: 'boolean',
+              type: 'boolean'
             },
             title10Activation: {
               type: 'object',
@@ -348,7 +363,7 @@ let schema = {
                 },
                 anticipatedSeparationDate: {
                   $ref: '#/definitions/date'
-                },
+                }
               }
             }
           }
@@ -407,7 +422,7 @@ let schema = {
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/vaTreatmentCenterAddress'
-          },
+          }
         }
       }
     },
@@ -440,7 +455,7 @@ let schema = {
     form4142: {
       $ref: '#/definitions/form4142'
     }
-  },
+  }
 };
 
 export default schema;
