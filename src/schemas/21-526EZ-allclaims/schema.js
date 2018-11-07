@@ -317,8 +317,7 @@ const schema = {
             type: 'string'
           },
           VAMistreatmentDate: {
-            type: 'string',
-            format: 'date'
+            type: 'string'
           }
         }
       }
