@@ -124,6 +124,7 @@ const schema = {
   definitions: {
     phone: definitions.usaPhone,
     date: definitions.date,
+    fullName: definitions.fullName,
     email: {
       type: 'string',
       minLength: 6,
@@ -495,7 +496,7 @@ const schema = {
           }
         },
         privacyAgreementAccepted: {
-          $ref: '#/definitions/privacyAgreementAccepted'
+          type: 'boolean'
         }
       }
     },
