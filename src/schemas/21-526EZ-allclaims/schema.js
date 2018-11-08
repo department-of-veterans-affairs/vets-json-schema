@@ -162,19 +162,19 @@ const schema = {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
           },
           middle: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
           },
           last: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
           }
         }
       }
@@ -387,7 +387,7 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 100,
-          pattern: "([a-zA-Z0-9-/']+( ?))*$"
+          pattern: "([-a-zA-Z0-9/']+( ?))*$"
         },
         phoneNumber: {
           $ref: '#/definitions/phone'

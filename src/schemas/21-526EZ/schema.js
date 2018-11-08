@@ -225,7 +225,7 @@ let schema = {
                   type: 'string',
                   minLength: 1,
                   maxLength: 100,
-                  pattern: "([a-zA-Z0-9-/']+( ?))*$"
+                  pattern: "([-a-zA-Z0-9/']+( ?))*$"
                 },
                 primaryPhone: {
                   $ref: '#/definitions/phone'
