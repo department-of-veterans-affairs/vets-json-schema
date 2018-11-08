@@ -76,22 +76,22 @@ const baseAddressDef = {
     addressLine1: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
     },
     addressLine2: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
     },
     addressLine3: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([a-zA-Z0-9-'.,&#]([a-zA-Z0-9-'.,&# ])?)+$"
     },
     city: {
       type: 'string',
       maxLength: 30,
-      pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+      pattern: "^([a-zA-Z0-9-'.#]([a-zA-Z0-9-'.# ])?)+$"
     },
     state: {
       type: 'string',
