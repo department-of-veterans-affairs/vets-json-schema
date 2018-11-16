@@ -8,7 +8,7 @@ module VetsJsonSchema
     return_val = {}
 
     ScriptUtils.directories("#{base_dir}src/schemas").each do |schema|
-      schema = File.basename(schema)
+      schema = File.basename(schema).upcase
       return_val[schema] = MultiJson.load(File.read("#{base_dir}dist/#{schema}-schema.json"))
     end
 
