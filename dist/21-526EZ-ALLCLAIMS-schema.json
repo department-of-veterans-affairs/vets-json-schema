@@ -1665,7 +1665,8 @@
       "items": {
         "type": "object",
         "required": [
-          "treatmentCenterName"
+          "treatmentCenterName",
+          "treatedDisabilityNames"
         ],
         "properties": {
           "treatmentCenterName": {
@@ -1678,6 +1679,14 @@
           },
           "treatmentCenterAddress": {
             "$ref": "#/definitions/vaTreatmentCenterAddress"
+          },
+          "treatedDisabilityNames": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
