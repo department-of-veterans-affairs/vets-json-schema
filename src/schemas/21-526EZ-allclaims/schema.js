@@ -400,7 +400,7 @@ const schema = {
       maxItems: 100,
       items: {
         type: 'object',
-        required: ['treatmentCenterName'],
+        required: ['treatmentCenterName', 'treatedDisabilityNames'],
         properties: {
           treatmentCenterName: {
             type: 'string',
@@ -412,6 +412,14 @@ const schema = {
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/vaTreatmentCenterAddress'
+          },
+          treatedDisabilityNames: {
+            type: 'array',
+            minItems: 1,
+            maxItems: 100,
+            items: {
+              type: 'string'
+            }
           }
         }
       }
