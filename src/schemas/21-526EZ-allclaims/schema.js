@@ -48,6 +48,19 @@ const disabilitiesBaseDef = {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
       },
+      specialIssue: {
+        type: 'string',
+        enum: [
+          'ALS',
+          'HEPC',
+          'POW',
+          'PTSD/1',
+          'PTSD/2',
+          'PTSD/3',
+          'PTSD/4',
+          'MST',
+        ],
+      },
       ratedDisabilityId: {
         type: 'string'
       },
