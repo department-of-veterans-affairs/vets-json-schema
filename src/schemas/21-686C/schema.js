@@ -85,6 +85,50 @@ const commonMarriageDef = {
   }
 }
 
+const commonMarriagesDef = {
+  type: 'array',
+  items: {
+    type: 'object',
+    required: [...commonMarriageDef.required],
+    properties: {
+      ...commonMarriageDef.properties,
+      dateOfSeparation: schemaHelpers.getDefinition('date'),
+      locationOfSeparation: {
+        $ref: '#/definitions/location'
+      }
+    },
+    oneOf: [
+      {
+        properties: {
+          reasonForSeparation: {
+            type: 'string',
+            'enum': [
+              'Death',
+              'Divorce'
+            ]
+          }
+        }
+      },
+      {
+        required: ['explainSeparation'],
+        properties: {
+          reasonForSeparation: {
+            type: 'string',
+            'enum': [
+              'Other'
+            ]
+          },
+          explainSeparation: {
+            type: 'string',
+            maxLength: 500,
+            pattern: textAndNumbersRegex
+          }
+        }
+      }
+    ]
+  }
+}
+
 const addressDefs = [
   { $ref: '#/definitions/domesticAddress' },
   { $ref: '#/definitions/militaryAddress' },
@@ -270,49 +314,14 @@ let schema = {
           }
         ]
       },
+      marriages: {...commonMarriagesDef},
       previousMarriages: {
-        type: 'array',
+        ...commonMarriagesDef,
         items: {
-          type: 'object',
-          required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
-          properties: {
-            ...commonMarriageDef.properties,
-            dateOfSeparation: schemaHelpers.getDefinition('date'),
-            locationOfSeparation: {
-              $ref: '#/definitions/location'
-            }
-          },
-          oneOf: [
-            {
-              properties: {
-                reasonForSeparation: {
-                  type: 'string',
-                  'enum': [
-                    'Death',
-                    'Divorce'
-                  ]
-                }
-              }
-            },
-            {
-              required: ['explainSeparation'],
-              properties: {
-                reasonForSeparation: {
-                  type: 'string',
-                  'enum': [
-                    'Other'
-                  ]
-                },
-                explainSeparation: {
-                  type: 'string',
-                  maxLength: 500,
-                  pattern: textAndNumbersRegex
-                }
-              }
-            }
-          ]
+          ...commonMarriagesDef.items,
+          required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation']
         }
-      }
+      },
     }
   ),
   properties: {
@@ -347,9 +356,6 @@ let schema = {
       required: commonMarriageDef.required,
       properties: {
         ...commonMarriageDef.properties,
-        spouseMarriages: {
-          $ref: '#/definitions/previousMarriages'
-        },
         spouseAddress: {
           type: 'object',
           anyOf: addressDefs
@@ -398,8 +404,21 @@ let schema = {
         }
       ]
     },
-    previousMarriages: {
+    // TRANSLATE: the `spouseMarriages` array should be added to the
+    // `currentMarriage` object. To work with the form system's ability to show
+    // a page for each item in the array, the array must live on the top level
+    // of the schema.
+    spouseMarriages: {
       $ref: '#/definitions/previousMarriages'
+    },
+    // TRANSLATE: if `maritalStatus` is 'MARRIED' or 'SEPARATED', then the last
+    // item in the `marriages` array should be popped off and merged with the
+    // `currentMarriage` object.
+    // TRANSLATE: regardless of if the last object in this array needs to be
+    // merged with the `currentMarriage` object, the `marriages` array should be
+    // renamed to `previousMarriages`
+    marriages: {
+      $ref: '#/definitions/marriages'
     },
     dependents: {
       type: 'array',
