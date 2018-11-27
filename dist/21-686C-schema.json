@@ -1213,6 +1213,65 @@
         }
       ]
     },
+    "marriages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "dateOfMarriage",
+          "locationOfMarriage",
+          "spouseFullName"
+        ],
+        "properties": {
+          "dateOfMarriage": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfMarriage": {
+            "$ref": "#/definitions/location"
+          },
+          "spouseFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "dateOfSeparation": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfSeparation": {
+            "$ref": "#/definitions/location"
+          }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "reasonForSeparation": {
+                "type": "string",
+                "enum": [
+                  "Death",
+                  "Divorce"
+                ]
+              }
+            }
+          },
+          {
+            "required": [
+              "explainSeparation"
+            ],
+            "properties": {
+              "reasonForSeparation": {
+                "type": "string",
+                "enum": [
+                  "Other"
+                ]
+              },
+              "explainSeparation": {
+                "type": "string",
+                "maxLength": 500,
+                "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+              }
+            }
+          }
+        ]
+      }
+    },
     "previousMarriages": {
       "type": "array",
       "items": {
@@ -1349,9 +1408,6 @@
         "spouseFullName": {
           "$ref": "#/definitions/fullName"
         },
-        "spouseMarriages": {
-          "$ref": "#/definitions/previousMarriages"
-        },
         "spouseAddress": {
           "type": "object",
           "anyOf": [
@@ -1425,8 +1481,11 @@
         }
       ]
     },
-    "previousMarriages": {
+    "spouseMarriages": {
       "$ref": "#/definitions/previousMarriages"
+    },
+    "marriages": {
+      "$ref": "#/definitions/marriages"
     },
     "dependents": {
       "type": "array",

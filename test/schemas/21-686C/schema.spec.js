@@ -116,8 +116,8 @@ describe('21-686C schema', () => {
     valid: ['MARRIED', 'DIVORCED', 'WIDOWED', 'SEPARATED', 'NEVERMARRIED'],
     invalid: ['Divorce']
   });
-  
-  schemaTestHelper.testValidAndInvalid('previousMarriages', {
+
+  schemaTestHelper.testValidAndInvalid('marriages', {
     valid: [
       [
         {
