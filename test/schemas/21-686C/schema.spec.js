@@ -54,19 +54,11 @@ describe('21-686C schema', () => {
   schemaTestHelper.testValidAndInvalid('currentMarriage', {
     valid: [
       {
-        dateOfMarriage: fixtures.date,
-        locationOfMarriage: {
-          countryDropdown: 'Canada'
-        },
         spouseFullName: fixtures.fullName,
         spouseSocialSecurityNumber: fixtures.ssn,
         spouseVaFileNumber: 'C1234567'
       },
       {
-        dateOfMarriage: fixtures.date,
-        locationOfMarriage: {
-          countryDropdown: 'Canada'
-        },
         spouseFullName: fixtures.fullName,
         spouseHasNoSsn: true,
         spouseHasNoSsnReason: 'NONRESIDENTALIEN'
