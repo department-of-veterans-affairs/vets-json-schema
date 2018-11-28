@@ -1393,21 +1393,7 @@
     },
     "currentMarriage": {
       "type": "object",
-      "required": [
-        "dateOfMarriage",
-        "locationOfMarriage",
-        "spouseFullName"
-      ],
       "properties": {
-        "dateOfMarriage": {
-          "$ref": "#/definitions/date"
-        },
-        "locationOfMarriage": {
-          "$ref": "#/definitions/location"
-        },
-        "spouseFullName": {
-          "$ref": "#/definitions/fullName"
-        },
         "spouseAddress": {
           "type": "object",
           "anyOf": [

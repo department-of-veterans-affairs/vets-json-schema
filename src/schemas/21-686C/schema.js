@@ -353,9 +353,7 @@ let schema = {
     },
     currentMarriage: {
       type: 'object',
-      required: commonMarriageDef.required,
       properties: {
-        ...commonMarriageDef.properties,
         spouseAddress: {
           type: 'object',
           anyOf: addressDefs
