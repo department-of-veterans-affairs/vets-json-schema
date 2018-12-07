@@ -116,6 +116,22 @@ const schema = {
       pattern:
         '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
     },
+    specialIssues: {
+      type: 'array',
+      items: {
+        type: 'string',
+        enum: [
+          'ALS',
+          'HEPC',
+          'POW',
+          'PTSD/1',
+          'PTSD/2',
+          'PTSD/3',
+          'PTSD/4',
+          'MST'
+        ]
+      }
+    },
     address: baseAddressDef,
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
@@ -125,7 +141,6 @@ const schema = {
       definitions.dateRange
     ),
     dateRangeFromRequired: _.set('required', ['from'], definitions.dateRange),
-    specialIssues,
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
