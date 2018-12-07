@@ -142,72 +142,6 @@ const schema = {
         }
       }
     }),
-    form4142: {
-      type: 'object',
-      properties: {
-        limitedConsent: {
-          type: 'string'
-        },
-        providerFacility: {
-          type: 'array',
-          minItems: 1,
-          maxItems: 100,
-          items: {
-            type: 'object',
-            required: [
-              'providerFacilityName',
-              'treatmentDateRange',
-              'providerFacilityAddress'
-            ],
-            properties: {
-              providerFacilityName: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 100
-              },
-              treatmentDateRange: {
-                $ref: '#/definitions/dateRangeAllRequired'
-              },
-              providerFacilityAddress: {
-                type: 'object',
-                required: ['street', 'city', 'country', 'state', 'postalCode'],
-                properties: {
-                  street: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 20
-                  },
-                  street2: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 20
-                  },
-                  city: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 30
-                  },
-                  postalCode: {
-                    type: 'string',
-                    pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
-                  },
-                  country: {
-                    type: 'string',
-                    enum: baseAddressDef.properties.country.enum,
-                    default: 'USA'
-                  },
-                  state: {
-                    type: 'string',
-                    enum: baseAddressDef.properties.state.enum,
-                    enumNames: baseAddressDef.properties.state.enumNames
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     unitAssigned: {
       type: 'string',
       maxLength: 100
@@ -652,13 +586,152 @@ const schema = {
         }
       }
     },
-    ptsdIncidents: {
-      type: 'array',
-      items: { $ref: '#/definitions/ptsdIncident' }
+    form0781: {
+      type: 'object',
+      incident: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            personalAssault: {
+              type: 'boolean'
+            },
+            medalsCitations: {
+              type: 'string'
+            },
+            incidentDate: {
+              $ref: '#/definitions/date'
+            },
+            incidentLocation: {
+              type: 'string'
+            },
+            incidentDescription: {
+              type: 'string'
+            },
+            unitAssigned: {
+              type: 'string'
+            },
+            unitAssignedDates: {
+              $ref: '#/definitions/dateRange'
+            },
+            remarks: {
+              type: 'string'
+            },
+            additionalChanges: {
+              type: 'string'
+            },
+            personInvolved: {
+              type: 'array',
+              items: {
+                type: 'object',
+                name: {
+                  $ref: '#/definitions/fullName'
+                },
+                rank: {
+                  type: 'string'
+                },
+                injuryDeath: {
+                  type: 'string',
+                  enum: [
+                    'Killed in Action',
+                    'Killed Non-Battle',
+                    'Wounded in Action',
+                    'Injured Non-Battle',
+                    'Other'
+                  ]
+                },
+                injuryDeathOther: {
+                  type: 'string'
+                },
+                injuryDeathDate: {
+                  $ref: '#/definitions/date'
+                },
+                unitAssigned: {
+                  type: 'string'
+                }
+              }
+            },
+            source: {
+              type: 'array',
+              items: {
+                type: 'object',
+                name: {
+                  $ref: '#/definitions/fullName'
+                },
+                address: {
+                  $ref: '#/definitions/address'
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    secondaryPtsdIncidents: {
-      type: 'array',
-      items: { $ref: '#/definitions/secondaryPtsdIncident' }
+    form4142: {
+      type: 'object',
+      properties: {
+        limitedConsent: {
+          type: 'string'
+        },
+        providerFacility: {
+          type: 'array',
+          minItems: 1,
+          maxItems: 100,
+          items: {
+            type: 'object',
+            required: [
+              'providerFacilityName',
+              'treatmentDateRange',
+              'providerFacilityAddress'
+            ],
+            properties: {
+              providerFacilityName: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 100
+              },
+              treatmentDateRange: {
+                $ref: '#/definitions/dateRangeAllRequired'
+              },
+              providerFacilityAddress: {
+                type: 'object',
+                required: ['street', 'city', 'country', 'state', 'postalCode'],
+                properties: {
+                  street: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 20
+                  },
+                  street2: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 20
+                  },
+                  city: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 30
+                  },
+                  postalCode: {
+                    type: 'string',
+                    pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
+                  },
+                  country: {
+                    type: 'string',
+                    enum: baseAddressDef.properties.country.enum,
+                    default: 'USA'
+                  },
+                  state: {
+                    type: 'string',
+                    enum: baseAddressDef.properties.state.enum,
+                    enumNames: baseAddressDef.properties.state.enumNames
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 };
