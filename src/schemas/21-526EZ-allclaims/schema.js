@@ -17,14 +17,6 @@ const serviceBranches = [
   'Public Health Service'
 ];
 
-const specialIssues = {
-  type: 'array',
-  items: {
-    type: 'string',
-    enum: ['ALS', 'HEPC', 'POW', 'PTSD/1', 'PTSD/2', 'PTSD/3', 'PTSD/4', 'MST']
-  }
-};
-
 const disabilitiesBaseDef = {
   type: 'array',
   maxItems: 100,
@@ -39,7 +31,7 @@ const disabilitiesBaseDef = {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
       },
-      specialIssues,
+      specialIssues: { $ref: '#/definitions/specialIssues' },
       ratedDisabilityId: {
         type: 'string'
       },
@@ -208,7 +200,6 @@ const schema = {
   properties: {
     alternateNames: {
       type: 'array',
-      minItems: 1,
       maxItems: 100,
       items: {
         type: 'object',
@@ -716,16 +707,8 @@ const schema = {
                     type: 'string',
                     pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
                   },
-                  country: {
-                    type: 'string',
-                    enum: baseAddressDef.properties.country.enum,
-                    default: 'USA'
-                  },
-                  state: {
-                    type: 'string',
-                    enum: baseAddressDef.properties.state.enum,
-                    enumNames: baseAddressDef.properties.state.enumNames
-                  }
+                  country: baseAddressDef.properties.country,
+                  state: baseAddressDef.properties.state
                 }
               }
             }
