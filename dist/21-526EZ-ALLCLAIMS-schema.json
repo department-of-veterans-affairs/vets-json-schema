@@ -985,7 +985,7 @@
     "ptsdIncident": {
       "type": "object",
       "properties": {
-        "date": {
+        "incidentDate": {
           "$ref": "#/definitions/date"
         },
         "description": {
@@ -1507,7 +1507,7 @@
             }
           }
         },
-        "date": {
+        "incidentDate": {
           "$ref": "#/definitions/date"
         },
         "description": {

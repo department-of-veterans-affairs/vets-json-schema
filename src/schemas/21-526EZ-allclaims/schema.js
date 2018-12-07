@@ -160,7 +160,7 @@ const schema = {
     ptsdIncident: {
       type: 'object',
       properties: {
-        date: { $ref: '#/definitions/date' },
+        incidentDate: { $ref: '#/definitions/date' },
         description: { type: 'string' },
         unitAssigned: { $ref: '#/definitions/unitAssigned' },
         unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
@@ -198,7 +198,7 @@ const schema = {
             }
           }
         },
-        date: { $ref: '#/definitions/date' },
+        incidentDate: { $ref: '#/definitions/date' },
         description: { type: 'string' },
         unitAssigned: { $ref: '#/definitions/unitAssigned' },
         unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
