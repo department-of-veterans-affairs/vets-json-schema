@@ -1,28 +1,11 @@
 import _ from 'lodash/fp';
+import { countries } from '../../common/constants';
 import definitions from '../../common/definitions';
 import {
   documentTypes526,
   pciuCountries,
   pciuStates
 } from '../../common/constants';
-
-const ptsdAttachment = {
-  type: 'array',
-  items: {
-    type: 'object',
-    properties: {
-      name: {
-        type: 'string'
-      },
-      size: {
-        type: 'integer'
-      },
-      confirmationCode: {
-        type: 'string'
-      }
-    }
-  }
-};
 
 const serviceBranches = [
   'Air Force',
@@ -48,19 +31,7 @@ const disabilitiesBaseDef = {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
       },
-      specialIssue: {
-        type: 'string',
-        enum: [
-          'ALS',
-          'HEPC',
-          'POW',
-          'PTSD/1',
-          'PTSD/2',
-          'PTSD/3',
-          'PTSD/4',
-          'MST',
-        ],
-      },
+      specialIssues: { $ref: '#/definitions/specialIssues' },
       ratedDisabilityId: {
         type: 'string'
       },
@@ -145,16 +116,32 @@ const schema = {
       pattern:
         '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
     },
+    specialIssues: {
+      type: 'array',
+      items: {
+        type: 'string',
+        enum: [
+          'ALS',
+          'HEPC',
+          'POW',
+          'PTSD/1',
+          'PTSD/2',
+          'PTSD/3',
+          'PTSD/4',
+          'MST'
+        ]
+      }
+    },
     address: baseAddressDef,
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
+    dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set(
       'required',
       ['from', 'to'],
       definitions.dateRange
     ),
     dateRangeFromRequired: _.set('required', ['from'], definitions.dateRange),
-    dateRange: definitions.dateRange,
-    disabilities: _.merge(disabilitiesBaseDef, {
+    ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
         properties: {
@@ -162,7 +149,68 @@ const schema = {
         }
       }
     }),
-    ptsdAttachment
+    unitAssigned: {
+      type: 'string',
+      maxLength: 100
+    },
+    unitAssignedDates: {
+      type: 'object',
+      properties: {
+        from: {
+          type: 'string'
+        },
+        to: {
+          type: 'string'
+        }
+      }
+    },
+    ptsdIncident: {
+      type: 'object',
+      properties: {
+        incidentDate: { $ref: '#/definitions/date' },
+        description: { type: 'string' },
+        unitAssigned: { $ref: '#/definitions/unitAssigned' },
+        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
+      }
+    },
+    secondaryPtsdIncident: {
+      type: 'object',
+      properties: {
+        authorities: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              name: {
+                type: 'string'
+              },
+              address: {
+                type: 'object',
+                required: [],
+                properties: {
+                  ..._.omit(['addressLine3'], baseAddressDef.properties),
+                  country: {
+                    default: 'USA',
+                    type: 'string',
+                    enum: countries.map(country => country.value),
+                    enumNames: countries.map(country => country.label)
+                  },
+                  state: {
+                    title: 'State',
+                    type: 'string',
+                    maxLength: 51
+                  }
+                }
+              }
+            }
+          }
+        },
+        incidentDate: { $ref: '#/definitions/date' },
+        description: { type: 'string' },
+        unitAssigned: { $ref: '#/definitions/unitAssigned' },
+        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
+      }
+    }
   },
   properties: {
     alternateNames: {
@@ -170,24 +218,25 @@ const schema = {
       maxItems: 100,
       items: {
         type: 'object',
+        required: ['first', 'last'],
         properties: {
           first: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
+            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
           },
           middle: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
+            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
           },
           last: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
+            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
           }
         }
       }
@@ -238,14 +287,11 @@ const schema = {
               maxLength: 256,
               pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
             },
-            unitAddress: {
-              $ref: '#/definitions/address'
-            },
-            unitPhone: {
-              $ref: '#/definitions/phone'
-            },
             obligationTermOfServiceDateRange: {
               $ref: '#/definitions/dateRangeAllRequired'
+            },
+            receivingTrainingPay: {
+              type: 'boolean'
             },
             title10Activation: {
               type: 'object',
@@ -292,9 +338,7 @@ const schema = {
     waiveTrainingPay: {
       type: 'boolean'
     },
-    disabilities: {
-      $ref: '#/definitions/disabilities'
-    },
+    ratedDisabilities: { $ref: '#/definitions/ratedDisabilities' },
     newDisabilities: {
       type: 'array',
       items: {
@@ -316,6 +360,9 @@ const schema = {
           },
           causedByDisabilityDescription: {
             type: 'string'
+          },
+          specialIssues: {
+            $ref: '#/definitions/specialIssues'
           },
           worsenedDescription: {
             type: 'string'
@@ -366,11 +413,17 @@ const schema = {
         })
       )
     ),
-    emailAddress: {
-      $ref: '#/definitions/email'
-    },
-    primaryPhone: {
-      $ref: '#/definitions/phone'
+    phoneAndEmail: {
+      type: 'object',
+      required: ['primaryPhone', 'emailAddress'],
+      properties: {
+        primaryPhone: {
+          $ref: '#/definitions/phone'
+        },
+        emailAddress: {
+          $ref: '#/definitions/email'
+        }
+      }
     },
     homelessOrAtRisk: {
       type: 'string',
@@ -400,7 +453,7 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 100,
-          pattern: "([-a-zA-Z0-9/']+( ?))*$"
+          pattern: "([a-zA-Z0-9-/']+( ?))*$"
         },
         phoneNumber: {
           $ref: '#/definitions/phone'
@@ -481,42 +534,61 @@ const schema = {
       type: 'boolean',
       default: false
     },
-    ptsd781Attachment: {
-      $ref: '#/definitions/ptsdAttachment'
-    },
-    ptsd781aAttachment: {
-      $ref: '#/definitions/ptsdAttachment'
-    },
-    form4142: {
+    mentalChanges: {
       type: 'object',
       properties: {
-        limitedConsent: {
+        depression: {
+          type: 'boolean'
+        },
+        obsessive: {
+          type: 'boolean'
+        },
+        prescription: {
+          type: 'boolean'
+        },
+        substance: {
+          type: 'boolean'
+        },
+        hypervigilance: {
+          type: 'boolean'
+        },
+        agoraphobia: {
+          type: 'boolean'
+        },
+        fear: {
+          type: 'boolean'
+        },
+        other: {
+          type: 'boolean'
+        },
+        otherExplanation: {
           type: 'string'
         },
-        providerFacility: {
-          type: 'array',
-          required: [
-            'providerFacilityName',
-            'treatmentDateRange',
-            'providerFacilityAddress'
-          ],
-          items: {
-            type: 'object',
-            properties: {
-              providerFacilityName: {
-                type: 'string'
-              },
-              treatmentDateRange: {
-                $ref: '#/definitions/dateRange'
-              },
-              providerFacilityAddress: {
-                $ref: '#/definitions/address'
-              }
-            }
-          }
-        },
-        privacyAgreementAccepted: {
+        noneApply: {
           type: 'boolean'
+        }
+      }
+    },
+    hospitalizationHistory: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          hospitalizationDateRange: {
+            $ref: '#/definitions/dateRange'
+          },
+          hospitalName: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 100
+          },
+          hospitalAddress: {
+            type: 'object',
+            properties: _.omit(
+              ['addressLine3', 'country'],
+              baseAddressDef.properties
+            )
+          }
         }
       }
     },
@@ -549,6 +621,9 @@ const schema = {
               $ref: '#/definitions/dateRange'
             },
             remarks: {
+              type: 'string'
+            },
+            additionalChanges: {
               type: 'string'
             },
             personInvolved: {
@@ -591,6 +666,64 @@ const schema = {
                 },
                 address: {
                   $ref: '#/definitions/address'
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    form4142: {
+      type: 'object',
+      properties: {
+        limitedConsent: {
+          type: 'string'
+        },
+        providerFacility: {
+          type: 'array',
+          minItems: 1,
+          maxItems: 100,
+          items: {
+            type: 'object',
+            required: [
+              'providerFacilityName',
+              'treatmentDateRange',
+              'providerFacilityAddress'
+            ],
+            properties: {
+              providerFacilityName: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 100
+              },
+              treatmentDateRange: {
+                $ref: '#/definitions/dateRangeAllRequired'
+              },
+              providerFacilityAddress: {
+                type: 'object',
+                required: ['street', 'city', 'country', 'state', 'postalCode'],
+                properties: {
+                  street: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 20
+                  },
+                  street2: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 20
+                  },
+                  city: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 30
+                  },
+                  postalCode: {
+                    type: 'string',
+                    pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
+                  },
+                  country: baseAddressDef.properties.country,
+                  state: baseAddressDef.properties.state
                 }
               }
             }
