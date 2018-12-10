@@ -215,10 +215,10 @@ const schema = {
   properties: {
     alternateNames: {
       type: 'array',
+      minItems: 1,
       maxItems: 100,
       items: {
         type: 'object',
-        required: ['first', 'last'],
         properties: {
           first: {
             type: 'string',
