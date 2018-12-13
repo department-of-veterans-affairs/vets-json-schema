@@ -2499,10 +2499,31 @@
     "form0781": {
       "type": "object",
       "properties": {
+        "remarks": {
+          "type": "string"
+        },
+        "additionalIncidentText": {
+          "type": "string"
+        },
+        "additionalSecondaryIncidentText": {
+          "type": "string"
+        },
+        "additionalRemarks781": {
+          "type": "string"
+        },
+        "otherInformation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "incident": {
           "type": "array",
           "items": {
             "type": "object",
+            "required": [
+              "personalAssault"
+            ],
             "properties": {
               "personalAssault": {
                 "type": "boolean"
@@ -2569,24 +2590,6 @@
                 }
               }
             }
-          }
-        },
-        "remarks": {
-          "type": "string"
-        },
-        "additionalIncidentText": {
-          "type": "string"
-        },
-        "additionalSecondaryIncidentText": {
-          "type": "string"
-        },
-        "additionalRemarks781": {
-          "type": "string"
-        },
-        "otherInformation": {
-          "type": "array",
-          "items": {
-            "type": "string"
           }
         }
       }
