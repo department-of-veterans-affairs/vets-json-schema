@@ -29,10 +29,19 @@
         },
         "suffix": {
           "type": "string",
-          "enum": ["Jr.", "Sr.", "II", "III", "IV"]
+          "enum": [
+            "Jr.", 
+            "Sr.", 
+            "II", 
+            "III", 
+            "IV"
+          ]
         }
       },
-      "required": ["first", "last"]
+      "required": [
+        "first", 
+        "last"
+      ]
     },
     "email": {
       "type": "string",
@@ -58,7 +67,11 @@
     },
     "address": {
       "type": "object",
-      "required": ["country", "city", "addressLine1"],
+      "required": [
+        "country", 
+        "city", 
+        "addressLine1"
+      ],
       "properties": {
         "country": {
           "type": "string",
@@ -441,7 +454,9 @@
     },
     "vaTreatmentCenterAddress": {
       "type": "object",
-      "required": ["country"],
+      "required": [
+        "country"
+      ],
       "properties": {
         "country": {
           "type": "string",
@@ -824,7 +839,10 @@
           "$ref": "#/definitions/date"
         }
       },
-      "required": ["from", "to"]
+      "required": [
+        "from", 
+        "to"
+      ]
     },
     "dateRangeFromRequired": {
       "type": "object",
@@ -836,21 +854,32 @@
           "$ref": "#/definitions/date"
         }
       },
-      "required": ["from"]
+      "required": [
+        "from"
+      ]
     },
     "ratedDisabilities": {
       "type": "array",
       "maxItems": 100,
       "items": {
         "type": "object",
-        "required": ["name", "disabilityActionType"],
+        "required": [
+          "name", 
+          "disabilityActionType"
+        ],
         "properties": {
           "name": {
             "type": "string"
           },
           "disabilityActionType": {
             "type": "string",
-            "enum": ["NONE", "NEW", "SECONDARY", "INCREASE", "REOPEN"]
+            "enum": [
+              "NONE", 
+              "NEW", 
+              "SECONDARY", 
+              "INCREASE", 
+              "REOPEN"
+            ]
           },
           "specialIssues": {
             "$ref": "#/definitions/specialIssues"
@@ -872,14 +901,23 @@
             "maxItems": 100,
             "items": {
               "type": "object",
-              "required": ["name", "disabilityActionType"],
+              "required": [
+                "name", 
+                "disabilityActionType"
+              ],
               "properties": {
                 "name": {
                   "type": "string"
                 },
                 "disabilityActionType": {
                   "type": "string",
-                  "enum": ["NONE", "NEW", "SECONDARY", "INCREASE", "REOPEN"]
+                  "enum": [
+                    "NONE", 
+                    "NEW", 
+                    "SECONDARY", 
+                    "INCREASE", 
+                    "REOPEN"
+                  ]
                 },
                 "specialIssues": {
                   "$ref": "#/definitions/specialIssues"
@@ -1489,7 +1527,9 @@
     },
     "serviceInformation": {
       "type": "object",
-      "required": ["servicePeriods"],
+      "required": [
+        "servicePeriods"
+      ],
       "properties": {
         "servicePeriods": {
           "type": "array",
@@ -1497,7 +1537,10 @@
           "maxItems": 100,
           "items": {
             "type": "object",
-            "required": ["serviceBranch", "dateRange"],
+            "required": [
+              "serviceBranch", 
+              "dateRange"
+            ],
             "properties": {
               "serviceBranch": {
                 "type": "string",
@@ -1526,7 +1569,10 @@
         },
         "reservesNationalGuardService": {
           "type": "object",
-          "required": ["unitName", "obligationTermOfServiceDateRange"],
+          "required": [
+            "unitName", 
+            "obligationTermOfServiceDateRange"
+          ],
           "properties": {
             "unitName": {
               "type": "string",
@@ -1607,14 +1653,22 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["condition", "cause"],
+        "required": [
+          "condition", 
+          "cause"
+        ],
         "properties": {
           "condition": {
             "type": "string"
           },
           "cause": {
             "type": "string",
-            "enum": ["NEW", "SECONDARY", "WORSENED", "VA"]
+            "enum": [
+              "NEW", 
+              "SECONDARY", 
+              "WORSENED", 
+              "VA"
+            ]
           },
           "primaryDescription": {
             "type": "string"
@@ -2036,7 +2090,10 @@
     },
     "phoneAndEmail": {
       "type": "object",
-      "required": ["primaryPhone", "emailAddress"],
+      "required": [
+        "primaryPhone", 
+        "emailAddress"
+      ],
       "properties": {
         "primaryPhone": {
           "$ref": "#/definitions/phone"
@@ -2048,11 +2105,20 @@
     },
     "homelessOrAtRisk": {
       "type": "string",
-      "enum": ["no", "homeless", "atRisk"]
+      "enum": [
+        "no", 
+        "homeless", 
+        "atRisk"
+      ]
     },
     "homelessHousingSituation": {
       "type": "string",
-      "enum": ["shelter", "notShelter", "anotherPerson", "other"]
+      "enum": [
+        "shelter", 
+        "notShelter", 
+        "anotherPerson", 
+        "other"
+      ]
     },
     "otherHomelessHousing": {
       "type": "string"
@@ -2062,7 +2128,11 @@
     },
     "atRiskHousingSituation": {
       "type": "string",
-      "enum": ["losingHousing", "leavingShelter", "other"]
+      "enum": [
+        "losingHousing", 
+        "leavingShelter", 
+        "other"
+      ]
     },
     "otherAtRiskHousing": {
       "type": "string"
@@ -2087,7 +2157,10 @@
       "maxItems": 100,
       "items": {
         "type": "object",
-        "required": ["treatmentCenterName", "treatedDisabilityNames"],
+        "required": [
+          "treatmentCenterName", 
+          "treatedDisabilityNames"
+        ],
         "properties": {
           "treatmentCenterName": {
             "type": "string",
@@ -2115,7 +2188,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "attachmentId"],
+        "required": [
+          "name", 
+          "attachmentId"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -2185,7 +2261,10 @@
     },
     "bankAccountType": {
       "type": "string",
-      "enum": ["Checking", "Savings"]
+      "enum": [
+        "Checking", 
+        "Savings"
+      ]
     },
     "bankAccountNumber": {
       "type": "string",
