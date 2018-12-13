@@ -840,7 +840,7 @@
         }
       },
       "required": [
-        "from", 
+        "from",
         "to"
       ]
     },
@@ -1654,7 +1654,7 @@
       "items": {
         "type": "object",
         "required": [
-          "condition", 
+          "condition",
           "cause"
         ],
         "properties": {
