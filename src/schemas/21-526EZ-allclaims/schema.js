@@ -595,19 +595,19 @@ const schema = {
     form0781: {
       type: 'object',
       properties: {
-        "remarks": {
-          "type": "string"
+        remarks: {
+          type: 'string'
         },
-        "additionalIncidentText": {
-          "type": "string"
+        additionalIncidentText: {
+          type: 'string'
         },
-        "additionalSecondaryIncidentText": {
-          "type": "string"
+        additionalSecondaryIncidentText: {
+          type: 'string'
         },
-        "otherInformation": {
-          "type": "array",
-          "items": {
-            "type": "string"
+        otherInformation: {
+          type: 'array',
+          items: {
+            type: 'string'
           }
         },
         incident: {
