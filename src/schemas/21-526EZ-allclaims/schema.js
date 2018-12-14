@@ -604,9 +604,6 @@ const schema = {
         "additionalSecondaryIncidentText": {
           "type": "string"
         },
-        "additionalRemarks781": {
-          "type": "string"
-        },
         "otherInformation": {
           "type": "array",
           "items": {
@@ -615,6 +612,7 @@ const schema = {
         },
         incident: {
           type: 'array',
+          minItems: 1,
           items: {
             type: 'object',
             required: [ 
