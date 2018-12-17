@@ -176,7 +176,7 @@ const schema = {
     secondaryPtsdIncident: {
       type: 'object',
       properties: {
-        source: {
+        sources: {
           type: 'array',
           items: {
             type: 'object',
@@ -610,7 +610,7 @@ const schema = {
             type: 'string'
           }
         },
-        incident: {
+        incidents: {
           type: 'array',
           minItems: 1,
           items: {
@@ -640,46 +640,50 @@ const schema = {
               unitAssignedDates: {
                 $ref: '#/definitions/dateRange'
               },
-              personInvolved: {
+              personsInvolved: {
                 type: 'array',
                 items: {
                   type: 'object',
-                  name: {
-                    $ref: '#/definitions/fullName'
-                  },
-                  rank: {
-                    type: 'string'
-                  },
-                  injuryDeath: {
-                    type: 'string',
-                    enum: [
-                      'Killed in Action',
-                      'Killed Non-Battle',
-                      'Wounded in Action',
-                      'Injured Non-Battle',
-                      'Other'
-                    ]
-                  },
-                  injuryDeathOther: {
-                    type: 'string'
-                  },
-                  injuryDeathDate: {
-                    $ref: '#/definitions/date'
-                  },
-                  unitAssigned: {
-                    type: 'string'
+                  properties: {
+                    name: {
+                      $ref: '#/definitions/fullName'
+                    },
+                    rank: {
+                      type: 'string'
+                    },
+                    injuryDeath: {
+                      type: 'string',
+                      enum: [
+                        'killedInAction',
+                        'killedInNonBattle',
+                        'woundedInAction',
+                        'injuredInNonBattle',
+                        'other'
+                      ]
+                    },
+                    injuryDeathOther: {
+                      type: 'string'
+                    },
+                    injuryDeathDate: {
+                      $ref: '#/definitions/date'
+                    },
+                    unitAssigned: {
+                      type: 'string'
+                    }
                   }
                 }
               },
-              source: {
+              sources: {
                 type: 'array',
                 items: {
                   type: 'object',
-                  name: {
-                    $ref: '#/definitions/fullName'
-                  },
-                  address: {
-                    $ref: '#/definitions/address'
+                  properties: {
+                    name: {
+                      $ref: '#/definitions/fullName'
+                    },
+                    address: {
+                      $ref: '#/definitions/address'
+                    }
                   }
                 }
               }
