@@ -2558,11 +2558,11 @@
                     "injuryDeath": {
                       "type": "string",
                       "enum": [
-                        "Killed in Action",
-                        "Killed Non-Battle",
-                        "Wounded in Action",
-                        "Injured Non-Battle",
-                        "Other"
+                        "killedInAction",
+                        "killedNonBattle",
+                        "woundedInAction",
+                        "injuredNonBattle",
+                        "other"
                       ]
                     },
                     "injuryDeathOther": {

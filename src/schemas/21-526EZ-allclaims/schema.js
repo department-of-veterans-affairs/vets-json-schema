@@ -655,9 +655,9 @@ const schema = {
                       type: 'string',
                       enum: [
                         'killedInAction',
-                        'killedInNonBattle',
+                        'killedNonBattle',
                         'woundedInAction',
-                        'injuredInNonBattle',
+                        'injuredNonBattle',
                         'other'
                       ]
                     },
