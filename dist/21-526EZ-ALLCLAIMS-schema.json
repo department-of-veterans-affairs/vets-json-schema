@@ -2573,6 +2573,9 @@
                     },
                     "unitAssigned": {
                       "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
                     }
                   }
                 }

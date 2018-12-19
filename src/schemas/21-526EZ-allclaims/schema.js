@@ -669,6 +669,9 @@ const schema = {
                     },
                     unitAssigned: {
                       type: 'string'
+                    },
+                    description: {
+                      type: 'string'
                     }
                   }
                 }
