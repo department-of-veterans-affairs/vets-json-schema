@@ -669,6 +669,9 @@ const schema = {
                     },
                     unitAssigned: {
                       type: 'string'
+                    },
+                    description: {
+                      type: 'string'
                     }
                   }
                 }
@@ -679,7 +682,7 @@ const schema = {
                   type: 'object',
                   properties: {
                     name: {
-                      $ref: '#/definitions/fullName'
+                      type: 'string'
                     },
                     address: {
                       $ref: '#/definitions/address'
