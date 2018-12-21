@@ -941,6 +941,57 @@
       },
       "minItems": 1
     },
+    "newDisabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "condition",
+          "cause"
+        ],
+        "properties": {
+          "condition": {
+            "type": "string"
+          },
+          "cause": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "SECONDARY",
+              "WORSENED",
+              "VA"
+            ]
+          },
+          "primaryDescription": {
+            "type": "string"
+          },
+          "causedByDisability": {
+            "type": "string"
+          },
+          "causedByDisabilityDescription": {
+            "type": "string"
+          },
+          "specialIssues": {
+            "$ref": "#/definitions/specialIssues"
+          },
+          "worsenedDescription": {
+            "type": "string"
+          },
+          "worsenedEffects": {
+            "type": "string"
+          },
+          "VAMistreatmentDescription": {
+            "type": "string"
+          },
+          "VAMistreatmentLocation": {
+            "type": "string"
+          },
+          "VAMistreatmentDate": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "unitAssigned": {
       "type": "string",
       "maxLength": 100
@@ -1649,56 +1700,11 @@
     "ratedDisabilities": {
       "$ref": "#/definitions/ratedDisabilities"
     },
-    "newDisabilities": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "condition",
-          "cause"
-        ],
-        "properties": {
-          "condition": {
-            "type": "string"
-          },
-          "cause": {
-            "type": "string",
-            "enum": [
-              "NEW",
-              "SECONDARY",
-              "WORSENED",
-              "VA"
-            ]
-          },
-          "primaryDescription": {
-            "type": "string"
-          },
-          "causedByDisability": {
-            "type": "string"
-          },
-          "causedByDisabilityDescription": {
-            "type": "string"
-          },
-          "specialIssues": {
-            "$ref": "#/definitions/specialIssues"
-          },
-          "worsenedDescription": {
-            "type": "string"
-          },
-          "worsenedEffects": {
-            "type": "string"
-          },
-          "VAMistreatmentDescription": {
-            "type": "string"
-          },
-          "VAMistreatmentLocation": {
-            "type": "string"
-          },
-          "VAMistreatmentDate": {
-            "type": "string"
-          }
-        }
-      }
+    "newPrimaryDisabilities": {
+      "$ref": "#/definitions/newDisabilities"
+    },
+    "newSecondaryDisabilities": {
+      "$ref": "#/definitions/newDisabilities"
     },
     "mailingAddress": {
       "$ref": "#/definitions/address"
