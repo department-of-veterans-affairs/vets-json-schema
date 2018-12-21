@@ -168,7 +168,7 @@ const schema = {
       type: 'object',
       properties: {
         incidentDate: { $ref: '#/definitions/date' },
-        description: { type: 'string' },
+        incidentDescription: { type: 'string' },
         unitAssigned: { $ref: '#/definitions/unitAssigned' },
         unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
       }
@@ -646,7 +646,18 @@ const schema = {
                   type: 'object',
                   properties: {
                     name: {
-                      $ref: '#/definitions/fullName'
+                      type: 'object',
+                      properties: {
+                        first: {
+                          type: 'string'
+                        },
+                        middle: {
+                          type: 'string'
+                        },
+                        last: {
+                          type: 'string'
+                        }
+                      }
                     },
                     rank: {
                       type: 'string'
