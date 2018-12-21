@@ -1013,7 +1013,7 @@
         "incidentDate": {
           "$ref": "#/definitions/date"
         },
-        "description": {
+        "incidentDescription": {
           "type": "string"
         },
         "unitAssigned": {
@@ -2556,7 +2556,18 @@
                   "type": "object",
                   "properties": {
                     "name": {
-                      "$ref": "#/definitions/fullName"
+                      "type": "object",
+                      "properties": {
+                        "first": {
+                          "type": "string"
+                        },
+                        "middle": {
+                          "type": "string"
+                        },
+                        "last": {
+                          "type": "string"
+                        }
+                      }
                     },
                     "rank": {
                       "type": "string"
