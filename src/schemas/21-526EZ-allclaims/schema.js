@@ -149,6 +149,49 @@ const schema = {
         }
       }
     }),
+    newDisabilities: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['condition', 'cause'],
+        properties: {
+          condition: {
+            type: 'string'
+          },
+          cause: {
+            type: 'string',
+            enum: ['NEW', 'SECONDARY', 'WORSENED', 'VA']
+          },
+          primaryDescription: {
+            type: 'string'
+          },
+          causedByDisability: {
+            type: 'string'
+          },
+          causedByDisabilityDescription: {
+            type: 'string'
+          },
+          specialIssues: {
+            $ref: '#/definitions/specialIssues'
+          },
+          worsenedDescription: {
+            type: 'string'
+          },
+          worsenedEffects: {
+            type: 'string'
+          },
+          VAMistreatmentDescription: {
+            type: 'string'
+          },
+          VAMistreatmentLocation: {
+            type: 'string'
+          },
+          VAMistreatmentDate: {
+            type: 'string'
+          }
+        }
+      }
+    },
     unitAssigned: {
       type: 'string',
       maxLength: 100
@@ -339,48 +382,11 @@ const schema = {
       type: 'boolean'
     },
     ratedDisabilities: { $ref: '#/definitions/ratedDisabilities' },
-    newDisabilities: {
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['condition', 'cause'],
-        properties: {
-          condition: {
-            type: 'string'
-          },
-          cause: {
-            type: 'string',
-            enum: ['NEW', 'SECONDARY', 'WORSENED', 'VA']
-          },
-          primaryDescription: {
-            type: 'string'
-          },
-          causedByDisability: {
-            type: 'string'
-          },
-          causedByDisabilityDescription: {
-            type: 'string'
-          },
-          specialIssues: {
-            $ref: '#/definitions/specialIssues'
-          },
-          worsenedDescription: {
-            type: 'string'
-          },
-          worsenedEffects: {
-            type: 'string'
-          },
-          VAMistreatmentDescription: {
-            type: 'string'
-          },
-          VAMistreatmentLocation: {
-            type: 'string'
-          },
-          VAMistreatmentDate: {
-            type: 'string'
-          }
-        }
-      }
+    newPrimaryDisabilities: {
+      $ref: '#/definitions/newDisabilities'
+    },
+    newSecondaryDisabilities: {
+      $ref: '#/definitions/newDisabilities'
     },
     mailingAddress: {
       $ref: '#/definitions/address'
@@ -615,9 +621,7 @@ const schema = {
           minItems: 1,
           items: {
             type: 'object',
-            required: [ 
-              'personalAssault' 
-            ],
+            required: ['personalAssault'],
             properties: {
               personalAssault: {
                 type: 'boolean'
@@ -763,10 +767,10 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string',
+            type: 'string'
           },
           confirmationCode: {
-            type: 'string',
+            type: 'string'
           },
           attachmentId: {
             type: 'string',
@@ -774,11 +778,11 @@ const schema = {
             enumNames: [
               'VA 21-4142 Authorization for Release of Information',
               'Multiple Documents',
-              'Other',
-            ],
-          },
-        },
-      },
+              'Other'
+            ]
+          }
+        }
+      }
     },
     completedFormAttachments: {
       type: 'array',
@@ -787,17 +791,17 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string',
+            type: 'string'
           },
           confirmationCode: {
-            type: 'string',
+            type: 'string'
           },
           attachmentId: {
-            type: 'string',
-          },
-        },
-      },
-    },
+            type: 'string'
+          }
+        }
+      }
+    }
   }
 };
 
