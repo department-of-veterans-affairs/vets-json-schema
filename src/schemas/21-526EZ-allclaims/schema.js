@@ -812,6 +812,49 @@ const schema = {
           }
         }
       }
+    },
+    secondaryAttachment: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['name', 'attachmentId'],
+        properties: {
+          name: {
+            type: 'string',
+          },
+          confirmationCode: {
+            type: 'string'
+          },
+          attachmentId: {
+            type: 'string',
+            enum: [
+              'L229',
+              'L018',
+              'L034',
+              'L048',
+              'L049',
+              'L029',
+              'L034',
+              'L034',
+              'L023',
+              'L015'
+            ],
+            enumNames: [
+              'VA Form 21-0781a - Statement in Support of Claim for PTSD Secondary to Personal Assault',
+              'Civilian Police Reports',
+              'Military Personnel Record',
+              'Medical Treatment Record - Government Facility',
+              'Medical Treatment Record - Non-Government Facility',
+              'DD214',
+              'Military Personnel Record',
+              'Decorations/Awards/Medal Citations',
+              'Other Correspondence',
+              'Buddy/Lay Statement'
+            ]
+          }
+        }
+
+      }
     }
   }
 };

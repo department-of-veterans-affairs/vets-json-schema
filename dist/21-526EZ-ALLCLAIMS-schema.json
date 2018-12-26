@@ -8,8 +8,7 @@
       "pattern": "^\\d{10}$"
     },
     "date": {
-      "pattern":
-        "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
     "fullName": {
@@ -30,17 +29,25 @@
         },
         "suffix": {
           "type": "string",
-          "enum": ["Jr.", "Sr.", "II", "III", "IV"]
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
         }
       },
-      "required": ["first", "last"]
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "email": {
       "type": "string",
       "minLength": 6,
       "maxLength": 80,
-      "pattern":
-        "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+      "pattern": "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     },
     "specialIssues": {
       "type": "array",
@@ -60,7 +67,11 @@
     },
     "address": {
       "type": "object",
-      "required": ["country", "city", "addressLine1"],
+      "required": [
+        "country",
+        "city",
+        "addressLine1"
+      ],
       "properties": {
         "country": {
           "type": "string",
@@ -443,7 +454,9 @@
     },
     "vaTreatmentCenterAddress": {
       "type": "object",
-      "required": ["country"],
+      "required": [
+        "country"
+      ],
       "properties": {
         "country": {
           "type": "string",
@@ -826,7 +839,10 @@
           "$ref": "#/definitions/date"
         }
       },
-      "required": ["from", "to"]
+      "required": [
+        "from",
+        "to"
+      ]
     },
     "dateRangeFromRequired": {
       "type": "object",
@@ -838,21 +854,32 @@
           "$ref": "#/definitions/date"
         }
       },
-      "required": ["from"]
+      "required": [
+        "from"
+      ]
     },
     "ratedDisabilities": {
       "type": "array",
       "maxItems": 100,
       "items": {
         "type": "object",
-        "required": ["name", "disabilityActionType"],
+        "required": [
+          "name",
+          "disabilityActionType"
+        ],
         "properties": {
           "name": {
             "type": "string"
           },
           "disabilityActionType": {
             "type": "string",
-            "enum": ["NONE", "NEW", "SECONDARY", "INCREASE", "REOPEN"]
+            "enum": [
+              "NONE",
+              "NEW",
+              "SECONDARY",
+              "INCREASE",
+              "REOPEN"
+            ]
           },
           "specialIssues": {
             "$ref": "#/definitions/specialIssues"
@@ -874,14 +901,23 @@
             "maxItems": 100,
             "items": {
               "type": "object",
-              "required": ["name", "disabilityActionType"],
+              "required": [
+                "name",
+                "disabilityActionType"
+              ],
               "properties": {
                 "name": {
                   "type": "string"
                 },
                 "disabilityActionType": {
                   "type": "string",
-                  "enum": ["NONE", "NEW", "SECONDARY", "INCREASE", "REOPEN"]
+                  "enum": [
+                    "NONE",
+                    "NEW",
+                    "SECONDARY",
+                    "INCREASE",
+                    "REOPEN"
+                  ]
                 },
                 "specialIssues": {
                   "$ref": "#/definitions/specialIssues"
@@ -909,14 +945,22 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["condition", "cause"],
+        "required": [
+          "condition",
+          "cause"
+        ],
         "properties": {
           "condition": {
             "type": "string"
           },
           "cause": {
             "type": "string",
-            "enum": ["NEW", "SECONDARY", "WORSENED", "VA"]
+            "enum": [
+              "NEW",
+              "SECONDARY",
+              "WORSENED",
+              "VA"
+            ]
           },
           "primaryDescription": {
             "type": "string"
@@ -1534,7 +1578,9 @@
     },
     "serviceInformation": {
       "type": "object",
-      "required": ["servicePeriods"],
+      "required": [
+        "servicePeriods"
+      ],
       "properties": {
         "servicePeriods": {
           "type": "array",
@@ -1542,7 +1588,10 @@
           "maxItems": 100,
           "items": {
             "type": "object",
-            "required": ["serviceBranch", "dateRange"],
+            "required": [
+              "serviceBranch",
+              "dateRange"
+            ],
             "properties": {
               "serviceBranch": {
                 "type": "string",
@@ -1571,7 +1620,10 @@
         },
         "reservesNationalGuardService": {
           "type": "object",
-          "required": ["unitName", "obligationTermOfServiceDateRange"],
+          "required": [
+            "unitName",
+            "obligationTermOfServiceDateRange"
+          ],
           "properties": {
             "unitName": {
               "type": "string",
@@ -2044,7 +2096,10 @@
     },
     "phoneAndEmail": {
       "type": "object",
-      "required": ["primaryPhone", "emailAddress"],
+      "required": [
+        "primaryPhone",
+        "emailAddress"
+      ],
       "properties": {
         "primaryPhone": {
           "$ref": "#/definitions/phone"
@@ -2056,11 +2111,20 @@
     },
     "homelessOrAtRisk": {
       "type": "string",
-      "enum": ["no", "homeless", "atRisk"]
+      "enum": [
+        "no",
+        "homeless",
+        "atRisk"
+      ]
     },
     "homelessHousingSituation": {
       "type": "string",
-      "enum": ["shelter", "notShelter", "anotherPerson", "other"]
+      "enum": [
+        "shelter",
+        "notShelter",
+        "anotherPerson",
+        "other"
+      ]
     },
     "otherHomelessHousing": {
       "type": "string"
@@ -2070,7 +2134,11 @@
     },
     "atRiskHousingSituation": {
       "type": "string",
-      "enum": ["losingHousing", "leavingShelter", "other"]
+      "enum": [
+        "losingHousing",
+        "leavingShelter",
+        "other"
+      ]
     },
     "otherAtRiskHousing": {
       "type": "string"
@@ -2095,7 +2163,10 @@
       "maxItems": 100,
       "items": {
         "type": "object",
-        "required": ["treatmentCenterName", "treatedDisabilityNames"],
+        "required": [
+          "treatmentCenterName",
+          "treatedDisabilityNames"
+        ],
         "properties": {
           "treatmentCenterName": {
             "type": "string",
@@ -2123,7 +2194,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "attachmentId"],
+        "required": [
+          "name",
+          "attachmentId"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -2193,7 +2267,10 @@
     },
     "bankAccountType": {
       "type": "string",
-      "enum": ["Checking", "Savings"]
+      "enum": [
+        "Checking",
+        "Savings"
+      ]
     },
     "bankAccountNumber": {
       "type": "string",
@@ -2448,7 +2525,9 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["personalAssault"],
+            "required": [
+              "personalAssault"
+            ],
             "properties": {
               "personalAssault": {
                 "type": "boolean"
@@ -2959,7 +3038,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "attachmentId"],
+        "required": [
+          "name",
+          "attachmentId"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -2969,7 +3051,11 @@
           },
           "attachmentId": {
             "type": "string",
-            "enum": ["L107", "L023", "L023"],
+            "enum": [
+              "L107",
+              "L023",
+              "L023"
+            ],
             "enumNames": [
               "VA 21-4142 Authorization for Release of Information",
               "Multiple Documents",
@@ -2983,7 +3069,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "attachmentId"],
+        "required": [
+          "name",
+          "attachmentId"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -2997,11 +3086,14 @@
         }
       }
     },
-    "secondaryAttachments": {
+    "secondaryAttachment": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "attachmentId"],
+        "required": [
+          "name",
+          "attachmentId"
+        ],
         "properties": {
           "name": {
             "type": "string"
