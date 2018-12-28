@@ -66,6 +66,7 @@ const schema = {
     },
     vetTecProgram: {
       type: 'array',
+      maxItems: 3,
       items: {
         type: 'string',
         enum: ["program1", "program2", "program3", "program4", "program5"]
