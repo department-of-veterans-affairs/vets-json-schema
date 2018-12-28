@@ -687,21 +687,21 @@
     "highTechnologyEmploymentType": {
       "type": "string",
       "enum": [
-        "Computer Programming",
-        "Data Processing",
-        "Computer Software",
-        "Information Sciences",
-        "Media Application"
+        "computerProgramming",
+        "dataProcessing",
+        "computerSoftware",
+        "informationSciences",
+        "mediaApplication"
       ]
     },
     "currentSalary": {
       "type": "string",
       "enum": [
-        "<$20,000",
-        "$20,001 - $35,000",
-        "$35,001 - $50,000",
-        "$50,001 - $75,000",
-        ">$75,000"
+        "lessThanTwenty",
+        "twentyToThirtyFive",
+        "thirtyFiveToFifty",
+        "fiftyToSeventyFive",
+        "moreThanSeventyFive"
       ]
     },
     "highestLevelofEducation": {
