@@ -522,6 +522,7 @@
       "maxLength": 35
     },
     "vetTecProgram": {
+      "type": "string",
       "enum": [
         "program1",
         "program2",
