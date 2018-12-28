@@ -1,81 +1,58 @@
-import _ from 'lodash/fp';
-import { countries } from '../../common/constants';
-import definitions from '../../common/definitions';
+import _ from "lodash/fp";
+import { countries } from "../../common/constants";
+import definitions from "../../common/definitions";
 import {
   documentTypes526,
   pciuCountries,
   pciuStates
-} from '../../common/constants';
-
-const vetTecPrograms = [
-  "NAME",
-  "NAME",
-  "NAME",
-  "NAME",
-  "NAME"
-];
-
-const highTechnologyEmploymentType = [
-  "Computer Programming",
-  "Data Processing",
-  "Computer Software",
-  "Information Sciences",
-  "Media Application"
-];
-
-const salaries = [
-  "<$20,000",
-  "$20,001 - $35,000",
-  "$35,001 - $50,000",
-  "$50,001 - $75,000",
-  ">$75,000"
-];
+} from "../../common/constants";
 
 const baseAddressDef = {
-  type: 'object',
-  required: ['country', 'city', 'addressLine1'],
+  type: "object",
+  required: ["country", "city", "addressLine1"],
   properties: {
     country: {
-      type: 'string',
+      type: "string",
       enum: pciuCountries,
-      default: 'USA'
+      default: "USA"
     },
     addressLine1: {
-      type: 'string',
+      type: "string",
       maxLength: 20,
       pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
     },
     addressLine2: {
-      type: 'string',
+      type: "string",
       maxLength: 20,
       pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
     },
     addressLine3: {
-      type: 'string',
+      type: "string",
       maxLength: 20,
       pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
     },
     city: {
-      type: 'string',
+      type: "string",
       maxLength: 30,
       pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
     },
     state: {
-      type: 'string',
+      type: "string",
       enum: pciuStates.map(state => state.value),
       enumNames: pciuStates.map(state => state.label)
     },
     zipCode: {
-      type: 'string',
-      pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
+      type: "string",
+      pattern: "^\\d{5}(?:([-\\s]?)\\d{4})?$"
     }
   }
 };
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
-  title: "APPLICATION FOR VETERAN EMPLOYMENT THROUGH TECHNOLOGY EDUCATION COURSES (VET TEC) HIGH TECHNOLOGY PROGRAM",
-  type: 'object',
+  $schema: "http://json-schema.org/draft-04/schema#",
+  title:
+    "APPLICATION FOR VETERAN EMPLOYMENT THROUGH TECHNOLOGY EDUCATION COURSES (VET TEC) HIGH TECHNOLOGY PROGRAM",
+  type: "object",
   definitions: {
     phone: definitions.usaPhone,
     date: definitions.date,
@@ -84,104 +61,116 @@ const schema = {
     bankAccount: definitions.bankAccount,
     gender: definitions.gender,
     email: {
-      type: 'string',
+      type: "string",
       minLength: 6,
       maxLength: 80,
       pattern:
-        '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+        "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     },
-    address: baseAddressDef,
+    address: baseAddressDef
   },
   properties: {
     applicantFullName: {
-    $ref: "#/definitions/fullName"
-  },
+      $ref: "#/definitions/fullName"
+    },
     applicantSocialSecurityNumber: {
-    $ref: "#/definitions/ssn"
-  },
+      $ref: "#/definitions/ssn"
+    },
     mailingAddress: {
-    $ref: "#/definitions/address"
-  },
+      $ref: "#/definitions/address"
+    },
     applicantGender: {
       $ref: "#/definitions/gender"
-  },
+    },
     dateOfBirth: {
-    $ref: "#/definitions/date"
-  },
-  emailAddress: {
-    $ref: "#/definitions/email"
-  },
-  dayTimePhone: {
-    $ref: "#/definitions/phone"
-  },
-  nightTimePhone: {
-    $ref: "#/definitions/phone"
-  },
-  appliedForVAEducationBenefits: {
-    type: "boolean",
-  },
-  activeDuty: {
-    type: "boolean",
-  },
-  activeDutyDuringVetTec: {
-    type: "boolean",
-  },
-  bankAccountType: {
-    type: 'string',
-    enum: ['Checking', 'Savings']
-  },
-  bankAccountNumber: {
-    type: 'string',
-    minLength: 4,
-    maxLength: 17
-  },
-  bankRoutingNumber: {
-    type: 'string',
-    pattern: '^\\d{9}$'
-  },
-  bankName: {
-    type: 'string',
-    maxLength: 35
-  },
-  vetTecProgram: {
-    enum: vetTecPrograms,
-  },
-  vetTecProgramLocations: {
-    type: 'object',
-    properties: {
-      city: {
-        type: 'string',
-        maxLength: 30,
-        pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
-      },
-      state: {
-        type: 'string',
-        enum: pciuStates.map(state => state.value),
-        enumNames: pciuStates.map(state => state.label)
-      },
+      $ref: "#/definitions/date"
+    },
+    emailAddress: {
+      $ref: "#/definitions/email"
+    },
+    dayTimePhone: {
+      $ref: "#/definitions/phone"
+    },
+    nightTimePhone: {
+      $ref: "#/definitions/phone"
+    },
+    appliedForVAEducationBenefits: {
+      type: "boolean"
+    },
+    activeDuty: {
+      type: "boolean"
+    },
+    activeDutyDuringVetTec: {
+      type: "boolean"
+    },
+    bankAccountType: {
+      type: "string",
+      enum: ["Checking", "Savings"]
+    },
+    bankAccountNumber: {
+      type: "string",
+      minLength: 4,
+      maxLength: 17
+    },
+    bankRoutingNumber: {
+      type: "string",
+      pattern: "^\\d{9}$"
+    },
+    bankName: {
+      type: "string",
+      maxLength: 35
+    },
+    vetTecProgram: {
+      enum: ["NAME", "NAME", "NAME", "NAME", "NAME"]
+    },
+    vetTecProgramLocations: {
+      type: "object",
+      properties: {
+        city: {
+          type: "string",
+          maxLength: 30,
+          pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+        },
+        state: {
+          type: "string",
+          enum: pciuStates.map(state => state.value),
+          enumNames: pciuStates.map(state => state.label)
+        }
+      }
+    },
+    plannedStartDate: {
+      $ref: "#/definitions/date"
+    },
+    currentEmployment: {
+      type: "boolean"
+    },
+    currentHighTechnologyEmployment: {
+      type: "boolean"
+    },
+    highTechnologyEmploymentType: {
+      type: "string",
+      enum: [
+        "computerProgramming",
+        "dataProcessing",
+        "computerSoftware",
+        "informationSciences",
+        "mediaApplication"
+      ]
+    },
+    currentSalary: {
+      type: "string",
+      enum: [
+        "lessThanTwenty",
+        "twentyToThirtyFive",
+        "thirtyFiveToFifty",
+        "fiftyToSeventyFive",
+        "moreThanSeventyFive"
+      ]
+    },
+    highestLevelofEducation: {
+      type: "string"
     }
-  },
-  plannedStartDate: {
-     $ref: "#/definitions/date"
-   },
-   currentEmployment: {
-     type: "boolean",
-   },
-   currentHighTechnologyEmployment: {
-     type: "boolean",
-   },
-  highTechnologyEmploymentType: {
-     type: "string",
-     enum: highTechnologyEmploymentType,
-   },
-   currentSalary: {
-     type: "string",
-     enum: salaries,
-   },
-   highestLevelofEducation: {
-     "type": "string",
-   },
   }
-}
+};
 
 export default schema;
