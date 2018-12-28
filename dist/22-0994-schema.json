@@ -523,11 +523,11 @@
     },
     "vetTecProgram": {
       "enum": [
-        "NAME",
-        "NAME",
-        "NAME",
-        "NAME",
-        "NAME"
+        "program1",
+        "program2",
+        "program3",
+        "program4",
+        "program5"
       ]
     },
     "vetTecProgramLocations": {

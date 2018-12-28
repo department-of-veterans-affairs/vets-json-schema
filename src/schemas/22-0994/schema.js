@@ -121,7 +121,7 @@ const schema = {
       maxLength: 35
     },
     vetTecProgram: {
-      enum: ["NAME", "NAME", "NAME", "NAME", "NAME"]
+      enum: ["program1", "program2", "program3", "program4", "program5"]
     },
     vetTecProgramLocations: {
       type: "object",
