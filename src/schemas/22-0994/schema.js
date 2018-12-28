@@ -65,8 +65,11 @@ const schema = {
       $ref: "#/definitions/bankAccount"
     },
     vetTecProgram: {
-      type: "string",
-      enum: ["program1", "program2", "program3", "program4", "program5"]
+      type: 'array',
+      items: {
+        type: 'string',
+        enum: ["program1", "program2", "program3", "program4", "program5"]
+      }
     },
     vetTecProgramLocations: {
       type: "object",
