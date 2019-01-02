@@ -2,51 +2,9 @@ import _ from "lodash/fp";
 import { countries } from "../../common/constants";
 import definitions from "../../common/definitions";
 import {
-  documentTypes526,
   pciuCountries,
   pciuStates
 } from "../../common/constants";
-
-const baseAddressDef = {
-  type: "object",
-  required: ["country", "city", "addressLine1"],
-  properties: {
-    country: {
-      type: "string",
-      enum: pciuCountries,
-      default: "USA"
-    },
-    addressLine1: {
-      type: "string",
-      maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
-    },
-    addressLine2: {
-      type: "string",
-      maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
-    },
-    addressLine3: {
-      type: "string",
-      maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
-    },
-    city: {
-      type: "string",
-      maxLength: 30,
-      pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
-    },
-    state: {
-      type: "string",
-      enum: pciuStates.map(state => state.value),
-      enumNames: pciuStates.map(state => state.label)
-    },
-    zipCode: {
-      type: "string",
-      pattern: "^\\d{5}(?:([-\\s]?)\\d{4})?$"
-    }
-  }
-};
 
 const schema = {
   $schema: "http://json-schema.org/draft-04/schema#",
@@ -67,7 +25,7 @@ const schema = {
       pattern:
         "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     },
-    address: baseAddressDef
+    address: definitions.address
   },
   properties: {
     applicantFullName: {
@@ -103,26 +61,16 @@ const schema = {
     activeDutyDuringVetTec: {
       type: "boolean"
     },
-    bankAccountType: {
-      type: "string",
-      enum: ["Checking", "Savings"]
-    },
-    bankAccountNumber: {
-      type: "string",
-      minLength: 4,
-      maxLength: 17
-    },
-    bankRoutingNumber: {
-      type: "string",
-      pattern: "^\\d{9}$"
-    },
-    bankName: {
-      type: "string",
-      maxLength: 35
+    bankAccount: {
+      $ref: "#/definitions/bankAccount"
     },
     vetTecProgram: {
-      type: "string",
-      enum: ["program1", "program2", "program3", "program4", "program5"]
+      type: 'array',
+      maxItems: 3,
+      items: {
+        type: 'string',
+        enum: ["program1", "program2", "program3", "program4", "program5"]
+      }
     },
     vetTecProgramLocations: {
       type: "object",
