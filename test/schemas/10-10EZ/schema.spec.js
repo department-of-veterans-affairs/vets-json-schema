@@ -128,6 +128,19 @@ describe('healthcare-application json schema', () => {
     });
   });
 
+  schemaTestHelper.testValidAndInvalid('dd214', {
+    valid: [
+      {
+        confirmationCode: 'testing',
+        name: 'testing',
+        size: 1
+      }
+    ],
+    invalid: [
+      1
+    ]
+  });
+
   schemaTestHelper.testValidAndInvalid('email', {
     valid: [
       'a@a.com',

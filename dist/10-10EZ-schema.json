@@ -370,6 +370,20 @@
   },
   "type": "object",
   "properties": {
+    "dd214": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "confirmationCode": {
+          "type": "string"
+        }
+      }
+    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },

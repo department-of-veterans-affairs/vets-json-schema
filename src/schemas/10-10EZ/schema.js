@@ -209,6 +209,7 @@ let schema = {
   },
   type: 'object',
   properties: {
+    dd214: definitions.files.items,
     veteranFullName: {
       $ref: '#/definitions/fullName'
     },
