@@ -19,17 +19,18 @@ const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 
 let definitions = _.cloneDeep(originalDefinitions);
-definitions =  _.pick(definitions, ['fullName']);
+definitions =  _.pick(definitions, 'fullName', 'date', 'ssn');
 
-definitions.fullName.properties.first.pattern = textRegex
-definitions.fullName.properties.last.pattern = textRegex
-definitions.fullName.properties.middle.pattern = textRegex
-definitions.fullName.properties.first.maxLength = 30
-definitions.fullName.properties.last.maxLength = 30
-definitions.fullName.properties.middle.maxLength = 20
+definitions.fullName.properties.first.pattern = textRegex;
+definitions.fullName.properties.last.pattern = textRegex;
+definitions.fullName.properties.middle.pattern = textRegex;
+definitions.fullName.properties.first.maxLength = 30;
+definitions.fullName.properties.last.maxLength = 30;
+definitions.fullName.properties.middle.maxLength = 20;
+delete definitions.fullName.properties.suffix;
 
 const commonAddressFields = {
-  required: ['addressType', 'street', 'city', 'country'],
+  required: ['addressType', 'street', 'city', 'countryDropdown'],
   properties: {
     addressType: {
       type: 'string',
@@ -65,7 +66,7 @@ const commonAddressFields = {
       maxLength: 30,
       pattern: textRegex
     },
-    country: {
+    countryDropdown: {
       type: 'string',
       maxLength: 50,
       'enum': [countryUSA, countryNotInList].concat(nonUSACountries)
@@ -81,6 +82,50 @@ const commonMarriageDef = {
       $ref: '#/definitions/location'
     },
     spouseFullName: schemaHelpers.getDefinition('fullName')
+  }
+}
+
+const commonMarriagesDef = {
+  type: 'array',
+  items: {
+    type: 'object',
+    required: [...commonMarriageDef.required],
+    properties: {
+      ...commonMarriageDef.properties,
+      dateOfSeparation: schemaHelpers.getDefinition('date'),
+      locationOfSeparation: {
+        $ref: '#/definitions/location'
+      }
+    },
+    oneOf: [
+      {
+        properties: {
+          reasonForSeparation: {
+            type: 'string',
+            'enum': [
+              'Death',
+              'Divorce'
+            ]
+          }
+        }
+      },
+      {
+        required: ['explainSeparation'],
+        properties: {
+          reasonForSeparation: {
+            type: 'string',
+            'enum': [
+              'Other'
+            ]
+          },
+          explainSeparation: {
+            type: 'string',
+            maxLength: 500,
+            pattern: textAndNumbersRegex
+          }
+        }
+      }
+    ]
   }
 }
 
@@ -117,7 +162,7 @@ let schema = {
           postalCode: {
             $ref: '#/definitions/postalCode'
           },
-          country: {
+          countryDropdown: {
             type: 'string',
             maxLength: 50,
             default: countryUSA
@@ -177,7 +222,7 @@ let schema = {
             enum: ['INTERNATIONAL'],
             default: 'INTERNATIONAL'
           },
-          country: {
+          countryDropdown: {
             type: 'string',
             'enum': nonUSACountries
           }
@@ -194,7 +239,7 @@ let schema = {
             enum: ['INTERNATIONAL'],
             default: 'INTERNATIONAL'
           },
-          country: {
+          countryDropdown: {
             type: 'string',
             'enum': [countryNotInList],
             default: countryNotInList
@@ -269,49 +314,14 @@ let schema = {
           }
         ]
       },
+      marriages: {...commonMarriagesDef},
       previousMarriages: {
-        type: 'array',
+        ...commonMarriagesDef,
         items: {
-          type: 'object',
-          required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
-          properties: {
-            ...commonMarriageDef.properties,
-            dateOfSeparation: schemaHelpers.getDefinition('date'),
-            locationOfSeparation: {
-              $ref: '#/definitions/location'
-            }
-          },
-          oneOf: [
-            {
-              properties: {
-                reasonForSeparation: {
-                  type: 'string',
-                  'enum': [
-                    'Death',
-                    'Divorce'
-                  ]
-                }
-              }
-            },
-            {
-              required: ['explainSeparation'],
-              properties: {
-                reasonForSeparation: {
-                  type: 'string',
-                  'enum': [
-                    'Other'
-                  ]
-                },
-                explainSeparation: {
-                  type: 'string',
-                  maxLength: 500,
-                  pattern: textAndNumbersRegex
-                }
-              }
-            }
-          ]
+          ...commonMarriagesDef.items,
+          required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation']
         }
-      }
+      },
     }
   ),
   properties: {
@@ -323,12 +333,38 @@ let schema = {
       type: 'string',
       format: 'email'
     },
+    veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
+    maritalStatus: {
+      type: 'string',
+      'enum': [
+        'MARRIED',
+        'DIVORCED',
+        'WIDOWED',
+        'SEPARATED',
+        'NEVERMARRIED'
+      ],
+      enumNames: [
+        'Married',
+        'Divorced',
+        'Widowed',
+        'Separated',
+        'Never Married'
+      ]
+    },
     currentMarriage: {
       type: 'object',
-      required: commonMarriageDef.required,
       properties: {
-        ...commonMarriageDef.properties,
-        spouseSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+        spouseAddress: {
+          type: 'object',
+          anyOf: addressDefs
+        },
+        spouseIsVeteran: {
+          type: 'boolean'
+        },
+        liveWithSpouse: {
+          type: 'boolean'
+        },
+        spouseSocialSecurityNumber: { $ref: '#/definitions/ssn' },
         spouseHasNoSsnReason: {
           type: 'string',
           'enum': [
@@ -340,9 +376,11 @@ let schema = {
             'Spouse who is not a US citizen, not residing in the US',
             'Spouse who is not a US citizen, residing in the US'
           ]
-        }
+        },
+        spouseDateOfBirth: schemaHelpers.getDefinition('date'),
+        spouseVaFileNumber: schemaHelpers.getDefinition('vaFileNumber')
       },
-      oneOf: [
+      anyOf: [
         {
           required: ['spouseHasNoSsnReason'],
           properties: {
@@ -364,21 +402,21 @@ let schema = {
         }
       ]
     },
-    previousMarriages: {
-      $ref: '#/definitions/previousMarriages'
-    },
+    // TRANSLATE: the `spouseMarriages` array should be added to the
+    // `currentMarriage` object. To work with the form system's ability to show
+    // a page for each item in the array, the array must live on the top level
+    // of the schema.
     spouseMarriages: {
       $ref: '#/definitions/previousMarriages'
     },
-    spouseAddress: {
-      type: 'object',
-      oneOf: addressDefs
-    },
-    spouseIsVeteran: {
-      type: 'boolean'
-    },
-    liveWithSpouse: {
-      type: 'boolean'
+    // TRANSLATE: if `maritalStatus` is 'MARRIED' or 'SEPARATED', then the last
+    // item in the `marriages` array should be popped off and merged with the
+    // `currentMarriage` object.
+    // TRANSLATE: regardless of if the last object in this array needs to be
+    // merged with the `currentMarriage` object, the `marriages` array should be
+    // renamed to `previousMarriages`
+    marriages: {
+      $ref: '#/definitions/marriages'
     },
     dependents: {
       type: 'array',
@@ -390,7 +428,7 @@ let schema = {
           childPlaceOfBirth: {
             $ref: '#/definitions/location'
           },
-          childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+          childSocialSecurityNumber: { $ref: '#/definitions/ssn' },
           childRelationship: {
             type: 'string',
             enum: [
@@ -501,11 +539,7 @@ let schema = {
   ['fullName', 'veteranFullName'],
   ['usaPhone', 'dayPhone'],
   ['usaPhone', 'nightPhone'],
-  ['ssn', 'veteranSocialSecurityNumber'],
-  ['vaFileNumber'],
-  ['vaFileNumber', 'spouseVaFileNumber'],
-  ['maritalStatus'],
-  ['date', 'spouseDateOfBirth']
+  ['vaFileNumber']
 ].forEach((args) => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

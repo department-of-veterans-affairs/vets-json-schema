@@ -16,12 +16,6 @@ pipeline {
       }
     }
 
-    stage('Build') {
-      steps {
-        sh 'bash --login -c "npm run build"'
-      }
-    }
-
     stage('Test') {
       steps {
         sh 'bash --login -c "npm run test"'

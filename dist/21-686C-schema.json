@@ -23,16 +23,6 @@
           "minLength": 1,
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
         }
       },
       "required": [
@@ -40,13 +30,21 @@
         "last"
       ]
     },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
     "domesticAddress": {
       "type": "object",
       "required": [
         "addressType",
         "street",
         "city",
-        "country",
+        "countryDropdown",
         "state",
         "postalCode"
       ],
@@ -79,7 +77,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "maxLength": 50,
           "default": "USA"
@@ -230,7 +228,7 @@
         "addressType",
         "street",
         "city",
-        "country",
+        "countryDropdown",
         "postOffice",
         "postalType",
         "postalCode"
@@ -264,7 +262,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "maxLength": 50,
           "enum": [
@@ -521,7 +519,7 @@
         "addressType",
         "street",
         "city",
-        "country"
+        "countryDropdown"
       ],
       "properties": {
         "addressType": {
@@ -552,7 +550,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "enum": [
             "Afghanistan",
@@ -777,7 +775,7 @@
         "addressType",
         "street",
         "city",
-        "country",
+        "countryDropdown",
         "countryText"
       ],
       "properties": {
@@ -809,7 +807,7 @@
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
-        "country": {
+        "countryDropdown": {
           "type": "string",
           "enum": [
             "Country Not In List"
@@ -1215,6 +1213,65 @@
         }
       ]
     },
+    "marriages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "dateOfMarriage",
+          "locationOfMarriage",
+          "spouseFullName"
+        ],
+        "properties": {
+          "dateOfMarriage": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfMarriage": {
+            "$ref": "#/definitions/location"
+          },
+          "spouseFullName": {
+            "$ref": "#/definitions/fullName"
+          },
+          "dateOfSeparation": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfSeparation": {
+            "$ref": "#/definitions/location"
+          }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "reasonForSeparation": {
+                "type": "string",
+                "enum": [
+                  "Death",
+                  "Divorce"
+                ]
+              }
+            }
+          },
+          {
+            "required": [
+              "explainSeparation"
+            ],
+            "properties": {
+              "reasonForSeparation": {
+                "type": "string",
+                "enum": [
+                  "Other"
+                ]
+              },
+              "explainSeparation": {
+                "type": "string",
+                "maxLength": 500,
+                "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+              }
+            }
+          }
+        ]
+      }
+    },
     "previousMarriages": {
       "type": "array",
       "items": {
@@ -1287,27 +1344,9 @@
       "type": "string",
       "pattern": "^\\d{10}$"
     },
-    "ssn": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
-    },
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
-    },
-    "maritalStatus": {
-      "type": "string",
-      "enum": [
-        "Married",
-        "Never Married",
-        "Separated",
-        "Widowed",
-        "Divorced"
-      ]
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
     }
   },
   "properties": {
@@ -1332,22 +1371,51 @@
       "type": "string",
       "format": "email"
     },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "maritalStatus": {
+      "type": "string",
+      "enum": [
+        "MARRIED",
+        "DIVORCED",
+        "WIDOWED",
+        "SEPARATED",
+        "NEVERMARRIED"
+      ],
+      "enumNames": [
+        "Married",
+        "Divorced",
+        "Widowed",
+        "Separated",
+        "Never Married"
+      ]
+    },
     "currentMarriage": {
       "type": "object",
-      "required": [
-        "dateOfMarriage",
-        "locationOfMarriage",
-        "spouseFullName"
-      ],
       "properties": {
-        "dateOfMarriage": {
-          "$ref": "#/definitions/date"
+        "spouseAddress": {
+          "type": "object",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/domesticAddress"
+            },
+            {
+              "$ref": "#/definitions/militaryAddress"
+            },
+            {
+              "$ref": "#/definitions/internationalAddressDropDown"
+            },
+            {
+              "$ref": "#/definitions/internationalAddressText"
+            }
+          ]
         },
-        "locationOfMarriage": {
-          "$ref": "#/definitions/location"
+        "spouseIsVeteran": {
+          "type": "boolean"
         },
-        "spouseFullName": {
-          "$ref": "#/definitions/fullName"
+        "liveWithSpouse": {
+          "type": "boolean"
         },
         "spouseSocialSecurityNumber": {
           "$ref": "#/definitions/ssn"
@@ -1362,9 +1430,15 @@
             "Spouse who is not a US citizen, not residing in the US",
             "Spouse who is not a US citizen, residing in the US"
           ]
+        },
+        "spouseDateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "spouseVaFileNumber": {
+          "$ref": "#/definitions/vaFileNumber"
         }
       },
-      "oneOf": [
+      "anyOf": [
         {
           "required": [
             "spouseHasNoSsnReason"
@@ -1393,34 +1467,11 @@
         }
       ]
     },
-    "previousMarriages": {
-      "$ref": "#/definitions/previousMarriages"
-    },
     "spouseMarriages": {
       "$ref": "#/definitions/previousMarriages"
     },
-    "spouseAddress": {
-      "type": "object",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/domesticAddress"
-        },
-        {
-          "$ref": "#/definitions/militaryAddress"
-        },
-        {
-          "$ref": "#/definitions/internationalAddressDropDown"
-        },
-        {
-          "$ref": "#/definitions/internationalAddressText"
-        }
-      ]
-    },
-    "spouseIsVeteran": {
-      "type": "boolean"
-    },
-    "liveWithSpouse": {
-      "type": "boolean"
+    "marriages": {
+      "$ref": "#/definitions/marriages"
     },
     "dependents": {
       "type": "array",
@@ -1566,20 +1617,8 @@
     "nightPhone": {
       "$ref": "#/definitions/usaPhone"
     },
-    "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
-    },
-    "spouseVaFileNumber": {
-      "$ref": "#/definitions/vaFileNumber"
-    },
-    "maritalStatus": {
-      "$ref": "#/definitions/maritalStatus"
-    },
-    "spouseDateOfBirth": {
-      "$ref": "#/definitions/date"
     }
   },
   "required": [
