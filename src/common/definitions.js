@@ -525,7 +525,7 @@ const form4142 = {
     },
     providerFacility: {
       type: 'array',
-      required: ['providerFacilityName', 'treatmentDateRange', 'providerFacilityAddress'],
+      required: ['providerFacilityName','treatmentDateRange','providerFacilityAddress'],
       items: {
         type: 'object',
         properties: {
@@ -549,6 +549,7 @@ const form4142 = {
     }
   }
 };
+
 
 export default {
   usaPhone,
@@ -589,5 +590,5 @@ export default {
   usaPostalCode,
   centralMailAddress,
   year,
-  form4142,
+  form4142
 };
