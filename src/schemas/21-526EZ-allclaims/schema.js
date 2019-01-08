@@ -833,8 +833,8 @@ const schema = {
             previousEmployers: {
               type: 'array',
               items: {
+                type: 'object',
                 properties: {
-                  type: 'object',
                   name: {
                     type: 'string'
                   },
