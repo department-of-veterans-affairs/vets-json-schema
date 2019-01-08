@@ -754,29 +754,6 @@ const schema = {
         unemployability: {
           type: 'object',
           properties: {
-            hospitalizationHistory: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  hospitalizationDateRange: {
-                    type: "string"
-                  },
-                  hospitalName: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 100
-                  },
-                  hospitalAddress: {
-                    type: 'object',
-                    properties: _.omit(
-                      ['addressLine3', 'country'],
-                      baseAddressDef.properties
-                    )
-                  }
-                }
-              }
-            },
             mostIncome: {
               type: 'number',
             },
@@ -807,7 +784,7 @@ const schema = {
                     $ref: '#/definitions/phone',
                   },
                   dates: {
-                    type: 'string',
+                    $ref: '#/definitions/dateRange'
                   }
                 }
               }
@@ -818,13 +795,19 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string'
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 100
                   },
                   address: {
-                    $ref: '#/definitions/address'
+                    type: 'object',
+                    properties: _.omit(
+                      ['addressLine3', 'country'],
+                      baseAddressDef.properties
+                    )
                   },
                   dates: {
-                    $ref: '#/definitions/dateRange'
+                    type: "string"
                   }
                 }
               }
