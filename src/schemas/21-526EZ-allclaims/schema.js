@@ -760,7 +760,7 @@ const schema = {
                 type: 'object',
                 properties: {
                   hospitalizationDateRange: {
-                    $ref: '#/definitions/dateRange'
+                    type: "string"
                   },
                   hospitalName: {
                     type: 'string',
