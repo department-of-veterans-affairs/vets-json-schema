@@ -796,17 +796,19 @@ const schema = {
               type: 'array',
               items: {
                 type: 'object',
-                name: {
-                  type: 'string'
-                },
-                address: {
-                  $ref: '#/definitions/address'
-                },
-                phoneNumber: {
-                  $ref: '#/definitions/phone',
-                },
-                dates: {
-                  type: 'string',
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  address: {
+                    $ref: '#/definitions/address'
+                  },
+                  phoneNumber: {
+                    $ref: '#/definitions/phone',
+                  },
+                  dates: {
+                    type: 'string',
+                  }
                 }
               }
             },
@@ -814,14 +816,16 @@ const schema = {
               type: 'array',
               items: {
                 type: 'object',
-                name: {
-                  type: 'string'
-                },
-                address: {
-                  $ref: '#/definitions/address'
-                },
-                dates: {
-                  $ref: '#/definitions/dateRange'
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  address: {
+                    $ref: '#/definitions/address'
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  }
                 }
               }
             },
@@ -846,37 +850,39 @@ const schema = {
             previousEmployers: {
               type: 'array',
               items: {
-                type: 'object',
-                name: {
-                  type: 'string'
-                },
-                employerAddress: {
-                  $ref: '#/definitions/address'
-                },
-                phone: {
-                  $ref: '#/definitions/phone',
-                },
-                typeOfWork: {
-                  type: 'string'
-                },
-                hoursPerWeek: {
-                  type: 'number',
-                  minimum: 0,
-                  maximum: 999,
-                },
-                dates: {
-                  $ref: '#/definitions/dateRange'
-                },
-                timeLostFromIllness: {
-                  type: 'string'
-                },
-                mostEarningsInAMonth: {
-                  type: 'number',
-                  minimum: 0,
-                },
-                inBusiness: {
-                  type: 'boolean',
-                },
+                properties: {
+                  type: 'object',
+                  name: {
+                    type: 'string'
+                  },
+                  employerAddress: {
+                    $ref: '#/definitions/address'
+                  },
+                  phone: {
+                    $ref: '#/definitions/phone',
+                  },
+                  typeOfWork: {
+                    type: 'string'
+                  },
+                  hoursPerWeek: {
+                    type: 'number',
+                    minimum: 0,
+                    maximum: 999,
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  },
+                  timeLostFromIllness: {
+                    type: 'string'
+                  },
+                  mostEarningsInAMonth: {
+                    type: 'number',
+                    minimum: 0,
+                  },
+                  inBusiness: {
+                    type: 'boolean',
+                  },
+                }
               }
             },
             disabilityPreventMilitaryDuties: {
@@ -911,18 +917,20 @@ const schema = {
               type: 'array',
               items: {
                 type: 'object',
-                name: {
-                  type: 'string'
-                },
-                address: {
-                  $ref: '#/definitions/address'
-                },
-                workType: {
-                  type: 'string'
-                },
-                date: {
-                  $ref: '#/definitions/date'
-                },
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  address: {
+                    $ref: '#/definitions/address'
+                  },
+                  workType: {
+                    type: 'string'
+                  },
+                  date: {
+                    $ref: '#/definitions/date'
+                  },
+                }
               }
             },
             education: {
@@ -946,12 +954,14 @@ const schema = {
               type: 'array',
               items: {
                 type: 'object',
-                name: {
-                  type: 'string'
-                },
-                dates: {
-                  $ref: '#/definitions/dateRange'
-                },
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  },
+                }
               }
             },
             receivedOtherEducationTrainingPostUnemployability: {
@@ -961,12 +971,14 @@ const schema = {
               type: 'array',
               items: {
                 type: 'object',
-                name: {
-                  type: 'string'
-                },
-                dates: {
-                  $ref: '#/definitions/dateRange'
-                },
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  },
+                }
               }
             },
             remarks: {
