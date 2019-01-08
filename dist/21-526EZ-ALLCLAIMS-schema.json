@@ -2327,181 +2327,6 @@
         }
       }
     },
-    "hospitalizationHistory": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "hospitalizationDateRange": {
-            "$ref": "#/definitions/dateRange"
-          },
-          "hospitalName": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 100
-          },
-          "hospitalAddress": {
-            "type": "object",
-            "properties": {
-              "addressLine1": {
-                "type": "string",
-                "maxLength": 20,
-                "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
-              },
-              "addressLine2": {
-                "type": "string",
-                "maxLength": 20,
-                "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
-              },
-              "city": {
-                "type": "string",
-                "maxLength": 30,
-                "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
-              },
-              "state": {
-                "type": "string",
-                "enum": [
-                  "AL",
-                  "UM",
-                  "AS",
-                  "AZ",
-                  "AR",
-                  "AA",
-                  "AE",
-                  "AP",
-                  "CA",
-                  "CO",
-                  "CT",
-                  "DE",
-                  "DC",
-                  "FM",
-                  "FL",
-                  "GA",
-                  "GU",
-                  "HI",
-                  "ID",
-                  "IL",
-                  "IN",
-                  "IA",
-                  "KS",
-                  "KY",
-                  "LA",
-                  "ME",
-                  "MH",
-                  "MD",
-                  "MA",
-                  "MI",
-                  "MN",
-                  "MS",
-                  "AK",
-                  "MT",
-                  "NE",
-                  "NV",
-                  "NH",
-                  "NJ",
-                  "NM",
-                  "NY",
-                  "NC",
-                  "ND",
-                  "MP",
-                  "OH",
-                  "OK",
-                  "OR",
-                  "PW",
-                  "PA",
-                  "PR",
-                  "RI",
-                  "SC",
-                  "SD",
-                  "TN",
-                  "TX",
-                  "UT",
-                  "VT",
-                  "VI",
-                  "VA",
-                  "WA",
-                  "WV",
-                  "WI",
-                  "WY",
-                  "PI",
-                  "MO"
-                ],
-                "enumNames": [
-                  "Alabama",
-                  "U.S. Minor Outlying Islands",
-                  "American Samoa",
-                  "Arizona",
-                  "Arkansas",
-                  "Armed Forces Americas (AA)",
-                  "Armed Forces Europe (AE)",
-                  "Armed Forces Pacific (AP)",
-                  "California",
-                  "Colorado",
-                  "Connecticut",
-                  "Delaware",
-                  "District Of Columbia",
-                  "Federated States Of Micronesia",
-                  "Florida",
-                  "Georgia",
-                  "Guam",
-                  "Hawaii",
-                  "Idaho",
-                  "Illinois",
-                  "Indiana",
-                  "Iowa",
-                  "Kansas",
-                  "Kentucky",
-                  "Louisiana",
-                  "Maine",
-                  "Marshall Islands",
-                  "Maryland",
-                  "Massachusetts",
-                  "Michigan",
-                  "Minnesota",
-                  "Mississippi",
-                  "Alaska",
-                  "Montana",
-                  "Nebraska",
-                  "Nevada",
-                  "New Hampshire",
-                  "New Jersey",
-                  "New Mexico",
-                  "New York",
-                  "North Carolina",
-                  "North Dakota",
-                  "Northern Mariana Islands",
-                  "Ohio",
-                  "Oklahoma",
-                  "Oregon",
-                  "Palau",
-                  "Pennsylvania",
-                  "Puerto Rico",
-                  "Rhode Island",
-                  "South Carolina",
-                  "South Dakota",
-                  "Tennessee",
-                  "Texas",
-                  "Utah",
-                  "Vermont",
-                  "Virgin Islands",
-                  "Virginia",
-                  "Washington",
-                  "West Virginia",
-                  "Wisconsin",
-                  "Wyoming",
-                  "Philippine Islands",
-                  "Missouri"
-                ]
-              },
-              "zipCode": {
-                "type": "string",
-                "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
-              }
-            }
-          }
-        }
-      }
-    },
     "form0781": {
       "type": "object",
       "properties": {
@@ -3029,6 +2854,381 @@
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    },
+    "form8940": {
+      "type": "object",
+      "properties": {
+        "unemployability": {
+          "type": "object",
+          "properties": {
+            "mostIncome": {
+              "type": "number"
+            },
+            "yearEarned": {
+              "type": "string"
+            },
+            "job": {
+              "type": "string"
+            },
+            "disabilityPreventingEmployment": {
+              "type": "string"
+            },
+            "underDoctorHopitalCarePast12M": {
+              "type": "boolean"
+            },
+            "doctorProvidedCare": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "$ref": "#/definitions/address"
+                  },
+                  "phoneNumber": {
+                    "$ref": "#/definitions/phone"
+                  },
+                  "dates": {
+                    "$ref": "#/definitions/dateRange"
+                  }
+                }
+              }
+            },
+            "hospitalProvidedCare": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "addressLine1": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+                      },
+                      "addressLine2": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+                      },
+                      "city": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+                      },
+                      "state": {
+                        "type": "string",
+                        "enum": [
+                          "AL",
+                          "UM",
+                          "AS",
+                          "AZ",
+                          "AR",
+                          "AA",
+                          "AE",
+                          "AP",
+                          "CA",
+                          "CO",
+                          "CT",
+                          "DE",
+                          "DC",
+                          "FM",
+                          "FL",
+                          "GA",
+                          "GU",
+                          "HI",
+                          "ID",
+                          "IL",
+                          "IN",
+                          "IA",
+                          "KS",
+                          "KY",
+                          "LA",
+                          "ME",
+                          "MH",
+                          "MD",
+                          "MA",
+                          "MI",
+                          "MN",
+                          "MS",
+                          "AK",
+                          "MT",
+                          "NE",
+                          "NV",
+                          "NH",
+                          "NJ",
+                          "NM",
+                          "NY",
+                          "NC",
+                          "ND",
+                          "MP",
+                          "OH",
+                          "OK",
+                          "OR",
+                          "PW",
+                          "PA",
+                          "PR",
+                          "RI",
+                          "SC",
+                          "SD",
+                          "TN",
+                          "TX",
+                          "UT",
+                          "VT",
+                          "VI",
+                          "VA",
+                          "WA",
+                          "WV",
+                          "WI",
+                          "WY",
+                          "PI",
+                          "MO"
+                        ],
+                        "enumNames": [
+                          "Alabama",
+                          "U.S. Minor Outlying Islands",
+                          "American Samoa",
+                          "Arizona",
+                          "Arkansas",
+                          "Armed Forces Americas (AA)",
+                          "Armed Forces Europe (AE)",
+                          "Armed Forces Pacific (AP)",
+                          "California",
+                          "Colorado",
+                          "Connecticut",
+                          "Delaware",
+                          "District Of Columbia",
+                          "Federated States Of Micronesia",
+                          "Florida",
+                          "Georgia",
+                          "Guam",
+                          "Hawaii",
+                          "Idaho",
+                          "Illinois",
+                          "Indiana",
+                          "Iowa",
+                          "Kansas",
+                          "Kentucky",
+                          "Louisiana",
+                          "Maine",
+                          "Marshall Islands",
+                          "Maryland",
+                          "Massachusetts",
+                          "Michigan",
+                          "Minnesota",
+                          "Mississippi",
+                          "Alaska",
+                          "Montana",
+                          "Nebraska",
+                          "Nevada",
+                          "New Hampshire",
+                          "New Jersey",
+                          "New Mexico",
+                          "New York",
+                          "North Carolina",
+                          "North Dakota",
+                          "Northern Mariana Islands",
+                          "Ohio",
+                          "Oklahoma",
+                          "Oregon",
+                          "Palau",
+                          "Pennsylvania",
+                          "Puerto Rico",
+                          "Rhode Island",
+                          "South Carolina",
+                          "South Dakota",
+                          "Tennessee",
+                          "Texas",
+                          "Utah",
+                          "Vermont",
+                          "Virgin Islands",
+                          "Virginia",
+                          "Washington",
+                          "West Virginia",
+                          "Wisconsin",
+                          "Wyoming",
+                          "Philippine Islands",
+                          "Missouri"
+                        ]
+                      },
+                      "zipCode": {
+                        "type": "string",
+                        "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
+                      }
+                    }
+                  },
+                  "dates": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "disabilityAffectedEmploymentFullTimeDate": {
+              "$ref": "#/definitions/date"
+            },
+            "lastWorkedFullTimeDate": {
+              "$ref": "#/definitions/date"
+            },
+            "becameTooDisabledToWorkDate": {
+              "$ref": "#/definitions/date"
+            },
+            "mostEarningsInAYear": {
+              "type": "string"
+            },
+            "yearOfMostEarnings": {
+              "type": "string"
+            },
+            "occupationDuringMostEarnings": {
+              "type": "string"
+            },
+            "previousEmployers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "employerAddress": {
+                    "$ref": "#/definitions/address"
+                  },
+                  "phone": {
+                    "$ref": "#/definitions/phone"
+                  },
+                  "typeOfWork": {
+                    "type": "string"
+                  },
+                  "hoursPerWeek": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 999
+                  },
+                  "dates": {
+                    "$ref": "#/definitions/dateRange"
+                  },
+                  "timeLostFromIllness": {
+                    "type": "string"
+                  },
+                  "mostEarningsInAMonth": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "inBusiness": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "disabilityPreventMilitaryDuties": {
+              "type": "boolean"
+            },
+            "past12MonthsEarnedIncome": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 9999999.99
+            },
+            "currentMonthlyEarnedIncome": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 9999999.99
+            },
+            "leftLastJobDueToDisability": {
+              "type": "boolean"
+            },
+            "leftLastJobDueToDisabilityRemarks": {
+              "type": "string"
+            },
+            "receiveExpectDisabilityRetirement": {
+              "type": "boolean"
+            },
+            "receiveExpectWorkersCompensation": {
+              "type": "boolean"
+            },
+            "attemptedToObtainEmploymentSinceUnemployability": {
+              "type": "boolean"
+            },
+            "appliedEmployers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "$ref": "#/definitions/address"
+                  },
+                  "workType": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "$ref": "#/definitions/date"
+                  }
+                }
+              }
+            },
+            "education": {
+              "type": "string",
+              "enum": [
+                "Some elementary school",
+                "Some high school",
+                "High school diploma or GED",
+                "Some college",
+                "Associate's degree",
+                "Bachelor’s degree",
+                "Master’s degree",
+                "Doctoral degre",
+                "Other"
+              ]
+            },
+            "receivedOtherEducationTrainingPreUnemployability": {
+              "type": "boolean"
+            },
+            "otherEducationTrainingPreUnemployability": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "dates": {
+                    "$ref": "#/definitions/dateRange"
+                  }
+                }
+              }
+            },
+            "receivedOtherEducationTrainingPostUnemployability": {
+              "type": "boolean"
+            },
+            "otherEducationTrainingPostUnemployability": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "dates": {
+                    "$ref": "#/definitions/dateRange"
+                  }
+                }
+              }
+            },
+            "remarks": {
+              "type": "string"
             }
           }
         }
