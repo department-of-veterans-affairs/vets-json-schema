@@ -575,29 +575,6 @@ const schema = {
         }
       }
     },
-    hospitalizationHistory: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          hospitalizationDateRange: {
-            $ref: '#/definitions/dateRange'
-          },
-          hospitalName: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 100
-          },
-          hospitalAddress: {
-            type: 'object',
-            properties: _.omit(
-              ['addressLine3', 'country'],
-              baseAddressDef.properties
-            )
-          }
-        }
-      }
-    },
     form0781: {
       type: 'object',
       properties: {
@@ -770,6 +747,229 @@ const schema = {
           }
         }
       }
+    },
+    form8940: {
+      type: 'object',
+      properties: {
+        unemployability: {
+          type: 'object',
+          properties: {
+            mostIncome: {
+              type: 'number',
+            },
+            yearEarned: {
+              type: 'string',
+            },
+            job: {
+              type: 'string',
+            },
+            disabilityPreventingEmployment: {
+              type: 'string'
+            },
+            underDoctorHopitalCarePast12M: {
+              type: 'boolean'
+            },
+            doctorProvidedCare: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  address: {
+                    $ref: '#/definitions/address'
+                  },
+                  phoneNumber: {
+                    $ref: '#/definitions/phone',
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  }
+                }
+              }
+            },
+            hospitalProvidedCare: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  name: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 100
+                  },
+                  address: {
+                    type: 'object',
+                    properties: _.omit(
+                      ['addressLine3', 'country'],
+                      baseAddressDef.properties
+                    )
+                  },
+                  dates: {
+                    type: "string"
+                  }
+                }
+              }
+            },
+            disabilityAffectedEmploymentFullTimeDate: {
+              $ref: '#/definitions/date'
+            },
+            lastWorkedFullTimeDate: {
+              $ref: '#/definitions/date'
+            },
+            becameTooDisabledToWorkDate: {
+              $ref: '#/definitions/date'
+            },
+            mostEarningsInAYear: {
+              type: 'string'
+            },
+            yearOfMostEarnings: {
+              type: 'string'
+            },
+            occupationDuringMostEarnings: {
+              type: 'string'
+            },
+            previousEmployers: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  employerAddress: {
+                    $ref: '#/definitions/address'
+                  },
+                  phone: {
+                    $ref: '#/definitions/phone',
+                  },
+                  typeOfWork: {
+                    type: 'string'
+                  },
+                  hoursPerWeek: {
+                    type: 'number',
+                    minimum: 0,
+                    maximum: 999,
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  },
+                  timeLostFromIllness: {
+                    type: 'string'
+                  },
+                  mostEarningsInAMonth: {
+                    type: 'number',
+                    minimum: 0,
+                  },
+                  inBusiness: {
+                    type: 'boolean',
+                  },
+                }
+              }
+            },
+            disabilityPreventMilitaryDuties: {
+              type: 'boolean'
+            },
+            past12MonthsEarnedIncome: {
+              type: 'number',
+              minimum: 0,
+              maximum: 9999999.99,
+            },
+            currentMonthlyEarnedIncome: {
+              type: 'number',
+              minimum: 0,
+              maximum: 9999999.99,
+            },
+            leftLastJobDueToDisability: {
+              type: 'boolean'
+            },
+            leftLastJobDueToDisabilityRemarks: {
+              type: 'string',
+            },
+            receiveExpectDisabilityRetirement: {
+              type: 'boolean'
+            },
+            receiveExpectWorkersCompensation: {
+              type: 'boolean'
+            },
+            attemptedToObtainEmploymentSinceUnemployability: {
+              type: 'boolean'
+            },
+            appliedEmployers: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  address: {
+                    $ref: '#/definitions/address'
+                  },
+                  workType: {
+                    type: 'string'
+                  },
+                  date: {
+                    $ref: '#/definitions/date'
+                  },
+                }
+              }
+            },
+            education: {
+              type: 'string',
+              enum: [
+                'Some elementary school',
+                'Some high school',
+                'High school diploma or GED',
+                'Some college',
+                "Associate's degree",
+                'Bachelor’s degree',
+                'Master’s degree',
+                'Doctoral degre',
+                'Other',
+              ],
+            },
+            receivedOtherEducationTrainingPreUnemployability: {
+              type: 'boolean'
+            },
+            otherEducationTrainingPreUnemployability: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  },
+                }
+              }
+            },
+            receivedOtherEducationTrainingPostUnemployability: {
+              type: 'boolean'
+            },
+            otherEducationTrainingPostUnemployability: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  name: {
+                    type: 'string'
+                  },
+                  dates: {
+                    $ref: '#/definitions/dateRange'
+                  },
+                }
+              }
+            },
+            remarks: {
+              type: 'string'
+            }
+          }
+        },
+      },
     },
     privateMedicalRecordAttachments: {
       type: 'array',
