@@ -780,11 +780,8 @@ const schema = {
                   address: {
                     $ref: '#/definitions/address'
                   },
-                  phoneNumber: {
-                    $ref: '#/definitions/phone',
-                  },
                   dates: {
-                    $ref: '#/definitions/dateRange'
+                    type: "string"
                   }
                 }
               }
@@ -795,16 +792,10 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 100
+                    type: 'string'
                   },
                   address: {
-                    type: 'object',
-                    properties: _.omit(
-                      ['addressLine3', 'country'],
-                      baseAddressDef.properties
-                    )
+                    $ref: '#/definitions/address'
                   },
                   dates: {
                     type: "string"
