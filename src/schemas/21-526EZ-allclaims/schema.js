@@ -780,11 +780,8 @@ const schema = {
                   address: {
                     $ref: '#/definitions/address'
                   },
-                  phoneNumber: {
-                    $ref: '#/definitions/phone',
-                  },
                   dates: {
-                    $ref: '#/definitions/dateRange'
+                    type: "string"
                   }
                 }
               }
@@ -795,16 +792,10 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 100
+                    type: 'string'
                   },
                   address: {
-                    type: 'object',
-                    properties: _.omit(
-                      ['addressLine3', 'country'],
-                      baseAddressDef.properties
-                    )
+                    $ref: '#/definitions/address'
                   },
                   dates: {
                     type: "string"
@@ -985,10 +976,9 @@ const schema = {
           },
           attachmentId: {
             type: 'string',
-            enum: ['L107', 'L023', 'L023'],
+            enum: ['L107', 'L023'],
             enumNames: [
               'VA 21-4142 Authorization for Release of Information',
-              'Multiple Documents',
               'Other'
             ]
           }
@@ -1034,8 +1024,6 @@ const schema = {
               'L048',
               'L049',
               'L029',
-              'L034',
-              'L034',
               'L023',
               'L015'
             ],
@@ -1046,14 +1034,56 @@ const schema = {
               'Medical Treatment Record - Government Facility',
               'Medical Treatment Record - Non-Government Facility',
               'DD214',
-              'Military Personnel Record',
-              'Decorations/Awards/Medal Citations',
               'Other Correspondence',
               'Buddy/Lay Statement'
             ]
           }
         }
-
+      }
+    },
+    unemployabilityAttachments: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['name', 'attachmentId'],
+        properties: {
+          name: {
+            type: 'string',
+          },
+          confirmationCode: {
+            type: 'string',
+          },
+          attachmentId: {
+            type: 'string',
+            enum: ['L149', 'L023'],
+            enumNames: [
+              'VA 21-8940 Veterans Application for Increased Compensation Based on Unemployability',
+              'Other',
+            ],
+          },
+        },
+      },
+    }, 
+    employmentRequestAttachments: {
+      type: "array",
+      items: {
+        type: "object",
+        required: ["name", "attachmentId"],
+        properties: {
+          name: {
+            type: "string"
+          },
+          confirmationCode: {
+            type: "string"
+          },
+          attachmentId: {
+            type: "string",
+            enum: ["L115"],
+            enumNames: [
+              "A 21-4192 Request for Employment Information in Connection with Claim for Disability"
+            ]
+          }
+        }
       }
     }
   }
