@@ -180,13 +180,13 @@ const schema = {
           worsenedEffects: {
             type: 'string'
           },
-          VAMistreatmentDescription: {
+          VaMistreatmentDescription: {
             type: 'string'
           },
-          VAMistreatmentLocation: {
+          VaMistreatmentLocation: {
             type: 'string'
           },
-          VAMistreatmentDate: {
+          VaMistreatmentDate: {
             type: 'string'
           }
         }
@@ -533,7 +533,7 @@ const schema = {
       type: 'string',
       maxLength: 35
     },
-    isVAEmployee: {
+    isVaEmployee: {
       type: 'boolean'
     },
     standardClaim: {
@@ -755,13 +755,13 @@ const schema = {
           type: 'object',
           properties: {
             mostIncome: {
-              type: 'number',
+              type: 'number'
             },
             yearEarned: {
-              type: 'string',
+              type: 'string'
             },
             job: {
-              type: 'string',
+              type: 'string'
             },
             disabilityPreventingEmployment: {
               type: 'string'
@@ -781,7 +781,7 @@ const schema = {
                     $ref: '#/definitions/address'
                   },
                   dates: {
-                    type: "string"
+                    type: 'string'
                   }
                 }
               }
@@ -798,7 +798,7 @@ const schema = {
                     $ref: '#/definitions/address'
                   },
                   dates: {
-                    type: "string"
+                    type: 'string'
                   }
                 }
               }
@@ -833,7 +833,7 @@ const schema = {
                     $ref: '#/definitions/address'
                   },
                   phone: {
-                    $ref: '#/definitions/phone',
+                    $ref: '#/definitions/phone'
                   },
                   typeOfWork: {
                     type: 'string'
@@ -841,7 +841,7 @@ const schema = {
                   hoursPerWeek: {
                     type: 'number',
                     minimum: 0,
-                    maximum: 999,
+                    maximum: 999
                   },
                   dates: {
                     $ref: '#/definitions/dateRange'
@@ -849,13 +849,13 @@ const schema = {
                   timeLostFromIllness: {
                     type: 'string'
                   },
-                  mostEarningsInAMonth: {
+                  mostEarningsInMonth: {
                     type: 'number',
-                    minimum: 0,
+                    minimum: 0
                   },
                   inBusiness: {
-                    type: 'boolean',
-                  },
+                    type: 'boolean'
+                  }
                 }
               }
             },
@@ -865,18 +865,18 @@ const schema = {
             past12MonthsEarnedIncome: {
               type: 'number',
               minimum: 0,
-              maximum: 9999999.99,
+              maximum: 9999999.99
             },
             currentMonthlyEarnedIncome: {
               type: 'number',
               minimum: 0,
-              maximum: 9999999.99,
+              maximum: 9999999.99
             },
             leftLastJobDueToDisability: {
               type: 'boolean'
             },
             leftLastJobDueToDisabilityRemarks: {
-              type: 'string',
+              type: 'string'
             },
             receiveExpectDisabilityRetirement: {
               type: 'boolean'
@@ -903,7 +903,7 @@ const schema = {
                   },
                   date: {
                     $ref: '#/definitions/date'
-                  },
+                  }
                 }
               }
             },
@@ -918,8 +918,8 @@ const schema = {
                 'Bachelor’s degree',
                 'Master’s degree',
                 'Doctoral degre',
-                'Other',
-              ],
+                'Other'
+              ]
             },
             receivedOtherEducationTrainingPreUnemployability: {
               type: 'boolean'
@@ -934,7 +934,7 @@ const schema = {
                   },
                   dates: {
                     $ref: '#/definitions/dateRange'
-                  },
+                  }
                 }
               }
             },
@@ -951,7 +951,7 @@ const schema = {
                   },
                   dates: {
                     $ref: '#/definitions/dateRange'
-                  },
+                  }
                 }
               }
             },
@@ -959,8 +959,8 @@ const schema = {
               type: 'string'
             }
           }
-        },
-      },
+        }
+      }
     },
     privateMedicalRecordAttachments: {
       type: 'array',
@@ -1010,7 +1010,7 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string',
+            type: 'string'
           },
           confirmationCode: {
             type: 'string'
@@ -1048,39 +1048,39 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string',
+            type: 'string'
           },
           confirmationCode: {
-            type: 'string',
+            type: 'string'
           },
           attachmentId: {
             type: 'string',
             enum: ['L149', 'L023'],
             enumNames: [
               'VA 21-8940 Veterans Application for Increased Compensation Based on Unemployability',
-              'Other',
-            ],
-          },
-        },
-      },
-    }, 
+              'Other'
+            ]
+          }
+        }
+      }
+    },
     employmentRequestAttachments: {
-      type: "array",
+      type: 'array',
       items: {
-        type: "object",
-        required: ["name", "attachmentId"],
+        type: 'object',
+        required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: "string"
+            type: 'string'
           },
           confirmationCode: {
-            type: "string"
+            type: 'string'
           },
           attachmentId: {
-            type: "string",
-            enum: ["L115"],
+            type: 'string',
+            enum: ['L115'],
             enumNames: [
-              "A 21-4192 Request for Employment Information in Connection with Claim for Disability"
+              'A 21-4192 Request for Employment Information in Connection with Claim for Disability'
             ]
           }
         }
