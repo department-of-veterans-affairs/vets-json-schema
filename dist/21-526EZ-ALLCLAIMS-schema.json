@@ -980,13 +980,13 @@
           "worsenedEffects": {
             "type": "string"
           },
-          "VAMistreatmentDescription": {
+          "VaMistreatmentDescription": {
             "type": "string"
           },
-          "VAMistreatmentLocation": {
+          "VaMistreatmentLocation": {
             "type": "string"
           },
-          "VAMistreatmentDate": {
+          "VaMistreatmentDate": {
             "type": "string"
           }
         }
@@ -2285,7 +2285,7 @@
       "type": "string",
       "maxLength": 35
     },
-    "isVAEmployee": {
+    "isVaEmployee": {
       "type": "boolean"
     },
     "standardClaim": {
@@ -2960,7 +2960,7 @@
                   "timeLostFromIllness": {
                     "type": "string"
                   },
-                  "mostEarningsInAMonth": {
+                  "mostEarningsInMonth": {
                     "type": "number",
                     "minimum": 0
                   },
