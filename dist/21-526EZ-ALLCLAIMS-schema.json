@@ -962,6 +962,9 @@
               "VA"
             ]
           },
+          "classificationCode": {
+            "type": "string"
+          },
           "primaryDescription": {
             "type": "string"
           },
@@ -980,13 +983,13 @@
           "worsenedEffects": {
             "type": "string"
           },
-          "VAMistreatmentDescription": {
+          "vaMistreatmentDescription": {
             "type": "string"
           },
-          "VAMistreatmentLocation": {
+          "vaMistreatmentLocation": {
             "type": "string"
           },
-          "VAMistreatmentDate": {
+          "vaMistreatmentDate": {
             "type": "string"
           }
         }
@@ -2285,7 +2288,7 @@
       "type": "string",
       "maxLength": 35
     },
-    "isVAEmployee": {
+    "isVaEmployee": {
       "type": "boolean"
     },
     "standardClaim": {
