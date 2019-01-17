@@ -962,6 +962,9 @@
               "VA"
             ]
           },
+          "classificationCode": {
+            "type": "string"
+          },
           "primaryDescription": {
             "type": "string"
           },

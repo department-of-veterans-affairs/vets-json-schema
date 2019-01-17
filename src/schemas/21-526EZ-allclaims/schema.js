@@ -162,6 +162,9 @@ const schema = {
             type: 'string',
             enum: ['NEW', 'SECONDARY', 'WORSENED', 'VA']
           },
+          classificationCode: {
+            type: 'string'
+          },
           primaryDescription: {
             type: 'string'
           },
