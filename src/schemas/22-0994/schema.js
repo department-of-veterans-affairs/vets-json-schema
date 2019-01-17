@@ -118,8 +118,12 @@ const schema = {
     },
     highestLevelofEducation: {
       type: "string"
+    },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted'
     }
-  }
+  },
+  required: ['privacyAgreementAccepted', 'applicantFullName']
 };
 
 export default schema;
