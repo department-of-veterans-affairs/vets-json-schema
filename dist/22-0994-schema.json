@@ -286,6 +286,12 @@
           "maxLength": 51
         }
       }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
     }
   },
   "properties": {
@@ -515,6 +521,13 @@
     },
     "highestLevelofEducation": {
       "type": "string"
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted",
+    "applicantFullName"
+  ]
 }

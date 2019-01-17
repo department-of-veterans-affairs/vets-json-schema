@@ -25,7 +25,8 @@ const schema = {
       pattern:
         "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     },
-    address: definitions.address
+    address: definitions.address,
+    privacyAgreementAccepted: definitions.privacyAgreementAccepted
   },
   properties: {
     applicantFullName: {
@@ -118,8 +119,12 @@ const schema = {
     },
     highestLevelofEducation: {
       type: "string"
+    },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted'
     }
-  }
+  },
+  required: ['privacyAgreementAccepted', 'applicantFullName']
 };
 
 export default schema;
