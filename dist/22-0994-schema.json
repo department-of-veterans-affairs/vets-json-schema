@@ -286,6 +286,12 @@
           "maxLength": 51
         }
       }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
     }
   },
   "properties": {
