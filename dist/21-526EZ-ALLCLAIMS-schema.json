@@ -980,13 +980,13 @@
           "worsenedEffects": {
             "type": "string"
           },
-          "VaMistreatmentDescription": {
+          "vaMistreatmentDescription": {
             "type": "string"
           },
-          "VaMistreatmentLocation": {
+          "vaMistreatmentLocation": {
             "type": "string"
           },
-          "VaMistreatmentDate": {
+          "vaMistreatmentDate": {
             "type": "string"
           }
         }
@@ -2960,7 +2960,7 @@
                   "timeLostFromIllness": {
                     "type": "string"
                   },
-                  "mostEarningsInMonth": {
+                  "mostEarningsInAMonth": {
                     "type": "number",
                     "minimum": 0
                   },

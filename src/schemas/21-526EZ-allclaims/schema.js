@@ -180,13 +180,13 @@ const schema = {
           worsenedEffects: {
             type: 'string'
           },
-          VaMistreatmentDescription: {
+          vaMistreatmentDescription: {
             type: 'string'
           },
-          VaMistreatmentLocation: {
+          vaMistreatmentLocation: {
             type: 'string'
           },
-          VaMistreatmentDate: {
+          vaMistreatmentDate: {
             type: 'string'
           }
         }
@@ -849,7 +849,7 @@ const schema = {
                   timeLostFromIllness: {
                     type: 'string'
                   },
-                  mostEarningsInMonth: {
+                  mostEarningsInAMonth: {
                     type: 'number',
                     minimum: 0
                   },
