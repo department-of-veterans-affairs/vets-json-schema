@@ -370,9 +370,11 @@
   },
   "type": "object",
   "properties": {
-    "dd214": {
-      "type": "object",
+    "attachment": {
       "properties": {
+        "dd214": {
+          "type": "boolean"
+        },
         "name": {
           "type": "string"
         },
@@ -382,7 +384,8 @@
         "confirmationCode": {
           "type": "string"
         }
-      }
+      },
+      "type": "object"
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"

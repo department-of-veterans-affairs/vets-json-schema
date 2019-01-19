@@ -128,9 +128,10 @@ describe('healthcare-application json schema', () => {
     });
   });
 
-  schemaTestHelper.testValidAndInvalid('dd214', {
+  schemaTestHelper.testValidAndInvalid('attachment', {
     valid: [
       {
+        dd214: true,
         confirmationCode: 'testing',
         name: 'testing',
         size: 1
