@@ -209,7 +209,13 @@ let schema = {
   },
   type: 'object',
   properties: {
-    dd214: definitions.files.items,
+    attachment: _.merge({
+      properties: {
+        dd214: {
+          type: 'boolean'
+        }
+      }
+    }, definitions.files.items),
     veteranFullName: {
       $ref: '#/definitions/fullName'
     },
