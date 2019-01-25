@@ -98,14 +98,15 @@ const schema = {
       type: "boolean"
     },
     highTechnologyEmploymentType: {
-      type: "string",
-      enum: [
-        "computerProgramming",
-        "dataProcessing",
-        "computerSoftware",
-        "informationSciences",
-        "mediaApplication"
-      ]
+      type: "object",
+      properties: {
+        hasComputerProgramming: { type: 'boolean' },
+        hasDataProcessing: { type: 'boolean' },
+        hasComputerSoftware: { type: 'boolean' },
+        hasInformationSciences: { type: 'boolean' },
+        hasMediaApplication: { type: 'boolean' },
+        hasNoneApply: { type: 'boolean' },
+      }
     },
     currentSalary: {
       type: "string",
@@ -118,7 +119,16 @@ const schema = {
       ]
     },
     highestLevelofEducation: {
-      type: "string"
+      type: "string",
+      enum: [
+        "High school diploma or GED",
+        "Some college",
+        "Associate’s degree",
+        "Bachelor’s degree",
+        "Master’s degree",
+        "Doctoral degree",
+        "Other"
+      ]
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
