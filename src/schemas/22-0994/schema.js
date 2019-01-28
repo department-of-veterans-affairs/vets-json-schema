@@ -66,12 +66,7 @@ const schema = {
       $ref: "#/definitions/bankAccount"
     },
     vetTecProgram: {
-      type: 'array',
-      maxItems: 3,
-      items: {
-        type: 'string',
-        enum: ["program1", "program2", "program3", "program4", "program5"]
-      }
+      type: 'string',
     },
     vetTecProgramLocations: {
       type: "object",
@@ -118,13 +113,29 @@ const schema = {
       ]
     },
     highestLevelofEducation: {
-      type: "string"
+      type: "string",
+      enum: [
+        "highSchoolOrGED",
+        "someCollege",
+        "associatesDegree",
+        "bachelorsDegree",
+        "mastersDegree",
+        "doctoralDegree",
+        "other"
+      ]
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
     }
   },
-  required: ['privacyAgreementAccepted', 'applicantFullName']
+  required: [
+    'privacyAgreementAccepted',
+    'applicantFullName',
+    'appliedForVAEducationBenefits',
+    'activeDuty',
+    'dayTimePhone',
+    'emailAddress'
+  ]
 };
 
 export default schema;
