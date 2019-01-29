@@ -124,12 +124,8 @@ const schema = {
         'other',
       ]
     },
-    privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
-    }
   },
   required: [
-    'privacyAgreementAccepted',
     'applicantFullName',
     'appliedForVAEducationBenefits',
     'activeDuty',
