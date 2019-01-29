@@ -66,25 +66,41 @@ const schema = {
       $ref: "#/definitions/bankAccount"
     },
     vetTecProgram: {
-      type: 'string',
-    },
-    vetTecProgramLocations: {
-      type: "object",
-      properties: {
-        city: {
-          type: "string",
-          maxLength: 30,
-          pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+      type: 'array',
+      maxLength: 3,
+      items: {
+        type: 'object',
+        properties: {
+          providerName: {
+            type: 'string',
+          },
+          programName: {
+            type: 'string',
+          },
+          courseType: {
+            type: 'string',
+            enum: ['inPerson', 'online', 'both'],
+          },
+          location: {
+            type: "object",
+            properties: {
+              city: {
+                type: "string",
+                maxLength: 30,
+                pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+              },
+              state: {
+                type: "string",
+                enum: pciuStates.map(state => state.value),
+                enumNames: pciuStates.map(state => state.label)
+              }
+            }
+          },
+          plannedStartDate: {
+            $ref: "#/definitions/date"
+          },
         },
-        state: {
-          type: "string",
-          enum: pciuStates.map(state => state.value),
-          enumNames: pciuStates.map(state => state.label)
-        }
-      }
-    },
-    plannedStartDate: {
-      $ref: "#/definitions/date"
+      },
     },
     currentEmployment: {
       type: "boolean"
