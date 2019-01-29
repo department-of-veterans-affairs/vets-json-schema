@@ -115,13 +115,13 @@ const schema = {
     highestLevelofEducation: {
       type: "string",
       enum: [
-        "highSchoolOrGED",
-        "someCollege",
-        "associatesDegree",
-        "bachelorsDegree",
-        "mastersDegree",
-        "doctoralDegree",
-        "other"
+        'high_school_diploma_or_GED',
+        'some_college',
+        'associates_degree',
+        'bachelors_degree',
+        'masters_degree',
+        'doctoral_degree',
+        'other',
       ]
     },
     privacyAgreementAccepted: {
