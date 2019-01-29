@@ -331,167 +331,176 @@
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
     },
-    "vetTecProgram": {
+    "vetTecPrograms": {
       "type": "array",
-      "maxItems": 3,
+      "maxLength": 3,
       "items": {
-        "type": "string",
-        "enum": [
-          "program1",
-          "program2",
-          "program3",
-          "program4",
-          "program5"
-        ]
-      }
-    },
-    "vetTecProgramLocations": {
-      "type": "object",
-      "properties": {
-        "city": {
-          "type": "string",
-          "maxLength": 30,
-          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
-        },
-        "state": {
-          "type": "string",
-          "enum": [
-            "AL",
-            "UM",
-            "AS",
-            "AZ",
-            "AR",
-            "AA",
-            "AE",
-            "AP",
-            "CA",
-            "CO",
-            "CT",
-            "DE",
-            "DC",
-            "FM",
-            "FL",
-            "GA",
-            "GU",
-            "HI",
-            "ID",
-            "IL",
-            "IN",
-            "IA",
-            "KS",
-            "KY",
-            "LA",
-            "ME",
-            "MH",
-            "MD",
-            "MA",
-            "MI",
-            "MN",
-            "MS",
-            "AK",
-            "MT",
-            "NE",
-            "NV",
-            "NH",
-            "NJ",
-            "NM",
-            "NY",
-            "NC",
-            "ND",
-            "MP",
-            "OH",
-            "OK",
-            "OR",
-            "PW",
-            "PA",
-            "PR",
-            "RI",
-            "SC",
-            "SD",
-            "TN",
-            "TX",
-            "UT",
-            "VT",
-            "VI",
-            "VA",
-            "WA",
-            "WV",
-            "WI",
-            "WY",
-            "PI",
-            "MO"
-          ],
-          "enumNames": [
-            "Alabama",
-            "U.S. Minor Outlying Islands",
-            "American Samoa",
-            "Arizona",
-            "Arkansas",
-            "Armed Forces Americas (AA)",
-            "Armed Forces Europe (AE)",
-            "Armed Forces Pacific (AP)",
-            "California",
-            "Colorado",
-            "Connecticut",
-            "Delaware",
-            "District Of Columbia",
-            "Federated States Of Micronesia",
-            "Florida",
-            "Georgia",
-            "Guam",
-            "Hawaii",
-            "Idaho",
-            "Illinois",
-            "Indiana",
-            "Iowa",
-            "Kansas",
-            "Kentucky",
-            "Louisiana",
-            "Maine",
-            "Marshall Islands",
-            "Maryland",
-            "Massachusetts",
-            "Michigan",
-            "Minnesota",
-            "Mississippi",
-            "Alaska",
-            "Montana",
-            "Nebraska",
-            "Nevada",
-            "New Hampshire",
-            "New Jersey",
-            "New Mexico",
-            "New York",
-            "North Carolina",
-            "North Dakota",
-            "Northern Mariana Islands",
-            "Ohio",
-            "Oklahoma",
-            "Oregon",
-            "Palau",
-            "Pennsylvania",
-            "Puerto Rico",
-            "Rhode Island",
-            "South Carolina",
-            "South Dakota",
-            "Tennessee",
-            "Texas",
-            "Utah",
-            "Vermont",
-            "Virgin Islands",
-            "Virginia",
-            "Washington",
-            "West Virginia",
-            "Wisconsin",
-            "Wyoming",
-            "Philippine Islands",
-            "Missouri"
-          ]
+        "type": "object",
+        "properties": {
+          "providerName": {
+            "type": "string"
+          },
+          "programName": {
+            "type": "string"
+          },
+          "courseType": {
+            "type": "string",
+            "enum": [
+              "inPerson",
+              "online",
+              "both"
+            ]
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "maxLength": 30,
+                "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "AL",
+                  "UM",
+                  "AS",
+                  "AZ",
+                  "AR",
+                  "AA",
+                  "AE",
+                  "AP",
+                  "CA",
+                  "CO",
+                  "CT",
+                  "DE",
+                  "DC",
+                  "FM",
+                  "FL",
+                  "GA",
+                  "GU",
+                  "HI",
+                  "ID",
+                  "IL",
+                  "IN",
+                  "IA",
+                  "KS",
+                  "KY",
+                  "LA",
+                  "ME",
+                  "MH",
+                  "MD",
+                  "MA",
+                  "MI",
+                  "MN",
+                  "MS",
+                  "AK",
+                  "MT",
+                  "NE",
+                  "NV",
+                  "NH",
+                  "NJ",
+                  "NM",
+                  "NY",
+                  "NC",
+                  "ND",
+                  "MP",
+                  "OH",
+                  "OK",
+                  "OR",
+                  "PW",
+                  "PA",
+                  "PR",
+                  "RI",
+                  "SC",
+                  "SD",
+                  "TN",
+                  "TX",
+                  "UT",
+                  "VT",
+                  "VI",
+                  "VA",
+                  "WA",
+                  "WV",
+                  "WI",
+                  "WY",
+                  "PI",
+                  "MO"
+                ],
+                "enumNames": [
+                  "Alabama",
+                  "U.S. Minor Outlying Islands",
+                  "American Samoa",
+                  "Arizona",
+                  "Arkansas",
+                  "Armed Forces Americas (AA)",
+                  "Armed Forces Europe (AE)",
+                  "Armed Forces Pacific (AP)",
+                  "California",
+                  "Colorado",
+                  "Connecticut",
+                  "Delaware",
+                  "District Of Columbia",
+                  "Federated States Of Micronesia",
+                  "Florida",
+                  "Georgia",
+                  "Guam",
+                  "Hawaii",
+                  "Idaho",
+                  "Illinois",
+                  "Indiana",
+                  "Iowa",
+                  "Kansas",
+                  "Kentucky",
+                  "Louisiana",
+                  "Maine",
+                  "Marshall Islands",
+                  "Maryland",
+                  "Massachusetts",
+                  "Michigan",
+                  "Minnesota",
+                  "Mississippi",
+                  "Alaska",
+                  "Montana",
+                  "Nebraska",
+                  "Nevada",
+                  "New Hampshire",
+                  "New Jersey",
+                  "New Mexico",
+                  "New York",
+                  "North Carolina",
+                  "North Dakota",
+                  "Northern Mariana Islands",
+                  "Ohio",
+                  "Oklahoma",
+                  "Oregon",
+                  "Palau",
+                  "Pennsylvania",
+                  "Puerto Rico",
+                  "Rhode Island",
+                  "South Carolina",
+                  "South Dakota",
+                  "Tennessee",
+                  "Texas",
+                  "Utah",
+                  "Vermont",
+                  "Virgin Islands",
+                  "Virginia",
+                  "Washington",
+                  "West Virginia",
+                  "Wisconsin",
+                  "Wyoming",
+                  "Philippine Islands",
+                  "Missouri"
+                ]
+              }
+            }
+          },
+          "plannedStartDate": {
+            "$ref": "#/definitions/date"
+          }
         }
       }
-    },
-    "plannedStartDate": {
-      "$ref": "#/definitions/date"
     },
     "currentEmployment": {
       "type": "boolean"
@@ -499,15 +508,18 @@
     "currentHighTechnologyEmployment": {
       "type": "boolean"
     },
-    "highTechnologyEmploymentType": {
-      "type": "string",
-      "enum": [
-        "computerProgramming",
-        "dataProcessing",
-        "computerSoftware",
-        "informationSciences",
-        "mediaApplication"
-      ]
+    "highTechnologyEmploymentTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "computerProgramming",
+          "dataProcessing",
+          "computerSoftware",
+          "informationSciences",
+          "mediaApplication"
+        ]
+      }
     },
     "currentSalary": {
       "type": "string",
@@ -520,7 +532,25 @@
       ]
     },
     "highestLevelofEducation": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "high_school_diploma_or_GED",
+        "some_college",
+        "associates_degree",
+        "bachelors_degree",
+        "masters_degree",
+        "doctoral_degree",
+        "other"
+      ],
+      "enumNames": [
+        "High school diploma or GED",
+        "Some college",
+        "Associate’s degree",
+        "Bachelor’s degree",
+        "Master’s degree",
+        "Doctoral degree",
+        "Other"
+      ]
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
@@ -528,6 +558,10 @@
   },
   "required": [
     "privacyAgreementAccepted",
-    "applicantFullName"
+    "applicantFullName",
+    "appliedForVAEducationBenefits",
+    "activeDuty",
+    "dayTimePhone",
+    "emailAddress"
   ]
 }

@@ -65,31 +65,42 @@ const schema = {
     bankAccount: {
       $ref: "#/definitions/bankAccount"
     },
-    vetTecProgram: {
+    vetTecPrograms: {
       type: 'array',
-      maxItems: 3,
+      maxLength: 3,
       items: {
-        type: 'string',
-        enum: ["program1", "program2", "program3", "program4", "program5"]
-      }
-    },
-    vetTecProgramLocations: {
-      type: "object",
-      properties: {
-        city: {
-          type: "string",
-          maxLength: 30,
-          pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+        type: 'object',
+        properties: {
+          providerName: {
+            type: 'string',
+          },
+          programName: {
+            type: 'string',
+          },
+          courseType: {
+            type: 'string',
+            enum: ['inPerson', 'online', 'both'],
+          },
+          location: {
+            type: "object",
+            properties: {
+              city: {
+                type: "string",
+                maxLength: 30,
+                pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+              },
+              state: {
+                type: "string",
+                enum: pciuStates.map(state => state.value),
+                enumNames: pciuStates.map(state => state.label)
+              }
+            }
+          },
+          plannedStartDate: {
+            $ref: "#/definitions/date"
+          },
         },
-        state: {
-          type: "string",
-          enum: pciuStates.map(state => state.value),
-          enumNames: pciuStates.map(state => state.label)
-        }
-      }
-    },
-    plannedStartDate: {
-      $ref: "#/definitions/date"
+      },
     },
     currentEmployment: {
       type: "boolean"
@@ -97,15 +108,18 @@ const schema = {
     currentHighTechnologyEmployment: {
       type: "boolean"
     },
-    highTechnologyEmploymentType: {
-      type: "string",
-      enum: [
-        "computerProgramming",
-        "dataProcessing",
-        "computerSoftware",
-        "informationSciences",
-        "mediaApplication"
-      ]
+    highTechnologyEmploymentTypes: {
+      type: "array",
+      items: {
+        type: "string",
+        enum: [
+          "computerProgramming",
+          "dataProcessing",
+          "computerSoftware",
+          "informationSciences",
+          "mediaApplication"
+        ]
+      }
     },
     currentSalary: {
       type: "string",
@@ -118,13 +132,38 @@ const schema = {
       ]
     },
     highestLevelofEducation: {
-      type: "string"
+      type: "string",
+      enum: [
+        'high_school_diploma_or_GED',
+        'some_college',
+        'associates_degree',
+        'bachelors_degree',
+        'masters_degree',
+        'doctoral_degree',
+        'other',
+      ],
+      enumNames: [
+        'High school diploma or GED',
+        'Some college',
+        'Associate’s degree',
+        'Bachelor’s degree',
+        'Master’s degree',
+        'Doctoral degree',
+        'Other',
+      ],
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
     }
   },
-  required: ['privacyAgreementAccepted', 'applicantFullName']
+  required: [
+    'privacyAgreementAccepted',
+    'applicantFullName',
+    'appliedForVAEducationBenefits',
+    'activeDuty',
+    'dayTimePhone',
+    'emailAddress'
+  ]
 };
 
 export default schema;
