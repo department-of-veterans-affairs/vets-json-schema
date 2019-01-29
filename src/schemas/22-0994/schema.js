@@ -65,7 +65,7 @@ const schema = {
     bankAccount: {
       $ref: "#/definitions/bankAccount"
     },
-    vetTecProgram: {
+    vetTecPrograms: {
       type: 'array',
       maxLength: 3,
       items: {
@@ -108,7 +108,7 @@ const schema = {
     currentHighTechnologyEmployment: {
       type: "boolean"
     },
-    highTechnologyEmploymentType: {
+    highTechnologyEmploymentTypes: {
       type: "array",
       items: {
         type: "string",
