@@ -51,7 +51,7 @@ describe('all schema tests', () => {
     };
 
     for (let k in schemas) {
-      if (['definitions', 'constants'].includes(k)) continue;
+      if (['definitions', 'constants', 'vaMedicalFacilities'].includes(k)) continue;
 
       checkObjectTypes(k, schemas[k]);
     }

@@ -6,7 +6,7 @@ import definitions from '../../common/definitions';
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
-const countryStateProperites = _.map(constants.states, (value, key) => ({
+const countryStateProperties = _.map(constants.states, (value, key) => ({
   properties: {
     country: {
       type: 'string',
@@ -18,7 +18,7 @@ const countryStateProperites = _.map(constants.states, (value, key) => ({
     }
   }
 }));
-countryStateProperites.push(
+countryStateProperties.push(
   {
     properties: {
       country: {
@@ -41,7 +41,7 @@ let schema = {
   definitions: {
     address: {
       type: 'object',
-      oneOf: countryStateProperites,
+      oneOf: countryStateProperties,
       properties: {
         street: {
           type: 'string',
