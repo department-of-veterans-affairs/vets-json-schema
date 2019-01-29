@@ -93,14 +93,17 @@ const schema = {
       type: "boolean"
     },
     highTechnologyEmploymentType: {
-      type: "string",
-      enum: [
-        "computerProgramming",
-        "dataProcessing",
-        "computerSoftware",
-        "informationSciences",
-        "mediaApplication"
-      ]
+      type: "array",
+      items: {
+        type: "string",
+        enum: [
+          "computerProgramming",
+          "dataProcessing",
+          "computerSoftware",
+          "informationSciences",
+          "mediaApplication"
+        ]
+      }
     },
     currentSalary: {
       type: "string",
@@ -122,7 +125,16 @@ const schema = {
         'masters_degree',
         'doctoral_degree',
         'other',
-      ]
+      ],
+      enumNames: [
+        'High school diploma or GED',
+        'Some college',
+        'Associate’s degree',
+        'Bachelor’s degree',
+        'Master’s degree',
+        'Doctoral degree',
+        'Other',
+      ],
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
