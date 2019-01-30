@@ -67,7 +67,7 @@ const schema = {
     },
     vetTecPrograms: {
       type: 'array',
-      maxLength: 3,
+      maxItems: 3,
       items: {
         type: 'object',
         properties: {
@@ -151,6 +151,9 @@ const schema = {
         'Doctoral degree',
         'Other',
       ],
+    },
+    otherEducation: {
+      type: 'string',
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
