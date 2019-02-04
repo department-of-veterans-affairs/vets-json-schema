@@ -319,7 +319,7 @@
     "nightTimePhone": {
       "$ref": "#/definitions/phone"
     },
-    "appliedForVAEducationBenefits": {
+    "appliedForVaEducationBenefits": {
       "type": "boolean"
     },
     "activeDuty": {
@@ -562,7 +562,7 @@
   "required": [
     "privacyAgreementAccepted",
     "applicantFullName",
-    "appliedForVAEducationBenefits",
+    "appliedForVaEducationBenefits",
     "activeDuty",
     "dayTimePhone",
     "emailAddress"

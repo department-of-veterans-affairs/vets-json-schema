@@ -53,7 +53,7 @@ const schema = {
     nightTimePhone: {
       $ref: "#/definitions/phone"
     },
-    appliedForVAEducationBenefits: {
+    appliedForVaEducationBenefits: {
       type: "boolean"
     },
     activeDuty: {
@@ -162,7 +162,7 @@ const schema = {
   required: [
     'privacyAgreementAccepted',
     'applicantFullName',
-    'appliedForVAEducationBenefits',
+    'appliedForVaEducationBenefits',
     'activeDuty',
     'dayTimePhone',
     'emailAddress'
