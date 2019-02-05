@@ -102,10 +102,10 @@ const schema = {
         },
       },
     },
-    currentEmployment: {
+    currentHighTechnologyEmployment: {
       type: "boolean"
     },
-    currentHighTechnologyEmployment: {
+    pastHighTechnologyEmployment: {
       type: "boolean"
     },
     highTechnologyEmploymentTypes: {
