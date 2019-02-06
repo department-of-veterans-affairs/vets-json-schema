@@ -502,7 +502,7 @@
         }
       }
     },
-    "currentEmployment": {
+    "pastHighTechnologyEmployment": {
       "type": "boolean"
     },
     "currentHighTechnologyEmployment": {
