@@ -25,7 +25,13 @@ const schema = {
       pattern:
         "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     },
-    address: definitions.address,
+    address: {
+      ...definitions.address,
+      properties: {
+        ...definitions.address.properties,
+        street3: definitions.address.properties.street2,
+      },
+    },
     privacyAgreementAccepted: definitions.privacyAgreementAccepted
   },
   properties: {
@@ -64,6 +70,24 @@ const schema = {
     },
     bankAccount: {
       $ref: "#/definitions/bankAccount"
+    },
+    prefillBankAccount: {
+      type: 'object',
+      properties: {
+        bankAccountType: {
+          type: 'string',
+          'enum': ['checking', 'savings']
+        },
+        bankAccountNumber: {
+          type: 'string',
+        },
+        bankRoutingNumber: {
+          type: 'string'
+        },
+        bankName: {
+          type: 'string',
+        }
+      }
     },
     vetTecPrograms: {
       type: 'array',
