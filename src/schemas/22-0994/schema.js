@@ -71,6 +71,24 @@ const schema = {
     bankAccount: {
       $ref: "#/definitions/bankAccount"
     },
+    prefillBankAccount: {
+      type: 'object',
+      properties: {
+        bankAccountType: {
+          type: 'string',
+          'enum': ['checking', 'savings']
+        },
+        bankAccountNumber: {
+          type: 'string',
+        },
+        bankRoutingNumber: {
+          type: 'string'
+        },
+        bankName: {
+          type: 'string',
+        }
+      }
+    },
     vetTecPrograms: {
       type: 'array',
       maxItems: 3,
