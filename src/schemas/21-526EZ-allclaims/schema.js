@@ -227,6 +227,7 @@ const schema = {
         }
       }
     },
+    // TODO: Remove these unused definitions
     ptsdIncident: {
       type: 'object',
       properties: {
