@@ -247,24 +247,6 @@ const schema = {
             properties: {
               name: {
                 type: 'string'
-              },
-              address: {
-                type: 'object',
-                required: [],
-                properties: {
-                  ..._.omit(['addressLine3'], baseAddressDef.properties),
-                  country: {
-                    default: 'USA',
-                    type: 'string',
-                    enum: countries.map(country => country.value),
-                    enumNames: countries.map(country => country.label)
-                  },
-                  state: {
-                    title: 'State',
-                    type: 'string',
-                    maxLength: 51
-                  }
-                }
               }
             }
           }
