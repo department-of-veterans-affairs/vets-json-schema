@@ -210,53 +210,6 @@ const schema = {
         }
       }
     },
-    ptsdIncident: {
-      type: 'object',
-      properties: {
-        incidentDate: { $ref: '#/definitions/date' },
-        incidentDescription: { type: 'string' },
-        unitAssigned: { $ref: '#/definitions/unitAssigned' },
-        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
-      }
-    },
-    secondaryPtsdIncident: {
-      type: 'object',
-      properties: {
-        sources: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string'
-              },
-              address: {
-                type: 'object',
-                required: [],
-                properties: {
-                  ..._.omit(['addressLine3'], baseAddressDef.properties),
-                  country: {
-                    default: 'USA',
-                    type: 'string',
-                    enum: countries.map(country => country.value),
-                    enumNames: countries.map(country => country.label)
-                  },
-                  state: {
-                    title: 'State',
-                    type: 'string',
-                    maxLength: 51
-                  }
-                }
-              }
-            }
-          }
-        },
-        incidentDate: { $ref: '#/definitions/date' },
-        description: { type: 'string' },
-        unitAssigned: { $ref: '#/definitions/unitAssigned' },
-        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
-      }
-    }
   },
   properties: {
     alternateNames: {
