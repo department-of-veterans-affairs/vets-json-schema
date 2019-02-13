@@ -99,7 +99,23 @@ const vaTreatmentCenterAddressDef = (addressSchema => {
 })(baseAddressDef);
 
 const form0781AddressDef = (addressSchema => {
-  const
+  const ptsdAddressOmitions = [
+    'addressLine1',
+    'addressLine2',
+    'addressLine3',
+    'postalCode',
+    'zipCode',
+  ];
+  return {
+    ...addressSchema,
+    properties: {
+      ..._.omit(ptsdAddressOmitions, addressSchema.properties),
+      // Should this be added to vets-json-schema?
+      additionalDetails: {
+        type: 'string',
+      },
+    },
+  };
 })(baseAddressDef);
 
 const schema = {
@@ -633,9 +649,7 @@ const schema = {
                     name: {
                       type: 'string'
                     },
-                    address: {
-                      $ref: '#/definitions/address'
-                    }
+                    address: form0781AddressDef
                   }
                 }
               }
