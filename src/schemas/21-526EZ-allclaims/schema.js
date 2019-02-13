@@ -91,14 +91,15 @@ const baseAddressDef = {
 
 const vaTreatmentCenterAddressDef = (addressSchema => {
   const { type, properties } = addressSchema;
-  return Object.assign(
-    {},
-    {
-      type,
-      required: ['country'],
-      properties: _.pick(['country', 'city', 'state'], properties)
-    }
-  );
+  return {
+    type,
+    required: ['country'],
+    properties: _.pick(['country', 'city', 'state'], properties)
+  };
+})(baseAddressDef);
+
+const form0781AddressDef = (addressSchema => {
+  const
 })(baseAddressDef);
 
 const schema = {
