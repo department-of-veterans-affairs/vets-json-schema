@@ -53,9 +53,7 @@ const baseAddressDef = {
   required: ['country', 'city', 'addressLine1'],
   properties: {
     country: {
-      type: 'string',
-      enum: pciuCountries,
-      default: 'USA'
+      $ref: '#/definitions/country'
     },
     addressLine1: {
       type: 'string',
@@ -78,9 +76,7 @@ const baseAddressDef = {
       pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
     },
     state: {
-      type: 'string',
-      enum: pciuStates.map(state => state.value),
-      enumNames: pciuStates.map(state => state.label)
+      $ref: '#/definitions/state'
     },
     zipCode: {
       type: 'string',
@@ -107,10 +103,9 @@ const form0781AddressDef = (addressSchema => {
     'zipCode',
   ];
   return {
-    ...addressSchema,
+    ..._.omit('required', addressSchema),
     properties: {
       ..._.omit(ptsdAddressOmitions, addressSchema.properties),
-      // Should this be added to vets-json-schema?
       additionalDetails: {
         type: 'string',
       },
@@ -149,7 +144,19 @@ const schema = {
         ]
       }
     },
+    // Pulling out country and state to avoid the long list duplication
+    country: {
+      type: 'string',
+      enum: pciuCountries,
+      default: 'USA'
+    },
+    state: {
+      type: 'string',
+      enum: pciuStates.map(state => state.value),
+      enumNames: pciuStates.map(state => state.label)
+    },
     address: baseAddressDef,
+    addressNoRequiredFields: _.omit('required', baseAddressDef),
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set(
@@ -779,7 +786,7 @@ const schema = {
                     type: 'string'
                   },
                   address: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   dates: {
                     type: 'string'
@@ -796,7 +803,7 @@ const schema = {
                     type: 'string'
                   },
                   address: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   dates: {
                     type: 'string'
@@ -831,7 +838,7 @@ const schema = {
                     type: 'string'
                   },
                   employerAddress: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   phone: {
                     $ref: '#/definitions/phone'
@@ -897,7 +904,7 @@ const schema = {
                     type: 'string'
                   },
                   address: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   workType: {
                     type: 'string'
