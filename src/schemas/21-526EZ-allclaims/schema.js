@@ -53,9 +53,7 @@ const baseAddressDef = {
   required: ['country', 'city', 'addressLine1'],
   properties: {
     country: {
-      type: 'string',
-      enum: pciuCountries,
-      default: 'USA'
+      $ref: '#/definitions/country'
     },
     addressLine1: {
       type: 'string',
@@ -78,9 +76,7 @@ const baseAddressDef = {
       pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
     },
     state: {
-      type: 'string',
-      enum: pciuStates.map(state => state.value),
-      enumNames: pciuStates.map(state => state.label)
+      $ref: '#/definitions/state'
     },
     zipCode: {
       type: 'string',
@@ -91,14 +87,30 @@ const baseAddressDef = {
 
 const vaTreatmentCenterAddressDef = (addressSchema => {
   const { type, properties } = addressSchema;
-  return Object.assign(
-    {},
-    {
-      type,
-      required: ['country'],
-      properties: _.pick(['country', 'city', 'state'], properties)
-    }
-  );
+  return {
+    type,
+    required: ['country'],
+    properties: _.pick(['country', 'city', 'state'], properties)
+  };
+})(baseAddressDef);
+
+const form0781AddressDef = (addressSchema => {
+  const ptsdAddressOmitions = [
+    'addressLine1',
+    'addressLine2',
+    'addressLine3',
+    'postalCode',
+    'zipCode',
+  ];
+  return {
+    ..._.omit('required', addressSchema),
+    properties: {
+      ..._.omit(ptsdAddressOmitions, addressSchema.properties),
+      additionalDetails: {
+        type: 'string',
+      },
+    },
+  };
 })(baseAddressDef);
 
 const schema = {
@@ -132,7 +144,19 @@ const schema = {
         ]
       }
     },
+    // Pulling out country and state to avoid the long list duplication
+    country: {
+      type: 'string',
+      enum: pciuCountries,
+      default: 'USA'
+    },
+    state: {
+      type: 'string',
+      enum: pciuStates.map(state => state.value),
+      enumNames: pciuStates.map(state => state.label)
+    },
     address: baseAddressDef,
+    addressNoRequiredFields: _.omit('required', baseAddressDef),
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set(
@@ -210,6 +234,7 @@ const schema = {
         }
       }
     },
+    // TODO: Remove these unused definitions
     ptsdIncident: {
       type: 'object',
       properties: {
@@ -229,24 +254,6 @@ const schema = {
             properties: {
               name: {
                 type: 'string'
-              },
-              address: {
-                type: 'object',
-                required: [],
-                properties: {
-                  ..._.omit(['addressLine3'], baseAddressDef.properties),
-                  country: {
-                    default: 'USA',
-                    type: 'string',
-                    enum: countries.map(country => country.value),
-                    enumNames: countries.map(country => country.label)
-                  },
-                  state: {
-                    title: 'State',
-                    type: 'string',
-                    maxLength: 51
-                  }
-                }
               }
             }
           }
@@ -679,9 +686,7 @@ const schema = {
                     name: {
                       type: 'string'
                     },
-                    address: {
-                      $ref: '#/definitions/address'
-                    }
+                    address: form0781AddressDef
                   }
                 }
               }
@@ -781,7 +786,7 @@ const schema = {
                     type: 'string'
                   },
                   address: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   dates: {
                     type: 'string'
@@ -798,7 +803,7 @@ const schema = {
                     type: 'string'
                   },
                   address: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   dates: {
                     type: 'string'
@@ -833,7 +838,7 @@ const schema = {
                     type: 'string'
                   },
                   employerAddress: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   phone: {
                     $ref: '#/definitions/phone'
@@ -899,7 +904,7 @@ const schema = {
                     type: 'string'
                   },
                   address: {
-                    $ref: '#/definitions/address'
+                    $ref: '#/definitions/addressNoRequiredFields'
                   },
                   workType: {
                     type: 'string'
