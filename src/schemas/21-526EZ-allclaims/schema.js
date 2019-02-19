@@ -113,6 +113,15 @@ const form0781AddressDef = (addressSchema => {
   };
 })(baseAddressDef);
 
+const incidentSourceAddressDef = (addressSchema => {
+  return {
+    ..._.omit('required', addressSchema),
+    properties: {
+      ..._.omit('addressLine3', addressSchema.properties)
+    }
+  }
+})(baseAddressDef);
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR DISABILITY BENEFITS',
@@ -684,9 +693,7 @@ const schema = {
                     name: {
                       type: 'string'
                     },
-                    address: {
-                      $ref: '#/definitions/address'
-                    }
+                    address: incidentSourceAddressDef
                   }
                 }
               }

@@ -1303,7 +1303,34 @@
                       "type": "string"
                     },
                     "address": {
-                      "$ref": "#/definitions/address"
+                      "type": "object",
+                      "properties": {
+                        "country": {
+                          "$ref": "#/definitions/country"
+                        },
+                        "addressLine1": {
+                          "type": "string",
+                          "maxLength": 20,
+                          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+                        },
+                        "addressLine2": {
+                          "type": "string",
+                          "maxLength": 20,
+                          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+                        },
+                        "city": {
+                          "type": "string",
+                          "maxLength": 30,
+                          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+                        },
+                        "state": {
+                          "$ref": "#/definitions/state"
+                        },
+                        "zipCode": {
+                          "type": "string",
+                          "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
+                        }
+                      }
                     }
                   }
                 }
