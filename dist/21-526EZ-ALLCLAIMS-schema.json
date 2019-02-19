@@ -1220,7 +1220,23 @@
                 "$ref": "#/definitions/date"
               },
               "incidentLocation": {
-                "type": "string"
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "$ref": "#/definitions/country"
+                  },
+                  "city": {
+                    "type": "string",
+                    "maxLength": 30,
+                    "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+                  },
+                  "state": {
+                    "$ref": "#/definitions/state"
+                  },
+                  "additionalDetails": {
+                    "type": "string"
+                  }
+                }
               },
               "incidentDescription": {
                 "type": "string"
@@ -1287,23 +1303,7 @@
                       "type": "string"
                     },
                     "address": {
-                      "type": "object",
-                      "properties": {
-                        "country": {
-                          "$ref": "#/definitions/country"
-                        },
-                        "city": {
-                          "type": "string",
-                          "maxLength": 30,
-                          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
-                        },
-                        "state": {
-                          "$ref": "#/definitions/state"
-                        },
-                        "additionalDetails": {
-                          "type": "string"
-                        }
-                      }
+                      "$ref": "#/definitions/address"
                     }
                   }
                 }

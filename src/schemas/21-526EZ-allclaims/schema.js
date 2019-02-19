@@ -619,9 +619,7 @@ const schema = {
               incidentDate: {
                 $ref: '#/definitions/date'
               },
-              incidentLocation: {
-                type: 'string'
-              },
+              incidentLocation: form0781AddressDef,
               incidentDescription: {
                 type: 'string'
               },
@@ -686,7 +684,9 @@ const schema = {
                     name: {
                       type: 'string'
                     },
-                    address: form0781AddressDef
+                    address: {
+                      $ref: '#/definitions/address'
+                    }
                   }
                 }
               }
