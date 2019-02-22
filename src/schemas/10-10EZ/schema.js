@@ -209,13 +209,11 @@ let schema = {
   },
   type: 'object',
   properties: {
-    attachment: _.merge({
-      properties: {
-        dd214: {
-          type: 'boolean'
-        }
-      }
-    }, definitions.files.items),
+    attachments: (() => {
+      let attachments = _.cloneDeep(definitions.files);
+      attachments.items.properties.dd214 = { type: 'boolean' };
+      return attachments;
+    })(),
     veteranFullName: {
       $ref: '#/definitions/fullName'
     },
