@@ -68,6 +68,9 @@ const schema = {
     activeDutyDuringVetTec: {
       type: "boolean"
     },
+    hasSelectedPrograms: {
+      type: "boolean",
+    },
     bankAccount: {
       $ref: "#/definitions/bankAccount"
     },
