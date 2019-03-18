@@ -100,16 +100,16 @@ const form0781AddressDef = (addressSchema => {
     'addressLine2',
     'addressLine3',
     'postalCode',
-    'zipCode',
+    'zipCode'
   ];
   return {
     ..._.omit('required', addressSchema),
     properties: {
       ..._.omit(ptsdAddressOmitions, addressSchema.properties),
       additionalDetails: {
-        type: 'string',
-      },
-    },
+        type: 'string'
+      }
+    }
   };
 })(baseAddressDef);
 
@@ -119,7 +119,7 @@ const incidentSourceAddressDef = (addressSchema => {
     properties: {
       ..._.omit('addressLine3', addressSchema.properties)
     }
-  }
+  };
 })(baseAddressDef);
 
 const schema = {
@@ -478,7 +478,7 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 100,
-          pattern: "([a-zA-Z0-9-/']+( ?))*$"
+          pattern: "^([a-zA-Z0-9-/']+( ?))*$"
         },
         phoneNumber: {
           $ref: '#/definitions/phone'
