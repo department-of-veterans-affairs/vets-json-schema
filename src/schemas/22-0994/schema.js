@@ -161,6 +161,7 @@ const schema = {
     highestLevelofEducation: {
       type: "string",
       enum: [
+        'some_high_school',
         'high_school_diploma_or_GED',
         'some_college',
         'associates_degree',
@@ -170,6 +171,7 @@ const schema = {
         'other',
       ],
       enumNames: [
+        'Some High School',
         'High school diploma or GED',
         'Some college',
         'Associate’s degree',
