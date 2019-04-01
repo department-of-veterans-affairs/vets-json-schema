@@ -387,6 +387,9 @@ const schema = {
     waiveRetirementPay: {
       type: 'boolean'
     },
+    hasSeparationPay: {
+      type: 'boolean'
+    },
     separationPayDate: {
       type: 'string'
     },
