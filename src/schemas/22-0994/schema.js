@@ -171,7 +171,7 @@ const schema = {
         'other',
       ],
       enumNames: [
-        'Some High School',
+        'Some high school',
         'High school diploma or GED',
         'Some college',
         'Associate’s degree',
