@@ -1,7 +1,10 @@
 import _ from "lodash/fp";
 import { countries } from "../../common/constants";
 import definitions from "../../common/definitions";
-import { pciuCountries, pciuStates } from "../../common/constants";
+import {
+  pciuCountries,
+  pciuStates
+} from "../../common/constants";
 
 const schema = {
   $schema: "http://json-schema.org/draft-04/schema#",
@@ -26,8 +29,8 @@ const schema = {
       ...definitions.address,
       properties: {
         ...definitions.address.properties,
-        street3: definitions.address.properties.street2
-      }
+        street3: definitions.address.properties.street2,
+      },
     },
     privacyAgreementAccepted: definitions.privacyAgreementAccepted
   },
@@ -66,44 +69,44 @@ const schema = {
       type: "boolean"
     },
     hasSelectedPrograms: {
-      type: "boolean"
+      type: "boolean",
     },
     bankAccount: {
       $ref: "#/definitions/bankAccount"
     },
     prefillBankAccount: {
-      type: "object",
+      type: 'object',
       properties: {
         bankAccountType: {
-          type: "string",
-          enum: ["checking", "savings"]
+          type: 'string',
+          'enum': ['checking', 'savings']
         },
         bankAccountNumber: {
-          type: "string"
+          type: 'string',
         },
         bankRoutingNumber: {
-          type: "string"
+          type: 'string'
         },
         bankName: {
-          type: "string"
+          type: 'string',
         }
       }
     },
     vetTecPrograms: {
-      type: "array",
+      type: 'array',
       maxItems: 3,
       items: {
-        type: "object",
+        type: 'object',
         properties: {
           providerName: {
-            type: "string"
+            type: 'string',
           },
           programName: {
-            type: "string"
+            type: 'string',
           },
           courseType: {
-            type: "string",
-            enum: ["inPerson", "online", "both"]
+            type: 'string',
+            enum: ['inPerson', 'online', 'both'],
           },
           location: {
             type: "object",
@@ -122,9 +125,9 @@ const schema = {
           },
           plannedStartDate: {
             $ref: "#/definitions/date"
-          }
-        }
-      }
+          },
+        },
+      },
     },
     pastHighTechnologyEmployment: {
       type: "boolean"
@@ -158,40 +161,40 @@ const schema = {
     highestLevelofEducation: {
       type: "string",
       enum: [
-        "some_high_school",
-        "high_school_diploma_or_GED",
-        "some_college",
-        "associates_degree",
-        "bachelors_degree",
-        "masters_degree",
-        "doctoral_degree",
-        "other"
+        'some_high_school',
+        'high_school_diploma_or_GED',
+        'some_college',
+        'associates_degree',
+        'bachelors_degree',
+        'masters_degree',
+        'doctoral_degree',
+        'other',
       ],
       enumNames: [
-        "Some high school",
-        "High school diploma or GED",
-        "Some college",
-        "Associate’s degree",
-        "Bachelor’s degree",
-        "Master’s degree",
-        "Doctoral degree",
-        "Other"
-      ]
+        'Some high school',
+        'High school diploma or GED',
+        'Some college',
+        'Associate’s degree',
+        'Bachelor’s degree',
+        'Master’s degree',
+        'Doctoral degree',
+        'Other',
+      ],
     },
     otherEducation: {
-      type: "string"
+      type: 'string',
     },
     privacyAgreementAccepted: {
-      $ref: "#/definitions/privacyAgreementAccepted"
+      $ref: '#/definitions/privacyAgreementAccepted'
     }
   },
   required: [
-    "privacyAgreementAccepted",
-    "applicantFullName",
-    "appliedForVaEducationBenefits",
-    "activeDuty",
-    "dayTimePhone",
-    "emailAddress"
+    'privacyAgreementAccepted',
+    'applicantFullName',
+    'appliedForVaEducationBenefits',
+    'activeDuty',
+    'dayTimePhone',
+    'emailAddress'
   ]
 };
 
