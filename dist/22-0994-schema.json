@@ -392,7 +392,7 @@
                 "type": "string",
                 "enum": [
                   "AL",
-                  "UM",
+                  "AK",
                   "AS",
                   "AZ",
                   "AR",
@@ -423,7 +423,7 @@
                   "MI",
                   "MN",
                   "MS",
-                  "AK",
+                  "MO",
                   "MT",
                   "NE",
                   "NV",
@@ -454,11 +454,11 @@
                   "WI",
                   "WY",
                   "PI",
-                  "MO"
+                  "UM"
                 ],
                 "enumNames": [
                   "Alabama",
-                  "U.S. Minor Outlying Islands",
+                  "Alaska",
                   "American Samoa",
                   "Arizona",
                   "Arkansas",
@@ -489,7 +489,7 @@
                   "Michigan",
                   "Minnesota",
                   "Mississippi",
-                  "Alaska",
+                  "Missouri",
                   "Montana",
                   "Nebraska",
                   "Nevada",
@@ -520,7 +520,7 @@
                   "Wisconsin",
                   "Wyoming",
                   "Philippine Islands",
-                  "Missouri"
+                  "U.S. Minor Outlying Islands"
                 ]
               }
             }
@@ -573,7 +573,7 @@
         "other"
       ],
       "enumNames": [
-        "Some High School",
+        "Some high school",
         "High school diploma or GED",
         "Some college",
         "Associate’s degree",
