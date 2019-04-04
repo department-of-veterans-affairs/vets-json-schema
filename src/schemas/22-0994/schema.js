@@ -191,6 +191,8 @@ const schema = {
   required: [
     'privacyAgreementAccepted',
     'applicantFullName',
+    'applicantSocialSecurityNumber',
+    'dateOfBirth',
     'appliedForVaEducationBenefits',
     'activeDuty',
     'dayTimePhone',
