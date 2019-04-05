@@ -268,37 +268,37 @@ let schema = {
         programs: { // TRANSLATE into array of strings
           type: 'object', // FE validation requires at least one selected
           properties: {
-            'Post-9/11 Ch 33': {
+            chapter33: {
               type: 'boolean',
               default: false,
               title: 'Post-9/11 GI Bill (Chapter 33)'
             },
-            'MGIB-AD Ch 30': {
+            chapter30: {
               type: 'boolean',
               default: false,
               title: 'Montgomery GI Bill - Active Duty (MGIB-AD, Chapter 30)'
             },
-            'MGIB-SR Ch 1606': {
+            chapter1606: {
               type: 'boolean',
               default: false,
               title: 'Montgomery GI Bill - Selected Reserve (MGIB-SR, Chapter 1606)'
             },
-            TATU: {
+            tatu: {
               type: 'boolean',
               default: false,
               title: 'Tuition Assistance Top-Up'
             },
-            REAP: {
+            reap: {
               type: 'boolean',
               default: false,
               title: 'Reserve Educational Assistance Program (REAP) (Chapter 1607)'
             },
-            'DEA Ch 35': {
+            chapter35: {
               type: 'boolean',
               default: false,
               title: 'Survivors’ and Dependents’ Assistance (DEA) (Chapter 35)'
             },
-            'VRE Ch 31': {
+            chapter31: {
               type: 'boolean',
               default: false,
               title: 'Vocational Rehabilitation and Employment (VR&E) (Chapter 31)'
@@ -308,22 +308,22 @@ let schema = {
         assistance: { // TRANSLATE into array of strings
           type: 'object',
           properties: {
-            TA: {
+            ta: {
               type: 'boolean',
               default: false,
               title: 'Federal Tuition Assistance (TA)'
             },
-            'TA-AGR': {
+            taAgr: {
               type: 'boolean',
               default: false,
               title: 'State-funded Tuition Assistance (TA) for Servicemembers on Active Guard and Reserve (AGR) duties'
             },
-            MyCAA: {
+            myCaa: {
               type: 'boolean',
               default: false,
               title: 'Military Spouse Career Advancement Accounts (MyCAA)'
             },
-            FFA: {
+            ffa: {
               type: 'boolean',
               default: false,
               title: 'Federal financial aid'
