@@ -253,7 +253,7 @@
           "type": "string",
           "enum": [
             "AL",
-            "AK",
+            "UM",
             "AS",
             "AZ",
             "AR",
@@ -284,7 +284,7 @@
             "MI",
             "MN",
             "MS",
-            "MO",
+            "AK",
             "MT",
             "NE",
             "NV",
@@ -315,11 +315,11 @@
             "WI",
             "WY",
             "PI",
-            "UM"
+            "MO"
           ],
           "enumNames": [
             "Alabama",
-            "Alaska",
+            "U.S. Minor Outlying Islands",
             "American Samoa",
             "Arizona",
             "Arkansas",
@@ -350,7 +350,7 @@
             "Michigan",
             "Minnesota",
             "Mississippi",
-            "Missouri",
+            "Alaska",
             "Montana",
             "Nebraska",
             "Nevada",
@@ -381,7 +381,7 @@
             "Wisconsin",
             "Wyoming",
             "Philippine Islands",
-            "U.S. Minor Outlying Islands"
+            "Missouri"
           ]
         },
         "zipCode": {
@@ -623,7 +623,7 @@
           "type": "string",
           "enum": [
             "AL",
-            "AK",
+            "UM",
             "AS",
             "AZ",
             "AR",
@@ -654,7 +654,7 @@
             "MI",
             "MN",
             "MS",
-            "MO",
+            "AK",
             "MT",
             "NE",
             "NV",
@@ -685,11 +685,11 @@
             "WI",
             "WY",
             "PI",
-            "UM"
+            "MO"
           ],
           "enumNames": [
             "Alabama",
-            "Alaska",
+            "U.S. Minor Outlying Islands",
             "American Samoa",
             "Arizona",
             "Arkansas",
@@ -720,7 +720,7 @@
             "Michigan",
             "Minnesota",
             "Mississippi",
-            "Missouri",
+            "Alaska",
             "Montana",
             "Nebraska",
             "Nevada",
@@ -751,7 +751,7 @@
             "Wisconsin",
             "Wyoming",
             "Philippine Islands",
-            "U.S. Minor Outlying Islands"
+            "Missouri"
           ]
         }
       }
@@ -1439,7 +1439,7 @@
               "type": "string",
               "enum": [
                 "AL",
-                "AK",
+                "UM",
                 "AS",
                 "AZ",
                 "AR",
@@ -1470,7 +1470,7 @@
                 "MI",
                 "MN",
                 "MS",
-                "MO",
+                "AK",
                 "MT",
                 "NE",
                 "NV",
@@ -1501,11 +1501,11 @@
                 "WI",
                 "WY",
                 "PI",
-                "UM"
+                "MO"
               ],
               "enumNames": [
                 "Alabama",
-                "Alaska",
+                "U.S. Minor Outlying Islands",
                 "American Samoa",
                 "Arizona",
                 "Arkansas",
@@ -1536,7 +1536,7 @@
                 "Michigan",
                 "Minnesota",
                 "Mississippi",
-                "Missouri",
+                "Alaska",
                 "Montana",
                 "Nebraska",
                 "Nevada",
@@ -1567,7 +1567,7 @@
                 "Wisconsin",
                 "Wyoming",
                 "Philippine Islands",
-                "U.S. Minor Outlying Islands"
+                "Missouri"
               ]
             },
             "zipCode": {
