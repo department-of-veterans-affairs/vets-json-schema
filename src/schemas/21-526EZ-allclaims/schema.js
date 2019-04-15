@@ -488,6 +488,9 @@ const schema = {
         }
       }
     },
+    terminallyIll: {
+      type: 'boolean'
+    },
     vaTreatmentFacilities: {
       type: 'array',
       minItems: 1,
