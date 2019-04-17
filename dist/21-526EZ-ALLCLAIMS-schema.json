@@ -1016,7 +1016,7 @@
         }
       }
     },
-    "terminallyIll": {
+    "isTerminallyIll": {
       "type": "boolean"
     },
     "vaTreatmentFacilities": {
