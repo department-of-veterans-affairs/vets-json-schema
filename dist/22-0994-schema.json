@@ -17,7 +17,8 @@
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "^.*\\S.*"
         },
         "middle": {
           "type": "string"
@@ -25,7 +26,8 @@
         "last": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "^.*\\S.*"
         },
         "suffix": {
           "type": "string",
@@ -273,7 +275,8 @@
         "street": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50
+          "maxLength": 50,
+          "pattern": "^.*\\S.*"
         },
         "street2": {
           "type": "string",
@@ -283,7 +286,8 @@
         "city": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         },
         "street3": {
           "type": "string",
