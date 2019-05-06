@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-1995)",
+  "title": "REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-1995-STEM)",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
