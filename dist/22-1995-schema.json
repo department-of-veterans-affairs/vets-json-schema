@@ -395,6 +395,7 @@
       "type": "string",
       "enum": [
         "chapter33",
+        "fryScholarship",
         "chapter30",
         "chapter1606",
         "transferOfEntitlement",

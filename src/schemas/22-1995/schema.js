@@ -57,7 +57,7 @@ let schema = {
     },
     benefit: {
       type: 'string',
-      enum: ['chapter33', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32', 'chapter1607']
+      enum: ['chapter33', 'fryScholarship', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32', 'chapter1607']
     },
     educationType: {
       $ref: '#/definitions/educationType'
