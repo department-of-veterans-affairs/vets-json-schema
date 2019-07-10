@@ -286,19 +286,19 @@ const schema = {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
           },
           middle: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
           },
           last: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([a-zA-Z0-9-/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
           }
         }
       }
@@ -462,7 +462,8 @@ const schema = {
       enum: ['shelter', 'notShelter', 'anotherPerson', 'other']
     },
     otherHomelessHousing: {
-      type: 'string'
+      type: 'string',
+      maxLength: 500
     },
     needToLeaveHousing: {
       type: 'boolean'
@@ -481,12 +482,15 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 100,
-          pattern: "^([a-zA-Z0-9-/']+( ?))*$"
+          pattern: "^([-a-zA-Z0-9/']+( ?))*$"
         },
         phoneNumber: {
           $ref: '#/definitions/phone'
         }
       }
+    },
+    isTerminallyIll: {
+      type: 'boolean'
     },
     vaTreatmentFacilities: {
       type: 'array',

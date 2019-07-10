@@ -14,7 +14,20 @@ const schema = {
   definitions: {
     phone: definitions.usaPhone,
     date: definitions.date,
-    fullName: definitions.fullName,
+    fullName: {
+      ...definitions.fullName,
+      properties: {
+        ...definitions.fullName.properties,
+        first: {
+          ...definitions.fullName.properties.first,
+          ...definitions.rejectOnlyWhitespace
+        },
+        last: {
+          ...definitions.fullName.properties.last,
+          ...definitions.rejectOnlyWhitespace
+        }
+      }
+    },
     ssn: definitions.ssn,
     bankAccount: definitions.bankAccount,
     gender: definitions.gender,
@@ -29,7 +42,15 @@ const schema = {
       ...definitions.address,
       properties: {
         ...definitions.address.properties,
+        street: {
+          ...definitions.address.properties.street,
+          ...definitions.rejectOnlyWhitespace
+        },
         street3: definitions.address.properties.street2,
+        city: {
+          ...definitions.address.properties.city,
+          ...definitions.rejectOnlyWhitespace
+        },
       },
     },
     privacyAgreementAccepted: definitions.privacyAgreementAccepted
