@@ -115,10 +115,10 @@ describe('feedback tool schema', () => {
           name: 'Veteran school name'
         },
         programs: {
-          'MGIB-AD Ch 30': true
+          'chapter30': true
         },
         assistance: {
-          TA: true
+          ta: true
         }
       },
       // `assistance` is optional
@@ -132,7 +132,7 @@ describe('feedback tool schema', () => {
           name: 'Veteran school name'
         },
         programs: {
-          'MGIB-AD Ch 30': true
+          'chapter30': true
         }
       },
       // valid domestic
@@ -148,7 +148,7 @@ describe('feedback tool schema', () => {
           name: 'Veteran school name'
         },
         programs: {
-          'MGIB-AD Ch 30': true
+          'chapter30': true
         }
       },
       // valid search tool address
@@ -165,7 +165,7 @@ describe('feedback tool schema', () => {
           name: 'CHULALONGKORN-ENGINEERING'
         },
         programs: {
-          'MGIB-AD Ch 30': true
+          'chapter30': true
         }
       },
     ],
@@ -194,7 +194,7 @@ describe('feedback tool schema', () => {
           name: 'CHULALONGKORN-ENGINEERING'
         },
         programs: {
-          'MGIB-AD Ch 30': true
+          'chapter30': true
         }
       },
     ]
