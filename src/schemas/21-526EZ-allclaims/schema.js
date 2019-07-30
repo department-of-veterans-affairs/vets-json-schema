@@ -473,7 +473,8 @@ const schema = {
       enum: ['losingHousing', 'leavingShelter', 'other']
     },
     otherAtRiskHousing: {
-      type: 'string'
+      type: 'string',
+      maxLength: 500,
     },
     homelessnessContact: {
       type: 'object',
