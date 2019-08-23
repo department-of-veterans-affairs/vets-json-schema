@@ -455,16 +455,16 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
-    "activeDuty": {
+    "isEdithNourseRogersScholarship": {
       "type": "boolean"
     },
-    "applyingForStem": {
+    "isEnrolledStem": {
       "type": "boolean"
     },
-    "currentlyEnrolledInStemProgram": {
+    "isPursuingTeachingCert": {
       "type": "boolean"
     },
-    "pursuingStemTeachingCertification": {
+    "isActiveDuty": {
       "type": "boolean"
     },
     "vaFileNumber": {

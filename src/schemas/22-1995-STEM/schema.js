@@ -112,18 +112,18 @@ let schema = {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted'
     },
-    activeDuty: {
-      type: "boolean"
+    isEdithNourseRogersScholarship: {
+        type: 'boolean'
     },
-    applyingForStem: {
-      type: 'boolean'
+    isEnrolledStem: {
+        type: 'boolean'
     },
-    currentlyEnrolledInStemProgram: {
-      type: 'boolean'
+    isPursuingTeachingCert: {
+        type: 'boolean'
     },
-    pursuingStemTeachingCertification: {
-      type: 'boolean'
-    },
+    isActiveDuty: {
+        type: 'boolean'
+    }
   },
   required: ['privacyAgreementAccepted', 'veteranFullName']
 };
