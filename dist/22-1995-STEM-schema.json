@@ -455,6 +455,18 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
+    "activeDuty": {
+      "type": "boolean"
+    },
+    "applyingForStem": {
+      "type": "boolean"
+    },
+    "currentlyEnrolledInStemProgram": {
+      "type": "boolean"
+    },
+    "pursuingStemTeachingCertification": {
+      "type": "boolean"
+    },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
