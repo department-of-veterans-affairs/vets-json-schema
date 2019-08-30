@@ -1656,8 +1656,8 @@
       "value": "AL"
     },
     {
-      "label": "Alaska",
-      "value": "AK"
+      "label": "U.S. Minor Outlying Islands",
+      "value": "UM"
     },
     {
       "label": "American Samoa",
@@ -1780,8 +1780,8 @@
       "value": "MS"
     },
     {
-      "label": "Missouri",
-      "value": "MO"
+      "label": "Alaska",
+      "value": "AK"
     },
     {
       "label": "Montana",
@@ -1904,8 +1904,8 @@
       "value": "PI"
     },
     {
-      "label": "U.S. Minor Outlying Islands",
-      "value": "UM"
+      "label": "Missouri",
+      "value": "MO"
     }
   ],
   "salesforceStates": {
