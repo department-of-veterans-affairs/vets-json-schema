@@ -173,8 +173,8 @@ let schema = {
         state: {
           // backend requires abbreviated state names for applicant address
           type: "string",
-          enum: constants.states50AndDC.map(state => state.value),
-          enumNames: constants.states50AndDC.map(state => state.label)
+          enum: constants.salesforceStates.USA.map(state => state.value),
+          enumNames: constants.salesforceStates.USA.map(state => state.label)
         },
         postalCode: {
           // TYPE: text (5)
