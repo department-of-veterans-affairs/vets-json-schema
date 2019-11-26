@@ -82,8 +82,8 @@ const domesticSchoolAddress = {
     },
     state: {
       type: "string",
-      enum: constants.salesforceStates.USA.map(state => state.value), // backend accepts abbreviated state names
-      enumNames: constants.salesforceStates.USA.map(state => state.label)
+      enum: constants.states.USA.map(state => state.value), // backend accepts abbreviated state names
+      enumNames: constants.states.USA.map(state => state.label)
     },
     postalCode: {
       // TYPE: text (255)
@@ -173,8 +173,8 @@ let schema = {
         state: {
           // backend requires abbreviated state names for applicant address
           type: "string",
-          enum: constants.salesforceStates.USA.map(state => state.value),
-          enumNames: constants.salesforceStates.USA.map(state => state.label)
+          enum: constants.states.USA.map(state => state.value),
+          enumNames: constants.states.USA.map(state => state.label)
         },
         postalCode: {
           // TYPE: text (5)
