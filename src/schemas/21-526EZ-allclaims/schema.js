@@ -1,5 +1,4 @@
 import _ from 'lodash/fp';
-import { countries } from '../../common/constants';
 import definitions from '../../common/definitions';
 import {
   documentTypes526,
