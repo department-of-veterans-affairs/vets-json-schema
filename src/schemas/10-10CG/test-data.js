@@ -1,18 +1,5 @@
 const schema = {
   // Vet Info
-  veteranVaEnrolled: false,
-  veteranFacilityType: "hospital",
-  veteranPreviousTreatmentFacility: "adsadad",
-  veteranAddress: {
-    street: "111 2nd St S",
-    city: "Seattle",
-    country: "USA",
-    state: "IN",
-    postalCode: "33771"
-  },
-  veteranTelephoneNumber: "8887775544",
-  veteranCellNumber: "8887775544",
-  veteranEmail: "test@email.com",
   veteranFullName: {
     first: "Jane Doe",
     last: "Doe"
@@ -21,7 +8,28 @@ const schema = {
   veteranTin: "789",
   veteranDateOfBirth: "1990-07-03",
   veteranGender: "Male",
+  veteranAddress: {
+    street: "111 2nd St S",
+    city: "Seattle",
+    country: "USA",
+    state: "IN",
+    postalCode: "33771"
+  },
+  veteranTelephoneNumber: "8887775544",
+  veteranAlternativeNumber: "8887775544",
+  veteranEmail: "test@email.com",
+  veteranVaEnrolled: true,
+  veteranFacilityType: "hospital",
+  veteranPreviousTreatmentFacility: "adsadad",
   // Primary Caregiver Info
+  primaryFullName: {
+    first: "Joan",
+    last: "Doe"
+  },
+  primarySsnOrTin: "Tax Identification Number",
+  primaryTin: "789",
+  primaryDateOfBirth: "1978-07-03",
+  primaryGender: "Female",
   primaryAddress: {
     street: "111 2nd St S",
     city: "Seattle",
@@ -39,15 +47,6 @@ const schema = {
   primaryOtherHealthInsurance: true,
   primaryOtherHealthInsuranceName: "asdasd",
   hasSecondaryOneCaregiver: true,
-  primaryFullName: {
-    first: "Joan",
-    last: "Doe"
-  },
-  primarySsnOrTin: "Tax Identification Number",
-  primarySsn: "558877854",
-  primaryTin: "789",
-  primaryDateOfBirth: "1978-07-03",
-  primaryGender: "Female",
   // Secondary Caregiver One
   secondaryOneFullName: {
     first: "John Doe",
