@@ -161,6 +161,42 @@ const schema = {
         },
       }
     },
+    secondaryTwoCaregiverInfo: {
+      type: "object",
+      required: [],
+      properties: {
+        fullName: {
+          $ref: "#/definitions/fullName"
+        },
+        ssnOrTin: ssnOrTin,
+        ssn: {
+          $ref: "#/definitions/ssn"
+        },
+        tin: tin,
+        dateOfBirth: {
+          $ref: '#/definitions/dateOfBirth'
+        },
+        gender: {
+          $ref: "#/definitions/gender"
+        },
+        address: {
+          $ref: "#/definitions/address"
+        },
+        primaryPhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        alternativePhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        email: {
+          $ref: "#/definitions/email"
+        },
+        vetRelationship: {
+          type: 'string',
+        },
+        hasSecondaryOneCaregiver: booleanType,
+      }
+    },
     address: {
       type: "object",
       oneOf: [
