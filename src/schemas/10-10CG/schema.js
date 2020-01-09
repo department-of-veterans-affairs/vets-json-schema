@@ -21,7 +21,6 @@ const schema = {
   type: "object",
   additionalProperties: false,
   definitions: {
-
     veteranInfoOne: {
       type: "object",
       required: [],
