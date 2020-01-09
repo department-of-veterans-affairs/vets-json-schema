@@ -1,40 +1,165 @@
+import definitions from "../../common/definitions";
 
 const ssnOrTin = {
   type: "string",
-  enum: ['Social Security Number', 'Tax Identification Number'],
+  enum: ["Social Security Number", "Tax Identification Number"]
 };
 
 const tin = {
-  type: 'string'
+  type: "string"
 };
+
+const booleanType = {
+  type: 'boolean'
+};
+
 
 const schema = {
   $schema: "http://json-schema.org/draft-04/schema#",
-  title: "Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)",
+  title:
+    "Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)",
   type: "object",
   additionalProperties: false,
   definitions: {
-  veteranInfoOne: {
-    type: "object",
-    required: [],
-    properties: {
-      address: "common/ref",
-      primaryPhoneNumber: 'common/ref',
-      alternativePhoneNumber: 'common/ref',
-      email: 'common/ref',
-    }
-  },
-  veteranInfoTwo: {
-    type: "object",
-    required: [],
-    properties: {
-      fullName: "common/ref",
-      ssnOrTin: ssnOrTin,
-      ssn: 'common/ref',
-      tin: tin,
-      dateOfBirth: 'common/ref',
-      gender: 'common/ref',
-    }
+
+    veteranInfoOne: {
+      type: "object",
+      required: [],
+      properties: {
+        fullName: {
+          $ref: "#/definitions/fullName"
+        },
+        ssnOrTin: ssnOrTin,
+        ssn: {
+          $ref: "#/definitions/ssn"
+        },
+        tin: tin,
+        dateOfBirth: {
+          $ref: '#/definitions/dateOfBirth'
+        },
+        gender: {
+          $ref: "#/definitions/gender"
+        }
+      }
+    },
+    veteranInfoTwo: {
+      type: "object",
+      required: [],
+      properties: {
+        fullName: {
+          $ref: "#/definitions/address"
+        },
+        primaryPhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        alternativePhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        email: {
+          $ref: "#/definitions/email"
+        }
+      }
+    },
+    veteranInfoThree: {
+      type: "object",
+      required: [],
+      properties: {
+        vaEnrolled: {
+          type: 'boolean'
+        },
+        plannedClinic: {
+          type: 'string'
+        },
+        facilityType: {
+          type: 'string',
+          enum: ['hospital', 'clinic']
+        },
+        previousTreatmentFacility: {
+          type: 'string'
+        }
+      }
+    },
+    primaryCaregiverInfoOne: {
+      type: "object",
+      required: [],
+      properties: {
+        fullName: {
+          $ref: "#/definitions/fullName"
+        },
+        ssnOrTin: ssnOrTin,
+        ssn: {
+          $ref: "#/definitions/ssn"
+        },
+        tin: tin,
+        dateOfBirth: {
+          $ref: '#/definitions/dateOfBirth'
+        },
+        gender: {
+          $ref: "#/definitions/gender"
+        }
+      }
+    },
+    primaryCaregiverInfoTwo: {
+      type: "object",
+      required: [],
+      properties: {
+        primaryPhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        alternativePhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        email: {
+          $ref: "#/definitions/email"
+        },
+        vetRelationship: {
+          type: 'string',
+        },
+        medicaidEnrolled: booleanType,
+        medicareEnrolled: booleanType,
+        tricareEnrolled: booleanType,
+        champvaEnrolled: booleanType,
+        otherHealthInsurance: booleanType,
+        otherHealthInsuranceName: {
+          type: 'string',
+        },
+        hasSecondaryOneCaregiver: booleanType,
+      }
+    },
+    secondaryOneCaregiverInfo: {
+      type: "object",
+      required: [],
+      properties: {
+        fullName: {
+          $ref: "#/definitions/fullName"
+        },
+        ssnOrTin: ssnOrTin,
+        ssn: {
+          $ref: "#/definitions/ssn"
+        },
+        tin: tin,
+        dateOfBirth: {
+          $ref: '#/definitions/dateOfBirth'
+        },
+        gender: {
+          $ref: "#/definitions/gender"
+        },
+        address: {
+          $ref: "#/definitions/address"
+        },
+        primaryPhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        alternativePhoneNumber: {
+          $ref: "#/definitions/phone"
+        },
+        email: {
+          $ref: "#/definitions/email"
+        },
+        vetRelationship: {
+          type: 'string',
+        },
+      }
     },
     address: {
       type: "object",
@@ -238,6 +363,5 @@ const schema = {
     }
   }
 };
-
 
 export default schema;
