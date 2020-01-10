@@ -126,6 +126,13 @@ const ssn = {
   pattern: '^[0-9]{9}$'
 };
 
+// Historically a veteran's service number has been between 5 and 8 digits, 
+// with the possibility of an alphabetical prefix of up to two capital letters.
+const veteranServiceNumber = {
+  type: 'string',
+  pattern: '^[A-Z]{0,2}\\d{5,8}$'
+}
+
 // The last four digits (or serial number) must be a number from 0001 to 9999
 // https://www.ssa.gov/history/ssn/geocard.html
 const ssnLastFour = {

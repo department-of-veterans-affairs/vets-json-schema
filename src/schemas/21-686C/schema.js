@@ -19,7 +19,7 @@ const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 
 let definitions = _.cloneDeep(originalDefinitions);
-definitions =  _.pick(definitions, 'fullName', 'date', 'ssn');
+definitions =  _.pick(definitions, 'fullName', 'date', 'ssn', 'veteranServiceNumber');
 
 definitions.fullName.properties.first.pattern = textRegex;
 definitions.fullName.properties.last.pattern = textRegex;
@@ -74,12 +74,19 @@ const commonAddressFields = {
   }
 }
 
+// 4494 NOTE: It isn't immediately clear to me why these definitions are used for marriage instead
+// of the ones found in ../common/definitions.js. This will require additional investigation. 
+// For now, I've added marriageType directly to the defintion below.
+
 const commonMarriageDef = {
-  required: ['dateOfMarriage', 'locationOfMarriage', 'spouseFullName'],
+  required: ['dateOfMarriage', 'locationOfMarriage', 'spouseFullName', 'marriageType'],
   properties: {
     dateOfMarriage: schemaHelpers.getDefinition('date'),
     locationOfMarriage: {
       $ref: '#/definitions/location'
+    },
+    marriageType: {
+      type: 'string'
     },
     spouseFullName: schemaHelpers.getDefinition('fullName')
   }
@@ -443,10 +450,10 @@ let schema = {
           disabled: {
             type: 'boolean'
           },
-          previouslyMarried: {
+          previouslyMarried: { // 4494 Note - I think this can be removed from here but....
             type: 'boolean'
           },
-          marriedDate: schemaHelpers.getDefinition('date'),
+          dateMarriageEnded: schemaHelpers.getDefinition('date'),
           childInHousehold: {
             type: 'boolean'
           },
@@ -474,11 +481,38 @@ let schema = {
             type: 'object',
             oneOf: [
               {
-                required: ['marriedDate'],
+                required: ['dateMarriageEnded'],
                 properties: {
                   previouslyMarried: {
                     type: 'boolean',
                     enum: [true]
+                  },
+                  reasonMarriageEnded: {
+                    type: 'string',
+                    enum: [
+                      'Annulled',
+                      'Declared void'
+                    ]
+                  }
+                }
+              },
+              {
+                required: ['dateMarriageEnded'],
+                properties: {
+                  previouslyMarried: {
+                    type: 'boolean',
+                    enum: [true]
+                  },
+                  reasonMarriageEnded: {
+                    type: 'string',
+                    enum: [
+                      'Other',
+                    ]
+                  },
+                  explainSeparation: {
+                    type: 'string',
+                    maxLength: 500,
+                    pattern: textAndNumbersRegex
                   }
                 }
               },
