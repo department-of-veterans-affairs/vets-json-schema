@@ -469,7 +469,7 @@ let schema = {
           disabled: {
             type: 'boolean'
           },
-          previouslyMarried: { // 4494 Note - I think this can be removed from here but....
+          previouslyMarried: {
             type: 'boolean'
           },
           dateMarriageEnded: schemaHelpers.getDefinition('date'),
