@@ -1,14 +1,15 @@
 import definitions from './definitions';
 
-const getDefinition = (definition) => {
+const getDefinition = definition => {
   return {
-    $ref: `#/definitions/${definition}`
+    $ref: `#/definitions/${definition}`,
   };
 };
 
 const addDefinitionToSchema = (schema, definition, key) => {
+  // eslint-disable-next-line no-param-reassign
   if (key == null) key = definition;
-  let schemaDefinitions = schema.definitions;
+  const schemaDefinitions = schema.definitions;
 
   if (schemaDefinitions[definition] == null) {
     schemaDefinitions[definition] = definitions[definition];
@@ -34,5 +35,5 @@ const addDefinitionToSchema = (schema, definition, key) => {
 
 export default {
   addDefinitionToSchema,
-  getDefinition
+  getDefinition,
 };

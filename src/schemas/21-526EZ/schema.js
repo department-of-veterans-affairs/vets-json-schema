@@ -1,10 +1,6 @@
 import _ from 'lodash/fp';
 import definitions from '../../common/definitions';
-import {
-  pciuCountries,
-  pciuStates,
-  documentTypes526
-} from '../../common/constants';
+import { pciuCountries, pciuStates, documentTypes526 } from '../../common/constants';
 
 const disabilitiesBaseDef = {
   type: 'array',
@@ -14,26 +10,26 @@ const disabilitiesBaseDef = {
     required: ['name', 'disabilityActionType'],
     properties: {
       name: {
-        type: 'string'
+        type: 'string',
       },
       disabilityActionType: {
         type: 'string',
-        enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
+        enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN'],
       },
       ratedDisabilityId: {
-        type: 'string'
+        type: 'string',
       },
       ratingDecisionId: {
-        type: 'string'
+        type: 'string',
       },
       diagnosticCode: {
-        type: 'number'
+        type: 'number',
       },
       classificationCode: {
-        type: 'string'
-      }
-    }
-  }
+        type: 'string',
+      },
+    },
+  },
 };
 
 const addressBaseDef = {
@@ -43,53 +39,45 @@ const addressBaseDef = {
     country: {
       type: 'string',
       enum: pciuCountries,
-      default: 'USA'
+      default: 'USA',
     },
     addressLine1: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
     },
     addressLine2: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
     },
     addressLine3: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
     },
     city: {
       type: 'string',
       maxLength: 30,
-      pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$",
     },
     state: {
       type: 'string',
       enum: pciuStates.map(state => state.value),
-      enumNames: pciuStates.map(state => state.label)
+      enumNames: pciuStates.map(state => state.label),
     },
     zipCode: {
       type: 'string',
-      pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
-    }
-  }
+      pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$',
+    },
+  },
 };
 
 // Some date ranges require both 'from' and 'to' dates
-const dateRangeAllRequired = _.set(
-  'required',
-  ['from', 'to'],
-  definitions.dateRange
-);
+const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateRange);
 
 // Other date ranges don't
-const dateRangeFromRequired = _.set(
-  'required',
-  ['from'],
-  definitions.dateRange
-);
+const dateRangeFromRequired = _.set('required', ['from'], definitions.dateRange);
 
 /**
  * Transforms common fullName definition by adding regex validations and
@@ -99,6 +87,8 @@ const dateRangeFromRequired = _.set(
  * @param {definitions} definitions the common schema definitions file
  * @returns {object} the servicePeriods schema object
  */
+
+// eslint-disable-next-line no-shadow
 const fullNameDef = (definitions => {
   const fullNameClone = _.cloneDeep(definitions.fullName);
   delete fullNameClone.properties.suffix;
@@ -107,8 +97,7 @@ const fullNameDef = (definitions => {
   const firstLastPattern = "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$";
   fullNameClone.properties.first.pattern = firstLastPattern;
   fullNameClone.properties.last.pattern = firstLastPattern;
-  fullNameClone.properties.middle.pattern =
-    "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
+  fullNameClone.properties.middle.pattern = "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
 
   return fullNameClone;
 })(definitions);
@@ -120,17 +109,14 @@ const fullNameDef = (definitions => {
  */
 const vaTreatmentCenterAddressDef = (addressSchema => {
   const { type, properties } = addressSchema;
-  return Object.assign(
-    {},
-    {
-      type,
-      required: ['country'],
-      properties: _.pick(['country', 'city', 'state'], properties)
-    }
-  );
+  return {
+    type,
+    required: ['country'],
+    properties: _.pick(['country', 'city', 'state'], properties),
+  };
 })(addressBaseDef);
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)',
   type: 'object',
@@ -145,9 +131,9 @@ let schema = {
       minItems: 1,
       items: {
         properties: {
-          secondaryDisabilities: disabilitiesBaseDef
-        }
-      }
+          secondaryDisabilities: disabilitiesBaseDef,
+        },
+      },
     }),
     fullName: fullNameDef,
     phone: definitions.usaPhone,
@@ -156,7 +142,7 @@ let schema = {
     // uses Central Mail Address Schema properties as the
     // document is submitted to Central Mail (ICMHS)
     // Refer to definitions.js $ref: '#/definitions/centralMailAddress'
-    centralMailAddress: definitions.centralMailAddress
+    centralMailAddress: definitions.centralMailAddress,
   },
   required: ['veteran', 'serviceInformation', 'disabilities', 'standardClaim'],
   properties: {
@@ -168,21 +154,19 @@ let schema = {
           type: 'string',
           minLength: 6,
           maxLength: 80,
-          pattern:
-            '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+          pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
         },
         alternateEmailAddress: {
           type: 'string',
           format: 'email',
           maxLength: 80,
-          pattern:
-            '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+          pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
         },
         mailingAddress: {
-          $ref: '#/definitions/address'
+          $ref: '#/definitions/address',
         },
         primaryPhone: {
-          $ref: '#/definitions/phone'
+          $ref: '#/definitions/phone',
         },
         // Forwarding address differs from mailing address in a few key ways:
         // 1. Address lines 1-3 are max 20 chars instead of 35
@@ -192,31 +176,31 @@ let schema = {
         forwardingAddress: _.set(
           'properties.effectiveDate',
           {
-            $ref: '#/definitions/date'
+            $ref: '#/definitions/date',
           },
           _.omit(
             'required',
             _.merge(addressBaseDef, {
               properties: {
                 addressLine1: {
-                  maxLength: 35
+                  maxLength: 35,
                 },
                 addressLine2: {
-                  maxLength: 35
+                  maxLength: 35,
                 },
                 addressLine3: {
-                  maxLength: 35
-                }
-              }
-            })
-          )
+                  maxLength: 35,
+                },
+              },
+            }),
+          ),
         ),
         homelessness: {
           type: 'object',
           required: ['isHomeless'],
           properties: {
             isHomeless: {
-              type: 'boolean'
+              type: 'boolean',
             },
             pointOfContact: {
               type: 'object',
@@ -225,20 +209,20 @@ let schema = {
                   type: 'string',
                   minLength: 1,
                   maxLength: 100,
-                  pattern: "^([-a-zA-Z0-9/']+( ?))*$"
+                  pattern: "^([-a-zA-Z0-9/']+( ?))*$",
                 },
                 primaryPhone: {
-                  $ref: '#/definitions/phone'
-                }
-              }
-            }
-          }
+                  $ref: '#/definitions/phone',
+                },
+              },
+            },
+          },
         },
         serviceNumber: {
           type: 'string',
-          pattern: '^[a-zA-Z0-9]{1,9}$'
-        }
-      }
+          pattern: '^[a-zA-Z0-9]{1,9}$',
+        },
+      },
     },
     attachments: {
       type: 'array',
@@ -248,19 +232,19 @@ let schema = {
         properties: {
           // This is the document name schema - FileField requires this specific name be used
           name: {
-            type: 'string'
+            type: 'string',
           },
           confirmationCode: {
-            type: 'string'
+            type: 'string',
           },
           // This is the document type schema - FileField requires this specific name be used
           attachmentId: {
             type: 'string',
             enum: documentTypes526.map(doc => doc.value),
-            enumNames: documentTypes526.map(doc => doc.label)
-          }
-        }
-      }
+            enumNames: documentTypes526.map(doc => doc.label),
+          },
+        },
+      },
     },
     militaryPayments: {
       type: 'object',
@@ -274,7 +258,7 @@ let schema = {
             required: ['payType', 'amount'],
             properties: {
               amount: {
-                type: 'number'
+                type: 'number',
               },
               payType: {
                 type: 'string',
@@ -283,18 +267,18 @@ let schema = {
                   'TEMPORARY_DISABILITY_RETIRED_LIST',
                   'PERMANENT_DISABILITY_RETIRED_LIST',
                   'SEPARATION',
-                  'SEVERANCE'
-                ]
-              }
-            }
-          }
+                  'SEVERANCE',
+                ],
+              },
+            },
+          },
         },
         receiveCompensationInLieuOfRetired: {
           // I want military retired pay instead of VA compensation
           type: 'boolean',
-          default: false
-        }
-      }
+          default: false,
+        },
+      },
     },
     serviceInformation: {
       type: 'object',
@@ -324,64 +308,60 @@ let schema = {
                   'NOAA',
                   'Navy',
                   'Navy Reserve',
-                  'Public Health Service'
-                ]
+                  'Public Health Service',
+                ],
               },
               dateRange: {
-                $ref: '#/definitions/dateRangeAllRequired'
-              }
-            }
-          }
+                $ref: '#/definitions/dateRangeAllRequired',
+              },
+            },
+          },
         },
         reservesNationalGuardService: {
           type: 'object',
-          required: [
-            'unitName',
-            'obligationTermOfServiceDateRange',
-            'waiveVABenefitsToRetainTrainingPay'
-          ],
+          required: ['unitName', 'obligationTermOfServiceDateRange', 'waiveVABenefitsToRetainTrainingPay'],
           properties: {
             unitName: {
               type: 'string',
               maxLength: 256,
-              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$",
             },
             obligationTermOfServiceDateRange: {
-              $ref: '#/definitions/dateRangeAllRequired'
+              $ref: '#/definitions/dateRangeAllRequired',
             },
             waiveVABenefitsToRetainTrainingPay: {
               // I elect to waive VA benefits for the days I accrued
               // inactive duty training pay in order to retain my inactive
               // duty training pay.
-              type: 'boolean'
+              type: 'boolean',
             },
             title10Activation: {
               type: 'object',
               properties: {
                 title10ActivationDate: {
-                  $ref: '#/definitions/date'
+                  $ref: '#/definitions/date',
                 },
                 anticipatedSeparationDate: {
-                  $ref: '#/definitions/date'
-                }
-              }
-            }
-          }
+                  $ref: '#/definitions/date',
+                },
+              },
+            },
+          },
         },
         separationLocationName: {
           type: 'string',
           maxLength: 256,
-          pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+          pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$",
         },
         separationLocationCode: {
-          type: 'string'
+          type: 'string',
         },
         alternateNames: {
           type: 'array',
           maxItems: 100,
           items: {
-            $ref: '#/definitions/fullName'
-          }
+            $ref: '#/definitions/fullName',
+          },
         },
         confinements: {
           type: 'array',
@@ -390,19 +370,19 @@ let schema = {
             type: 'object',
             properties: {
               confinementDateRange: {
-                $ref: '#/definitions/dateRangeAllRequired'
+                $ref: '#/definitions/dateRangeAllRequired',
               },
               verifiedIndicator: {
                 type: 'boolean',
-                default: false
-              }
-            }
-          }
-        }
-      }
+                default: false,
+              },
+            },
+          },
+        },
+      },
     },
     disabilities: {
-      $ref: '#/definitions/disabilities'
+      $ref: '#/definitions/disabilities',
     },
     treatments: {
       type: 'array',
@@ -415,16 +395,16 @@ let schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$",
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRangeFromRequired'
+            $ref: '#/definitions/dateRangeFromRequired',
           },
           treatmentCenterAddress: {
-            $ref: '#/definitions/vaTreatmentCenterAddress'
-          }
-        }
-      }
+            $ref: '#/definitions/vaTreatmentCenterAddress',
+          },
+        },
+      },
     },
     specialCircumstances: {
       type: 'array',
@@ -434,28 +414,28 @@ let schema = {
         type: 'object',
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           code: {
-            type: 'string'
+            type: 'string',
           },
           needed: {
             type: 'boolean',
-            default: false
-          }
-        }
-      }
+            default: false,
+          },
+        },
+      },
     },
     standardClaim: {
       // I DO NOT want my claim considered for rapid processing under the FDC
       // program because I plan to submit further evidence in support of my claim
       type: 'boolean',
-      default: false
+      default: false,
     },
     form4142: {
-      $ref: '#/definitions/form4142'
-    }
-  }
+      $ref: '#/definitions/form4142',
+    },
+  },
 };
 
 export default schema;

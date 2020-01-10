@@ -1,124 +1,118 @@
+import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash';
 
-let definitions = _.cloneDeep(originalDefinitions);
+const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('farmCoop');
 const modifiedToursOfDuty = definitions.toursOfDuty;
 delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, [
-    'dateRange',
-    'educationType'
-  ]),
+  definitions: _.pick(definitions, ['dateRange', 'educationType']),
   properties: {
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     currentSameAsPrevious: {
-      type: 'boolean'
+      type: 'boolean',
     },
     serviceBranch: {
-      type: 'string'
+      type: 'string',
     },
     currentlyActiveDuty: {
-      type: 'boolean'
+      type: 'boolean',
     },
     outstandingFelony: {
-      type: 'boolean'
+      type: 'boolean',
     },
     restorativeTraining: {
-      type: 'boolean'
+      type: 'boolean',
     },
     vocationalTraining: {
-      type: 'boolean'
+      type: 'boolean',
     },
     trainingState: {
-      type: 'string'
+      type: 'string',
     },
     educationObjective: {
-      type: 'string'
+      type: 'string',
     },
     educationalCounseling: {
-      type: 'boolean'
+      type: 'boolean',
     },
     spouseInfo: {
       type: 'object',
       properties: {
         divorcePending: {
-          type: 'boolean'
+          type: 'boolean',
         },
         remarried: {
-          type: 'boolean'
-        }
-      }
+          type: 'boolean',
+        },
+      },
     },
     benefit: {
       type: 'string',
-      enum: ['chapter35', 'chapter33']
+      enum: ['chapter35', 'chapter33'],
     },
     previousBenefits: {
       type: 'object',
       properties: {
         disability: {
-          type: 'boolean'
+          type: 'boolean',
         },
         dic: {
-          type: 'boolean'
+          type: 'boolean',
         },
         chapter31: {
-          type: 'boolean'
+          type: 'boolean',
         },
         ownServiceBenefits: {
-          type: 'string'
+          type: 'string',
         },
         chapter35: {
-          type: 'boolean'
+          type: 'boolean',
         },
         chapter33: {
-          type: 'boolean'
+          type: 'boolean',
         },
         transferOfEntitlement: {
-          type: 'boolean'
+          type: 'boolean',
         },
         other: {
-          type: 'string'
-        }
-      }
+          type: 'string',
+        },
+      },
     },
     highSchool: {
       type: 'object',
-      properties: _.merge(
-        _.omit(definitions.postHighSchoolTrainings.items.properties, 'major'),
-        {
-          status: {
-            type: 'string',
-            enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended']
-          }
-        }
-      )
+      properties: _.merge(_.omit(definitions.postHighSchoolTrainings.items.properties, 'major'), {
+        status: {
+          type: 'string',
+          enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended'],
+        },
+      }),
     },
     toursOfDuty: modifiedToursOfDuty,
     civilianBenefitsAssistance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     civilianBenefitsSource: {
-      type: 'string'
+      type: 'string',
     },
     remarks: {
-      type: 'string'
+      type: 'string',
     },
     eduBenefitsPamphlet: {
-      type: 'boolean'
-    }
+      type: 'boolean',
+    },
   },
-  required: ['privacyAgreementAccepted', 'relativeFullName']
+  required: ['privacyAgreementAccepted', 'relativeFullName'],
 };
 
 [
@@ -148,8 +142,8 @@ let schema = {
   ['postHighSchoolTrainings'],
   ['nonMilitaryJobs'],
   ['educationProgram'],
-  ['preferredContactMethod']
-].forEach((args) => {
+  ['preferredContactMethod'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
