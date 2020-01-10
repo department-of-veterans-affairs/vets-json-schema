@@ -1,16 +1,18 @@
+import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import { states50AndDC } from '../../common/constants';
-import _ from 'lodash';
 
 let definitions = _.cloneDeep(originalDefinitions);
-let modifiedToursOfDuty = definitions.toursOfDuty;
+const modifiedToursOfDuty = definitions.toursOfDuty;
 
-const nationalGuardStates = states50AndDC.concat([
-  { label: 'Guam', value: 'GU' },
-  { label: 'Puerto Rico', value: 'PR' },
-  { label: 'Virgin Islands', value: 'VI' }
-]).sort((stateA, stateB) => (stateA.label.localeCompare(stateB.label)))
+const nationalGuardStates = states50AndDC
+  .concat([
+    { label: 'Guam', value: 'GU' },
+    { label: 'Puerto Rico', value: 'PR' },
+    { label: 'Virgin Islands', value: 'VI' },
+  ])
+  .sort((stateA, stateB) => stateA.label.localeCompare(stateB.label));
 
 _.merge(modifiedToursOfDuty, {
   minItems: 1,
@@ -18,7 +20,7 @@ _.merge(modifiedToursOfDuty, {
     properties: {
       serviceBranch: {
         // All branches active during WWII and later as returned by EOAS getBranchesOfService
-        'enum': [
+        enum: [
           'AL', // ALLIED FORCES
           'FS', // AMERICAN FIELD SERVICE
           'FT', // AMERICAN VOL GRP FLYING TIGERS
@@ -74,33 +76,33 @@ _.merge(modifiedToursOfDuty, {
           'WP', // WOMEN AIR FORCE SERVICE PILOTS
           'WA', // WOMEN'S ARMY AUX CORPS
           'WS', // WOMEN'S ARMY CORPS
-          'WR' // WOMEN'S RESERVE OF NAVY,MC,CG
-        ]
+          'WR', // WOMEN'S RESERVE OF NAVY,MC,CG
+        ],
       },
       dischargeType: {
         type: 'string',
-        'enum': [
+        enum: [
           '1', // Honorable
           '2', // General
           '3', // Entry Level Separation/Uncharacterized
           '4', // Other Than Honorable
           '5', // Bad Conduct
           '6', // Dishonorable
-          '7'  // Other
-        ]
+          '7', // Other
+        ],
       },
       highestRank: {
         type: 'string',
-        maxLength: 20
+        maxLength: 20,
       },
       nationalGuardState: {
         type: 'string',
         maxLength: 3,
-        'enum': nationalGuardStates.map(state => state.value),
-        enumNames: nationalGuardStates.map(state => state.label) 
-      }
-    }
-  }
+        enum: nationalGuardStates.map(state => state.value),
+        enumNames: nationalGuardStates.map(state => state.label),
+      },
+    },
+  },
 });
 
 modifiedToursOfDuty.items.required = ['serviceBranch'];
@@ -108,34 +110,28 @@ delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
 delete modifiedToursOfDuty.items.properties.serviceStatus;
 
-definitions =  _.pick(definitions, [
-  'address',
-  'dateRange',
-  'files',
-  'fullName',
-  'phone',
-  'ssn',
-  'centralMailVaFile'
-]);
+definitions = _.pick(definitions, ['address', 'dateRange', 'files', 'fullName', 'phone', 'ssn', 'centralMailVaFile']);
 
 const emailFormat = {
   type: 'string',
   maxLength: 50,
-  format: 'email'
+  format: 'email',
 };
 
 definitions.address.required = ['street', 'city', 'state', 'postalCode'];
 definitions.address.properties.street.maxLength = 20;
 definitions.address.properties.street2.maxLength = 20;
 definitions.address.properties.city.maxLength = 20;
-definitions.address.oneOf.forEach((obj) => {
+definitions.address.oneOf.forEach(obj => {
+  // eslint-disable-next-line no-param-reassign
   obj.properties.postalCode.maxLength = 10;
+  // eslint-disable-next-line no-param-reassign
   obj.properties.state.maxLength = 3;
 });
 
 definitions.date = {
   type: 'string',
-  format: 'date'
+  format: 'date',
 };
 
 definitions.fullName.properties.first.maxLength = 15;
@@ -149,7 +145,7 @@ definitions.phone.pattern = '^[0-9+\\s-]{0,20}$';
 
 definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
   type: 'object',
@@ -158,12 +154,7 @@ let schema = {
   properties: {
     application: {
       type: 'object',
-      required: [
-        'applicant',
-        'claimant',
-        'hasCurrentlyBuried',
-        'veteran'
-      ],
+      required: ['applicant', 'claimant', 'hasCurrentlyBuried', 'veteran'],
       properties: {
         applicant: {
           type: 'object',
@@ -172,32 +163,23 @@ let schema = {
             'applicantEmail',
             'applicantPhoneNumber',
             'mailingAddress',
-            'name'
+            'name',
           ],
           properties: {
             applicantEmail: emailFormat,
             applicantPhoneNumber: schemaHelpers.getDefinition('phone'),
             applicantRelationshipToClaimant: {
               type: 'string',
-              'enum': [
-                'Self',
-                'Authorized Agent/Rep'
-              ]
+              enum: ['Self', 'Authorized Agent/Rep'],
             },
             completingReason: { type: 'string', maxLength: 256 },
             mailingAddress: schemaHelpers.getDefinition('address'),
-            name: schemaHelpers.getDefinition('fullName')
-          }
+            name: schemaHelpers.getDefinition('fullName'),
+          },
         },
         claimant: {
           type: 'object',
-          required: [
-            'address',
-            'dateOfBirth',
-            'name',
-            'relationshipToVet',
-            'ssn'
-          ],
+          required: ['address', 'dateOfBirth', 'name', 'relationshipToVet', 'ssn'],
           properties: {
             address: schemaHelpers.getDefinition('address'),
             dateOfBirth: schemaHelpers.getDefinition('date'),
@@ -207,22 +189,22 @@ let schema = {
               properties: {
                 maiden: {
                   type: 'string',
-                  maxLength: 15
-                }
-              }
+                  maxLength: 15,
+                },
+              },
             }),
             phoneNumber: schemaHelpers.getDefinition('phone'),
             relationshipToVet: {
               type: 'string',
-              'enum': [
+              enum: [
                 '1', // Veteran
                 '2', // Spouse/Surviving Spouse
                 '3', // Unmarried Adult Child
-                '4'  // Other
-              ]
+                '4', // Other
+              ],
             },
-            ssn: schemaHelpers.getDefinition('ssn')
-          }
+            ssn: schemaHelpers.getDefinition('ssn'),
+          },
         },
         veteran: {
           type: 'object',
@@ -234,7 +216,7 @@ let schema = {
             'serviceName',
             'serviceRecords',
             'ssn',
-            'militaryStatus'
+            'militaryStatus',
           ],
           properties: {
             address: schemaHelpers.getDefinition('address'),
@@ -242,36 +224,30 @@ let schema = {
               properties: {
                 maiden: {
                   type: 'string',
-                  maxLength: 15
-                }
-              }
+                  maxLength: 15,
+                },
+              },
             }),
             dateOfBirth: schemaHelpers.getDefinition('date'),
             dateOfDeath: schemaHelpers.getDefinition('date'),
             gender: {
               type: 'string',
-              'enum': ['Female', 'Male']
+              enum: ['Female', 'Male'],
             },
             isDeceased: {
               type: 'string',
-              'enum': ['yes', 'no', 'unsure']
+              enum: ['yes', 'no', 'unsure'],
             },
             maritalStatus: {
               type: 'string',
-              'enum': [
-                'Single',
-                'Separated',
-                'Married',
-                'Divorced',
-                'Widowed'
-              ]
+              enum: ['Single', 'Separated', 'Married', 'Divorced', 'Widowed'],
             },
             militaryServiceNumber: { type: 'string', maxLength: 9 },
             militaryStatus: {
               type: 'string',
               minLength: 1,
               maxLength: 1,
-              'enum': [
+              enum: [
                 'A', // Active Duty
                 'I', // Death Related To Inactive Duty Training
                 'D', // Died On Active Duty
@@ -280,23 +256,23 @@ let schema = {
                 'E', // Retired Active Duty
                 'O', // Retired Reserve Or National Guard
                 'V', // Veteran
-                'X'  // Other (Or Unknown)
-              ]
+                'X', // Other (Or Unknown)
+              ],
             },
             placeOfBirth: { type: 'string', maxLength: 100 },
             serviceName: schemaHelpers.getDefinition('fullName'),
             serviceRecords: modifiedToursOfDuty,
             ssn: schemaHelpers.getDefinition('ssn'),
             vaClaimNumber: schemaHelpers.getDefinition('centralMailVaFile'),
-          }
+          },
         },
         hasCurrentlyBuried: {
           type: 'string',
-          'enum': [
+          enum: [
             '1', // Yes
             '2', // No
-            '3'  // Don't know
-          ]
+            '3', // Don't know
+          ],
         },
         currentlyBuriedPersons: {
           type: 'array',
@@ -305,9 +281,9 @@ let schema = {
             required: ['name'],
             properties: {
               name: schemaHelpers.getDefinition('fullName'),
-              cemeteryNumber: { type: 'string', pattern: '^\\d{3}$' }
-            }
-          }
+              cemeteryNumber: { type: 'string', pattern: '^\\d{3}$' },
+            },
+          },
         },
         preneedAttachments: _.merge({}, originalDefinitions.files, {
           items: {
@@ -315,13 +291,13 @@ let schema = {
             properties: {
               attachmentId: {
                 type: 'string',
-                'enum': [
+                enum: [
                   '1',
                   '2',
                   '3',
                   // '4',
                   '5',
-                  '6'
+                  '6',
                 ],
                 enumNames: [
                   'Discharge',
@@ -329,18 +305,18 @@ let schema = {
                   'Dependent related',
                   // 'VA preneed form',
                   'Letter',
-                  'Other'
-                ]
+                  'Other',
+                ],
               },
               name: {
-                maxLength: 50
-              }
-            }
-          }
-        })
-      }
-    }
-  }
+                maxLength: 50,
+              },
+            },
+          },
+        }),
+      },
+    },
+  },
 };
 
 export default schema;

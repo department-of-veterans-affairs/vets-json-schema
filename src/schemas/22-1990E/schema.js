@@ -1,13 +1,14 @@
-import definitions from '../../common/definitions';
 import _ from 'lodash';
+import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR FAMILY MEMBER TO USE TRANSFERRED BENEFITS (22-1990E)',
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions,
+  definitions: _.pick(
+    definitions,
     'privacyAgreementAccepted',
     'ssn',
     'gender',
@@ -21,99 +22,96 @@ let schema = {
     'postHighSchoolTrainings',
     'dateRange',
     'nonMilitaryJobs',
-    'preferredContactMethod'
+    'preferredContactMethod',
   ),
   anyOf: [
     {
-      "required" : ["vaFileNumber"]
+      required: ['vaFileNumber'],
     },
     {
-      "required" : ["veteranSocialSecurityNumber"]
-    }
+      required: ['veteranSocialSecurityNumber'],
+    },
   ],
   properties: {
     privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
+      $ref: '#/definitions/privacyAgreementAccepted',
     },
     relativeSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
+      $ref: '#/definitions/ssn',
     },
     gender: {
-      $ref: '#/definitions/gender'
+      $ref: '#/definitions/gender',
     },
     relativeDateOfBirth: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     relativeFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     relativeAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     homePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     bankAccount: {
-      $ref: '#/definitions/bankAccount'
+      $ref: '#/definitions/bankAccount',
     },
     highSchoolOrGedCompletionDate: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     benefit: {
       type: 'string',
-      enum: ['chapter33', 'chapter30']
+      enum: ['chapter33', 'chapter30'],
     },
     educationProgram: {
-      $ref: '#/definitions/educationProgram'
+      $ref: '#/definitions/educationProgram',
     },
     educationObjective: {
-      type: 'string'
+      type: 'string',
     },
     faaFlightCertificatesInformation: {
-      type: 'string'
+      type: 'string',
     },
     postHighSchoolTrainings: {
-      $ref: '#/definitions/postHighSchoolTrainings'
+      $ref: '#/definitions/postHighSchoolTrainings',
     },
     nonMilitaryJobs: {
-      $ref: '#/definitions/nonMilitaryJobs'
+      $ref: '#/definitions/nonMilitaryJobs',
     },
     nonVaAssistance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     civilianBenefitsAssistance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
+      $ref: '#/definitions/ssn',
     },
     serviceBranch: {
-      type: 'string'
+      type: 'string',
     },
     veteranFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     veteranAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     preferredContactMethod: {
-      $ref: '#/definitions/preferredContactMethod'
-    }
+      $ref: '#/definitions/preferredContactMethod',
+    },
   },
-  required: ['privacyAgreementAccepted', 'relativeFullName']
+  required: ['privacyAgreementAccepted', 'relativeFullName'],
 };
 
-[
-  ['relationship'],
-  ['vaFileNumber'],
-].forEach((args) => {
+[['relationship'], ['vaFileNumber']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

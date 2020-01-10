@@ -1,54 +1,52 @@
-import definitions from '../../common/definitions';
-import schemaHelpers from '../../common/schema-helpers';
 import _ from 'lodash';
 import set from 'lodash/fp/set';
+import definitions from '../../common/definitions';
+import schemaHelpers from '../../common/schema-helpers';
 
-const updatedDefinitions = set('educationType.enum', 
+const updatedDefinitions = set(
+  'educationType.enum',
   definitions.educationType.enum.filter(x => x !== 'tuitionTopUp'),
-  definitions
+  definitions,
 );
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: "DEPENDENTS' REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-5495)",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(updatedDefinitions, [
-    'dateRange',
-    'educationType'
-  ]),
+  definitions: _.pick(updatedDefinitions, ['dateRange', 'educationType']),
   properties: {
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     serviceBranch: {
-      type: 'string'
+      type: 'string',
     },
     currentlyActiveDuty: {
-      type: 'boolean'
+      type: 'boolean',
     },
     outstandingFelony: {
-      type: 'boolean'
+      type: 'boolean',
     },
     benefit: {
       type: 'string',
-      enum: ['chapter35', 'chapter33']
+      enum: ['chapter35', 'chapter33'],
     },
     educationObjective: {
-      type: 'string'
+      type: 'string',
     },
     programName: {
-      type: 'string'
+      type: 'string',
     },
     reasonForChange: {
-      type: 'string'
+      type: 'string',
     },
     remarks: {
-      type: 'string'
+      type: 'string',
     },
   },
-  required: ['privacyAgreementAccepted', 'relativeFullName']
+  required: ['privacyAgreementAccepted', 'relativeFullName'],
 };
 
 [
@@ -74,8 +72,8 @@ let schema = {
   ['toursOfDuty'],
   ['educationProgram'],
   ['school', 'oldSchool'],
-  ['bankAccountChange']
-].forEach((args) => {
+  ['bankAccountChange'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

@@ -1,5 +1,5 @@
-import constants from './constants';
 import _ from 'lodash';
+import constants from './constants';
 import schemaHelpers from './schema-helpers';
 
 const fullName = {
@@ -8,77 +8,75 @@ const fullName = {
     first: {
       type: 'string',
       minLength: 1,
-      maxLength: 30
+      maxLength: 30,
     },
     middle: {
-      type: 'string'
+      type: 'string',
     },
     last: {
       type: 'string',
       minLength: 1,
-      maxLength: 30
+      maxLength: 30,
     },
     suffix: {
       type: 'string',
-      'enum': constants.suffixes
+      enum: constants.suffixes,
     },
   },
-  required: [
-    'first',
-    'last'
-  ]
+  required: ['first', 'last'],
 };
 
 const rejectOnlyWhitespace = {
-  pattern: '^.*\\S.*'
+  pattern: '^.*\\S.*',
 };
 
 const usaPostalCode = {
   type: 'string',
   anyOf: [
     {
-      pattern: '^\\d{5}$'
+      pattern: '^\\d{5}$',
     },
     {
-      pattern: '^\\d{5}-\\d{4}$'
-    }
-  ]
+      pattern: '^\\d{5}-\\d{4}$',
+    },
+  ],
 };
 
 const address = (() => {
+  // eslint-disable-next-line import/no-named-as-default-member
   const countries = constants.countries.map(object => object.value);
   const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
   const countryStateProperties = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
         type: 'string',
-        'enum': [key]
+        enum: [key],
       },
       state: {
         type: 'string',
-        'enum': value.map(x => x.value)
+        enum: value.map(x => x.value),
       },
       postalCode: {
         type: 'string',
-        maxLength: 10
-      }
-    }
+        maxLength: 10,
+      },
+    },
   }));
   countryStateProperties.push({
     properties: {
       country: {
         not: {
           type: 'string',
-          'enum': countriesWithAnyState
-        }
+          enum: countriesWithAnyState,
+        },
       },
       state: {
         type: 'string',
-        maxLength: 51
+        maxLength: 51,
       },
       postalCode: {
         type: 'string',
-        maxLength: 51
+        maxLength: 51,
       },
     },
   });
@@ -90,26 +88,26 @@ const address = (() => {
       street: {
         type: 'string',
         minLength: 1,
-        maxLength: 50
+        maxLength: 50,
       },
       street2: {
         type: 'string',
         minLength: 1,
-        maxLength: 50
+        maxLength: 50,
       },
       city: {
         type: 'string',
         minLength: 1,
-        maxLength: 51
-      }
-    }
+        maxLength: 51,
+      },
+    },
   };
 })();
 
-let centralMailAddress = _.cloneDeep(address);
+const centralMailAddress = _.cloneDeep(address);
 centralMailAddress.required = ['postalCode'];
 for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
-  let properties = centralMailAddress.oneOf[i].properties;
+  const { properties } = centralMailAddress.oneOf[i];
 
   if (properties.country.enum && properties.country.enum[0] === 'USA') {
     properties.postalCode = usaPostalCode;
@@ -118,31 +116,31 @@ for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
 
 const phone = {
   type: 'string',
-  minLength: 10
+  minLength: 10,
 };
 
 const ssn = {
   type: 'string',
-  pattern: '^[0-9]{9}$'
+  pattern: '^[0-9]{9}$',
 };
 
 // The last four digits (or serial number) must be a number from 0001 to 9999
 // https://www.ssa.gov/history/ssn/geocard.html
 const ssnLastFour = {
   type: 'string',
-  pattern: '^(?!0000)[0-9]{4}$'
+  pattern: '^(?!0000)[0-9]{4}$',
 };
 
 const school = {
   type: 'object',
   properties: {
     name: {
-      type: 'string'
+      type: 'string',
     },
     address: {
-      $ref: '#/definitions/address'
-    }
-  }
+      $ref: '#/definitions/address',
+    },
+  },
 };
 
 const bankAccount = {
@@ -150,73 +148,77 @@ const bankAccount = {
   properties: {
     accountType: {
       type: 'string',
-      'enum': ['checking', 'savings']
+      enum: ['checking', 'savings'],
     },
     routingNumber: {
       type: 'string',
-      pattern: '^\\d{9}$'
+      pattern: '^\\d{9}$',
     },
     accountNumber: {
-      type: 'string'
-    }
-  }
+      type: 'string',
+    },
+  },
 };
 
 const serviceBefore1977 = {
   type: 'object',
   properties: {
     married: {
-      type: 'boolean'
+      type: 'boolean',
     },
     haveDependents: {
-      type: 'boolean'
+      type: 'boolean',
     },
     parentDependent: {
-      type: 'boolean'
-    }
+      type: 'boolean',
+    },
   },
-  required: ['married', 'haveDependents', 'parentDependent']
+  required: ['married', 'haveDependents', 'parentDependent'],
 };
 
 const dateRange = {
   type: 'object',
   properties: {
     from: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     to: {
-      $ref: '#/definitions/date'
-    }
-  }
+      $ref: '#/definitions/date',
+    },
+  },
 };
 
 const date = {
   pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
-  type: 'string'
+  type: 'string',
 };
 
 const educationType = {
   type: 'string',
-  enum: ['college', 'correspondence', 'apprenticeship', 'flightTraining', 'testReimbursement', 'licensingReimbursement', 'tuitionTopUp']
+  enum: [
+    'college',
+    'correspondence',
+    'apprenticeship',
+    'flightTraining',
+    'testReimbursement',
+    'licensingReimbursement',
+    'tuitionTopUp',
+  ],
 };
 
 const preferredContactMethod = {
   type: 'string',
-  enum: [
-    'mail',
-    'email',
-    'phone'
-  ]
+  enum: ['mail', 'email', 'phone'],
 };
 
 const privacyAgreementAccepted = {
-  type: "boolean",
-  enum: [true]
+  type: 'boolean',
+  enum: [true],
 };
 
 const gender = {
   type: 'string',
-  'enum': ['F', 'M']
+  enum: ['F', 'M'],
 };
 
 const postHighSchoolTrainings = {
@@ -225,33 +227,33 @@ const postHighSchoolTrainings = {
     type: 'object',
     properties: {
       name: {
-        type: 'string'
+        type: 'string',
       },
       city: {
-        type: 'string'
+        type: 'string',
       },
       state: {
         type: 'string',
-        enum: constants.usaStates
+        enum: constants.usaStates,
       },
       dateRange: {
-        $ref: '#/definitions/dateRange'
+        $ref: '#/definitions/dateRange',
       },
       hours: {
-        type: 'number'
+        type: 'number',
       },
       hoursType: {
         type: 'string',
-        'enum': ['semester', 'quarter', 'clock']
+        enum: ['semester', 'quarter', 'clock'],
       },
       degreeReceived: {
-        type: 'string'
+        type: 'string',
       },
       major: {
-        type: 'string'
+        type: 'string',
       },
-    }
-  }
+    },
+  },
 };
 
 const nonMilitaryJobs = {
@@ -260,52 +262,52 @@ const nonMilitaryJobs = {
     type: 'object',
     properties: {
       name: {
-        type: 'string'
+        type: 'string',
       },
       months: {
-        type: 'number'
+        type: 'number',
       },
       licenseOrRating: {
-        type: 'string'
+        type: 'string',
       },
       postMilitaryJob: {
-        type: 'boolean'
+        type: 'boolean',
       },
-    }
-  }
+    },
+  },
 };
 
 const secondaryContact = {
   type: 'object',
   properties: {
     fullName: {
-      type: 'string'
+      type: 'string',
     },
     sameAddress: {
-      type: 'boolean'
+      type: 'boolean',
     },
     address: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     phone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
-  }
+  },
 };
 
 const vaFileNumber = {
   type: 'string',
-  pattern: '^[cC]{0,1}\\d{7,9}$'
+  pattern: '^[cC]{0,1}\\d{7,9}$',
 };
 
 const centralMailVaFile = {
   type: 'string',
-  pattern: '^\\d{8,9}$'
+  pattern: '^\\d{8,9}$',
 };
 
 const relationship = {
   type: 'string',
-  'enum': ['spouse', 'child']
+  enum: ['spouse', 'child'],
 };
 
 const relationshipAndChildName = {
@@ -313,22 +315,22 @@ const relationshipAndChildName = {
   properties: {
     relationship: {
       type: 'string',
-      enum: relationship.enum.concat(['self'])
+      enum: relationship.enum.concat(['self']),
     },
-    childFullName: schemaHelpers.getDefinition('fullName')
-  }
+    childFullName: schemaHelpers.getDefinition('fullName'),
+  },
 };
 
 const netWorthAccount = {
   type: 'object',
   properties: {
     amount: {
-      type: 'integer'
+      type: 'integer',
     },
     interest: {
-      type: 'boolean'
-    }
-  }
+      type: 'boolean',
+    },
+  },
 };
 
 const toursOfDuty = {
@@ -337,22 +339,22 @@ const toursOfDuty = {
     type: 'object',
     properties: {
       dateRange: {
-        $ref: '#/definitions/dateRange'
+        $ref: '#/definitions/dateRange',
       },
       serviceBranch: {
-        type: 'string'
+        type: 'string',
       },
       serviceStatus: {
-        type: 'string'
+        type: 'string',
       },
       applyPeriodToSelected: {
-        type: 'boolean'
+        type: 'boolean',
       },
       benefitsToApplyTo: {
-        type: 'string'
+        type: 'string',
       },
     },
-    required: ['dateRange', 'serviceBranch']
+    required: ['dateRange', 'serviceBranch'],
   },
 };
 
@@ -360,52 +362,52 @@ const educationProgram = {
   type: 'object',
   properties: {
     name: {
-      type: 'string'
+      type: 'string',
     },
     address: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     educationType: {
-      $ref: '#/definitions/educationType'
-    }
-  }
+      $ref: '#/definitions/educationType',
+    },
+  },
 };
 
 const currentlyActiveDuty = {
   type: 'object',
   properties: {
     yes: {
-      type: 'boolean'
+      type: 'boolean',
     },
     onTerminalLeave: {
-      type: 'boolean'
+      type: 'boolean',
     },
     nonVaAssistance: {
-      type: 'boolean'
-    }
-  }
+      type: 'boolean',
+    },
+  },
 };
 
 const bankAccountChange = {
   type: 'string',
-  enum: ['noChange', 'startUpdate', 'stop']
+  enum: ['noChange', 'startUpdate', 'stop'],
 };
 
 const maritalStatus = {
   type: 'string',
-  'enum': constants.maritalStatuses
+  enum: constants.maritalStatuses,
 };
 
 const otherIncome = {
   type: 'object',
   properties: {
     name: {
-      type: 'string'
+      type: 'string',
     },
     amount: {
-      type: 'integer'
-    }
-  }
+      type: 'integer',
+    },
+  },
 };
 
 const marriages = {
@@ -414,36 +416,36 @@ const marriages = {
     type: 'object',
     properties: {
       dateOfMarriage: {
-        $ref: '#/definitions/date'
+        $ref: '#/definitions/date',
       },
       locationOfMarriage: {
-        type: 'string'
+        type: 'string',
       },
       otherExplanation: {
-        type: 'string'
+        type: 'string',
       },
       marriageType: {
-        type: 'string'
+        type: 'string',
       },
       spouseFullName: {
-        $ref: '#/definitions/fullName'
+        $ref: '#/definitions/fullName',
       },
       dateOfSeparation: {
-        $ref: '#/definitions/date'
+        $ref: '#/definitions/date',
       },
       locationOfSeparation: {
-        type: 'string'
+        type: 'string',
       },
       reasonForSeparation: {
-        type: 'string'
-      }
-    }
-  }
+        type: 'string',
+      },
+    },
+  },
 };
 
 const usaPhone = {
   type: 'string',
-  pattern: '^\\d{10}$'
+  pattern: '^\\d{10}$',
 };
 
 const files = {
@@ -452,21 +454,21 @@ const files = {
     type: 'object',
     properties: {
       name: {
-        type: 'string'
+        type: 'string',
       },
       size: {
-        type: 'integer'
+        type: 'integer',
       },
       confirmationCode: {
-        type: 'string'
-      }
-    }
-  }
+        type: 'string',
+      },
+    },
+  },
 };
 
 const dischargeType = {
   type: 'string',
-  'enum': constants.dischargeTypes.map(option => option.value)
+  enum: constants.dischargeTypes.map(option => option.value),
 };
 
 const serviceHistory = {
@@ -475,14 +477,14 @@ const serviceHistory = {
     type: 'object',
     properties: {
       serviceBranch: {
-        type: 'string'
+        type: 'string',
       },
       dateRange: {
-        $ref: '#/definitions/dateRange'
+        $ref: '#/definitions/dateRange',
       },
-      dischargeType
-    }
-  }
+      dischargeType,
+    },
+  },
 };
 
 const requiredServiceHistory = {
@@ -493,63 +495,62 @@ const requiredServiceHistory = {
     required: ['serviceBranch', 'dischargeType'],
     properties: {
       serviceBranch: {
-        type: 'string'
+        type: 'string',
       },
       dateRange: {
         type: 'object',
         required: ['from', 'to'],
         properties: {
           from: {
-            $ref: '#/definitions/date'
+            $ref: '#/definitions/date',
           },
           to: {
-            $ref: '#/definitions/date'
-          }
-        }
+            $ref: '#/definitions/date',
+          },
+        },
       },
-      dischargeType
-    }
-  }
+      dischargeType,
+    },
+  },
 };
 
 const year = {
   type: 'integer',
-  minimum: 1900
+  minimum: 1900,
 };
 
 const form4142 = {
   type: 'object',
   properties: {
     limitedConsent: {
-      type: 'string'
+      type: 'string',
     },
     providerFacility: {
       type: 'array',
-      required: ['providerFacilityName','treatmentDateRange','providerFacilityAddress'],
+      required: ['providerFacilityName', 'treatmentDateRange', 'providerFacilityAddress'],
       items: {
         type: 'object',
         properties: {
           providerFacilityName: {
-            type: 'string'
+            type: 'string',
           },
           treatmentDateRange: {
             type: 'array',
             items: {
-              $ref: '#/definitions/dateRange'
-            }
+              $ref: '#/definitions/dateRange',
+            },
           },
           providerFacilityAddress: {
-            $ref: '#/definitions/centralMailAddress'
-          }
-        }
-      }
+            $ref: '#/definitions/centralMailAddress',
+          },
+        },
+      },
     },
     privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
-    }
-  }
+      $ref: '#/definitions/privacyAgreementAccepted',
+    },
+  },
 };
-
 
 export default {
   usaPhone,
@@ -590,5 +591,5 @@ export default {
   usaPostalCode,
   centralMailAddress,
   year,
-  form4142
+  form4142,
 };

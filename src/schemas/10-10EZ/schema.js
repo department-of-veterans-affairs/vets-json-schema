@@ -1,41 +1,41 @@
-import constants from '../../common/constants';
 import _ from 'lodash';
+import constants from '../../common/constants';
 import schemaHelpers from '../../common/schema-helpers';
 import definitions from '../../common/definitions';
 
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
+// eslint-disable-next-line import/no-named-as-default-member
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
 const countryStateProperties = _.map(constants.states, (value, key) => ({
   properties: {
     country: {
       type: 'string',
-      'enum': [key]
+      enum: [key],
     },
     state: {
       type: 'string',
-      'enum': value.map(x => x.value)
-    }
-  }
+      enum: value.map(x => x.value),
+    },
+  },
 }));
-countryStateProperties.push(
-  {
-    properties: {
-      country: {
-        not: {
-          type: 'string',
-          'enum': countriesWithAnyState
-        }
-      },
-      provinceCode: {
+countryStateProperties.push({
+  properties: {
+    country: {
+      not: {
         type: 'string',
-        maxLength: 51,
-        ...definitions.rejectOnlyWhitespace
+        enum: countriesWithAnyState,
       },
     },
-  });
+    provinceCode: {
+      type: 'string',
+      maxLength: 51,
+      ...definitions.rejectOnlyWhitespace,
+    },
+  },
+});
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR HEALTH BENEFITS (10-10EZ)',
   definitions: {
@@ -47,81 +47,77 @@ let schema = {
           type: 'string',
           minLength: 1,
           maxLength: 30,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
         street2: {
           type: 'string',
-          maxLength: 30
+          maxLength: 30,
         },
         street3: {
           type: 'string',
-          maxLength: 30
+          maxLength: 30,
         },
         city: {
           type: 'string',
           minLength: 1,
           maxLength: 51,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
         postalCode: {
           type: 'string',
-          maxLength: 51
-        }
+          maxLength: 51,
+        },
       },
-      required: [
-        'street',
-        'city',
-        'country'
-      ]
+      required: ['street', 'city', 'country'],
     },
     dependent: {
       type: 'object',
       properties: {
         fullName: {
-          $ref: '#/definitions/fullName'
+          $ref: '#/definitions/fullName',
         },
         dependentRelation: {
-          'enum': constants.dependentRelationships,
+          enum: constants.dependentRelationships,
           type: 'string',
         },
         socialSecurityNumber: {
-          $ref: '#/definitions/ssn'
+          $ref: '#/definitions/ssn',
         },
         becameDependent: {
-          $ref: '#/definitions/date'
+          $ref: '#/definitions/date',
         },
         dateOfBirth: {
-          $ref: '#/definitions/date'
+          $ref: '#/definitions/date',
         },
         disabledBefore18: {
-          type: 'boolean'
+          type: 'boolean',
         },
         attendedSchoolLastYear: {
-          type: 'boolean'
+          type: 'boolean',
         },
         dependentEducationExpenses: {
-          $ref: '#/definitions/monetaryValue'
+          $ref: '#/definitions/monetaryValue',
         },
         cohabitedLastYear: {
-          type: 'boolean'
+          type: 'boolean',
         },
         receivedSupportLastYear: {
-          type: 'boolean'
+          type: 'boolean',
         },
         grossIncome: {
-          $ref: '#/definitions/monetaryValue'
+          $ref: '#/definitions/monetaryValue',
         },
         netIncome: {
-          $ref: '#/definitions/monetaryValue'
+          $ref: '#/definitions/monetaryValue',
         },
         otherIncome: {
-          $ref: '#/definitions/monetaryValue'
+          $ref: '#/definitions/monetaryValue',
         },
-      }
+      },
     },
     date: {
       format: 'date',
-      type: 'string'
+      type: 'string',
     },
     fullName: {
       type: 'object',
@@ -130,26 +126,23 @@ let schema = {
           type: 'string',
           minLength: 1,
           maxLength: 30,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
         middle: {
-          type: 'string'
+          type: 'string',
         },
         last: {
           type: 'string',
           minLength: 2,
           maxLength: 30,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
         suffix: {
           type: 'string',
-          'enum': constants.suffixes
+          enum: constants.suffixes,
         },
       },
-      required: [
-        'first',
-        'last'
-      ]
+      required: ['first', 'last'],
     },
     monetaryValue: {
       type: 'number',
@@ -158,264 +151,262 @@ let schema = {
     },
     phone: {
       type: 'string',
-      pattern: '^[0-9]{10}$'
+      pattern: '^[0-9]{10}$',
     },
     provider: {
       type: 'object',
       properties: {
         insuranceName: {
           type: 'string',
-          maxLength: 100
+          maxLength: 100,
         },
         insurancePolicyHolderName: {
           type: 'string',
-          maxLength: 50
+          maxLength: 50,
         },
         insurancePolicyNumber: {
           type: 'string',
           maxLength: 30,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
         insuranceGroupCode: {
           type: 'string',
           maxLength: 30,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
       },
       anyOf: [
         {
-          "required": [
-            "insurancePolicyNumber"
-          ]
+          required: ['insurancePolicyNumber'],
         },
         {
-          "required": [
-            "insuranceGroupCode"
-          ]
-        }
-      ]
+          required: ['insuranceGroupCode'],
+        },
+      ],
     },
     ssn: {
       oneOf: [
         {
           type: 'string',
-          pattern: '^[0-9]{9}$'
-        }, {
+          pattern: '^[0-9]{9}$',
+        },
+        {
           type: 'string',
-          pattern: '^[0-9]{3}-[0-9]{2}-[0-9]{4}$'
-        }
-      ]
+          pattern: '^[0-9]{3}-[0-9]{2}-[0-9]{4}$',
+        },
+      ],
     },
   },
   type: 'object',
   properties: {
     attachments: (() => {
-      let attachments = _.cloneDeep(definitions.files);
+      const attachments = _.cloneDeep(definitions.files);
       attachments.items.properties.dd214 = { type: 'boolean' };
       return attachments;
     })(),
     veteranFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     //  Revisit how to validate that this is either empty or a string between 2 and 35 characters
     mothersMaidenName: {
-      type: 'string'
+      type: 'string',
     },
     veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
+      $ref: '#/definitions/ssn',
     },
     gender: {
       type: 'string',
-      'enum': constants.genders.map(option => option.value)
+      enum: constants.genders.map(option => option.value),
     },
     cityOfBirth: {
       type: 'string',
       minLength: 2,
-      maxLength: 20
+      maxLength: 20,
     },
     stateOfBirth: {
       type: 'string',
-      'enum': states.concat(['Other'])
+      enum: states.concat(['Other']),
     },
     veteranDateOfBirth: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     maritalStatus: {
       type: 'string',
-      'enum': constants.maritalStatuses
+      enum: constants.maritalStatuses,
     },
     vaCompensationType: {
       type: 'string',
-      enum: ['lowDisability', 'highDisability', 'pension', 'none']
+      enum: ['lowDisability', 'highDisability', 'pension', 'none'],
     },
     isEssentialAcaCoverage: {
-      type: 'boolean'
+      type: 'boolean',
     },
     vaMedicalFacility: {
       type: 'string',
-      'enum': _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value)
+      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
     },
     wantsInitialVaContact: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isSpanishHispanicLatino: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isAmericanIndianOrAlaskanNative: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isBlackOrAfricanAmerican: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isNativeHawaiianOrOtherPacificIslander: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isAsian: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isWhite: {
-      type: 'boolean'
+      type: 'boolean',
     },
     veteranAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     email: {
       type: 'string',
       // regex from client/validations.js' isValidEmail, with some extra escaping
-      pattern: '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+      pattern:
+        '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
     },
     homePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     discloseFinancialInformation: {
-      type: 'boolean'
+      type: 'boolean',
     },
     spouseFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     spouseSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
+      $ref: '#/definitions/ssn',
     },
     spouseDateOfBirth: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     dateOfMarriage: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     sameAddress: {
-      type: 'boolean'
+      type: 'boolean',
     },
     cohabitedLastYear: {
-      type: 'boolean'
+      type: 'boolean',
     },
     provideSupportLastYear: {
-      type: 'boolean'
+      type: 'boolean',
     },
     spouseAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     spousePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     dependents: {
       type: 'array',
       items: {
-        $ref: '#/definitions/dependent'
+        $ref: '#/definitions/dependent',
       },
     },
     veteranGrossIncome: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     veteranNetIncome: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     veteranOtherIncome: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     spouseGrossIncome: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     spouseNetIncome: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     spouseOtherIncome: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     deductibleMedicalExpenses: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     deductibleFuneralExpenses: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     deductibleEducationExpenses: {
-      $ref: '#/definitions/monetaryValue'
+      $ref: '#/definitions/monetaryValue',
     },
     isCoveredByHealthInsurance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     providers: {
       type: 'array',
       items: {
-        $ref: '#/definitions/provider'
+        $ref: '#/definitions/provider',
       },
     },
     isMedicaidEligible: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isEnrolledMedicarePartA: {
-      type: 'boolean'
+      type: 'boolean',
     },
     medicarePartAEffectiveDate: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     lastServiceBranch: {
       type: 'string',
-      'enum': constants.branchesServed.map(option => option.value)
+      enum: constants.branchesServed.map(option => option.value),
     },
     lastEntryDate: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     lastDischargeDate: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     dischargeType: {
       type: 'string',
-      'enum': constants.dischargeTypes.map(option => option.value)
+      enum: constants.dischargeTypes.map(option => option.value),
     },
     purpleHeartRecipient: {
-      type: 'boolean'
+      type: 'boolean',
     },
     isFormerPow: {
-      type: 'boolean'
+      type: 'boolean',
     },
     postNov111998Combat: {
-      type: 'boolean'
+      type: 'boolean',
     },
     disabledInLineOfDuty: {
-      type: 'boolean'
+      type: 'boolean',
     },
     swAsiaCombat: {
-      type: 'boolean'
+      type: 'boolean',
     },
     vietnamService: {
-      type: 'boolean'
+      type: 'boolean',
     },
     exposedToRadiation: {
-      type: 'boolean'
+      type: 'boolean',
     },
     radiumTreatments: {
-      type: 'boolean'
+      type: 'boolean',
     },
     campLejeune: {
-      type: 'boolean'
+      type: 'boolean',
     },
     privacyAgreementAccepted: {
-      type: "boolean",
-      enum: [true]
-    }
+      type: 'boolean',
+      enum: [true],
+    },
   },
   required: [
     'privacyAgreementAccepted',
@@ -430,15 +421,12 @@ let schema = {
     'isEnrolledMedicarePartA',
     'lastServiceBranch',
     'lastEntryDate',
-    'lastDischargeDate'
-  ]
+    'lastDischargeDate',
+  ],
 };
 
-[
-  ['maritalStatus']
-].forEach((args) => {
+[['maritalStatus']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
-
 
 export default schema;
