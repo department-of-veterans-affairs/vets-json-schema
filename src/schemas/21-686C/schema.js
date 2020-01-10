@@ -83,7 +83,7 @@ const commonMarriageDef = {
   properties: {
     dateOfMarriage: schemaHelpers.getDefinition('date'),
     locationOfMarriage: {
-      $ref: '#/definitions/location'
+      $ref: '#/definitions/genericLocation'
     },
     marriageType: {
       type: 'string'
@@ -101,7 +101,7 @@ const commonMarriagesDef = {
       ...commonMarriageDef.properties,
       dateOfSeparation: schemaHelpers.getDefinition('date'),
       locationOfSeparation: {
-        $ref: '#/definitions/location'
+        $ref: '#/definitions/genericLocation'
       }
     },
     oneOf: [
@@ -264,6 +264,11 @@ let schema = {
         type: 'string',
         maxLength: 10,
         pattern: '^\\d{5}(?:[- ]?\\d{4})?$'
+      },
+      genericLocation: {
+        type: 'string',
+          maxLength: 250,
+          pattern: textAndNumbersRegex  
       },
       location: {
         type: 'object',
@@ -433,7 +438,7 @@ let schema = {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childPlaceOfBirth: {
-            $ref: '#/definitions/location'
+            $ref: '#/definitions/genericLocation'
           },
           childSocialSecurityNumber: { $ref: '#/definitions/ssn' },
           childRelationship: {
@@ -442,6 +447,20 @@ let schema = {
               'biological',
               'adopted',
               'stepchild'
+            ]
+          },
+          isSupportingStepchild: {
+            type: 'boolean'
+          },
+          dateStepchildLeftHousehold: {
+            $ref: '#/definitions/date'
+          },
+          financialSupportProvided: {
+            type: 'string',
+            enum: [
+              'More than half',
+              'Half',
+              'Less than half'
             ]
           },
           attendingCollege: {
