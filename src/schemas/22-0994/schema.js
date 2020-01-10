@@ -1,16 +1,10 @@
-import _ from "lodash/fp";
-import { countries } from "../../common/constants";
-import definitions from "../../common/definitions";
-import {
-  pciuCountries,
-  pciuStates
-} from "../../common/constants";
+import { pciuStates } from '../../common/constants';
+import definitions from '../../common/definitions';
 
 const schema = {
-  $schema: "http://json-schema.org/draft-04/schema#",
-  title:
-    "APPLICATION FOR VETERAN EMPLOYMENT THROUGH TECHNOLOGY EDUCATION COURSES (VET TEC) HIGH TECHNOLOGY PROGRAM",
-  type: "object",
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'APPLICATION FOR VETERAN EMPLOYMENT THROUGH TECHNOLOGY EDUCATION COURSES (VET TEC) HIGH TECHNOLOGY PROGRAM',
+  type: 'object',
   definitions: {
     phone: definitions.usaPhone,
     date: definitions.date,
@@ -20,23 +14,22 @@ const schema = {
         ...definitions.fullName.properties,
         first: {
           ...definitions.fullName.properties.first,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
         last: {
           ...definitions.fullName.properties.last,
-          ...definitions.rejectOnlyWhitespace
-        }
-      }
+          ...definitions.rejectOnlyWhitespace,
+        },
+      },
     },
     ssn: definitions.ssn,
     bankAccount: definitions.bankAccount,
     gender: definitions.gender,
     email: {
-      type: "string",
+      type: 'string',
       minLength: 6,
       maxLength: 80,
-      pattern:
-        "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+      pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
     },
     address: {
       ...definitions.address,
@@ -44,74 +37,74 @@ const schema = {
         ...definitions.address.properties,
         street: {
           ...definitions.address.properties.street,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
         street3: definitions.address.properties.street2,
         city: {
           ...definitions.address.properties.city,
-          ...definitions.rejectOnlyWhitespace
+          ...definitions.rejectOnlyWhitespace,
         },
       },
     },
-    privacyAgreementAccepted: definitions.privacyAgreementAccepted
+    privacyAgreementAccepted: definitions.privacyAgreementAccepted,
   },
   properties: {
     applicantFullName: {
-      $ref: "#/definitions/fullName"
+      $ref: '#/definitions/fullName',
     },
     applicantSocialSecurityNumber: {
-      $ref: "#/definitions/ssn"
+      $ref: '#/definitions/ssn',
     },
     mailingAddress: {
-      $ref: "#/definitions/address"
+      $ref: '#/definitions/address',
     },
     applicantGender: {
-      $ref: "#/definitions/gender"
+      $ref: '#/definitions/gender',
     },
     dateOfBirth: {
-      $ref: "#/definitions/date"
+      $ref: '#/definitions/date',
     },
     emailAddress: {
-      $ref: "#/definitions/email"
+      $ref: '#/definitions/email',
     },
     dayTimePhone: {
-      $ref: "#/definitions/phone"
+      $ref: '#/definitions/phone',
     },
     nightTimePhone: {
-      $ref: "#/definitions/phone"
+      $ref: '#/definitions/phone',
     },
     appliedForVaEducationBenefits: {
-      type: "boolean"
+      type: 'boolean',
     },
     activeDuty: {
-      type: "boolean"
+      type: 'boolean',
     },
     activeDutyDuringVetTec: {
-      type: "boolean"
+      type: 'boolean',
     },
     hasSelectedPrograms: {
-      type: "boolean",
+      type: 'boolean',
     },
     bankAccount: {
-      $ref: "#/definitions/bankAccount"
+      $ref: '#/definitions/bankAccount',
     },
     prefillBankAccount: {
       type: 'object',
       properties: {
         bankAccountType: {
           type: 'string',
-          'enum': ['checking', 'savings']
+          enum: ['checking', 'savings'],
         },
         bankAccountNumber: {
           type: 'string',
         },
         bankRoutingNumber: {
-          type: 'string'
+          type: 'string',
         },
         bankName: {
           type: 'string',
-        }
-      }
+        },
+      },
     },
     vetTecPrograms: {
       type: 'array',
@@ -130,57 +123,45 @@ const schema = {
             enum: ['inPerson', 'online', 'both'],
           },
           location: {
-            type: "object",
+            type: 'object',
             properties: {
               city: {
-                type: "string",
+                type: 'string',
                 maxLength: 30,
-                pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+                pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$",
               },
               state: {
-                type: "string",
+                type: 'string',
                 enum: pciuStates.map(state => state.value),
-                enumNames: pciuStates.map(state => state.label)
-              }
-            }
+                enumNames: pciuStates.map(state => state.label),
+              },
+            },
           },
           plannedStartDate: {
-            $ref: "#/definitions/date"
+            $ref: '#/definitions/date',
           },
         },
       },
     },
     pastHighTechnologyEmployment: {
-      type: "boolean"
+      type: 'boolean',
     },
     currentHighTechnologyEmployment: {
-      type: "boolean"
+      type: 'boolean',
     },
     highTechnologyEmploymentTypes: {
-      type: "array",
+      type: 'array',
       items: {
-        type: "string",
-        enum: [
-          "computerProgramming",
-          "dataProcessing",
-          "computerSoftware",
-          "informationSciences",
-          "mediaApplication"
-        ]
-      }
+        type: 'string',
+        enum: ['computerProgramming', 'dataProcessing', 'computerSoftware', 'informationSciences', 'mediaApplication'],
+      },
     },
     currentSalary: {
-      type: "string",
-      enum: [
-        "lessThanTwenty",
-        "twentyToThirtyFive",
-        "thirtyFiveToFifty",
-        "fiftyToSeventyFive",
-        "moreThanSeventyFive"
-      ]
+      type: 'string',
+      enum: ['lessThanTwenty', 'twentyToThirtyFive', 'thirtyFiveToFifty', 'fiftyToSeventyFive', 'moreThanSeventyFive'],
     },
     highestLevelofEducation: {
-      type: "string",
+      type: 'string',
       enum: [
         'some_high_school',
         'high_school_diploma_or_GED',
@@ -206,8 +187,8 @@ const schema = {
       type: 'string',
     },
     privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
-    }
+      $ref: '#/definitions/privacyAgreementAccepted',
+    },
   },
   required: [
     'privacyAgreementAccepted',
@@ -217,8 +198,8 @@ const schema = {
     'appliedForVaEducationBenefits',
     'activeDuty',
     'dayTimePhone',
-    'emailAddress'
-  ]
+    'emailAddress',
+  ],
 };
 
 export default schema;

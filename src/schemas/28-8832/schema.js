@@ -1,35 +1,32 @@
-import constants from '../../common/constants';
 import _ from 'lodash';
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'EDUCATIONAL/VOCATIONAL COUNSELING APPLICATION (28-8832)',
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, [
-    'dateRange'
-  ]),
+  definitions: _.pick(definitions, ['dateRange']),
   properties: {
     applicantEmail: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     applicantRelationshipToVeteran: {
-      type: 'string'
+      type: 'string',
     },
     seekingRestorativeTraining: {
-      type: 'boolean'
+      type: 'boolean',
     },
     seekingVocationalTraining: {
-      type: 'boolean'
+      type: 'boolean',
     },
     receivedPamphlet: {
-      type: 'boolean'
+      type: 'boolean',
     },
     veteranServiceBranch: {
-      type: 'string'
+      type: 'string',
     },
     divorceOrAnnulmentPending: {
       type: 'boolean',
@@ -41,24 +38,24 @@ let schema = {
       type: 'object',
       properties: {
         chapter31: {
-          type: 'boolean'
+          type: 'boolean',
         },
         ownServiceBenefits: {
-          type: 'boolean'
+          type: 'boolean',
         },
         dic: {
-          type: 'boolean'
+          type: 'boolean',
         },
         other: {
-          type: 'boolean'
+          type: 'boolean',
         },
         otherExplanation: {
-          type: 'string'
-        }
-      }
-    }
+          type: 'string',
+        },
+      },
+    },
   },
-  required: ['privacyAgreementAccepted'] // TODO Determine set of required fields
+  required: ['privacyAgreementAccepted'], // TODO Determine set of required fields
 };
 
 [
@@ -79,8 +76,8 @@ let schema = {
   ['vaFileNumber', 'veteranVaFileNumber'],
   ['vaFileNumber', 'previousBenefitsVaFileNumber'],
   ['serviceHistory', 'applicantServiceHistory'],
-  ['privacyAgreementAccepted']
-].forEach((args) => {
+  ['privacyAgreementAccepted'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

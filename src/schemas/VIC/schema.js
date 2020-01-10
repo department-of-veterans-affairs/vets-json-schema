@@ -1,6 +1,6 @@
+import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash';
 import constants from '../../common/constants';
 
 const address = (() => {
@@ -11,29 +11,29 @@ const address = (() => {
     properties: {
       country: {
         type: 'string',
-        'enum': [key]
+        enum: [key],
       },
       state: {
         type: 'string',
-        'enum': value.map(x => x.value)
+        enum: value.map(x => x.value),
       },
       postalCode: {
         type: 'string',
-        maxLength: 10
-      }
-    }
+        maxLength: 10,
+      },
+    },
   }));
   countryStateProperties.push({
     properties: {
       country: {
         type: 'string',
-        'enum': countriesWithNoState
+        enum: countriesWithNoState,
       },
       postalCode: {
         type: 'string',
-        maxLength: 51
-      }
-    }
+        maxLength: 51,
+      },
+    },
   });
 
   return {
@@ -43,29 +43,29 @@ const address = (() => {
       street: {
         type: 'string',
         minLength: 1,
-        maxLength: 50
+        maxLength: 50,
       },
       street2: {
         type: 'string',
         minLength: 1,
-        maxLength: 50
+        maxLength: 50,
       },
       city: {
         type: 'string',
         minLength: 1,
-        maxLength: 51
-      }
-    }
+        maxLength: 51,
+      },
+    },
   };
 })();
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'VETERAN IDENTIFICATION CARD FORM',
   type: 'object',
   additionalProperties: false,
   definitions: {
-    address: address
+    address,
   },
   properties: {
     serviceBranch: {
@@ -76,25 +76,23 @@ let schema = {
         'C', // Coast Guard
         'M', // Marine Corps
         'N', // Navy
-      ]
+      ],
     },
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     photo: originalDefinitions.files.items,
-    dd214: Object.assign({}, originalDefinitions.files, {
-      minItems: 1
-    }),
+    dd214: { ...originalDefinitions.files, minItems: 1 },
     veteranDateOfBirth: {
       type: 'string',
-      format: 'date'
+      format: 'date',
     },
     processAsAnonymous: {
-      type: 'boolean'
-    }
+      type: 'boolean',
+    },
   },
-  required: ['privacyAgreementAccepted']
+  required: ['privacyAgreementAccepted'],
 };
 
 [
@@ -103,8 +101,8 @@ let schema = {
   ['address', 'veteranAddress'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['phone'],
-  ['gender']
-].forEach((args) => {
+  ['gender'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

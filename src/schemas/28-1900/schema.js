@@ -1,30 +1,24 @@
-import constants from '../../common/constants';
 import _ from 'lodash';
 import definitions from '../../common/definitions';
-import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DISABLED VETERANS APPLICATION FOR VOCATIONAL REHABILITATION (28-1900)',
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, [
-    'date',
-    'dateRange',
-    'year'
-  ]),
+  definitions: _.pick(definitions, ['date', 'dateRange', 'year']),
   properties: {
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     vaRecordsOffice: {
       type: 'string',
     },
     yearsOfEducation: {
       type: 'integer',
-      minimum: 0
+      minimum: 0,
     },
     previousPrograms: {
       type: 'array',
@@ -32,87 +26,74 @@ let schema = {
         type: 'object',
         properties: {
           program: {
-            type: 'string'
+            type: 'string',
           },
           yearStarted: {
-            $ref: '#/definitions/year'
+            $ref: '#/definitions/year',
           },
           yearLeft: {
-            $ref: '#/definitions/year'
-          }
-        }
-      }
+            $ref: '#/definitions/year',
+          },
+        },
+      },
     },
     jobDuties: {
       type: 'string',
     },
     employer: {
-      type: 'string'
+      type: 'string',
     },
     monthlyIncome: {
       type: 'number',
-      minimum: 0
+      minimum: 0,
     },
-    dischargeDocuments: Object.assign({}, originalDefinitions.files, {
-      minItems: 1
-    }),
+    dischargeDocuments: { ...definitions.files, minItems: 1 },
     disabilityRating: {
       type: 'number',
-      'enum': [
-        0,
-        10,
-        20,
-        30,
-        40,
-        50,
-        60,
-        70,
-        80,
-        90,
-        100
-      ]
+      enum: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
     },
     disabilities: {
-      type: 'string'
+      type: 'string',
     },
-    dtap: { // disabled transition assistance program
-      type: 'boolean'
+    dtap: {
+      // disabled transition assistance program
+      type: 'boolean',
     },
     // TODO We may not need all these booleans depending on stakeholder feedback
     serviceFlags: {
       type: 'object',
       properties: {
         ww2: {
-          type: 'boolean'
+          type: 'boolean',
         },
         postWw2: {
-          type: 'boolean'
+          type: 'boolean',
         },
         korea: {
-          type: 'boolean'
+          type: 'boolean',
         },
         postKorea: {
-          type: 'boolean'
+          type: 'boolean',
         },
         vietnam: {
-          type: 'boolean'
+          type: 'boolean',
         },
         postVietnam: {
-          type: 'boolean'
+          type: 'boolean',
         },
         gulf: {
-          type: 'boolean'
+          type: 'boolean',
         },
         operationEnduringFreedom: {
-          type: 'boolean'
+          type: 'boolean',
         },
         operationIraqiFreedom: {
-          type: 'boolean'
-        }
-      }
-    }
+          type: 'boolean',
+        },
+      },
+    },
   },
-  required: ['privacyAgreementAccepted'] // TODO Determine set of required fields
+  required: ['privacyAgreementAccepted'], // TODO Determine set of required fields
 };
 
 [
@@ -127,8 +108,8 @@ let schema = {
   ['address', 'hospitalAddress'],
   ['phone', 'daytimePhone'],
   ['phone', 'eveningPhone'],
-  ['requiredServiceHistory', 'serviceHistory']
-].forEach((args) => {
+  ['requiredServiceHistory', 'serviceHistory'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
