@@ -15,8 +15,8 @@ const schema = {
     state: "IN",
     postalCode: "33771"
   },
-  veteranTelephoneNumber: "8887775544",
-  veteranAlternativeNumber: "8887775544",
+  veteranPrimaryPhoneNumber: "8887775544",
+  veteranAlternativePhoneNumber: "8887775544",
   veteranEmail: "test@email.com",
   veteranVaEnrolled: true,
   veteranFacilityType: "hospital",
@@ -44,6 +44,7 @@ const schema = {
   primaryMedicaidEnrolled: true,
   primaryMedicareEnrolled: true,
   primaryChampvaEnrolled: true,
+  primaryTricareEnrolled: true,
   primaryOtherHealthInsurance: true,
   primaryOtherHealthInsuranceName: "asdasd",
   hasSecondaryOneCaregiver: true,

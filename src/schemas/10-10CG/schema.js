@@ -57,39 +57,39 @@ const schema = {
       type: "object",
       required: [],
       properties: {
-        fullName: fullName,
-        ssnOrTin: ssnOrTin,
-        ssn: ssn,
-        tin: tin,
-        dateOfBirth: dateOfBirth,
-        gender: gender
+        veteranFullName: fullName,
+        veteranSsnOrTin: ssnOrTin,
+        veteranSsn: ssn,
+        veteranTin: tin,
+        veteranDateOfBirth: dateOfBirth,
+        veteranGender: gender
       }
     },
     veteranInfoTwo: {
       type: "object",
       required: [],
       properties: {
-        fullName: fullName,
-        primaryPhoneNumber: phone,
-        alternativePhoneNumber: phone,
-        email: email
+        veteranAddress: fullName,
+        veteranPrimaryPhoneNumber: phone,
+        veteranAlternativePhoneNumber: phone,
+        veteranEmail: email
       }
     },
     veteranInfoThree: {
       type: "object",
       required: [],
       properties: {
-        vaEnrolled: {
+        veteranVaEnrolled: {
           type: 'boolean'
         },
-        plannedClinic: {
+        veteranPlannedClinic: {
           type: 'string'
         },
-        facilityType: {
+        veteranFacilityType: {
           type: 'string',
           enum: ['hospital', 'clinic']
         },
-        previousTreatmentFacility: {
+        veteranPreviousTreatmentFacility: {
           type: 'string'
         }
       }
@@ -98,30 +98,31 @@ const schema = {
       type: "object",
       required: [],
       properties: {
-        fullName: fullName,
-        ssnOrTin: ssnOrTin,
-        ssn: ssn,
-        tin: tin,
-        dateOfBirth: dateOfBirth,
-        gender: gender
+        primaryFullName: fullName,
+        primarySsnOrTin: ssnOrTin,
+        primarySsn: ssn,
+        primaryTin: tin,
+        primaryDateOfBirth: dateOfBirth,
+        primaryGender: gender
       }
     },
     primaryCaregiverInfoTwo: {
       type: "object",
       required: [],
       properties: {
-        primaryPhoneNumber: phone,
-        alternativePhoneNumber: phone,
-        email: email,
-        vetRelationship: {
+        primaryAddress: address,
+        primaryPrimaryPhoneNumber: phone,
+        primaryAlternativePhoneNumber: phone,
+        primaryEmail: email,
+        primaryVetRelationship: {
           type: 'string',
         },
-        medicaidEnrolled: booleanType,
-        medicareEnrolled: booleanType,
-        tricareEnrolled: booleanType,
-        champvaEnrolled: booleanType,
-        otherHealthInsurance: booleanType,
-        otherHealthInsuranceName: {
+        primaryMedicaidEnrolled: booleanType,
+        primaryMedicareEnrolled: booleanType,
+        primaryTricareEnrolled: booleanType,
+        primaryChampvaEnrolled: booleanType,
+        primaryOtherHealthInsurance: booleanType,
+        primaryOtherHealthInsuranceName: {
           type: 'string',
         },
         hasSecondaryOneCaregiver: booleanType,
@@ -131,35 +132,35 @@ const schema = {
       type: "object",
       required: [],
       properties: {
-        fullName: fullName,
+        secondaryOneFullName: fullName,
         ssnOrTin: ssnOrTin,
-        ssn: ssn,
-        tin: tin,
-        dateOfBirth: dateOfBirth,
-        gender: gender,
-        address: address,
-        primaryPhoneNumber: phone,
-        alternativePhoneNumber: phone,
-        email: email,
+        secondaryOneSsn: ssn,
+        secondaryOneTin: tin,
+        secondaryOneDateOfBirth: dateOfBirth,
+        secondaryOneGender: gender,
+        secondaryOneAddress: address,
+        secondaryOnePrimaryPhoneNumber: phone,
+        secondaryOneAlternativePhoneNumber: phone,
+        secondaryOneEmail: email,
         vetRelationship: vetRelationship,
+        hasSecondaryTwoCaregiver: booleanType,
       }
     },
     secondaryTwoCaregiverInfo: {
       type: "object",
       required: [],
       properties: {
-        fullName: fullName,
-        ssnOrTin: ssnOrTin,
-        ssn: ssn,
-        tin: tin,
-        dateOfBirth: dateOfBirth,
-        gender: gender,
-        address: address,
-        primaryPhoneNumber: phone,
-        alternativePhoneNumber: phone,
-        email: email,
-        vetRelationship: vetRelationship,
-        hasSecondaryOneCaregiver: booleanType,
+        secondaryTwoFullName: fullName,
+        secondaryTwoSsnOrTin: ssnOrTin,
+        secondaryTwoSsn: ssn,
+        secondaryTwoTin: tin,
+        secondaryTwoDateOfBirth: dateOfBirth,
+        secondaryTwoGender: gender,
+        secondaryTwoAddress: address,
+        secondaryTwoPrimaryPhoneNumber: phone,
+        secondaryTwoAlternativePhoneNumber: phone,
+        secondaryTwoEmail: email,
+        secondaryTwoVetRelationship: vetRelationship,
       }
     },
   }
