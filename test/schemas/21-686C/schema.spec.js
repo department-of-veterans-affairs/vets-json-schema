@@ -1,17 +1,17 @@
+import _ from 'lodash';
+import { expect } from 'chai';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
-import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
-import { expect } from 'chai';
 
 const schema = schemas['21-686C'];
-let schemaWithoutRequired = _.cloneDeep(schema);
+const schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.anyOf;
 
-let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
-let sharedTests = new SharedTests(schemaTestHelper);
+const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
+const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-686C schema', () => {
   it('should have the right required fields', () => {
@@ -19,15 +19,15 @@ describe('21-686C schema', () => {
       'privacyAgreementAccepted',
       'veteranFullName',
       'veteranAddress',
-      'maritalStatus'
-    ])
+      'maritalStatus',
+    ]);
   });
 
   sharedTests.runTest('fullName', ['veteranFullName']);
   sharedTests.runTest('email', ['veteranEmail']);
   sharedTests.runTest('vaFileNumber', ['vaFileNumber']);
-  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber'])
-  sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone'])
+  sharedTests.runTest('ssn', ['veteranSocialSecurityNumber']);
+  sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone']);
 
   const validDependent = {
     fullName: fixtures.fullName,
@@ -36,7 +36,8 @@ describe('21-686C schema', () => {
     childRelationship: 'adopted',
     attendingCollege: true,
     disabled: true,
-    marriedDate: fixtures.date,
+    dateMarriageEnded: fixtures.date,
+    reasonMarriageEnded: 'Declared void',
     previouslyMarried: true,
     childInHousehold: true,
     childAddress: {
@@ -45,68 +46,69 @@ describe('21-686C schema', () => {
       countryDropdown: 'USA',
       addressType: 'DOMESTIC',
       state: 'TX',
-      postalCode: '344546767'
+      postalCode: '344546767',
     },
     childHasNoSsn: false,
-    personWhoLivesWithChild: fixtures.fullName
-  }
+    childHasNoSsnReason: 'NONRESIDENTALIEN',
+    personWhoLivesWithChild: fixtures.fullName,
+  };
 
   schemaTestHelper.testValidAndInvalid('currentMarriage', {
     valid: [
       {
         spouseFullName: fixtures.fullName,
         spouseSocialSecurityNumber: fixtures.ssn,
-        spouseVaFileNumber: 'C1234567'
+        spouseVaFileNumber: 'C1234567',
       },
       {
         spouseFullName: fixtures.fullName,
         spouseHasNoSsn: true,
-        spouseHasNoSsnReason: 'NONRESIDENTALIEN'
-      }
+        spouseHasNoSsnReason: 'NONRESIDENTALIEN',
+      },
     ],
     invalid: [
       {
         dateOfMarriage: fixtures.date,
         locationOfMarriage: {
-          countryDropdown: 'Canada'
+          countryDropdown: 'Canada',
         },
-        spouseFullName: fixtures.fullName
+        spouseFullName: fixtures.fullName,
       },
       {
         dateOfMarriage: fixtures.date,
         locationOfMarriage: {
           countryDropdown: 'Country Not In List',
-          countryText: 'My Island'
+          countryText: 'My Island',
         },
         spouseFullname: fixtures.fullName,
-        spouseSocialSecurityNumber: 'blah'
+        spouseSocialSecurityNumber: 'blah',
       },
       // invalid spouseVaFileNumber
       {
         dateOfMarriage: fixtures.date,
         locationOfMarriage: {
-          countryDropdown: 'Canada'
+          countryDropdown: 'Canada',
         },
         spouseFullName: fixtures.fullName,
         spouseSocialSecurityNumber: fixtures.ssn,
-        spouseVaFileNumber: 'C12345679999'
+        spouseVaFileNumber: 'C12345679999',
       },
       // invalid spouseDateOfBirth
       {
         dateOfMarriage: fixtures.date,
         locationOfMarriage: {
-          countryDropdown: 'Canada'
+          countryDropdown: 'Canada',
         },
         spouseFullName: fixtures.fullName,
         spouseSocialSecurityNumber: fixtures.ssn,
-        spouseDateOfBirth: 'in the past'
+        spouseDateOfBirth: 'in the past',
       },
-    ]
+    ],
   });
 
   schemaTestHelper.testValidAndInvalid('maritalStatus', {
     valid: ['MARRIED', 'DIVORCED', 'WIDOWED', 'SEPARATED', 'NEVERMARRIED'],
-    invalid: ['Divorce']
+    invalid: ['Divorce'],
   });
 
   schemaTestHelper.testValidAndInvalid('marriages', {
@@ -114,105 +116,55 @@ describe('21-686C schema', () => {
       [
         {
           dateOfMarriage: fixtures.date,
-          locationOfMarriage: {
-            countryDropdown: 'Country Not In List',
-            countryText: 'My Island'
-          },
+          locationOfMarriage: 'Washington, DC',
           spouseFullName: fixtures.fullName,
           reasonForSeparation: 'Divorce',
           dateOfSeparation: fixtures.date,
-          locationOfSeparation: {
-            countryDropdown: 'USA',
-            city: 'somewhere',
-            state: 'VA'
-          }
+          locationOfSeparation: 'Washington, DC',
+          marriageType: 'common-law',
         },
         {
           dateOfMarriage: fixtures.date,
-          locationOfMarriage: {
-            countryDropdown: 'Country Not In List',
-            countryText: 'My Island'
-          },
+          locationOfMarriage: 'Washington, DC',
           spouseFullName: fixtures.fullName,
           reasonForSeparation: 'Other',
           explainSeparation: 'irreconcilable differences',
           dateOfSeparation: fixtures.date,
-          locationOfSeparation: {
-            countryDropdown: 'USA',
-            city: 'somewhere',
-            state: 'VA'
-          }
-        }
-      ]
+          locationOfSeparation: 'Washington, DC',
+          marriageType: 'common-law',
+        },
+      ],
     ],
     invalid: [
       [
-        {reasonForSeparation: 'fadsf'},
+        { reasonForSeparation: 'fadsf' },
         // 'Other' without explanation
         {
           dateOfMarriage: fixtures.date,
-          locationOfMarriage: {
-            countryDropdown: 'Country Not In List',
-            countryText: 'My Island'
-          },
+          locationOfMarriage: 'Washington, DC',
           spouseFullName: fixtures.fullName,
           reasonForSeparation: 'Other',
           dateOfSeparation: fixtures.date,
-          locationOfSeparation: {
-            countryDropdown: 'USA',
-            city: 'somewhere',
-            state: 'VA'
-          }
-        }
-      ]
-    ]
+          locationOfSeparation: 'Washington, DC',
+        },
+      ],
+    ],
   });
 
   schemaTestHelper.testValidAndInvalid('dependents', {
     valid: [
       [
-        Object.assign({}, validDependent, {
-          childPlaceOfBirth: {
-            countryDropdown: 'USA',
-            city: 'somewhere',
-            state: 'VA'
-          }
-        })
+        {
+          ...validDependent,
+          childPlaceOfBirth: 'Washington, DC',
+        },
       ],
-      [
-        Object.assign({}, validDependent, {
-          childPlaceOfBirth: {
-            countryDropdown: 'Country Not In List',
-            countryText: 'somewhere'
-          }
-        })
-      ],
-      [
-        Object.assign({}, validDependent, {
-          childPlaceOfBirth: {
-            countryDropdown: 'Canada'
-          }
-        })
-      ]
     ],
     invalid: [
       [{ fullName: 1 }],
-      [_.omit(validDependent, 'marriedDate')],
-      [Object.assign({}, _.omit(validDependent, 'childHasNoSsnReason'), {childHasNoSsn: true})],
-      [Object.assign({}, validDependent, {
-        childPlaceOfBirth: {
-          countryDropdown: 'Canada',
-          city: 'somewhere',
-          state: 'VA'
-        }
-      })],
-      [Object.assign({}, validDependent, {
-        childPlaceOfBirth: {
-          countryDropdown: 'Country Not In List',
-          city: 'somewhere'
-        }
-      })]
-    ]
+      [_.omit(validDependent, 'dateMarriageEnded')],
+      [{ ..._.omit(validDependent, 'childHasNoSsnReason'), childHasNoSsn: true }],
+    ],
   });
 
   schemaTestHelper.testValidAndInvalid('veteranAddress', {
@@ -223,7 +175,7 @@ describe('21-686C schema', () => {
         city: 'anywhere',
         countryDropdown: 'USA',
         state: 'KY',
-        postalCode: '55555'
+        postalCode: '55555',
       },
       {
         addressType: 'MILITARY',
@@ -232,7 +184,7 @@ describe('21-686C schema', () => {
         countryDropdown: 'USA',
         postOffice: 'APO',
         postalType: 'AA',
-        postalCode: '55555'
+        postalCode: '55555',
       },
       {
         addressType: 'INTERNATIONAL',
@@ -245,7 +197,7 @@ describe('21-686C schema', () => {
         street: '123 main st.',
         city: 'anywhere',
         countryDropdown: 'Country Not In List',
-        countryText: 'Independent Nation of Myself'
+        countryText: 'Independent Nation of Myself',
       },
     ],
     invalid: [
@@ -264,7 +216,7 @@ describe('21-686C schema', () => {
         city: 'anywhere',
         countryDropdown: 'Country Not In List',
         state: 'KY',
-        postalCode: '55555'
+        postalCode: '55555',
       },
 
       // INTERNATIONAL with state and postalCode
@@ -273,7 +225,7 @@ describe('21-686C schema', () => {
         street: '123 main st.',
         city: 'anywhere',
         state: 'KY',
-        countryDropdown: 'Bangladesh'
+        countryDropdown: 'Bangladesh',
       },
 
       // INTERNATIONAL with selected country (allowed) and countryText (not allowed)
@@ -282,7 +234,7 @@ describe('21-686C schema', () => {
         street: '123 main st.',
         city: 'anywhere',
         countryDropdown: 'Canada',
-        countryText: 'Independent Nation of Myself'
+        countryText: 'Independent Nation of Myself',
       },
 
       // consecutive spaces present
@@ -292,8 +244,8 @@ describe('21-686C schema', () => {
         city: 'any  where',
         countryDropdown: 'USA',
         state: 'KY',
-        postalCode: '55555'
-      }
-    ]
+        postalCode: '55555',
+      },
+    ],
   });
 });

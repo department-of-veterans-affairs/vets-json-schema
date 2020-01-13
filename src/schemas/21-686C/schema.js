@@ -153,7 +153,8 @@ const schema = {
           enumNames: states.map(state => state.label),
         },
         postalCode: {
-          $ref: '#/definitions/postalCode',
+          type: 'string',
+          pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$',
         },
         countryDropdown: {
           type: 'string',
@@ -188,7 +189,8 @@ const schema = {
           ],
         },
         postalCode: {
-          $ref: '#/definitions/postalCode',
+          type: 'string',
+          pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$',
         },
       },
       additionalProperties: false,
@@ -393,10 +395,6 @@ const schema = {
             $ref: '#/definitions/genericLocation',
           },
           childSocialSecurityNumber: { $ref: '#/definitions/ssn' },
-          childRelationship: {
-            type: 'string',
-            enum: ['biological', 'adopted', 'stepchild'],
-          },
           isSupportingStepchild: {
             type: 'boolean',
           },
@@ -501,6 +499,60 @@ const schema = {
                 },
               },
             ],
+          },
+        ],
+        anyOf: [
+          {
+            type: 'object',
+            oneOf: [
+              {
+                required: ['isSupportingStepchild'],
+                properties: {
+                  childRelationship: {
+                    type: 'string',
+                    enum: ['stepchild'],
+                  },
+                },
+              },
+              {
+                required: ['financialSupportProvided'],
+                properties: {
+                  childRelationship: {
+                    type: 'string',
+                    enum: ['stepChild'],
+                  },
+                  isSupportingStepchild: {
+                    type: 'boolean',
+                    enum: [true],
+                  },
+                },
+              },
+              {
+                properties: {
+                  childRelationship: {
+                    type: 'string',
+                    enum: ['adopted'],
+                  },
+                },
+              },
+              {
+                properties: {
+                  childRelationship: {
+                    type: 'string',
+                    enum: ['biological'],
+                  },
+                },
+              },
+            ],
+          },
+          {
+            required: ['dateStepchildLeftHousehold'],
+            properties: {
+              childInHousehold: {
+                type: 'boolean',
+                enum: [false],
+              },
+            },
           },
         ],
       },
