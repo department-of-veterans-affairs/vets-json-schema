@@ -67,7 +67,7 @@ const commonAddressFields = {
 };
 
 // 4494 NOTE: It isn't immediately clear to me why these definitions are used for marriage instead
-// of the ones found in ../common/definitions.js. This will require additional investigation. 
+// of the ones found in ../common/definitions.js. This will require additional investigation.
 // For now, I've added marriageType directly to the defintion below.
 
 const commonMarriageDef = {
@@ -75,10 +75,10 @@ const commonMarriageDef = {
   properties: {
     dateOfMarriage: schemaHelpers.getDefinition('date'),
     locationOfMarriage: {
-      $ref: '#/definitions/genericLocation'
+      $ref: '#/definitions/genericLocation',
     },
     marriageType: {
-      type: 'string'
+      type: 'string',
     },
     spouseFullName: schemaHelpers.getDefinition('fullName'),
   },
@@ -93,8 +93,8 @@ const commonMarriagesDef = {
       ...commonMarriageDef.properties,
       dateOfSeparation: schemaHelpers.getDefinition('date'),
       locationOfSeparation: {
-        $ref: '#/definitions/genericLocation'
-      }
+        $ref: '#/definitions/genericLocation',
+      },
     },
     oneOf: [
       {
@@ -232,35 +232,35 @@ const schema = {
           pattern: textRegex,
         },
       },
-      genericLocation: {
-        type: 'string',
-          maxLength: 250,
-          pattern: textAndNumbersRegex  
-      },
-      location: {
-        type: 'object',
-        properties: {},
-        oneOf: [
-          {
-            required: ['countryDropdown', 'city', 'state'],
-            properties: {
-              countryDropdown: {
-                type: 'string',
-                'enum': [countryUSA],
-                default: countryUSA
-              },
-              city: {
-                type: 'string',
-                maxLength: 30,
-                minLength: 1,
-                pattern: textRegex
-              },
-              state: {
-                type: 'string',
-                maxLength: 50,
-                'enum': states50AndDC.map(state => state.value),
-                enumNames: states50AndDC.map(state => state.label)
-              }
+    },
+    genericLocation: {
+      type: 'string',
+      maxLength: 250,
+      pattern: textAndNumbersRegex,
+    },
+    location: {
+      type: 'object',
+      properties: {},
+      oneOf: [
+        {
+          required: ['countryDropdown', 'city', 'state'],
+          properties: {
+            countryDropdown: {
+              type: 'string',
+              enum: [countryUSA],
+              default: countryUSA,
+            },
+            city: {
+              type: 'string',
+              maxLength: 30,
+              minLength: 1,
+              pattern: textRegex,
+            },
+            state: {
+              type: 'string',
+              maxLength: 50,
+              enum: states50AndDC.map(state => state.value),
+              enumNames: states50AndDC.map(state => state.label),
             },
           },
           additionalProperties: false,
@@ -313,6 +313,7 @@ const schema = {
       format: 'email',
     },
     veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
+    veteranServiceNumber: { $ref: '#/definitions/veteranServiceNumber' },
     maritalStatus: {
       type: 'string',
       enum: ['MARRIED', 'DIVORCED', 'WIDOWED', 'SEPARATED', 'NEVERMARRIED'],
@@ -389,7 +390,7 @@ const schema = {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childPlaceOfBirth: {
-            $ref: '#/definitions/genericLocation'
+            $ref: '#/definitions/genericLocation',
           },
           childSocialSecurityNumber: { $ref: '#/definitions/ssn' },
           childRelationship: {
@@ -397,18 +398,14 @@ const schema = {
             enum: ['biological', 'adopted', 'stepchild'],
           },
           isSupportingStepchild: {
-            type: 'boolean'
+            type: 'boolean',
           },
           dateStepchildLeftHousehold: {
-            $ref: '#/definitions/date'
+            $ref: '#/definitions/date',
           },
           financialSupportProvided: {
             type: 'string',
-            enum: [
-              'More than half',
-              'Half',
-              'Less than half'
-            ]
+            enum: ['More than half', 'Half', 'Less than half'],
           },
           attendingCollege: {
             type: 'boolean',
@@ -447,36 +444,31 @@ const schema = {
                 properties: {
                   previouslyMarried: {
                     type: 'boolean',
-                    enum: [true]
+                    enum: [true],
                   },
                   reasonMarriageEnded: {
                     type: 'string',
-                    enum: [
-                      'Annulled',
-                      'Declared void'
-                    ]
-                  }
-                }
+                    enum: ['Annulled', 'Declared void'],
+                  },
+                },
               },
               {
                 required: ['dateMarriageEnded'],
                 properties: {
                   previouslyMarried: {
                     type: 'boolean',
-                    enum: [true]
+                    enum: [true],
                   },
                   reasonMarriageEnded: {
                     type: 'string',
-                    enum: [
-                      'Other',
-                    ]
+                    enum: ['Other'],
                   },
                   explainSeparation: {
                     type: 'string',
                     maxLength: 500,
-                    pattern: textAndNumbersRegex
-                  }
-                }
+                    pattern: textAndNumbersRegex,
+                  },
+                },
               },
               {
                 properties: {
