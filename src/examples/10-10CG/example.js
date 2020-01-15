@@ -1,4 +1,4 @@
-const schema = {
+const example = {
   // Vet Info
   veteranFullName: {
     first: "Jane Doe",
@@ -89,3 +89,5 @@ const schema = {
   secondaryTwoEmail: "test@email.com",
   secondaryTwoVetRelationship: "asdasdas",
 };
+
+export default example;
