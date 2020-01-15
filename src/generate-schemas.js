@@ -12,10 +12,15 @@ fs.readdirSync('src/schemas').forEach(schema => {
   });
 });
 
+fs.readdirSync('src/examples').forEach(schema => {
+  jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-example.json`, require(`./examples/${schema}/example`).default, {
+    spaces: 2,
+  });
+});
+
 // eslint-disable-next-line guard-for-in,no-restricted-syntax
 for (const file in files) {
   jsonfile.writeFileSync(`dist/${file}.json`, files[file], { spaces: 2 });
 }
 
-// eslint-disable-next-line no-console
-console.log('json built');
+console.info('json built');
