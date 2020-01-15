@@ -1,9 +1,9 @@
+import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash';
 
-let definitions = _.cloneDeep(originalDefinitions);
-let modifiedToursOfDuty = definitions.toursOfDuty;
+const definitions = _.cloneDeep(originalDefinitions);
+const modifiedToursOfDuty = definitions.toursOfDuty;
 delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
 delete modifiedToursOfDuty.items.properties.serviceStatus;
@@ -13,36 +13,36 @@ _.merge(modifiedToursOfDuty, {
   items: {
     properties: {
       rank: {
-        type: 'string'
+        type: 'string',
       },
       serviceNumber: {
-        type: 'string'
+        type: 'string',
       },
       placeOfEntry: {
-        type: 'string'
+        type: 'string',
       },
       placeOfSeparation: {
-        type: 'string'
-      }
-    }
-  }
+        type: 'string',
+      },
+    },
+  },
 });
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR BURIAL BENEFITS',
   type: 'object',
   additionalProperties: false,
   definitions: {
-    dateRange: definitions.dateRange
+    dateRange: definitions.dateRange,
   },
   anyOf: [
     {
-      "required" : ["vaFileNumber"]
+      required: ['vaFileNumber'],
     },
     {
-      "required" : ["veteranSocialSecurityNumber"]
-    }
+      required: ['veteranSocialSecurityNumber'],
+    },
   ],
   properties: {
     relationship: {
@@ -51,15 +51,15 @@ let schema = {
       properties: {
         type: {
           type: 'string',
-          enum: ['spouse', 'child', 'parent', 'executor', 'other']
+          enum: ['spouse', 'child', 'parent', 'executor', 'other'],
         },
         other: {
-          type: 'string'
+          type: 'string',
         },
         isEntity: {
-          type: 'boolean'
-        }
-      }
+          type: 'boolean',
+        },
+      },
     },
     locationOfDeath: {
       type: 'object',
@@ -67,82 +67,73 @@ let schema = {
       properties: {
         location: {
           type: 'string',
-          enum: [
-            'vaMedicalCenter',
-            'stateVeteransHome',
-            'nursingHome',
-            'other'
-          ]
+          enum: ['vaMedicalCenter', 'stateVeteransHome', 'nursingHome', 'other'],
         },
         other: {
-          type: 'string'
-        }
-      }
+          type: 'string',
+        },
+      },
     },
     toursOfDuty: modifiedToursOfDuty,
     previousNames: {
       type: 'array',
-      items: schemaHelpers.getDefinition('fullName')
+      items: schemaHelpers.getDefinition('fullName'),
     },
     claimantEmail: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     burialAllowance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     plotAllowance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     transportation: {
-      type: 'boolean'
+      type: 'boolean',
     },
     amountIncurred: {
-      type: 'number'
+      type: 'number',
     },
     burialAllowanceRequested: {
       type: 'string',
-      'enum': [
-        'service',
-        'nonService',
-        'vaMC'
-      ]
+      enum: ['service', 'nonService', 'vaMC'],
     },
     burialCost: {
-      type: 'number'
+      type: 'number',
     },
     previouslyReceivedAllowance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     benefitsUnclaimedRemains: {
-      type: 'boolean'
+      type: 'boolean',
     },
     placeOfRemains: {
-      type: 'string'
+      type: 'string',
     },
     federalCemetery: {
-      type: 'boolean'
+      type: 'boolean',
     },
     stateCemetery: {
-      type: 'boolean'
+      type: 'boolean',
     },
     govtContributions: {
-      type: 'boolean'
+      type: 'boolean',
     },
     amountGovtContribution: {
-      type: 'number'
+      type: 'number',
     },
     placeOfBirth: {
-      type: 'string'
+      type: 'string',
     },
     officialPosition: {
-      type: 'string'
+      type: 'string',
     },
     firmName: {
-      type: 'string'
+      type: 'string',
     },
   },
-  required: ['privacyAgreementAccepted', 'claimantAddress', 'veteranFullName']
+  required: ['privacyAgreementAccepted', 'claimantAddress', 'veteranFullName'],
 };
 
 [
@@ -157,8 +148,8 @@ let schema = {
   ['date', 'deathDate'],
   ['date', 'veteranDateOfBirth'],
   ['files', 'deathCertificate'],
-  ['files', 'transportationReceipts']
-].forEach((args) => {
+  ['files', 'transportationReceipts'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

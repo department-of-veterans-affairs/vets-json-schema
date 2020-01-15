@@ -1,10 +1,6 @@
 import _ from 'lodash/fp';
+import { documentTypes526, pciuCountries, pciuStates } from '../../common/constants';
 import definitions from '../../common/definitions';
-import {
-  documentTypes526,
-  pciuCountries,
-  pciuStates
-} from '../../common/constants';
 
 const serviceBranches = [
   'Air Force',
@@ -13,7 +9,7 @@ const serviceBranches = [
   'Marine Corps',
   'National Oceanic and Atmospheric Administration',
   'Navy',
-  'Public Health Service'
+  'Public Health Service',
 ];
 
 const disabilitiesBaseDef = {
@@ -24,27 +20,27 @@ const disabilitiesBaseDef = {
     required: ['name', 'disabilityActionType'],
     properties: {
       name: {
-        type: 'string'
+        type: 'string',
       },
       disabilityActionType: {
         type: 'string',
-        enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN']
+        enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN'],
       },
       specialIssues: { $ref: '#/definitions/specialIssues' },
       ratedDisabilityId: {
-        type: 'string'
+        type: 'string',
       },
       ratingDecisionId: {
-        type: 'string'
+        type: 'string',
       },
       diagnosticCode: {
-        type: 'number'
+        type: 'number',
       },
       classificationCode: {
-        type: 'string'
-      }
-    }
-  }
+        type: 'string',
+      },
+    },
+  },
 };
 
 const baseAddressDef = {
@@ -52,36 +48,36 @@ const baseAddressDef = {
   required: ['country', 'city', 'addressLine1'],
   properties: {
     country: {
-      $ref: '#/definitions/country'
+      $ref: '#/definitions/country',
     },
     addressLine1: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
     },
     addressLine2: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
     },
     addressLine3: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
     },
     city: {
       type: 'string',
       maxLength: 30,
-      pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+      pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$",
     },
     state: {
-      $ref: '#/definitions/state'
+      $ref: '#/definitions/state',
     },
     zipCode: {
       type: 'string',
-      pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
-    }
-  }
+      pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$',
+    },
+  },
 };
 
 const vaTreatmentCenterAddressDef = (addressSchema => {
@@ -89,26 +85,20 @@ const vaTreatmentCenterAddressDef = (addressSchema => {
   return {
     type,
     required: ['country'],
-    properties: _.pick(['country', 'city', 'state'], properties)
+    properties: _.pick(['country', 'city', 'state'], properties),
   };
 })(baseAddressDef);
 
 const form0781AddressDef = (addressSchema => {
-  const ptsdAddressOmitions = [
-    'addressLine1',
-    'addressLine2',
-    'addressLine3',
-    'postalCode',
-    'zipCode'
-  ];
+  const ptsdAddressOmitions = ['addressLine1', 'addressLine2', 'addressLine3', 'postalCode', 'zipCode'];
   return {
     ..._.omit('required', addressSchema),
     properties: {
       ..._.omit(ptsdAddressOmitions, addressSchema.properties),
       additionalDetails: {
-        type: 'string'
-      }
-    }
+        type: 'string',
+      },
+    },
   };
 })(baseAddressDef);
 
@@ -116,8 +106,8 @@ const incidentSourceAddressDef = (addressSchema => {
   return {
     ..._.omit('required', addressSchema),
     properties: {
-      ..._.omit('addressLine3', addressSchema.properties)
-    }
+      ..._.omit('addressLine3', addressSchema.properties),
+    },
   };
 })(baseAddressDef);
 
@@ -133,53 +123,39 @@ const schema = {
       type: 'string',
       minLength: 6,
       maxLength: 80,
-      pattern:
-        '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+      pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
     },
     specialIssues: {
       type: 'array',
       items: {
         type: 'string',
-        enum: [
-          'ALS',
-          'HEPC',
-          'POW',
-          'PTSD/1',
-          'PTSD/2',
-          'PTSD/3',
-          'PTSD/4',
-          'MST'
-        ]
-      }
+        enum: ['ALS', 'HEPC', 'POW', 'PTSD/1', 'PTSD/2', 'PTSD/3', 'PTSD/4', 'MST'],
+      },
     },
     // Pulling out country and state to avoid the long list duplication
     country: {
       type: 'string',
       enum: pciuCountries,
-      default: 'USA'
+      default: 'USA',
     },
     state: {
       type: 'string',
       enum: pciuStates.map(state => state.value),
-      enumNames: pciuStates.map(state => state.label)
+      enumNames: pciuStates.map(state => state.label),
     },
     address: baseAddressDef,
     addressNoRequiredFields: _.omit('required', baseAddressDef),
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
-    dateRangeAllRequired: _.set(
-      'required',
-      ['from', 'to'],
-      definitions.dateRange
-    ),
+    dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
     dateRangeFromRequired: _.set('required', ['from'], definitions.dateRange),
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
         properties: {
-          secondaryDisabilities: disabilitiesBaseDef
-        }
-      }
+          secondaryDisabilities: disabilitiesBaseDef,
+        },
+      },
     }),
     newDisabilities: {
       type: 'array',
@@ -188,59 +164,59 @@ const schema = {
         required: ['condition', 'cause'],
         properties: {
           condition: {
-            type: 'string'
+            type: 'string',
           },
           cause: {
             type: 'string',
-            enum: ['NEW', 'SECONDARY', 'WORSENED', 'VA']
+            enum: ['NEW', 'SECONDARY', 'WORSENED', 'VA'],
           },
           classificationCode: {
-            type: 'string'
+            type: 'string',
           },
           primaryDescription: {
-            type: 'string'
+            type: 'string',
           },
           causedByDisability: {
-            type: 'string'
+            type: 'string',
           },
           causedByDisabilityDescription: {
-            type: 'string'
+            type: 'string',
           },
           specialIssues: {
-            $ref: '#/definitions/specialIssues'
+            $ref: '#/definitions/specialIssues',
           },
           worsenedDescription: {
-            type: 'string'
+            type: 'string',
           },
           worsenedEffects: {
-            type: 'string'
+            type: 'string',
           },
           vaMistreatmentDescription: {
-            type: 'string'
+            type: 'string',
           },
           vaMistreatmentLocation: {
-            type: 'string'
+            type: 'string',
           },
           vaMistreatmentDate: {
-            type: 'string'
-          }
-        }
-      }
+            type: 'string',
+          },
+        },
+      },
     },
     unitAssigned: {
       type: 'string',
-      maxLength: 100
+      maxLength: 100,
     },
     unitAssignedDates: {
       type: 'object',
       properties: {
         from: {
-          type: 'string'
+          type: 'string',
         },
         to: {
-          type: 'string'
-        }
-      }
+          type: 'string',
+        },
+      },
     },
     // TODO: Remove these unused definitions
     ptsdIncident: {
@@ -249,8 +225,8 @@ const schema = {
         incidentDate: { $ref: '#/definitions/date' },
         incidentDescription: { type: 'string' },
         unitAssigned: { $ref: '#/definitions/unitAssigned' },
-        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
-      }
+        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' },
+      },
     },
     secondaryPtsdIncident: {
       type: 'object',
@@ -261,17 +237,17 @@ const schema = {
             type: 'object',
             properties: {
               name: {
-                type: 'string'
-              }
-            }
-          }
+                type: 'string',
+              },
+            },
+          },
         },
         incidentDate: { $ref: '#/definitions/date' },
         description: { type: 'string' },
         unitAssigned: { $ref: '#/definitions/unitAssigned' },
-        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' }
-      }
-    }
+        unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' },
+      },
+    },
   },
   properties: {
     alternateNames: {
@@ -285,22 +261,22 @@ const schema = {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$",
           },
           middle: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$",
           },
           last: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$"
-          }
-        }
-      }
+            pattern: "^([-a-zA-Z0-9/']+( ?))+$",
+          },
+        },
+      },
     },
     serviceInformation: {
       type: 'object',
@@ -330,14 +306,14 @@ const schema = {
                   'NOAA',
                   'Navy',
                   'Navy Reserve',
-                  'Public Health Service'
-                ]
+                  'Public Health Service',
+                ],
               },
               dateRange: {
-                $ref: '#/definitions/dateRangeAllRequired'
-              }
-            }
-          }
+                $ref: '#/definitions/dateRangeAllRequired',
+              },
+            },
+          },
         },
         reservesNationalGuardService: {
           type: 'object',
@@ -346,71 +322,71 @@ const schema = {
             unitName: {
               type: 'string',
               maxLength: 256,
-              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$",
             },
             obligationTermOfServiceDateRange: {
-              $ref: '#/definitions/dateRangeAllRequired'
+              $ref: '#/definitions/dateRangeAllRequired',
             },
             receivingTrainingPay: {
-              type: 'boolean'
+              type: 'boolean',
             },
             title10Activation: {
               type: 'object',
               properties: {
                 title10ActivationDate: {
-                  $ref: '#/definitions/date'
+                  $ref: '#/definitions/date',
                 },
                 anticipatedSeparationDate: {
-                  $ref: '#/definitions/date'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: '#/definitions/date',
+                },
+              },
+            },
+          },
+        },
+      },
     },
     servedInCombatZonePost911: {
-      type: 'boolean'
+      type: 'boolean',
     },
     confinements: {
       type: 'array',
       minItems: 1,
       items: {
-        $ref: '#/definitions/dateRangeAllRequired'
-      }
+        $ref: '#/definitions/dateRangeAllRequired',
+      },
     },
     militaryRetiredPayBranch: {
       type: 'string',
-      enum: serviceBranches
+      enum: serviceBranches,
     },
     waiveRetirementPay: {
-      type: 'boolean'
+      type: 'boolean',
     },
     hasSeparationPay: {
-      type: 'boolean'
+      type: 'boolean',
     },
     separationPayDate: {
-      type: 'string'
+      type: 'string',
     },
     separationPayBranch: {
       type: 'string',
-      enum: serviceBranches
+      enum: serviceBranches,
     },
     hasTrainingPay: {
-      type: 'boolean'
+      type: 'boolean',
     },
     waiveTrainingPay: {
-      type: 'boolean'
+      type: 'boolean',
     },
     ratedDisabilities: { $ref: '#/definitions/ratedDisabilities' },
     newPrimaryDisabilities: {
-      $ref: '#/definitions/newDisabilities'
+      $ref: '#/definitions/newDisabilities',
     },
     newSecondaryDisabilities: {
-      $ref: '#/definitions/newDisabilities'
+      $ref: '#/definitions/newDisabilities',
     },
     mailingAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     // Forwarding address differs from mailing address in a few key ways:
     // 1. Address lines 1-3 are max 35 chars instead of 20
@@ -421,55 +397,55 @@ const schema = {
     forwardingAddress: _.set(
       'properties.effectiveDate',
       {
-        $ref: '#/definitions/dateRange'
+        $ref: '#/definitions/dateRange',
       },
       _.omit(
         'required',
         _.merge(baseAddressDef, {
           properties: {
             addressLine1: {
-              maxLength: 35
+              maxLength: 35,
             },
             addressLine2: {
-              maxLength: 35
+              maxLength: 35,
             },
             addressLine3: {
-              maxLength: 35
-            }
-          }
-        })
-      )
+              maxLength: 35,
+            },
+          },
+        }),
+      ),
     ),
     phoneAndEmail: {
       type: 'object',
       required: ['primaryPhone', 'emailAddress'],
       properties: {
         primaryPhone: {
-          $ref: '#/definitions/phone'
+          $ref: '#/definitions/phone',
         },
         emailAddress: {
-          $ref: '#/definitions/email'
-        }
-      }
+          $ref: '#/definitions/email',
+        },
+      },
     },
     homelessOrAtRisk: {
       type: 'string',
-      enum: ['no', 'homeless', 'atRisk']
+      enum: ['no', 'homeless', 'atRisk'],
     },
     homelessHousingSituation: {
       type: 'string',
-      enum: ['shelter', 'notShelter', 'anotherPerson', 'other']
+      enum: ['shelter', 'notShelter', 'anotherPerson', 'other'],
     },
     otherHomelessHousing: {
       type: 'string',
-      maxLength: 500
+      maxLength: 500,
     },
     needToLeaveHousing: {
-      type: 'boolean'
+      type: 'boolean',
     },
     atRiskHousingSituation: {
       type: 'string',
-      enum: ['losingHousing', 'leavingShelter', 'other']
+      enum: ['losingHousing', 'leavingShelter', 'other'],
     },
     otherAtRiskHousing: {
       type: 'string',
@@ -482,15 +458,15 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 100,
-          pattern: "^([-a-zA-Z0-9/']+( ?))*$"
+          pattern: "^([-a-zA-Z0-9/']+( ?))*$",
         },
         phoneNumber: {
-          $ref: '#/definitions/phone'
-        }
-      }
+          $ref: '#/definitions/phone',
+        },
+      },
     },
     isTerminallyIll: {
-      type: 'boolean'
+      type: 'boolean',
     },
     vaTreatmentFacilities: {
       type: 'array',
@@ -503,24 +479,24 @@ const schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$",
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRangeFromRequired'
+            $ref: '#/definitions/dateRangeFromRequired',
           },
           treatmentCenterAddress: {
-            $ref: '#/definitions/vaTreatmentCenterAddress'
+            $ref: '#/definitions/vaTreatmentCenterAddress',
           },
           treatedDisabilityNames: {
             type: 'array',
             minItems: 1,
             maxItems: 100,
             items: {
-              type: 'string'
-            }
-          }
-        }
-      }
+              type: 'string',
+            },
+          },
+        },
+      },
     },
     attachments: {
       type: 'array',
@@ -529,95 +505,95 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           confirmationCode: {
-            type: 'string'
+            type: 'string',
           },
           attachmentId: {
             type: 'string',
             enum: documentTypes526.map(doc => doc.value),
-            enumNames: documentTypes526.map(doc => doc.label)
-          }
-        }
-      }
+            enumNames: documentTypes526.map(doc => doc.label),
+          },
+        },
+      },
     },
     bankAccountType: {
       type: 'string',
-      enum: ['Checking', 'Savings']
+      enum: ['Checking', 'Savings'],
     },
     bankAccountNumber: {
       type: 'string',
       minLength: 4,
-      maxLength: 17
+      maxLength: 17,
     },
     bankRoutingNumber: {
       type: 'string',
-      pattern: '^\\d{9}$'
+      pattern: '^\\d{9}$',
     },
     bankName: {
       type: 'string',
-      maxLength: 35
+      maxLength: 35,
     },
     isVaEmployee: {
-      type: 'boolean'
+      type: 'boolean',
     },
     standardClaim: {
       type: 'boolean',
-      default: false
+      default: false,
     },
     mentalChanges: {
       type: 'object',
       properties: {
         depression: {
-          type: 'boolean'
+          type: 'boolean',
         },
         obsessive: {
-          type: 'boolean'
+          type: 'boolean',
         },
         prescription: {
-          type: 'boolean'
+          type: 'boolean',
         },
         substance: {
-          type: 'boolean'
+          type: 'boolean',
         },
         hypervigilance: {
-          type: 'boolean'
+          type: 'boolean',
         },
         agoraphobia: {
-          type: 'boolean'
+          type: 'boolean',
         },
         fear: {
-          type: 'boolean'
+          type: 'boolean',
         },
         other: {
-          type: 'boolean'
+          type: 'boolean',
         },
         otherExplanation: {
-          type: 'string'
+          type: 'string',
         },
         noneApply: {
-          type: 'boolean'
-        }
-      }
+          type: 'boolean',
+        },
+      },
     },
     form0781: {
       type: 'object',
       properties: {
         remarks: {
-          type: 'string'
+          type: 'string',
         },
         additionalIncidentText: {
-          type: 'string'
+          type: 'string',
         },
         additionalSecondaryIncidentText: {
-          type: 'string'
+          type: 'string',
         },
         otherInformation: {
           type: 'array',
           items: {
-            type: 'string'
-          }
+            type: 'string',
+          },
         },
         incidents: {
           type: 'array',
@@ -627,23 +603,23 @@ const schema = {
             required: ['personalAssault'],
             properties: {
               personalAssault: {
-                type: 'boolean'
+                type: 'boolean',
               },
               medalsCitations: {
-                type: 'string'
+                type: 'string',
               },
               incidentDate: {
-                $ref: '#/definitions/date'
+                $ref: '#/definitions/date',
               },
               incidentLocation: form0781AddressDef,
               incidentDescription: {
-                type: 'string'
+                type: 'string',
               },
               unitAssigned: {
-                type: 'string'
+                type: 'string',
               },
               unitAssignedDates: {
-                $ref: '#/definitions/dateRange'
+                $ref: '#/definitions/dateRange',
               },
               personsInvolved: {
                 type: 'array',
@@ -654,43 +630,37 @@ const schema = {
                       type: 'object',
                       properties: {
                         first: {
-                          type: 'string'
+                          type: 'string',
                         },
                         middle: {
-                          type: 'string'
+                          type: 'string',
                         },
                         last: {
-                          type: 'string'
-                        }
-                      }
+                          type: 'string',
+                        },
+                      },
                     },
                     rank: {
-                      type: 'string'
+                      type: 'string',
                     },
                     injuryDeath: {
                       type: 'string',
-                      enum: [
-                        'killedInAction',
-                        'killedNonBattle',
-                        'woundedInAction',
-                        'injuredNonBattle',
-                        'other'
-                      ]
+                      enum: ['killedInAction', 'killedNonBattle', 'woundedInAction', 'injuredNonBattle', 'other'],
                     },
                     injuryDeathOther: {
-                      type: 'string'
+                      type: 'string',
                     },
                     injuryDeathDate: {
-                      $ref: '#/definitions/date'
+                      $ref: '#/definitions/date',
                     },
                     unitAssigned: {
-                      type: 'string'
+                      type: 'string',
                     },
                     description: {
-                      type: 'string'
-                    }
-                  }
-                }
+                      type: 'string',
+                    },
+                  },
+                },
               },
               sources: {
                 type: 'array',
@@ -698,22 +668,22 @@ const schema = {
                   type: 'object',
                   properties: {
                     name: {
-                      type: 'string'
+                      type: 'string',
                     },
-                    address: incidentSourceAddressDef
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+                    address: incidentSourceAddressDef,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     form4142: {
       type: 'object',
       properties: {
         limitedConsent: {
-          type: 'string'
+          type: 'string',
         },
         providerFacility: {
           type: 'array',
@@ -721,22 +691,18 @@ const schema = {
           maxItems: 100,
           items: {
             type: 'object',
-            required: [
-              'providerFacilityName',
-              'treatmentDateRange',
-              'providerFacilityAddress'
-            ],
+            required: ['providerFacilityName', 'treatmentDateRange', 'providerFacilityAddress'],
             properties: {
               providerFacilityName: {
                 type: 'string',
                 minLength: 1,
-                maxLength: 100
+                maxLength: 100,
               },
               treatmentDateRange: {
                 type: 'array',
                 items: {
-                  $ref: '#/definitions/dateRangeAllRequired'
-                }
+                  $ref: '#/definitions/dateRangeAllRequired',
+                },
               },
               providerFacilityAddress: {
                 type: 'object',
@@ -745,30 +711,30 @@ const schema = {
                   street: {
                     type: 'string',
                     minLength: 1,
-                    maxLength: 20
+                    maxLength: 20,
                   },
                   street2: {
                     type: 'string',
                     minLength: 1,
-                    maxLength: 20
+                    maxLength: 20,
                   },
                   city: {
                     type: 'string',
                     minLength: 1,
-                    maxLength: 30
+                    maxLength: 30,
                   },
                   postalCode: {
                     type: 'string',
-                    pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$'
+                    pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$',
                   },
                   country: baseAddressDef.properties.country,
-                  state: baseAddressDef.properties.state
-                }
-              }
-            }
-          }
-        }
-      }
+                  state: baseAddressDef.properties.state,
+                },
+              },
+            },
+          },
+        },
+      },
     },
     form8940: {
       type: 'object',
@@ -777,19 +743,19 @@ const schema = {
           type: 'object',
           properties: {
             mostIncome: {
-              type: 'number'
+              type: 'number',
             },
             yearEarned: {
-              type: 'string'
+              type: 'string',
             },
             job: {
-              type: 'string'
+              type: 'string',
             },
             disabilityPreventingEmployment: {
-              type: 'string'
+              type: 'string',
             },
             underDoctorHopitalCarePast12M: {
-              type: 'boolean'
+              type: 'boolean',
             },
             doctorProvidedCare: {
               type: 'array',
@@ -797,16 +763,16 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string'
+                    type: 'string',
                   },
                   address: {
-                    $ref: '#/definitions/addressNoRequiredFields'
+                    $ref: '#/definitions/addressNoRequiredFields',
                   },
                   dates: {
-                    type: 'string'
-                  }
-                }
-              }
+                    type: 'string',
+                  },
+                },
+              },
             },
             hospitalProvidedCare: {
               type: 'array',
@@ -814,34 +780,34 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string'
+                    type: 'string',
                   },
                   address: {
-                    $ref: '#/definitions/addressNoRequiredFields'
+                    $ref: '#/definitions/addressNoRequiredFields',
                   },
                   dates: {
-                    type: 'string'
-                  }
-                }
-              }
+                    type: 'string',
+                  },
+                },
+              },
             },
             disabilityAffectedEmploymentFullTimeDate: {
-              $ref: '#/definitions/date'
+              $ref: '#/definitions/date',
             },
             lastWorkedFullTimeDate: {
-              $ref: '#/definitions/date'
+              $ref: '#/definitions/date',
             },
             becameTooDisabledToWorkDate: {
-              $ref: '#/definitions/date'
+              $ref: '#/definitions/date',
             },
             mostEarningsInAYear: {
-              type: 'string'
+              type: 'string',
             },
             yearOfMostEarnings: {
-              type: 'string'
+              type: 'string',
             },
             occupationDuringMostEarnings: {
-              type: 'string'
+              type: 'string',
             },
             previousEmployers: {
               type: 'array',
@@ -849,65 +815,65 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string'
+                    type: 'string',
                   },
                   employerAddress: {
-                    $ref: '#/definitions/addressNoRequiredFields'
+                    $ref: '#/definitions/addressNoRequiredFields',
                   },
                   phone: {
-                    $ref: '#/definitions/phone'
+                    $ref: '#/definitions/phone',
                   },
                   typeOfWork: {
-                    type: 'string'
+                    type: 'string',
                   },
                   hoursPerWeek: {
                     type: 'number',
                     minimum: 0,
-                    maximum: 999
+                    maximum: 999,
                   },
                   dates: {
-                    $ref: '#/definitions/dateRange'
+                    $ref: '#/definitions/dateRange',
                   },
                   timeLostFromIllness: {
-                    type: 'string'
+                    type: 'string',
                   },
                   mostEarningsInAMonth: {
                     type: 'number',
-                    minimum: 0
+                    minimum: 0,
                   },
                   inBusiness: {
-                    type: 'boolean'
-                  }
-                }
-              }
+                    type: 'boolean',
+                  },
+                },
+              },
             },
             disabilityPreventMilitaryDuties: {
-              type: 'boolean'
+              type: 'boolean',
             },
             past12MonthsEarnedIncome: {
               type: 'number',
               minimum: 0,
-              maximum: 9999999.99
+              maximum: 9999999.99,
             },
             currentMonthlyEarnedIncome: {
               type: 'number',
               minimum: 0,
-              maximum: 9999999.99
+              maximum: 9999999.99,
             },
             leftLastJobDueToDisability: {
-              type: 'boolean'
+              type: 'boolean',
             },
             leftLastJobDueToDisabilityRemarks: {
-              type: 'string'
+              type: 'string',
             },
             receiveExpectDisabilityRetirement: {
-              type: 'boolean'
+              type: 'boolean',
             },
             receiveExpectWorkersCompensation: {
-              type: 'boolean'
+              type: 'boolean',
             },
             attemptedToObtainEmploymentSinceUnemployability: {
-              type: 'boolean'
+              type: 'boolean',
             },
             appliedEmployers: {
               type: 'array',
@@ -915,19 +881,19 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string'
+                    type: 'string',
                   },
                   address: {
-                    $ref: '#/definitions/addressNoRequiredFields'
+                    $ref: '#/definitions/addressNoRequiredFields',
                   },
                   workType: {
-                    type: 'string'
+                    type: 'string',
                   },
                   date: {
-                    $ref: '#/definitions/date'
-                  }
-                }
-              }
+                    $ref: '#/definitions/date',
+                  },
+                },
+              },
             },
             education: {
               type: 'string',
@@ -940,11 +906,11 @@ const schema = {
                 'Bachelor’s degree',
                 'Master’s degree',
                 'Doctoral degre',
-                'Other'
-              ]
+                'Other',
+              ],
             },
             receivedOtherEducationTrainingPreUnemployability: {
-              type: 'boolean'
+              type: 'boolean',
             },
             otherEducationTrainingPreUnemployability: {
               type: 'array',
@@ -952,16 +918,16 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string'
+                    type: 'string',
                   },
                   dates: {
-                    $ref: '#/definitions/dateRange'
-                  }
-                }
-              }
+                    $ref: '#/definitions/dateRange',
+                  },
+                },
+              },
             },
             receivedOtherEducationTrainingPostUnemployability: {
-              type: 'boolean'
+              type: 'boolean',
             },
             otherEducationTrainingPostUnemployability: {
               type: 'array',
@@ -969,20 +935,20 @@ const schema = {
                 type: 'object',
                 properties: {
                   name: {
-                    type: 'string'
+                    type: 'string',
                   },
                   dates: {
-                    $ref: '#/definitions/dateRange'
-                  }
-                }
-              }
+                    $ref: '#/definitions/dateRange',
+                  },
+                },
+              },
             },
             remarks: {
-              type: 'string'
-            }
-          }
-        }
-      }
+              type: 'string',
+            },
+          },
+        },
+      },
     },
     privateMedicalRecordAttachments: {
       type: 'array',
@@ -991,21 +957,18 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           confirmationCode: {
-            type: 'string'
+            type: 'string',
           },
           attachmentId: {
             type: 'string',
             enum: ['L107', 'L023'],
-            enumNames: [
-              'VA 21-4142 Authorization for Release of Information',
-              'Other'
-            ]
-          }
-        }
-      }
+            enumNames: ['VA 21-4142 Authorization for Release of Information', 'Other'],
+          },
+        },
+      },
     },
     completedFormAttachments: {
       type: 'array',
@@ -1014,16 +977,16 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           confirmationCode: {
-            type: 'string'
+            type: 'string',
           },
           attachmentId: {
-            type: 'string'
-          }
-        }
-      }
+            type: 'string',
+          },
+        },
+      },
     },
     secondaryAttachment: {
       type: 'array',
@@ -1032,23 +995,14 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           confirmationCode: {
-            type: 'string'
+            type: 'string',
           },
           attachmentId: {
             type: 'string',
-            enum: [
-              'L229',
-              'L018',
-              'L034',
-              'L048',
-              'L049',
-              'L029',
-              'L023',
-              'L015'
-            ],
+            enum: ['L229', 'L018', 'L034', 'L048', 'L049', 'L029', 'L023', 'L015'],
             enumNames: [
               'VA Form 21-0781a - Statement in Support of Claim for PTSD Secondary to Personal Assault',
               'Civilian Police Reports',
@@ -1057,11 +1011,11 @@ const schema = {
               'Medical Treatment Record - Non-Government Facility',
               'DD214',
               'Other Correspondence',
-              'Buddy/Lay Statement'
-            ]
-          }
-        }
-      }
+              'Buddy/Lay Statement',
+            ],
+          },
+        },
+      },
     },
     unemployabilityAttachments: {
       type: 'array',
@@ -1070,21 +1024,18 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           confirmationCode: {
-            type: 'string'
+            type: 'string',
           },
           attachmentId: {
             type: 'string',
             enum: ['L149', 'L023'],
-            enumNames: [
-              'VA 21-8940 Veterans Application for Increased Compensation Based on Unemployability',
-              'Other'
-            ]
-          }
-        }
-      }
+            enumNames: ['VA 21-8940 Veterans Application for Increased Compensation Based on Unemployability', 'Other'],
+          },
+        },
+      },
     },
     employmentRequestAttachments: {
       type: 'array',
@@ -1093,22 +1044,20 @@ const schema = {
         required: ['name', 'attachmentId'],
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           confirmationCode: {
-            type: 'string'
+            type: 'string',
           },
           attachmentId: {
             type: 'string',
             enum: ['L115'],
-            enumNames: [
-              'A 21-4192 Request for Employment Information in Connection with Claim for Disability'
-            ]
-          }
-        }
-      }
-    }
-  }
+            enumNames: ['A 21-4192 Request for Employment Information in Connection with Claim for Disability'],
+          },
+        },
+      },
+    },
+  },
 };
 
 export default schema;

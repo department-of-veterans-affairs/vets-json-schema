@@ -523,6 +523,10 @@
     "type": "string",
     "pattern": "^[cC]{0,1}\\d{7,9}$"
   },
+  "veteranServiceNumber": {
+    "type": "string",
+    "pattern": "^[A-Z]{0,2}\\d{5,8}$"
+  },
   "relationship": {
     "type": "string",
     "enum": [

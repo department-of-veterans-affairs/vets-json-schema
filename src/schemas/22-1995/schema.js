@@ -1,11 +1,11 @@
+import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash';
 
-let definitions = _.cloneDeep(originalDefinitions);
+const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('cooperativeTraining');
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-1995)',
   type: 'object',
@@ -22,69 +22,69 @@ let schema = {
     'dateRange',
     'educationType',
     'preferredContactMethod',
-    'privacyAgreementAccepted'
+    'privacyAgreementAccepted',
   ]),
   anyOf: [
     {
-      "required" : ["vaFileNumber"]
+      required: ['vaFileNumber'],
     },
     {
-      "required" : ["veteranSocialSecurityNumber"]
-    }
+      required: ['veteranSocialSecurityNumber'],
+    },
   ],
   properties: {
     veteranFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     veteranAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     homePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     preferredContactMethod: {
-      $ref: '#/definitions/preferredContactMethod'
+      $ref: '#/definitions/preferredContactMethod',
     },
     veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
+      $ref: '#/definitions/ssn',
     },
     benefit: {
       type: 'string',
-      enum: ['chapter33', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32', 'chapter1607']
+      enum: ['chapter33', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32', 'chapter1607'],
     },
     educationType: {
-      $ref: '#/definitions/educationType'
+      $ref: '#/definitions/educationType',
     },
     educationObjective: {
-      type: 'string'
+      type: 'string',
     },
     programName: {
-      type: 'string'
+      type: 'string',
     },
     newSchool: {
-      $ref: '#/definitions/school'
+      $ref: '#/definitions/school',
     },
     oldSchool: {
-      $ref: '#/definitions/school'
+      $ref: '#/definitions/school',
     },
     trainingEndDate: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     reasonForChange: {
-      type: 'string'
+      type: 'string',
     },
     bankAccount: {
-      $ref: '#/definitions/bankAccount'
+      $ref: '#/definitions/bankAccount',
     },
     serviceBefore1977: {
-      $ref: '#/definitions/serviceBefore1977'
+      $ref: '#/definitions/serviceBefore1977',
     },
     toursOfDuty: {
       type: 'array',
@@ -92,46 +92,43 @@ let schema = {
         type: 'object',
         properties: {
           serviceBranch: {
-            type: 'string'
+            type: 'string',
           },
           dateRange: {
-            $ref: '#/definitions/dateRange'
-          }
-        }
-      }
+            $ref: '#/definitions/dateRange',
+          },
+        },
+      },
     },
     civilianBenefitsAssistance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     nonVaAssistance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     remarks: {
-      type: 'string'
+      type: 'string',
     },
     privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
+      $ref: '#/definitions/privacyAgreementAccepted',
     },
     isEdithNourseRogersScholarship: {
-        type: 'boolean'
+      type: 'boolean',
     },
     isEnrolledStem: {
-        type: 'boolean'
+      type: 'boolean',
     },
     isPursuingTeachingCert: {
-        type: 'boolean'
+      type: 'boolean',
     },
     isActiveDuty: {
-        type: 'boolean'
-    }
+      type: 'boolean',
+    },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName']
+  required: ['privacyAgreementAccepted', 'veteranFullName'],
 };
 
-[
-  ['vaFileNumber'],
-  ['bankAccountChange']
-].forEach((args) => {
+[['vaFileNumber'], ['bankAccountChange']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

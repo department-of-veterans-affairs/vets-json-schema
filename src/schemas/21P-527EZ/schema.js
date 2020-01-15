@@ -1,35 +1,32 @@
+import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash';
 
-let definitions = _.cloneDeep(originalDefinitions);
+const definitions = _.cloneDeep(originalDefinitions);
 definitions.bankAccount.properties.bankName = { type: 'string' };
 
 const financialNumber = {
   type: 'number',
-  default: 0
+  default: 0,
 };
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR PENSION',
   type: 'object',
   additionalProperties: false,
   anyOf: [
     {
-      "required" : ["vaFileNumber"]
+      required: ['vaFileNumber'],
     },
     {
-      "required" : ["veteranSocialSecurityNumber"]
-    }
+      required: ['veteranSocialSecurityNumber'],
+    },
   ],
-  definitions: _.merge(_.pick(definitions,
-    'dateRange',
-    'bankAccount'
-  ), {
+  definitions: _.merge(_.pick(definitions, 'dateRange', 'bankAccount'), {
     date: {
       pattern: '^\\d{4}-\\d{2}-\\d{2}$',
-      type: 'string'
+      type: 'string',
     },
     netWorth: {
       type: 'object',
@@ -40,8 +37,8 @@ let schema = {
         ira: financialNumber,
         stocks: financialNumber,
         realProperty: financialNumber,
-        additionalSources: { $ref: '#/definitions/additionalSources' }
-      }
+        additionalSources: { $ref: '#/definitions/additionalSources' },
+      },
     },
     additionalSources: {
       type: 'array',
@@ -50,13 +47,13 @@ let schema = {
         required: ['name'],
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
           amount: {
-            type: 'number'
-          }
-        }
-      }
+            type: 'number',
+          },
+        },
+      },
     },
     monthlyIncome: {
       type: 'object',
@@ -68,8 +65,8 @@ let schema = {
         blackLung: financialNumber,
         serviceRetirement: financialNumber,
         ssi: financialNumber,
-        additionalSources: { $ref: '#/definitions/additionalSources' }
-      }
+        additionalSources: { $ref: '#/definitions/additionalSources' },
+      },
     },
     expectedIncome: {
       type: 'object',
@@ -78,9 +75,9 @@ let schema = {
         salary: financialNumber,
         interest: financialNumber,
         additionalSources: {
-          $ref: '#/definitions/additionalSources'
-        }
-      }
+          $ref: '#/definitions/additionalSources',
+        },
+      },
     },
     otherExpenses: {
       type: 'array',
@@ -90,41 +87,41 @@ let schema = {
         required: ['amount', 'purpose', 'paidTo', 'date'],
         properties: {
           amount: {
-            type: 'number'
+            type: 'number',
           },
           purpose: {
-            type: 'string'
+            type: 'string',
           },
           paidTo: {
-            type: 'string'
+            type: 'string',
           },
           date: {
-            $ref: '#/definitions/date'
-          }
-        }
-      }
-    }
+            $ref: '#/definitions/date',
+          },
+        },
+      },
+    },
   }),
   properties: {
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     altEmail: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     spouseIsVeteran: {
-      type: 'boolean'
+      type: 'boolean',
     },
     liveWithSpouse: {
-      type: 'boolean'
+      type: 'boolean',
     },
     reasonForNotLivingWithSpouse: {
-      type: 'string'
+      type: 'string',
     },
     monthlySpousePayment: {
-      type: 'number'
+      type: 'number',
     },
     // 12a-c, but multiple items
     servicePeriods: {
@@ -133,30 +130,30 @@ let schema = {
         type: 'object',
         properties: {
           serviceBranch: {
-            type: 'string'
+            type: 'string',
           },
-          activeServiceDateRange: schemaHelpers.getDefinition('dateRange')
-        }
-      }
+          activeServiceDateRange: schemaHelpers.getDefinition('dateRange'),
+        },
+      },
     },
     previousNames: {
       type: 'array',
-      items: schemaHelpers.getDefinition('fullName')
+      items: schemaHelpers.getDefinition('fullName'),
     },
     combatSince911: {
-      type: 'boolean'
+      type: 'boolean',
     },
     // 32. I DO NOT want my claim considered for rapid processing under the FDC Program because I plan to submit further evidence in support of my claim.
     noRapidProcessing: {
-      type: 'boolean'
+      type: 'boolean',
     },
     // 29. I CERTIFY THAT I DO NOT HAVE AN ACCOUNT WITH A FINANCIAL INSTITUTION OR CERTIFIED PAYMENT AGENT
     noBankAccount: {
-      type: 'boolean'
+      type: 'boolean',
     },
     // 13A. ARE YOU CURRENTLY ACTIVATED TO FEDERAL ACTIVE DUTY UNDER THE AUTHORITY OF TITLE 10, U.S.C. (National Guard)?
     nationalGuardActivation: {
-      type: 'boolean'
+      type: 'boolean',
     },
     vamcTreatmentCenters: {
       type: 'array',
@@ -165,10 +162,10 @@ let schema = {
         required: ['location'],
         properties: {
           location: {
-            type: 'string'
-          }
-        }
-      }
+            type: 'string',
+          },
+        },
+      },
     },
     nationalGuard: {
       type: 'object',
@@ -176,8 +173,8 @@ let schema = {
         name: { type: 'string' },
         address: schemaHelpers.getDefinition('address'),
         phone: schemaHelpers.getDefinition('usaPhone'),
-        date: schemaHelpers.getDefinition('date')
-      }
+        date: schemaHelpers.getDefinition('date'),
+      },
     },
     // 16A-C. DID YOU RECEIVE ANY TYPE OF SEPARATION/SEVERANCE RETIRED PAY?
     severancePay: {
@@ -186,18 +183,12 @@ let schema = {
         amount: { type: 'number' },
         type: {
           type: 'string',
-          enum: [
-            'Longevity',
-            'Separation',
-            'Severance',
-            'PDRL',
-            'TDRL'
-          ]
-        }
-      }
+          enum: ['Longevity', 'Separation', 'Severance', 'PDRL', 'TDRL'],
+        },
+      },
     },
     placeOfSeparation: {
-      type: 'string'
+      type: 'string',
     },
     disabilities: {
       type: 'array',
@@ -205,11 +196,11 @@ let schema = {
         type: 'object',
         properties: {
           name: {
-            type: 'string'
+            type: 'string',
           },
-          disabilityStartDate: schemaHelpers.getDefinition('date')
-        }
-      }
+          disabilityStartDate: schemaHelpers.getDefinition('date'),
+        },
+      },
     },
     jobs: {
       type: 'array',
@@ -217,22 +208,22 @@ let schema = {
         type: 'object',
         properties: {
           employer: {
-            type: 'string'
+            type: 'string',
           },
           address: schemaHelpers.getDefinition('address'),
           jobTitle: {
-            type: 'string'
+            type: 'string',
           },
           dateRange: schemaHelpers.getDefinition('dateRange'),
           daysMissed: {
             // making this a string so people can answer in words if they don't know the exact number of days
-            type: 'string'
+            type: 'string',
           },
           annualEarnings: {
-            type: 'number'
-          }
-        }
-      }
+            type: 'number',
+          },
+        },
+      },
     },
     dependents: {
       type: 'array',
@@ -242,46 +233,42 @@ let schema = {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childInHousehold: {
-            type: 'boolean'
+            type: 'boolean',
           },
           childAddress: schemaHelpers.getDefinition('address'),
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
           monthlyPayment: {
-            type: 'number'
+            type: 'number',
           },
           monthlyIncome: { $ref: '#/definitions/monthlyIncome' },
           expectedIncome: { $ref: '#/definitions/expectedIncome' },
           netWorth: { $ref: '#/definitions/netWorth' },
           otherExpenses: { $ref: '#/definitions/otherExpenses' },
           childPlaceOfBirth: {
-            type: 'string'
+            type: 'string',
           },
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
           childRelationship: {
             type: 'string',
-            enum: [
-              'biological',
-              'adopted',
-              'stepchild'
-            ]
+            enum: ['biological', 'adopted', 'stepchild'],
           },
           attendingCollege: {
-            type: 'boolean'
+            type: 'boolean',
           },
           disabled: {
-            type: 'boolean'
+            type: 'boolean',
           },
           married: {
-            type: 'boolean'
+            type: 'boolean',
           },
           previouslyMarried: {
-            type: 'boolean'
+            type: 'boolean',
           },
-        }
-      }
+        },
+      },
     },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress']
+  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress'],
 };
 
 [
@@ -313,7 +300,7 @@ let schema = {
   ['otherExpenses', 'spouseOtherExpenses'],
   ['bankAccount'],
   ['files'],
-].forEach((args) => {
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

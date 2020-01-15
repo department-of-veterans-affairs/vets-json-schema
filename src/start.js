@@ -1,6 +1,7 @@
 require('@babel/register');
 
-switch(process.argv[2]) {
+// eslint-disable-next-line default-case
+switch (process.argv[2]) {
   case 'build':
     require('./generate-schemas');
     break;

@@ -1,6 +1,6 @@
 {
   "name": "vets-json-schema",
-  "version": "3.138.12",
+  "version": "3.138.13",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
@@ -8,7 +8,10 @@
   "scripts": {
     "build": "node src/start build",
     "test": "mocha 'test/**/*.spec.js'",
-    "watch": "node src/start watch"
+    "watch": "node src/start watch",
+    "lint": "eslint src -c .eslintrc --ext js",
+    "lint:fix": "eslint src -c .eslintrc --fix --ext js",
+    "lint:changed": "LIST=`git diff-index --name-only HEAD | grep \"\\.js[x]\\{0,1\\}$\"`; if [ \"$LIST\" ]; then eslint --fix --quiet $LIST; fi"
   },
   "main": "dist/schemas.js",
   "files": [
@@ -20,10 +23,19 @@
     "@babel/register": "^7.0.0-beta.49",
     "ajv": "^4.5.0",
     "chai": "^3.5.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-chai-expect": "^2.1.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-mocha": "^6.2.2",
+    "eslint-plugin-prettier": "^3.1.2",
     "jsonfile": "^2.3.1",
     "lodash": "^4.15.0",
     "mocha": "^3.0.2",
-    "node-watch": "^0.4.0"
+    "node-watch": "^0.4.0",
+    "prettier": "^1.19.1"
   },
   "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme"
 }

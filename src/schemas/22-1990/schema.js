@@ -1,128 +1,130 @@
-import constants from '../../common/constants';
 import _ from 'lodash';
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
 const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 
-let schema = {
+const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR VA EDUCATION BENEFITS (22-1990)',
   type: 'object',
-  definitions: _.merge({
-    year: {
-      type: 'integer',
-      minimum: 1900
-    }
-  }, _.pick(definitions, [
-    'address',
-    'fullName',
-    'phone',
-    'ssn',
-    'bankAccount',
-    'serviceBefore1977',
-    'date',
-    'dateRange',
-    'educationType',
-    'educationProgram',
-    'preferredContactMethod',
-    'privacyAgreementAccepted',
-    'gender',
-    'postHighSchoolTrainings',
-    'nonMilitaryJobs'
-  ])),
+  definitions: _.merge(
+    {
+      year: {
+        type: 'integer',
+        minimum: 1900,
+      },
+    },
+    _.pick(definitions, [
+      'address',
+      'fullName',
+      'phone',
+      'ssn',
+      'bankAccount',
+      'serviceBefore1977',
+      'date',
+      'dateRange',
+      'educationType',
+      'educationProgram',
+      'preferredContactMethod',
+      'privacyAgreementAccepted',
+      'gender',
+      'postHighSchoolTrainings',
+      'nonMilitaryJobs',
+    ]),
+  ),
   additionalProperties: false,
   properties: {
     chapter33: {
-      type: 'boolean'
+      type: 'boolean',
     },
     chapter30: {
-      type: 'boolean'
+      type: 'boolean',
     },
     chapter1606: {
-      type: 'boolean'
+      type: 'boolean',
     },
     chapter32: {
-      type: 'boolean'
+      type: 'boolean',
     },
     benefitsRelinquished: {
       type: 'string',
-      'enum': ['unknown', ..._.without(benefits, 'chapter33', 'chapter32'), 'chapter1607']
+      enum: ['unknown', ..._.without(benefits, 'chapter33', 'chapter32'), 'chapter1607'],
     },
     veteranFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     gender: {
-      $ref: '#/definitions/gender'
+      $ref: '#/definitions/gender',
     },
     veteranDateOfBirth: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn'
+      $ref: '#/definitions/ssn',
     },
     veteranAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     email: {
       type: 'string',
-      format: 'email'
+      format: 'email',
     },
     homePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone'
+      $ref: '#/definitions/phone',
     },
     preferredContactMethod: {
-      $ref: '#/definitions/preferredContactMethod'
+      $ref: '#/definitions/preferredContactMethod',
     },
     secondaryContact: {
       type: 'object',
       properties: {
         fullName: {
-          type: 'string'
+          type: 'string',
         },
         sameAddress: {
-          type: 'boolean'
+          type: 'boolean',
         },
         address: {
-          $ref: '#/definitions/address'
+          $ref: '#/definitions/address',
         },
         phone: {
-          $ref: '#/definitions/phone'
+          $ref: '#/definitions/phone',
         },
-      }
+      },
     },
     bankAccount: {
-      $ref: '#/definitions/bankAccount'
+      $ref: '#/definitions/bankAccount',
     },
     educationStartDate: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     educationObjective: {
-      type: 'string'
+      type: 'string',
     },
     educationType: {
-      $ref: '#/definitions/educationType'
+      $ref: '#/definitions/educationType',
     },
     educationProgram: {
-      $ref: '#/definitions/educationProgram'
+      $ref: '#/definitions/educationProgram',
     },
     highSchoolOrGedCompletionDate: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     faaFlightCertificatesInformation: {
-      type: 'string'
+      type: 'string',
     },
     serviceAcademyGraduationYear: {
-      $ref: '#/definitions/year'
+      $ref: '#/definitions/year',
     },
     seniorRotc: {
       type: 'object',
       properties: {
         commissionYear: {
-          $ref: '#/definitions/year'
+          $ref: '#/definitions/year',
         },
         rotcScholarshipAmounts: {
           type: 'array',
@@ -130,60 +132,57 @@ let schema = {
             type: 'object',
             properties: {
               year: {
-                type: 'integer'
+                type: 'integer',
               },
               amount: {
-                type: 'number'
+                type: 'number',
               },
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     },
     seniorRotcScholarshipProgram: {
-      type: 'boolean'
+      type: 'boolean',
     },
     civilianBenefitsAssistance: {
-      type: 'boolean'
+      type: 'boolean',
     },
     additionalContributions: {
-      type: 'boolean'
+      type: 'boolean',
     },
     activeDutyKicker: {
-      type: 'boolean'
+      type: 'boolean',
     },
     reserveKicker: {
-      type: 'boolean'
+      type: 'boolean',
     },
     activeDutyRepayingPeriod: {
-      $ref: '#/definitions/dateRange'
+      $ref: '#/definitions/dateRange',
     },
     serviceBefore1977: {
-      $ref: '#/definitions/serviceBefore1977'
+      $ref: '#/definitions/serviceBefore1977',
     },
     postHighSchoolTrainings: {
-      $ref: '#/definitions/postHighSchoolTrainings'
+      $ref: '#/definitions/postHighSchoolTrainings',
     },
     nonMilitaryJobs: {
-      $ref: '#/definitions/nonMilitaryJobs'
+      $ref: '#/definitions/nonMilitaryJobs',
     },
     applyingUsingOwnBenefits: {
-      type: "boolean"
+      type: 'boolean',
     },
     benefitsRelinquishedDate: {
-      '$ref': '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted'
-    }
+      $ref: '#/definitions/privacyAgreementAccepted',
+    },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName']
+  required: ['privacyAgreementAccepted', 'veteranFullName'],
 };
 
-[
-  ['toursOfDuty'],
-  ['currentlyActiveDuty']
-].forEach((args) => {
+[['toursOfDuty'], ['currentlyActiveDuty']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
