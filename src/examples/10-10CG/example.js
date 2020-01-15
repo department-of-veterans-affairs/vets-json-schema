@@ -1,93 +1,79 @@
 const example = {
-  // Vet Info
-  veteranFullName: {
-    first: "Jane Doe",
-    last: "Doe"
+  veteranInfoOne: {
+    veteranFullName: { first: "Jane Doe", last: "Doe" },
+    veteranSsnOrTin: "Tax Identification Number",
+    veteranTin: "789",
+    veteranDateOfBirth: "1990-07-03",
+    veteranGender: "Male",
   },
-  veteranSsnOrTin: "Tax Identification Number",
-  veteranTin: "789",
-  veteranDateOfBirth: "1990-07-03",
-  veteranGender: "Male",
-  veteranAddress: {
-    street: "111 2nd St S",
-    city: "Seattle",
-    country: "USA",
-    state: "IN",
-    postalCode: "33771"
+  veteranInfoTwo: {
+    veteranAddress: { street: "111 2nd St S", city: "Seattle", country: "USA", state: "IN", postalCode: "33771" },
+    veteranPrimaryPhoneNumber: "8887775544",
+    veteranAlternativePhoneNumber: "8887775544",
+    veteranEmail: "test@email.com",
   },
-  veteranPrimaryPhoneNumber: "8887775544",
-  veteranAlternativePhoneNumber: "8887775544",
-  veteranEmail: "test@email.com",
-  veteranVaEnrolled: true,
-  veteranFacilityType: "hospital",
-  veteranPreviousTreatmentFacility: "adsadad",
-  // Primary Caregiver Info
-  primaryFullName: {
-    first: "Joan",
-    last: "Doe"
+  veteranInfoThree: {
+    // TODO: instead of "*InfoOne, *InfoTwo, etc. Sould we just nest all into "veteranInfo"?
+    veteranVaEnrolled: true,
+    // veteranPlannedClinic: null,
+    veteranFacilityType: 'hospital',
+    veteranPreviousTreatmentFacility: "adsadad",
   },
-  primarySsnOrTin: "Tax Identification Number",
-  primaryTin: "789",
-  primaryDateOfBirth: "1978-07-03",
-  primaryGender: "Female",
-  primaryAddress: {
-    street: "111 2nd St S",
-    city: "Seattle",
-    country: "USA",
-    state: "IL",
-    postalCode: "33771"
+  primaryCaregiverInfoOne: {
+    primaryFullName: { first: "Joan", last: "Doe" },
+    primarySsnOrTin: "Tax Identification Number",
+    primaryDateOfBirth: "1978-07-03",
+    primaryGender: "Female",
   },
-  primaryPrimaryPhoneNumber: "8887775544",
-  primaryAlternativePhoneNumber: "8887775544",
-  primaryEmail: "test@email.com",
-  primaryVetRelationship: "asd",
-  primaryMedicaidEnrolled: true,
-  primaryMedicareEnrolled: true,
-  primaryChampvaEnrolled: true,
-  primaryTricareEnrolled: true,
-  primaryOtherHealthInsurance: true,
-  primaryOtherHealthInsuranceName: "asdasd",
-  hasSecondaryOneCaregiver: true,
-  // Secondary Caregiver One
-  secondaryOneFullName: {
-    first: "John Doe",
-    last: "Doe",
-    suffix: "II"
+  primaryCaregiverInfoTwo: {
+    // TODO: since this is nested in "primaryCaregiverInfoTwo", we should not have attrs namespaced
+    primaryAddress: { street: "111 2nd St S", city: "Seattle", country: "USA", state: "IL", postalCode: "33771" },
+    primaryPrimaryPhoneNumber: "8887775544",
+    primaryAlternativePhoneNumber: "8887775544",
+    primaryEmail: "test@email.com",
+    primaryVetRelationship: "asd",
+    primaryMedicaidEnrolled: true,
+    primaryMedicareEnrolled: true,
+    primaryChampvaEnrolled: true,
+    primaryTricareEnrolled: true,
+    primaryOtherHealthInsurance: true,
+    primaryOtherHealthInsuranceName: "asdasd",
+    hasSecondaryOneCaregiver: true,
   },
-  secondaryOneSsn: "787787854",
-  secondaryOneDateOfBirth: "1989-11-06",
-  secondaryOneGender: "Male",
-  secondaryOneAddress: {
-    street: "111 2nd St S",
-    city: "Seattle",
-    country: "USA",
-    state: "IL",
-    postalCode: "33771"
+  secondaryOneCaregiverInfo: {
+    secondaryOneFullName: { first: "John Doe", last: "Doe", suffix: "II" },
+    // TODO: This below prop wasn't here. Shouldn't this be required?
+    // ssnOrTin: "Social Security Number",
+    secondaryOneSsn: "787787854",
+    secondaryOneDateOfBirth: "1989-11-06",
+    secondaryOneGender: "Male",
+    secondaryOneAddress: { street: "111 2nd St S", city: "Seattle", country: "USA", state: "IL", postalCode: "33771" },
+    secondaryOnePrimaryPhoneNumber: "8887775544",
+    secondaryOneAlternativePhoneNumber: "8887775544",
+    secondaryOneEmail: "test@email.com",
+    // TODO: This is not namespaced like the props above (above namespaces should be removed)
+    vetRelationship: "asdasdas",
+    // TODO: This below prop should not be here
+    hasSecondaryTwoCaregiver: true,
   },
-  secondaryOnePrimaryPhoneNumber: "8887775544",
-  secondaryOneAlternativePhoneNumber: "8887775544",
-  secondaryOneEmail: "test@email.com",
-  secondaryOneVetRelationship: "asdasdas",
-  // Secondary Caregiver Two
-  hasSecondaryTwoCaregiver: true,
-  secondaryTwoFullName: {
-    first: "John Doe",
-    last: "Doe"
-  },
-  secondaryTwoSsn: "585784787",
-  secondaryTwoDateOfBirth: "1994-08-04",
-  secondaryTwoGender: "Male",
-  secondaryTwoAddress: {
-    street: "111 2nd St S",
-    city: "Seattle",
-    country: "USA",
-    state: "Florida",
-    postalCode: "33771"
-  },
-  secondaryTwoPrimaryPhoneNumber: "8887775544",
-  secondaryTwoAlternativePhoneNumber: "8887775544",
-  secondaryTwoEmail: "test@email.com",
-  secondaryTwoVetRelationship: "asdasdas",
+  secondaryTwoCaregiverInfo: {
+    secondaryTwoFullName: { first: "John Doe", last: "Doe" },
+    // secondaryTwoSsnOrTin (missing)
+    secondaryTwoSsn: "585784787",
+    secondaryTwoDateOfBirth: "1994-08-04",
+    secondaryTwoGender: "Male",
+    secondaryTwoAddress: {
+      street: "111 2nd St S",
+      city: "Seattle",
+      country: "USA",
+      state: "Florida",
+      postalCode: "33771"
+    },
+    secondaryTwoPrimaryPhoneNumber: "8887775544",
+    secondaryTwoAlternativePhoneNumber: "8887775544",
+    secondaryTwoEmail: "test@email.com",
+    secondaryTwoVetRelationship: "asdasdas",
+  }
 };
 
 export default example;
