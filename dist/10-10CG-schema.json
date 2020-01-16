@@ -4,232 +4,190 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "veteranInfoOne": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "veteranFullName": {
-          "$ref": "#/definitions/fullName"
-        },
-        "veteranSsnOrTin": {
-          "type": "string",
-          "enum": [
-            "Social Security Number",
-            "Tax Identification Number"
-          ]
-        },
-        "veteranSsn": {
-          "$ref": "#/definitions/ssn"
-        },
-        "veteranTin": {
-          "type": "string"
-        },
-        "veteranDateOfBirth": {
-          "$ref": "#/definitions/dateOfBirth"
-        },
-        "veteranGender": {
-          "$ref": "#/definitions/gender"
-        }
-      }
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
     },
-    "veteranInfoTwo": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "veteranAddress": {
-          "$ref": "#/definitions/fullName"
-        },
-        "veteranPrimaryPhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "veteranAlternativePhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "veteranEmail": {
-          "$ref": "#/definitions/email"
-        }
-      }
+    "veteranSsnOrTin": {
+      "type": "string",
+      "enum": [
+        "Social Security Number",
+        "Tax Identification Number"
+      ]
     },
-    "veteranInfoThree": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "veteranVaEnrolled": {
-          "type": "boolean"
-        },
-        "veteranPlannedClinic": {
-          "type": "string"
-        },
-        "veteranFacilityType": {
-          "type": "string",
-          "enum": [
-            "hospital",
-            "clinic"
-          ]
-        },
-        "veteranPreviousTreatmentFacility": {
-          "type": "string"
-        }
-      }
+    "veteranSsn": {
+      "$ref": "#/definitions/ssn"
     },
-    "primaryCaregiverInfoOne": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "primaryFullName": {
-          "$ref": "#/definitions/fullName"
-        },
-        "primarySsnOrTin": {
-          "type": "string",
-          "enum": [
-            "Social Security Number",
-            "Tax Identification Number"
-          ]
-        },
-        "primarySsn": {
-          "$ref": "#/definitions/ssn"
-        },
-        "primaryTin": {
-          "type": "string"
-        },
-        "primaryDateOfBirth": {
-          "$ref": "#/definitions/dateOfBirth"
-        },
-        "primaryGender": {
-          "$ref": "#/definitions/gender"
-        }
-      }
+    "veteranTin": {
+      "type": "string"
     },
-    "primaryCaregiverInfoTwo": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "primaryAddress": {
-          "$ref": "#/definitions/address"
-        },
-        "primaryPrimaryPhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "primaryAlternativePhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "primaryEmail": {
-          "$ref": "#/definitions/email"
-        },
-        "primaryVetRelationship": {
-          "type": "string"
-        },
-        "primaryMedicaidEnrolled": {
-          "type": "boolean"
-        },
-        "primaryMedicareEnrolled": {
-          "type": "boolean"
-        },
-        "primaryTricareEnrolled": {
-          "type": "boolean"
-        },
-        "primaryChampvaEnrolled": {
-          "type": "boolean"
-        },
-        "primaryOtherHealthInsurance": {
-          "type": "boolean"
-        },
-        "primaryOtherHealthInsuranceName": {
-          "type": "string"
-        },
-        "hasSecondaryOneCaregiver": {
-          "type": "boolean"
-        }
-      }
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/dateOfBirth"
     },
-    "secondaryOneCaregiverInfo": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "secondaryOneFullName": {
-          "$ref": "#/definitions/fullName"
-        },
-        "ssnOrTin": {
-          "type": "string",
-          "enum": [
-            "Social Security Number",
-            "Tax Identification Number"
-          ]
-        },
-        "secondaryOneSsn": {
-          "$ref": "#/definitions/ssn"
-        },
-        "secondaryOneTin": {
-          "type": "string"
-        },
-        "secondaryOneDateOfBirth": {
-          "$ref": "#/definitions/dateOfBirth"
-        },
-        "secondaryOneGender": {
-          "$ref": "#/definitions/gender"
-        },
-        "secondaryOneAddress": {
-          "$ref": "#/definitions/address"
-        },
-        "secondaryOnePrimaryPhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "secondaryOneAlternativePhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "secondaryOneEmail": {
-          "$ref": "#/definitions/email"
-        },
-        "vetRelationship": {
-          "type": "string"
-        },
-        "hasSecondaryTwoCaregiver": {
-          "type": "boolean"
-        }
-      }
+    "veteranGender": {
+      "$ref": "#/definitions/gender"
     },
-    "secondaryTwoCaregiverInfo": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "secondaryTwoFullName": {
-          "$ref": "#/definitions/fullName"
-        },
-        "secondaryTwoSsnOrTin": {
-          "type": "string",
-          "enum": [
-            "Social Security Number",
-            "Tax Identification Number"
-          ]
-        },
-        "secondaryTwoSsn": {
-          "$ref": "#/definitions/ssn"
-        },
-        "secondaryTwoTin": {
-          "type": "string"
-        },
-        "secondaryTwoDateOfBirth": {
-          "$ref": "#/definitions/dateOfBirth"
-        },
-        "secondaryTwoGender": {
-          "$ref": "#/definitions/gender"
-        },
-        "secondaryTwoAddress": {
-          "$ref": "#/definitions/address"
-        },
-        "secondaryTwoPrimaryPhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "secondaryTwoAlternativePhoneNumber": {
-          "$ref": "#/definitions/phone"
-        },
-        "secondaryTwoEmail": {
-          "$ref": "#/definitions/email"
-        },
-        "secondaryTwoVetRelationship": {
-          "type": "string"
-        }
-      }
+    "veteranAddress": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranPrimaryPhoneNumber": {
+      "$ref": "#/definitions/phone"
+    },
+    "veteranAlternativePhoneNumber": {
+      "$ref": "#/definitions/phone"
+    },
+    "veteranEmail": {
+      "$ref": "#/definitions/email"
     }
+  },
+  "veteranVaEnrolled": {
+    "type": "boolean"
+  },
+  "veteranPlannedClinic": {
+    "type": "string"
+  },
+  "veteranFacilityType": {
+    "type": "string",
+    "enum": [
+      "hospital",
+      "clinic"
+    ]
+  },
+  "veteranPreviousTreatmentFacility": {
+    "type": "string"
+  },
+  "primaryFullName": {
+    "$ref": "#/definitions/fullName"
+  },
+  "primarySsnOrTin": {
+    "type": "string",
+    "enum": [
+      "Social Security Number",
+      "Tax Identification Number"
+    ]
+  },
+  "primarySsn": {
+    "$ref": "#/definitions/ssn"
+  },
+  "primaryTin": {
+    "type": "string"
+  },
+  "primaryDateOfBirth": {
+    "$ref": "#/definitions/dateOfBirth"
+  },
+  "primaryGender": {
+    "$ref": "#/definitions/gender"
+  },
+  "primaryAddress": {
+    "$ref": "#/definitions/address"
+  },
+  "primaryPrimaryPhoneNumber": {
+    "$ref": "#/definitions/phone"
+  },
+  "primaryAlternativePhoneNumber": {
+    "$ref": "#/definitions/phone"
+  },
+  "primaryEmail": {
+    "$ref": "#/definitions/email"
+  },
+  "primaryVetRelationship": {
+    "type": "string"
+  },
+  "primaryMedicaidEnrolled": {
+    "type": "boolean"
+  },
+  "primaryMedicareEnrolled": {
+    "type": "boolean"
+  },
+  "primaryTricareEnrolled": {
+    "type": "boolean"
+  },
+  "primaryChampvaEnrolled": {
+    "type": "boolean"
+  },
+  "primaryOtherHealthInsurance": {
+    "type": "boolean"
+  },
+  "primaryOtherHealthInsuranceName": {
+    "type": "string"
+  },
+  "hasSecondaryOneCaregiver": {
+    "type": "boolean"
+  },
+  "secondaryOneFullName": {
+    "$ref": "#/definitions/fullName"
+  },
+  "ssnOrTin": {
+    "type": "string",
+    "enum": [
+      "Social Security Number",
+      "Tax Identification Number"
+    ]
+  },
+  "secondaryOneSsn": {
+    "$ref": "#/definitions/ssn"
+  },
+  "secondaryOneTin": {
+    "type": "string"
+  },
+  "secondaryOneDateOfBirth": {
+    "$ref": "#/definitions/dateOfBirth"
+  },
+  "secondaryOneGender": {
+    "$ref": "#/definitions/gender"
+  },
+  "secondaryOneAddress": {
+    "$ref": "#/definitions/address"
+  },
+  "secondaryOnePrimaryPhoneNumber": {
+    "$ref": "#/definitions/phone"
+  },
+  "secondaryOneAlternativePhoneNumber": {
+    "$ref": "#/definitions/phone"
+  },
+  "secondaryOneEmail": {
+    "$ref": "#/definitions/email"
+  },
+  "vetRelationship": {
+    "type": "string"
+  },
+  "hasSecondaryTwoCaregiver": {
+    "type": "boolean"
+  },
+  "secondaryTwoFullName": {
+    "$ref": "#/definitions/fullName"
+  },
+  "secondaryTwoSsnOrTin": {
+    "type": "string",
+    "enum": [
+      "Social Security Number",
+      "Tax Identification Number"
+    ]
+  },
+  "secondaryTwoSsn": {
+    "$ref": "#/definitions/ssn"
+  },
+  "secondaryTwoTin": {
+    "type": "string"
+  },
+  "secondaryTwoDateOfBirth": {
+    "$ref": "#/definitions/dateOfBirth"
+  },
+  "secondaryTwoGender": {
+    "$ref": "#/definitions/gender"
+  },
+  "secondaryTwoAddress": {
+    "$ref": "#/definitions/address"
+  },
+  "secondaryTwoPrimaryPhoneNumber": {
+    "$ref": "#/definitions/phone"
+  },
+  "secondaryTwoAlternativePhoneNumber": {
+    "$ref": "#/definitions/phone"
+  },
+  "secondaryTwoEmail": {
+    "$ref": "#/definitions/email"
+  },
+  "secondaryTwoVetRelationship": {
+    "type": "string"
   }
 }
