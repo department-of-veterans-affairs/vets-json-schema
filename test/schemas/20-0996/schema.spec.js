@@ -236,8 +236,8 @@ describe('20-0996 (Higher-Level Review) schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('informalConferenceTimes', {
-    valid: [['0800-1000'], ['1000-1230', '1230-1400'], ['1400-1630']],
-    invalid: [[], [''], ['1200'], ['1000-2300'], ['0800-1000', '0800-1000'], ['0800-1000', '1000-1230', '1230-1400']],
+    valid: [['800-1000'], ['1000-1230', '1230-200'], ['200-430']],
+    invalid: [[], [''], ['1200'], ['1000-430'], ['800-1000', '800-1000'], ['800-1000', '1000-1230', '1230-200']],
   });
 
   schemaTestHelper.testValidAndInvalid('included', {
