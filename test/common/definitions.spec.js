@@ -268,7 +268,8 @@ describe('schema definitions', () => {
     'serviceHistory',
     'dischargeType',
     'centralMailAddress',
-    'files'
+    'files',
+    'email',
   ].forEach((definition) => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
   });

@@ -1,100 +1,69 @@
 {
-  "veteranInfoOne": {
-    "veteranFullName": {
-      "first": "Jane Doe",
-      "last": "Doe"
-    },
-    "veteranSsnOrTin": "Tax Identification Number",
-    "veteranTin": "789",
-    "veteranDateOfBirth": "1990-07-03",
-    "veteranGender": "Male"
+  "veteranFullName": {
+    "first": "Jane Doe",
+    "last": "Doe"
   },
-  "veteranInfoTwo": {
-    "veteranAddress": {
-      "street": "111 2nd St S",
-      "city": "Seattle",
-      "country": "USA",
-      "state": "IN",
-      "postalCode": "33771"
-    },
-    "veteranPrimaryPhoneNumber": "8887775544",
-    "veteranAlternativePhoneNumber": "8887775544",
-    "veteranEmail": "test@email.com"
+  "veteranSsnOrTin": "Tax Identification Number",
+  "veteranTin": "789",
+  "veteranDateOfBirth": "1990-07-03",
+  "veteranGender": "M",
+  "veteranAddress": {
+    "street": "111 2nd St S",
+    "city": "Seattle",
+    "country": "USA",
+    "state": "IN",
+    "postalCode": "33771"
   },
-  "veteranInfoThree": {
-    "veteranVaEnrolled": true,
-    "veteranFacilityType": "hospital",
-    "veteranPreviousTreatmentFacility": "adsadad"
+  "veteranPrimaryPhoneNumber": "8887775544",
+  "veteranAlternativePhoneNumber": "8887775544",
+  "veteranEmail": "test@email.com",
+  "veteranVaEnrolled": true,
+  "veteranPlannedClinic": "My Clinic",
+  "veteranFacilityType": "hospital",
+  "veteranPreviousTreatmentFacility": "adsadad",
+  "primaryCaregiverFullName": {
+    "first": "Joan",
+    "last": "Doe"
   },
-  "primaryCaregiverInfoOne": {
-    "primaryFullName": {
-      "first": "Joan",
-      "last": "Doe"
-    },
-    "primarySsnOrTin": "Tax Identification Number",
-    "primaryDateOfBirth": "1978-07-03",
-    "primaryGender": "Female"
+  "primaryCaregiverSsnOrTin": "Tax Identification Number",
+  "primaryCaregiverDateOfBirth": "1978-07-03",
+  "primaryCaregiverGender": "F",
+  "primaryCaregiverAddress": {
+    "street": "111 2nd St S",
+    "city": "Seattle",
+    "country": "USA",
+    "state": "IL",
+    "postalCode": "33771"
   },
-  "primaryCaregiverInfoTwo": {
-    "primaryAddress": {
-      "street": "111 2nd St S",
-      "city": "Seattle",
-      "country": "USA",
-      "state": "IL",
-      "postalCode": "33771"
-    },
-    "primaryPrimaryPhoneNumber": "8887775544",
-    "primaryAlternativePhoneNumber": "8887775544",
-    "primaryEmail": "test@email.com",
-    "primaryVetRelationship": "asd",
-    "primaryMedicaidEnrolled": true,
-    "primaryMedicareEnrolled": true,
-    "primaryChampvaEnrolled": true,
-    "primaryTricareEnrolled": true,
-    "primaryOtherHealthInsurance": true,
-    "primaryOtherHealthInsuranceName": "asdasd",
-    "hasSecondaryOneCaregiver": true
+  "primaryCaregiverPrimaryPhoneNumber": "8887775544",
+  "primaryCaregiverAlternativePhoneNumber": "8887775544",
+  "primaryCaregiverEmail": "test@email.com",
+  "primaryCaregiverVetRelationship": "asd",
+  "primaryCaregiverMedicaidEnrolled": false,
+  "primaryCaregiverMedicareEnrolled": false,
+  "primaryCaregiverChampvaEnrolled": false,
+  "primaryCaregiverTricareEnrolled": true,
+  "primaryCaregiverOtherHealthInsurance": false,
+  "hasSecondaryOneCaregiver": true,
+  "secondaryOneCaregiverFullName": {
+    "first": "John Doe",
+    "last": "Doe",
+    "suffix": "II"
   },
-  "secondaryOneCaregiverInfo": {
-    "secondaryOneFullName": {
-      "first": "John Doe",
-      "last": "Doe",
-      "suffix": "II"
-    },
-    "secondaryOneSsn": "787787854",
-    "secondaryOneDateOfBirth": "1989-11-06",
-    "secondaryOneGender": "Male",
-    "secondaryOneAddress": {
-      "street": "111 2nd St S",
-      "city": "Seattle",
-      "country": "USA",
-      "state": "IL",
-      "postalCode": "33771"
-    },
-    "secondaryOnePrimaryPhoneNumber": "8887775544",
-    "secondaryOneAlternativePhoneNumber": "8887775544",
-    "secondaryOneEmail": "test@email.com",
-    "vetRelationship": "asdasdas",
-    "hasSecondaryTwoCaregiver": true
+  "secondaryOneCaregiverSsnOrTin": "Social Security Number",
+  "secondaryOneCaregiverSsn": "787787854",
+  "secondaryOneCaregiverDateOfBirth": "1989-11-06",
+  "secondaryOneCaregiverGender": "M",
+  "secondaryOneCaregiverAddress": {
+    "street": "111 2nd St S",
+    "city": "Seattle",
+    "country": "USA",
+    "state": "IL",
+    "postalCode": "33771"
   },
-  "secondaryTwoCaregiverInfo": {
-    "secondaryTwoFullName": {
-      "first": "John Doe",
-      "last": "Doe"
-    },
-    "secondaryTwoSsn": "585784787",
-    "secondaryTwoDateOfBirth": "1994-08-04",
-    "secondaryTwoGender": "Male",
-    "secondaryTwoAddress": {
-      "street": "111 2nd St S",
-      "city": "Seattle",
-      "country": "USA",
-      "state": "Florida",
-      "postalCode": "33771"
-    },
-    "secondaryTwoPrimaryPhoneNumber": "8887775544",
-    "secondaryTwoAlternativePhoneNumber": "8887775544",
-    "secondaryTwoEmail": "test@email.com",
-    "secondaryTwoVetRelationship": "asdasdas"
-  }
+  "secondaryOneCaregiverPrimaryPhoneNumber": "8887775544",
+  "secondaryOneCaregiverAlternativePhoneNumber": "8887775544",
+  "secondaryOneCaregiverEmail": "test@email.com",
+  "secondaryOneCaregiverVetRelationship": "asdasdas",
+  "hasSecondaryTwoCaregiver": false
 }
