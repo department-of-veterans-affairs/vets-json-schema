@@ -63,7 +63,6 @@ const schema = {
     vetRelationship: buildDataType('string'),
   },
   dependencies: {
-    // REVERSE DEPENDECIES
     secondaryOneCaregiverFullName: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverSsnOrTin: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverSsn: ['hasSecondaryOneCaregiver'],
@@ -75,7 +74,6 @@ const schema = {
     secondaryOneCaregiverAlternativePhoneNumber: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverEmail: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverVetRelationship: ['hasSecondaryOneCaregiver'],
-    // ...more
     secondaryTwoCaregiverFullName: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverSsnOrTin: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverSsn: ['hasSecondaryTwoCaregiver'],
@@ -88,7 +86,6 @@ const schema = {
     secondaryTwoCaregiverEmail: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverVetRelationship: ['hasSecondaryTwoCaregiver'],
   },
-  // Schema Implications
   anyOf: [
     ...ssnAndTinImplications,
   ],
