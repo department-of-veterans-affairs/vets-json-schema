@@ -15,6 +15,7 @@ const importExamplesAndSchemas = () => {
   const SCHEMA_FILE_NAME = 'schema.js';
   const EXAMPLE_FILE_NAME = 'example.js';
 
+  // TODO: run this file with the version of node that the CI server is using
   const examplesDir = fs.readdirSync(EXAMPLES_DIR_PATH, { withFileTypes: true });
 
   /**
@@ -63,8 +64,6 @@ describe('schema examples', () => {
 
   before(() => {
     examples = importExamplesAndSchemas();
-
-    if (examples === undefined) { throw Error('Failed to bootstrap test'); }
   });
 
   it('each contain an example that\'s valid against it\'s matching schema', () => {
