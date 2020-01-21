@@ -8,36 +8,6 @@ const ENTITY_IDNTIFIERS = {
   TAX_IDENTIFICATION_NUMBER:  "Tax Identification Number",
 };
 
-/**
- * When `field` is `enum` require `requirement`
- * ex:   When "primaryCaregiverSsnOrTin" is ENTITY_IDNTIFIERS.SOCIAL_SECURITY_NUMBER require the property "primaryCaregiverSsn"
- * ex:   When "primaryCaregiverSsnOrTin" is ENTITY_IDNTIFIERS.TAX_IDENTIFICATION_NUMBER require the property "primaryCaregiverTin"
- */
-const ssnAndTinImplications = [
-  // Vetern (may be removed since we likely won't have TIN's for veterns)
-  { field: 'veteranSsnOrTin', enum: ENTITY_IDNTIFIERS.SOCIAL_SECURITY_NUMBER, requiredProperty: 'veteranSsn' },
-  { field: 'veteranSsnOrTin', enum: ENTITY_IDNTIFIERS.TAX_IDENTIFICATION_NUMBER, requiredProperty: 'veteranTin' },
-  // Primary Caregiver
-  { field: 'primaryCaregiverSsnOrTin', enum: ENTITY_IDNTIFIERS.SOCIAL_SECURITY_NUMBER, requiredProperty: 'primaryCaregiverSsn' },
-  { field: 'primaryCaregiverSsnOrTin', enum: ENTITY_IDNTIFIERS.TAX_IDENTIFICATION_NUMBER, requiredProperty: 'primaryCaregiverTin' },
-  // Secondary One Caregiver
-  { field: 'secondaryOneSsnOrTin', enum: ENTITY_IDNTIFIERS.SOCIAL_SECURITY_NUMBER, requiredProperty: 'secondaryOneSsn' },
-  { field: 'secondaryOneSsnOrTin', enum: ENTITY_IDNTIFIERS.TAX_IDENTIFICATION_NUMBER, requiredProperty: 'secondaryOneTin' },
-  // Secondary Two Caregiver
-  { field: 'secondaryTwoCaregiverSsnOrTin', enum: ENTITY_IDNTIFIERS.SOCIAL_SECURITY_NUMBER, requiredProperty: 'secondaryTwoCaregiverSsn' },
-  { field: 'secondaryTwoCaregiverSsnOrTin', enum: ENTITY_IDNTIFIERS.TAX_IDENTIFICATION_NUMBER, requiredProperty: 'secondaryTwoCaregiverTin' },
-].reduce((implications, conditions) => {
-  const conditionalRequirement = {
-    properties: {
-      [conditions.field]: { const: conditions.enum }
-    },
-    require: [conditions.requiredProperty]
-  };
-
-  implications.push(conditionalRequirement);
-  return implications;
-}, []);
-
 const schema = {
   $schema: "http://json-schema.org/draft-04/schema#",
   title: "Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)",
@@ -86,9 +56,6 @@ const schema = {
     secondaryTwoCaregiverEmail: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverVetRelationship: ['hasSecondaryTwoCaregiver'],
   },
-  anyOf: [
-    ...ssnAndTinImplications,
-  ],
   required: [
     'veteranDateOfBirth',
     'veteranPlannedClinic',

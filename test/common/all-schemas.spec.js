@@ -36,6 +36,7 @@ describe('all schema tests', () => {
 
         if (_.isPlainObject(v) && v['$ref'] == null) {
           if (obj['$schema'] && k === 'definitions') skipNextTypeCheck = true;
+          if (obj['$schema'] && k === 'dependencies') skipNextTypeCheck = true;
 
           if (!skipNextTypeCheck && lastKey !== 'properties' && k === 'properties') skipNextTypeCheck = true;
 
@@ -54,7 +55,7 @@ describe('all schema tests', () => {
       // skip "checkObjectTypes" for these dist files used as enums
       if (['definitions', 'constants', 'vaMedicalFacilities'].includes(k)) continue;
 
-      // skip "checkObjectTypes" for dist files that contains "-example" AND does not contain "schema" (used for example data)
+      // skip "checkObjectTypes" for dist files that contains "-example" (used for example data) AND does not contain "schema"
       if (k.indexOf('-example') > -1 && k.indexOf('schema') === -1) continue;
 
       checkObjectTypes(k, schemas[k]);
