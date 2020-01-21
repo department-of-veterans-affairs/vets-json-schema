@@ -167,6 +167,21 @@ describe('21-686C schema', () => {
     ],
   });
 
+  schemaTestHelper.testValidAndInvalid('reportMarriageOfChild', {
+    valid: [
+      {
+        marriedChildName: fixtures.fullName,
+        dateChildMarried: fixtures.date,
+      },
+    ],
+    invalid: [
+      {
+        marriedChildName: '',
+        dateChildMarried: fixtures.date,
+      },
+    ],
+  });
+
   schemaTestHelper.testValidAndInvalid('veteranAddress', {
     valid: [
       {

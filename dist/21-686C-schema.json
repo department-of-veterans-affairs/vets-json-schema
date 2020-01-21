@@ -1730,6 +1730,17 @@
         ]
       }
     },
+    "reportMarriageOfChild": {
+      "type": "object",
+      "properties": {
+        "marriedChildName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "dateChildMarried": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

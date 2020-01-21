@@ -557,6 +557,13 @@ const schema = {
         ],
       },
     },
+    reportMarriageOfChild: {
+      type: 'object',
+      properties: {
+        marriedChildName: schemaHelpers.getDefinition('fullName'),
+        dateChildMarried: schemaHelpers.getDefinition('date'),
+      },
+    },
   },
   required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'maritalStatus'],
   anyOf: [
