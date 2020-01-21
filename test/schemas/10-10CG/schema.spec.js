@@ -104,7 +104,7 @@ describe('10-10CG json schema', () => {
   });
 
   describe('required properties', () => {
-    xit('should have the right required fields', () => {
+    it('should have the right required fields', () => {
       expect(schema.required).to.deep.equal([
         'veteranDateOfBirth',
         'veteranPlannedClinic',
