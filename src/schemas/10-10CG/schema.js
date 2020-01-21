@@ -1,12 +1,20 @@
-import definitions from "../../common/definitions";
+import definitions from '../../common/definitions';
 
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
 
-const ENTITY_IDNTIFIERS = {
-  SOCIAL_SECURITY_NUMBER: "Social Security Number",
-  TAX_IDENTIFICATION_NUMBER:  "Tax Identification Number",
-};
+const vetRelationships = [
+  'Spouse',
+  'Father',
+  'Mother',
+  'Son',
+  'Daughter',
+  'Brother',
+  'Sister',
+  'Significant - Other',
+  'Relative - Other',
+  'Friend/Neighbor',
+];
 
 const schema = {
   $schema: "http://json-schema.org/draft-04/schema#",
@@ -14,13 +22,6 @@ const schema = {
   type: "object",
   additionalProperties: false,
   definitions: {
-    ssnOrTin: {
-      type: "string",
-      enum: [
-        ENTITY_IDNTIFIERS.SOCIAL_SECURITY_NUMBER,
-        ENTITY_IDNTIFIERS.TAX_IDENTIFICATION_NUMBER
-      ]
-    },
     tin: buildDataType('string'),
     fullName: definitions.fullName,
     ssn: definitions.ssn,
@@ -29,13 +30,14 @@ const schema = {
     phone: definitions.phone,
     email: definitions.email,
     address: definitions.address,
-    // TODO: what are the list of acceptable vet relationships?
-    vetRelationship: buildDataType('string'),
+    vetRelationship: {
+      type: 'string',
+      enum: vetRelationships,
+    },
   },
   dependencies: {
     secondaryOneCaregiverFullName: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverSsnOrTin: ['hasSecondaryOneCaregiver'],
-    secondaryOneCaregiverSsn: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverTin: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverDateOfBirth: ['hasSecondaryOneCaregiver'],
     secondaryOneCaregiverGender: ['hasSecondaryOneCaregiver'],
@@ -46,7 +48,6 @@ const schema = {
     secondaryOneCaregiverVetRelationship: ['hasSecondaryOneCaregiver'],
     secondaryTwoCaregiverFullName: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverSsnOrTin: ['hasSecondaryTwoCaregiver'],
-    secondaryTwoCaregiverSsn: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverTin: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverDateOfBirth: ['hasSecondaryTwoCaregiver'],
     secondaryTwoCaregiverGender: ['hasSecondaryTwoCaregiver'],
@@ -63,9 +64,7 @@ const schema = {
   properties: {
     // Veteran Info
     veteranFullName: buildDefinitionReference('fullName'),
-    veteranSsnOrTin: buildDefinitionReference('ssnOrTin'),
-    veteranSsn: buildDefinitionReference('ssn'),
-    veteranTin: buildDefinitionReference('tin'),
+    veteranSsnOrTin: buildDefinitionReference('ssn'),
     veteranDateOfBirth: buildDefinitionReference('date'),
     veteranGender: buildDefinitionReference('gender'),
     veteranVaEnrolled: buildDataType('boolean'),
@@ -83,9 +82,7 @@ const schema = {
     veteranEmail: buildDefinitionReference('email'),
     // Primary Caregiver Info
     primaryCaregiverFullName: buildDefinitionReference('fullName'),
-    primaryCaregiverSsnOrTin: buildDefinitionReference('ssnOrTin'),
-    primaryCaregiverSsn: buildDefinitionReference('ssn'),
-    primaryCaregiverTin: buildDefinitionReference('tin'),
+    primaryCaregiverSsnOrTin: buildDefinitionReference('ssn'),
     primaryCaregiverDateOfBirth: buildDefinitionReference('date'),
     primaryCaregiverGender: buildDefinitionReference('gender'),
     primaryCaregiverAddress: buildDefinitionReference('address'),
@@ -102,9 +99,7 @@ const schema = {
     // Secondary One Caregiver Info
     hasSecondaryOneCaregiver: buildDataType('boolean'),
     secondaryOneCaregiverFullName: buildDefinitionReference('fullName'),
-    secondaryOneCaregiverSsnOrTin: buildDefinitionReference('ssnOrTin'),
-    secondaryOneCaregiverSsn: buildDefinitionReference('ssn'),
-    secondaryOneCaregiverTin: buildDefinitionReference('tin'),
+    secondaryOneCaregiverSsnOrTin: buildDefinitionReference('ssn'),
     secondaryOneCaregiverDateOfBirth: buildDefinitionReference('date'),
     secondaryOneCaregiverGender: buildDefinitionReference('gender'),
     secondaryOneCaregiverAddress: buildDefinitionReference('address'),
@@ -115,9 +110,7 @@ const schema = {
     // Secondary Two Caregiver Info
     hasSecondaryTwoCaregiver: buildDataType('boolean'),
     secondaryTwoCaregiverFullName: buildDefinitionReference('fullName'),
-    secondaryTwoCaregiverSsnOrTin: buildDefinitionReference('ssnOrTin'),
-    secondaryTwoCaregiverSsn: buildDefinitionReference('ssn'),
-    secondaryTwoCaregiverTin: buildDefinitionReference('tin'),
+    secondaryTwoCaregiverSsnOrTin: buildDefinitionReference('ssn'),
     secondaryTwoCaregiverDateOfBirth: buildDefinitionReference('date'),
     secondaryTwoCaregiverGender: buildDefinitionReference('gender'),
     secondaryTwoCaregiverAddress: buildDefinitionReference('address'),
