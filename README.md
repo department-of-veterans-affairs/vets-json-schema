@@ -1,5 +1,8 @@
 # vets-json-schema [![Build Status](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema.svg?branch=master)](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema)
 
+## Enviornment
+node v6.11.1
+
 ## I want to...
 
 | I want to... | Then you should... |
