@@ -15,42 +15,52 @@ const importExamplesAndSchemas = () => {
   const SCHEMA_FILE_NAME = 'schema.js';
   const EXAMPLE_FILE_NAME = 'example.js';
 
-  // TODO: run this file with the version of node that the CI server is using
-  const examplesDir = fs.readdirSync(EXAMPLES_DIR_PATH, { withFileTypes: true });
+  /**
+   * Contains dictionary of schema examples found in the EXAMPLES_DIR_PATH
+   * 
+   * @return Array<{ name: string, stats: fs.Stats }>
+   */
+  const examplesDir = fs
+    .readdirSync(EXAMPLES_DIR_PATH)
+    .map(filename => {
+      const stats = fs.statSync(`${EXAMPLES_DIR_PATH}/${filename}`);
+      return { name: filename, stats };
+    });
 
   /**
    * Contains dictionary of schema examples found in the EXAMPLES_DIR_PATH
    * 
    * @return { [key: string]: { schemaId: string; schema: object; example: object } }
    */
-  const examples = examplesDir.reduce((acc, dirent) => {
-    if (dirent.isDirectory()) {
-      const schemaPath = `${SCHEMAS_DIR_PATH}/${dirent.name}/${SCHEMA_FILE_NAME}`;
-      const examplePath = `${EXAMPLES_DIR_PATH}/${dirent.name}/${EXAMPLE_FILE_NAME}`;
+  const examples = examplesDir.reduce((acc, file) => {
+    if (file.stats.isDirectory()) {
+      const dir = file;
+      const schemaPath = `${SCHEMAS_DIR_PATH}/${file.name}/${SCHEMA_FILE_NAME}`;
+      const examplePath = `${EXAMPLES_DIR_PATH}/${file.name}/${EXAMPLE_FILE_NAME}`;
 
       let schema, example;
 
       try {
         schema = require(schemaPath).default;
-      } catch(e) { // Error importing the schema for `dirent.name`
+      } catch(e) { // Error importing the schema for `file.name`
         console.error(e);
         
         throw Error(`
-          Failed to import the ${dirent.name} schema. Make sure ${schemaPath} exists and exports as "default".
+          Failed to import the ${file.name} schema. Make sure ${schemaPath} exists and exports as "default".
         `);
       }
 
       try {
         example = require(examplePath).default;
-      } catch(e) { // Error importing the example for `dirent.name`
+      } catch(e) { // Error importing the example for `file.name`
         console.error(e);
         
         throw Error(`
-          Failed to import the ${dirent.name} example. Make sure ${examplePath} exists and exports as "default".
+          Failed to import the ${file.name} example. Make sure ${examplePath} exists and exports as "default".
         `);
       }
 
-      acc[dirent.name] = { schemaId: dirent.name, schema, example };
+      acc[file.name] = { schemaId: file.name, schema, example };
     }
 
     return acc;
