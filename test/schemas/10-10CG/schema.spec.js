@@ -104,7 +104,6 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('secondaryTwoCaregiver.vetRelationship', testData.vetRelationship);
   });
 
-
   it('should have the right required fields for each section', () => {
     expect(schema.required).to.deep.equal(['veteran', 'primaryCaregiver']);
     expect(schema.properties.veteran.required).to.deep.equal(['ssnOrTin', 'dateOfBirth']);
@@ -121,11 +120,13 @@ describe('10-10CG json schema', () => {
     expect(schema.properties.secondaryTwoCaregiver.additionalProperties).to.equal(false);
   });
 
-  xit('requires additional fields if "hasSecondaryOneCaregiver" is true', () => {
+  describe('conditional validation', () => {
+    xit('requires additional fields if "secondaryOneCaregiver" is present', () => {
 
-  });
+    });
 
-  xit('requires additional fields if "hasSecondaryTwoCaregiver" is true', () => {
+    xit('requires additional fields if "secondaryTwoCaregiver" is present', () => {
 
+    });
   });
 });
