@@ -1,69 +1,71 @@
 {
-  "veteranFullName": {
-    "first": "Jane Doe",
-    "last": "Doe"
+  "veteran": {
+    "fullName": {
+      "first": "Jane Doe",
+      "last": "Doe"
+    },
+    "ssnOrTin": "789787893",
+    "dateOfBirth": "1990-07-03",
+    "gender": "M",
+    "address": {
+      "street": "111 2nd St S",
+      "city": "Seattle",
+      "country": "USA",
+      "state": "WA",
+      "postalCode": "33771"
+    },
+    "primaryPhoneNumber": "8887775544",
+    "alternativePhoneNumber": "8887775544",
+    "email": "veteranEmail@email.com",
+    "vaEnrolled": true,
+    "plannedClinic": "My Clinic",
+    "facilityType": "hospital",
+    "previousTreatmentFacility": "adsadad"
   },
-  "veteranSsnOrTin": "Tax Identification Number",
-  "veteranTin": "789",
-  "veteranDateOfBirth": "1990-07-03",
-  "veteranGender": "M",
-  "veteranAddress": {
-    "street": "111 2nd St S",
-    "city": "Seattle",
-    "country": "USA",
-    "state": "IN",
-    "postalCode": "33771"
+  "primaryCaregiver": {
+    "fullName": {
+      "first": "Joan",
+      "last": "Doe"
+    },
+    "ssnOrTin": "202901412",
+    "dateOfBirth": "1978-07-03",
+    "gender": "F",
+    "address": {
+      "street": "111 2nd St S",
+      "city": "Seattle",
+      "country": "USA",
+      "state": "WA",
+      "postalCode": "33771"
+    },
+    "primaryPhoneNumber": "8887775544",
+    "alternativePhoneNumber": "8887775544",
+    "email": "primaryCaregiverEmail@email.com",
+    "vetRelationship": "Spouse",
+    "medicaidEnrolled": false,
+    "medicareEnrolled": false,
+    "champvaEnrolled": false,
+    "tricareEnrolled": true,
+    "otherHealthInsurance": false
   },
-  "veteranPrimaryPhoneNumber": "8887775544",
-  "veteranAlternativePhoneNumber": "8887775544",
-  "veteranEmail": "test@email.com",
-  "veteranVaEnrolled": true,
-  "veteranPlannedClinic": "My Clinic",
-  "veteranFacilityType": "hospital",
-  "veteranPreviousTreatmentFacility": "adsadad",
-  "primaryCaregiverFullName": {
-    "first": "Joan",
-    "last": "Doe"
-  },
-  "primaryCaregiverSsnOrTin": "Tax Identification Number",
-  "primaryCaregiverDateOfBirth": "1978-07-03",
-  "primaryCaregiverGender": "F",
-  "primaryCaregiverAddress": {
-    "street": "111 2nd St S",
-    "city": "Seattle",
-    "country": "USA",
-    "state": "IL",
-    "postalCode": "33771"
-  },
-  "primaryCaregiverPrimaryPhoneNumber": "8887775544",
-  "primaryCaregiverAlternativePhoneNumber": "8887775544",
-  "primaryCaregiverEmail": "test@email.com",
-  "primaryCaregiverVetRelationship": "asd",
-  "primaryCaregiverMedicaidEnrolled": false,
-  "primaryCaregiverMedicareEnrolled": false,
-  "primaryCaregiverChampvaEnrolled": false,
-  "primaryCaregiverTricareEnrolled": true,
-  "primaryCaregiverOtherHealthInsurance": false,
-  "hasSecondaryOneCaregiver": true,
-  "secondaryOneCaregiverFullName": {
-    "first": "John Doe",
-    "last": "Doe",
-    "suffix": "II"
-  },
-  "secondaryOneCaregiverSsnOrTin": "Social Security Number",
-  "secondaryOneCaregiverSsn": "787787854",
-  "secondaryOneCaregiverDateOfBirth": "1989-11-06",
-  "secondaryOneCaregiverGender": "M",
-  "secondaryOneCaregiverAddress": {
-    "street": "111 2nd St S",
-    "city": "Seattle",
-    "country": "USA",
-    "state": "IL",
-    "postalCode": "33771"
-  },
-  "secondaryOneCaregiverPrimaryPhoneNumber": "8887775544",
-  "secondaryOneCaregiverAlternativePhoneNumber": "8887775544",
-  "secondaryOneCaregiverEmail": "test@email.com",
-  "secondaryOneCaregiverVetRelationship": "asdasdas",
-  "hasSecondaryTwoCaregiver": false
+  "secondaryOneCaregiver": {
+    "fullName": {
+      "first": "John Doe",
+      "last": "Doe",
+      "suffix": "II"
+    },
+    "ssnOrTin": "787787854",
+    "dateOfBirth": "1989-11-06",
+    "gender": "M",
+    "address": {
+      "street": "111 2nd St S",
+      "city": "Seattle",
+      "country": "USA",
+      "state": "WA",
+      "postalCode": "33771"
+    },
+    "primaryPhoneNumber": "8887775544",
+    "alternativePhoneNumber": "8887775544",
+    "email": "secondaryOneCaregiverEmail@email.com",
+    "vetRelationship": "Daughter"
+  }
 }

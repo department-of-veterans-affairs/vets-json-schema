@@ -3,14 +3,11 @@
   "title": "Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)",
   "type": "object",
   "additionalProperties": false,
+  "required": [
+    "veteran",
+    "primaryCaregiver"
+  ],
   "definitions": {
-    "ssnOrTin": {
-      "type": "string",
-      "enum": [
-        "Social Security Number",
-        "Tax Identification Number"
-      ]
-    },
     "tin": {
       "type": "string"
     },
@@ -280,250 +277,200 @@
       }
     },
     "vetRelationship": {
-      "type": "string"
-    }
-  },
-  "dependencies": {
-    "secondaryOneCaregiverFullName": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverSsnOrTin": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverSsn": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverTin": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverDateOfBirth": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverGender": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverAddress": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverPrimaryPhoneNumber": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverAlternativePhoneNumber": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverEmail": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryOneCaregiverVetRelationship": [
-      "hasSecondaryOneCaregiver"
-    ],
-    "secondaryTwoCaregiverFullName": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverSsnOrTin": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverSsn": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverTin": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverDateOfBirth": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverGender": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverAddress": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverPrimaryPhoneNumber": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverAlternativePhoneNumber": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverEmail": [
-      "hasSecondaryTwoCaregiver"
-    ],
-    "secondaryTwoCaregiverVetRelationship": [
-      "hasSecondaryTwoCaregiver"
-    ]
-  },
-  "required": [
-    "veteranDateOfBirth",
-    "veteranPlannedClinic"
-  ],
-  "properties": {
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranSsnOrTin": {
-      "$ref": "#/definitions/ssnOrTin"
-    },
-    "veteranSsn": {
-      "$ref": "#/definitions/ssn"
-    },
-    "veteranTin": {
-      "$ref": "#/definitions/tin"
-    },
-    "veteranDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "veteranGender": {
-      "$ref": "#/definitions/gender"
-    },
-    "veteranVaEnrolled": {
-      "type": "boolean"
-    },
-    "veteranPlannedClinic": {
-      "type": "string"
-    },
-    "veteranFacilityType": {
       "type": "string",
       "enum": [
-        "hospital",
-        "clinic"
+        "Spouse",
+        "Father",
+        "Mother",
+        "Son",
+        "Daughter",
+        "Brother",
+        "Sister",
+        "Significant - Other",
+        "Relative - Other",
+        "Friend/Neighbor"
       ]
+    }
+  },
+  "properties": {
+    "veteran": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ssnOrTin",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "vaEnrolled": {
+          "type": "boolean"
+        },
+        "plannedClinic": {
+          "type": "string"
+        },
+        "facilityType": {
+          "type": "string",
+          "enum": [
+            "hospital",
+            "clinic"
+          ]
+        },
+        "previousTreatmentFacility": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        }
+      }
     },
-    "veteranPreviousTreatmentFacility": {
-      "type": "string"
+    "primaryCaregiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ssnOrTin",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "vetRelationship": {
+          "$ref": "#/definitions/vetRelationship"
+        },
+        "medicaidEnrolled": {
+          "type": "boolean"
+        },
+        "medicareEnrolled": {
+          "type": "boolean"
+        },
+        "tricareEnrolled": {
+          "type": "boolean"
+        },
+        "champvaEnrolled": {
+          "type": "boolean"
+        },
+        "otherHealthInsurance": {
+          "type": "boolean"
+        },
+        "otherHealthInsuranceName": {
+          "type": "string"
+        }
+      }
     },
-    "veteranAddress": {
-      "$ref": "#/definitions/address"
+    "secondaryOneCaregiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ssnOrTin",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "vetRelationship": {
+          "$ref": "#/definitions/vetRelationship"
+        }
+      }
     },
-    "veteranPrimaryPhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "veteranAlternativePhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "veteranEmail": {
-      "$ref": "#/definitions/email"
-    },
-    "primaryCaregiverFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "primaryCaregiverSsnOrTin": {
-      "$ref": "#/definitions/ssnOrTin"
-    },
-    "primaryCaregiverSsn": {
-      "$ref": "#/definitions/ssn"
-    },
-    "primaryCaregiverTin": {
-      "$ref": "#/definitions/tin"
-    },
-    "primaryCaregiverDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "primaryCaregiverGender": {
-      "$ref": "#/definitions/gender"
-    },
-    "primaryCaregiverAddress": {
-      "$ref": "#/definitions/address"
-    },
-    "primaryCaregiverPrimaryPhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "primaryCaregiverAlternativePhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "primaryCaregiverEmail": {
-      "$ref": "#/definitions/email"
-    },
-    "primaryCaregiverVetRelationship": {
-      "$ref": "#/definitions/vetRelationship"
-    },
-    "primaryCaregiverMedicaidEnrolled": {
-      "type": "boolean"
-    },
-    "primaryCaregiverMedicareEnrolled": {
-      "type": "boolean"
-    },
-    "primaryCaregiverTricareEnrolled": {
-      "type": "boolean"
-    },
-    "primaryCaregiverChampvaEnrolled": {
-      "type": "boolean"
-    },
-    "primaryCaregiverOtherHealthInsurance": {
-      "type": "boolean"
-    },
-    "primaryCaregiverOtherHealthInsuranceName": {
-      "type": "string"
-    },
-    "hasSecondaryOneCaregiver": {
-      "type": "boolean"
-    },
-    "secondaryOneCaregiverFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "secondaryOneCaregiverSsnOrTin": {
-      "$ref": "#/definitions/ssnOrTin"
-    },
-    "secondaryOneCaregiverSsn": {
-      "$ref": "#/definitions/ssn"
-    },
-    "secondaryOneCaregiverTin": {
-      "$ref": "#/definitions/tin"
-    },
-    "secondaryOneCaregiverDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "secondaryOneCaregiverGender": {
-      "$ref": "#/definitions/gender"
-    },
-    "secondaryOneCaregiverAddress": {
-      "$ref": "#/definitions/address"
-    },
-    "secondaryOneCaregiverPrimaryPhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "secondaryOneCaregiverAlternativePhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "secondaryOneCaregiverEmail": {
-      "$ref": "#/definitions/email"
-    },
-    "secondaryOneCaregiverVetRelationship": {
-      "$ref": "#/definitions/vetRelationship"
-    },
-    "hasSecondaryTwoCaregiver": {
-      "type": "boolean"
-    },
-    "secondaryTwoCaregiverFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "secondaryTwoCaregiverSsnOrTin": {
-      "$ref": "#/definitions/ssnOrTin"
-    },
-    "secondaryTwoCaregiverSsn": {
-      "$ref": "#/definitions/ssn"
-    },
-    "secondaryTwoCaregiverTin": {
-      "$ref": "#/definitions/tin"
-    },
-    "secondaryTwoCaregiverDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "secondaryTwoCaregiverGender": {
-      "$ref": "#/definitions/gender"
-    },
-    "secondaryTwoCaregiverAddress": {
-      "$ref": "#/definitions/address"
-    },
-    "secondaryTwoCaregiverPrimaryPhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "secondaryTwoCaregiverAlternativePhoneNumber": {
-      "$ref": "#/definitions/phone"
-    },
-    "secondaryTwoCaregiverEmail": {
-      "$ref": "#/definitions/email"
-    },
-    "secondaryTwoCaregiverVetRelationship": {
-      "$ref": "#/definitions/vetRelationship"
+    "secondaryTwoCaregiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ssnOrTin",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "vetRelationship": {
+          "$ref": "#/definitions/vetRelationship"
+        }
+      }
     }
   }
 }
