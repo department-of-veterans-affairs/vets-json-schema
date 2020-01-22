@@ -36,7 +36,6 @@ describe('all schema tests', () => {
 
         if (_.isPlainObject(v) && v['$ref'] == null) {
           if (obj['$schema'] && k === 'definitions') skipNextTypeCheck = true;
-          if (obj['$schema'] && k === 'dependencies') skipNextTypeCheck = true;
 
           if (!skipNextTypeCheck && lastKey !== 'properties' && k === 'properties') skipNextTypeCheck = true;
 
