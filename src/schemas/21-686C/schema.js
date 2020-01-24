@@ -19,7 +19,7 @@ const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 
 let definitions = _.cloneDeep(originalDefinitions);
-definitions = _.pick(definitions, 'fullName', 'date', 'ssn', 'veteranServiceNumber');
+definitions = _.pick(definitions, 'fullName', 'date', 'ssn');
 
 definitions.fullName.properties.first.pattern = textRegex;
 definitions.fullName.properties.last.pattern = textRegex;
@@ -66,19 +66,12 @@ const commonAddressFields = {
   },
 };
 
-// 4494 NOTE: It isn't immediately clear to me why these definitions are used for marriage instead
-// of the ones found in ../common/definitions.js. This will require additional investigation.
-// For now, I've added marriageType directly to the defintion below.
-
 const commonMarriageDef = {
-  required: ['dateOfMarriage', 'locationOfMarriage', 'spouseFullName', 'marriageType'],
+  required: ['dateOfMarriage', 'locationOfMarriage', 'spouseFullName'],
   properties: {
     dateOfMarriage: schemaHelpers.getDefinition('date'),
     locationOfMarriage: {
-      $ref: '#/definitions/genericLocation',
-    },
-    marriageType: {
-      type: 'string',
+      $ref: '#/definitions/location',
     },
     spouseFullName: schemaHelpers.getDefinition('fullName'),
   },
@@ -93,7 +86,7 @@ const commonMarriagesDef = {
       ...commonMarriageDef.properties,
       dateOfSeparation: schemaHelpers.getDefinition('date'),
       locationOfSeparation: {
-        $ref: '#/definitions/genericLocation',
+        $ref: '#/definitions/location',
       },
     },
     oneOf: [
@@ -153,8 +146,7 @@ const schema = {
           enumNames: states.map(state => state.label),
         },
         postalCode: {
-          type: 'string',
-          pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$',
+          $ref: '#/definitions/postalCode',
         },
         countryDropdown: {
           type: 'string',
@@ -189,8 +181,7 @@ const schema = {
           ],
         },
         postalCode: {
-          type: 'string',
-          pattern: '^\\d{5}(?:([-\\s]?)\\d{4})?$',
+          $ref: '#/definitions/postalCode',
         },
       },
       additionalProperties: false,
@@ -234,11 +225,12 @@ const schema = {
           pattern: textRegex,
         },
       },
+      additionalProperties: false,
     },
-    genericLocation: {
+    postalCode: {
       type: 'string',
-      maxLength: 250,
-      pattern: textAndNumbersRegex,
+      maxLength: 10,
+      pattern: '^\\d{5}(?:[- ]?\\d{4})?$',
     },
     location: {
       type: 'object',
@@ -315,7 +307,6 @@ const schema = {
       format: 'email',
     },
     veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
-    veteranServiceNumber: { $ref: '#/definitions/veteranServiceNumber' },
     maritalStatus: {
       type: 'string',
       enum: ['MARRIED', 'DIVORCED', 'WIDOWED', 'SEPARATED', 'NEVERMARRIED'],
@@ -392,18 +383,12 @@ const schema = {
           fullName: schemaHelpers.getDefinition('fullName'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childPlaceOfBirth: {
-            $ref: '#/definitions/genericLocation',
+            $ref: '#/definitions/location',
           },
           childSocialSecurityNumber: { $ref: '#/definitions/ssn' },
-          isSupportingStepchild: {
-            type: 'boolean',
-          },
-          dateStepchildLeftHousehold: {
-            $ref: '#/definitions/date',
-          },
-          financialSupportProvided: {
+          childRelationship: {
             type: 'string',
-            enum: ['More than half', 'Half', 'Less than half'],
+            enum: ['biological', 'adopted', 'stepchild'],
           },
           attendingCollege: {
             type: 'boolean',
@@ -414,7 +399,7 @@ const schema = {
           previouslyMarried: {
             type: 'boolean',
           },
-          dateMarriageEnded: schemaHelpers.getDefinition('date'),
+          marriedDate: schemaHelpers.getDefinition('date'),
           childInHousehold: {
             type: 'boolean',
           },
@@ -438,33 +423,11 @@ const schema = {
             type: 'object',
             oneOf: [
               {
-                required: ['dateMarriageEnded'],
+                required: ['marriedDate'],
                 properties: {
                   previouslyMarried: {
                     type: 'boolean',
                     enum: [true],
-                  },
-                  reasonMarriageEnded: {
-                    type: 'string',
-                    enum: ['Annulled', 'Declared void'],
-                  },
-                },
-              },
-              {
-                required: ['dateMarriageEnded'],
-                properties: {
-                  previouslyMarried: {
-                    type: 'boolean',
-                    enum: [true],
-                  },
-                  reasonMarriageEnded: {
-                    type: 'string',
-                    enum: ['Other'],
-                  },
-                  explainSeparation: {
-                    type: 'string',
-                    maxLength: 500,
-                    pattern: textAndNumbersRegex,
                   },
                 },
               },
@@ -501,67 +464,6 @@ const schema = {
             ],
           },
         ],
-        anyOf: [
-          {
-            type: 'object',
-            oneOf: [
-              {
-                required: ['isSupportingStepchild'],
-                properties: {
-                  childRelationship: {
-                    type: 'string',
-                    enum: ['stepchild'],
-                  },
-                },
-              },
-              {
-                required: ['financialSupportProvided'],
-                properties: {
-                  childRelationship: {
-                    type: 'string',
-                    enum: ['stepChild'],
-                  },
-                  isSupportingStepchild: {
-                    type: 'boolean',
-                    enum: [true],
-                  },
-                },
-              },
-              {
-                properties: {
-                  childRelationship: {
-                    type: 'string',
-                    enum: ['adopted'],
-                  },
-                },
-              },
-              {
-                properties: {
-                  childRelationship: {
-                    type: 'string',
-                    enum: ['biological'],
-                  },
-                },
-              },
-            ],
-          },
-          {
-            required: ['dateStepchildLeftHousehold'],
-            properties: {
-              childInHousehold: {
-                type: 'boolean',
-                enum: [false],
-              },
-            },
-          },
-        ],
-      },
-    },
-    reportMarriageOfChild: {
-      type: 'object',
-      properties: {
-        marriedChildName: schemaHelpers.getDefinition('fullName'),
-        dateChildMarried: schemaHelpers.getDefinition('date'),
       },
     },
   },
