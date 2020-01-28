@@ -19,8 +19,10 @@
     "email": "veteranEmail@email.com",
     "vaEnrolled": true,
     "plannedClinic": "My Clinic",
-    "facilityType": "hospital",
-    "previousTreatmentFacility": "adsadad"
+    "lastTreatmentFacility": {
+      "name": "My Hospital",
+      "type": "hospital"
+    }
   },
   "primaryCaregiver": {
     "fullName": {
@@ -44,8 +46,7 @@
     "medicaidEnrolled": false,
     "medicareEnrolled": false,
     "champvaEnrolled": false,
-    "tricareEnrolled": true,
-    "otherHealthInsurance": false
+    "tricareEnrolled": true
   },
   "secondaryOneCaregiver": {
     "fullName": {

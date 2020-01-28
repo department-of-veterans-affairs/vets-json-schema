@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import constants from '../../common/constants';
 
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
@@ -37,28 +38,56 @@ const schema = {
     veteran: {
       type: 'object',
       additionalProperties: false,
-      required: ['ssnOrTin', 'dateOfBirth'],
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'plannedClinic'
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
-        vaEnrolled: buildDataType('boolean'),
-        // TODO: [veteranPlannedClinic] there is a va-medical-facilities enum/type in /common we can use
-        plannedClinic: buildDataType('string'),
-        facilityType: { type: 'string', enum: ['hospital', 'clinic'] },
-        // TODO: [veteranPreviousTreatmentFacility] there is a va-medical-facilities enum/type in /common we can use
-        previousTreatmentFacility: buildDataType('string'),
         address: buildDefinitionReference('address'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
+        vaEnrolled: buildDataType('boolean'),
+        // TODO: [veteran.plannedClinic] there is a va-medical-facilities enum/type in /common we can use
+        // Name of VA medical center or clinic where you receive or plan to receive health care services
+        plannedClinic: buildDataType('string'),
+        // TODO: [veteran.lastTreatmentFacility] there is a va-medical-facilities enum/type in /common we can use
+        // Name and Type of facility where the vet last received medical treatment
+        lastTreatmentFacility: {
+          type: 'object',
+          additionalProperties: false,
+          required: ['name', 'type'],
+          properties: {
+            name: buildDataType('string'),
+            type: {
+              type: 'string',
+              enum: ['hospital', 'clinic']
+            },
+          },
+        },
       },
     },
     primaryCaregiver: {
       type: 'object',
       additionalProperties: false,
-      required: ['ssnOrTin', 'dateOfBirth'],
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'vetRelationship',
+        'medicaidEnrolled',
+        'medicareEnrolled',
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -71,16 +100,24 @@ const schema = {
         vetRelationship: buildDefinitionReference('vetRelationship'),
         medicaidEnrolled: buildDataType('boolean'),
         medicareEnrolled: buildDataType('boolean'),
+        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
         tricareEnrolled: buildDataType('boolean'),
+        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
         champvaEnrolled: buildDataType('boolean'),
-        otherHealthInsurance: buildDataType('boolean'),
         otherHealthInsuranceName: buildDataType('string'),
       },
     },
     secondaryOneCaregiver: {
       type: 'object',
       additionalProperties: false,
-      required: ['ssnOrTin', 'dateOfBirth'],
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'vetRelationship'
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -96,7 +133,14 @@ const schema = {
     secondaryTwoCaregiver: {
       type: 'object',
       additionalProperties: false,
-      required: ['ssnOrTin', 'dateOfBirth'],
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'vetRelationship'
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),

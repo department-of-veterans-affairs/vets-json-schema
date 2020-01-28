@@ -10,8 +10,7 @@ const example = {
     email: 'veteranEmail@email.com',
     vaEnrolled: true,
     plannedClinic: 'My Clinic',
-    facilityType: 'hospital',
-    previousTreatmentFacility: 'adsadad',
+    lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' }
   },
   primaryCaregiver: {
     fullName: { first: 'Joan', last: 'Doe' },
@@ -27,7 +26,6 @@ const example = {
     medicareEnrolled: false,
     champvaEnrolled: false,
     tricareEnrolled: true,
-    otherHealthInsurance: false,
   },
   secondaryOneCaregiver: {
     fullName: { first: 'John Doe', last: 'Doe', suffix: 'II' },

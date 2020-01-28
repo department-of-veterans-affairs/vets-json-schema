@@ -297,8 +297,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "fullName",
         "ssnOrTin",
-        "dateOfBirth"
+        "dateOfBirth",
+        "gender",
+        "address",
+        "plannedClinic"
       ],
       "properties": {
         "fullName": {
@@ -313,22 +317,6 @@
         "gender": {
           "$ref": "#/definitions/gender"
         },
-        "vaEnrolled": {
-          "type": "boolean"
-        },
-        "plannedClinic": {
-          "type": "string"
-        },
-        "facilityType": {
-          "type": "string",
-          "enum": [
-            "hospital",
-            "clinic"
-          ]
-        },
-        "previousTreatmentFacility": {
-          "type": "string"
-        },
         "address": {
           "$ref": "#/definitions/address"
         },
@@ -340,6 +328,32 @@
         },
         "email": {
           "$ref": "#/definitions/email"
+        },
+        "vaEnrolled": {
+          "type": "boolean"
+        },
+        "plannedClinic": {
+          "type": "string"
+        },
+        "lastTreatmentFacility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "type"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "hospital",
+                "clinic"
+              ]
+            }
+          }
         }
       }
     },
@@ -347,8 +361,14 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "fullName",
         "ssnOrTin",
-        "dateOfBirth"
+        "dateOfBirth",
+        "gender",
+        "address",
+        "vetRelationship",
+        "medicaidEnrolled",
+        "medicareEnrolled"
       ],
       "properties": {
         "fullName": {
@@ -390,9 +410,6 @@
         "champvaEnrolled": {
           "type": "boolean"
         },
-        "otherHealthInsurance": {
-          "type": "boolean"
-        },
         "otherHealthInsuranceName": {
           "type": "string"
         }
@@ -402,8 +419,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "fullName",
         "ssnOrTin",
-        "dateOfBirth"
+        "dateOfBirth",
+        "gender",
+        "address",
+        "vetRelationship"
       ],
       "properties": {
         "fullName": {
@@ -439,8 +460,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "fullName",
         "ssnOrTin",
-        "dateOfBirth"
+        "dateOfBirth",
+        "gender",
+        "address",
+        "vetRelationship"
       ],
       "properties": {
         "fullName": {
