@@ -1,5 +1,4 @@
 import definitions from '../../common/definitions';
-import constants from '../../common/constants';
 
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
