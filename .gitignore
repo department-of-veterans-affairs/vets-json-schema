@@ -3,3 +3,4 @@ node_modules
 
 # WebStorm indexing
 .idea
+.DS_Store

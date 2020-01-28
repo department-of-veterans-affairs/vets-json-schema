@@ -36,8 +36,7 @@ describe('21-686C schema', () => {
     childRelationship: 'adopted',
     attendingCollege: true,
     disabled: true,
-    dateMarriageEnded: fixtures.date,
-    reasonMarriageEnded: 'Declared void',
+    marriedDate: fixtures.date,
     previouslyMarried: true,
     childInHousehold: true,
     childAddress: {
@@ -49,7 +48,6 @@ describe('21-686C schema', () => {
       postalCode: '344546767',
     },
     childHasNoSsn: false,
-    childHasNoSsnReason: 'NONRESIDENTALIEN',
     personWhoLivesWithChild: fixtures.fullName,
   };
 
@@ -116,22 +114,33 @@ describe('21-686C schema', () => {
       [
         {
           dateOfMarriage: fixtures.date,
-          locationOfMarriage: 'Washington, DC',
+          locationOfMarriage: {
+            countryDropdown: 'Country Not In List',
+            countryText: 'My Island',
+          },
           spouseFullName: fixtures.fullName,
           reasonForSeparation: 'Divorce',
           dateOfSeparation: fixtures.date,
-          locationOfSeparation: 'Washington, DC',
-          marriageType: 'common-law',
+          locationOfSeparation: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA',
+          },
         },
         {
           dateOfMarriage: fixtures.date,
-          locationOfMarriage: 'Washington, DC',
+          locationOfMarriage: {
+            countryDropdown: 'Country Not In List',
+            countryText: 'My Island',
+          },
           spouseFullName: fixtures.fullName,
-          reasonForSeparation: 'Other',
-          explainSeparation: 'irreconcilable differences',
+          reasonForSeparation: 'Divorce',
           dateOfSeparation: fixtures.date,
-          locationOfSeparation: 'Washington, DC',
-          marriageType: 'common-law',
+          locationOfSeparation: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA',
+          },
         },
       ],
     ],
@@ -141,11 +150,19 @@ describe('21-686C schema', () => {
         // 'Other' without explanation
         {
           dateOfMarriage: fixtures.date,
-          locationOfMarriage: 'Washington, DC',
+          locationOfMarriage: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA',
+          },
           spouseFullName: fixtures.fullName,
           reasonForSeparation: 'Other',
           dateOfSeparation: fixtures.date,
-          locationOfSeparation: 'Washington, DC',
+          locationOfSeparation: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA',
+          },
         },
       ],
     ],
@@ -156,14 +173,54 @@ describe('21-686C schema', () => {
       [
         {
           ...validDependent,
-          childPlaceOfBirth: 'Washington, DC',
+          childPlaceOfBirth: {
+            countryDropdown: 'USA',
+            city: 'somewhere',
+            state: 'VA',
+          },
+        },
+      ],
+      [
+        {
+          ...validDependent,
+          childPlaceOfBirth: {
+            countryDropdown: 'Country Not In List',
+            countryText: 'somewhere',
+          },
+        },
+      ],
+      [
+        {
+          ...validDependent,
+          childPlaceOfBirth: {
+            countryDropdown: 'Canada',
+          },
         },
       ],
     ],
     invalid: [
       [{ fullName: 1 }],
-      [_.omit(validDependent, 'dateMarriageEnded')],
+      [_.omit(validDependent, 'marriedDate')],
       [{ ..._.omit(validDependent, 'childHasNoSsnReason'), childHasNoSsn: true }],
+      [
+        {
+          ...validDependent,
+          childPlaceOfBirth: {
+            countryDropdown: 'Canada',
+            city: 'somewhere',
+            state: 'VA',
+          },
+        },
+      ],
+      [
+        {
+          ...validDependent,
+          childPlaceOfBirth: {
+            countryDropdown: 'Country Not In List',
+            city: 'somewhere',
+          },
+        },
+      ],
     ],
   });
 
