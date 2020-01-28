@@ -559,6 +559,13 @@ const form4142 = {
   },
 };
 
+const email = {
+  type: 'string',
+  minLength: 6,
+  maxLength: 80,
+  pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+};
+
 export default {
   usaPhone,
   fullName,
@@ -600,4 +607,5 @@ export default {
   centralMailAddress,
   year,
   form4142,
+  email,
 };

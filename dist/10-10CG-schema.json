@@ -3,191 +3,499 @@
   "title": "Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)",
   "type": "object",
   "additionalProperties": false,
+  "required": [
+    "veteran",
+    "primaryCaregiver"
+  ],
   "definitions": {
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranSsnOrTin": {
-      "type": "string",
-      "enum": [
-        "Social Security Number",
-        "Tax Identification Number"
-      ]
-    },
-    "veteranSsn": {
-      "$ref": "#/definitions/ssn"
-    },
-    "veteranTin": {
+    "tin": {
       "type": "string"
     },
-    "veteranDateOfBirth": {
-      "$ref": "#/definitions/dateOfBirth"
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
     },
-    "veteranGender": {
-      "$ref": "#/definitions/gender"
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     },
-    "veteranAddress": {
-      "$ref": "#/definitions/fullName"
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
-    "veteranPrimaryPhoneNumber": {
-      "$ref": "#/definitions/phone"
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
     },
-    "veteranAlternativePhoneNumber": {
-      "$ref": "#/definitions/phone"
+    "phone": {
+      "type": "string",
+      "minLength": 10
     },
-    "veteranEmail": {
-      "$ref": "#/definitions/email"
+    "email": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 80,
+      "pattern": "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+    },
+    "address": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "CAN"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "MEX"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "aguascalientes",
+                "baja-california-norte",
+                "baja-california-sur",
+                "campeche",
+                "chiapas",
+                "chihuahua",
+                "coahuila",
+                "colima",
+                "distrito-federal",
+                "durango",
+                "guanajuato",
+                "guerrero",
+                "hidalgo",
+                "jalisco",
+                "mexico",
+                "michoacan",
+                "morelos",
+                "nayarit",
+                "nuevo-leon",
+                "oaxaca",
+                "puebla",
+                "queretaro",
+                "quintana-roo",
+                "san-luis-potosi",
+                "sinaloa",
+                "sonora",
+                "tabasco",
+                "tamaulipas",
+                "tlaxcala",
+                "veracruz",
+                "yucatan",
+                "zacatecas"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "USA"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AL",
+                "AK",
+                "AS",
+                "AZ",
+                "AR",
+                "AA",
+                "AE",
+                "AP",
+                "CA",
+                "CO",
+                "CT",
+                "DE",
+                "DC",
+                "FM",
+                "FL",
+                "GA",
+                "GU",
+                "HI",
+                "ID",
+                "IL",
+                "IN",
+                "IA",
+                "KS",
+                "KY",
+                "LA",
+                "ME",
+                "MH",
+                "MD",
+                "MA",
+                "MI",
+                "MN",
+                "MS",
+                "MO",
+                "MT",
+                "NE",
+                "NV",
+                "NH",
+                "NJ",
+                "NM",
+                "NY",
+                "NC",
+                "ND",
+                "MP",
+                "OH",
+                "OK",
+                "OR",
+                "PW",
+                "PA",
+                "PR",
+                "RI",
+                "SC",
+                "SD",
+                "TN",
+                "TX",
+                "UT",
+                "VT",
+                "VI",
+                "VA",
+                "WA",
+                "WV",
+                "WI",
+                "WY"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "not": {
+                "type": "string",
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
+              }
+            },
+            "state": {
+              "type": "string",
+              "maxLength": 51
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 51
+            }
+          }
+        }
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "street2": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 51
+        }
+      }
+    },
+    "vetRelationship": {
+      "type": "string",
+      "enum": [
+        "Spouse",
+        "Father",
+        "Mother",
+        "Son",
+        "Daughter",
+        "Brother",
+        "Sister",
+        "Significant - Other",
+        "Relative - Other",
+        "Friend/Neighbor"
+      ]
     }
   },
-  "veteranVaEnrolled": {
-    "type": "boolean"
-  },
-  "veteranPlannedClinic": {
-    "type": "string"
-  },
-  "veteranFacilityType": {
-    "type": "string",
-    "enum": [
-      "hospital",
-      "clinic"
-    ]
-  },
-  "veteranPreviousTreatmentFacility": {
-    "type": "string"
-  },
-  "primaryFullName": {
-    "$ref": "#/definitions/fullName"
-  },
-  "primarySsnOrTin": {
-    "type": "string",
-    "enum": [
-      "Social Security Number",
-      "Tax Identification Number"
-    ]
-  },
-  "primarySsn": {
-    "$ref": "#/definitions/ssn"
-  },
-  "primaryTin": {
-    "type": "string"
-  },
-  "primaryDateOfBirth": {
-    "$ref": "#/definitions/dateOfBirth"
-  },
-  "primaryGender": {
-    "$ref": "#/definitions/gender"
-  },
-  "primaryAddress": {
-    "$ref": "#/definitions/address"
-  },
-  "primaryPrimaryPhoneNumber": {
-    "$ref": "#/definitions/phone"
-  },
-  "primaryAlternativePhoneNumber": {
-    "$ref": "#/definitions/phone"
-  },
-  "primaryEmail": {
-    "$ref": "#/definitions/email"
-  },
-  "primaryVetRelationship": {
-    "type": "string"
-  },
-  "primaryMedicaidEnrolled": {
-    "type": "boolean"
-  },
-  "primaryMedicareEnrolled": {
-    "type": "boolean"
-  },
-  "primaryTricareEnrolled": {
-    "type": "boolean"
-  },
-  "primaryChampvaEnrolled": {
-    "type": "boolean"
-  },
-  "primaryOtherHealthInsurance": {
-    "type": "boolean"
-  },
-  "primaryOtherHealthInsuranceName": {
-    "type": "string"
-  },
-  "hasSecondaryOneCaregiver": {
-    "type": "boolean"
-  },
-  "secondaryOneFullName": {
-    "$ref": "#/definitions/fullName"
-  },
-  "ssnOrTin": {
-    "type": "string",
-    "enum": [
-      "Social Security Number",
-      "Tax Identification Number"
-    ]
-  },
-  "secondaryOneSsn": {
-    "$ref": "#/definitions/ssn"
-  },
-  "secondaryOneTin": {
-    "type": "string"
-  },
-  "secondaryOneDateOfBirth": {
-    "$ref": "#/definitions/dateOfBirth"
-  },
-  "secondaryOneGender": {
-    "$ref": "#/definitions/gender"
-  },
-  "secondaryOneAddress": {
-    "$ref": "#/definitions/address"
-  },
-  "secondaryOnePrimaryPhoneNumber": {
-    "$ref": "#/definitions/phone"
-  },
-  "secondaryOneAlternativePhoneNumber": {
-    "$ref": "#/definitions/phone"
-  },
-  "secondaryOneEmail": {
-    "$ref": "#/definitions/email"
-  },
-  "vetRelationship": {
-    "type": "string"
-  },
-  "hasSecondaryTwoCaregiver": {
-    "type": "boolean"
-  },
-  "secondaryTwoFullName": {
-    "$ref": "#/definitions/fullName"
-  },
-  "secondaryTwoSsnOrTin": {
-    "type": "string",
-    "enum": [
-      "Social Security Number",
-      "Tax Identification Number"
-    ]
-  },
-  "secondaryTwoSsn": {
-    "$ref": "#/definitions/ssn"
-  },
-  "secondaryTwoTin": {
-    "type": "string"
-  },
-  "secondaryTwoDateOfBirth": {
-    "$ref": "#/definitions/dateOfBirth"
-  },
-  "secondaryTwoGender": {
-    "$ref": "#/definitions/gender"
-  },
-  "secondaryTwoAddress": {
-    "$ref": "#/definitions/address"
-  },
-  "secondaryTwoPrimaryPhoneNumber": {
-    "$ref": "#/definitions/phone"
-  },
-  "secondaryTwoAlternativePhoneNumber": {
-    "$ref": "#/definitions/phone"
-  },
-  "secondaryTwoEmail": {
-    "$ref": "#/definitions/email"
-  },
-  "secondaryTwoVetRelationship": {
-    "type": "string"
+  "properties": {
+    "veteran": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fullName",
+        "ssnOrTin",
+        "dateOfBirth",
+        "gender",
+        "address",
+        "plannedClinic"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "vaEnrolled": {
+          "type": "boolean"
+        },
+        "plannedClinic": {
+          "type": "string"
+        },
+        "lastTreatmentFacility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "type"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "hospital",
+                "clinic"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "primaryCaregiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fullName",
+        "ssnOrTin",
+        "dateOfBirth",
+        "gender",
+        "address",
+        "vetRelationship",
+        "medicaidEnrolled",
+        "medicareEnrolled"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "vetRelationship": {
+          "$ref": "#/definitions/vetRelationship"
+        },
+        "medicaidEnrolled": {
+          "type": "boolean"
+        },
+        "medicareEnrolled": {
+          "type": "boolean"
+        },
+        "tricareEnrolled": {
+          "type": "boolean"
+        },
+        "champvaEnrolled": {
+          "type": "boolean"
+        },
+        "otherHealthInsuranceName": {
+          "type": "string"
+        }
+      }
+    },
+    "secondaryOneCaregiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fullName",
+        "ssnOrTin",
+        "dateOfBirth",
+        "gender",
+        "address",
+        "vetRelationship"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "vetRelationship": {
+          "$ref": "#/definitions/vetRelationship"
+        }
+      }
+    },
+    "secondaryTwoCaregiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fullName",
+        "ssnOrTin",
+        "dateOfBirth",
+        "gender",
+        "address",
+        "vetRelationship"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssnOrTin": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "gender": {
+          "$ref": "#/definitions/gender"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "alternativePhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "vetRelationship": {
+          "$ref": "#/definitions/vetRelationship"
+        }
+      }
+    }
   }
 }

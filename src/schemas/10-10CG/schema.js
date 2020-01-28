@@ -1,125 +1,158 @@
 import definitions from '../../common/definitions';
 
-const ssnOrTin = {
-  type: 'string',
-  enum: ['Social Security Number', 'Tax Identification Number'],
-};
+const buildDataType = type => ({ type });
+const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
 
-const tin = {
-  type: 'string',
-};
-
-const booleanType = {
-  type: 'boolean',
-};
-
-const fullName = {
-  $ref: '#/definitions/fullName',
-};
-
-const ssn = {
-  $ref: '#/definitions/ssn',
-};
-
-const dateOfBirth = {
-  $ref: '#/definitions/dateOfBirth',
-};
-
-const gender = {
-  $ref: '#/definitions/gender',
-};
-
-const phone = {
-  $ref: '#/definitions/phone',
-};
-
-const email = {
-  $ref: '#/definitions/email',
-};
-
-const address = {
-  $ref: '#/definitions/address',
-};
-
-const vetRelationship = {
-  type: 'string',
-};
+const vetRelationships = [
+  'Spouse',
+  'Father',
+  'Mother',
+  'Son',
+  'Daughter',
+  'Brother',
+  'Sister',
+  'Significant - Other',
+  'Relative - Other',
+  'Friend/Neighbor',
+];
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)',
   type: 'object',
   additionalProperties: false,
+  required: ['veteran', 'primaryCaregiver'],
   definitions: {
-    veteranFullName: fullName,
-    veteranSsnOrTin: ssnOrTin,
-    veteranSsn: ssn,
-    veteranTin: tin,
-    veteranDateOfBirth: dateOfBirth,
-    veteranGender: gender,
-    veteranAddress: fullName,
-    veteranPrimaryPhoneNumber: phone,
-    veteranAlternativePhoneNumber: phone,
-    veteranEmail: email,
+    tin: buildDataType('string'),
+    fullName: definitions.fullName,
+    ssn: definitions.ssn,
+    date: definitions.date,
+    gender: definitions.gender,
+    phone: definitions.phone,
+    email: definitions.email,
+    address: definitions.address,
+    vetRelationship: { type: 'string', enum: vetRelationships },
   },
-  veteranVaEnrolled: {
-    type: 'boolean',
+  properties: {
+    veteran: {
+      type: 'object',
+      additionalProperties: false,
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'plannedClinic'
+      ],
+      properties: {
+        fullName: buildDefinitionReference('fullName'),
+        ssnOrTin: buildDefinitionReference('ssn'),
+        dateOfBirth: buildDefinitionReference('date'),
+        gender: buildDefinitionReference('gender'),
+        address: buildDefinitionReference('address'),
+        primaryPhoneNumber: buildDefinitionReference('phone'),
+        alternativePhoneNumber: buildDefinitionReference('phone'),
+        email: buildDefinitionReference('email'),
+        vaEnrolled: buildDataType('boolean'),
+        // TODO: [veteran.plannedClinic] there is a va-medical-facilities enum/type in /common we can use
+        // Name of VA medical center or clinic where you receive or plan to receive health care services
+        plannedClinic: buildDataType('string'),
+        // TODO: [veteran.lastTreatmentFacility] there is a va-medical-facilities enum/type in /common we can use
+        // Name and Type of facility where the vet last received medical treatment
+        lastTreatmentFacility: {
+          type: 'object',
+          additionalProperties: false,
+          required: ['name', 'type'],
+          properties: {
+            name: buildDataType('string'),
+            type: {
+              type: 'string',
+              enum: ['hospital', 'clinic']
+            },
+          },
+        },
+      },
+    },
+    primaryCaregiver: {
+      type: 'object',
+      additionalProperties: false,
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'vetRelationship',
+        'medicaidEnrolled',
+        'medicareEnrolled',
+      ],
+      properties: {
+        fullName: buildDefinitionReference('fullName'),
+        ssnOrTin: buildDefinitionReference('ssn'),
+        dateOfBirth: buildDefinitionReference('date'),
+        gender: buildDefinitionReference('gender'),
+        address: buildDefinitionReference('address'),
+        primaryPhoneNumber: buildDefinitionReference('phone'),
+        alternativePhoneNumber: buildDefinitionReference('phone'),
+        email: buildDefinitionReference('email'),
+        vetRelationship: buildDefinitionReference('vetRelationship'),
+        medicaidEnrolled: buildDataType('boolean'),
+        medicareEnrolled: buildDataType('boolean'),
+        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
+        tricareEnrolled: buildDataType('boolean'),
+        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
+        champvaEnrolled: buildDataType('boolean'),
+        otherHealthInsuranceName: buildDataType('string'),
+      },
+    },
+    secondaryOneCaregiver: {
+      type: 'object',
+      additionalProperties: false,
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'vetRelationship'
+      ],
+      properties: {
+        fullName: buildDefinitionReference('fullName'),
+        ssnOrTin: buildDefinitionReference('ssn'),
+        dateOfBirth: buildDefinitionReference('date'),
+        gender: buildDefinitionReference('gender'),
+        address: buildDefinitionReference('address'),
+        primaryPhoneNumber: buildDefinitionReference('phone'),
+        alternativePhoneNumber: buildDefinitionReference('phone'),
+        email: buildDefinitionReference('email'),
+        vetRelationship: buildDefinitionReference('vetRelationship'),
+      },
+    },
+    secondaryTwoCaregiver: {
+      type: 'object',
+      additionalProperties: false,
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'gender',
+        'address',
+        'vetRelationship'
+      ],
+      properties: {
+        fullName: buildDefinitionReference('fullName'),
+        ssnOrTin: buildDefinitionReference('ssn'),
+        dateOfBirth: buildDefinitionReference('date'),
+        gender: buildDefinitionReference('gender'),
+        address: buildDefinitionReference('address'),
+        primaryPhoneNumber: buildDefinitionReference('phone'),
+        alternativePhoneNumber: buildDefinitionReference('phone'),
+        email: buildDefinitionReference('email'),
+        vetRelationship: buildDefinitionReference('vetRelationship'),
+      },
+    },
   },
-  veteranPlannedClinic: {
-    type: 'string',
-  },
-  veteranFacilityType: {
-    type: 'string',
-    enum: ['hospital', 'clinic'],
-  },
-  veteranPreviousTreatmentFacility: {
-    type: 'string',
-  },
-  primaryFullName: fullName,
-  primarySsnOrTin: ssnOrTin,
-  primarySsn: ssn,
-  primaryTin: tin,
-  primaryDateOfBirth: dateOfBirth,
-  primaryGender: gender,
-  primaryAddress: address,
-  primaryPrimaryPhoneNumber: phone,
-  primaryAlternativePhoneNumber: phone,
-  primaryEmail: email,
-  primaryVetRelationship: {
-    type: 'string',
-  },
-  primaryMedicaidEnrolled: booleanType,
-  primaryMedicareEnrolled: booleanType,
-  primaryTricareEnrolled: booleanType,
-  primaryChampvaEnrolled: booleanType,
-  primaryOtherHealthInsurance: booleanType,
-  primaryOtherHealthInsuranceName: {
-    type: 'string',
-  },
-  hasSecondaryOneCaregiver: booleanType,
-  secondaryOneFullName: fullName,
-  ssnOrTin,
-  secondaryOneSsn: ssn,
-  secondaryOneTin: tin,
-  secondaryOneDateOfBirth: dateOfBirth,
-  secondaryOneGender: gender,
-  secondaryOneAddress: address,
-  secondaryOnePrimaryPhoneNumber: phone,
-  secondaryOneAlternativePhoneNumber: phone,
-  secondaryOneEmail: email,
-  vetRelationship,
-  hasSecondaryTwoCaregiver: booleanType,
-  secondaryTwoFullName: fullName,
-  secondaryTwoSsnOrTin: ssnOrTin,
-  secondaryTwoSsn: ssn,
-  secondaryTwoTin: tin,
-  secondaryTwoDateOfBirth: dateOfBirth,
-  secondaryTwoGender: gender,
-  secondaryTwoAddress: address,
-  secondaryTwoPrimaryPhoneNumber: phone,
-  secondaryTwoAlternativePhoneNumber: phone,
-  secondaryTwoEmail: email,
-  secondaryTwoVetRelationship: vetRelationship,
 };
 
 export default schema;

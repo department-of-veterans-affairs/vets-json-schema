@@ -1,100 +1,72 @@
 {
-  "veteranInfoOne": {
-    "veteranFullName": {
+  "veteran": {
+    "fullName": {
       "first": "Jane Doe",
       "last": "Doe"
     },
-    "veteranSsnOrTin": "Tax Identification Number",
-    "veteranTin": "789",
-    "veteranDateOfBirth": "1990-07-03",
-    "veteranGender": "Male"
-  },
-  "veteranInfoTwo": {
-    "veteranAddress": {
+    "ssnOrTin": "789787893",
+    "dateOfBirth": "1990-07-03",
+    "gender": "M",
+    "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
       "country": "USA",
-      "state": "IN",
+      "state": "WA",
       "postalCode": "33771"
     },
-    "veteranPrimaryPhoneNumber": "8887775544",
-    "veteranAlternativePhoneNumber": "8887775544",
-    "veteranEmail": "test@email.com"
+    "primaryPhoneNumber": "8887775544",
+    "alternativePhoneNumber": "8887775544",
+    "email": "veteranEmail@email.com",
+    "vaEnrolled": true,
+    "plannedClinic": "My Clinic",
+    "lastTreatmentFacility": {
+      "name": "My Hospital",
+      "type": "hospital"
+    }
   },
-  "veteranInfoThree": {
-    "veteranVaEnrolled": true,
-    "veteranFacilityType": "hospital",
-    "veteranPreviousTreatmentFacility": "adsadad"
-  },
-  "primaryCaregiverInfoOne": {
-    "primaryFullName": {
+  "primaryCaregiver": {
+    "fullName": {
       "first": "Joan",
       "last": "Doe"
     },
-    "primarySsnOrTin": "Tax Identification Number",
-    "primaryDateOfBirth": "1978-07-03",
-    "primaryGender": "Female"
-  },
-  "primaryCaregiverInfoTwo": {
-    "primaryAddress": {
+    "ssnOrTin": "202901412",
+    "dateOfBirth": "1978-07-03",
+    "gender": "F",
+    "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
       "country": "USA",
-      "state": "IL",
+      "state": "WA",
       "postalCode": "33771"
     },
-    "primaryPrimaryPhoneNumber": "8887775544",
-    "primaryAlternativePhoneNumber": "8887775544",
-    "primaryEmail": "test@email.com",
-    "primaryVetRelationship": "asd",
-    "primaryMedicaidEnrolled": true,
-    "primaryMedicareEnrolled": true,
-    "primaryChampvaEnrolled": true,
-    "primaryTricareEnrolled": true,
-    "primaryOtherHealthInsurance": true,
-    "primaryOtherHealthInsuranceName": "asdasd",
-    "hasSecondaryOneCaregiver": true
+    "primaryPhoneNumber": "8887775544",
+    "alternativePhoneNumber": "8887775544",
+    "email": "primaryCaregiverEmail@email.com",
+    "vetRelationship": "Spouse",
+    "medicaidEnrolled": false,
+    "medicareEnrolled": false,
+    "champvaEnrolled": false,
+    "tricareEnrolled": true
   },
-  "secondaryOneCaregiverInfo": {
-    "secondaryOneFullName": {
+  "secondaryOneCaregiver": {
+    "fullName": {
       "first": "John Doe",
       "last": "Doe",
       "suffix": "II"
     },
-    "secondaryOneSsn": "787787854",
-    "secondaryOneDateOfBirth": "1989-11-06",
-    "secondaryOneGender": "Male",
-    "secondaryOneAddress": {
+    "ssnOrTin": "787787854",
+    "dateOfBirth": "1989-11-06",
+    "gender": "M",
+    "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
       "country": "USA",
-      "state": "IL",
+      "state": "WA",
       "postalCode": "33771"
     },
-    "secondaryOnePrimaryPhoneNumber": "8887775544",
-    "secondaryOneAlternativePhoneNumber": "8887775544",
-    "secondaryOneEmail": "test@email.com",
-    "vetRelationship": "asdasdas",
-    "hasSecondaryTwoCaregiver": true
-  },
-  "secondaryTwoCaregiverInfo": {
-    "secondaryTwoFullName": {
-      "first": "John Doe",
-      "last": "Doe"
-    },
-    "secondaryTwoSsn": "585784787",
-    "secondaryTwoDateOfBirth": "1994-08-04",
-    "secondaryTwoGender": "Male",
-    "secondaryTwoAddress": {
-      "street": "111 2nd St S",
-      "city": "Seattle",
-      "country": "USA",
-      "state": "Florida",
-      "postalCode": "33771"
-    },
-    "secondaryTwoPrimaryPhoneNumber": "8887775544",
-    "secondaryTwoAlternativePhoneNumber": "8887775544",
-    "secondaryTwoEmail": "test@email.com",
-    "secondaryTwoVetRelationship": "asdasdas"
+    "primaryPhoneNumber": "8887775544",
+    "alternativePhoneNumber": "8887775544",
+    "email": "secondaryOneCaregiverEmail@email.com",
+    "vetRelationship": "Daughter"
   }
 }
