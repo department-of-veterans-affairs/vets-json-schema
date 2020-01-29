@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Ajv from 'ajv';
+import { get } from 'lodash';
 
 const objectBuilder = (keys, value) => {
   let object = {};
@@ -35,7 +36,6 @@ export default class SchemaTestHelper {
 
   schemaExpect(valid, data) {
     expect(this.validateSchema(data)).to.equal(valid);
-
     if (!valid) {
       expect(this.ajv.errors[0].dataPath).to.contain(`.${Object.keys(data)[0]}`);
     }

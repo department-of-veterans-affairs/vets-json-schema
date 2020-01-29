@@ -38,10 +38,6 @@
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
-    "veteranServiceNumber": {
-      "type": "string",
-      "pattern": "^[A-Z]{0,2}\\d{5,8}$"
-    },
     "domesticAddress": {
       "type": "object",
       "required": [
@@ -221,8 +217,7 @@
           ]
         },
         "postalCode": {
-          "type": "string",
-          "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
+          "$ref": "#/definitions/postalCode"
         }
       },
       "additionalProperties": false
@@ -513,8 +508,7 @@
           ]
         },
         "postalCode": {
-          "type": "string",
-          "pattern": "^\\d{5}(?:([-\\s]?)\\d{4})?$"
+          "$ref": "#/definitions/postalCode"
         }
       },
       "additionalProperties": false
@@ -826,12 +820,13 @@
           "minLength": 1,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         }
-      }
+      },
+      "additionalProperties": false
     },
-    "genericLocation": {
+    "postalCode": {
       "type": "string",
-      "maxLength": 250,
-      "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+      "maxLength": 10,
+      "pattern": "^\\d{5}(?:[- ]?\\d{4})?$"
     },
     "location": {
       "type": "object",
@@ -1225,18 +1220,14 @@
         "required": [
           "dateOfMarriage",
           "locationOfMarriage",
-          "spouseFullName",
-          "marriageType"
+          "spouseFullName"
         ],
         "properties": {
           "dateOfMarriage": {
             "$ref": "#/definitions/date"
           },
           "locationOfMarriage": {
-            "$ref": "#/definitions/genericLocation"
-          },
-          "marriageType": {
-            "type": "string"
+            "$ref": "#/definitions/location"
           },
           "spouseFullName": {
             "$ref": "#/definitions/fullName"
@@ -1245,7 +1236,7 @@
             "$ref": "#/definitions/date"
           },
           "locationOfSeparation": {
-            "$ref": "#/definitions/genericLocation"
+            "$ref": "#/definitions/location"
           }
         },
         "oneOf": [
@@ -1289,7 +1280,6 @@
           "dateOfMarriage",
           "locationOfMarriage",
           "spouseFullName",
-          "marriageType",
           "reasonForSeparation",
           "dateOfSeparation",
           "locationOfSeparation"
@@ -1299,10 +1289,7 @@
             "$ref": "#/definitions/date"
           },
           "locationOfMarriage": {
-            "$ref": "#/definitions/genericLocation"
-          },
-          "marriageType": {
-            "type": "string"
+            "$ref": "#/definitions/location"
           },
           "spouseFullName": {
             "$ref": "#/definitions/fullName"
@@ -1311,7 +1298,7 @@
             "$ref": "#/definitions/date"
           },
           "locationOfSeparation": {
-            "$ref": "#/definitions/genericLocation"
+            "$ref": "#/definitions/location"
           }
         },
         "oneOf": [
@@ -1386,9 +1373,6 @@
     },
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
-    },
-    "veteranServiceNumber": {
-      "$ref": "#/definitions/veteranServiceNumber"
     },
     "maritalStatus": {
       "type": "string",
@@ -1501,23 +1485,17 @@
             "$ref": "#/definitions/date"
           },
           "childPlaceOfBirth": {
-            "$ref": "#/definitions/genericLocation"
+            "$ref": "#/definitions/location"
           },
           "childSocialSecurityNumber": {
             "$ref": "#/definitions/ssn"
           },
-          "isSupportingStepchild": {
-            "type": "boolean"
-          },
-          "dateStepchildLeftHousehold": {
-            "$ref": "#/definitions/date"
-          },
-          "financialSupportProvided": {
+          "childRelationship": {
             "type": "string",
             "enum": [
-              "More than half",
-              "Half",
-              "Less than half"
+              "biological",
+              "adopted",
+              "stepchild"
             ]
           },
           "attendingCollege": {
@@ -1529,7 +1507,7 @@
           "previouslyMarried": {
             "type": "boolean"
           },
-          "dateMarriageEnded": {
+          "marriedDate": {
             "$ref": "#/definitions/date"
           },
           "childInHousehold": {
@@ -1573,7 +1551,7 @@
             "oneOf": [
               {
                 "required": [
-                  "dateMarriageEnded"
+                  "marriedDate"
                 ],
                 "properties": {
                   "previouslyMarried": {
@@ -1581,37 +1559,6 @@
                     "enum": [
                       true
                     ]
-                  },
-                  "reasonMarriageEnded": {
-                    "type": "string",
-                    "enum": [
-                      "Annulled",
-                      "Declared void"
-                    ]
-                  }
-                }
-              },
-              {
-                "required": [
-                  "dateMarriageEnded"
-                ],
-                "properties": {
-                  "previouslyMarried": {
-                    "type": "boolean",
-                    "enum": [
-                      true
-                    ]
-                  },
-                  "reasonMarriageEnded": {
-                    "type": "string",
-                    "enum": [
-                      "Other"
-                    ]
-                  },
-                  "explainSeparation": {
-                    "type": "string",
-                    "maxLength": 500,
-                    "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
                   }
                 }
               },
@@ -1654,78 +1601,6 @@
                 }
               }
             ]
-          }
-        ],
-        "anyOf": [
-          {
-            "type": "object",
-            "oneOf": [
-              {
-                "required": [
-                  "isSupportingStepchild"
-                ],
-                "properties": {
-                  "childRelationship": {
-                    "type": "string",
-                    "enum": [
-                      "stepchild"
-                    ]
-                  }
-                }
-              },
-              {
-                "required": [
-                  "financialSupportProvided"
-                ],
-                "properties": {
-                  "childRelationship": {
-                    "type": "string",
-                    "enum": [
-                      "stepChild"
-                    ]
-                  },
-                  "isSupportingStepchild": {
-                    "type": "boolean",
-                    "enum": [
-                      true
-                    ]
-                  }
-                }
-              },
-              {
-                "properties": {
-                  "childRelationship": {
-                    "type": "string",
-                    "enum": [
-                      "adopted"
-                    ]
-                  }
-                }
-              },
-              {
-                "properties": {
-                  "childRelationship": {
-                    "type": "string",
-                    "enum": [
-                      "biological"
-                    ]
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "required": [
-              "dateStepchildLeftHousehold"
-            ],
-            "properties": {
-              "childInHousehold": {
-                "type": "boolean",
-                "enum": [
-                  false
-                ]
-              }
-            }
           }
         ]
       }
