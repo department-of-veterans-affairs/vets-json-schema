@@ -397,5 +397,42 @@ export default {
         size: 'asdf'
       }]]
     }
+  },
+  email: {
+    data: {
+      valid: [
+        'name@example.com',
+        'name@example.org',
+        'name@example.net',
+        'my.name@example.com',
+        'my.name@mail.example.com', // sub domain
+        'x@example.com', // single char local part
+        'fully-qualified-domain@example.com', // hyphenated local
+        'example-indeed@strange-example.com', // hyphenated domain name
+        'other.email-with-hyphen@example.com',
+        'example@s.example', // nontraditional TLD
+      ],
+      invalid: [
+        // BELOW: Invalid emails
+        'Abc.example.com',
+        'A@b@c@example.com',
+        'a"b(c)d,e:f;g<h>i[j\k]l@example.com',
+        'just"not"right@example.com',
+        'this is"not\allowed@example.com',
+        'this\ still\"not\\allowed@example.com',
+        // '.dotfirst@gmail.com',
+        // 'John..Doe@example.com',
+        // 'admin@mailserver1', // local network domain name with no TLD
+        // '123456789012345678901234567890123456789012345678901234567890123456789@example.com', // local > 64 characters
+        // BELOW: Valid email formats, NOT accepted by our email regex
+        // 'user.name+tag+sorting@example.com',
+        // 'disposable.style.email.with+symbol@example.com',
+        // 'mailhost!username@example.org', // bangified host route used for uucp mailers
+        // 'user%example.com@example.org', // % escaped mail route to user@example.com via example.org
+        '"John..Doe"@example.com',
+        'john.smith(comment)@example.com', // Equal to 'john.smith@example.com'
+        '" "@example.org',
+      ],
+    }
   }
 };

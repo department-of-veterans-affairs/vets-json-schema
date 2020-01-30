@@ -51,7 +51,11 @@ describe('all schema tests', () => {
     };
 
     for (let k in schemas) {
+      // skip "checkObjectTypes" for these dist files used as enums
       if (['definitions', 'constants', 'vaMedicalFacilities'].includes(k)) continue;
+
+      // skip "checkObjectTypes" for dist files that contains "-example" (used for example data) AND does not contain "schema"
+      if (k.indexOf('-example') > -1 && k.indexOf('schema') === -1) continue;
 
       checkObjectTypes(k, schemas[k]);
     }

@@ -14,4 +14,16 @@ module VetsJsonSchema
 
     return_val
   end.()
+
+  # Provides an example of valid form data conforming to given schema
+  EXAMPLES = lambda do
+    return_val = {}
+
+    ScriptUtils.directories("#{base_dir}src/examples").each do |schema|
+      schema = File.basename(schema).upcase
+      return_val[schema] = MultiJson.load(File.read("#{base_dir}dist/#{schema}-example.json"))
+    end
+
+    return_val
+  end.()
 end
