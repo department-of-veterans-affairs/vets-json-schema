@@ -5,6 +5,10 @@ import SchemaTestHelper from '../../support/schema-test-helper';
 import schema from '../../../src/schemas/10-10CG/schema';
 
 const testData = {
+  plannedClinic: {
+    valid: ['405HK', '636', '501GJ', '358'],
+    invalid: ['random', '12string', '123RE'],
+  },
   lastTreatmentFacility: {
     valid: [
       { name: 'My Hospital', type: 'hospital' },
@@ -124,7 +128,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('date', ['veteran.dateOfBirth']);
     sharedTests.runTest('gender', ['veteran.gender']);
     schemaTestHelper.testValidAndInvalid('veteran.vaEnrolled', testData.boolean);
-    schemaTestHelper.testValidAndInvalid('veteran.plannedClinic', testData.string);
+    schemaTestHelper.testValidAndInvalid('veteran.plannedClinic', testData.plannedClinic);
     schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacility', testData.lastTreatmentFacility);
     sharedTests.runTest('address', ['veteran.address']);
     sharedTests.runTest('phone', ['veteran.primaryPhoneNumber']);
@@ -165,6 +169,11 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['secondaryTwoCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['secondaryTwoCaregiver.email']);
     schemaTestHelper.testValidAndInvalid('secondaryTwoCaregiver.vetRelationship', testData.vetRelationship);
+
+    it('"plannedClinic" should use the "vaFacilities" enum list', () => {
+      expect(!!schema.properties.veteran.properties.plannedClinic.enum).to.be.true;
+      expect(schema.properties.veteran.properties.plannedClinic.enum.length > 1000).to.be.true;
+    });
   });
 
   describe('conditional validation:', () => {
@@ -184,7 +193,7 @@ describe('10-10CG json schema', () => {
           alternativePhoneNumber: '8887775544',
           email: 'veteranEmail@email.com',
           vaEnrolled: true,
-          plannedClinic: 'My Clinic',
+          plannedClinic: '405HK',
           lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
         },
         primaryCaregiver: {

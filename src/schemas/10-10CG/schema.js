@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import { vaMedicalFacilities } from '../../common/constants';
 
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
@@ -15,6 +16,16 @@ const vetRelationships = [
   'Relative - Other',
   'Friend/Neighbor',
 ];
+
+const vaClinicFacilityIds = Object.keys(vaMedicalFacilities)
+  .reduce((acc, stateId) => {
+    const stateFacilities = vaMedicalFacilities[stateId];
+    const facilityIds = stateFacilities.map(facility => facility.value);
+
+    Array.prototype.push.apply(acc, facilityIds);
+
+    return acc;
+  }, []);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -55,11 +66,7 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         vaEnrolled: buildDataType('boolean'),
-        // TODO: [veteran.plannedClinic] there is a va-medical-facilities enum/type in /common we can use
-        // Name of VA medical center or clinic where you receive or plan to receive health care services
-        plannedClinic: buildDataType('string'),
-        // TODO: [veteran.lastTreatmentFacility] there is a va-medical-facilities enum/type in /common we can use
-        // Name and Type of facility where the vet last received medical treatment
+        plannedClinic: { type: 'string', enum: vaClinicFacilityIds },
         lastTreatmentFacility: {
           type: 'object',
           additionalProperties: false,
