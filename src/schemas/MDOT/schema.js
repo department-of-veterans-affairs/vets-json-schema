@@ -342,13 +342,4 @@ const schema = {
   required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'gender', 'email', 'dateOfBirth'],
 };
 
-// [
-//   ['privacyAgreementAccepted'],
-//   ['fullName', 'veteranFullName'],
-//   ['address', 'veteranAddress'],
-//   ['gender'],
-// ].forEach(args => {
-//   schemaHelpers.addDefinitionToSchema(schema, ...args);
-// });
-
 export default schema;
