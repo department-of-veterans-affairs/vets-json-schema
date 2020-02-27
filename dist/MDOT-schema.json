@@ -10,7 +10,7 @@
         true
       ]
     },
-    "veteranFullName": {
+    "fullName": {
       "type": "object",
       "properties": {
         "first": {
@@ -42,7 +42,7 @@
         "last"
       ]
     },
-    "veteranAddress": {
+    "address": {
       "type": "object",
       "oneOf": [
         {
@@ -359,10 +359,10 @@
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
     "veteranFullName": {
-      "$ref": "#/definitions/veteranFullName"
+      "$ref": "#/definitions/fullName"
     },
     "veteranAddress": {
-      "$ref": "#/definitions/veteranAddress"
+      "$ref": "#/definitions/address"
     },
     "gender": {
       "$ref": "#/definitions/gender"
@@ -370,8 +370,8 @@
   },
   "required": [
     "privacyAgreementAccepted",
-    "veteranFullName",
-    "veteranAddress",
+    "fullName",
+    "address",
     "gender",
     "email",
     "dateOfBirth"
