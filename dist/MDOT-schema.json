@@ -341,9 +341,7 @@
     },
     "dateOfBirth": {
       "type": "string",
-      "format": "date",
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "title": "Date of Birth"
+      "format": "date"
     },
     "email": {
       "type": "string",
@@ -372,10 +370,10 @@
   },
   "required": [
     "privacyAgreementAccepted",
+    "veteranFullName",
+    "veteranAddress",
     "gender",
     "email",
-    "dateOfBirth",
-    "veteranFullName",
-    "veteranAddress"
+    "dateOfBirth"
   ]
 }
