@@ -269,14 +269,11 @@
     }
   },
   "properties": {
-    "email": {
-      "$ref": "#/definitions/email"
-    },
-    "dateOfBirth": {
-      "$ref": "#/definitions/dateOfBirth"
-    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "email": {
+      "$ref": "#/definitions/email"
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
@@ -286,6 +283,9 @@
     },
     "gender": {
       "$ref": "#/definitions/gender"
+    },
+    "dateOfBirth": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [
@@ -294,6 +294,6 @@
     "address",
     "gender",
     "email",
-    "dateOfBirth"
+    "date"
   ]
 }

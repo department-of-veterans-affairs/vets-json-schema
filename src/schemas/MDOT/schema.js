@@ -15,30 +15,18 @@ const schema = {
     gender,
     date,
   },
-  properties: {
-    email: {
-      $ref: '#/definitions/email',
-    },
-    dateOfBirth: {
-      $ref: '#/definitions/dateOfBirth',
-    },
-    privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted',
-    },
-    veteranFullName: {
-      $ref: '#/definitions/fullName',
-    },
-    veteranAddress: {
-      $ref: '#/definitions/address',
-    },
-    gender: {
-      $ref: '#/definitions/gender',
-    },
-  },
-  required: ['privacyAgreementAccepted', 'fullName', 'address', 'gender', 'email', 'dateOfBirth'],
+  properties: {},
+  required: ['privacyAgreementAccepted', 'fullName', 'address', 'gender', 'email', 'date'],
 };
 
-[['privacyAgreementAccepted']].forEach(args => {
+[
+  ['privacyAgreementAccepted'],
+  ['email'],
+  ['fullName', 'veteranFullName'],
+  ['address', 'veteranAddress'],
+  ['gender'],
+  ['date', 'dateOfBirth'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
