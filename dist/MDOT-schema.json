@@ -290,10 +290,10 @@
   },
   "required": [
     "privacyAgreementAccepted",
-    "fullName",
-    "address",
+    "veteranFullName",
+    "veteranAddress",
     "gender",
     "email",
-    "date"
+    "dateOfBirth"
   ]
 }

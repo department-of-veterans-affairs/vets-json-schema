@@ -16,7 +16,7 @@ const schema = {
     date,
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'fullName', 'address', 'gender', 'email', 'date'],
+  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'gender', 'email', 'dateOfBirth'],
 };
 
 [
