@@ -16,7 +16,7 @@ const CANStateLabels = CAN.map(state => state.label);
 const USAStateLabels = USA.map(state => state.label);
 const MEXStateLabels = MEX.map(state => state.label);
 
-const address = {
+const veteranAddress = {
   type: "object",
   oneOf: [
     {
@@ -87,21 +87,109 @@ const address = {
     }
   ],
   properties: {
-    country: {
-      default: USALabel,
-      type: 'string',
-      enum: [USALabel],
+    street: {
+      type: "string",
+      minLength: 1,
+      maxLength: 50
+    },
+    street2: {
+      type: "string",
+      minLength: 1,
+      maxLength: 50
+    },
+    city: {
+      type: "string",
+      minLength: 1,
+      maxLength: 51
     },
     state: {
-      title: 'State',
-      type: 'string',
+      title: "State",
+      type: "string",
       maxLength: 51,
+      enum: [
+        "Alabama",
+        "Alaska",
+        "American Samoa",
+        "Arizona",
+        "Arkansas",
+        "Armed Forces Americas (AA)",
+        "Armed Forces Europe (AE)",
+        "Armed Forces Pacific (AP)",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "District Of Columbia",
+        "Federated States Of Micronesia",
+        "Florida",
+        "Georgia",
+        "Guam",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Louisiana",
+        "Maine",
+        "Marshall Islands",
+        "Maryland",
+        "Massachusetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Carolina",
+        "North Dakota",
+        "Northern Mariana Islands",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Palau",
+        "Pennsylvania",
+        "Puerto Rico",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virgin Islands",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming"
+      ]
+    },
+    country: {
+      default: "United States",
+      type: "string",
+      enum: [
+        "United States"
+      ]
     },
     postalCode: {
-      type: 'string',
-      maxLength: 10,
-    },
-  }
+      type: "string",
+      maxLength: 10
+    }
+  },
+  required: [
+    "street",
+    "city",
+    "state",
+    "country",
+    "postalCode"
+  ]
 }
 
 const schema = {
@@ -114,13 +202,13 @@ const schema = {
     email,
     gender,
     date,
-    address
+    veteranAddress
   },
   properties: {},
   required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'gender', 'email', 'dateOfBirth'],
 };
 
-[['privacyAgreementAccepted'], ['email'], ['fullName', 'veteranFullName'], ['address', 'veteranAddress'], ['gender'], ['date', 'dateOfBirth']].forEach(
+[['privacyAgreementAccepted'], ['email'], ['fullName', 'veteranFullName'], ['veteranAddress'], ['gender'], ['date', 'dateOfBirth']].forEach(
   args => {
     schemaHelpers.addDefinitionToSchema(schema, ...args);
   },
