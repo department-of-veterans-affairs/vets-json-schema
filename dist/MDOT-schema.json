@@ -270,7 +270,7 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
-    "veteranFullName": {
+    "fullName": {
       "$ref": "#/definitions/fullName"
     },
     "veteranAddress": {

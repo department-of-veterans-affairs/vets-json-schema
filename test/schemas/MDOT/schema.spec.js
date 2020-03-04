@@ -17,7 +17,7 @@ describe('mdot schema', () => {
   sharedTests.runTest('email');
 
   let tests = {
-    fullName: ['veteranFullName'],
+    fullName: ['fullName'],
     address: ['veteranAddress']
   };
 

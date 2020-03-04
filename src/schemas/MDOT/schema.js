@@ -24,7 +24,7 @@ const schema = {
 
 [
   ['privacyAgreementAccepted'],
-  ['fullName', 'veteranFullName'],
+  ['fullName', 'fullName'],
   ['address', 'veteranAddress'],
   ['gender'],
 ].forEach(args => {
