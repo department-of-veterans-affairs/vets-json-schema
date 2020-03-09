@@ -1,32 +1,31 @@
-import _ from 'lodash';
+import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import originalDefinitions from '../../common/definitions';
-import constants from '../../common/constants';
+
+const { fullName, email, gender, date, address } = commonDefinitions;
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'MEDICAL DEVICES ORDERING TOOL',
   type: 'object',
   additionalProperties: false,
-  definitions: {},
-  properties: {
-    email: {
-      type: 'string',
-      format: 'email'
-    },
-    dateOfBirth: {
-      type: 'string',
-      format: 'date'
-    }
+  definitions: {
+    fullName,
+    email,
+    gender,
+    date,
+    address,
   },
-  required: ['privacyAgreementAccepted'],
+  properties: {},
+  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'gender', 'email', 'dateOfBirth'],
 };
 
 [
   ['privacyAgreementAccepted'],
+  ['email'],
   ['fullName', 'veteranFullName'],
   ['address', 'veteranAddress'],
   ['gender'],
+  ['date', 'dateOfBirth'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

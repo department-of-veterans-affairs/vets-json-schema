@@ -4,12 +4,6 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
-    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -41,6 +35,23 @@
         "first",
         "last"
       ]
+    },
+    "email": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 80,
+      "pattern": "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "address": {
       "type": "object",
@@ -250,25 +261,19 @@
         }
       }
     },
-    "gender": {
-      "type": "string",
+    "privacyAgreementAccepted": {
+      "type": "boolean",
       "enum": [
-        "F",
-        "M"
+        true
       ]
     }
   },
   "properties": {
-    "email": {
-      "type": "string",
-      "format": "email"
-    },
-    "dateOfBirth": {
-      "type": "string",
-      "format": "date"
-    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "email": {
+      "$ref": "#/definitions/email"
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
@@ -278,9 +283,17 @@
     },
     "gender": {
       "$ref": "#/definitions/gender"
+    },
+    "dateOfBirth": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "veteranFullName",
+    "veteranAddress",
+    "gender",
+    "email",
+    "dateOfBirth"
   ]
 }
