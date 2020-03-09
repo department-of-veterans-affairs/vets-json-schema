@@ -1,48 +1,48 @@
-import SchemaTestHelper from '../../support/schema-test-helper';
+import { expect } from 'chai';
+import { cloneDeep } from 'lodash';
+import { before, it } from 'mocha';
 import schemas from '../../../dist/schemas';
+import SchemaTestHelper from '../../support/schema-test-helper';
 import SharedTests from '../../support/shared-tests';
 
-const schema = schemas['MDOT'];
-
-let schemaTestHelper = new SchemaTestHelper(
-  schema,
-  {
-    privacyAgreementAccepted: true
-  }
-);
-
-let sharedTests = new SharedTests(schemaTestHelper);
-
 describe('mdot schema', () => {
-  sharedTests.runTest('email');
-
-  let tests = {
-    fullName: ['veteranFullName'],
-    address: ['veteranAddress']
-  };
-
-  for (let test in tests) { 
-    sharedTests.runTest(`${test}`, tests[test]) 
-  };
-
-  schemaTestHelper.testValidAndInvalid('dateOfBirth', {
-    valid: [
-      '2000-12-12'
-    ],
-    invalid: [
-      '01-01-2000',
-      '01/01/2000',
-      '2000/01/01'
-    ]
+  let schema;
+  before('schema set up', () => {
+    schema = schemas.MDOT;
   });
 
-  schemaTestHelper.testValidAndInvalid('gender', {
-    valid: [
-      'M',
-      'F'
-    ],
-    invalid: [
-      'invalid'
-    ]
+  it('should have the correct required properties', () => {
+    expect(schema.required).to.deep.equal([
+      'privacyAgreementAccepted',
+      'veteranFullName',
+      'veteranAddress',
+      'gender',
+      'email',
+      'dateOfBirth',
+    ]);
+
+    expect(schema.definitions.fullName.required).to.deep.equal(['first', 'last']);
+  });
+
+  it('should not accept additional properties', () => {
+    expect(schema.additionalProperties).to.equal(false);
+  });
+
+  it('should pass shared common definition tests that need removal of required property on schema root', () => {
+    const unrequiredSchema = cloneDeep(schema);
+    delete unrequiredSchema.required;
+    const unrequiredSchemaTestHelper = new SchemaTestHelper(unrequiredSchema);
+    const unrestrictedSharedTests = new SharedTests(unrequiredSchemaTestHelper);
+
+    const commonDefinitionAndPropertyNames = {
+      fullName: ['veteranFullName'],
+      address: ['veteranAddress'],
+      gender: ['gender'],
+      date: ['dateOfBirth'],
+    };
+
+    for (const [commonDefinitionName, schemaPropertyName] of Object.entries(commonDefinitionAndPropertyNames)) {
+      unrestrictedSharedTests.runTest(`${commonDefinitionName}`, schemaPropertyName);
+    }
   });
 });
