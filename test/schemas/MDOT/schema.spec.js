@@ -1,48 +1,87 @@
-import SchemaTestHelper from '../../support/schema-test-helper';
+import { expect } from 'chai';
+import { cloneDeep } from 'lodash';
+import { before, it } from 'mocha';
 import schemas from '../../../dist/schemas';
+import SchemaTestHelper from '../../support/schema-test-helper';
 import SharedTests from '../../support/shared-tests';
+import _ from 'lodash';
 
 const schema = schemas['MDOT'];
+const schemaWithoutRequired = _.cloneDeep(schema);
+delete schemaWithoutRequired.required;
+delete schemaWithoutRequired.anyOf;
 
-let schemaTestHelper = new SchemaTestHelper(
-  schema,
-  {
-    privacyAgreementAccepted: true
-  }
-);
-
-let sharedTests = new SharedTests(schemaTestHelper);
+const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
+const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('mdot schema', () => {
   sharedTests.runTest('email');
 
-  let tests = {
-    fullName: ['fullName'],
-    address: ['veteranAddress']
-  };
-
-  for (let test in tests) { 
-    sharedTests.runTest(`${test}`, tests[test]) 
-  };
-
-  schemaTestHelper.testValidAndInvalid('dateOfBirth', {
+  schemaTestHelper.testValidAndInvalid('supplies',{
     valid: [
-      '2000-12-12'
+      [
+        {
+          deviceName: 'OMEGA XD3241',
+          productName: 'ZA1239',
+          productGroup: 'hearing aid batteries',
+          productId: '1',
+          availableForReorder: false,
+          lastOrderDate: '2020-01-01',
+          nextAvailabilityDate: '2020-09-01',
+          quantity: 60
+        }
+      ]
     ],
     invalid: [
-      '01-01-2000',
-      '01/01/2000',
-      '2000/01/01'
+      [
+        {
+          deviceName: 11112222,
+          productName: 'ZA1239',
+          productId: '1',
+          availableForReorder: 1,
+          lastOrderDate: '2020-01-01',
+          nextAvailabilityDate: '2020-09-01',
+          quantity: 'banana'
+        }
+      ]
     ]
+  })
+
+  it('should have the correct required properties', () => {
+    expect(schema.required).to.deep.equal([
+      'privacyAgreementAccepted',
+      'fullName',
+      'permanentAddress',
+      'temporaryAddress',
+      'gender',
+      'email',
+      'dateOfBirth',
+      'supplies'
+    ]);
+
+    expect(schema.definitions.fullName.required).to.deep.equal(['first', 'last']);
   });
 
-  schemaTestHelper.testValidAndInvalid('gender', {
-    valid: [
-      'M',
-      'F'
-    ],
-    invalid: [
-      'invalid'
-    ]
+  it('should not accept additional properties', () => {
+    expect(schema.additionalProperties).to.equal(false);
+  });
+
+  it('should pass shared common definition tests that need removal of required property on schema root', () => {
+    const unrequiredSchema = cloneDeep(schema);
+    delete unrequiredSchema.required;
+    const unrequiredSchemaTestHelper = new SchemaTestHelper(unrequiredSchema);
+    const unrestrictedSharedTests = new SharedTests(unrequiredSchemaTestHelper);
+
+    const commonDefinitionAndPropertyNames = {
+      fullName: ['fullName'],
+      address: ['permanentAddress'],
+      address: ['temporaryAddress'],
+      gender: ['gender'],
+      date: ['dateOfBirth']
+    };
+
+    for (const [commonDefinitionName, schemaPropertyName] of Object.entries(commonDefinitionAndPropertyNames)) {
+      unrestrictedSharedTests.runTest(`${commonDefinitionName}`, schemaPropertyName);
+    }
   });
 });

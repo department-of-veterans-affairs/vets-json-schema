@@ -1,32 +1,70 @@
-import _ from 'lodash';
+import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import originalDefinitions from '../../common/definitions';
-import constants from '../../common/constants';
+
+const { fullName, email, gender, date, address } = commonDefinitions;
+
+const supplies = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      deviceName: {
+        type: 'string'
+      },
+      productName: {
+        type: 'string'
+      },
+      productGroup: {
+        type: 'string'
+      },
+      productId: {
+        type: 'string'
+      },
+      availableForReorder: {
+        type: 'boolean'
+      },
+      lastOrderDate: {
+        $ref: '#/definitions/date'
+      },
+      nextAvailabilityDate: {
+        $ref: '#/definitions/date'
+      },
+      quantity: {
+        type: 'number'
+      },
+      size: {
+        type: 'string'
+      }
+    }
+  }
+}
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'MEDICAL DEVICES ORDERING TOOL',
   type: 'object',
   additionalProperties: false,
-  definitions: {},
-  properties: {
-    email: {
-      type: 'string',
-      format: 'email'
-    },
-    dateOfBirth: {
-      type: 'string',
-      format: 'date'
-    }
+  definitions: {
+    fullName,
+    email,
+    gender,
+    date,
+    address,
+    supplies: supplies
   },
-  required: ['privacyAgreementAccepted'],
+  properties: {},
+  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'email', 'dateOfBirth', 'supplies'],
 };
 
 [
   ['privacyAgreementAccepted'],
+  ['email'],
   ['fullName', 'fullName'],
-  ['address', 'veteranAddress'],
+  ['address', 'permanentAddress'],
+  ['address', 'temporaryAddress'],
   ['gender'],
+  ['date', 'dateOfBirth'],
+  ['supplies']
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
