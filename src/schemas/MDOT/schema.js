@@ -3,6 +3,42 @@ import schemaHelpers from '../../common/schema-helpers';
 
 const { fullName, email, gender, date, address } = commonDefinitions;
 
+const supplies = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      deviceName: {
+        type: 'string'
+      },
+      productName: {
+        type: 'string'
+      },
+      productGroup: {
+        type: 'string'
+      },
+      productId: {
+        type: 'string'
+      },
+      availableForReorder: {
+        type: 'boolean'
+      },
+      lastOrderDate: {
+        $ref: '#/definitions/date'
+      },
+      nextAvailabilityDate: {
+        $ref: '#/definitions/date'
+      },
+      quantity: {
+        type: 'number'
+      },
+      size: {
+        type: 'string'
+      }
+    }
+  }
+}
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'MEDICAL DEVICES ORDERING TOOL',
@@ -14,18 +50,21 @@ const schema = {
     gender,
     date,
     address,
+    supplies: supplies
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'gender', 'email', 'dateOfBirth'],
+  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'email', 'dateOfBirth', 'supplies'],
 };
 
 [
   ['privacyAgreementAccepted'],
   ['email'],
-  ['fullName', 'veteranFullName'],
-  ['address', 'veteranAddress'],
+  ['fullName', 'fullName'],
+  ['address', 'permanentAddress'],
+  ['address', 'temporaryAddress'],
   ['gender'],
   ['date', 'dateOfBirth'],
+  ['supplies']
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

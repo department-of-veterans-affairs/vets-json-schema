@@ -261,6 +261,41 @@
         }
       }
     },
+    "supplies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deviceName": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "productGroup": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "availableForReorder": {
+            "type": "boolean"
+          },
+          "lastOrderDate": {
+            "$ref": "#/definitions/date"
+          },
+          "nextAvailabilityDate": {
+            "$ref": "#/definitions/date"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "size": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -275,10 +310,13 @@
     "email": {
       "$ref": "#/definitions/email"
     },
-    "veteranFullName": {
+    "fullName": {
       "$ref": "#/definitions/fullName"
     },
-    "veteranAddress": {
+    "permanentAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "temporaryAddress": {
       "$ref": "#/definitions/address"
     },
     "gender": {
@@ -286,14 +324,19 @@
     },
     "dateOfBirth": {
       "$ref": "#/definitions/date"
+    },
+    "supplies": {
+      "$ref": "#/definitions/supplies"
     }
   },
   "required": [
     "privacyAgreementAccepted",
-    "veteranFullName",
-    "veteranAddress",
+    "fullName",
+    "permanentAddress",
+    "temporaryAddress",
     "gender",
     "email",
-    "dateOfBirth"
+    "dateOfBirth",
+    "supplies"
   ]
 }
