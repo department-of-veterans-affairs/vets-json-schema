@@ -31,7 +31,7 @@ const testData = {
       'Daughter',
       'Brother',
       'Sister',
-      'Significant - Other',
+      'Significant Other',
       'Relative - Other',
       'Friend/Neighbor',
     ],
