@@ -7,7 +7,7 @@ definitions.educationType.enum.push('cooperativeTraining');
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-10203)',
+  title: 'APPLICATION FOR STEM (22-10203)',
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, [
@@ -17,10 +17,6 @@ const schema = {
     'ssn',
     'school',
     'bankAccount',
-    'serviceBefore1977',
-    'date',
-    'dateRange',
-    'educationType',
     'preferredContactMethod',
     'privacyAgreementAccepted',
   ]),
@@ -58,27 +54,6 @@ const schema = {
     benefit: {
       type: 'string',
       enum: ['chapter33', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32'],
-    },
-    educationType: {
-      $ref: '#/definitions/educationType',
-    },
-    educationObjective: {
-      type: 'string',
-    },
-    programName: {
-      type: 'string',
-    },
-    newSchool: {
-      $ref: '#/definitions/school',
-    },
-    oldSchool: {
-      $ref: '#/definitions/school',
-    },
-    trainingEndDate: {
-      $ref: '#/definitions/date',
-    },
-    reasonForChange: {
-      type: 'string',
     },
     bankAccount: {
       $ref: '#/definitions/bankAccount',

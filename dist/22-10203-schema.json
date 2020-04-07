@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-10203)",
+  "title": "APPLICATION FOR STEM (22-10203)",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
@@ -282,53 +282,6 @@
         }
       }
     },
-    "serviceBefore1977": {
-      "type": "object",
-      "properties": {
-        "married": {
-          "type": "boolean"
-        },
-        "haveDependents": {
-          "type": "boolean"
-        },
-        "parentDependent": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "married",
-        "haveDependents",
-        "parentDependent"
-      ]
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
-    "dateRange": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
-        },
-        "to": {
-          "$ref": "#/definitions/date"
-        }
-      }
-    },
-    "educationType": {
-      "type": "string",
-      "enum": [
-        "college",
-        "correspondence",
-        "apprenticeship",
-        "flightTraining",
-        "testReimbursement",
-        "licensingReimbursement",
-        "tuitionTopUp",
-        "cooperativeTraining"
-      ]
-    },
     "preferredContactMethod": {
       "type": "string",
       "enum": [
@@ -400,27 +353,6 @@
         "transferOfEntitlement",
         "chapter32"
       ]
-    },
-    "educationType": {
-      "$ref": "#/definitions/educationType"
-    },
-    "educationObjective": {
-      "type": "string"
-    },
-    "programName": {
-      "type": "string"
-    },
-    "newSchool": {
-      "$ref": "#/definitions/school"
-    },
-    "oldSchool": {
-      "$ref": "#/definitions/school"
-    },
-    "trainingEndDate": {
-      "$ref": "#/definitions/date"
-    },
-    "reasonForChange": {
-      "type": "string"
     },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
