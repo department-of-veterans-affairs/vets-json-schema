@@ -238,6 +238,18 @@ const countries = [
   // { value: 'SSD', label: 'South Sudan' },
 ];
 
+const militaryStates = [
+  { label: 'Armed Forces Americas (AA)', value: 'AA' },
+  { label: 'Armed Forces Europe (AE)', value: 'AE' },
+  { label: 'Armed Forces Pacific (AP)', value: 'AP' },
+];
+
+const militaryCities = [
+  { label: 'Army Post Office', value: 'APO' },
+  { label: 'Fleet Post Office', value: 'FPO' },
+  { label: 'Diplomatic Post Office', value: 'DPO' },
+];
+
 const states50AndDC = [
   { label: 'Alabama', value: 'AL' },
   { label: 'Alaska', value: 'AK' },
@@ -2961,6 +2973,8 @@ const pciuStates = states.USA.concat(statesOnlyInPCIU).sort((stateA, stateB) => 
 
 module.exports = {
   countries,
+  militaryCities,
+  militaryStates,
   pciuCountries,
   pciuStates,
   salesforceCountries,

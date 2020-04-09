@@ -2,6 +2,8 @@ import vaMedicalFacilities from './va-medical-facilities';
 import caregiverProgramFacilities from './caregiver-program-facilities';
 
 import {
+  militaryStates,
+  militaryCities,
   countries,
   pciuCountries,
   states,
@@ -237,6 +239,8 @@ module.exports = {
   documentTypes526,
   genders,
   maritalStatuses,
+  militaryCities,
+  militaryStates,
   months,
   pciuCountries,
   pciuStates,
