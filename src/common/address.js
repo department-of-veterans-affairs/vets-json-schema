@@ -1,3 +1,14 @@
+const addressPou = {
+  correspondence: 'CORRESPONDENCE',
+  residence: 'RESIDENCE/CHOICE',
+};
+
+const addressTypes = {
+  domestic: 'DOMESTIC',
+  international: 'INTERNATIONAL',
+  overseasMilitary: 'OVERSEAS MILITARY',
+};
+
 const countries = [
   { value: 'USA', label: 'United States' },
   { value: 'AFG', label: 'Afghanistan' },
@@ -2972,6 +2983,8 @@ const statesOnlyInPCIU = [
 const pciuStates = states.USA.concat(statesOnlyInPCIU).sort((stateA, stateB) => stateA.label - stateB.label);
 
 module.exports = {
+  addressPou,
+  addressTypes,
   countries,
   militaryCities,
   militaryStates,

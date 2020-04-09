@@ -2,6 +2,8 @@ import vaMedicalFacilities from './va-medical-facilities';
 import caregiverProgramFacilities from './caregiver-program-facilities';
 
 import {
+  addressPou,
+  addressTypes,
   militaryStates,
   militaryCities,
   countries,
@@ -230,6 +232,8 @@ const documentTypes526 = [
 ];
 
 module.exports = {
+  addressPou,
+  addressTypes,
   branchesServed,
   caregiverProgramFacilities,
   countries,
