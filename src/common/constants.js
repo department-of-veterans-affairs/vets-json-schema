@@ -1,6 +1,15 @@
 import _ from 'lodash';
 import vaMedicalFacilities from './va-medical-facilities';
 
+// patterns
+export const textOnlyPattern = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
+export const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
+export const datePattern =
+  '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$';
+
+export const phonePattern = '^[0-9]{10}$';
+export const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
+
 export const countries = [
   { value: 'USA', label: 'United States' },
   { value: 'AFG', label: 'Afghanistan' },
@@ -1192,6 +1201,14 @@ const salesforceCountries = [
 ];
 
 const maritalStatuses = ['Married', 'Never Married', 'Separated', 'Widowed', 'Divorced'];
+
+export const MARRIAGE_TYPES = {
+  ceremonial: 'CEREMONIAL',
+  commonLaw: 'COMMON-LAW',
+  tribal: 'TRIBAL',
+  proxy: 'PROXY',
+  other: 'OTHER',
+};
 
 const branchesServed = [
   { value: 'air force', label: 'Air Force' },
