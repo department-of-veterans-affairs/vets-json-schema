@@ -58,9 +58,6 @@ const schema = {
     bankAccount: {
       $ref: '#/definitions/bankAccount',
     },
-    serviceBefore1977: {
-      $ref: '#/definitions/serviceBefore1977',
-    },
     toursOfDuty: {
       type: 'array',
       items: {
