@@ -1210,7 +1210,25 @@
           }
         }
       },
-      "veteranMarriageHistory": {},
+      "veteranMarriageHistory": {
+        "type": "object",
+        "properties": {
+          "veteranWasMarriedBefore": {
+            "type": "boolean"
+          },
+          "veteranMarriageHistory": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "formerSpouseName": {
+                  "$ref": "#/definitions/fullName"
+                }
+              }
+            }
+          }
+        }
+      },
       "veteranMarriageHistoryDetails": {},
       "marriageAdditionalEvidence": {}
     },
