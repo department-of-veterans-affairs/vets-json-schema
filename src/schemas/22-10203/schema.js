@@ -58,20 +58,6 @@ const schema = {
     bankAccount: {
       $ref: '#/definitions/bankAccount',
     },
-    toursOfDuty: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          serviceBranch: {
-            type: 'string',
-          },
-          dateRange: {
-            $ref: '#/definitions/dateRange',
-          },
-        },
-      },
-    },
     civilianBenefitsAssistance: {
       type: 'boolean',
     },
