@@ -32,6 +32,7 @@
     "genericNumberAndDashInput": {
       "type": "string",
       "maxLength": 50,
+      "minLength": 4,
       "pattern": "^[0-9]*[-]*[0-9]*[-]*[0-9]*$"
     },
     "genericUSAStateDropdown": {
@@ -374,42 +375,6 @@
         "Yemen",
         "Zambia",
         "Zimbabwe"
-      ]
-    },
-    "fullName": {
-      "type": "object",
-      "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
-        },
-        "middle": {
-          "type": "string",
-          "maxLength": 20,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
-        }
-      },
-      "required": [
-        "first",
-        "last"
       ]
     },
     "date": {
@@ -873,39 +838,42 @@
       }
     },
     "veteranInformation": {
-      "veteranInformation": {
-        "type": "object",
-        "properties": {
-          "first": {
-            "$ref": "#/definitions/genericTextInput"
-          },
-          "middle": {
-            "$ref": "#/definitions/genericTextInput"
-          },
-          "last": {
-            "$ref": "#/definitions/genericTextInput"
-          },
-          "suffix": {
-            "type": "string",
-            "enum": [
-              "Jr.",
-              "Sr.",
-              "II",
-              "III",
-              "IV"
-            ]
-          },
-          "ssn": {
-            "$ref": "#/definitions/genericNumberAndDashInput"
-          },
-          "vaFileNumber": {
-            "$ref": "#/definitions/genericNumberAndDashInput"
-          },
-          "serviceNumber": {
-            "$ref": "#/definitions/genericNumberAndDashInput"
-          },
-          "birthDate": {
-            "$ref": "#/definitions/date"
+      "type": "object",
+      "properties": {
+        "veteranInformation": {
+          "type": "object",
+          "properties": {
+            "first": {
+              "$ref": "#/definitions/genericTextInput"
+            },
+            "middle": {
+              "$ref": "#/definitions/genericTextInput"
+            },
+            "last": {
+              "$ref": "#/definitions/genericTextInput"
+            },
+            "suffix": {
+              "type": "string",
+              "enum": [
+                "Jr.",
+                "Sr.",
+                "II",
+                "III",
+                "IV"
+              ]
+            },
+            "ssn": {
+              "$ref": "#/definitions/genericNumberAndDashInput"
+            },
+            "vaFileNumber": {
+              "$ref": "#/definitions/genericNumberAndDashInput"
+            },
+            "serviceNumber": {
+              "$ref": "#/definitions/genericNumberAndDashInput"
+            },
+            "birthDate": {
+              "$ref": "#/definitions/date"
+            }
           }
         }
       },
@@ -925,39 +893,42 @@
       }
     },
     "addChild": {
-      "addChildInformation": {
-        "type": "object",
-        "properties": {
-          "childrenToAdd": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "type": "object",
-              "properties": {
-                "first": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "middle": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "last": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "suffix": {
-                  "type": "string",
-                  "enum": [
-                    "Jr.",
-                    "Sr.",
-                    "II",
-                    "III",
-                    "IV"
-                  ]
-                },
-                "ssn": {
-                  "$ref": "#/definitions/genericNumberAndDashInput"
-                },
-                "birthDate": {
-                  "$ref": "#/definitions/date"
+      "type": "object",
+      "properties": {
+        "addChildInformation": {
+          "type": "object",
+          "properties": {
+            "childrenToAdd": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "first": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "middle": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "last": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "suffix": {
+                    "type": "string",
+                    "enum": [
+                      "Jr.",
+                      "Sr.",
+                      "II",
+                      "III",
+                      "IV"
+                    ]
+                  },
+                  "ssn": {
+                    "$ref": "#/definitions/genericNumberAndDashInput"
+                  },
+                  "birthDate": {
+                    "$ref": "#/definitions/date"
+                  }
                 }
               }
             }
@@ -1076,26 +1047,26 @@
       }
     },
     "addSpouse": {
-      "spouseNameInformation": {
-        "type": "object",
-        "properties": {
-          "spouseFullName": {
-            "$ref": "#/definitions/fullName"
-          },
-          "spouseSSN": {
-            "$ref": "#/definitions/genericNumberAndDashInput"
-          },
-          "spouseDOB": {
-            "$ref": "#/definitions/date"
-          },
-          "isSpouseVeteran": {
-            "type": "boolean"
-          },
-          "spouseVAFileNumber": {
-            "$ref": "#/definitions/genericNumberAndDashInput"
-          },
-          "spouseServiceNumber": {
-            "$ref": "#/definitions/genericNumberAndDashInput"
+      "type": "object",
+      "properties": {
+        "spouseNameInformation": {
+          "type": "object",
+          "properties": {
+            "spouseSSN": {
+              "$ref": "#/definitions/genericNumberAndDashInput"
+            },
+            "spouseDOB": {
+              "$ref": "#/definitions/date"
+            },
+            "isSpouseVeteran": {
+              "type": "boolean"
+            },
+            "spouseVAFileNumber": {
+              "$ref": "#/definitions/genericNumberAndDashInput"
+            },
+            "spouseServiceNumber": {
+              "$ref": "#/definitions/genericNumberAndDashInput"
+            }
           }
         }
       },
@@ -1158,11 +1129,7 @@
             "type": "array",
             "items": {
               "type": "object",
-              "properties": {
-                "formerSpouseName": {
-                  "$ref": "#/definitions/fullName"
-                }
-              }
+              "properties": {}
             }
           }
         }
@@ -1220,23 +1187,459 @@
             "type": "array",
             "items": {
               "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      },
+      "veteranMarriageHistoryDetails": {
+        "type": "object",
+        "properties": {
+          "veteranMarriageHistory": {
+            "type": "array",
+            "items": {
+              "type": "object",
               "properties": {
-                "formerSpouseName": {
-                  "$ref": "#/definitions/fullName"
+                "marriageStartDate": {
+                  "$ref": "#/definitions/date"
+                },
+                "marriageStartLocation": {
+                  "$ref": "#/definitions/genericLocation"
+                },
+                "reasonMarriageEnded": {
+                  "type": "string",
+                  "enum": [
+                    "DIVORCE",
+                    "DEATH",
+                    "ANNULMENT",
+                    "OTHER"
+                  ],
+                  "enumNames": [
+                    "Divorce",
+                    "Death",
+                    "Annulment",
+                    "Other"
+                  ]
+                },
+                "reasonMarriageEndedOther": {
+                  "$ref": "#/definitions/genericTextInput"
+                },
+                "marriageEndDate": {
+                  "$ref": "#/definitions/date"
+                },
+                "marriageEndLocation": {
+                  "$ref": "#/definitions/genericLocation"
                 }
               }
             }
           }
         }
       },
-      "veteranMarriageHistoryDetails": {},
-      "marriageAdditionalEvidence": {}
+      "marriageAdditionalEvidence": {
+        "type": "object",
+        "properties": {
+          "view:additionalEvidenceDescription": {
+            "type": "object",
+            "properties": {}
+          },
+          "supportingDocuments": {
+            "$ref": "#/definitions/fileSchema"
+          }
+        }
+      }
     },
-    "reportDivorce": {},
-    "deceasedDependents": {},
-    "reportChildMarriage": {},
-    "reportChildStoppedAttendingSchool": {},
-    "reportStepchildNotInHousehold": {},
-    "report674": {}
+    "reportDivorce": {
+      "type": "object",
+      "properties": {
+        "dateOfDivorce": {
+          "$ref": "#/definitions/date"
+        },
+        "locationOfDivorce": {
+          "$ref": "#/definitions/genericLocation"
+        },
+        "isMarriageAnnulledOrVoid": {
+          "$ref": "#/definitions/genericTrueFalse"
+        },
+        "explanationOfAnnullmentOrVoid": {
+          "type": "string",
+          "maxLength": 500,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+        }
+      }
+    },
+    "deceasedDependents": {
+      "type": "object",
+      "properties": {
+        "dependentInformation": {
+          "type": "object",
+          "properties": {
+            "deaths": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "dependentType": {
+                    "type": "string",
+                    "enum": [
+                      "SPOUSE",
+                      "DEPENDENT_PARENT",
+                      "CHILD"
+                    ],
+                    "enumNames": [
+                      "Spouse",
+                      "Dependent Parent",
+                      "Child"
+                    ]
+                  },
+                  "childStatus": {
+                    "type": "object",
+                    "properties": {
+                      "childUnder18": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "stepChild": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "adopted": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "disabled": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "childOver18InSchool": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependentAdditionalInformation": {
+        "type": "object",
+        "properties": {
+          "deaths": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "deceasedDateOfDeath": {
+                  "$ref": "#/definitions/date"
+                },
+                "deceasedLocationOfDeath": {
+                  "$ref": "#/definitions/genericLocation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reportChildMarriage": {
+      "type": "object",
+      "properties": {
+        "dateChildMarried": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "reportChildStoppedAttendingSchool": {
+      "type": "object",
+      "properties": {
+        "dateChildLeftSchool": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "reportStepchildNotInHousehold": {
+      "type": "object",
+      "properties": {
+        "stepchildren": {
+          "type": "object",
+          "properties": {
+            "stepChildren": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "first": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "middle": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "last": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "suffix": {
+                    "type": "string",
+                    "enum": [
+                      "Jr.",
+                      "Sr.",
+                      "II",
+                      "III",
+                      "IV"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "stepchildInformation": {
+        "type": "object",
+        "properties": {
+          "stepChildren": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "stillSupportingStepchild": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "stepchildLivingExpensesPaid": {
+                  "type": "string",
+                  "enum": [
+                    "More than half",
+                    "Half",
+                    "Less than half"
+                  ],
+                  "default": "More than half"
+                },
+                "whoDoesTheStepchildLiveWith": {
+                  "type": "object",
+                  "properties": {
+                    "first": {
+                      "$ref": "#/definitions/genericTextInput"
+                    },
+                    "middle": {
+                      "$ref": "#/definitions/genericTextInput"
+                    },
+                    "last": {
+                      "$ref": "#/definitions/genericTextInput"
+                    }
+                  }
+                },
+                "stepchildAddress": {
+                  "$ref": "#/definitions/addressSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "report674": {
+      "type": "object",
+      "properties": {
+        "studentNameAndSSN": {
+          "type": "object",
+          "properties": {
+            "view:674Information": {
+              "type": "object",
+              "properties": {}
+            },
+            "studentSSN": {
+              "$ref": "#/definitions/genericNumberAndDashInput"
+            },
+            "studentDOB": {
+              "$ref": "#/definitions/date"
+            }
+          }
+        },
+        "studentAddressMarriageTuition": {
+          "type": "object",
+          "properties": {
+            "studentAddress": {
+              "$ref": "#/definitions/addressSchema"
+            },
+            "studentWasMarried": {
+              "type": "boolean"
+            },
+            "marriageDate": {
+              "$ref": "#/definitions/date"
+            },
+            "tuitionIsPaidByGovAgency": {
+              "type": "boolean"
+            },
+            "agencyName": {
+              "$ref": "#/definitions/genericTextInput"
+            },
+            "datePaymentsBegan": {
+              "$ref": "#/definitions/date"
+            }
+          }
+        },
+        "studentSchoolAddress": {
+          "type": "object",
+          "properties": {
+            "schoolInformation": {
+              "type": "object",
+              "properties": {
+                "schoolName": {
+                  "$ref": "#/definitions/genericTextInput"
+                },
+                "trainingProgram": {
+                  "$ref": "#/definitions/genericTextInput"
+                },
+                "schoolAddress": {
+                  "$ref": "#/definitions/addressSchema"
+                }
+              }
+            }
+          }
+        },
+        "studentTermDates": {
+          "type": "object",
+          "properties": {
+            "termDates": {
+              "type": "object",
+              "properties": {
+                "officialSchoolStartDate": {
+                  "$ref": "#/definitions/date"
+                },
+                "expectedStudentStartDate": {
+                  "$ref": "#/definitions/date"
+                },
+                "expectedGraduationDate": {
+                  "$ref": "#/definitions/date"
+                }
+              }
+            },
+            "programInformation": {
+              "type": "object",
+              "properties": {
+                "studentIsEnrolledFullTime": {
+                  "type": "boolean"
+                },
+                "courseOfStudy": {
+                  "$ref": "#/definitions/genericTextInput"
+                },
+                "classesPerWeek": {
+                  "type": "number"
+                },
+                "hoursPerWeek": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "studentLastTerm": {
+          "type": "object",
+          "properties": {
+            "studentDidAttendSchoolLastTerm": {
+              "type": "boolean"
+            },
+            "lastTermSchoolInformation": {
+              "type": "object",
+              "properties": {
+                "schoolName": {
+                  "$ref": "#/definitions/genericTextInput"
+                },
+                "schoolAddress": {
+                  "$ref": "#/definitions/addressSchema"
+                },
+                "dateTermBegan": {
+                  "$ref": "#/definitions/date"
+                },
+                "dateTermEnded": {
+                  "$ref": "#/definitions/date"
+                },
+                "classesPerWeek": {
+                  "type": "number"
+                },
+                "hoursPerWeek": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "studentIncomeInformation": {
+          "type": "object",
+          "properties": {
+            "studentDoesEarnIncome": {
+              "type": "boolean"
+            },
+            "studentEarningsFromSchoolYear": {
+              "type": "object",
+              "properties": {
+                "earningsFromAllEmployment": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "annualSocialSecurityPayments": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "otherAnnuitiesIncome": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "allOtherIncome": {
+                  "$ref": "#/definitions/currencyInput"
+                }
+              }
+            },
+            "studentWillEarnIncomeNextYear": {
+              "type": "boolean"
+            },
+            "studentExpectedEarningsNextYear": {
+              "type": "object",
+              "properties": {
+                "earningsFromAllEmployment": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "annualSocialSecurityPayments": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "otherAnnuitiesIncome": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "allOtherIncome": {
+                  "$ref": "#/definitions/currencyInput"
+                }
+              }
+            }
+          }
+        },
+        "studentNetworthInformation": {
+          "type": "object",
+          "properties": {
+            "studentDoesHaveNetworth": {
+              "type": "boolean"
+            },
+            "networthInformation": {
+              "type": "object",
+              "properties": {
+                "savings": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "securities": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "realEstate": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "otherAssets": {
+                  "$ref": "#/definitions/currencyInput"
+                },
+                "remarks": {
+                  "type": "string",
+                  "maxLength": 500,
+                  "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
