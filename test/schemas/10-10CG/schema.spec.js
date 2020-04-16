@@ -6,8 +6,8 @@ import schema from '../../../src/schemas/10-10CG/schema';
 
 const testData = {
   plannedClinic: {
-    valid: ['405HK', '636', '501GJ', '358'],
-    invalid: ['random', '12string', '123RE'],
+    valid: ['636', '636A6', '740', '603'],
+    invalid: ['405HK', '436GA', '501GJ', '358', '123RE'],
   },
   lastTreatmentFacility: {
     valid: [
@@ -170,9 +170,10 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('email', ['secondaryTwoCaregiver.email']);
     schemaTestHelper.testValidAndInvalid('secondaryTwoCaregiver.vetRelationship', testData.vetRelationship);
 
-    it('"plannedClinic" should use the "vaFacilities" enum list', () => {
+    it('"plannedClinic" should use the "caregiverProgramFacilities" enum list', () => {
       expect(!!schema.properties.veteran.properties.plannedClinic.enum).to.be.true;
-      expect(schema.properties.veteran.properties.plannedClinic.enum.length > 1000).to.be.true;
+      expect(schema.properties.veteran.properties.plannedClinic.enum.length > 100).to.be.true;
+      expect(schema.properties.veteran.properties.plannedClinic.enum.length < 200).to.be.true;
     });
   });
 
@@ -193,7 +194,7 @@ describe('10-10CG json schema', () => {
           alternativePhoneNumber: '8887775544',
           email: 'veteranEmail@email.com',
           vaEnrolled: true,
-          plannedClinic: '405HK',
+          plannedClinic: '636',
           lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
         },
         primaryCaregiver: {
