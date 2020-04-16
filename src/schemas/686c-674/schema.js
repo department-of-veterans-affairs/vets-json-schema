@@ -3,11 +3,6 @@ import {
   states50AndDC, 
   suffixes,
 } from '../../common/constants.js';
-import _ from 'lodash';
-import schemaHelpers from '../../common/schema-helpers';
-
-import originalDefinitions from '../../common/definitions';
-const definitions = _.cloneDeep(originalDefinitions);
 
 // patterns
 const textOnlyPattern = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
