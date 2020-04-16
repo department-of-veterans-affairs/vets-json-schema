@@ -3,8 +3,11 @@ import {
   states50AndDC, 
   suffixes,
 } from '../../common/constants.js';
+import _ from 'lodash';
+import schemaHelpers from '../../common/schema-helpers';
 
-import { fullName } from '../../common/definitions';
+import originalDefinitions from '../../common/definitions';
+const definitions = _.cloneDeep(originalDefinitions);
 
 // patterns
 const textOnlyPattern = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
@@ -14,8 +17,6 @@ const datePattern =
 
 const phonePattern = '^[0-9]{10}$';
 const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
-
-
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -37,6 +38,33 @@ const schema = {
           pattern: textOnlyPattern,
         },
       },
+    },
+    fullName: {
+      type: 'object',
+      properties: {
+        first: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 30,
+          pattern: textOnlyPattern,
+        },
+        middle: {
+          type: 'string',
+          maxLength: 20,
+          pattern: textOnlyPattern,
+        },
+        last: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 30,
+          pattern: textOnlyPattern,
+        },
+        suffix: {
+          type: 'string',
+          enum: suffixes,
+        },
+      },
+      required: ['first', 'last'],
     },
     genericTextInput: {
       type: 'string',
@@ -365,7 +393,7 @@ const schema = {
         spouseNameInformation: {
           type: 'object',
           properties: {
-            spouseFullName: fullName,
+            spouseFullName: '#/definitions/fullName',
             spouseSSN: {
               $ref: '#/definitions/genericNumberAndDashInput',
             },
@@ -435,7 +463,7 @@ const schema = {
             items: {
               type: 'object',
               properties: {
-                formerSpouseName: fullName,
+                formerSpouseName: '#/definitions/fullName',
               },
             },
           },
@@ -487,7 +515,7 @@ const schema = {
             items: {
               type: 'object',
               properties: {
-                formerSpouseName: fullName,
+                formerSpouseName: '#/definitions/fullName',
               },
             },
           },
@@ -545,7 +573,7 @@ const schema = {
     reportDivorce: {
       type: 'object',
       properties: {
-        formerSpouseName: fullName,
+        formerSpouseName: '#/definitions/fullName',
         dateOfDivorce: {
           $ref: '#/definitions/date',
         },
@@ -575,7 +603,7 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  fullName: fullName,
+                  fullName: '#/definitions/fullName',
                   dependentType: {
                     type: 'string',
                     enum: ['SPOUSE', 'DEPENDENT_PARENT', 'CHILD'],
@@ -633,7 +661,7 @@ const schema = {
     reportChildMarriage: {
       type: 'object',
       properties: {
-        marriedChildName: fullName,
+        marriedChildName: '#/definitions/fullName',
         dateChildMarried: {
           $ref: '#/definitions/date',
         },
@@ -643,7 +671,7 @@ const schema = {
     reportChildStoppedAttendingSchool: {
       type: 'object',
       properties: {
-        childNoLongerAtSchoolName: fullName,
+        childNoLongerAtSchoolName: '#/definitions/fullName',
         dateChildLeftSchool: {
           $ref: '#/definitions/date',
         },
@@ -734,7 +762,7 @@ const schema = {
               type: 'object',
               properties: {},
             },
-            studentFullName: fullName,
+            studentFullName: '#/definitions/fullName',
             studentSSN: {
               $ref: '#/definitions/genericNumberAndDashInput',
             },

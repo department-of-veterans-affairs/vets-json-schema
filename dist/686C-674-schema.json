@@ -22,6 +22,42 @@
         }
       }
     },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 20,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
     "genericTextInput": {
       "type": "string",
       "maxLength": 50
@@ -1052,6 +1088,7 @@
         "spouseNameInformation": {
           "type": "object",
           "properties": {
+            "spouseFullName": "#/definitions/fullName",
             "spouseSSN": {
               "$ref": "#/definitions/genericNumberAndDashInput"
             },
@@ -1129,7 +1166,9 @@
             "type": "array",
             "items": {
               "type": "object",
-              "properties": {}
+              "properties": {
+                "formerSpouseName": "#/definitions/fullName"
+              }
             }
           }
         }
@@ -1187,7 +1226,9 @@
             "type": "array",
             "items": {
               "type": "object",
-              "properties": {}
+              "properties": {
+                "formerSpouseName": "#/definitions/fullName"
+              }
             }
           }
         }
@@ -1251,6 +1292,7 @@
     "reportDivorce": {
       "type": "object",
       "properties": {
+        "formerSpouseName": "#/definitions/fullName",
         "dateOfDivorce": {
           "$ref": "#/definitions/date"
         },
@@ -1279,6 +1321,7 @@
               "items": {
                 "type": "object",
                 "properties": {
+                  "fullName": "#/definitions/fullName",
                   "dependentType": {
                     "type": "string",
                     "enum": [
@@ -1342,6 +1385,7 @@
     "reportChildMarriage": {
       "type": "object",
       "properties": {
+        "marriedChildName": "#/definitions/fullName",
         "dateChildMarried": {
           "$ref": "#/definitions/date"
         }
@@ -1350,6 +1394,7 @@
     "reportChildStoppedAttendingSchool": {
       "type": "object",
       "properties": {
+        "childNoLongerAtSchoolName": "#/definitions/fullName",
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
         }
@@ -1447,6 +1492,7 @@
               "type": "object",
               "properties": {}
             },
+            "studentFullName": "#/definitions/fullName",
             "studentSSN": {
               "$ref": "#/definitions/genericNumberAndDashInput"
             },
