@@ -2,7 +2,7 @@ import {
   countries, 
   states50AndDC, 
   suffixes,
-} from '../../common/constants.js';
+} from '../../common/constants';
 
 // patterns
 const textOnlyPattern = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
