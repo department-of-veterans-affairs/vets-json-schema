@@ -301,6 +301,10 @@
       "enum": [
         true
       ]
+    },
+    "ssnLastFour": {
+      "type": "string",
+      "pattern": "^(?!0000)[0-9]{4}$"
     }
   },
   "properties": {
@@ -318,6 +322,9 @@
     },
     "temporaryAddress": {
       "$ref": "#/definitions/address"
+    },
+    "ssnLastFour": {
+      "$ref": "#/definitions/ssnLastFour"
     },
     "gender": {
       "$ref": "#/definitions/gender"
