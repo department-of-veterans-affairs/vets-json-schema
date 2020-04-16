@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import vaMedicalFacilities from './va-medical-facilities';
+import caregiverProgramFacilities from './caregiver-program-facilities';
 
 export const countries = [
   { value: 'USA', label: 'United States' },
@@ -3183,6 +3184,7 @@ module.exports = {
   months,
   days,
   vaMedicalFacilities,
+  caregiverProgramFacilities,
   dependentRelationships,
   yesNo,
   usaStates,
