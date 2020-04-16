@@ -127,7 +127,6 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('ssn', ['veteran.ssnOrTin']);
     sharedTests.runTest('date', ['veteran.dateOfBirth']);
     sharedTests.runTest('gender', ['veteran.gender']);
-    schemaTestHelper.testValidAndInvalid('veteran.vaEnrolled', testData.boolean);
     schemaTestHelper.testValidAndInvalid('veteran.plannedClinic', testData.plannedClinic);
     schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacility', testData.lastTreatmentFacility);
     sharedTests.runTest('address', ['veteran.address']);
@@ -193,7 +192,6 @@ describe('10-10CG json schema', () => {
           primaryPhoneNumber: '8887775544',
           alternativePhoneNumber: '8887775544',
           email: 'veteranEmail@email.com',
-          vaEnrolled: true,
           plannedClinic: '636',
           lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
         },

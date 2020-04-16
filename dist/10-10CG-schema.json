@@ -329,9 +329,6 @@
         "email": {
           "$ref": "#/definitions/email"
         },
-        "vaEnrolled": {
-          "type": "boolean"
-        },
         "plannedClinic": {
           "type": "string",
           "enum": [

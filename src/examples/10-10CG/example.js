@@ -8,7 +8,6 @@ const example = {
     primaryPhoneNumber: '8887775544',
     alternativePhoneNumber: '8887775544',
     email: 'veteranEmail@email.com',
-    vaEnrolled: true,
     plannedClinic: '740',
     lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' }
   },

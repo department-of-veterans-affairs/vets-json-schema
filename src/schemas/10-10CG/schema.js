@@ -65,7 +65,6 @@ const schema = {
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
-        vaEnrolled: buildDataType('boolean'),
         plannedClinic: { type: 'string', enum: caregiverProgramFacilityIds },
         lastTreatmentFacility: {
           type: 'object',
