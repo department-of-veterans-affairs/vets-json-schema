@@ -388,7 +388,9 @@ const schema = {
         spouseNameInformation: {
           type: 'object',
           properties: {
-            spouseFullName: '#/definitions/fullName',
+            spouseFullName: {
+              $ref: '#/definitions/fullName'
+            },
             spouseSSN: {
               $ref: '#/definitions/genericNumberAndDashInput',
             },
@@ -458,7 +460,9 @@ const schema = {
             items: {
               type: 'object',
               properties: {
-                formerSpouseName: '#/definitions/fullName',
+                formerSpouseName: {
+                  $ref: '#/definitions/fullName'
+                },
               },
             },
           },
@@ -510,7 +514,9 @@ const schema = {
             items: {
               type: 'object',
               properties: {
-                formerSpouseName: '#/definitions/fullName',
+                formerSpouseName: {
+                  $ref: '#/definitions/fullName'
+                },
               },
             },
           },
@@ -568,7 +574,9 @@ const schema = {
     reportDivorce: {
       type: 'object',
       properties: {
-        formerSpouseName: '#/definitions/fullName',
+        formerSpouseName: {
+          $ref: '#/definitions/fullName'
+        },
         dateOfDivorce: {
           $ref: '#/definitions/date',
         },
@@ -598,7 +606,9 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  fullName: '#/definitions/fullName',
+                  fullName: {
+                    $ref: '#/definitions/fullName'
+                  },
                   dependentType: {
                     type: 'string',
                     enum: ['SPOUSE', 'DEPENDENT_PARENT', 'CHILD'],
@@ -656,7 +666,9 @@ const schema = {
     reportChildMarriage: {
       type: 'object',
       properties: {
-        marriedChildName: '#/definitions/fullName',
+        marriedChildName: {
+          $ref: '#/definitions/fullName'
+        },
         dateChildMarried: {
           $ref: '#/definitions/date',
         },
@@ -666,7 +678,9 @@ const schema = {
     reportChildStoppedAttendingSchool: {
       type: 'object',
       properties: {
-        childNoLongerAtSchoolName: '#/definitions/fullName',
+        childNoLongerAtSchoolName: {
+          $ref: '#/definitions/fullName'
+        },
         dateChildLeftSchool: {
           $ref: '#/definitions/date',
         },
@@ -757,7 +771,9 @@ const schema = {
               type: 'object',
               properties: {},
             },
-            studentFullName: '#/definitions/fullName',
+            studentFullName: {
+              $ref: '#/definitions/fullName'
+            },
             studentSSN: {
               $ref: '#/definitions/genericNumberAndDashInput',
             },
