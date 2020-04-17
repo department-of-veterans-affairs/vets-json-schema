@@ -237,7 +237,8 @@ const schema = {
             },
             ethnicity: {
               type: 'string',
-              enum: ['American Indian or Alaska Native', 'Black or African American', 'Hispanic or Latino', 'Native Hawaiian or Pacific Islander', 'White']
+              enumNames: ['American Indian or Alaska Native', 'Black or African American', 'Hispanic or Latino', 'Native Hawaiian or Pacific Islander', 'White'],
+              enum: ['americanIndian', 'blackOrAfrican', 'hispanicOrLatino', 'nativeHawaiianOrIslander', 'white'],
             },
             isDeceased: {
               type: 'string',
