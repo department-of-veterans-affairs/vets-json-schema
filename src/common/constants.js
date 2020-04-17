@@ -1194,7 +1194,7 @@ const salesforceCountries = [
 
 const maritalStatuses = ['Married', 'Never Married', 'Separated', 'Widowed', 'Divorced'];
 
-export const MARRIAGE_TYPES = {
+const marriageTypes = {
   ceremonial: 'CEREMONIAL',
   commonLaw: 'COMMON-LAW',
   tribal: 'TRIBAL',
@@ -3178,24 +3178,25 @@ const documentTypes526 = [
 ];
 
 module.exports = {
-  countries,
-  pciuCountries,
-  maritalStatuses,
   branchesServed,
+  caregiverProgramFacilities,
+  countries,
+  days,
   dischargeTypes,
-  states,
+  documentTypes526,
+  genders,
+  maritalStatuses,
+  marriageTypes,
+  months,
+  pciuCountries,
   pciuStates,
   salesforceStates,
   salesforceCountries,
+  states,
+  states50AndDC,
   suffixes,
-  genders,
-  months,
-  days,
+  usaStates,
   vaMedicalFacilities,
-  caregiverProgramFacilities,
   dependentRelationships,
   yesNo,
-  usaStates,
-  documentTypes526,
-  states50AndDC,
 };
