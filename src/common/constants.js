@@ -1194,6 +1194,14 @@ const salesforceCountries = [
 
 const maritalStatuses = ['Married', 'Never Married', 'Separated', 'Widowed', 'Divorced'];
 
+export const MARRIAGE_TYPES = {
+  ceremonial: 'CEREMONIAL',
+  commonLaw: 'COMMON-LAW',
+  tribal: 'TRIBAL',
+  proxy: 'PROXY',
+  other: 'OTHER',
+};
+
 const branchesServed = [
   { value: 'air force', label: 'Air Force' },
   { value: 'army', label: 'Army' },
