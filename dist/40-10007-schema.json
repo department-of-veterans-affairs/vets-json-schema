@@ -433,6 +433,7 @@
           "type": "object",
           "required": [
             "currentName",
+            "ethnicity",
             "gender",
             "isDeceased",
             "maritalStatus",
@@ -494,6 +495,16 @@
               "enum": [
                 "Female",
                 "Male"
+              ]
+            },
+            "ethnicity": {
+              "type": "string",
+              "enum": [
+                "americanIndian",
+                "blackOrAfrican",
+                "hispanicOrLatino",
+                "nativeHawaiianOrIslander",
+                "white"
               ]
             },
             "isDeceased": {
