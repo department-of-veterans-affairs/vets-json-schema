@@ -1,5 +1,5 @@
 import definitions from '../../common/definitions';
-import { vaMedicalFacilities } from '../../common/constants';
+import { caregiverProgramFacilities } from '../../common/constants';
 
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
@@ -17,10 +17,10 @@ const vetRelationships = [
   'Friend/Neighbor',
 ];
 
-const vaClinicFacilityIds = Object.keys(vaMedicalFacilities)
+const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities)
   .reduce((acc, stateId) => {
-    const stateFacilities = vaMedicalFacilities[stateId];
-    const facilityIds = stateFacilities.map(facility => facility.value);
+    const stateFacilities = caregiverProgramFacilities[stateId];
+    const facilityIds = stateFacilities.map(facility => facility.code);
 
     Array.prototype.push.apply(acc, facilityIds);
 
@@ -65,8 +65,7 @@ const schema = {
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
-        vaEnrolled: buildDataType('boolean'),
-        plannedClinic: { type: 'string', enum: vaClinicFacilityIds },
+        plannedClinic: { type: 'string', enum: caregiverProgramFacilityIds },
         lastTreatmentFacility: {
           type: 'object',
           additionalProperties: false,

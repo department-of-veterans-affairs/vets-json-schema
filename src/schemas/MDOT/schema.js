@@ -1,7 +1,7 @@
 import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const { fullName, email, gender, date, address } = commonDefinitions;
+const { fullName, ssnLastFour, email, gender, date, address } = commonDefinitions;
 
 const supplies = {
   type: 'array',
@@ -62,6 +62,7 @@ const schema = {
   ['fullName', 'fullName'],
   ['address', 'permanentAddress'],
   ['address', 'temporaryAddress'],
+  ['ssnLastFour', 'ssnLastFour'],
   ['gender'],
   ['date', 'dateOfBirth'],
   ['supplies']
