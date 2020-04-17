@@ -210,6 +210,7 @@ const schema = {
           type: 'object',
           required: [
             'currentName',
+            'ethnicity',
             'gender',
             'isDeceased',
             'maritalStatus',
@@ -233,6 +234,10 @@ const schema = {
             gender: {
               type: 'string',
               enum: ['Female', 'Male'],
+            },
+            ethnicity: {
+              type: 'string',
+              enum: ['americanIndian', 'blackOrAfrican', 'hispanicOrLatino', 'nativeHawaiianOrIslander', 'white'],
             },
             isDeceased: {
               type: 'string',
