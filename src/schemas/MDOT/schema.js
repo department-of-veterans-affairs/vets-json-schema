@@ -1,7 +1,13 @@
 import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
+import _ from 'lodash';
 
 const { fullName, ssnLastFour, email, gender, date, address } = commonDefinitions;
+
+const addressWithIsMilitaryBase = _.cloneDeep(address);
+addressWithIsMilitaryBase.properties.isMilitaryBase = {
+  type: 'boolean'
+};
 
 const supplies = {
   type: 'array',
@@ -34,6 +40,9 @@ const supplies = {
       },
       size: {
         type: 'string'
+      },
+      prescribedDate: {
+        $ref: '#/definitions/date'
       }
     }
   }
@@ -49,7 +58,7 @@ const schema = {
     email,
     gender,
     date,
-    address,
+    addressWithIsMilitaryBase,
     supplies: supplies
   },
   properties: {},
@@ -60,8 +69,8 @@ const schema = {
   ['privacyAgreementAccepted'],
   ['email'],
   ['fullName', 'fullName'],
-  ['address', 'permanentAddress'],
-  ['address', 'temporaryAddress'],
+  ['addressWithIsMilitaryBase', 'permanentAddress'],
+  ['addressWithIsMilitaryBase', 'temporaryAddress'],
   ['ssnLastFour', 'ssnLastFour'],
   ['gender'],
   ['date', 'dateOfBirth'],
