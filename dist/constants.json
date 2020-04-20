@@ -2197,6 +2197,13 @@
     "Widowed",
     "Divorced"
   ],
+  "marriageTypes": {
+    "ceremonial": "CEREMONIAL",
+    "commonLaw": "COMMON-LAW",
+    "tribal": "TRIBAL",
+    "proxy": "PROXY",
+    "other": "OTHER"
+  },
   "militaryCities": [
     {
       "label": "Army Post Office",

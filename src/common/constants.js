@@ -18,7 +18,7 @@ import {
 
 const maritalStatuses = ['Married', 'Never Married', 'Separated', 'Widowed', 'Divorced'];
 
-export const MARRIAGE_TYPES = {
+const marriageTypes = {
   ceremonial: 'CEREMONIAL',
   commonLaw: 'COMMON-LAW',
   tribal: 'TRIBAL',
@@ -251,6 +251,7 @@ module.exports = {
   documentTypes526,
   genders,
   maritalStatuses,
+  marriageTypes,
   militaryCities,
   militaryStates,
   months,
