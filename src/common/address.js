@@ -384,7 +384,9 @@ const states = {
     .sort((stateA, stateB) => stateA.label.localeCompare(stateB.label)),
 };
 
-const usaStates = Object.values(states.USA);
+const usaStates = states.USA.map(stateData => {
+  return stateData.value;
+});
 
 const salesforceCountries = [
   {
