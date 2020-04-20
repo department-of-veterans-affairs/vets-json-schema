@@ -46,15 +46,6 @@ const schema = {
       minLength: 4,
       pattern: numberAndDashPattern,
     },
-    genericUSAStateDropdown: {
-      type: 'string',
-      enum: states50AndDC.map(state => state.value),
-      default: states50AndDC.map(state => state.label),
-    },
-    countryDropdown: {
-      type: 'string',
-      enum: countries.map(country => country.label),
-    },
     currencyInput: {
       type: 'string',
       pattern: currencyAmountPattern,
