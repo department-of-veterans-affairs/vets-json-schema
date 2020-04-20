@@ -26,16 +26,6 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
         }
       },
       "required": [
@@ -73,12 +63,6 @@
       "oneOf": [
         {
           "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "CAN"
-              ]
-            },
             "state": {
               "type": "string",
               "enum": [
@@ -105,12 +89,6 @@
         },
         {
           "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "MEX"
-              ]
-            },
             "state": {
               "type": "string",
               "enum": [
@@ -156,12 +134,6 @@
         },
         {
           "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "USA"
-              ]
-            },
             "state": {
               "type": "string",
               "enum": [
@@ -241,8 +213,6 @@
               "not": {
                 "type": "string",
                 "enum": [
-                  "CAN",
-                  "MEX",
                   "USA"
                 ]
               }
@@ -288,7 +258,8 @@
         "Sister",
         "Significant Other",
         "Relative - Other",
-        "Friend/Neighbor"
+        "Friend/Neighbor",
+        "Grandchild"
       ]
     }
   },

@@ -1,5 +1,6 @@
 import definitions from '../../common/definitions';
 import { caregiverProgramFacilities } from '../../common/constants';
+import { fullName, address } from './definitions';
 
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
@@ -15,17 +16,17 @@ const vetRelationships = [
   'Significant Other',
   'Relative - Other',
   'Friend/Neighbor',
+  'Grandchild',
 ];
 
-const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities)
-  .reduce((acc, stateId) => {
-    const stateFacilities = caregiverProgramFacilities[stateId];
-    const facilityIds = stateFacilities.map(facility => facility.code);
+const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities).reduce((acc, stateId) => {
+  const stateFacilities = caregiverProgramFacilities[stateId];
+  const facilityIds = stateFacilities.map(facility => facility.code);
 
-    Array.prototype.push.apply(acc, facilityIds);
+  Array.prototype.push.apply(acc, facilityIds);
 
-    return acc;
-  }, []);
+  return acc;
+}, []);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -35,27 +36,20 @@ const schema = {
   required: ['veteran', 'primaryCaregiver'],
   definitions: {
     tin: buildDataType('string'),
-    fullName: definitions.fullName,
+    fullName,
     ssn: definitions.ssn,
     date: definitions.date,
     gender: definitions.gender,
     phone: definitions.phone,
     email: definitions.email,
-    address: definitions.address,
+    address,
     vetRelationship: { type: 'string', enum: vetRelationships },
   },
   properties: {
     veteran: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'ssnOrTin',
-        'dateOfBirth',
-        'gender',
-        'address',
-        'plannedClinic'
-      ],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'plannedClinic'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -74,7 +68,7 @@ const schema = {
             name: buildDataType('string'),
             type: {
               type: 'string',
-              enum: ['hospital', 'clinic']
+              enum: ['hospital', 'clinic'],
             },
           },
         },
@@ -115,14 +109,7 @@ const schema = {
     secondaryOneCaregiver: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'ssnOrTin',
-        'dateOfBirth',
-        'gender',
-        'address',
-        'vetRelationship'
-      ],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -138,14 +125,7 @@ const schema = {
     secondaryTwoCaregiver: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'ssnOrTin',
-        'dateOfBirth',
-        'gender',
-        'address',
-        'vetRelationship'
-      ],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
