@@ -179,7 +179,7 @@ describe('10-10CG json schema', () => {
           ssnOrTin: '789787893',
           dateOfBirth: '1978-01-15',
           gender: 'M',
-          address: { street: '111 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+          address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
           primaryPhoneNumber: '8887775544',
           alternativePhoneNumber: '8887775544',
           email: 'veteranEmail@email.com',
@@ -191,7 +191,7 @@ describe('10-10CG json schema', () => {
           ssnOrTin: '202901412',
           dateOfBirth: '1978-07-03',
           gender: 'F',
-          address: { street: '111 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+          address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
           primaryPhoneNumber: '8887775544',
           alternativePhoneNumber: '8887775544',
           email: 'primaryCaregiverEmail@email.com',
@@ -208,7 +208,7 @@ describe('10-10CG json schema', () => {
         ssnOrTin: '389484893',
         dateOfBirth: '1980-01-01',
         gender: 'F',
-        address: { street: '123 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         vetRelationship: 'Friend/Neighbor',
       };
 
@@ -217,7 +217,7 @@ describe('10-10CG json schema', () => {
         ssnOrTin: '558853340',
         dateOfBirth: '1980-01-01',
         gender: 'M',
-        address: { street: '123 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         vetRelationship: 'Friend/Neighbor',
       };
     });
