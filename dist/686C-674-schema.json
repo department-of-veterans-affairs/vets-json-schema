@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)",
+  "title": "SUPPLEMENTAL CLAIM FOR COMPENSATION (21-686C & 21-674)",
   "type": "object",
   "definitions": {
     "genericLocation": {
@@ -862,7 +862,7 @@
             "type": "boolean",
             "default": false
           },
-          "reportChild18orOlderIsNotAttendingSchool": {
+          "reportChild18OrOlderIsNotAttendingSchool": {
             "type": "boolean",
             "default": false
           },
@@ -1088,7 +1088,9 @@
         "spouseNameInformation": {
           "type": "object",
           "properties": {
-            "spouseFullName": "#/definitions/fullName",
+            "spouseFullName": {
+              "$ref": "#/definitions/fullName"
+            },
             "spouseSSN": {
               "$ref": "#/definitions/genericNumberAndDashInput"
             },
@@ -1167,7 +1169,9 @@
             "items": {
               "type": "object",
               "properties": {
-                "formerSpouseName": "#/definitions/fullName"
+                "formerSpouseName": {
+                  "$ref": "#/definitions/fullName"
+                }
               }
             }
           }
@@ -1227,7 +1231,9 @@
             "items": {
               "type": "object",
               "properties": {
-                "formerSpouseName": "#/definitions/fullName"
+                "formerSpouseName": {
+                  "$ref": "#/definitions/fullName"
+                }
               }
             }
           }
@@ -1292,7 +1298,9 @@
     "reportDivorce": {
       "type": "object",
       "properties": {
-        "formerSpouseName": "#/definitions/fullName",
+        "formerSpouseName": {
+          "$ref": "#/definitions/fullName"
+        },
         "dateOfDivorce": {
           "$ref": "#/definitions/date"
         },
@@ -1321,7 +1329,9 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "fullName": "#/definitions/fullName",
+                  "fullName": {
+                    "$ref": "#/definitions/fullName"
+                  },
                   "dependentType": {
                     "type": "string",
                     "enum": [
@@ -1385,7 +1395,9 @@
     "reportChildMarriage": {
       "type": "object",
       "properties": {
-        "marriedChildName": "#/definitions/fullName",
+        "marriedChildName": {
+          "$ref": "#/definitions/fullName"
+        },
         "dateChildMarried": {
           "$ref": "#/definitions/date"
         }
@@ -1394,7 +1406,9 @@
     "reportChildStoppedAttendingSchool": {
       "type": "object",
       "properties": {
-        "childNoLongerAtSchoolName": "#/definitions/fullName",
+        "childNoLongerAtSchoolName": {
+          "$ref": "#/definitions/fullName"
+        },
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
         }
@@ -1492,7 +1506,9 @@
               "type": "object",
               "properties": {}
             },
-            "studentFullName": "#/definitions/fullName",
+            "studentFullName": {
+              "$ref": "#/definitions/fullName"
+            },
             "studentSSN": {
               "$ref": "#/definitions/genericNumberAndDashInput"
             },
