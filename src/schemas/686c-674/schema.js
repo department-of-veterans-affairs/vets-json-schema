@@ -19,7 +19,6 @@ const schema = {
   definitions: merge(definitions, {
     genericLocation: {
       type: 'object',
-      required: ['city', 'state'],
       properties: {
         state: {
           type: 'string',
@@ -150,18 +149,18 @@ const schema = {
             },
           },
         },
-      },
-      veteranAddress: {
-        type: 'object',
-        properties: {
-          veteranAddress: {
-            $ref: '#/definitions/addressSchema',
-          },
-          phoneNumber: {
-            $ref: '#/definitions/phone',
-          },
-          emailAddress: {
-            $ref: '#/definitions/email',
+        veteranAddress: {
+          type: 'object',
+          properties: {
+            veteranAddress: {
+              $ref: '#/definitions/addressSchema',
+            },
+            phoneNumber: {
+              $ref: '#/definitions/phone',
+            },
+            emailAddress: {
+              $ref: '#/definitions/email',
+            },
           },
         },
       },
@@ -193,71 +192,62 @@ const schema = {
             },
           },
         },
-      },
-
-      addChildPlaceOfBirth: {
-        type: 'object',
-        properties: {
-          childrenToAdd: {
-            type: 'array',
-            minItems: 1,
-            items: {
-              type: 'object',
-              properties: {
-                childPlaceOfBirth: {
-                  type: 'object',
-                  properties: {
-                    state: {
-                      $ref: '#/definitions/genericTextInput',
-                    },
-                    city: {
-                      $ref: '#/definitions/genericTextInput',
+        addChildPlaceOfBirth: {
+          type: 'object',
+          properties: {
+            childrenToAdd: {
+              type: 'array',
+              minItems: 1,
+              items: {
+                type: 'object',
+                properties: {
+                  childPlaceOfBirth: {
+                    $ref: '#/definitions/genericLocation',
+                  },
+                  childStatus: {
+                    type: 'object',
+                    properties: {
+                      biological: {
+                        $ref: '#/definitions/genericTrueFalse',
+                      },
+                      adopted: {
+                        $ref: '#/definitions/genericTrueFalse',
+                      },
+                      notCapable: {
+                        $ref: '#/definitions/genericTrueFalse',
+                      },
+                      stepchild: {
+                        $ref: '#/definitions/genericTrueFalse',
+                      },
+                      dateBecameDependent: {
+                        $ref: '#/definitions/date',
+                      },
                     },
                   },
-                },
-                childStatus: {
-                  type: 'object',
-                  properties: {
-                    biological: {
-                      $ref: '#/definitions/genericTrueFalse',
-                    },
-                    adopted: {
-                      $ref: '#/definitions/genericTrueFalse',
-                    },
-                    notCapable: {
-                      $ref: '#/definitions/genericTrueFalse',
-                    },
-                    stepchild: {
-                      $ref: '#/definitions/genericTrueFalse',
-                    },
-                    dateBecameDependent: {
-                      $ref: '#/definitions/date',
-                    },
+                  'view:childStatusInformation': {
+                    type: 'object',
+                    properties: {},
                   },
-                },
-                'view:childStatusInformation': {
-                  type: 'object',
-                  properties: {},
-                },
-                childPreviouslyMarried: {
-                  type: 'string',
-                  enum: ['Yes', 'No'],
-                  default: 'No',
-                },
+                  childPreviouslyMarried: {
+                    type: 'string',
+                    enum: ['Yes', 'No'],
+                    default: 'No',
+                  },
 
-                childPreviousMarriageDetails: {
-                  type: 'object',
-                  properties: {
-                    dateMarriageEnded: {
-                      $ref: '#/definitions/date',
-                    },
-                    reasonMarriageEnded: {
-                      type: 'string',
-                      enum: ['Divorce', 'Death', 'Annulment', 'Other'],
-                      default: 'Divorce',
-                    },
-                    otherReasonMarriageEnded: {
-                      $ref: '#/definitions/genericTextInput',
+                  childPreviousMarriageDetails: {
+                    type: 'object',
+                    properties: {
+                      dateMarriageEnded: {
+                        $ref: '#/definitions/date',
+                      },
+                      reasonMarriageEnded: {
+                        type: 'string',
+                        enum: ['Divorce', 'Death', 'Annulment', 'Other'],
+                        default: 'Divorce',
+                      },
+                      otherReasonMarriageEnded: {
+                        $ref: '#/definitions/genericTextInput',
+                      },
                     },
                   },
                 },
@@ -265,38 +255,36 @@ const schema = {
             },
           },
         },
-      },
-
-      addChildAdditionalInformation: {
-        type: 'object',
-        properties: {
-          childrenToAdd: {
-            type: 'array',
-            minItems: 1,
-            items: {
-              type: 'object',
-              properties: {
-                doesChildLiveWithYou: {
-                  $ref: '#/definitions/genericTrueFalse',
-                },
-                childAddressInfo: {
-                  $ref: '#/definitions/addressSchema',
+        addChildAdditionalInformation: {
+          type: 'object',
+          properties: {
+            childrenToAdd: {
+              type: 'array',
+              minItems: 1,
+              items: {
+                type: 'object',
+                properties: {
+                  doesChildLiveWithYou: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
+                  childAddressInfo: {
+                    $ref: '#/definitions/addressSchema',
+                  },
                 },
               },
             },
           },
         },
-      },
-
-      childAdditionalEvidence: {
-        type: 'object',
-        properties: {
-          'view:additionalEvidenceDescription': {
-            type: 'object',
-            properties: {},
-          },
-          supportingDocuments: {
-            $ref: '#/definitions/files',
+        childAdditionalEvidence: {
+          type: 'object',
+          properties: {
+            'view:additionalEvidenceDescription': {
+              type: 'object',
+              properties: {},
+            },
+            supportingDocuments: {
+              $ref: '#/definitions/files',
+            },
           },
         },
       },
@@ -328,164 +316,157 @@ const schema = {
             },
           },
         },
-      },
-
-      currentMarriageInformation: {
-        type: 'object',
-        properties: {
-          dateOfMarriage: {
-            $ref: '#/definitions/date',
-          },
-          locationOfMarriage: {
-            $ref: '#/definitions/genericLocation',
-          },
-          marriageType: {
-            type: 'string',
-            enum: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
-            enumNames: ['Ceremonial', 'Common-law', 'Tribal', 'Proxy', 'Other'],
-          },
-          marriageTypeOther: {
-            $ref: '#/definitions/genericTextInput',
-          },
-          'view:marriageTypeInformation': {
-            type: 'object',
-            properties: {},
-          },
-        },
-      },
-
-      doesLiveWithSpouse: {
-        type: 'object',
-        properties: {
-          spouseDoesLiveWithVeteran: {
-            $ref: '#/definitions/genericTrueFalse',
-          },
-          currentSpouseReasonForSeparation: {
-            $ref: '#/definitions/genericTextInput',
-          },
-          currentSpouseAddress: {
-            $ref: '#/definitions/addressSchema',
-          },
-        },
-      },
-
-      spouseMarriageHistory: {
-        type: 'object',
-        properties: {
-          spouseWasMarriedBefore: {
-            $ref: '#/definitions/genericTrueFalse',
-          },
-          spouseMarriageHistory: {
-            type: 'array',
-            items: {
+        currentMarriageInformation: {
+          type: 'object',
+          properties: {
+            dateOfMarriage: {
+              $ref: '#/definitions/date',
+            },
+            locationOfMarriage: {
+              $ref: '#/definitions/genericLocation',
+            },
+            marriageType: {
+              type: 'string',
+              enum: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
+              enumNames: ['Ceremonial', 'Common-law', 'Tribal', 'Proxy', 'Other'],
+            },
+            marriageTypeOther: {
+              $ref: '#/definitions/genericTextInput',
+            },
+            'view:marriageTypeInformation': {
               type: 'object',
-              properties: {
-                formerSpouseName: {
-                  $ref: '#/definitions/fullName',
+              properties: {},
+            },
+          },
+        },
+        doesLiveWithSpouse: {
+          type: 'object',
+          properties: {
+            spouseDoesLiveWithVeteran: {
+              $ref: '#/definitions/genericTrueFalse',
+            },
+            currentSpouseReasonForSeparation: {
+              $ref: '#/definitions/genericTextInput',
+            },
+            currentSpouseAddress: {
+              $ref: '#/definitions/addressSchema',
+            },
+          },
+        },
+        spouseMarriageHistory: {
+          type: 'object',
+          properties: {
+            spouseWasMarriedBefore: {
+              $ref: '#/definitions/genericTrueFalse',
+            },
+            spouseMarriageHistory: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  formerSpouseName: {
+                    $ref: '#/definitions/fullName',
+                  },
                 },
               },
             },
           },
         },
-      },
-
-      spouseMarriageHistoryDetails: {
-        type: 'object',
-        properties: {
-          spouseMarriageHistory: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                marriageStartDate: {
-                  $ref: '#/definitions/date',
-                },
-                marriageStartLocation: {
-                  $ref: '#/definitions/genericLocation',
-                },
-                reasonMarriageEnded: {
-                  type: 'string',
-                  enum: ['DIVORCE', 'DEATH', 'ANNULMENT', 'OTHER'],
-                  enumNames: ['Divorce', 'Death', 'Annulment', 'Other'],
-                },
-                reasonMarriageEndedOther: {
-                  $ref: '#/definitions/genericTextInput',
-                },
-                marriageEndDate: {
-                  $ref: '#/definitions/date',
-                },
-                marriageEndLocation: {
-                  $ref: '#/definitions/genericLocation',
-                },
-              },
-            },
-          },
-        },
-      },
-
-      veteranMarriageHistory: {
-        type: 'object',
-        properties: {
-          veteranWasMarriedBefore: {
-            $ref: '#/definitions/genericTrueFalse',
-          },
-          veteranMarriageHistory: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                formerSpouseName: {
-                  $ref: '#/definitions/fullName',
+        spouseMarriageHistoryDetails: {
+          type: 'object',
+          properties: {
+            spouseMarriageHistory: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  marriageStartDate: {
+                    $ref: '#/definitions/date',
+                  },
+                  marriageStartLocation: {
+                    $ref: '#/definitions/genericLocation',
+                  },
+                  reasonMarriageEnded: {
+                    type: 'string',
+                    enum: ['DIVORCE', 'DEATH', 'ANNULMENT', 'OTHER'],
+                    enumNames: ['Divorce', 'Death', 'Annulment', 'Other'],
+                  },
+                  reasonMarriageEndedOther: {
+                    $ref: '#/definitions/genericTextInput',
+                  },
+                  marriageEndDate: {
+                    $ref: '#/definitions/date',
+                  },
+                  marriageEndLocation: {
+                    $ref: '#/definitions/genericLocation',
+                  },
                 },
               },
             },
           },
         },
-      },
-
-      veteranMarriageHistoryDetails: {
-        type: 'object',
-        properties: {
-          veteranMarriageHistory: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                marriageStartDate: {
-                  $ref: '#/definitions/date',
-                },
-                marriageStartLocation: {
-                  $ref: '#/definitions/genericLocation',
-                },
-                reasonMarriageEnded: {
-                  type: 'string',
-                  enum: ['DIVORCE', 'DEATH', 'ANNULMENT', 'OTHER'],
-                  enumNames: ['Divorce', 'Death', 'Annulment', 'Other'],
-                },
-                reasonMarriageEndedOther: {
-                  $ref: '#/definitions/genericTextInput',
-                },
-                marriageEndDate: {
-                  $ref: '#/definitions/date',
-                },
-                marriageEndLocation: {
-                  $ref: '#/definitions/genericLocation',
+        veteranMarriageHistory: {
+          type: 'object',
+          properties: {
+            veteranWasMarriedBefore: {
+              $ref: '#/definitions/genericTrueFalse',
+            },
+            veteranMarriageHistory: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  formerSpouseName: {
+                    $ref: '#/definitions/fullName',
+                  },
                 },
               },
             },
           },
         },
-      },
-
-      marriageAdditionalEvidence: {
-        type: 'object',
-        properties: {
-          'view:additionalEvidenceDescription': {
-            type: 'object',
-            properties: {},
+        veteranMarriageHistoryDetails: {
+          type: 'object',
+          properties: {
+            veteranMarriageHistory: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  marriageStartDate: {
+                    $ref: '#/definitions/date',
+                  },
+                  marriageStartLocation: {
+                    $ref: '#/definitions/genericLocation',
+                  },
+                  reasonMarriageEnded: {
+                    type: 'string',
+                    enum: ['DIVORCE', 'DEATH', 'ANNULMENT', 'OTHER'],
+                    enumNames: ['Divorce', 'Death', 'Annulment', 'Other'],
+                  },
+                  reasonMarriageEndedOther: {
+                    $ref: '#/definitions/genericTextInput',
+                  },
+                  marriageEndDate: {
+                    $ref: '#/definitions/date',
+                  },
+                  marriageEndLocation: {
+                    $ref: '#/definitions/genericLocation',
+                  },
+                },
+              },
+            },
           },
-          supportingDocuments: {
-            $ref: '#/definitions/files',
+        },
+        marriageAdditionalEvidence: {
+          type: 'object',
+          properties: {
+            'view:additionalEvidenceDescription': {
+              type: 'object',
+              properties: {},
+            },
+            supportingDocuments: {
+              $ref: '#/definitions/files',
+            },
           },
         },
       },
@@ -559,22 +540,21 @@ const schema = {
             },
           },
         },
-      },
-
-      dependentAdditionalInformation: {
-        type: 'object',
-        properties: {
-          deaths: {
-            type: 'array',
-            minItems: 1,
-            items: {
-              type: 'object',
-              properties: {
-                deceasedDateOfDeath: {
-                  $ref: '#/definitions/date',
-                },
-                deceasedLocationOfDeath: {
-                  $ref: '#/definitions/genericLocation',
+        dependentAdditionalInformation: {
+          type: 'object',
+          properties: {
+            deaths: {
+              type: 'array',
+              minItems: 1,
+              items: {
+                type: 'object',
+                properties: {
+                  deceasedDateOfDeath: {
+                    $ref: '#/definitions/date',
+                  },
+                  deceasedLocationOfDeath: {
+                    $ref: '#/definitions/genericLocation',
+                  },
                 },
               },
             },
@@ -627,42 +607,30 @@ const schema = {
             },
           },
         },
-      },
-
-      stepchildInformation: {
-        type: 'object',
-        properties: {
-          stepChildren: {
-            type: 'array',
-            minItems: 1,
-            items: {
-              type: 'object',
-              properties: {
-                stillSupportingStepchild: {
-                  $ref: '#/definitions/genericTrueFalse',
-                  default: false,
-                },
-                stepchildLivingExpensesPaid: {
-                  type: 'string',
-                  enum: ['More than half', 'Half', 'Less than half'],
-                  default: 'More than half',
-                },
-                whoDoesTheStepchildLiveWith: {
-                  type: 'object',
-                  properties: {
-                    first: {
-                      $ref: '#/definitions/genericTextInput',
-                    },
-                    middle: {
-                      $ref: '#/definitions/genericTextInput',
-                    },
-                    last: {
-                      $ref: '#/definitions/genericTextInput',
-                    },
+        stepchildInformation: {
+          type: 'object',
+          properties: {
+            stepChildren: {
+              type: 'array',
+              minItems: 1,
+              items: {
+                type: 'object',
+                properties: {
+                  stillSupportingStepchild: {
+                    $ref: '#/definitions/genericTrueFalse',
+                    default: false,
                   },
-                },
-                stepchildAddress: {
-                  $ref: '#/definitions/addressSchema',
+                  stepchildLivingExpensesPaid: {
+                    type: 'string',
+                    enum: ['More than half', 'Half', 'Less than half'],
+                    default: 'More than half',
+                  },
+                  whoDoesTheStepchildLiveWith: {
+                    $ref: '#/definitions/fullName',
+                  },
+                  stepchildAddress: {
+                    $ref: '#/definitions/addressSchema',
+                  },
                 },
               },
             },
