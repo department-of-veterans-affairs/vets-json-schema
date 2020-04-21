@@ -1,6 +1,6 @@
 import definitions from '../../common/definitions';
 import { caregiverProgramFacilities } from '../../common/constants';
-import { fullName, address } from './definitions';
+import { fullName, address, gender } from './definitions';
 
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
@@ -39,7 +39,7 @@ const schema = {
     fullName,
     ssn: definitions.ssn,
     date: definitions.date,
-    gender: definitions.gender,
+    gender,
     phone: definitions.phone,
     email: definitions.email,
     address,

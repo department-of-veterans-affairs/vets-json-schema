@@ -78,4 +78,9 @@ const address = (() => {
   };
 })();
 
-export { address, fullName };
+const gender = {
+  type: 'string',
+  enum: ['F', 'M', 'U'],
+};
+
+export { address, fullName, gender };
