@@ -22,42 +22,8 @@ const fullName = {
 };
 
 const address = (() => {
-  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(constants.countries[0], x));
-  const countryStateProperties = _.map(constants.states, value => ({
-    properties: {
-      state: {
-        type: 'string',
-        enum: value.map(x => x.value),
-      },
-      postalCode: {
-        type: 'string',
-        maxLength: 10,
-      },
-    },
-  }));
-
-  countryStateProperties.push({
-    properties: {
-      country: {
-        not: {
-          type: 'string',
-          enum: countriesWithAnyState,
-        },
-      },
-      state: {
-        type: 'string',
-        maxLength: 51,
-      },
-      postalCode: {
-        type: 'string',
-        maxLength: 51,
-      },
-    },
-  });
-
   return {
     type: 'object',
-    oneOf: countryStateProperties,
     properties: {
       street: {
         type: 'string',
@@ -73,6 +39,10 @@ const address = (() => {
         type: 'string',
         minLength: 1,
         maxLength: 51,
+      },
+      state: {
+        type: 'string',
+        enum: constants.states.USA,
       },
     },
   };
