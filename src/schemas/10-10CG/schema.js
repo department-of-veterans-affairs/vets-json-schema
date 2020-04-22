@@ -60,7 +60,7 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         plannedClinic: { type: 'string', enum: caregiverProgramFacilityIds },
-        lastTreatmentFacility: {
+        previousTreatmentFacility: {
           type: 'object',
           additionalProperties: false,
           required: ['name', 'type'],
