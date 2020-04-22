@@ -791,8 +791,7 @@
                 "type": "object",
                 "properties": {
                   "formerSpouseName": {
-                  "$ref": "#/definitions/fullName"
-                }
+                    "$ref": "#/definitions/fullName"
                   }
                 }
               }
@@ -854,8 +853,8 @@
                 "type": "object",
                 "properties": {
                   "formerSpouseName": {
-                  "$ref": "#/definitions/fullName"
-                }
+                    "$ref": "#/definitions/fullName"
+                  }
                 }
               }
             }

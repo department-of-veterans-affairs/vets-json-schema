@@ -329,6 +329,10 @@
               "value": "WY"
             }
           ]
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 10
         }
       }
     },
@@ -533,7 +537,7 @@
             "626"
           ]
         },
-        "lastTreatmentFacility": {
+        "previousTreatmentFacility": {
           "type": "object",
           "additionalProperties": false,
           "required": [
