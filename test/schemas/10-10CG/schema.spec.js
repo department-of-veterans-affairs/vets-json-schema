@@ -5,6 +5,10 @@ import SchemaTestHelper from '../../support/schema-test-helper';
 import schema from '../../../src/schemas/10-10CG/schema';
 
 const testData = {
+  gender: {
+    valid: ['M', 'F', 'U'],
+    invalid: ['A', 'BB', 'CCC'],
+  },
   plannedClinic: {
     valid: ['636', '636A6', '740', '603'],
     invalid: ['405HK', '436GA', '501GJ', '358', '123RE'],
@@ -126,7 +130,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('fullNameNoSuffix', ['veteran.fullName'])
     sharedTests.runTest('ssn', ['veteran.ssnOrTin']);
     sharedTests.runTest('date', ['veteran.dateOfBirth']);
-    sharedTests.runTest('gender', ['veteran.gender']);
+    schemaTestHelper.testValidAndInvalid('veteran.gender', testData.gender);
     schemaTestHelper.testValidAndInvalid('veteran.plannedClinic', testData.plannedClinic);
     schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacility', testData.lastTreatmentFacility);
     sharedTests.runTest('address', ['veteran.address']);
@@ -137,7 +141,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('fullNameNoSuffix', ['primaryCaregiver.fullName']);
     sharedTests.runTest('ssn', ['primaryCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['primaryCaregiver.dateOfBirth']);
-    sharedTests.runTest('gender', ['primaryCaregiver.gender']);
+    schemaTestHelper.testValidAndInvalid('primaryCaregiver.gender', testData.gender);
     sharedTests.runTest('address', ['primaryCaregiver.address']);
     sharedTests.runTest('phone', ['primaryCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['primaryCaregiver.alternativePhoneNumber']);
@@ -152,7 +156,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('fullNameNoSuffix', ['secondaryOneCaregiver.fullName']);
     sharedTests.runTest('ssn', ['secondaryOneCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryOneCaregiver.dateOfBirth']);
-    sharedTests.runTest('gender', ['secondaryOneCaregiver.gender']);
+    schemaTestHelper.testValidAndInvalid('secondaryOneCaregiver.gender', testData.gender);
     sharedTests.runTest('address', ['secondaryOneCaregiver.address']);
     sharedTests.runTest('phone', ['secondaryOneCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['secondaryOneCaregiver.alternativePhoneNumber']);
@@ -162,7 +166,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('fullNameNoSuffix', ['secondaryTwoCaregiver.fullName']);
     sharedTests.runTest('ssn', ['secondaryTwoCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryTwoCaregiver.dateOfBirth']);
-    sharedTests.runTest('gender', ['secondaryTwoCaregiver.gender']);
+    schemaTestHelper.testValidAndInvalid('secondaryTwoCaregiver.gender', testData.gender);
     sharedTests.runTest('address', ['secondaryTwoCaregiver.address']);
     sharedTests.runTest('phone', ['secondaryTwoCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['secondaryTwoCaregiver.alternativePhoneNumber']);

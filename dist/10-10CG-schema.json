@@ -46,7 +46,8 @@
       "type": "string",
       "enum": [
         "F",
-        "M"
+        "M",
+        "U"
       ]
     },
     "phone": {

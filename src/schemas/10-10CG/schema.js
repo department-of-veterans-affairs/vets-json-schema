@@ -4,6 +4,11 @@ import { caregiverProgramFacilities } from '../../common/constants';
 const buildDataType = type => ({ type });
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
 
+const gender = {
+  type: 'string',
+  enum: ['F', 'M', 'U'],
+};
+
 const vetRelationships = [
   'Spouse',
   'Father',
@@ -38,7 +43,7 @@ const schema = {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
     date: definitions.date,
-    gender: definitions.gender,
+    gender: gender,
     phone: definitions.phone,
     email: definitions.email,
     address: definitions.address,

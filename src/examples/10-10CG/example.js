@@ -30,7 +30,7 @@ const example = {
     fullName: { first: 'John Doe', middle: 'A', last: 'Doe' },
     ssnOrTin: '787787854',
     dateOfBirth: '1989-11-06',
-    gender: 'M',
+    gender: 'U',
     address: { street: '111 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
     primaryPhoneNumber: '8887775544',
     alternativePhoneNumber: '8887775544',
