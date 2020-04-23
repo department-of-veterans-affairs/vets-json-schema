@@ -49,6 +49,7 @@ const testData = {
       'Significant Other',
       'Relative - Other',
       'Friend/Neighbor',
+      'Grandchild',
     ],
     invalid: [
       'foo',

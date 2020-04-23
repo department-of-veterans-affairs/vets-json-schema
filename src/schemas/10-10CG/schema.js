@@ -23,6 +23,7 @@ const vetRelationships = [
   'Significant Other',
   'Relative - Other',
   'Friend/Neighbor',
+  'Grandchild',
 ];
 
 const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities)
