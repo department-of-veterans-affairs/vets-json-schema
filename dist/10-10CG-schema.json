@@ -449,7 +449,7 @@
         }
       }
     },
-    "secondaryOneCaregiver": {
+    "secondaryCaregiverOne": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -490,7 +490,7 @@
         }
       }
     },
-    "secondaryTwoCaregiver": {
+    "secondaryCaregiverTwo": {
       "type": "object",
       "additionalProperties": false,
       "required": [

@@ -45,7 +45,7 @@
     "champvaEnrolled": false,
     "tricareEnrolled": true
   },
-  "secondaryOneCaregiver": {
+  "secondaryCaregiverOne": {
     "fullName": {
       "first": "John Doe",
       "middle": "A",

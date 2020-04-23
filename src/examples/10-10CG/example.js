@@ -26,7 +26,7 @@ const example = {
     champvaEnrolled: false,
     tricareEnrolled: true,
   },
-  secondaryOneCaregiver: {
+  secondaryCaregiverOne: {
     fullName: { first: 'John Doe', middle: 'A', last: 'Doe' },
     ssnOrTin: '787787854',
     dateOfBirth: '1989-11-06',

@@ -104,7 +104,7 @@ describe('10-10CG json schema', () => {
       "champvaEnrolled",
     ]);
 
-    expect(schema.properties.secondaryOneCaregiver.required).to.deep.equal([
+    expect(schema.properties.secondaryCaregiverOne.required).to.deep.equal([
       'fullName',
       'ssnOrTin',
       'dateOfBirth',
@@ -113,7 +113,7 @@ describe('10-10CG json schema', () => {
       'vetRelationship'
     ]);
 
-    expect(schema.properties.secondaryTwoCaregiver.required).to.deep.equal([
+    expect(schema.properties.secondaryCaregiverTwo.required).to.deep.equal([
       'fullName',
       'ssnOrTin',
       'dateOfBirth',
@@ -127,8 +127,8 @@ describe('10-10CG json schema', () => {
     expect(schema.additionalProperties).to.equal(false);
     expect(schema.properties.veteran.additionalProperties).to.equal(false);
     expect(schema.properties.primaryCaregiver.additionalProperties).to.equal(false);
-    expect(schema.properties.secondaryOneCaregiver.additionalProperties).to.equal(false);
-    expect(schema.properties.secondaryTwoCaregiver.additionalProperties).to.equal(false);
+    expect(schema.properties.secondaryCaregiverOne.additionalProperties).to.equal(false);
+    expect(schema.properties.secondaryCaregiverTwo.additionalProperties).to.equal(false);
   });
 
   describe('accepted properties', () => {
@@ -138,8 +138,8 @@ describe('10-10CG json schema', () => {
     delete unrestrictedSchema.required;
     delete unrestrictedSchema.properties.veteran.required;
     delete unrestrictedSchema.properties.primaryCaregiver.required;
-    delete unrestrictedSchema.properties.secondaryOneCaregiver.required;
-    delete unrestrictedSchema.properties.secondaryTwoCaregiver.required;
+    delete unrestrictedSchema.properties.secondaryCaregiverOne.required;
+    delete unrestrictedSchema.properties.secondaryCaregiverTwo.required;
 
     const schemaTestHelper = new SchemaTestHelper(unrestrictedSchema);
     const sharedTests = new SharedTests(schemaTestHelper);
@@ -171,25 +171,25 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.champvaEnrolled', testData.boolean);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.otherHealthInsuranceName', testData.string(100));
     // Secondary One Caregiver Info
-    sharedTests.runTest('fullNameNoSuffix', ['secondaryOneCaregiver.fullName']);
-    sharedTests.runTest('ssn', ['secondaryOneCaregiver.ssnOrTin']);
-    sharedTests.runTest('date', ['secondaryOneCaregiver.dateOfBirth']);
-    schemaTestHelper.testValidAndInvalid('secondaryOneCaregiver.gender', testData.gender);
-    sharedTests.runTest('usAddress', ['secondaryOneCaregiver.address']);
-    sharedTests.runTest('phone', ['secondaryOneCaregiver.primaryPhoneNumber']);
-    sharedTests.runTest('phone', ['secondaryOneCaregiver.alternativePhoneNumber']);
-    sharedTests.runTest('email', ['secondaryOneCaregiver.email']);
-    schemaTestHelper.testValidAndInvalid('secondaryOneCaregiver.vetRelationship', testData.vetRelationship);
+    sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverOne.fullName']);
+    sharedTests.runTest('ssn', ['secondaryCaregiverOne.ssnOrTin']);
+    sharedTests.runTest('date', ['secondaryCaregiverOne.dateOfBirth']);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.gender', testData.gender);
+    sharedTests.runTest('usAddress', ['secondaryCaregiverOne.address']);
+    sharedTests.runTest('phone', ['secondaryCaregiverOne.primaryPhoneNumber']);
+    sharedTests.runTest('phone', ['secondaryCaregiverOne.alternativePhoneNumber']);
+    sharedTests.runTest('email', ['secondaryCaregiverOne.email']);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.vetRelationship', testData.vetRelationship);
     // Secondary Two Caregiver Info
-    sharedTests.runTest('fullNameNoSuffix', ['secondaryTwoCaregiver.fullName']);
-    sharedTests.runTest('ssn', ['secondaryTwoCaregiver.ssnOrTin']);
-    sharedTests.runTest('date', ['secondaryTwoCaregiver.dateOfBirth']);
-    schemaTestHelper.testValidAndInvalid('secondaryTwoCaregiver.gender', testData.gender);
-    sharedTests.runTest('usAddress', ['secondaryTwoCaregiver.address']);
-    sharedTests.runTest('phone', ['secondaryTwoCaregiver.primaryPhoneNumber']);
-    sharedTests.runTest('phone', ['secondaryTwoCaregiver.alternativePhoneNumber']);
-    sharedTests.runTest('email', ['secondaryTwoCaregiver.email']);
-    schemaTestHelper.testValidAndInvalid('secondaryTwoCaregiver.vetRelationship', testData.vetRelationship);
+    sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverTwo.fullName']);
+    sharedTests.runTest('ssn', ['secondaryCaregiverTwo.ssnOrTin']);
+    sharedTests.runTest('date', ['secondaryCaregiverTwo.dateOfBirth']);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.gender', testData.gender);
+    sharedTests.runTest('usAddress', ['secondaryCaregiverTwo.address']);
+    sharedTests.runTest('phone', ['secondaryCaregiverTwo.primaryPhoneNumber']);
+    sharedTests.runTest('phone', ['secondaryCaregiverTwo.alternativePhoneNumber']);
+    sharedTests.runTest('email', ['secondaryCaregiverTwo.email']);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.vetRelationship', testData.vetRelationship);
 
     it('"plannedClinic" should use the "caregiverProgramFacilities" enum list', () => {
       expect(!!schema.properties.veteran.properties.plannedClinic.enum).to.be.true;
@@ -200,8 +200,8 @@ describe('10-10CG json schema', () => {
 
   describe('conditional validation:', () => {
     let schemaTestHelper;
-    let validSecondaryOneCaregiverData;
-    let validSecondaryTwoCaregiverData;
+    let validSecondaryCaregiverOneData;
+    let validSecondaryCaregiverTwoData;
 
     before(() => {
       schemaTestHelper = new SchemaTestHelper(schema, {
@@ -234,7 +234,7 @@ describe('10-10CG json schema', () => {
         }
       });
 
-      validSecondaryOneCaregiverData = {
+      validSecondaryCaregiverOneData = {
         fullName: { first: 'Jane', last: 'Smith' },
         ssnOrTin: '389484893',
         dateOfBirth: '1980-01-01',
@@ -243,7 +243,7 @@ describe('10-10CG json schema', () => {
         vetRelationship: 'Friend/Neighbor',
       }
 
-      validSecondaryTwoCaregiverData = {
+      validSecondaryCaregiverTwoData = {
         fullName: { first: 'Michael', last: 'Smith' },
         ssnOrTin: '558853340',
         dateOfBirth: '1980-01-01',
@@ -257,23 +257,23 @@ describe('10-10CG json schema', () => {
       schemaTestHelper.schemaExpect(true);
     });
 
-    it('requires additional fields if "secondaryOneCaregiver" is present', () => {
-      schemaTestHelper.schemaExpect(false, { secondaryOneCaregiver: {} });
-      schemaTestHelper.schemaExpect(false, { secondaryOneCaregiver: { ssnOrTin: '123456789' } });
-      schemaTestHelper.schemaExpect(false, { secondaryOneCaregiver: {  ssnOrTin: '123456789', dateOfBirth: '1990-01-01' } });
-      schemaTestHelper.schemaExpect(true, { secondaryOneCaregiver: validSecondaryOneCaregiverData });
+    it('requires additional fields if "secondaryCaregiverOne" is present', () => {
+      schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: {} });
+      schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: { ssnOrTin: '123456789' } });
+      schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: {  ssnOrTin: '123456789', dateOfBirth: '1990-01-01' } });
+      schemaTestHelper.schemaExpect(true, { secondaryCaregiverOne: validSecondaryCaregiverOneData });
     });
 
-    it('requires additional fields if "secondaryTwoCaregiver" is present', () => {
+    it('requires additional fields if "secondaryCaregiverTwo" is present', () => {
       schemaTestHelper.defaults = {
         ...schemaTestHelper.defaults,
-        secondaryOneCaregiver: validSecondaryOneCaregiverData,
+        secondaryCaregiverOne: validSecondaryCaregiverOneData,
       }
 
-      schemaTestHelper.schemaExpect(false, { secondaryTwoCaregiver: {} });
-      schemaTestHelper.schemaExpect(false, { secondaryTwoCaregiver: { ssnOrTin: '123456789' } });
-      schemaTestHelper.schemaExpect(false, { secondaryTwoCaregiver: { ssnOrTin: '123456789', dateOfBirth: '1990-01-01' } });
-      schemaTestHelper.schemaExpect(true, { secondaryTwoCaregiver: validSecondaryTwoCaregiverData });
+      schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: {} });
+      schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789' } });
+      schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789', dateOfBirth: '1990-01-01' } });
+      schemaTestHelper.schemaExpect(true, { secondaryCaregiverTwo: validSecondaryCaregiverTwoData });
     });
   });
 });

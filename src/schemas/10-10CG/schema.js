@@ -122,7 +122,7 @@ const schema = {
         otherHealthInsuranceName: buildDataType('string', { minLength: 1, maxLength: 100 }),
       },
     },
-    secondaryOneCaregiver: {
+    secondaryCaregiverOne: {
       type: 'object',
       additionalProperties: false,
       required: [
@@ -145,7 +145,7 @@ const schema = {
         vetRelationship: buildDefinitionReference('vetRelationship'),
       },
     },
-    secondaryTwoCaregiver: {
+    secondaryCaregiverTwo: {
       type: 'object',
       additionalProperties: false,
       required: [
