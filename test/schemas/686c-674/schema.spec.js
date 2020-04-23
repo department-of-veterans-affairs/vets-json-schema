@@ -1,7 +1,6 @@
 import SharedTests from '../../support/shared-tests';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
-import fixtures from '../../support/fixtures';
 
 const schema = schemas['686C-674'];
 const schemaTestHelper = new SchemaTestHelper(schema);
@@ -40,8 +39,8 @@ const testData = {
           last: 'Doe',
         },
         dependentType: 'SPOUSE',
-        deceasedDateOfDeath: '2001-01-02',
-        deceasedLocationOfDeath: {
+        date: '2001-01-02',
+        location: {
           state: 'California',
           city: 'Los Angeles',
         },
@@ -54,17 +53,17 @@ const testData = {
       {
         stepChildren: [
           {
-            stepchildName: {
+            fullName: {
               first: 'John',
               last: 'Doe',
             },
-            stillSupportingStepchild: true,
-            stepchildLivingExpensesPaid: 'Half',
+            supportingStepchild: true,
+            livingExpensesPaid: 'Half',
             whoDoesTheStepchildLiveWith: {
               first: 'James',
               last: 'Doe',
             },
-            stepchildAddress: {
+            address: {
               countryName: 'United States',
               addressLine1: '123 At Home Dr',
               city: 'A City',
@@ -81,22 +80,22 @@ const testData = {
     valid: [
       {
         studentNameAndSSN: {
-          studentFullName: {
+          fullName: {
             first: 'John',
             last: 'Doe',
           },
-          studentSSN: '123121234',
-          studentDOB: '2010-01-04',
+          ssn: '123121234',
+          birthDate: '2010-01-04',
         },
         studentAddressMarriageTuition: {
-          studentAddress: {
-            countryName: 'United States',
+          address: {
+            countryName: 'USA',
             addressLine1: '123 At Home Dr',
             city: 'A City',
             stateCode: 'AL',
             zipCode: '91103',
           },
-          studentWasMarried: true,
+          wasMarried: true,
           marriageDate: '2012-08-08',
           tuitionIsPaidByGovAgency: true,
           agencyName: 'The Government',
@@ -104,10 +103,10 @@ const testData = {
         },
         studentSchoolAddress: {
           schoolInformation: {
-            schoolName: 'Phoenix Online',
+            name: 'Phoenix Online',
             trainingProgram: 'Marine Biology',
-            schoolAddress: {
-              countryName: 'United States',
+            address: {
+              countryName: 'USA',
               addressLine1: '123 At Home Dr',
               city: 'A City',
               stateCode: 'AL',
@@ -116,7 +115,7 @@ const testData = {
           },
         },
         studentTermDates: {
-          termDates: {
+          currentTermDates: {
             officialSchoolStartDate: '2011-01-01',
             expectedStudentStartDate: '2011-01-03',
             expectedGraduationDate: '2014-01-01',
@@ -131,15 +130,15 @@ const testData = {
         studentLastTerm: {
           studentDidAttendSchoolLastTerm: true,
           lastTermSchoolInformation: {
-            schoolName: 'Argosy',
-            schoolAddress: {
-              countryName: 'United States',
+            name: 'Argosy',
+            address: {
+              countryName: 'USA',
               addressLine1: '123 At Home Dr',
               city: 'A City',
               stateCode: 'AL',
               zipCode: '91103',
             },
-            dateTermBegan: '2010-01-01',
+            termBegin: '2010-01-01',
             dateTermEnded: '2010-09-09',
             classesPerWeek: 2,
             hoursPerWeek: 20,
@@ -163,7 +162,7 @@ const testData = {
         },
         studentNetworthInformation: {
           studentDoesHaveNetworth: true,
-          networthInformation: {
+          studentNetworthInformation: {
             savings: '0',
             securities: '0',
             realEstate: '0',
@@ -176,15 +175,15 @@ const testData = {
     invalid: [
       {
         studentNameAndSSN: {
-          studentFullName: {
+          fullName: {
             first: 'John',
             last: 'Doe',
           },
-          studentSSN: '123121234',
-          studentDOB: '2010-01-04',
+          ssn: '123121234',
+          birthDate: '2010-01-04',
         },
         studentAddressMarriageTuition: {
-          studentAddress: {
+          address: {
             countryName: 'United States',
             addressLine1: '123 At Home Dr',
             city: 'A City',
@@ -194,9 +193,9 @@ const testData = {
         },
         studentSchoolAddress: {
           schoolInformation: {
-            schoolName: 'Phoenix Online',
+            name: 'Phoenix Online',
             trainingProgram: 'Marine Biology',
-            schoolAddress: {
+            address: {
               countryName: 'United States',
               addressLine1: '123 At Home Dr',
               city: 'A City',
@@ -206,7 +205,7 @@ const testData = {
           },
         },
         studentTermDates: {
-          termDates: {
+          currentTermDates: {
             officialSchoolStartDate: '2011-01-01',
             expectedStudentStartDate: '2011-01-03',
             expectedGraduationDate: '2014-01-01',
@@ -221,15 +220,15 @@ const testData = {
         studentLastTerm: {
           studentDidAttendSchoolLastTerm: true,
           lastTermSchoolInformation: {
-            schoolName: 'Argosy',
-            schoolAddress: {
+            name: 'Argosy',
+            address: {
               countryName: 'United States',
               addressLine1: '123 At Home Dr',
               city: 'A City',
               stateCode: 'AL',
               zipCode: '91103',
             },
-            dateTermBegan: '2010-01-01',
+            termBegin: '2010-01-01',
             dateTermEnded: '2010-09-09',
             classesPerWeek: 2,
             hoursPerWeek: 20,
@@ -253,51 +252,48 @@ const testData = {
 describe('686c-674 schema', () => {
   // veteran information
   sharedTests.runTest('fullName', [
-    'veteranInformation.veteranInformation.veteranFullName',
-    'addSpouse.spouseNameInformation.spouseFullName',
-    'reportDivorce.formerSpouseName',
-    'reportChildMarriage.marriedChildName',
-    'reportChildStoppedAttendingSchool.childNoLongerAtSchoolName',
-    'report674.studentNameAndSSN.studentFullName',
+    'veteranInformation.veteranInformation.fullName',
+    'addSpouse.spouseNameInformation.fullName',
+    'reportDivorce.fullName',
+    'reportChildMarriage.fullName',
+    'reportChildStoppedAttendingSchool.fullName',
+    'report674.studentNameAndSSN.fullName',
   ]);
   sharedTests.runTest('ssn', [
     'veteranInformation.veteranInformation.ssn',
-    'addSpouse.spouseNameInformation.spouseSSN',
-    'report674.studentNameAndSSN.studentSSN',
+    'addSpouse.spouseNameInformation.ssn',
+    'report674.studentNameAndSSN.ssn',
   ]);
   sharedTests.runTest('date', [
     'veteranInformation.veteranInformation.birthDate',
-    'addSpouse.spouseNameInformation.spouseDOB',
-    'addSpouse.currentMarriageInformation.dateOfMarriage',
-    'reportDivorce.dateOfDivorce',
-    'reportChildMarriage.dateChildMarried',
+    'addSpouse.spouseNameInformation.birthDate',
+    'addSpouse.currentMarriageInformation.date',
+    'reportDivorce.date',
+    'reportChildMarriage.dateMarried',
     'reportChildStoppedAttendingSchool.dateChildLeftSchool',
-    'report674.studentNameAndSSN.studentDOB',
+    'report674.studentNameAndSSN.birthDate',
     'report674.studentAddressMarriageTuition.marriageDate',
     'report674.studentAddressMarriageTuition.datePaymentsBegan',
-    'report674.studentTermDates.termDates.officialSchoolStartDate',
-    'report674.studentTermDates.termDates.expectedStudentStartDate',
-    'report674.studentTermDates.termDates.expectedGraduationDate',
-    'report674.studentLastTerm.lastTermSchoolInformation.dateTermBegan',
+    'report674.studentTermDates.currentTermDates.officialSchoolStartDate',
+    'report674.studentTermDates.currentTermDates.expectedStudentStartDate',
+    'report674.studentTermDates.currentTermDates.expectedGraduationDate',
+    'report674.studentLastTerm.lastTermSchoolInformation.termBegin',
     'report674.studentLastTerm.lastTermSchoolInformation.dateTermEnded',
   ]);
   sharedTests.runTest('phone', ['veteranInformation.veteranAddress.phoneNumber']);
   sharedTests.runTest('email', ['veteranInformation.veteranAddress.emailAddress']);
 
   // Current Marriage
-  schemaTestHelper.testValidAndInvalid('addSpouse.spouseNameInformation.isSpouseVeteran', testData.boolean);
-  schemaTestHelper.testValidAndInvalid('addSpouse.currentMarriageInformation.marriageType', testData.marriageTypes);
+  schemaTestHelper.testValidAndInvalid('addSpouse.spouseNameInformation.isVeteran', testData.boolean);
+  schemaTestHelper.testValidAndInvalid('addSpouse.currentMarriageInformation.type', testData.marriageTypes);
   schemaTestHelper.testValidAndInvalid('addSpouse.doesLiveWithSpouse.spouseDoesLiveWithVeteran', testData.boolean);
   schemaTestHelper.testValidAndInvalid('addSpouse.spouseMarriageHistory.spouseWasMarriedBefore', testData.boolean);
   schemaTestHelper.testValidAndInvalid('addSpouse.veteranMarriageHistory.veteranWasMarriedBefore', testData.boolean);
-  schemaTestHelper.testValidAndInvalid(
-    'addSpouse.currentMarriageInformation.locationOfMarriage',
-    testData.genericLocation,
-  );
+  schemaTestHelper.testValidAndInvalid('addSpouse.currentMarriageInformation.location', testData.genericLocation);
 
   // Report Divorce
   schemaTestHelper.testValidAndInvalid('reportDivorce.isMarriageAnnulledOrVoid', testData.boolean);
-  schemaTestHelper.testValidAndInvalid('reportDivorce.locationOfDivorce', testData.genericLocation);
+  schemaTestHelper.testValidAndInvalid('reportDivorce.location', testData.genericLocation);
 
   // Deceased Dependents
   schemaTestHelper.testValidAndInvalid('deceasedDependents', testData.deceasedDependent);
