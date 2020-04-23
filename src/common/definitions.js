@@ -135,6 +135,34 @@ for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
   }
 }
 
+const usAddress = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['street', 'city', 'state', 'postalCode'],
+  properties: {
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 51,
+    },
+    state: {
+      type: 'string',
+      enum: constants.usaStates,
+    },
+    postalCode: usaPostalCode,
+  },
+};
+
 const phone = {
   type: 'string',
   minLength: 10,
@@ -593,6 +621,7 @@ export default {
   fullNameNoSuffix,
   otherIncome,
   address,
+  usAddress,
   phone,
   ssn,
   ssnLastFour,

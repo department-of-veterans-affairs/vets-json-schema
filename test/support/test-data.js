@@ -127,6 +127,43 @@ export default {
       }]
     }
   },
+  usAddress: {
+    fields: ['veteranAddress'],
+    data: {
+      valid: [
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'St. Petersburg', state: 'FL', postalCode: '33701' },
+        { street: '123 5th St. N.', street2: '#501', city: 'St. Petersburg', state: 'FL', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'St. Petersburg', state: 'DC', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: American Samoa', state: 'AS', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Armed Forces Americas (AA)', state: 'AA', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Armed Forces Europe (AE)', state: 'AE', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Armed Forces Pacific (AP)', state: 'AP', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Federated States Of Micronesia', state: 'FM', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Guam', state: 'GU', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Marshall Islands', state: 'MH', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Northern Mariana Islands', state: 'MP', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Palau', state: 'PW', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Puerto Rico', state: 'PR', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', street2: '#501', city: 'City in: Virgin Islands', state: 'VI', postalCode: '33701-1234' },
+      ],
+      invalid: [
+        { street: '123' },
+        { street2: '123' },
+        { city: 'FL' },
+        { state: 'FL' },
+        { postalCode: 'FL' },
+        { city: 'St. Petersburg', state: 'FL', postalCode: '33701' },
+        { street: '123 5th St. N.', state: 'FL', postalCode: '33701' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', postalCode: '33701' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '3370101234' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701 1234' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701A1234' },
+      ],
+    }
+  },
   usaPhone: {
     data: {
       valid: ['0123456789'],

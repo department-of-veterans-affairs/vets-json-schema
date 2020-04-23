@@ -133,7 +133,7 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('veteran.gender', testData.gender);
     schemaTestHelper.testValidAndInvalid('veteran.plannedClinic', testData.plannedClinic);
     schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacility', testData.lastTreatmentFacility);
-    sharedTests.runTest('address', ['veteran.address']);
+    sharedTests.runTest('usAddress', ['veteran.address']);
     sharedTests.runTest('phone', ['veteran.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['veteran.alternativePhoneNumber']);
     sharedTests.runTest('email', ['veteran.email']);
@@ -142,7 +142,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('ssn', ['primaryCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['primaryCaregiver.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.gender', testData.gender);
-    sharedTests.runTest('address', ['primaryCaregiver.address']);
+    sharedTests.runTest('usAddress', ['primaryCaregiver.address']);
     sharedTests.runTest('phone', ['primaryCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['primaryCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['primaryCaregiver.email']);
@@ -157,7 +157,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('ssn', ['secondaryOneCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryOneCaregiver.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('secondaryOneCaregiver.gender', testData.gender);
-    sharedTests.runTest('address', ['secondaryOneCaregiver.address']);
+    sharedTests.runTest('usAddress', ['secondaryOneCaregiver.address']);
     sharedTests.runTest('phone', ['secondaryOneCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['secondaryOneCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['secondaryOneCaregiver.email']);
@@ -167,7 +167,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('ssn', ['secondaryTwoCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryTwoCaregiver.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('secondaryTwoCaregiver.gender', testData.gender);
-    sharedTests.runTest('address', ['secondaryTwoCaregiver.address']);
+    sharedTests.runTest('usAddress', ['secondaryTwoCaregiver.address']);
     sharedTests.runTest('phone', ['secondaryTwoCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['secondaryTwoCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['secondaryTwoCaregiver.email']);
@@ -192,7 +192,7 @@ describe('10-10CG json schema', () => {
           ssnOrTin: '789787893',
           dateOfBirth: '1978-01-15',
           gender: 'M',
-          address: { street: '111 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+          address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
           primaryPhoneNumber: '8887775544',
           alternativePhoneNumber: '8887775544',
           email: 'veteranEmail@email.com',
@@ -204,7 +204,7 @@ describe('10-10CG json schema', () => {
           ssnOrTin: '202901412',
           dateOfBirth: '1978-07-03',
           gender: 'F',
-          address: { street: '111 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+          address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
           primaryPhoneNumber: '8887775544',
           alternativePhoneNumber: '8887775544',
           email: 'primaryCaregiverEmail@email.com',
@@ -221,7 +221,7 @@ describe('10-10CG json schema', () => {
         ssnOrTin: '389484893',
         dateOfBirth: '1980-01-01',
         gender: 'F',
-        address: { street: '123 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         vetRelationship: 'Friend/Neighbor',
       }
 
@@ -230,7 +230,7 @@ describe('10-10CG json schema', () => {
         ssnOrTin: '558853340',
         dateOfBirth: '1980-01-01',
         gender: 'M',
-        address: { street: '123 2nd St S', city: 'Seattle', country: 'USA', state: 'WA', postalCode: '33771' },
+        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         vetRelationship: 'Friend/Neighbor',
       }
     });

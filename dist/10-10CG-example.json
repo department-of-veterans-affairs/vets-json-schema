@@ -10,7 +10,6 @@
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
-      "country": "USA",
       "state": "WA",
       "postalCode": "33771"
     },
@@ -34,7 +33,6 @@
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
-      "country": "USA",
       "state": "WA",
       "postalCode": "33771"
     },
@@ -59,9 +57,8 @@
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
-      "country": "USA",
       "state": "WA",
-      "postalCode": "33771"
+      "postalCode": "33771-1234"
     },
     "primaryPhoneNumber": "8887775544",
     "alternativePhoneNumber": "8887775544",

@@ -46,7 +46,7 @@ const schema = {
     gender: gender,
     phone: definitions.phone,
     email: definitions.email,
-    address: definitions.address,
+    address: definitions.usAddress,
     vetRelationship: { type: 'string', enum: vetRelationships },
   },
   properties: {
