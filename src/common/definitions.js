@@ -26,6 +26,27 @@ const fullName = {
   required: ['first', 'last'],
 };
 
+const fullNameNoSuffix = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['first', 'last'],
+  properties: {
+    first: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+    middle: {
+      type: 'string',
+    },
+    last: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+  },
+}
+
 const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
 };
@@ -113,6 +134,34 @@ for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
     properties.postalCode = usaPostalCode;
   }
 }
+
+const usAddress = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['street', 'city', 'state', 'postalCode'],
+  properties: {
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 51,
+    },
+    state: {
+      type: 'string',
+      enum: constants.usaStates,
+    },
+    postalCode: usaPostalCode,
+  },
+};
 
 const phone = {
   type: 'string',
@@ -569,8 +618,10 @@ const email = {
 export default {
   usaPhone,
   fullName,
+  fullNameNoSuffix,
   otherIncome,
   address,
+  usAddress,
   phone,
   ssn,
   ssnLastFour,
