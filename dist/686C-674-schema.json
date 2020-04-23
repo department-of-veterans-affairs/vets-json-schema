@@ -771,7 +771,7 @@
         "veteranInformation": {
           "type": "object",
           "properties": {
-            "veteranFullName": {
+            "fullName": {
               "$ref": "#/definitions/fullName"
             },
             "ssn": {
@@ -919,7 +919,7 @@
                         "$ref": "#/definitions/fullName"
                       },
                       "address": {
-                        "$ref": "#/definitions/address"
+                        "$ref": "#/definitions/addressSchema"
                       }
                     }
                   }
@@ -954,7 +954,7 @@
             "ssn": {
               "$ref": "#/definitions/ssn"
             },
-            "dob": {
+            "birthDate": {
               "$ref": "#/definitions/date"
             },
             "isVeteran": {
@@ -1274,7 +1274,7 @@
     "reportChildStoppedAttendingSchool": {
       "type": "object",
       "properties": {
-        "childNoLongerAtSchoolName": {
+        "fullName": {
           "$ref": "#/definitions/fullName"
         },
         "dateChildLeftSchool": {

@@ -133,7 +133,7 @@ const schema = {
         veteranInformation: {
           type: 'object',
           properties: {
-            veteranFullName: {
+            fullName: {
               $ref: '#/definitions/fullName',
             },
             ssn: {
@@ -275,7 +275,7 @@ const schema = {
                         $ref: '#/definitions/fullName',
                       },
                       address: {
-                        $ref: '#/definitions/address',
+                        $ref: '#/definitions/addressSchema',
                       },
                     },
                   },
@@ -311,7 +311,7 @@ const schema = {
             ssn: {
               $ref: '#/definitions/ssn',
             },
-            dob: {
+            birthDate: {
               $ref: '#/definitions/date',
             },
             isVeteran: {
@@ -587,7 +587,7 @@ const schema = {
     reportChildStoppedAttendingSchool: {
       type: 'object',
       properties: {
-        childNoLongerAtSchoolName: {
+        fullName: {
           $ref: '#/definitions/fullName',
         },
         dateChildLeftSchool: {
