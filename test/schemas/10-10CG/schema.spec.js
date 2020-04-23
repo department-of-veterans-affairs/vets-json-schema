@@ -18,12 +18,23 @@ const testData = {
       { name: 'My Hospital', type: 'hospital' },
       { name: 'My Clinic', type: 'clinic' },
       { name: 'random stringsssss', type: 'clinic' },
+      { name: 'random stringsssss', type: 'clinic' },
     ],
     invalid: [
       {},
       { name: 'Some Hospital Name' },
       { name: 'Some Clinic Name', type: 'non-enum' },
       { name: 'Some Hospital Name', type: 'hospital', extraProp: 'not allowed' },
+      {
+        // Hit max char count
+        name: 'A'.repeat(101),
+        type: 'clinic',
+      },
+      {
+        // Hit min char count
+        name: '',
+        type: 'clinic'
+      }
     ],
   },
   vetRelationship: {
@@ -48,9 +59,13 @@ const testData = {
     valid: [true, false],
     invalid: [null, 'some string', 42],
   },
-  string: {
-    valid: ['foo', 'bar'],
-    invalid: [null, 42, true, false],
+  string: (max) => {
+    const breakingTestString = 'A'.repeat(max + 1);
+
+    return {
+      valid: ['foo', 'bar'],
+      invalid: [null, 42, true, false, breakingTestString],
+    };
   },
 };
 
@@ -151,7 +166,7 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.medicareEnrolled', testData.boolean);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.tricareEnrolled', testData.boolean);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.champvaEnrolled', testData.boolean);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.otherHealthInsuranceName', testData.string);
+    schemaTestHelper.testValidAndInvalid('primaryCaregiver.otherHealthInsuranceName', testData.string(100));
     // Secondary One Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['secondaryOneCaregiver.fullName']);
     sharedTests.runTest('ssn', ['secondaryOneCaregiver.ssnOrTin']);

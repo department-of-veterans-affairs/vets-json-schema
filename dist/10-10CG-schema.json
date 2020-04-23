@@ -371,7 +371,9 @@
           ],
           "properties": {
             "name": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
             },
             "type": {
               "type": "string",
@@ -438,7 +440,9 @@
           "type": "boolean"
         },
         "otherHealthInsuranceName": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
         }
       }
     },

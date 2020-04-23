@@ -1,7 +1,10 @@
 import definitions from '../../common/definitions';
 import { caregiverProgramFacilities } from '../../common/constants';
 
-const buildDataType = type => ({ type });
+const buildDataType = (type, additionals = {}) => {
+  return { type, ...additionals };
+};
+
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
 
 const gender = {
@@ -75,7 +78,7 @@ const schema = {
           additionalProperties: false,
           required: ['name', 'type'],
           properties: {
-            name: buildDataType('string'),
+            name: buildDataType('string', { minLength: 1, maxLength: 100 }),
             type: {
               type: 'string',
               enum: ['hospital', 'clinic']
@@ -113,7 +116,7 @@ const schema = {
         tricareEnrolled: buildDataType('boolean'),
         // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
         champvaEnrolled: buildDataType('boolean'),
-        otherHealthInsuranceName: buildDataType('string'),
+        otherHealthInsuranceName: buildDataType('string', { minLength: 1, maxLength: 100 }),
       },
     },
     secondaryOneCaregiver: {
