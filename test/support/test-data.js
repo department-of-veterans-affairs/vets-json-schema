@@ -56,13 +56,31 @@ export default {
   fullName: {
     fields: ['veteranFullName'],
     data: {
-      valid: [{
-        first: 'john',
-        last: 'doe'
-      }],
-      invalid: [{
-        first: 'john'
-      }]
+      valid: [
+        { first: 'john', last: 'doe' },
+        { first: 'john', middle: 'A', last: 'doe' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.' },
+      ],
+      invalid: [
+        { first: 'john' },
+        { last: 'john' },
+        { middle: 'john' },
+      ],
+    }
+  },
+  fullNameNoSuffix: {
+    fields: ['veteranFullName'],
+    data: {
+      valid: [
+        { first: 'john', last: 'doe' },
+        { first: 'john', middle: 'A', last: 'doe' },
+      ],
+      invalid: [
+        { first: 'john' },
+        { last: 'john' },
+        { middle: 'john' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.' },
+      ]
     }
   },
   centralMailAddress: {

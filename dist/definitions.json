@@ -35,6 +35,29 @@
       "last"
     ]
   },
+  "fullNameNoSuffix": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "first",
+      "last"
+    ],
+    "properties": {
+      "first": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30
+      },
+      "middle": {
+        "type": "string"
+      },
+      "last": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30
+      }
+    }
+  },
   "otherIncome": {
     "type": "object",
     "properties": {

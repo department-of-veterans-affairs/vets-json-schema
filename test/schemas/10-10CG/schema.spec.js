@@ -123,7 +123,7 @@ describe('10-10CG json schema', () => {
     const sharedTests = new SharedTests(schemaTestHelper);
 
     // Veteran Info
-    sharedTests.runTest('fullName', ['veteran.fullName'])
+    sharedTests.runTest('fullNameNoSuffix', ['veteran.fullName'])
     sharedTests.runTest('ssn', ['veteran.ssnOrTin']);
     sharedTests.runTest('date', ['veteran.dateOfBirth']);
     sharedTests.runTest('gender', ['veteran.gender']);
@@ -134,7 +134,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['veteran.alternativePhoneNumber']);
     sharedTests.runTest('email', ['veteran.email']);
     // Primary Caregiver Info
-    sharedTests.runTest('fullName', ['primaryCaregiver.fullName']);
+    sharedTests.runTest('fullNameNoSuffix', ['primaryCaregiver.fullName']);
     sharedTests.runTest('ssn', ['primaryCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['primaryCaregiver.dateOfBirth']);
     sharedTests.runTest('gender', ['primaryCaregiver.gender']);
@@ -149,7 +149,7 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.champvaEnrolled', testData.boolean);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.otherHealthInsuranceName', testData.string);
     // Secondary One Caregiver Info
-    sharedTests.runTest('fullName', ['secondaryOneCaregiver.fullName']);
+    sharedTests.runTest('fullNameNoSuffix', ['secondaryOneCaregiver.fullName']);
     sharedTests.runTest('ssn', ['secondaryOneCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryOneCaregiver.dateOfBirth']);
     sharedTests.runTest('gender', ['secondaryOneCaregiver.gender']);
@@ -159,7 +159,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('email', ['secondaryOneCaregiver.email']);
     schemaTestHelper.testValidAndInvalid('secondaryOneCaregiver.vetRelationship', testData.vetRelationship);
     // Secondary Two Caregiver Info
-    sharedTests.runTest('fullName', ['secondaryTwoCaregiver.fullName']);
+    sharedTests.runTest('fullNameNoSuffix', ['secondaryTwoCaregiver.fullName']);
     sharedTests.runTest('ssn', ['secondaryTwoCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryTwoCaregiver.dateOfBirth']);
     sharedTests.runTest('gender', ['secondaryTwoCaregiver.gender']);

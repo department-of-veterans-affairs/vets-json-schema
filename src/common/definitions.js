@@ -26,6 +26,27 @@ const fullName = {
   required: ['first', 'last'],
 };
 
+const fullNameNoSuffix = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['first', 'last'],
+  properties: {
+    first: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+    middle: {
+      type: 'string',
+    },
+    last: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+  },
+}
+
 const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
 };
@@ -569,6 +590,7 @@ const email = {
 export default {
   usaPhone,
   fullName,
+  fullNameNoSuffix,
   otherIncome,
   address,
   phone,

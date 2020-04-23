@@ -27,7 +27,7 @@ const example = {
     tricareEnrolled: true,
   },
   secondaryOneCaregiver: {
-    fullName: { first: 'John Doe', last: 'Doe', suffix: 'II' },
+    fullName: { first: 'John Doe', middle: 'A', last: 'Doe' },
     ssnOrTin: '787787854',
     dateOfBirth: '1989-11-06',
     gender: 'M',
