@@ -1,5 +1,12 @@
-import _ from 'lodash';
 import constants from '../../common/constants';
+
+const getStateValues = states => {
+  let stateValues = [];
+
+  states.map(state => (stateValues = [...stateValues, state.value]));
+
+  return stateValues;
+};
 
 const fullName = {
   type: 'object',
@@ -41,7 +48,7 @@ const address = {
     },
     state: {
       type: 'string',
-      enum: constants.states.USA,
+      enum: getStateValues(constants.states.USA),
     },
     postalCode: {
       type: 'string',
