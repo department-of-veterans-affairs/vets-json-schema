@@ -8,9 +8,6 @@
     "primaryCaregiver"
   ],
   "definitions": {
-    "tin": {
-      "type": "string"
-    },
     "fullName": {
       "type": "object",
       "additionalProperties": false,

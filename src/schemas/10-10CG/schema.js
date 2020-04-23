@@ -39,7 +39,6 @@ const schema = {
   additionalProperties: false,
   required: ['veteran', 'primaryCaregiver'],
   definitions: {
-    tin: buildDataType('string'),
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
     date: definitions.date,
