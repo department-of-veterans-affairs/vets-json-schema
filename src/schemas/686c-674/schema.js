@@ -61,7 +61,8 @@ const schema = {
         },
         countryName: {
           type: 'string',
-          enum: countries.map(country => country.label),
+          enum: countries.map(country => country.value),
+          enumNames: countries.map(country => country.label),
         },
         addressLine1: {
           type: 'string',
@@ -178,7 +179,7 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  childFullName: {
+                  fullName: {
                     $ref: '#/definitions/fullName',
                   },
                   ssn: {
@@ -201,7 +202,7 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  childPlaceOfBirth: {
+                  placeOfBirth: {
                     $ref: '#/definitions/genericLocation',
                   },
                   childStatus: {
@@ -228,13 +229,13 @@ const schema = {
                     type: 'object',
                     properties: {},
                   },
-                  childPreviouslyMarried: {
+                  previouslyMarried: {
                     type: 'string',
                     enum: ['Yes', 'No'],
                     default: 'No',
                   },
 
-                  childPreviousMarriageDetails: {
+                  previousMarriageDetails: {
                     type: 'object',
                     properties: {
                       dateMarriageEnded: {
@@ -268,7 +269,15 @@ const schema = {
                     $ref: '#/definitions/genericTrueFalse',
                   },
                   childAddressInfo: {
-                    $ref: '#/definitions/addressSchema',
+                    type: 'object',
+                    properties: {
+                      personChildLivesWith: {
+                        $ref: '#/definitions/fullName',
+                      },
+                      address: {
+                        $ref: '#/definitions/address',
+                      },
+                    },
                   },
                 },
               },
@@ -296,22 +305,22 @@ const schema = {
         spouseNameInformation: {
           type: 'object',
           properties: {
-            spouseFullName: {
+            fullName: {
               $ref: '#/definitions/fullName',
             },
-            spouseSSN: {
+            ssn: {
               $ref: '#/definitions/ssn',
             },
-            spouseDOB: {
+            dob: {
               $ref: '#/definitions/date',
             },
-            isSpouseVeteran: {
+            isVeteran: {
               $ref: '#/definitions/genericTrueFalse',
             },
-            spouseVAFileNumber: {
+            VAFileNumber: {
               $ref: '#/definitions/genericNumberAndDashInput',
             },
-            spouseServiceNumber: {
+            serviceNumber: {
               $ref: '#/definitions/genericNumberAndDashInput',
             },
           },
@@ -319,18 +328,18 @@ const schema = {
         currentMarriageInformation: {
           type: 'object',
           properties: {
-            dateOfMarriage: {
+            date: {
               $ref: '#/definitions/date',
             },
-            locationOfMarriage: {
+            location: {
               $ref: '#/definitions/genericLocation',
             },
-            marriageType: {
+            type: {
               type: 'string',
               enum: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
               enumNames: ['Ceremonial', 'Common-law', 'Tribal', 'Proxy', 'Other'],
             },
-            marriageTypeOther: {
+            typeOther: {
               $ref: '#/definitions/genericTextInput',
             },
             'view:marriageTypeInformation': {
@@ -346,9 +355,10 @@ const schema = {
               $ref: '#/definitions/genericTrueFalse',
             },
             currentSpouseReasonForSeparation: {
-              $ref: '#/definitions/genericTextInput',
+              type: 'string',
+              enum: ['Death', 'Divorce', 'Other'],
             },
-            currentSpouseAddress: {
+            address: {
               $ref: '#/definitions/addressSchema',
             },
           },
@@ -364,7 +374,7 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  formerSpouseName: {
+                  fullName: {
                     $ref: '#/definitions/fullName',
                   },
                 },
@@ -380,10 +390,10 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  marriageStartDate: {
+                  startDate: {
                     $ref: '#/definitions/date',
                   },
-                  marriageStartLocation: {
+                  startLocation: {
                     $ref: '#/definitions/genericLocation',
                   },
                   reasonMarriageEnded: {
@@ -394,10 +404,10 @@ const schema = {
                   reasonMarriageEndedOther: {
                     $ref: '#/definitions/genericTextInput',
                   },
-                  marriageEndDate: {
+                  endDate: {
                     $ref: '#/definitions/date',
                   },
-                  marriageEndLocation: {
+                  endLocation: {
                     $ref: '#/definitions/genericLocation',
                   },
                 },
@@ -416,7 +426,7 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  formerSpouseName: {
+                  fullName: {
                     $ref: '#/definitions/fullName',
                   },
                 },
@@ -432,10 +442,10 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  marriageStartDate: {
+                  startDate: {
                     $ref: '#/definitions/date',
                   },
-                  marriageStartLocation: {
+                  startLocation: {
                     $ref: '#/definitions/genericLocation',
                   },
                   reasonMarriageEnded: {
@@ -446,10 +456,10 @@ const schema = {
                   reasonMarriageEndedOther: {
                     $ref: '#/definitions/genericTextInput',
                   },
-                  marriageEndDate: {
+                  endDate: {
                     $ref: '#/definitions/date',
                   },
-                  marriageEndLocation: {
+                  endLocation: {
                     $ref: '#/definitions/genericLocation',
                   },
                 },
@@ -475,13 +485,13 @@ const schema = {
     reportDivorce: {
       type: 'object',
       properties: {
-        formerSpouseName: {
+        fullName: {
           $ref: '#/definitions/fullName',
         },
-        dateOfDivorce: {
+        date: {
           $ref: '#/definitions/date',
         },
-        locationOfDivorce: {
+        location: {
           $ref: '#/definitions/genericLocation',
         },
         isMarriageAnnulledOrVoid: {
@@ -489,8 +499,7 @@ const schema = {
         },
         explanationOfAnnullmentOrVoid: {
           type: 'string',
-          maxLength: 500,
-          pattern: '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$',
+          enum: ['Death', 'Divorce', 'Other'],
         },
       },
     },
@@ -549,10 +558,10 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  deceasedDateOfDeath: {
+                  date: {
                     $ref: '#/definitions/date',
                   },
-                  deceasedLocationOfDeath: {
+                  location: {
                     $ref: '#/definitions/genericLocation',
                   },
                 },
@@ -566,10 +575,10 @@ const schema = {
     reportChildMarriage: {
       type: 'object',
       properties: {
-        marriedChildName: {
+        fullName: {
           $ref: '#/definitions/fullName',
         },
-        dateChildMarried: {
+        dateMarried: {
           $ref: '#/definitions/date',
         },
       },
@@ -599,7 +608,7 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  stepchildName: {
+                  fullName: {
                     $ref: '#/definitions/fullName',
                   },
                 },
@@ -616,11 +625,11 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  stillSupportingStepchild: {
+                  supportingStepchild: {
                     $ref: '#/definitions/genericTrueFalse',
                     default: false,
                   },
-                  stepchildLivingExpensesPaid: {
+                  livingExpensesPaid: {
                     type: 'string',
                     enum: ['More than half', 'Half', 'Less than half'],
                     default: 'More than half',
@@ -628,7 +637,7 @@ const schema = {
                   whoDoesTheStepchildLiveWith: {
                     $ref: '#/definitions/fullName',
                   },
-                  stepchildAddress: {
+                  address: {
                     $ref: '#/definitions/addressSchema',
                   },
                 },
@@ -649,13 +658,13 @@ const schema = {
               type: 'object',
               properties: {},
             },
-            studentFullName: {
+            fullName: {
               $ref: '#/definitions/fullName',
             },
-            studentSSN: {
+            ssn: {
               $ref: '#/definitions/ssn',
             },
-            studentDOB: {
+            birthDate: {
               $ref: '#/definitions/date',
             },
           },
@@ -664,10 +673,10 @@ const schema = {
         studentAddressMarriageTuition: {
           type: 'object',
           properties: {
-            studentAddress: {
+            address: {
               $ref: '#/definitions/addressSchema',
             },
-            studentWasMarried: {
+            wasMarried: {
               $ref: '#/definitions/genericTrueFalse',
             },
             marriageDate: {
@@ -691,13 +700,13 @@ const schema = {
             schoolInformation: {
               type: 'object',
               properties: {
-                schoolName: {
+                name: {
                   $ref: '#/definitions/genericTextInput',
                 },
                 trainingProgram: {
                   $ref: '#/definitions/genericTextInput',
                 },
-                schoolAddress: {
+                address: {
                   $ref: '#/definitions/addressSchema',
                 },
               },
@@ -708,7 +717,7 @@ const schema = {
         studentTermDates: {
           type: 'object',
           properties: {
-            termDates: {
+            currentTermDates: {
               type: 'object',
               properties: {
                 officialSchoolStartDate: {
@@ -751,13 +760,13 @@ const schema = {
             lastTermSchoolInformation: {
               type: 'object',
               properties: {
-                schoolName: {
+                name: {
                   $ref: '#/definitions/genericTextInput',
                 },
-                schoolAddress: {
+                address: {
                   $ref: '#/definitions/addressSchema',
                 },
-                dateTermBegan: {
+                termBegin: {
                   $ref: '#/definitions/date',
                 },
                 dateTermEnded: {
@@ -826,7 +835,7 @@ const schema = {
             studentDoesHaveNetworth: {
               $ref: '#/definitions/genericTrueFalse',
             },
-            networthInformation: {
+            studentNetworthInformation: {
               type: 'object',
               properties: {
                 savings: {
