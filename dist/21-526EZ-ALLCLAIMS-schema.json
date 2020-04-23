@@ -581,9 +581,6 @@
           "ratedDisabilityId": {
             "type": "string"
           },
-          "ratingDecisionId": {
-            "type": "string"
-          },
           "diagnosticCode": {
             "type": "number"
           },
@@ -617,9 +614,6 @@
                   "$ref": "#/definitions/specialIssues"
                 },
                 "ratedDisabilityId": {
-                  "type": "string"
-                },
-                "ratingDecisionId": {
                   "type": "string"
                 },
                 "diagnosticCode": {
@@ -1035,7 +1029,7 @@
           "treatmentCenterName": {
             "type": "string",
             "maxLength": 100,
-            "pattern": "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$"
+            "pattern": "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$"
           },
           "treatmentDateRange": {
             "$ref": "#/definitions/dateRangeFromRequired"

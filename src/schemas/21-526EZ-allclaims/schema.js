@@ -30,9 +30,6 @@ const disabilitiesBaseDef = {
       ratedDisabilityId: {
         type: 'string',
       },
-      ratingDecisionId: {
-        type: 'string',
-      },
       diagnosticCode: {
         type: 'number',
       },
