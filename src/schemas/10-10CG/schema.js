@@ -100,6 +100,8 @@ const schema = {
         'vetRelationship',
         'medicaidEnrolled',
         'medicareEnrolled',
+        'tricareEnrolled',
+        'champvaEnrolled',
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),

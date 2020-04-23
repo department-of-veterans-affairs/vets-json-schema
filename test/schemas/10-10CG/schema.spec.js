@@ -99,7 +99,9 @@ describe('10-10CG json schema', () => {
       'address',
       'vetRelationship',
       'medicaidEnrolled',
-      'medicareEnrolled'
+      'medicareEnrolled',
+      "tricareEnrolled",
+      "champvaEnrolled",
     ]);
 
     expect(schema.properties.secondaryOneCaregiver.required).to.deep.equal([

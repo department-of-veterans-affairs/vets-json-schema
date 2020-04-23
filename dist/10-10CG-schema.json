@@ -398,7 +398,9 @@
         "address",
         "vetRelationship",
         "medicaidEnrolled",
-        "medicareEnrolled"
+        "medicareEnrolled",
+        "tricareEnrolled",
+        "champvaEnrolled"
       ],
       "properties": {
         "fullName": {
