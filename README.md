@@ -23,6 +23,6 @@ node v6.11.1
     - Making a property required that was not previously required on that schema
     - Changing the `type` on a schema's property
     - Removing values in the `enum` key of a schema's property
-    - and anything else that would break the expectations of vets-api or vets-website
+    - ect.
 - Run `npm update` or `yarn update` to update `package-lock.json`.
 - Commit the changes to `package.json` and `package-lock.json`
