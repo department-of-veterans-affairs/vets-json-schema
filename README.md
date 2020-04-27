@@ -15,6 +15,14 @@ node v6.11.1
 | run tests on the built schemas | `npm run test` |
 
 ### Updating Version
-- Update the "version" property in `package.json` with the new version. Please follow [semver](https://semver.org/#summary) practices.
+- Update the "version" property in `package.json` with the new version. Please follow [Semantic Versioning](https://semver.org/#summary) practices.
+  - Breaking changes include:
+    - Removing a property from a schema
+    - Adding a property to a schema that has `additionalProperties` set to false
+    - Making a property required that was not previously required on that schema
+    - Changing the `type` on a schema's property
+    - Removing values in the `enum` key of a schema's property
+    - and anything else that would break the expectations of vets-api or vets-website
+  - If applicable, add a link to your PR that references a vets-api, or vets-website PR that addresses the breaking changes
 - Run `npm update` or `yarn update` to update `package-lock.json`.
 - Commit the changes to `package.json` and `package-lock.json`
