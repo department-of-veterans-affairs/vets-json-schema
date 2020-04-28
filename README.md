@@ -24,5 +24,5 @@ node v6.11.1
     - Changing the `type` on a schema's property
     - Removing values in the `enum` key of a schema's property
     - ect.
-- Run `npm update` or `yarn update` to update `package-lock.json`.
+- Run `npm update` update `package-lock.json`.
 - Commit the changes to `package.json` and `package-lock.json`
