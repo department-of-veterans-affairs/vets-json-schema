@@ -1,46 +1,23 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "SUPPLEMENTAL CLAIM FOR COMPENSATION (21-526EZ)",
+  "title": "SUPPLEMENTAL CLAIM FOR COMPENSATION (21-686C & 21-674)",
   "type": "object",
   "definitions": {
-    "genericLocation": {
-      "type": "object",
-      "required": [
-        "city",
-        "state"
-      ],
-      "properties": {
-        "state": {
-          "type": "string",
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
-        },
-        "city": {
-          "type": "string",
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
-        }
-      }
-    },
     "fullName": {
       "type": "object",
       "properties": {
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "maxLength": 30
         },
         "middle": {
-          "type": "string",
-          "maxLength": 20,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "type": "string"
         },
         "last": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "maxLength": 30
         },
         "suffix": {
           "type": "string",
@@ -58,378 +35,21 @@
         "last"
       ]
     },
-    "genericTextInput": {
+    "phone": {
       "type": "string",
-      "maxLength": 50
-    },
-    "genericTrueFalse": {
-      "type": "boolean"
-    },
-    "genericNumberAndDashInput": {
-      "type": "string",
-      "maxLength": 50,
-      "minLength": 4,
-      "pattern": "^[0-9]*[-]*[0-9]*[-]*[0-9]*$"
-    },
-    "genericUSAStateDropdown": {
-      "type": "string",
-      "enum": [
-        "AL",
-        "AK",
-        "AZ",
-        "AR",
-        "CA",
-        "CO",
-        "CT",
-        "DE",
-        "DC",
-        "FL",
-        "GA",
-        "HI",
-        "ID",
-        "IL",
-        "IN",
-        "IA",
-        "KS",
-        "KY",
-        "LA",
-        "ME",
-        "MD",
-        "MA",
-        "MI",
-        "MN",
-        "MS",
-        "MO",
-        "MT",
-        "NE",
-        "NV",
-        "NH",
-        "NJ",
-        "NM",
-        "NY",
-        "NC",
-        "ND",
-        "OH",
-        "OK",
-        "OR",
-        "PA",
-        "RI",
-        "SC",
-        "SD",
-        "TN",
-        "TX",
-        "UT",
-        "VT",
-        "VA",
-        "WA",
-        "WV",
-        "WI",
-        "WY"
-      ],
-      "default": [
-        "Alabama",
-        "Alaska",
-        "Arizona",
-        "Arkansas",
-        "California",
-        "Colorado",
-        "Connecticut",
-        "Delaware",
-        "District Of Columbia",
-        "Florida",
-        "Georgia",
-        "Hawaii",
-        "Idaho",
-        "Illinois",
-        "Indiana",
-        "Iowa",
-        "Kansas",
-        "Kentucky",
-        "Louisiana",
-        "Maine",
-        "Maryland",
-        "Massachusetts",
-        "Michigan",
-        "Minnesota",
-        "Mississippi",
-        "Missouri",
-        "Montana",
-        "Nebraska",
-        "Nevada",
-        "New Hampshire",
-        "New Jersey",
-        "New Mexico",
-        "New York",
-        "North Carolina",
-        "North Dakota",
-        "Ohio",
-        "Oklahoma",
-        "Oregon",
-        "Pennsylvania",
-        "Rhode Island",
-        "South Carolina",
-        "South Dakota",
-        "Tennessee",
-        "Texas",
-        "Utah",
-        "Vermont",
-        "Virginia",
-        "Washington",
-        "West Virginia",
-        "Wisconsin",
-        "Wyoming"
-      ]
-    },
-    "countryDropdown": {
-      "type": "string",
-      "enum": [
-        "United States",
-        "Afghanistan",
-        "Albania",
-        "Algeria",
-        "Andorra",
-        "Angola",
-        "Anguilla",
-        "Antarctica",
-        "Antigua",
-        "Argentina",
-        "Armenia",
-        "Aruba",
-        "Australia",
-        "Austria",
-        "Azerbaijan",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bermuda",
-        "Bhutan",
-        "Bolivia",
-        "Bosnia",
-        "Botswana",
-        "Bouvet Island",
-        "Brazil",
-        "British Indian Ocean Territories",
-        "Brunei Darussalam",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cambodia",
-        "Cameroon",
-        "Canada",
-        "Cape Verde",
-        "Cayman",
-        "Central African Republic",
-        "Chad",
-        "Chile",
-        "China",
-        "Christmas Island",
-        "Cocos Islands",
-        "Colombia",
-        "Comoros",
-        "Congo",
-        "Democratic Republic of the Congo",
-        "Cook Islands",
-        "Costa Rica",
-        "Ivory Coast",
-        "Croatia",
-        "Cuba",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Equatorial Guinea",
-        "Eritrea",
-        "Estonia",
-        "Ethiopia",
-        "Falkland Islands",
-        "Faroe Islands",
-        "Fiji",
-        "Finland",
-        "France",
-        "French Guiana",
-        "French Polynesia",
-        "French Southern Territories",
-        "Gabon",
-        "Gambia",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Gibraltar",
-        "Greece",
-        "Greenland",
-        "Grenada",
-        "Guadeloupe",
-        "Guatemala",
-        "Guinea",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Heard Island",
-        "Honduras",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "India",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "North Korea",
-        "South Korea",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liberia",
-        "Libya",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macao",
-        "Macedonia",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mali",
-        "Malta",
-        "Martinique",
-        "Mauritania",
-        "Mauritius",
-        "Mayotte",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montserrat",
-        "Morocco",
-        "Mozambique",
-        "Myanmar",
-        "Namibia",
-        "Nauru",
-        "Nepal",
-        "Netherlands Antilles",
-        "Netherlands",
-        "New Caledonia",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "Nigeria",
-        "Niue",
-        "Norfolk",
-        "Norway",
-        "Oman",
-        "Pakistan",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Pitcairn",
-        "Poland",
-        "Portugal",
-        "Qatar",
-        "Reunion",
-        "Romania",
-        "Russia",
-        "Rwanda",
-        "Saint Helena",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Saint Pierre and Miquelon",
-        "Saint Vincent and the Grenadines",
-        "San Marino",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "South Africa",
-        "South Georgia and the South Sandwich Islands",
-        "Spain",
-        "Sri Lanka",
-        "Sudan",
-        "Suriname",
-        "Swaziland",
-        "Sweden",
-        "Switzerland",
-        "Syrian Arab Republic",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Togo",
-        "Tokelau",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Turkey",
-        "Turkmenistan",
-        "Turks and Caicos Islands",
-        "Tuvalu",
-        "Uganda",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Vatican",
-        "Venezuela",
-        "Vietnam",
-        "British Virgin Islands",
-        "Wallis and Futuna",
-        "Western Sahara",
-        "Yemen",
-        "Zambia",
-        "Zimbabwe"
-      ]
+      "minLength": 10
     },
     "date": {
-      "type": "string",
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
-    "emailInput": {
+    "email": {
       "type": "string",
-      "format": "email"
+      "minLength": 6,
+      "maxLength": 80,
+      "pattern": "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     },
-    "phoneInput": {
-      "type": "string",
-      "pattern": "^[0-9]{10}$"
-    },
-    "currencyInput": {
-      "type": "string",
-      "pattern": "^\\d+(\\.\\d{1,2})?$"
-    },
-    "fileSchema": {
+    "files": {
       "type": "array",
       "items": {
         "type": "object",
@@ -446,11 +66,53 @@
         }
       }
     },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "genericLocation": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        }
+      }
+    },
+    "genericTextInput": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "genericTrueFalse": {
+      "type": "boolean"
+    },
+    "genericNumberAndDashInput": {
+      "type": "string",
+      "maxLength": 50,
+      "minLength": 4,
+      "pattern": "^[0-9]*[-]*[0-9]*[-]*[0-9]*$"
+    },
+    "currencyInput": {
+      "type": "string",
+      "pattern": "^\\d+(\\.\\d{1,2})?$"
+    },
     "addressSchema": {
       "type": "object",
       "properties": {
         "view:livesOnMilitaryBase": {
-          "type": "boolean"
+          "$ref": "#/definitions/genericTrueFalse"
         },
         "view:livesOnMilitaryBaseInfo": {
           "type": "object",
@@ -459,6 +121,236 @@
         "countryName": {
           "type": "string",
           "enum": [
+            "USA",
+            "AFG",
+            "ALB",
+            "DZA",
+            "AND",
+            "AGO",
+            "AIA",
+            "ATA",
+            "ATG",
+            "ARG",
+            "ARM",
+            "ABW",
+            "AUS",
+            "AUT",
+            "AZE",
+            "BHS",
+            "BHR",
+            "BGD",
+            "BRB",
+            "BLR",
+            "BEL",
+            "BLZ",
+            "BEN",
+            "BMU",
+            "BTN",
+            "BOL",
+            "BIH",
+            "BWA",
+            "BVT",
+            "BRA",
+            "IOT",
+            "BRN",
+            "BGR",
+            "BFA",
+            "BDI",
+            "KHM",
+            "CMR",
+            "CAN",
+            "CPV",
+            "CYM",
+            "CAF",
+            "TCD",
+            "CHL",
+            "CHN",
+            "CXR",
+            "CCK",
+            "COL",
+            "COM",
+            "COG",
+            "COD",
+            "COK",
+            "CRI",
+            "CIV",
+            "HRV",
+            "CUB",
+            "CYP",
+            "CZE",
+            "DNK",
+            "DJI",
+            "DMA",
+            "DOM",
+            "ECU",
+            "EGY",
+            "SLV",
+            "GNQ",
+            "ERI",
+            "EST",
+            "ETH",
+            "FLK",
+            "FRO",
+            "FJI",
+            "FIN",
+            "FRA",
+            "GUF",
+            "PYF",
+            "ATF",
+            "GAB",
+            "GMB",
+            "GEO",
+            "DEU",
+            "GHA",
+            "GIB",
+            "GRC",
+            "GRL",
+            "GRD",
+            "GLP",
+            "GTM",
+            "GIN",
+            "GNB",
+            "GUY",
+            "HTI",
+            "HMD",
+            "HND",
+            "HKG",
+            "HUN",
+            "ISL",
+            "IND",
+            "IDN",
+            "IRN",
+            "IRQ",
+            "IRL",
+            "ISR",
+            "ITA",
+            "JAM",
+            "JPN",
+            "JOR",
+            "KAZ",
+            "KEN",
+            "KIR",
+            "PRK",
+            "KOR",
+            "KWT",
+            "KGZ",
+            "LAO",
+            "LVA",
+            "LBN",
+            "LSO",
+            "LBR",
+            "LBY",
+            "LIE",
+            "LTU",
+            "LUX",
+            "MAC",
+            "MKD",
+            "MDG",
+            "MWI",
+            "MYS",
+            "MDV",
+            "MLI",
+            "MLT",
+            "MTQ",
+            "MRT",
+            "MUS",
+            "MYT",
+            "MEX",
+            "FSM",
+            "MDA",
+            "MCO",
+            "MNG",
+            "MSR",
+            "MAR",
+            "MOZ",
+            "MMR",
+            "NAM",
+            "NRU",
+            "NPL",
+            "ANT",
+            "NLD",
+            "NCL",
+            "NZL",
+            "NIC",
+            "NER",
+            "NGA",
+            "NIU",
+            "NFK",
+            "NOR",
+            "OMN",
+            "PAK",
+            "PAN",
+            "PNG",
+            "PRY",
+            "PER",
+            "PHL",
+            "PCN",
+            "POL",
+            "PRT",
+            "QAT",
+            "REU",
+            "ROU",
+            "RUS",
+            "RWA",
+            "SHN",
+            "KNA",
+            "LCA",
+            "SPM",
+            "VCT",
+            "SMR",
+            "STP",
+            "SAU",
+            "SEN",
+            "SCG",
+            "SYC",
+            "SLE",
+            "SGP",
+            "SVK",
+            "SVN",
+            "SLB",
+            "SOM",
+            "ZAF",
+            "SGS",
+            "ESP",
+            "LKA",
+            "SDN",
+            "SUR",
+            "SWZ",
+            "SWE",
+            "CHE",
+            "SYR",
+            "TWN",
+            "TJK",
+            "TZA",
+            "THA",
+            "TLS",
+            "TGO",
+            "TKL",
+            "TON",
+            "TTO",
+            "TUN",
+            "TUR",
+            "TKM",
+            "TCA",
+            "TUV",
+            "UGA",
+            "UKR",
+            "ARE",
+            "GBR",
+            "URY",
+            "UZB",
+            "VUT",
+            "VAT",
+            "VEN",
+            "VNM",
+            "VGB",
+            "WLF",
+            "ESH",
+            "YEM",
+            "ZMB",
+            "ZWE"
+          ],
+          "enumNames": [
             "United States",
             "Afghanistan",
             "Albania",
@@ -839,35 +731,35 @@
         "type": "object",
         "properties": {
           "addChild": {
-            "type": "boolean",
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
           "addSpouse": {
-            "type": "boolean",
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
           "reportDivorce": {
-            "type": "boolean",
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
           "reportDeath": {
-            "type": "boolean",
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
           "reportStepchildNotInHousehold": {
-            "type": "boolean",
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
           "reportMarriageOfChildUnder18": {
-            "type": "boolean",
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
-          "reportChild18orOlderIsNotAttendingSchool": {
-            "type": "boolean",
+          "reportChild18OrOlderIsNotAttendingSchool": {
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
           "report674": {
-            "type": "boolean",
+            "$ref": "#/definitions/genericTrueFalse",
             "default": false
           }
         }
@@ -879,27 +771,11 @@
         "veteranInformation": {
           "type": "object",
           "properties": {
-            "first": {
-              "$ref": "#/definitions/genericTextInput"
-            },
-            "middle": {
-              "$ref": "#/definitions/genericTextInput"
-            },
-            "last": {
-              "$ref": "#/definitions/genericTextInput"
-            },
-            "suffix": {
-              "type": "string",
-              "enum": [
-                "Jr.",
-                "Sr.",
-                "II",
-                "III",
-                "IV"
-              ]
+            "fullName": {
+              "$ref": "#/definitions/fullName"
             },
             "ssn": {
-              "$ref": "#/definitions/genericNumberAndDashInput"
+              "$ref": "#/definitions/ssn"
             },
             "vaFileNumber": {
               "$ref": "#/definitions/genericNumberAndDashInput"
@@ -911,19 +787,19 @@
               "$ref": "#/definitions/date"
             }
           }
-        }
-      },
-      "veteranAddress": {
-        "type": "object",
-        "properties": {
-          "veteranAddress": {
-            "$ref": "#/definitions/addressSchema"
-          },
-          "phoneNumber": {
-            "$ref": "#/definitions/phoneInput"
-          },
-          "emailAddress": {
-            "$ref": "#/definitions/emailInput"
+        },
+        "veteranAddress": {
+          "type": "object",
+          "properties": {
+            "veteranAddress": {
+              "$ref": "#/definitions/addressSchema"
+            },
+            "phoneNumber": {
+              "$ref": "#/definitions/phone"
+            },
+            "emailAddress": {
+              "$ref": "#/definitions/email"
+            }
           }
         }
       }
@@ -940,27 +816,11 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "first": {
-                    "$ref": "#/definitions/genericTextInput"
-                  },
-                  "middle": {
-                    "$ref": "#/definitions/genericTextInput"
-                  },
-                  "last": {
-                    "$ref": "#/definitions/genericTextInput"
-                  },
-                  "suffix": {
-                    "type": "string",
-                    "enum": [
-                      "Jr.",
-                      "Sr.",
-                      "II",
-                      "III",
-                      "IV"
-                    ]
+                  "fullName": {
+                    "$ref": "#/definitions/fullName"
                   },
                   "ssn": {
-                    "$ref": "#/definitions/genericNumberAndDashInput"
+                    "$ref": "#/definitions/ssn"
                   },
                   "birthDate": {
                     "$ref": "#/definitions/date"
@@ -969,115 +829,115 @@
               }
             }
           }
-        }
-      },
-      "addChildPlaceOfBirth": {
-        "type": "object",
-        "properties": {
-          "childrenToAdd": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "type": "object",
-              "properties": {
-                "childPlaceOfBirth": {
-                  "type": "object",
-                  "properties": {
-                    "state": {
-                      "$ref": "#/definitions/genericTextInput"
-                    },
-                    "city": {
-                      "$ref": "#/definitions/genericTextInput"
+        },
+        "addChildPlaceOfBirth": {
+          "type": "object",
+          "properties": {
+            "childrenToAdd": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "placeOfBirth": {
+                    "$ref": "#/definitions/genericLocation"
+                  },
+                  "childStatus": {
+                    "type": "object",
+                    "properties": {
+                      "biological": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "adopted": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "notCapable": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "stepchild": {
+                        "$ref": "#/definitions/genericTrueFalse"
+                      },
+                      "dateBecameDependent": {
+                        "$ref": "#/definitions/date"
+                      }
                     }
-                  }
-                },
-                "childStatus": {
-                  "type": "object",
-                  "properties": {
-                    "biological": {
-                      "$ref": "#/definitions/genericTrueFalse"
-                    },
-                    "adopted": {
-                      "$ref": "#/definitions/genericTrueFalse"
-                    },
-                    "notCapable": {
-                      "$ref": "#/definitions/genericTrueFalse"
-                    },
-                    "stepchild": {
-                      "$ref": "#/definitions/genericTrueFalse"
-                    },
-                    "dateBecameDependent": {
-                      "$ref": "#/definitions/date"
-                    }
-                  }
-                },
-                "view:childStatusInformation": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "childPreviouslyMarried": {
-                  "type": "string",
-                  "enum": [
-                    "Yes",
-                    "No"
-                  ],
-                  "default": "No"
-                },
-                "childPreviousMarriageDetails": {
-                  "type": "object",
-                  "properties": {
-                    "dateMarriageEnded": {
-                      "$ref": "#/definitions/date"
-                    },
-                    "reasonMarriageEnded": {
-                      "type": "string",
-                      "enum": [
-                        "Divorce",
-                        "Death",
-                        "Annulment",
-                        "Other"
-                      ],
-                      "default": "Divorce"
-                    },
-                    "otherReasonMarriageEnded": {
-                      "$ref": "#/definitions/genericTextInput"
+                  },
+                  "view:childStatusInformation": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "previouslyMarried": {
+                    "type": "string",
+                    "enum": [
+                      "Yes",
+                      "No"
+                    ],
+                    "default": "No"
+                  },
+                  "previousMarriageDetails": {
+                    "type": "object",
+                    "properties": {
+                      "dateMarriageEnded": {
+                        "$ref": "#/definitions/date"
+                      },
+                      "reasonMarriageEnded": {
+                        "type": "string",
+                        "enum": [
+                          "Divorce",
+                          "Death",
+                          "Annulment",
+                          "Other"
+                        ],
+                        "default": "Divorce"
+                      },
+                      "otherReasonMarriageEnded": {
+                        "$ref": "#/definitions/genericTextInput"
+                      }
                     }
                   }
                 }
               }
             }
           }
-        }
-      },
-      "addChildAdditionalInformation": {
-        "type": "object",
-        "properties": {
-          "childrenToAdd": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "type": "object",
-              "properties": {
-                "doesChildLiveWithYou": {
-                  "type": "boolean"
-                },
-                "childAddressInfo": {
-                  "$ref": "#/definitions/addressSchema"
+        },
+        "addChildAdditionalInformation": {
+          "type": "object",
+          "properties": {
+            "childrenToAdd": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "doesChildLiveWithYou": {
+                    "$ref": "#/definitions/genericTrueFalse"
+                  },
+                  "childAddressInfo": {
+                    "type": "object",
+                    "properties": {
+                      "personChildLivesWith": {
+                        "$ref": "#/definitions/fullName"
+                      },
+                      "address": {
+                        "$ref": "#/definitions/addressSchema"
+                      }
+                    }
+                  }
                 }
               }
             }
           }
-        }
-      },
-      "childAdditionalEvidence": {
-        "type": "object",
-        "properties": {
-          "view:additionalEvidenceDescription": {
-            "type": "object",
-            "properties": {}
-          },
-          "supportingDocuments": {
-            "$ref": "#/definitions/fileSchema"
+        },
+        "childAdditionalEvidence": {
+          "type": "object",
+          "properties": {
+            "view:additionalEvidenceDescription": {
+              "type": "object",
+              "properties": {}
+            },
+            "supportingDocuments": {
+              "$ref": "#/definitions/files"
+            }
           }
         }
       }
@@ -1088,203 +948,214 @@
         "spouseNameInformation": {
           "type": "object",
           "properties": {
-            "spouseFullName": "#/definitions/fullName",
-            "spouseSSN": {
-              "$ref": "#/definitions/genericNumberAndDashInput"
+            "fullName": {
+              "$ref": "#/definitions/fullName"
             },
-            "spouseDOB": {
+            "ssn": {
+              "$ref": "#/definitions/ssn"
+            },
+            "birthDate": {
               "$ref": "#/definitions/date"
             },
-            "isSpouseVeteran": {
-              "type": "boolean"
+            "isVeteran": {
+              "$ref": "#/definitions/genericTrueFalse"
             },
-            "spouseVAFileNumber": {
+            "VAFileNumber": {
               "$ref": "#/definitions/genericNumberAndDashInput"
             },
-            "spouseServiceNumber": {
+            "serviceNumber": {
               "$ref": "#/definitions/genericNumberAndDashInput"
             }
           }
-        }
-      },
-      "currentMarriageInformation": {
-        "type": "object",
-        "properties": {
-          "dateOfMarriage": {
-            "$ref": "#/definitions/date"
-          },
-          "locationOfMarriage": {
-            "$ref": "#/definitions/genericLocation"
-          },
-          "marriageType": {
-            "type": "string",
-            "enum": [
-              "CEREMONIAL",
-              "COMMON-LAW",
-              "TRIBAL",
-              "PROXY",
-              "OTHER"
-            ],
-            "enumNames": [
-              "Ceremonial",
-              "Common-law",
-              "Tribal",
-              "Proxy",
-              "Other"
-            ]
-          },
-          "marriageTypeOther": {
-            "$ref": "#/definitions/genericTextInput"
-          },
-          "view:marriageTypeInformation": {
-            "type": "object",
-            "properties": {}
-          }
-        }
-      },
-      "doesLiveWithSpouse": {
-        "type": "object",
-        "properties": {
-          "spouseDoesLiveWithVeteran": {
-            "type": "boolean"
-          },
-          "currentSpouseReasonForSeparation": {
-            "$ref": "#/definitions/genericTextInput"
-          },
-          "currentSpouseAddress": {
-            "$ref": "#/definitions/addressSchema"
-          }
-        }
-      },
-      "spouseMarriageHistory": {
-        "type": "object",
-        "properties": {
-          "spouseWasMarriedBefore": {
-            "type": "boolean"
-          },
-          "spouseMarriageHistory": {
-            "type": "array",
-            "items": {
+        },
+        "currentMarriageInformation": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "$ref": "#/definitions/date"
+            },
+            "location": {
+              "$ref": "#/definitions/genericLocation"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "CEREMONIAL",
+                "COMMON-LAW",
+                "TRIBAL",
+                "PROXY",
+                "OTHER"
+              ],
+              "enumNames": [
+                "Ceremonial",
+                "Common-law",
+                "Tribal",
+                "Proxy",
+                "Other"
+              ]
+            },
+            "typeOther": {
+              "$ref": "#/definitions/genericTextInput"
+            },
+            "view:marriageTypeInformation": {
               "type": "object",
-              "properties": {
-                "formerSpouseName": "#/definitions/fullName"
-              }
+              "properties": {}
             }
           }
-        }
-      },
-      "spouseMarriageHistoryDetails": {
-        "type": "object",
-        "properties": {
-          "spouseMarriageHistory": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "marriageStartDate": {
-                  "$ref": "#/definitions/date"
-                },
-                "marriageStartLocation": {
-                  "$ref": "#/definitions/genericLocation"
-                },
-                "reasonMarriageEnded": {
-                  "type": "string",
-                  "enum": [
-                    "DIVORCE",
-                    "DEATH",
-                    "ANNULMENT",
-                    "OTHER"
-                  ],
-                  "enumNames": [
-                    "Divorce",
-                    "Death",
-                    "Annulment",
-                    "Other"
-                  ]
-                },
-                "reasonMarriageEndedOther": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "marriageEndDate": {
-                  "$ref": "#/definitions/date"
-                },
-                "marriageEndLocation": {
-                  "$ref": "#/definitions/genericLocation"
+        },
+        "doesLiveWithSpouse": {
+          "type": "object",
+          "properties": {
+            "spouseDoesLiveWithVeteran": {
+              "$ref": "#/definitions/genericTrueFalse"
+            },
+            "currentSpouseReasonForSeparation": {
+              "type": "string",
+              "enum": [
+                "Death",
+                "Divorce",
+                "Other"
+              ]
+            },
+            "address": {
+              "$ref": "#/definitions/addressSchema"
+            }
+          }
+        },
+        "spouseMarriageHistory": {
+          "type": "object",
+          "properties": {
+            "spouseWasMarriedBefore": {
+              "$ref": "#/definitions/genericTrueFalse"
+            },
+            "spouseMarriageHistory": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "fullName": {
+                    "$ref": "#/definitions/fullName"
+                  }
                 }
               }
             }
           }
-        }
-      },
-      "veteranMarriageHistory": {
-        "type": "object",
-        "properties": {
-          "veteranWasMarriedBefore": {
-            "type": "boolean"
-          },
-          "veteranMarriageHistory": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "formerSpouseName": "#/definitions/fullName"
-              }
-            }
-          }
-        }
-      },
-      "veteranMarriageHistoryDetails": {
-        "type": "object",
-        "properties": {
-          "veteranMarriageHistory": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "marriageStartDate": {
-                  "$ref": "#/definitions/date"
-                },
-                "marriageStartLocation": {
-                  "$ref": "#/definitions/genericLocation"
-                },
-                "reasonMarriageEnded": {
-                  "type": "string",
-                  "enum": [
-                    "DIVORCE",
-                    "DEATH",
-                    "ANNULMENT",
-                    "OTHER"
-                  ],
-                  "enumNames": [
-                    "Divorce",
-                    "Death",
-                    "Annulment",
-                    "Other"
-                  ]
-                },
-                "reasonMarriageEndedOther": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "marriageEndDate": {
-                  "$ref": "#/definitions/date"
-                },
-                "marriageEndLocation": {
-                  "$ref": "#/definitions/genericLocation"
+        },
+        "spouseMarriageHistoryDetails": {
+          "type": "object",
+          "properties": {
+            "spouseMarriageHistory": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "$ref": "#/definitions/date"
+                  },
+                  "startLocation": {
+                    "$ref": "#/definitions/genericLocation"
+                  },
+                  "reasonMarriageEnded": {
+                    "type": "string",
+                    "enum": [
+                      "DIVORCE",
+                      "DEATH",
+                      "ANNULMENT",
+                      "OTHER"
+                    ],
+                    "enumNames": [
+                      "Divorce",
+                      "Death",
+                      "Annulment",
+                      "Other"
+                    ]
+                  },
+                  "reasonMarriageEndedOther": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "endDate": {
+                    "$ref": "#/definitions/date"
+                  },
+                  "endLocation": {
+                    "$ref": "#/definitions/genericLocation"
+                  }
                 }
               }
             }
           }
-        }
-      },
-      "marriageAdditionalEvidence": {
-        "type": "object",
-        "properties": {
-          "view:additionalEvidenceDescription": {
-            "type": "object",
-            "properties": {}
-          },
-          "supportingDocuments": {
-            "$ref": "#/definitions/fileSchema"
+        },
+        "veteranMarriageHistory": {
+          "type": "object",
+          "properties": {
+            "veteranWasMarriedBefore": {
+              "$ref": "#/definitions/genericTrueFalse"
+            },
+            "veteranMarriageHistory": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "fullName": {
+                    "$ref": "#/definitions/fullName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "veteranMarriageHistoryDetails": {
+          "type": "object",
+          "properties": {
+            "veteranMarriageHistory": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "$ref": "#/definitions/date"
+                  },
+                  "startLocation": {
+                    "$ref": "#/definitions/genericLocation"
+                  },
+                  "reasonMarriageEnded": {
+                    "type": "string",
+                    "enum": [
+                      "DIVORCE",
+                      "DEATH",
+                      "ANNULMENT",
+                      "OTHER"
+                    ],
+                    "enumNames": [
+                      "Divorce",
+                      "Death",
+                      "Annulment",
+                      "Other"
+                    ]
+                  },
+                  "reasonMarriageEndedOther": {
+                    "$ref": "#/definitions/genericTextInput"
+                  },
+                  "endDate": {
+                    "$ref": "#/definitions/date"
+                  },
+                  "endLocation": {
+                    "$ref": "#/definitions/genericLocation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "marriageAdditionalEvidence": {
+          "type": "object",
+          "properties": {
+            "view:additionalEvidenceDescription": {
+              "type": "object",
+              "properties": {}
+            },
+            "supportingDocuments": {
+              "$ref": "#/definitions/files"
+            }
           }
         }
       }
@@ -1292,11 +1163,13 @@
     "reportDivorce": {
       "type": "object",
       "properties": {
-        "formerSpouseName": "#/definitions/fullName",
-        "dateOfDivorce": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "date": {
           "$ref": "#/definitions/date"
         },
-        "locationOfDivorce": {
+        "location": {
           "$ref": "#/definitions/genericLocation"
         },
         "isMarriageAnnulledOrVoid": {
@@ -1304,8 +1177,11 @@
         },
         "explanationOfAnnullmentOrVoid": {
           "type": "string",
-          "maxLength": 500,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+          "enum": [
+            "Death",
+            "Divorce",
+            "Other"
+          ]
         }
       }
     },
@@ -1321,7 +1197,9 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "fullName": "#/definitions/fullName",
+                  "fullName": {
+                    "$ref": "#/definitions/fullName"
+                  },
                   "dependentType": {
                     "type": "string",
                     "enum": [
@@ -1359,22 +1237,22 @@
               }
             }
           }
-        }
-      },
-      "dependentAdditionalInformation": {
-        "type": "object",
-        "properties": {
-          "deaths": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "type": "object",
-              "properties": {
-                "deceasedDateOfDeath": {
-                  "$ref": "#/definitions/date"
-                },
-                "deceasedLocationOfDeath": {
-                  "$ref": "#/definitions/genericLocation"
+        },
+        "dependentAdditionalInformation": {
+          "type": "object",
+          "properties": {
+            "deaths": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "$ref": "#/definitions/date"
+                  },
+                  "location": {
+                    "$ref": "#/definitions/genericLocation"
+                  }
                 }
               }
             }
@@ -1385,8 +1263,10 @@
     "reportChildMarriage": {
       "type": "object",
       "properties": {
-        "marriedChildName": "#/definitions/fullName",
-        "dateChildMarried": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "dateMarried": {
           "$ref": "#/definitions/date"
         }
       }
@@ -1394,7 +1274,9 @@
     "reportChildStoppedAttendingSchool": {
       "type": "object",
       "properties": {
-        "childNoLongerAtSchoolName": "#/definitions/fullName",
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
         }
@@ -1412,69 +1294,42 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "first": {
-                    "$ref": "#/definitions/genericTextInput"
-                  },
-                  "middle": {
-                    "$ref": "#/definitions/genericTextInput"
-                  },
-                  "last": {
-                    "$ref": "#/definitions/genericTextInput"
-                  },
-                  "suffix": {
-                    "type": "string",
-                    "enum": [
-                      "Jr.",
-                      "Sr.",
-                      "II",
-                      "III",
-                      "IV"
-                    ]
+                  "fullName": {
+                    "$ref": "#/definitions/fullName"
                   }
                 }
               }
             }
           }
-        }
-      },
-      "stepchildInformation": {
-        "type": "object",
-        "properties": {
-          "stepChildren": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "type": "object",
-              "properties": {
-                "stillSupportingStepchild": {
-                  "type": "boolean",
-                  "default": false
-                },
-                "stepchildLivingExpensesPaid": {
-                  "type": "string",
-                  "enum": [
-                    "More than half",
-                    "Half",
-                    "Less than half"
-                  ],
-                  "default": "More than half"
-                },
-                "whoDoesTheStepchildLiveWith": {
-                  "type": "object",
-                  "properties": {
-                    "first": {
-                      "$ref": "#/definitions/genericTextInput"
-                    },
-                    "middle": {
-                      "$ref": "#/definitions/genericTextInput"
-                    },
-                    "last": {
-                      "$ref": "#/definitions/genericTextInput"
-                    }
+        },
+        "stepchildInformation": {
+          "type": "object",
+          "properties": {
+            "stepChildren": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "supportingStepchild": {
+                    "$ref": "#/definitions/genericTrueFalse",
+                    "default": false
+                  },
+                  "livingExpensesPaid": {
+                    "type": "string",
+                    "enum": [
+                      "More than half",
+                      "Half",
+                      "Less than half"
+                    ],
+                    "default": "More than half"
+                  },
+                  "whoDoesTheStepchildLiveWith": {
+                    "$ref": "#/definitions/fullName"
+                  },
+                  "address": {
+                    "$ref": "#/definitions/addressSchema"
                   }
-                },
-                "stepchildAddress": {
-                  "$ref": "#/definitions/addressSchema"
                 }
               }
             }
@@ -1492,11 +1347,13 @@
               "type": "object",
               "properties": {}
             },
-            "studentFullName": "#/definitions/fullName",
-            "studentSSN": {
-              "$ref": "#/definitions/genericNumberAndDashInput"
+            "fullName": {
+              "$ref": "#/definitions/fullName"
             },
-            "studentDOB": {
+            "ssn": {
+              "$ref": "#/definitions/ssn"
+            },
+            "birthDate": {
               "$ref": "#/definitions/date"
             }
           }
@@ -1504,17 +1361,17 @@
         "studentAddressMarriageTuition": {
           "type": "object",
           "properties": {
-            "studentAddress": {
+            "address": {
               "$ref": "#/definitions/addressSchema"
             },
-            "studentWasMarried": {
-              "type": "boolean"
+            "wasMarried": {
+              "$ref": "#/definitions/genericTrueFalse"
             },
             "marriageDate": {
               "$ref": "#/definitions/date"
             },
             "tuitionIsPaidByGovAgency": {
-              "type": "boolean"
+              "$ref": "#/definitions/genericTrueFalse"
             },
             "agencyName": {
               "$ref": "#/definitions/genericTextInput"
@@ -1530,13 +1387,13 @@
             "schoolInformation": {
               "type": "object",
               "properties": {
-                "schoolName": {
+                "name": {
                   "$ref": "#/definitions/genericTextInput"
                 },
                 "trainingProgram": {
                   "$ref": "#/definitions/genericTextInput"
                 },
-                "schoolAddress": {
+                "address": {
                   "$ref": "#/definitions/addressSchema"
                 }
               }
@@ -1546,7 +1403,7 @@
         "studentTermDates": {
           "type": "object",
           "properties": {
-            "termDates": {
+            "currentTermDates": {
               "type": "object",
               "properties": {
                 "officialSchoolStartDate": {
@@ -1564,7 +1421,7 @@
               "type": "object",
               "properties": {
                 "studentIsEnrolledFullTime": {
-                  "type": "boolean"
+                  "$ref": "#/definitions/genericTrueFalse"
                 },
                 "courseOfStudy": {
                   "$ref": "#/definitions/genericTextInput"
@@ -1583,18 +1440,18 @@
           "type": "object",
           "properties": {
             "studentDidAttendSchoolLastTerm": {
-              "type": "boolean"
+              "$ref": "#/definitions/genericTrueFalse"
             },
             "lastTermSchoolInformation": {
               "type": "object",
               "properties": {
-                "schoolName": {
+                "name": {
                   "$ref": "#/definitions/genericTextInput"
                 },
-                "schoolAddress": {
+                "address": {
                   "$ref": "#/definitions/addressSchema"
                 },
-                "dateTermBegan": {
+                "termBegin": {
                   "$ref": "#/definitions/date"
                 },
                 "dateTermEnded": {
@@ -1614,7 +1471,7 @@
           "type": "object",
           "properties": {
             "studentDoesEarnIncome": {
-              "type": "boolean"
+              "$ref": "#/definitions/genericTrueFalse"
             },
             "studentEarningsFromSchoolYear": {
               "type": "object",
@@ -1634,7 +1491,7 @@
               }
             },
             "studentWillEarnIncomeNextYear": {
-              "type": "boolean"
+              "$ref": "#/definitions/genericTrueFalse"
             },
             "studentExpectedEarningsNextYear": {
               "type": "object",
@@ -1659,9 +1516,9 @@
           "type": "object",
           "properties": {
             "studentDoesHaveNetworth": {
-              "type": "boolean"
+              "$ref": "#/definitions/genericTrueFalse"
             },
-            "networthInformation": {
+            "studentNetworthInformation": {
               "type": "object",
               "properties": {
                 "savings": {

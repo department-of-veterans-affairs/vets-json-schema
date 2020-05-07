@@ -1,8 +1,16 @@
 import definitions from '../../common/definitions';
 import { caregiverProgramFacilities } from '../../common/constants';
 
-const buildDataType = type => ({ type });
+const buildDataType = (type, additionals = {}) => {
+  return { type, ...additionals };
+};
+
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
+
+const gender = {
+  type: 'string',
+  enum: ['F', 'M', 'U'],
+};
 
 const vetRelationships = [
   'Spouse',
@@ -15,6 +23,7 @@ const vetRelationships = [
   'Significant Other',
   'Relative - Other',
   'Friend/Neighbor',
+  'Grandchild',
 ];
 
 const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities)
@@ -34,14 +43,13 @@ const schema = {
   additionalProperties: false,
   required: ['veteran', 'primaryCaregiver'],
   definitions: {
-    tin: buildDataType('string'),
-    fullName: definitions.fullName,
+    fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
     date: definitions.date,
-    gender: definitions.gender,
+    gender: gender,
     phone: definitions.phone,
     email: definitions.email,
-    address: definitions.address,
+    address: definitions.usAddress,
     vetRelationship: { type: 'string', enum: vetRelationships },
   },
   properties: {
@@ -71,7 +79,7 @@ const schema = {
           additionalProperties: false,
           required: ['name', 'type'],
           properties: {
-            name: buildDataType('string'),
+            name: buildDataType('string', { minLength: 1, maxLength: 100 }),
             type: {
               type: 'string',
               enum: ['hospital', 'clinic']
@@ -92,6 +100,8 @@ const schema = {
         'vetRelationship',
         'medicaidEnrolled',
         'medicareEnrolled',
+        'tricareEnrolled',
+        'champvaEnrolled',
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
@@ -109,10 +119,10 @@ const schema = {
         tricareEnrolled: buildDataType('boolean'),
         // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
         champvaEnrolled: buildDataType('boolean'),
-        otherHealthInsuranceName: buildDataType('string'),
+        otherHealthInsuranceName: buildDataType('string', { minLength: 1, maxLength: 100 }),
       },
     },
-    secondaryOneCaregiver: {
+    secondaryCaregiverOne: {
       type: 'object',
       additionalProperties: false,
       required: [
@@ -135,7 +145,7 @@ const schema = {
         vetRelationship: buildDefinitionReference('vetRelationship'),
       },
     },
-    secondaryTwoCaregiver: {
+    secondaryCaregiverTwo: {
       type: 'object',
       additionalProperties: false,
       required: [

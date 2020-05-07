@@ -8,11 +8,13 @@
     "primaryCaregiver"
   ],
   "definitions": {
-    "tin": {
-      "type": "string"
-    },
     "fullName": {
       "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
       "properties": {
         "first": {
           "type": "string",
@@ -26,22 +28,8 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
         }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
+      }
     },
     "ssn": {
       "type": "string",
@@ -55,7 +43,8 @@
       "type": "string",
       "enum": [
         "F",
-        "M"
+        "M",
+        "U"
       ]
     },
     "phone": {
@@ -70,193 +59,12 @@
     },
     "address": {
       "type": "object",
-      "oneOf": [
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "CAN"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "AB",
-                "BC",
-                "MB",
-                "NB",
-                "NF",
-                "NT",
-                "NV",
-                "NU",
-                "ON",
-                "PE",
-                "QC",
-                "SK",
-                "YT"
-              ]
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 10
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "MEX"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "aguascalientes",
-                "baja-california-norte",
-                "baja-california-sur",
-                "campeche",
-                "chiapas",
-                "chihuahua",
-                "coahuila",
-                "colima",
-                "distrito-federal",
-                "durango",
-                "guanajuato",
-                "guerrero",
-                "hidalgo",
-                "jalisco",
-                "mexico",
-                "michoacan",
-                "morelos",
-                "nayarit",
-                "nuevo-leon",
-                "oaxaca",
-                "puebla",
-                "queretaro",
-                "quintana-roo",
-                "san-luis-potosi",
-                "sinaloa",
-                "sonora",
-                "tabasco",
-                "tamaulipas",
-                "tlaxcala",
-                "veracruz",
-                "yucatan",
-                "zacatecas"
-              ]
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 10
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "USA"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "AL",
-                "AK",
-                "AS",
-                "AZ",
-                "AR",
-                "AA",
-                "AE",
-                "AP",
-                "CA",
-                "CO",
-                "CT",
-                "DE",
-                "DC",
-                "FM",
-                "FL",
-                "GA",
-                "GU",
-                "HI",
-                "ID",
-                "IL",
-                "IN",
-                "IA",
-                "KS",
-                "KY",
-                "LA",
-                "ME",
-                "MH",
-                "MD",
-                "MA",
-                "MI",
-                "MN",
-                "MS",
-                "MO",
-                "MT",
-                "NE",
-                "NV",
-                "NH",
-                "NJ",
-                "NM",
-                "NY",
-                "NC",
-                "ND",
-                "MP",
-                "OH",
-                "OK",
-                "OR",
-                "PW",
-                "PA",
-                "PR",
-                "RI",
-                "SC",
-                "SD",
-                "TN",
-                "TX",
-                "UT",
-                "VT",
-                "VI",
-                "VA",
-                "WA",
-                "WV",
-                "WI",
-                "WY"
-              ]
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 10
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "not": {
-                "type": "string",
-                "enum": [
-                  "CAN",
-                  "MEX",
-                  "USA"
-                ]
-              }
-            },
-            "state": {
-              "type": "string",
-              "maxLength": 51
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 51
-            }
-          }
-        }
+      "additionalProperties": false,
+      "required": [
+        "street",
+        "city",
+        "state",
+        "postalCode"
       ],
       "properties": {
         "street": {
@@ -273,6 +81,84 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 51
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL",
+            "AK",
+            "AS",
+            "AZ",
+            "AR",
+            "AA",
+            "AE",
+            "AP",
+            "CA",
+            "CO",
+            "CT",
+            "DE",
+            "DC",
+            "FM",
+            "FL",
+            "GA",
+            "GU",
+            "HI",
+            "ID",
+            "IL",
+            "IN",
+            "IA",
+            "KS",
+            "KY",
+            "LA",
+            "ME",
+            "MH",
+            "MD",
+            "MA",
+            "MI",
+            "MN",
+            "MS",
+            "MO",
+            "MT",
+            "NE",
+            "NV",
+            "NH",
+            "NJ",
+            "NM",
+            "NY",
+            "NC",
+            "ND",
+            "MP",
+            "OH",
+            "OK",
+            "OR",
+            "PW",
+            "PA",
+            "PR",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VT",
+            "VI",
+            "VA",
+            "WA",
+            "WV",
+            "WI",
+            "WY"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "anyOf": [
+            {
+              "pattern": "^\\d{5}$"
+            },
+            {
+              "pattern": "^\\d{5}-\\d{4}$"
+            }
+          ]
         }
       }
     },
@@ -288,7 +174,8 @@
         "Sister",
         "Significant Other",
         "Relative - Other",
-        "Friend/Neighbor"
+        "Friend/Neighbor",
+        "Grandchild"
       ]
     }
   },
@@ -485,7 +372,9 @@
           ],
           "properties": {
             "name": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
             },
             "type": {
               "type": "string",
@@ -509,7 +398,9 @@
         "address",
         "vetRelationship",
         "medicaidEnrolled",
-        "medicareEnrolled"
+        "medicareEnrolled",
+        "tricareEnrolled",
+        "champvaEnrolled"
       ],
       "properties": {
         "fullName": {
@@ -552,11 +443,13 @@
           "type": "boolean"
         },
         "otherHealthInsuranceName": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
         }
       }
     },
-    "secondaryOneCaregiver": {
+    "secondaryCaregiverOne": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -597,7 +490,7 @@
         }
       }
     },
-    "secondaryTwoCaregiver": {
+    "secondaryCaregiverTwo": {
       "type": "object",
       "additionalProperties": false,
       "required": [

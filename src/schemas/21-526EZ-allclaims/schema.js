@@ -30,9 +30,6 @@ const disabilitiesBaseDef = {
       ratedDisabilityId: {
         type: 'string',
       },
-      ratingDecisionId: {
-        type: 'string',
-      },
       diagnosticCode: {
         type: 'number',
       },
@@ -479,7 +476,7 @@ const schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$",
+            pattern: "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$",
           },
           treatmentDateRange: {
             $ref: '#/definitions/dateRangeFromRequired',
