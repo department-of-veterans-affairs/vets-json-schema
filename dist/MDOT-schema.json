@@ -258,10 +258,10 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 51
-        },
-        "isMilitaryBase": {
-          "type": "boolean"
         }
+      },
+      "isMilitaryBase": {
+        "type": "boolean"
       }
     },
     "supplies": {

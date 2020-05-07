@@ -1,13 +1,14 @@
 import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import _ from 'lodash';
 
 const { fullName, ssnLastFour, email, gender, date, address } = commonDefinitions;
 
-const addressWithIsMilitaryBase = _.cloneDeep(address);
-addressWithIsMilitaryBase.properties.isMilitaryBase = {
-  type: 'boolean'
-};
+const addressWithIsMilitaryBase = {
+  ...address,
+  isMilitaryBase: {
+    type: 'boolean'
+  }
+}
 
 const supplies = {
   type: 'array',
