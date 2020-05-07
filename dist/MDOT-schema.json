@@ -53,7 +53,7 @@
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
-    "address": {
+    "addressWithIsMilitaryBase": {
       "type": "object",
       "oneOf": [
         {
@@ -259,6 +259,9 @@
           "minLength": 1,
           "maxLength": 51
         }
+      },
+      "isMilitaryBase": {
+        "type": "boolean"
       }
     },
     "supplies": {
@@ -292,6 +295,9 @@
           },
           "size": {
             "type": "string"
+          },
+          "prescribedDate": {
+            "$ref": "#/definitions/date"
           }
         }
       }
@@ -318,10 +324,10 @@
       "$ref": "#/definitions/fullName"
     },
     "permanentAddress": {
-      "$ref": "#/definitions/address"
+      "$ref": "#/definitions/addressWithIsMilitaryBase"
     },
     "temporaryAddress": {
-      "$ref": "#/definitions/address"
+      "$ref": "#/definitions/addressWithIsMilitaryBase"
     },
     "ssnLastFour": {
       "$ref": "#/definitions/ssnLastFour"
