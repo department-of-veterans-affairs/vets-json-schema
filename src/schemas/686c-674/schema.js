@@ -132,23 +132,7 @@ const schema = {
       properties: {
         veteranInformation: {
           type: 'object',
-          properties: {
-            fullName: {
-              $ref: '#/definitions/fullName',
-            },
-            ssn: {
-              $ref: '#/definitions/ssn',
-            },
-            vaFileNumber: {
-              $ref: '#/definitions/genericNumberAndDashInput',
-            },
-            serviceNumber: {
-              $ref: '#/definitions/genericNumberAndDashInput',
-            },
-            birthDate: {
-              $ref: '#/definitions/date',
-            },
-          },
+          properties: {},
         },
         veteranAddress: {
           type: 'object',
