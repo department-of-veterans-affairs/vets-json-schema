@@ -47,6 +47,19 @@ describe('mdot schema', () => {
     ]
   })
 
+  schemaTestHelper.testValidAndInvalid('eligibility',{
+    valid: [
+      {
+        batteries: true
+      }
+    ],
+    invalid: [
+      {
+        batteries: 7
+      }
+    ]
+  })
+
   it('should have the correct required properties', () => {
     expect(schema.required).to.deep.equal([
       'privacyAgreementAccepted',
@@ -56,7 +69,8 @@ describe('mdot schema', () => {
       'gender',
       'email',
       'dateOfBirth',
-      'supplies'
+      'supplies',
+      'eligibility'
     ]);
 
     expect(schema.definitions.fullName.required).to.deep.equal(['first', 'last']);
