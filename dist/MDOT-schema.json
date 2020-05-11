@@ -264,6 +264,17 @@
         "type": "boolean"
       }
     },
+    "eligibility": {
+      "type": "object",
+      "properties": {
+        "batteries": {
+          "type": "boolean"
+        },
+        "accessories": {
+          "type": "boolean"
+        }
+      }
+    },
     "supplies": {
       "type": "array",
       "items": {
@@ -338,6 +349,9 @@
     "dateOfBirth": {
       "$ref": "#/definitions/date"
     },
+    "eligibility": {
+      "$ref": "#/definitions/eligibility"
+    },
     "supplies": {
       "$ref": "#/definitions/supplies"
     }
@@ -350,6 +364,7 @@
     "gender",
     "email",
     "dateOfBirth",
-    "supplies"
+    "supplies",
+    "eligibility"
   ]
 }
