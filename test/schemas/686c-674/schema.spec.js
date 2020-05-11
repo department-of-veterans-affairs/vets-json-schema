@@ -252,20 +252,14 @@ const testData = {
 describe('686c-674 schema', () => {
   // veteran information
   sharedTests.runTest('fullName', [
-    'veteranInformation.veteranInformation.fullName',
     'addSpouse.spouseNameInformation.fullName',
     'reportDivorce.fullName',
     'reportChildMarriage.fullName',
     'reportChildStoppedAttendingSchool.fullName',
     'report674.studentNameAndSSN.fullName',
   ]);
-  sharedTests.runTest('ssn', [
-    'veteranInformation.veteranInformation.ssn',
-    'addSpouse.spouseNameInformation.ssn',
-    'report674.studentNameAndSSN.ssn',
-  ]);
+  sharedTests.runTest('ssn', ['addSpouse.spouseNameInformation.ssn', 'report674.studentNameAndSSN.ssn']);
   sharedTests.runTest('date', [
-    'veteranInformation.veteranInformation.birthDate',
     'addSpouse.spouseNameInformation.birthDate',
     'addSpouse.currentMarriageInformation.date',
     'reportDivorce.date',
