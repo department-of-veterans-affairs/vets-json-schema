@@ -124,7 +124,7 @@ const addressDefs = [
 ];
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'DECLARATION OF STATUS OF DEPENDENTS',
   type: 'object',
   additionalProperties: false,

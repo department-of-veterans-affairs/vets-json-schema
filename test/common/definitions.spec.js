@@ -7,7 +7,7 @@ describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
     let schemaTestHelper = new SchemaTestHelper(
       {
-        $schema: 'http://json-schema.org/draft-04/schema#',
+        $schema: 'http://json-schema.org/draft-07/schema#',
         type: 'object',
         definitions: definitions,
         properties: {

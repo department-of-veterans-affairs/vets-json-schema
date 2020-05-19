@@ -146,7 +146,7 @@ definitions.phone.pattern = '^[0-9+\\s-]{0,20}$';
 definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
   type: 'object',
   additionalProperties: false,

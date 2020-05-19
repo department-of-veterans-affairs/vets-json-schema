@@ -37,7 +37,7 @@ const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities)
   }, []);
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)',
   type: 'object',
   additionalProperties: false,

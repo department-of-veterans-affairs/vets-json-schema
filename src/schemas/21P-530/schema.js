@@ -29,7 +29,7 @@ _.merge(modifiedToursOfDuty, {
 });
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'APPLICATION FOR BURIAL BENEFITS',
   type: 'object',
   additionalProperties: false,

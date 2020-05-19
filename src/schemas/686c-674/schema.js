@@ -13,7 +13,7 @@ const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
 let definitions = cloneDeep(commonDefinitions);
 definitions = pick(definitions, 'fullName', 'phone', 'date', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-686C & 21-674)',
   type: 'object',
   definitions: merge(definitions, {

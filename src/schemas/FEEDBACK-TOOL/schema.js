@@ -121,7 +121,7 @@ const searchToolSchoolAddress = {
 const schoolAddresses = [domesticSchoolAddress, internationalSchoolAddress, searchToolSchoolAddress];
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'GI BILL SCHOOL FEEDBACK TOOL',
   type: 'object',
   additionalProperties: false,

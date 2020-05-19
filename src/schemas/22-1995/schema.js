@@ -6,7 +6,7 @@ const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('cooperativeTraining');
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'REQUEST FOR CHANGE OF PROGRAM OR PLACE OF TRAINING (22-1995)',
   type: 'object',
   additionalProperties: false,

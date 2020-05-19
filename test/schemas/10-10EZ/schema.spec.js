@@ -11,7 +11,7 @@ const jsonValidator = ajv({ allErrors: true, errorDataPath: 'property', removeAd
 
 function definitionValidator(field) {
   const tinySchema = {
-    $schema: 'http://json-schema.org/draft-04/schema#',
+    $schema: 'http://json-schema.org/draft-07/schema#',
     type: 'object',
     properties: {
       field: applicationSchema.definitions[field]

@@ -35,7 +35,7 @@ function definitionValidator(field) {
     field: schema.definitions[field],
   };
   const tinySchema = {
-    $schema: 'http://json-schema.org/draft-04/schema#',
+    $schema: 'http://json-schema.org/draft-07/schema#',
     type: 'object',
     properties,
   };

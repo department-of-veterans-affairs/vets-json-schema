@@ -8,7 +8,7 @@ const modifiedToursOfDuty = definitions.toursOfDuty;
 delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
   type: 'object',
   additionalProperties: false,

@@ -2,7 +2,7 @@ import { pciuStates } from '../../common/constants';
 import definitions from '../../common/definitions';
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'APPLICATION FOR VETERAN EMPLOYMENT THROUGH TECHNOLOGY EDUCATION COURSES (VET TEC) HIGH TECHNOLOGY PROGRAM',
   type: 'object',
   definitions: {

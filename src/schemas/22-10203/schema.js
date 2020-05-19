@@ -6,7 +6,7 @@ const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('cooperativeTraining');
 
 const schema = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'APPLICATION FOR STEM (22-10203)',
   type: 'object',
   additionalProperties: false,
