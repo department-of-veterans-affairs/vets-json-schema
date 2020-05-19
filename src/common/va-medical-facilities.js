@@ -1002,7 +1002,8 @@ module.exports = {
     },
     {
       value: '671BZ',
-      label: 'SOUTH TEXAS HEALTH CARE SYSTEM - CORPUS CHRISTI OUTPATIENT CLINIC',
+      label:
+        'SOUTH TEXAS HEALTH CARE SYSTEM - CORPUS CHRISTI OUTPATIENT CLINIC',
     },
     {
       value: '671GA',
@@ -2178,7 +2179,8 @@ module.exports = {
   NY: [
     {
       value: '528A4',
-      label: 'VA HEALTHCARE NETWORK UPSTATE NEW YORK SYSTEM VISN 2 - BATAVIA DIVISION',
+      label:
+        'VA HEALTHCARE NETWORK UPSTATE NEW YORK SYSTEM VISN 2 - BATAVIA DIVISION',
     },
     {
       value: '528A5',
@@ -3114,7 +3116,8 @@ module.exports = {
     },
     {
       value: '691',
-      label: 'VA GREATER LOS ANGELES HEALTHCARE SYSTEM - WEST LOS ANGELES DIVISION',
+      label:
+        'VA GREATER LOS ANGELES HEALTHCARE SYSTEM - WEST LOS ANGELES DIVISION',
     },
     {
       value: '570',

@@ -5,7 +5,9 @@ const buildDataType = (type, additionals = {}) => {
   return { type, ...additionals };
 };
 
-const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
+const buildDefinitionReference = referenceId => ({
+  $ref: `#/definitions/${referenceId}`,
+});
 
 const gender = {
   type: 'string',
@@ -26,19 +28,21 @@ const vetRelationships = [
   'Grandchild',
 ];
 
-const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities)
-  .reduce((acc, stateId) => {
-    const stateFacilities = caregiverProgramFacilities[stateId];
-    const facilityIds = stateFacilities.map(facility => facility.code);
+const caregiverProgramFacilityIds = Object.keys(
+  caregiverProgramFacilities,
+).reduce((acc, stateId) => {
+  const stateFacilities = caregiverProgramFacilities[stateId];
+  const facilityIds = stateFacilities.map(facility => facility.code);
 
-    Array.prototype.push.apply(acc, facilityIds);
+  Array.prototype.push.apply(acc, facilityIds);
 
-    return acc;
-  }, []);
+  return acc;
+}, []);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)',
+  title:
+    'Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)',
   type: 'object',
   additionalProperties: false,
   required: ['veteran', 'primaryCaregiver'],
@@ -46,7 +50,7 @@ const schema = {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
     date: definitions.date,
-    gender: gender,
+    gender,
     phone: definitions.phone,
     email: definitions.email,
     address: definitions.usAddress,
@@ -62,7 +66,7 @@ const schema = {
         'dateOfBirth',
         'gender',
         'address',
-        'plannedClinic'
+        'plannedClinic',
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
@@ -82,7 +86,7 @@ const schema = {
             name: buildDataType('string', { minLength: 1, maxLength: 100 }),
             type: {
               type: 'string',
-              enum: ['hospital', 'clinic']
+              enum: ['hospital', 'clinic'],
             },
           },
         },
@@ -119,7 +123,10 @@ const schema = {
         tricareEnrolled: buildDataType('boolean'),
         // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
         champvaEnrolled: buildDataType('boolean'),
-        otherHealthInsuranceName: buildDataType('string', { minLength: 1, maxLength: 100 }),
+        otherHealthInsuranceName: buildDataType('string', {
+          minLength: 1,
+          maxLength: 100,
+        }),
       },
     },
     secondaryCaregiverOne: {
@@ -131,7 +138,7 @@ const schema = {
         'dateOfBirth',
         'gender',
         'address',
-        'vetRelationship'
+        'vetRelationship',
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
@@ -154,7 +161,7 @@ const schema = {
         'dateOfBirth',
         'gender',
         'address',
-        'vetRelationship'
+        'vetRelationship',
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),

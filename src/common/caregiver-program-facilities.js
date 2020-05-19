@@ -92,7 +92,8 @@ module.exports = {
     },
     {
       code: '691',
-      label: 'VA GREATER LOS ANGELES HEALTHCARE SYSTEM - WEST LOS ANGELES DIVISION',
+      label:
+        'VA GREATER LOS ANGELES HEALTHCARE SYSTEM - WEST LOS ANGELES DIVISION',
     },
   ],
   ME: [

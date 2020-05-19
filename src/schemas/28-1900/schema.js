@@ -4,7 +4,8 @@ import schemaHelpers from '../../common/schema-helpers';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'DISABLED VETERANS APPLICATION FOR VOCATIONAL REHABILITATION (28-1900)',
+  title:
+    'DISABLED VETERANS APPLICATION FOR VOCATIONAL REHABILITATION (28-1900)',
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(definitions, ['date', 'dateRange', 'year']),

@@ -57,7 +57,13 @@ const schema = {
     },
     benefit: {
       type: 'string',
-      enum: ['chapter33', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32'],
+      enum: [
+        'chapter33',
+        'chapter30',
+        'chapter1606',
+        'transferOfEntitlement',
+        'chapter32',
+      ],
     },
     educationType: {
       $ref: '#/definitions/educationType',

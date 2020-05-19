@@ -1,14 +1,21 @@
 import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const { fullName, ssnLastFour, email, gender, date, address } = commonDefinitions;
+const {
+  fullName,
+  // ssnLastFour,
+  email,
+  gender,
+  date,
+  address,
+} = commonDefinitions;
 
 const addressWithIsMilitaryBase = {
   ...address,
   isMilitaryBase: {
-    type: 'boolean'
-  }
-}
+    type: 'boolean',
+  },
+};
 
 const supplies = {
   type: 'array',
@@ -16,50 +23,50 @@ const supplies = {
     type: 'object',
     properties: {
       deviceName: {
-        type: 'string'
+        type: 'string',
       },
       productName: {
-        type: 'string'
+        type: 'string',
       },
       productGroup: {
-        type: 'string'
+        type: 'string',
       },
       productId: {
-        type: 'string'
+        type: 'string',
       },
       availableForReorder: {
-        type: 'boolean'
+        type: 'boolean',
       },
       lastOrderDate: {
-        $ref: '#/definitions/date'
+        $ref: '#/definitions/date',
       },
       nextAvailabilityDate: {
-        $ref: '#/definitions/date'
+        $ref: '#/definitions/date',
       },
       quantity: {
-        type: 'number'
+        type: 'number',
       },
       size: {
-        type: 'string'
+        type: 'string',
       },
       prescribedDate: {
-        $ref: '#/definitions/date'
-      }
-    }
-  }
-}
+        $ref: '#/definitions/date',
+      },
+    },
+  },
+};
 
 const eligibility = {
   type: 'object',
   properties: {
     batteries: {
-      type: 'boolean'
+      type: 'boolean',
     },
     accessories: {
-      type: 'boolean'
-    }
-  }
-}
+      type: 'boolean',
+    },
+  },
+};
 
 const schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
@@ -72,11 +79,21 @@ const schema = {
     gender,
     date,
     addressWithIsMilitaryBase,
-    eligibility: eligibility,
-    supplies: supplies
+    eligibility,
+    supplies,
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'email', 'dateOfBirth', 'supplies', 'eligibility'],
+  required: [
+    'privacyAgreementAccepted',
+    'fullName',
+    'permanentAddress',
+    'temporaryAddress',
+    'gender',
+    'email',
+    'dateOfBirth',
+    'supplies',
+    'eligibility',
+  ],
 };
 
 [
@@ -89,7 +106,7 @@ const schema = {
   ['gender'],
   ['date', 'dateOfBirth'],
   ['eligibility'],
-  ['supplies']
+  ['supplies'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

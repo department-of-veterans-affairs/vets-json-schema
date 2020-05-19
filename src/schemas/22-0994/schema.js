@@ -3,7 +3,8 @@ import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'APPLICATION FOR VETERAN EMPLOYMENT THROUGH TECHNOLOGY EDUCATION COURSES (VET TEC) HIGH TECHNOLOGY PROGRAM',
+  title:
+    'APPLICATION FOR VETERAN EMPLOYMENT THROUGH TECHNOLOGY EDUCATION COURSES (VET TEC) HIGH TECHNOLOGY PROGRAM',
   type: 'object',
   definitions: {
     phone: definitions.usaPhone,
@@ -29,7 +30,8 @@ const schema = {
       type: 'string',
       minLength: 6,
       maxLength: 80,
-      pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+      pattern:
+        '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
     },
     address: {
       ...definitions.address,
@@ -153,12 +155,24 @@ const schema = {
       type: 'array',
       items: {
         type: 'string',
-        enum: ['computerProgramming', 'dataProcessing', 'computerSoftware', 'informationSciences', 'mediaApplication'],
+        enum: [
+          'computerProgramming',
+          'dataProcessing',
+          'computerSoftware',
+          'informationSciences',
+          'mediaApplication',
+        ],
       },
     },
     currentSalary: {
       type: 'string',
-      enum: ['lessThanTwenty', 'twentyToThirtyFive', 'thirtyFiveToFifty', 'fiftyToSeventyFive', 'moreThanSeventyFive'],
+      enum: [
+        'lessThanTwenty',
+        'twentyToThirtyFive',
+        'thirtyFiveToFifty',
+        'fiftyToSeventyFive',
+        'moreThanSeventyFive',
+      ],
     },
     highestLevelofEducation: {
       type: 'string',

@@ -11,7 +11,8 @@ const updatedDefinitions = set(
 
 const schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'APPLICATION FOR VA EDUCATION BENEFITS UNDER THE NATIONAL CALL TO SERVICE (NCS) PROGRAM (22-1990N)',
+  title:
+    'APPLICATION FOR VA EDUCATION BENEFITS UNDER THE NATIONAL CALL TO SERVICE (NCS) PROGRAM (22-1990N)',
   type: 'object',
   additionalProperties: false,
   definitions: _.pick(updatedDefinitions, ['educationType', 'dateRange']),

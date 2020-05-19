@@ -11,7 +11,16 @@ const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
 const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
 
 let definitions = cloneDeep(commonDefinitions);
-definitions = pick(definitions, 'fullName', 'phone', 'date', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
+definitions = pick(
+  definitions,
+  'fullName',
+  'phone',
+  'date',
+  'email',
+  'files',
+  'privacyAgreementAccepted',
+  'ssn',
+);
 const schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-686C & 21-674)',
@@ -111,10 +120,22 @@ const schema = {
         properties: {
           addChild: { $ref: '#/definitions/genericTrueFalse', default: false },
           addSpouse: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportDivorce: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportDeath: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportStepchildNotInHousehold: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportMarriageOfChildUnder18: { $ref: '#/definitions/genericTrueFalse', default: false },
+          reportDivorce: {
+            $ref: '#/definitions/genericTrueFalse',
+            default: false,
+          },
+          reportDeath: {
+            $ref: '#/definitions/genericTrueFalse',
+            default: false,
+          },
+          reportStepchildNotInHousehold: {
+            $ref: '#/definitions/genericTrueFalse',
+            default: false,
+          },
+          reportMarriageOfChildUnder18: {
+            $ref: '#/definitions/genericTrueFalse',
+            default: false,
+          },
           reportChild18OrOlderIsNotAttendingSchool: {
             $ref: '#/definitions/genericTrueFalse',
             default: false,
@@ -321,7 +342,13 @@ const schema = {
             type: {
               type: 'string',
               enum: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
-              enumNames: ['Ceremonial', 'Common-law', 'Tribal', 'Proxy', 'Other'],
+              enumNames: [
+                'Ceremonial',
+                'Common-law',
+                'Tribal',
+                'Proxy',
+                'Other',
+              ],
             },
             typeOther: {
               $ref: '#/definitions/genericTextInput',

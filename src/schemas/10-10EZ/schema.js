@@ -3,10 +3,14 @@ import constants from '../../common/constants';
 import schemaHelpers from '../../common/schema-helpers';
 import definitions from '../../common/definitions';
 
-const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
+const states = _.uniq(
+  _.flatten(_.values(constants.states)).map(object => object.value),
+);
 // eslint-disable-next-line import/no-named-as-default-member
 const countries = constants.countries.map(object => object.value);
-const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+const countriesWithAnyState = Object.keys(constants.states).filter(x =>
+  _.includes(countries, x),
+);
 const countryStateProperties = _.map(constants.states, (value, key) => ({
   properties: {
     country: {
@@ -243,7 +247,9 @@ const schema = {
     },
     vaMedicalFacility: {
       type: 'string',
-      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
+      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(
+        object => object.value,
+      ),
     },
     wantsInitialVaContact: {
       type: 'boolean',

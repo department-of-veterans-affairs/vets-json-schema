@@ -57,7 +57,14 @@ const schema = {
     },
     monthlyIncome: {
       type: 'object',
-      required: ['socialSecurity', 'civilService', 'railroad', 'blackLung', 'serviceRetirement', 'ssi'],
+      required: [
+        'socialSecurity',
+        'civilService',
+        'railroad',
+        'blackLung',
+        'serviceRetirement',
+        'ssi',
+      ],
       properties: {
         socialSecurity: financialNumber,
         civilService: financialNumber,

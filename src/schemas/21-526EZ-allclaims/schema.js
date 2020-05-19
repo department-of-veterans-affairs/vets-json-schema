@@ -1,5 +1,9 @@
 import _ from 'lodash/fp';
-import { documentTypes526, pciuCountries, pciuStates } from '../../common/constants';
+import {
+  documentTypes526,
+  pciuCountries,
+  pciuStates,
+} from '../../common/constants';
 import definitions from '../../common/definitions';
 
 const serviceBranches = [
@@ -87,7 +91,13 @@ const vaTreatmentCenterAddressDef = (addressSchema => {
 })(baseAddressDef);
 
 const form0781AddressDef = (addressSchema => {
-  const ptsdAddressOmitions = ['addressLine1', 'addressLine2', 'addressLine3', 'postalCode', 'zipCode'];
+  const ptsdAddressOmitions = [
+    'addressLine1',
+    'addressLine2',
+    'addressLine3',
+    'postalCode',
+    'zipCode',
+  ];
   return {
     ..._.omit('required', addressSchema),
     properties: {
@@ -120,13 +130,23 @@ const schema = {
       type: 'string',
       minLength: 6,
       maxLength: 80,
-      pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+      pattern:
+        '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
     },
     specialIssues: {
       type: 'array',
       items: {
         type: 'string',
-        enum: ['ALS', 'HEPC', 'POW', 'PTSD/1', 'PTSD/2', 'PTSD/3', 'PTSD/4', 'MST'],
+        enum: [
+          'ALS',
+          'HEPC',
+          'POW',
+          'PTSD/1',
+          'PTSD/2',
+          'PTSD/3',
+          'PTSD/4',
+          'MST',
+        ],
       },
     },
     // Pulling out country and state to avoid the long list duplication
@@ -144,7 +164,11 @@ const schema = {
     addressNoRequiredFields: _.omit('required', baseAddressDef),
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
-    dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
+    dateRangeAllRequired: _.set(
+      'required',
+      ['from', 'to'],
+      definitions.dateRange,
+    ),
     dateRangeFromRequired: _.set('required', ['from'], definitions.dateRange),
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
@@ -642,7 +666,13 @@ const schema = {
                     },
                     injuryDeath: {
                       type: 'string',
-                      enum: ['killedInAction', 'killedNonBattle', 'woundedInAction', 'injuredNonBattle', 'other'],
+                      enum: [
+                        'killedInAction',
+                        'killedNonBattle',
+                        'woundedInAction',
+                        'injuredNonBattle',
+                        'other',
+                      ],
                     },
                     injuryDeathOther: {
                       type: 'string',
@@ -688,7 +718,11 @@ const schema = {
           maxItems: 100,
           items: {
             type: 'object',
-            required: ['providerFacilityName', 'treatmentDateRange', 'providerFacilityAddress'],
+            required: [
+              'providerFacilityName',
+              'treatmentDateRange',
+              'providerFacilityAddress',
+            ],
             properties: {
               providerFacilityName: {
                 type: 'string',
@@ -962,7 +996,10 @@ const schema = {
           attachmentId: {
             type: 'string',
             enum: ['L107', 'L023'],
-            enumNames: ['VA 21-4142 Authorization for Release of Information', 'Other'],
+            enumNames: [
+              'VA 21-4142 Authorization for Release of Information',
+              'Other',
+            ],
           },
         },
       },
@@ -999,7 +1036,16 @@ const schema = {
           },
           attachmentId: {
             type: 'string',
-            enum: ['L229', 'L018', 'L034', 'L048', 'L049', 'L029', 'L023', 'L015'],
+            enum: [
+              'L229',
+              'L018',
+              'L034',
+              'L048',
+              'L049',
+              'L029',
+              'L023',
+              'L015',
+            ],
             enumNames: [
               'VA Form 21-0781a - Statement in Support of Claim for PTSD Secondary to Personal Assault',
               'Civilian Police Reports',
@@ -1029,7 +1075,10 @@ const schema = {
           attachmentId: {
             type: 'string',
             enum: ['L149', 'L023'],
-            enumNames: ['VA 21-8940 Veterans Application for Increased Compensation Based on Unemployability', 'Other'],
+            enumNames: [
+              'VA 21-8940 Veterans Application for Increased Compensation Based on Unemployability',
+              'Other',
+            ],
           },
         },
       },
@@ -1049,7 +1098,9 @@ const schema = {
           attachmentId: {
             type: 'string',
             enum: ['L115'],
-            enumNames: ['A 21-4192 Request for Employment Information in Connection with Claim for Disability'],
+            enumNames: [
+              'A 21-4192 Request for Employment Information in Connection with Claim for Disability',
+            ],
           },
         },
       },

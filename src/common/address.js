@@ -2980,7 +2980,9 @@ const statesOnlyInPCIU = [
   { label: 'U.S. Minor Outlying Islands', value: 'UM' },
 ];
 
-const pciuStates = states.USA.concat(statesOnlyInPCIU).sort((stateA, stateB) => stateA.label - stateB.label);
+const pciuStates = states.USA.concat(statesOnlyInPCIU).sort(
+  (stateA, stateB) => stateA.label - stateB.label,
+);
 
 module.exports = {
   addressPou,

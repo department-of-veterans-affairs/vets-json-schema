@@ -110,7 +110,15 @@ delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
 delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
 delete modifiedToursOfDuty.items.properties.serviceStatus;
 
-definitions = _.pick(definitions, ['address', 'dateRange', 'files', 'fullName', 'phone', 'ssn', 'centralMailVaFile']);
+definitions = _.pick(definitions, [
+  'address',
+  'dateRange',
+  'files',
+  'fullName',
+  'phone',
+  'ssn',
+  'centralMailVaFile',
+]);
 
 const emailFormat = {
   type: 'string',
@@ -147,7 +155,8 @@ definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
+  title:
+    'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
   type: 'object',
   additionalProperties: false,
   definitions,
@@ -179,7 +188,13 @@ const schema = {
         },
         claimant: {
           type: 'object',
-          required: ['address', 'dateOfBirth', 'name', 'relationshipToVet', 'ssn'],
+          required: [
+            'address',
+            'dateOfBirth',
+            'name',
+            'relationshipToVet',
+            'ssn',
+          ],
           properties: {
             address: schemaHelpers.getDefinition('address'),
             dateOfBirth: schemaHelpers.getDefinition('date'),

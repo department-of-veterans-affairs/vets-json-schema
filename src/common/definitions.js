@@ -45,7 +45,7 @@ const fullNameNoSuffix = {
       maxLength: 30,
     },
   },
-}
+};
 
 const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
@@ -66,7 +66,9 @@ const usaPostalCode = {
 const address = (() => {
   // eslint-disable-next-line import/no-named-as-default-member
   const countries = constants.countries.map(object => object.value);
-  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+  const countriesWithAnyState = Object.keys(constants.states).filter(x =>
+    _.includes(countries, x),
+  );
   const countryStateProperties = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
@@ -583,7 +585,11 @@ const form4142 = {
     },
     providerFacility: {
       type: 'array',
-      required: ['providerFacilityName', 'treatmentDateRange', 'providerFacilityAddress'],
+      required: [
+        'providerFacilityName',
+        'treatmentDateRange',
+        'providerFacilityAddress',
+      ],
       items: {
         type: 'object',
         properties: {
@@ -612,7 +618,8 @@ const email = {
   type: 'string',
   minLength: 6,
   maxLength: 80,
-  pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+  pattern:
+    '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
 };
 
 export default {

@@ -91,12 +91,21 @@ const schema = {
     },
     highSchool: {
       type: 'object',
-      properties: _.merge(_.omit(definitions.postHighSchoolTrainings.items.properties, 'major'), {
-        status: {
-          type: 'string',
-          enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended'],
+      properties: _.merge(
+        _.omit(definitions.postHighSchoolTrainings.items.properties, 'major'),
+        {
+          status: {
+            type: 'string',
+            enum: [
+              'graduated',
+              'discontinued',
+              'graduationExpected',
+              'ged',
+              'neverAttended',
+            ],
+          },
         },
-      }),
+      ),
     },
     toursOfDuty: modifiedToursOfDuty,
     civilianBenefitsAssistance: {

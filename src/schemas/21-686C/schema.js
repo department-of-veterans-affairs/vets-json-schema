@@ -158,7 +158,12 @@ const schema = {
     },
     militaryAddress: {
       type: 'object',
-      required: [...commonAddressFields.required, 'postOffice', 'postalType', 'postalCode'],
+      required: [
+        ...commonAddressFields.required,
+        'postOffice',
+        'postalType',
+        'postalCode',
+      ],
       properties: {
         ...commonAddressFields.properties,
         addressType: {
@@ -169,7 +174,11 @@ const schema = {
         postOffice: {
           type: 'string',
           enum: ['APO', 'DPO', 'FPO'],
-          enumNames: ['Ashore Post Office', 'Diplomatic Post Office', 'Fleet Post Office'],
+          enumNames: [
+            'Ashore Post Office',
+            'Diplomatic Post Office',
+            'Fleet Post Office',
+          ],
         },
         postalType: {
           type: 'string',
@@ -293,7 +302,12 @@ const schema = {
       ...commonMarriagesDef,
       items: {
         ...commonMarriagesDef.items,
-        required: [...commonMarriageDef.required, 'reasonForSeparation', 'dateOfSeparation', 'locationOfSeparation'],
+        required: [
+          ...commonMarriageDef.required,
+          'reasonForSeparation',
+          'dateOfSeparation',
+          'locationOfSeparation',
+        ],
       },
     },
   }),
@@ -310,7 +324,13 @@ const schema = {
     maritalStatus: {
       type: 'string',
       enum: ['MARRIED', 'DIVORCED', 'WIDOWED', 'SEPARATED', 'NEVERMARRIED'],
-      enumNames: ['Married', 'Divorced', 'Widowed', 'Separated', 'Never Married'],
+      enumNames: [
+        'Married',
+        'Divorced',
+        'Widowed',
+        'Separated',
+        'Never Married',
+      ],
     },
     currentMarriage: {
       type: 'object',
@@ -467,7 +487,12 @@ const schema = {
       },
     },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'maritalStatus'],
+  required: [
+    'privacyAgreementAccepted',
+    'veteranFullName',
+    'veteranAddress',
+    'maritalStatus',
+  ],
   anyOf: [
     {
       required: ['vaFileNumber'],

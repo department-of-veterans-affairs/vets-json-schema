@@ -1,6 +1,10 @@
 import _ from 'lodash/fp';
 import definitions from '../../common/definitions';
-import { pciuCountries, pciuStates, documentTypes526 } from '../../common/constants';
+import {
+  pciuCountries,
+  pciuStates,
+  documentTypes526,
+} from '../../common/constants';
 
 const disabilitiesBaseDef = {
   type: 'array',
@@ -74,10 +78,18 @@ const addressBaseDef = {
 };
 
 // Some date ranges require both 'from' and 'to' dates
-const dateRangeAllRequired = _.set('required', ['from', 'to'], definitions.dateRange);
+const dateRangeAllRequired = _.set(
+  'required',
+  ['from', 'to'],
+  definitions.dateRange,
+);
 
 // Other date ranges don't
-const dateRangeFromRequired = _.set('required', ['from'], definitions.dateRange);
+const dateRangeFromRequired = _.set(
+  'required',
+  ['from'],
+  definitions.dateRange,
+);
 
 /**
  * Transforms common fullName definition by adding regex validations and
@@ -97,7 +109,8 @@ const fullNameDef = (definitions => {
   const firstLastPattern = "^([a-zA-Z0-9\\-'.#]([a-zA-Z0-9\\-'.# ])?)+$";
   fullNameClone.properties.first.pattern = firstLastPattern;
   fullNameClone.properties.last.pattern = firstLastPattern;
-  fullNameClone.properties.middle.pattern = "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
+  fullNameClone.properties.middle.pattern =
+    "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$";
 
   return fullNameClone;
 })(definitions);
@@ -154,13 +167,15 @@ const schema = {
           type: 'string',
           minLength: 6,
           maxLength: 80,
-          pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+          pattern:
+            '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
         },
         alternateEmailAddress: {
           type: 'string',
           format: 'email',
           maxLength: 80,
-          pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+          pattern:
+            '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
         },
         mailingAddress: {
           $ref: '#/definitions/address',
@@ -319,7 +334,11 @@ const schema = {
         },
         reservesNationalGuardService: {
           type: 'object',
-          required: ['unitName', 'obligationTermOfServiceDateRange', 'waiveVABenefitsToRetainTrainingPay'],
+          required: [
+            'unitName',
+            'obligationTermOfServiceDateRange',
+            'waiveVABenefitsToRetainTrainingPay',
+          ],
           properties: {
             unitName: {
               type: 'string',
