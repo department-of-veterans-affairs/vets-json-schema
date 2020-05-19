@@ -239,9 +239,24 @@ const documentTypes526 = [
   },
 ];
 
+// These definitions match caseflow:
+// https://github.com/department-of-veterans-affairs/caseflow/blob/master/client/constants/BENEFIT_TYPES.json
+const benefitTypes = [
+  { value: 'compensation', label: 'Compensation' },
+  { value: 'pension', label: 'Pension/survivors benefits' },
+  { value: 'fiduciary', label: 'Fiduciary' },
+  { value: 'education', label: 'Education' },
+  { value: 'vha', label: 'Veterans Health Administration' },
+  { value: 'voc_rehab', label: 'Vocational rehabilitation and employment' },
+  { value: 'loan_guaranty', label: 'Loan guaranty' },
+  { value: 'insurance', label: 'Insurance' },
+  { value: 'nca', label: 'National Cemetary Administration' },
+];
+
 module.exports = {
   addressPou,
   addressTypes,
+  benefitTypes,
   branchesServed,
   caregiverProgramFacilities,
   countries,

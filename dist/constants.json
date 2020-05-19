@@ -8,6 +8,44 @@
     "international": "INTERNATIONAL",
     "overseasMilitary": "OVERSEAS MILITARY"
   },
+  "benefitTypes": [
+    {
+      "value": "compensation",
+      "label": "Compensation"
+    },
+    {
+      "value": "pension",
+      "label": "Pension/survivors benefits"
+    },
+    {
+      "value": "fiduciary",
+      "label": "Fiduciary"
+    },
+    {
+      "value": "education",
+      "label": "Education"
+    },
+    {
+      "value": "vha",
+      "label": "Veterans Health Administration"
+    },
+    {
+      "value": "voc_rehab",
+      "label": "Vocational rehabilitation and employment"
+    },
+    {
+      "value": "loan_guaranty",
+      "label": "Loan guaranty"
+    },
+    {
+      "value": "insurance",
+      "label": "Insurance"
+    },
+    {
+      "value": "nca",
+      "label": "National Cemetary Administration"
+    }
+  ],
   "branchesServed": [
     {
       "value": "air force",
