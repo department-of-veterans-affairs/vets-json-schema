@@ -32,8 +32,8 @@ const testData = {
     invalid: ['something', 'else', 'entirely'],
   },
   reasonsMarriageEnded: {
-    valid: ['DIVORCE', 'OTHER'],
-    invalid: ['DEATH', 'SOME_OTHER'],
+    valid: ['Divorce', 'Other'],
+    invalid: ['DIVORCE', 'OTHER'],
   },
   deceasedDependent: {
     valid: [

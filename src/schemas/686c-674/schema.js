@@ -382,7 +382,7 @@ const schema = {
                   },
                   reasonMarriageEnded: {
                     type: 'string',
-                    enum: ['DIVORCE', 'DEATH', 'OTHER'],
+                    enum: ['Divorce', 'Death', 'Other'],
                     enumNames: ['Divorce', 'Death', 'Annulment/Other'],
                   },
                   reasonMarriageEndedOther: {
@@ -434,7 +434,7 @@ const schema = {
                   },
                   reasonMarriageEnded: {
                     type: 'string',
-                    enum: ['DIVORCE', 'DEATH', 'OTHER'],
+                    enum: ['Divorce', 'Death', 'Other'],
                     enumNames: ['Divorce', 'Death', 'Annulment/Other'],
                   },
                   reasonMarriageEndedOther: {
@@ -480,7 +480,7 @@ const schema = {
         },
         reasonMarriageEnded: {
           type: 'string',
-          enum: ['DIVORCE', 'OTHER'],
+          enum: ['Divorce', 'Other'],
           enumNames: ['Divorce', 'Annulment/Other'],
         },
         explanationOfOther: {

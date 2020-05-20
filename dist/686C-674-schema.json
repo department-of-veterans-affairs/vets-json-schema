@@ -1042,9 +1042,9 @@
                   "reasonMarriageEnded": {
                     "type": "string",
                     "enum": [
-                      "DIVORCE",
-                      "DEATH",
-                      "OTHER"
+                      "Divorce",
+                      "Death",
+                      "Other"
                     ],
                     "enumNames": [
                       "Divorce",
@@ -1102,9 +1102,9 @@
                   "reasonMarriageEnded": {
                     "type": "string",
                     "enum": [
-                      "DIVORCE",
-                      "DEATH",
-                      "OTHER"
+                      "Divorce",
+                      "Death",
+                      "Other"
                     ],
                     "enumNames": [
                       "Divorce",
@@ -1155,8 +1155,8 @@
         "reasonMarriageEnded": {
           "type": "string",
           "enum": [
-            "DIVORCE",
-            "OTHER"
+            "Divorce",
+            "Other"
           ],
           "enumNames": [
             "Divorce",
