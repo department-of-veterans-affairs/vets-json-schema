@@ -31,6 +31,10 @@ const testData = {
     valid: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
     invalid: ['something', 'else', 'entirely'],
   },
+  reasonsMarriageEnded: {
+    valid: ['Divorce', 'Other'],
+    invalid: ['DIVORCE', 'OTHER'],
+  },
   deceasedDependent: {
     valid: [
       {
@@ -286,7 +290,7 @@ describe('686c-674 schema', () => {
   schemaTestHelper.testValidAndInvalid('addSpouse.currentMarriageInformation.location', testData.genericLocation);
 
   // Report Divorce
-  schemaTestHelper.testValidAndInvalid('reportDivorce.isMarriageAnnulledOrVoid', testData.boolean);
+  schemaTestHelper.testValidAndInvalid('reportDivorce.reasonMarriageEnded', testData.reasonsMarriageEnded);
   schemaTestHelper.testValidAndInvalid('reportDivorce.location', testData.genericLocation);
 
   // Deceased Dependents

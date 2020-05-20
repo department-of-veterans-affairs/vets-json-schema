@@ -1042,16 +1042,14 @@
                   "reasonMarriageEnded": {
                     "type": "string",
                     "enum": [
-                      "DIVORCE",
-                      "DEATH",
-                      "ANNULMENT",
-                      "OTHER"
+                      "Divorce",
+                      "Death",
+                      "Other"
                     ],
                     "enumNames": [
                       "Divorce",
                       "Death",
-                      "Annulment",
-                      "Other"
+                      "Annulment/Other"
                     ]
                   },
                   "reasonMarriageEndedOther": {
@@ -1104,16 +1102,14 @@
                   "reasonMarriageEnded": {
                     "type": "string",
                     "enum": [
-                      "DIVORCE",
-                      "DEATH",
-                      "ANNULMENT",
-                      "OTHER"
+                      "Divorce",
+                      "Death",
+                      "Other"
                     ],
                     "enumNames": [
                       "Divorce",
                       "Death",
-                      "Annulment",
-                      "Other"
+                      "Annulment/Other"
                     ]
                   },
                   "reasonMarriageEndedOther": {
@@ -1156,16 +1152,19 @@
         "location": {
           "$ref": "#/definitions/genericLocation"
         },
-        "isMarriageAnnulledOrVoid": {
-          "$ref": "#/definitions/genericTrueFalse"
-        },
-        "explanationOfAnnullmentOrVoid": {
+        "reasonMarriageEnded": {
           "type": "string",
           "enum": [
-            "Death",
             "Divorce",
             "Other"
+          ],
+          "enumNames": [
+            "Divorce",
+            "Annulment/Other"
           ]
+        },
+        "explanationOfOther": {
+          "$ref": "#/definitions/genericTextInput"
         }
       }
     },
