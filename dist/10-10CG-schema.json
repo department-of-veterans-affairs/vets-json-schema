@@ -189,6 +189,7 @@
         "dateOfBirth",
         "gender",
         "address",
+        "primaryPhoneNumber",
         "plannedClinic"
       ],
       "properties": {
@@ -396,6 +397,7 @@
         "dateOfBirth",
         "gender",
         "address",
+        "primaryPhoneNumber",
         "vetRelationship",
         "medicaidEnrolled",
         "medicareEnrolled",
@@ -458,6 +460,7 @@
         "dateOfBirth",
         "gender",
         "address",
+        "primaryPhoneNumber",
         "vetRelationship"
       ],
       "properties": {
@@ -499,6 +502,7 @@
         "dateOfBirth",
         "gender",
         "address",
+        "primaryPhoneNumber",
         "vetRelationship"
       ],
       "properties": {
