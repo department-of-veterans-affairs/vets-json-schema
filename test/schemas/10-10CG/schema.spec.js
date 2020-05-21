@@ -83,6 +83,7 @@ describe('10-10CG json schema', () => {
       'dateOfBirth',
       'gender',
       'address',
+      'primaryPhoneNumber',
       'plannedClinic'
     ]);
 
@@ -97,6 +98,7 @@ describe('10-10CG json schema', () => {
       'dateOfBirth',
       'gender',
       'address',
+      'primaryPhoneNumber',
       'vetRelationship',
       'medicaidEnrolled',
       'medicareEnrolled',
@@ -110,6 +112,7 @@ describe('10-10CG json schema', () => {
       'dateOfBirth',
       'gender',
       'address',
+      'primaryPhoneNumber',
       'vetRelationship'
     ]);
 
@@ -119,6 +122,7 @@ describe('10-10CG json schema', () => {
       'dateOfBirth',
       'gender',
       'address',
+      'primaryPhoneNumber',
       'vetRelationship'
     ]);
   });
@@ -240,6 +244,7 @@ describe('10-10CG json schema', () => {
         dateOfBirth: '1980-01-01',
         gender: 'F',
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        primaryPhoneNumber: '1234567890',
         vetRelationship: 'Friend/Neighbor',
       }
 
@@ -249,6 +254,7 @@ describe('10-10CG json schema', () => {
         dateOfBirth: '1980-01-01',
         gender: 'M',
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        primaryPhoneNumber: '1234567890',
         vetRelationship: 'Friend/Neighbor',
       }
     });

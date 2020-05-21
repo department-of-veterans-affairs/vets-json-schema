@@ -62,6 +62,7 @@ const schema = {
         'dateOfBirth',
         'gender',
         'address',
+        'primaryPhoneNumber',
         'plannedClinic'
       ],
       properties: {
@@ -97,6 +98,7 @@ const schema = {
         'dateOfBirth',
         'gender',
         'address',
+        'primaryPhoneNumber',
         'vetRelationship',
         'medicaidEnrolled',
         'medicareEnrolled',
@@ -131,6 +133,7 @@ const schema = {
         'dateOfBirth',
         'gender',
         'address',
+        'primaryPhoneNumber',
         'vetRelationship'
       ],
       properties: {
@@ -154,6 +157,7 @@ const schema = {
         'dateOfBirth',
         'gender',
         'address',
+        'primaryPhoneNumber',
         'vetRelationship'
       ],
       properties: {
