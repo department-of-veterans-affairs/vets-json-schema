@@ -13,7 +13,7 @@ node v6.11.1
 | build the json schemas and examples | `npm run build` |
 | watch for changes and rebuild when they happen | `npm run watch` |
 | run tests on the built schemas | `npm run test` |
-
+| create a new schema | https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/platform/engineering/frontend/vets-website/creating-form-schema.md |
 ### Updating Version
 - Update the "version" property in `package.json` with the new version. Please follow [Semantic Versioning](https://semver.org/#summary) practices.
   - If implementing a major version update, add a link in your vets-json-schema PR that references the vets-api, or vets-website, PR that addresses the breaking changes.
