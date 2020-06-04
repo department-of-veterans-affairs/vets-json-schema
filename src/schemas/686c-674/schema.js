@@ -337,7 +337,13 @@ const schema = {
             type: {
               type: 'string',
               enum: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
-              enumNames: ['Ceremonial', 'Common-law', 'Tribal', 'Proxy', 'Other'],
+              enumNames: [
+                'Religious or civil ceremony (minister, justice of the peace, etc.)',
+                'Common-law',
+                'Tribal',
+                'Proxy',
+                'Other',
+              ],
             },
             typeOther: {
               $ref: '#/definitions/genericTextInput',
