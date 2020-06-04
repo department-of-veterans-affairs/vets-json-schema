@@ -290,7 +290,7 @@
             "type": "string"
           },
           "productId": {
-            "type": "string"
+            "type": "integer"
           },
           "availableForReorder": {
             "type": "boolean"
@@ -328,7 +328,7 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
-    "email": {
+    "vetEmail": {
       "$ref": "#/definitions/email"
     },
     "fullName": {
@@ -362,7 +362,7 @@
     "permanentAddress",
     "temporaryAddress",
     "gender",
-    "email",
+    "vetEmail",
     "dateOfBirth",
     "supplies",
     "eligibility"

@@ -25,7 +25,7 @@ const supplies = {
         type: 'string'
       },
       productId: {
-        type: 'string'
+        type: 'integer'
       },
       availableForReorder: {
         type: 'boolean'
@@ -76,12 +76,12 @@ const schema = {
     supplies: supplies
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'email', 'dateOfBirth', 'supplies', 'eligibility'],
+  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'vetEmail', 'dateOfBirth', 'supplies', 'eligibility'],
 };
 
 [
   ['privacyAgreementAccepted'],
-  ['email'],
+  ['email', 'vetEmail'],
   ['fullName', 'fullName'],
   ['addressWithIsMilitaryBase', 'permanentAddress'],
   ['addressWithIsMilitaryBase', 'temporaryAddress'],
