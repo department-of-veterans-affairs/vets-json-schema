@@ -15,8 +15,6 @@ const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('mdot schema', () => {
-  sharedTests.runTest('email');
-
   schemaTestHelper.testValidAndInvalid('supplies',{
     valid: [
       [
@@ -24,7 +22,7 @@ describe('mdot schema', () => {
           deviceName: 'OMEGA XD3241',
           productName: 'ZA1239',
           productGroup: 'hearing aid batteries',
-          productId: '1',
+          productId: 17481,
           availableForReorder: false,
           lastOrderDate: '2020-01-01',
           nextAvailabilityDate: '2020-09-01',
@@ -67,7 +65,7 @@ describe('mdot schema', () => {
       'permanentAddress',
       'temporaryAddress',
       'gender',
-      'email',
+      'vetEmail',
       'dateOfBirth',
       'supplies',
       'eligibility'

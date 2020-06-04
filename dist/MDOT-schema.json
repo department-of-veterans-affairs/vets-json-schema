@@ -258,10 +258,21 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 51
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "(^\\d{5}$)|(^\\d{5}-\\d{4}$)"
+        },
+        "isMilitaryBase": {
+          "type": "boolean",
+          "default": false
+        },
+        "province": {
+          "type": "string"
+        },
+        "internationalPostalCode": {
+          "type": "string"
         }
-      },
-      "isMilitaryBase": {
-        "type": "boolean"
       }
     },
     "eligibility": {
@@ -290,7 +301,7 @@
             "type": "string"
           },
           "productId": {
-            "type": "string"
+            "type": "integer"
           },
           "availableForReorder": {
             "type": "boolean"
@@ -328,7 +339,7 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
-    "email": {
+    "vetEmail": {
       "$ref": "#/definitions/email"
     },
     "fullName": {
@@ -362,7 +373,7 @@
     "permanentAddress",
     "temporaryAddress",
     "gender",
-    "email",
+    "vetEmail",
     "dateOfBirth",
     "supplies",
     "eligibility"

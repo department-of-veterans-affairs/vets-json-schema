@@ -5,8 +5,36 @@ const { fullName, ssnLastFour, email, gender, date, address } = commonDefinition
 
 const addressWithIsMilitaryBase = {
   ...address,
-  isMilitaryBase: {
-    type: 'boolean'
+  properties: {
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 51
+    },
+    postalCode: {
+      type: 'string',
+      pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)'
+    },
+    isMilitaryBase: {
+      type: 'boolean',
+      default: false
+    },
+    province: {
+      type: 'string'
+    },
+    internationalPostalCode: {
+      type: 'string'
+    }
   }
 }
 
@@ -25,7 +53,7 @@ const supplies = {
         type: 'string'
       },
       productId: {
-        type: 'string'
+        type: 'integer'
       },
       availableForReorder: {
         type: 'boolean'
@@ -76,12 +104,12 @@ const schema = {
     supplies: supplies
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'email', 'dateOfBirth', 'supplies', 'eligibility'],
+  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'vetEmail', 'dateOfBirth', 'supplies', 'eligibility'],
 };
 
 [
   ['privacyAgreementAccepted'],
-  ['email'],
+  ['email', 'vetEmail'],
   ['fullName', 'fullName'],
   ['addressWithIsMilitaryBase', 'permanentAddress'],
   ['addressWithIsMilitaryBase', 'temporaryAddress'],
