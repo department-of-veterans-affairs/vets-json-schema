@@ -6,7 +6,8 @@ const { fullName, ssnLastFour, email, gender, date, address } = commonDefinition
 const addressWithIsMilitaryBase = {
   ...address,
   isMilitaryBase: {
-    type: 'boolean'
+    type: 'boolean',
+    default: false
   }
 }
 

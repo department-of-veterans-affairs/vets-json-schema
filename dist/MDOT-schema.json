@@ -261,7 +261,8 @@
         }
       },
       "isMilitaryBase": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
       }
     },
     "eligibility": {
