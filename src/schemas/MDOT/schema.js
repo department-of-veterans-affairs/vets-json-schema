@@ -5,9 +5,36 @@ const { fullName, ssnLastFour, email, gender, date, address } = commonDefinition
 
 const addressWithIsMilitaryBase = {
   ...address,
-  isMilitaryBase: {
-    type: 'boolean',
-    default: false
+  properties: {
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 51
+    },
+    postalCode: {
+      type: 'string',
+      pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)'
+    },
+    isMilitaryBase: {
+      type: 'boolean',
+      default: false
+    },
+    province: {
+      type: 'string'
+    },
+    internationalPostalCode: {
+      type: 'string'
+    }
   }
 }
 

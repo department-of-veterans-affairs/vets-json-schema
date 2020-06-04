@@ -258,11 +258,21 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 51
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "(^\\d{5}$)|(^\\d{5}-\\d{4}$)"
+        },
+        "isMilitaryBase": {
+          "type": "boolean",
+          "default": false
+        },
+        "province": {
+          "type": "string"
+        },
+        "internationalPostalCode": {
+          "type": "string"
         }
-      },
-      "isMilitaryBase": {
-        "type": "boolean",
-        "default": false
       }
     },
     "eligibility": {
