@@ -132,23 +132,7 @@ const schema = {
       properties: {
         veteranInformation: {
           type: 'object',
-          properties: {
-            fullName: {
-              $ref: '#/definitions/fullName',
-            },
-            ssn: {
-              $ref: '#/definitions/ssn',
-            },
-            vaFileNumber: {
-              $ref: '#/definitions/genericNumberAndDashInput',
-            },
-            serviceNumber: {
-              $ref: '#/definitions/genericNumberAndDashInput',
-            },
-            birthDate: {
-              $ref: '#/definitions/date',
-            },
-          },
+          properties: {},
         },
         veteranAddress: {
           type: 'object',
@@ -404,8 +388,8 @@ const schema = {
                   },
                   reasonMarriageEnded: {
                     type: 'string',
-                    enum: ['DIVORCE', 'DEATH', 'ANNULMENT', 'OTHER'],
-                    enumNames: ['Divorce', 'Death', 'Annulment', 'Other'],
+                    enum: ['Divorce', 'Death', 'Other'],
+                    enumNames: ['Divorce', 'Death', 'Annulment/Other'],
                   },
                   reasonMarriageEndedOther: {
                     $ref: '#/definitions/genericTextInput',
@@ -456,8 +440,8 @@ const schema = {
                   },
                   reasonMarriageEnded: {
                     type: 'string',
-                    enum: ['DIVORCE', 'DEATH', 'ANNULMENT', 'OTHER'],
-                    enumNames: ['Divorce', 'Death', 'Annulment', 'Other'],
+                    enum: ['Divorce', 'Death', 'Other'],
+                    enumNames: ['Divorce', 'Death', 'Annulment/Other'],
                   },
                   reasonMarriageEndedOther: {
                     $ref: '#/definitions/genericTextInput',
@@ -500,12 +484,13 @@ const schema = {
         location: {
           $ref: '#/definitions/genericLocation',
         },
-        isMarriageAnnulledOrVoid: {
-          $ref: '#/definitions/genericTrueFalse',
-        },
-        explanationOfAnnullmentOrVoid: {
+        reasonMarriageEnded: {
           type: 'string',
-          enum: ['Death', 'Divorce', 'Other'],
+          enum: ['Divorce', 'Other'],
+          enumNames: ['Divorce', 'Annulment/Other'],
+        },
+        explanationOfOther: {
+          $ref: '#/definitions/genericTextInput',
         },
       },
     },

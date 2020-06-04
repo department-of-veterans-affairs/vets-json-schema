@@ -31,6 +31,10 @@ const testData = {
     valid: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
     invalid: ['something', 'else', 'entirely'],
   },
+  reasonsMarriageEnded: {
+    valid: ['Divorce', 'Other'],
+    invalid: ['DIVORCE', 'OTHER'],
+  },
   deceasedDependent: {
     valid: [
       {
@@ -252,20 +256,14 @@ const testData = {
 describe('686c-674 schema', () => {
   // veteran information
   sharedTests.runTest('fullName', [
-    'veteranInformation.veteranInformation.fullName',
     'addSpouse.spouseNameInformation.fullName',
     'reportDivorce.fullName',
     'reportChildMarriage.fullName',
     'reportChildStoppedAttendingSchool.fullName',
     'report674.studentNameAndSSN.fullName',
   ]);
-  sharedTests.runTest('ssn', [
-    'veteranInformation.veteranInformation.ssn',
-    'addSpouse.spouseNameInformation.ssn',
-    'report674.studentNameAndSSN.ssn',
-  ]);
+  sharedTests.runTest('ssn', ['addSpouse.spouseNameInformation.ssn', 'report674.studentNameAndSSN.ssn']);
   sharedTests.runTest('date', [
-    'veteranInformation.veteranInformation.birthDate',
     'addSpouse.spouseNameInformation.birthDate',
     'addSpouse.currentMarriageInformation.date',
     'reportDivorce.date',
@@ -292,7 +290,7 @@ describe('686c-674 schema', () => {
   schemaTestHelper.testValidAndInvalid('addSpouse.currentMarriageInformation.location', testData.genericLocation);
 
   // Report Divorce
-  schemaTestHelper.testValidAndInvalid('reportDivorce.isMarriageAnnulledOrVoid', testData.boolean);
+  schemaTestHelper.testValidAndInvalid('reportDivorce.reasonMarriageEnded', testData.reasonsMarriageEnded);
   schemaTestHelper.testValidAndInvalid('reportDivorce.location', testData.genericLocation);
 
   // Deceased Dependents

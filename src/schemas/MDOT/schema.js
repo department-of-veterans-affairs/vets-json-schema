@@ -49,6 +49,18 @@ const supplies = {
   }
 }
 
+const eligibility = {
+  type: 'object',
+  properties: {
+    batteries: {
+      type: 'boolean'
+    },
+    accessories: {
+      type: 'boolean'
+    }
+  }
+}
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'MEDICAL DEVICES ORDERING TOOL',
@@ -60,10 +72,11 @@ const schema = {
     gender,
     date,
     addressWithIsMilitaryBase,
+    eligibility: eligibility,
     supplies: supplies
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'email', 'dateOfBirth', 'supplies'],
+  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'email', 'dateOfBirth', 'supplies', 'eligibility'],
 };
 
 [
@@ -75,6 +88,7 @@ const schema = {
   ['ssnLastFour', 'ssnLastFour'],
   ['gender'],
   ['date', 'dateOfBirth'],
+  ['eligibility'],
   ['supplies']
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
