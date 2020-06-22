@@ -45,7 +45,7 @@ const fullNameNoSuffix = {
       maxLength: 30,
     },
   },
-}
+};
 
 const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
@@ -124,6 +124,67 @@ const address = (() => {
     },
   };
 })();
+
+const addressBuilder = (useCountryFullName = false) => {
+  const countries = constants.countries.map(object => (useCountryFullName ? object.label : object.value));
+  const countriesWithAnyState = Object.keys(constants.statesWithFullCountryNames).filter(x => _.includes(countries, x));
+  const countryStateProperties = _.map(constants.statesWithFullCountryNames, (value, key) => ({
+    properties: {
+      country: {
+        type: 'string',
+        enum: [key],
+      },
+      state: {
+        type: 'string',
+        enum: value.map(x => x.value),
+      },
+      postalCode: {
+        type: 'string',
+        maxLength: 10,
+      },
+    },
+  }));
+  countryStateProperties.push({
+    properties: {
+      country: {
+        not: {
+          type: 'string',
+          enum: countriesWithAnyState,
+        },
+      },
+      state: {
+        type: 'string',
+        maxLength: 51,
+      },
+      postalCode: {
+        type: 'string',
+        maxLength: 51,
+      },
+    },
+  });
+
+  return {
+    type: 'object',
+    oneOf: countryStateProperties,
+    properties: {
+      street: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 50,
+      },
+      street2: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 50,
+      },
+      city: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 51,
+      },
+    },
+  };
+};
 
 const centralMailAddress = _.cloneDeep(address);
 centralMailAddress.required = ['postalCode'];
@@ -621,6 +682,7 @@ export default {
   fullNameNoSuffix,
   otherIncome,
   address,
+  addressBuilder,
   usAddress,
   phone,
   ssn,

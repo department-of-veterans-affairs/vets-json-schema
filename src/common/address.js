@@ -384,6 +384,73 @@ const states = {
     .sort((stateA, stateB) => stateA.label.localeCompare(stateB.label)),
 };
 
+const statesWithFullCountryNames = {
+  Canada: [
+    { label: 'Alberta', value: 'AB' },
+    { label: 'British Columbia', value: 'BC' },
+    { label: 'Manitoba', value: 'MB' },
+    { label: 'New Brunswick', value: 'NB' },
+    { label: 'Newfoundland', value: 'NF' },
+    { label: 'Northwest Territories', value: 'NT' },
+    { label: 'Nova Scotia', value: 'NV' },
+    { label: 'Nunavut Province', value: 'NU' },
+    { label: 'Ontario', value: 'ON' },
+    { label: 'Prince Edward Island', value: 'PE' },
+    { label: 'Quebec', value: 'QC' },
+    { label: 'Saskatchewan', value: 'SK' },
+    { label: 'Yukon Territory', value: 'YT' },
+  ],
+  Mexico: [
+    { label: 'Aguascalientes', value: 'aguascalientes' },
+    { label: 'Baja California Norte', value: 'baja-california-norte' },
+    { label: 'Baja California Sur', value: 'baja-california-sur' },
+    { label: 'Campeche', value: 'campeche' },
+    { label: 'Chiapas', value: 'chiapas' },
+    { label: 'Chihuahua', value: 'chihuahua' },
+    { label: 'Coahuila', value: 'coahuila' },
+    { label: 'Colima', value: 'colima' },
+    { label: 'Distrito Federal', value: 'distrito-federal' },
+    { label: 'Durango', value: 'durango' },
+    { label: 'Guanajuato', value: 'guanajuato' },
+    { label: 'Guerrero', value: 'guerrero' },
+    { label: 'Hidalgo', value: 'hidalgo' },
+    { label: 'Jalisco', value: 'jalisco' },
+    { label: 'México', value: 'mexico' },
+    { label: 'Michoacán', value: 'michoacan' },
+    { label: 'Morelos', value: 'morelos' },
+    { label: 'Nayarit', value: 'nayarit' },
+    { label: 'Nuevo León', value: 'nuevo-leon' },
+    { label: 'Oaxaca', value: 'oaxaca' },
+    { label: 'Puebla', value: 'puebla' },
+    { label: 'Querétaro', value: 'queretaro' },
+    { label: 'Quintana Roo', value: 'quintana-roo' },
+    { label: 'San Luis Potosí', value: 'san-luis-potosi' },
+    { label: 'Sinaloa', value: 'sinaloa' },
+    { label: 'Sonora', value: 'sonora' },
+    { label: 'Tabasco', value: 'tabasco' },
+    { label: 'Tamaulipas', value: 'tamaulipas' },
+    { label: 'Tlaxcala', value: 'tlaxcala' },
+    { label: 'Veracruz', value: 'veracruz' },
+    { label: 'Yucatán', value: 'yucatan' },
+    { label: 'Zacatecas', value: 'zacatecas' },
+  ],
+  'United States': states50AndDC
+    .concat([
+      { label: 'American Samoa', value: 'AS' },
+      { label: 'Armed Forces Americas (AA)', value: 'AA' },
+      { label: 'Armed Forces Europe (AE)', value: 'AE' },
+      { label: 'Armed Forces Pacific (AP)', value: 'AP' },
+      { label: 'Federated States Of Micronesia', value: 'FM' },
+      { label: 'Guam', value: 'GU' },
+      { label: 'Marshall Islands', value: 'MH' },
+      { label: 'Northern Mariana Islands', value: 'MP' },
+      { label: 'Palau', value: 'PW' },
+      { label: 'Puerto Rico', value: 'PR' },
+      { label: 'Virgin Islands', value: 'VI' },
+    ])
+    .sort((stateA, stateB) => stateA.label.localeCompare(stateB.label)),
+};
+
 const usaStates = states.USA.map(state => state.value);
 
 const salesforceCountries = [
@@ -2993,6 +3060,7 @@ module.exports = {
   salesforceCountries,
   salesforceStates,
   states,
+  statesWithFullCountryNames,
   states50AndDC,
   usaStates,
 };
