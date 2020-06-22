@@ -1,42 +1,50 @@
 import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const { fullName, ssnLastFour, email, gender, date, address } = commonDefinitions;
+const { fullName, email, gender, date, addressBuilder } = commonDefinitions;
+
+const commonAddressSchema = addressBuilder(true);
 
 const addressWithIsMilitaryBase = {
-  ...address,
+  ...commonAddressSchema,
   properties: {
+    isMilitaryBase: {
+      type: 'boolean',
+      default: false,
+    },
+    country: {
+      type: 'string',
+    },
     street: {
       type: 'string',
       minLength: 1,
-      maxLength: 50
+      maxLength: 50,
     },
     street2: {
       type: 'string',
       minLength: 1,
-      maxLength: 50
+      maxLength: 50,
     },
     city: {
       type: 'string',
       minLength: 1,
-      maxLength: 51
+      maxLength: 51,
+    },
+    state: {
+      type: 'string',
+    },
+    province: {
+      type: 'string',
     },
     postalCode: {
       type: 'string',
-      pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)'
-    },
-    isMilitaryBase: {
-      type: 'boolean',
-      default: false
-    },
-    province: {
-      type: 'string'
+      pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)',
     },
     internationalPostalCode: {
-      type: 'string'
-    }
-  }
-}
+      type: 'string',
+    },
+  },
+};
 
 const supplies = {
   type: 'array',
@@ -44,50 +52,50 @@ const supplies = {
     type: 'object',
     properties: {
       deviceName: {
-        type: 'string'
+        type: 'string',
       },
       productName: {
-        type: 'string'
+        type: 'string',
       },
       productGroup: {
-        type: 'string'
+        type: 'string',
       },
       productId: {
-        type: 'integer'
+        type: 'integer',
       },
       availableForReorder: {
-        type: 'boolean'
+        type: 'boolean',
       },
       lastOrderDate: {
-        $ref: '#/definitions/date'
+        $ref: '#/definitions/date',
       },
       nextAvailabilityDate: {
-        $ref: '#/definitions/date'
+        $ref: '#/definitions/date',
       },
       quantity: {
-        type: 'number'
+        type: 'number',
       },
       size: {
-        type: 'string'
+        type: 'string',
       },
       prescribedDate: {
-        $ref: '#/definitions/date'
-      }
-    }
-  }
-}
+        $ref: '#/definitions/date',
+      },
+    },
+  },
+};
 
 const eligibility = {
   type: 'object',
   properties: {
     batteries: {
-      type: 'boolean'
+      type: 'boolean',
     },
     accessories: {
-      type: 'boolean'
-    }
-  }
-}
+      type: 'boolean',
+    },
+  },
+};
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -100,15 +108,14 @@ const schema = {
     gender,
     date,
     addressWithIsMilitaryBase,
-    eligibility: eligibility,
-    supplies: supplies
+    eligibility,
+    supplies,
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'fullName', 'permanentAddress', 'temporaryAddress', 'gender', 'vetEmail', 'dateOfBirth', 'supplies', 'eligibility'],
+  required: ['permanentAddress'],
 };
 
 [
-  ['privacyAgreementAccepted'],
   ['email', 'vetEmail'],
   ['fullName', 'fullName'],
   ['addressWithIsMilitaryBase', 'permanentAddress'],
@@ -117,7 +124,6 @@ const schema = {
   ['gender'],
   ['date', 'dateOfBirth'],
   ['eligibility'],
-  ['supplies']
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

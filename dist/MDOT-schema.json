@@ -61,7 +61,7 @@
             "country": {
               "type": "string",
               "enum": [
-                "CAN"
+                "Canada"
               ]
             },
             "state": {
@@ -93,7 +93,7 @@
             "country": {
               "type": "string",
               "enum": [
-                "MEX"
+                "Mexico"
               ]
             },
             "state": {
@@ -144,7 +144,7 @@
             "country": {
               "type": "string",
               "enum": [
-                "USA"
+                "United States"
               ]
             },
             "state": {
@@ -226,9 +226,9 @@
               "not": {
                 "type": "string",
                 "enum": [
-                  "CAN",
-                  "MEX",
-                  "USA"
+                  "Canada",
+                  "Mexico",
+                  "United States"
                 ]
               }
             },
@@ -244,6 +244,13 @@
         }
       ],
       "properties": {
+        "isMilitaryBase": {
+          "type": "boolean",
+          "default": false
+        },
+        "country": {
+          "type": "string"
+        },
         "street": {
           "type": "string",
           "minLength": 1,
@@ -259,16 +266,15 @@
           "minLength": 1,
           "maxLength": 51
         },
-        "postalCode": {
-          "type": "string",
-          "pattern": "(^\\d{5}$)|(^\\d{5}-\\d{4}$)"
-        },
-        "isMilitaryBase": {
-          "type": "boolean",
-          "default": false
+        "state": {
+          "type": "string"
         },
         "province": {
           "type": "string"
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "(^\\d{5}$)|(^\\d{5}-\\d{4}$)"
         },
         "internationalPostalCode": {
           "type": "string"
@@ -324,21 +330,12 @@
         }
       }
     },
-    "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
-    },
     "ssnLastFour": {
       "type": "string",
       "pattern": "^(?!0000)[0-9]{4}$"
     }
   },
   "properties": {
-    "privacyAgreementAccepted": {
-      "$ref": "#/definitions/privacyAgreementAccepted"
-    },
     "vetEmail": {
       "$ref": "#/definitions/email"
     },
@@ -362,20 +359,9 @@
     },
     "eligibility": {
       "$ref": "#/definitions/eligibility"
-    },
-    "supplies": {
-      "$ref": "#/definitions/supplies"
     }
   },
   "required": [
-    "privacyAgreementAccepted",
-    "fullName",
-    "permanentAddress",
-    "temporaryAddress",
-    "gender",
-    "vetEmail",
-    "dateOfBirth",
-    "supplies",
-    "eligibility"
+    "permanentAddress"
   ]
 }
