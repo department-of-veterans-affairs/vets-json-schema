@@ -127,23 +127,28 @@ const address = (() => {
 
 const addressBuilder = (useCountryFullName = false) => {
   const countries = constants.countries.map(object => (useCountryFullName ? object.label : object.value));
-  const countriesWithAnyState = Object.keys(constants.statesWithFullCountryNames).filter(x => _.includes(countries, x));
-  const countryStateProperties = _.map(constants.statesWithFullCountryNames, (value, key) => ({
-    properties: {
-      country: {
-        type: 'string',
-        enum: [key],
+  const countriesWithAnyState = Object.keys(
+    useCountryFullName ? constants.statesWithFullCountryNames : constants.states,
+  ).filter(x => _.includes(countries, x));
+  const countryStateProperties = _.map(
+    useCountryFullName ? constants.statesWithFullCountryNames : constants.state,
+    (value, key) => ({
+      properties: {
+        country: {
+          type: 'string',
+          enum: [key],
+        },
+        state: {
+          type: 'string',
+          enum: value.map(x => x.value),
+        },
+        postalCode: {
+          type: 'string',
+          maxLength: 10,
+        },
       },
-      state: {
-        type: 'string',
-        enum: value.map(x => x.value),
-      },
-      postalCode: {
-        type: 'string',
-        maxLength: 10,
-      },
-    },
-  }));
+    }),
+  );
   countryStateProperties.push({
     properties: {
       country: {
