@@ -15,31 +15,31 @@ const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 describe('mdot schema', () => {
   schemaTestHelper.testValidAndInvalid('supplies', {
     valid: [
-      [
-        {
-          deviceName: 'OMEGA XD3241',
-          productName: 'ZA1239',
-          productGroup: 'hearing aid batteries',
-          productId: 17481,
-          availableForReorder: false,
-          lastOrderDate: '2020-01-01',
-          nextAvailabilityDate: '2020-09-01',
-          quantity: 60,
-        },
-      ],
+      {
+        deviceName: 'OMEGA XD3241',
+        productName: 'ZA1239',
+        productGroup: 'BATTERIES',
+        productId: 17481,
+        availableForReorder: false,
+        lastOrderDate: '2020-01-01',
+        nextAvailabilityDate: '2020-09-01',
+        quantity: 60,
+        prescribedDate: '2018-10-32',
+        size: '10mm',
+      },
     ],
     invalid: [
-      [
-        {
-          deviceName: 11112222,
-          productName: 'ZA1239',
-          productId: '1',
-          availableForReorder: 1,
-          lastOrderDate: '2020-01-01',
-          nextAvailabilityDate: '2020-09-01',
-          quantity: 'banana',
-        },
-      ],
+      {
+        deviceName: 11112222,
+        productName: 'ZA1239',
+        productId: '1',
+        availableForReorder: 1,
+        lastOrderDate: '2020-01-01',
+        nextAvailabilityDate: '2020-09-01',
+        quantity: 'banana',
+        prescribedDate: '2018-10-32',
+        size: '30mm',
+      },
     ],
   });
 
@@ -57,16 +57,7 @@ describe('mdot schema', () => {
   });
 
   it('should have the correct required properties', () => {
-    expect(schema.required).to.deep.equal([
-      'privacyAgreementAccepted',
-      'fullName',
-      'permanentAddress',
-      'gender',
-      'vetEmail',
-      'dateOfBirth',
-      'supplies',
-      'eligibility',
-    ]);
+    expect(schema.required).to.deep.equal(['permanentAddress']);
 
     expect(schema.definitions.fullName.required).to.deep.equal(['first', 'last']);
   });

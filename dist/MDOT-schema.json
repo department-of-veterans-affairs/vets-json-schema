@@ -342,6 +342,9 @@
     "fullName": {
       "$ref": "#/definitions/fullName"
     },
+    "supplies": {
+      "$ref": "#/definitions/supplies"
+    },
     "permanentAddress": {
       "$ref": "#/definitions/addressWithIsMilitaryBase"
     },

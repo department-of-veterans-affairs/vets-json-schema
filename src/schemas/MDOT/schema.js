@@ -118,6 +118,7 @@ const schema = {
 [
   ['email', 'vetEmail'],
   ['fullName', 'fullName'],
+  ['supplies'],
   ['addressWithIsMilitaryBase', 'permanentAddress'],
   ['addressWithIsMilitaryBase', 'temporaryAddress'],
   ['ssnLastFour', 'ssnLastFour'],
