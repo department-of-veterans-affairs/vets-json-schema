@@ -27,6 +27,6 @@ node v6.11.1
     - ect.
 - Run `npm update` update `package-lock.json`.
 - Commit the changes to `package.json` and `package-lock.json`
-- After change to `vets-json-schema` have been merged into master
+- After changes to `vets-json-schema` have been merged into master:
     + update `vets-website` to point to the latest `vets-json-schema` version by running `yarn update:schema` and making a PR
     + update `vets-api` by running `bundle update vets_json_schema` and making a PR.  _Caution: verify that you changes are only related to vets_json_schema version. If you see sidekiq changes, follow [these instructions](https://github.com/department-of-veterans-affairs/va.gov-team-sensitive/blob/master/platform/engineering/sidekiq-enterprise-setup.md)_
