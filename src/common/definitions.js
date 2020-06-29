@@ -186,7 +186,6 @@ const addressBuilder = (useCountryFullName = false) => {
       },
       street2: {
         type: 'string',
-        minLength: 1,
         maxLength: 50,
       },
       city: {
