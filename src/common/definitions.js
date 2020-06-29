@@ -131,7 +131,7 @@ const addressBuilder = (useCountryFullName = false) => {
     useCountryFullName ? constants.statesWithFullCountryNames : constants.states,
   ).filter(x => _.includes(countries, x));
   const countryStateProperties = _.map(
-    useCountryFullName ? constants.statesWithFullCountryNames : constants.state,
+    useCountryFullName ? constants.statesWithFullCountryNames : constants.states,
     (value, key) => ({
       properties: {
         country: {
@@ -172,6 +172,13 @@ const addressBuilder = (useCountryFullName = false) => {
     type: 'object',
     oneOf: countryStateProperties,
     properties: {
+      isMilitaryBase: {
+        type: 'boolean',
+        default: false,
+      },
+      country: {
+        type: 'string',
+      },
       street: {
         type: 'string',
         minLength: 1,
@@ -186,6 +193,19 @@ const addressBuilder = (useCountryFullName = false) => {
         type: 'string',
         minLength: 1,
         maxLength: 51,
+      },
+      state: {
+        type: 'string',
+      },
+      province: {
+        type: 'string',
+      },
+      postalCode: {
+        type: 'string',
+        pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)',
+      },
+      internationalPostalCode: {
+        type: 'string',
       },
     },
   };

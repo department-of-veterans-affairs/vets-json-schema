@@ -1,50 +1,9 @@
 import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const { fullName, email, gender, date, addressBuilder } = commonDefinitions;
+const { addressBuilder } = commonDefinitions;
 
-const commonAddressSchema = addressBuilder(true);
-
-const addressWithIsMilitaryBase = {
-  ...commonAddressSchema,
-  properties: {
-    isMilitaryBase: {
-      type: 'boolean',
-      default: false,
-    },
-    country: {
-      type: 'string',
-    },
-    street: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 50,
-    },
-    street2: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 50,
-    },
-    city: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 51,
-    },
-    state: {
-      type: 'string',
-    },
-    province: {
-      type: 'string',
-    },
-    postalCode: {
-      type: 'string',
-      pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)',
-    },
-    internationalPostalCode: {
-      type: 'string',
-    },
-  },
-};
+const addressWithIsMilitaryBase = addressBuilder(true);
 
 const supplies = {
   type: 'array',
@@ -103,13 +62,9 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    fullName,
-    email,
-    gender,
-    date,
-    addressWithIsMilitaryBase,
-    eligibility,
     supplies,
+    eligibility,
+    addressWithIsMilitaryBase,
   },
   properties: {},
   required: ['permanentAddress'],
@@ -117,14 +72,14 @@ const schema = {
 
 [
   ['email', 'vetEmail'],
-  ['fullName', 'fullName'],
-  ['supplies'],
+  ['fullName'],
   ['addressWithIsMilitaryBase', 'permanentAddress'],
   ['addressWithIsMilitaryBase', 'temporaryAddress'],
-  ['ssnLastFour', 'ssnLastFour'],
+  ['ssnLastFour'],
   ['gender'],
   ['date', 'dateOfBirth'],
   ['eligibility'],
+  ['supplies'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

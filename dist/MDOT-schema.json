@@ -4,54 +4,54 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "fullName": {
+    "supplies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deviceName": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "productGroup": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "integer"
+          },
+          "availableForReorder": {
+            "type": "boolean"
+          },
+          "lastOrderDate": {
+            "$ref": "#/definitions/date"
+          },
+          "nextAvailabilityDate": {
+            "$ref": "#/definitions/date"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "size": {
+            "type": "string"
+          },
+          "prescribedDate": {
+            "$ref": "#/definitions/date"
+          }
+        }
+      }
+    },
+    "eligibility": {
       "type": "object",
       "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
+        "batteries": {
+          "type": "boolean"
         },
-        "middle": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
+        "accessories": {
+          "type": "boolean"
         }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
-    },
-    "email": {
-      "type": "string",
-      "minLength": 6,
-      "maxLength": 80,
-      "format": "email"
-    },
-    "gender": {
-      "type": "string",
-      "enum": [
-        "F",
-        "M"
-      ]
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
+      }
     },
     "addressWithIsMilitaryBase": {
       "type": "object",
@@ -80,57 +80,6 @@
                 "QC",
                 "SK",
                 "YT"
-              ]
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 10
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "Mexico"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "aguascalientes",
-                "baja-california-norte",
-                "baja-california-sur",
-                "campeche",
-                "chiapas",
-                "chihuahua",
-                "coahuila",
-                "colima",
-                "distrito-federal",
-                "durango",
-                "guanajuato",
-                "guerrero",
-                "hidalgo",
-                "jalisco",
-                "mexico",
-                "michoacan",
-                "morelos",
-                "nayarit",
-                "nuevo-leon",
-                "oaxaca",
-                "puebla",
-                "queretaro",
-                "quintana-roo",
-                "san-luis-potosi",
-                "sinaloa",
-                "sonora",
-                "tabasco",
-                "tamaulipas",
-                "tlaxcala",
-                "veracruz",
-                "yucatan",
-                "zacatecas"
               ]
             },
             "postalCode": {
@@ -223,12 +172,63 @@
         {
           "properties": {
             "country": {
+              "type": "string",
+              "enum": [
+                "Mexico"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "aguascalientes",
+                "baja-california-norte",
+                "baja-california-sur",
+                "campeche",
+                "chiapas",
+                "chihuahua",
+                "coahuila",
+                "colima",
+                "distrito-federal",
+                "durango",
+                "guanajuato",
+                "guerrero",
+                "hidalgo",
+                "jalisco",
+                "mexico",
+                "michoacan",
+                "morelos",
+                "nayarit",
+                "nuevo-leon",
+                "oaxaca",
+                "puebla",
+                "queretaro",
+                "quintana-roo",
+                "san-luis-potosi",
+                "sinaloa",
+                "sonora",
+                "tabasco",
+                "tamaulipas",
+                "tlaxcala",
+                "veracruz",
+                "yucatan",
+                "zacatecas"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
               "not": {
                 "type": "string",
                 "enum": [
                   "Canada",
-                  "Mexico",
-                  "United States"
+                  "United States",
+                  "Mexico"
                 ]
               }
             },
@@ -281,58 +281,58 @@
         }
       }
     },
-    "eligibility": {
+    "email": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 80,
+      "format": "email"
+    },
+    "fullName": {
       "type": "object",
       "properties": {
-        "batteries": {
-          "type": "boolean"
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
         },
-        "accessories": {
-          "type": "boolean"
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
         }
-      }
-    },
-    "supplies": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "deviceName": {
-            "type": "string"
-          },
-          "productName": {
-            "type": "string"
-          },
-          "productGroup": {
-            "type": "string"
-          },
-          "productId": {
-            "type": "integer"
-          },
-          "availableForReorder": {
-            "type": "boolean"
-          },
-          "lastOrderDate": {
-            "$ref": "#/definitions/date"
-          },
-          "nextAvailabilityDate": {
-            "$ref": "#/definitions/date"
-          },
-          "quantity": {
-            "type": "number"
-          },
-          "size": {
-            "type": "string"
-          },
-          "prescribedDate": {
-            "$ref": "#/definitions/date"
-          }
-        }
-      }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "ssnLastFour": {
       "type": "string",
       "pattern": "^(?!0000)[0-9]{4}$"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     }
   },
   "properties": {
@@ -341,9 +341,6 @@
     },
     "fullName": {
       "$ref": "#/definitions/fullName"
-    },
-    "supplies": {
-      "$ref": "#/definitions/supplies"
     },
     "permanentAddress": {
       "$ref": "#/definitions/addressWithIsMilitaryBase"
@@ -362,6 +359,9 @@
     },
     "eligibility": {
       "$ref": "#/definitions/eligibility"
+    },
+    "supplies": {
+      "$ref": "#/definitions/supplies"
     }
   },
   "required": [
