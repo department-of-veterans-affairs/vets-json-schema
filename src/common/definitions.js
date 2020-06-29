@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import constants from './constants';
 import schemaHelpers from './schema-helpers';
+import { statesWithFullCountryNames } from './address';
 
 const fullName = {
   type: 'object',
@@ -128,10 +129,10 @@ const address = (() => {
 const addressBuilder = (useCountryFullName = false) => {
   const countries = constants.countries.map(object => (useCountryFullName ? object.label : object.value));
   const countriesWithAnyState = Object.keys(
-    useCountryFullName ? constants.statesWithFullCountryNames : constants.states,
+    useCountryFullName ? statesWithFullCountryNames : constants.states,
   ).filter(x => _.includes(countries, x));
   const countryStateProperties = _.map(
-    useCountryFullName ? constants.statesWithFullCountryNames : constants.states,
+    useCountryFullName ? statesWithFullCountryNames : constants.states,
     (value, key) => ({
       properties: {
         country: {
