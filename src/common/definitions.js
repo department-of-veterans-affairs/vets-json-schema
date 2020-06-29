@@ -26,6 +26,27 @@ const fullName = {
   required: ['first', 'last'],
 };
 
+const fullNameNoSuffix = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['first', 'last'],
+  properties: {
+    first: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+    middle: {
+      type: 'string',
+    },
+    last: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+  },
+};
+
 const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
 };
@@ -104,6 +125,92 @@ const address = (() => {
   };
 })();
 
+const addressBuilder = (useCountryFullName = false) => {
+  const countries = constants.countries.map(object => (useCountryFullName ? object.label : object.value));
+  const countriesWithAnyState = Object.keys(
+    useCountryFullName ? constants.statesWithFullCountryNames : constants.states,
+  ).filter(x => _.includes(countries, x));
+  const countryStateProperties = _.map(
+    useCountryFullName ? constants.statesWithFullCountryNames : constants.states,
+    (value, key) => ({
+      properties: {
+        country: {
+          type: 'string',
+          enum: [key],
+        },
+        state: {
+          type: 'string',
+          enum: value.map(x => x.value),
+        },
+        postalCode: {
+          type: 'string',
+          maxLength: 10,
+        },
+      },
+    }),
+  );
+  countryStateProperties.push({
+    properties: {
+      country: {
+        not: {
+          type: 'string',
+          enum: countriesWithAnyState,
+        },
+      },
+      state: {
+        type: 'string',
+        maxLength: 51,
+      },
+      postalCode: {
+        type: 'string',
+        maxLength: 51,
+      },
+    },
+  });
+
+  return {
+    type: 'object',
+    oneOf: countryStateProperties,
+    properties: {
+      isMilitaryBase: {
+        type: 'boolean',
+        default: false,
+      },
+      country: {
+        type: 'string',
+      },
+      street: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 50,
+      },
+      street2: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 50,
+      },
+      city: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 51,
+      },
+      state: {
+        type: 'string',
+      },
+      province: {
+        type: 'string',
+      },
+      postalCode: {
+        type: 'string',
+        pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)',
+      },
+      internationalPostalCode: {
+        type: 'string',
+      },
+    },
+  };
+};
+
 const centralMailAddress = _.cloneDeep(address);
 centralMailAddress.required = ['postalCode'];
 for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
@@ -113,6 +220,34 @@ for (let i = 0, len = centralMailAddress.oneOf.length; i < len; i++) {
     properties.postalCode = usaPostalCode;
   }
 }
+
+const usAddress = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['street', 'city', 'state', 'postalCode'],
+  properties: {
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 51,
+    },
+    state: {
+      type: 'string',
+      enum: constants.usaStates,
+    },
+    postalCode: usaPostalCode,
+  },
+};
 
 const phone = {
   type: 'string',
@@ -563,14 +698,17 @@ const email = {
   type: 'string',
   minLength: 6,
   maxLength: 80,
-  pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+  format: 'email',
 };
 
 export default {
   usaPhone,
   fullName,
+  fullNameNoSuffix,
   otherIncome,
   address,
+  addressBuilder,
+  usAddress,
   phone,
   ssn,
   ssnLastFour,

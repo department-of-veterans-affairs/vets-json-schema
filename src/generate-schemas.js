@@ -3,8 +3,9 @@ import fs from 'fs';
 import definitions from './common/definitions';
 import constants from './common/constants';
 import vaMedicalFacilities from './common/va-medical-facilities';
+import caregiverProgramFacilities from './common/caregiver-program-facilities';
 
-const files = { definitions, constants, vaMedicalFacilities };
+const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities };
 
 fs.readdirSync('src/schemas').forEach(schema => {
   jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-schema.json`, require(`./schemas/${schema}/schema`).default, {

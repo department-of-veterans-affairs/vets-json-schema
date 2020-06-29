@@ -1,7 +1,60 @@
 import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const { fullName, email, gender, date, address } = commonDefinitions;
+const { addressBuilder } = commonDefinitions;
+
+const addressWithIsMilitaryBase = addressBuilder(true);
+
+const supplies = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      deviceName: {
+        type: 'string',
+      },
+      productName: {
+        type: 'string',
+      },
+      productGroup: {
+        type: 'string',
+      },
+      productId: {
+        type: 'integer',
+      },
+      availableForReorder: {
+        type: 'boolean',
+      },
+      lastOrderDate: {
+        $ref: '#/definitions/date',
+      },
+      nextAvailabilityDate: {
+        $ref: '#/definitions/date',
+      },
+      quantity: {
+        type: 'number',
+      },
+      size: {
+        type: 'string',
+      },
+      prescribedDate: {
+        $ref: '#/definitions/date',
+      },
+    },
+  },
+};
+
+const eligibility = {
+  type: 'object',
+  properties: {
+    batteries: {
+      type: 'boolean',
+    },
+    accessories: {
+      type: 'boolean',
+    },
+  },
+};
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -9,23 +62,24 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    fullName,
-    email,
-    gender,
-    date,
-    address,
+    supplies,
+    eligibility,
+    addressWithIsMilitaryBase,
   },
   properties: {},
-  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress', 'gender', 'email', 'dateOfBirth'],
+  required: ['permanentAddress'],
 };
 
 [
-  ['privacyAgreementAccepted'],
-  ['email'],
-  ['fullName', 'veteranFullName'],
-  ['address', 'veteranAddress'],
+  ['email', 'vetEmail'],
+  ['fullName'],
+  ['addressWithIsMilitaryBase', 'permanentAddress'],
+  ['addressWithIsMilitaryBase', 'temporaryAddress'],
+  ['ssnLastFour'],
   ['gender'],
   ['date', 'dateOfBirth'],
+  ['eligibility'],
+  ['supplies'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

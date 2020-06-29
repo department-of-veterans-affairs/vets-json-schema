@@ -10,15 +10,13 @@
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
-      "country": "USA",
       "state": "WA",
       "postalCode": "33771"
     },
     "primaryPhoneNumber": "8887775544",
     "alternativePhoneNumber": "8887775544",
     "email": "veteranEmail@email.com",
-    "vaEnrolled": true,
-    "plannedClinic": "635GF",
+    "plannedClinic": "740",
     "lastTreatmentFacility": {
       "name": "My Hospital",
       "type": "hospital"
@@ -35,7 +33,6 @@
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
-      "country": "USA",
       "state": "WA",
       "postalCode": "33771"
     },
@@ -48,21 +45,20 @@
     "champvaEnrolled": false,
     "tricareEnrolled": true
   },
-  "secondaryOneCaregiver": {
+  "secondaryCaregiverOne": {
     "fullName": {
       "first": "John Doe",
-      "last": "Doe",
-      "suffix": "II"
+      "middle": "A",
+      "last": "Doe"
     },
     "ssnOrTin": "787787854",
     "dateOfBirth": "1989-11-06",
-    "gender": "M",
+    "gender": "U",
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
-      "country": "USA",
       "state": "WA",
-      "postalCode": "33771"
+      "postalCode": "33771-1234"
     },
     "primaryPhoneNumber": "8887775544",
     "alternativePhoneNumber": "8887775544",
