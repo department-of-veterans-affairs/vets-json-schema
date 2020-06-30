@@ -67,7 +67,7 @@ const schema = {
     addressWithIsMilitaryBase,
   },
   properties: {},
-  required: ['permanentAddress'],
+  required: ['fullName', 'permanentAddress', 'gender', 'vetEmail', 'dateOfBirth', 'supplies', 'eligibility'],
 };
 
 [

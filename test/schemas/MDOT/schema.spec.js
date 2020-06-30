@@ -57,7 +57,15 @@ describe('mdot schema', () => {
   });
 
   it('should have the correct required properties', () => {
-    expect(schema.required).to.deep.equal(['permanentAddress']);
+    expect(schema.required).to.deep.equal([
+      'fullName',
+      'permanentAddress',
+      'gender',
+      'vetEmail',
+      'dateOfBirth',
+      'supplies',
+      'eligibility',
+    ]);
 
     expect(schema.definitions.fullName.required).to.deep.equal(['first', 'last']);
   });

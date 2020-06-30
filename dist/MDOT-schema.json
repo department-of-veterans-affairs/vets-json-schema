@@ -364,6 +364,12 @@
     }
   },
   "required": [
-    "permanentAddress"
+    "fullName",
+    "permanentAddress",
+    "gender",
+    "vetEmail",
+    "dateOfBirth",
+    "supplies",
+    "eligibility"
   ]
 }
