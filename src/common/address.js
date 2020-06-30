@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const addressPou = {
   correspondence: 'CORRESPONDENCE',
   residence: 'RESIDENCE/CHOICE',
@@ -383,6 +385,19 @@ const states = {
     ])
     .sort((stateA, stateB) => stateA.label.localeCompare(stateB.label)),
 };
+
+const buildStatesWithFullCountryNames = () => {
+  const statesCopy = _.cloneDeep(states);
+  statesCopy.Canada = statesCopy.CAN;
+  statesCopy['United States'] = statesCopy.USA;
+  statesCopy.Mexico = statesCopy.MEX;
+  delete statesCopy.CAN;
+  delete statesCopy.USA;
+  delete statesCopy.MEX;
+  return statesCopy;
+};
+
+const statesWithFullCountryNames = buildStatesWithFullCountryNames();
 
 const usaStates = states.USA.map(state => state.value);
 
@@ -2993,6 +3008,7 @@ module.exports = {
   salesforceCountries,
   salesforceStates,
   states,
+  statesWithFullCountryNames,
   states50AndDC,
   usaStates,
 };

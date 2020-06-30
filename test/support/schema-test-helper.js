@@ -1,6 +1,6 @@
 import { expect } from 'chai';
+import { it } from 'mocha';
 import Ajv from 'ajv';
-import { get } from 'lodash';
 
 const objectBuilder = (keys, value) => {
   let object = {};
