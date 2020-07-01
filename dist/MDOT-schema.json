@@ -222,6 +222,14 @@
         },
         {
           "properties": {
+            "isMilitaryBase": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        {
+          "properties": {
             "country": {
               "not": {
                 "type": "string",
@@ -239,13 +247,6 @@
             "postalCode": {
               "type": "string",
               "maxLength": 51
-            }
-          }
-        },
-        {
-          "properties": {
-            "isMilitaryBase": {
-              "type": "boolean"
             }
           }
         }
