@@ -171,7 +171,7 @@ const addressBuilder = (useCountryFullName = false) => {
 
   return {
     type: 'object',
-    oneOf: countryStateProperties,
+    oneOf: [...countryStateProperties, { properties: { isMilitaryBase: { type: 'boolean' } } }],
     properties: {
       isMilitaryBase: {
         type: 'boolean',

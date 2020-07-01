@@ -241,6 +241,13 @@
               "maxLength": 51
             }
           }
+        },
+        {
+          "properties": {
+            "isMilitaryBase": {
+              "type": "boolean"
+            }
+          }
         }
       ],
       "properties": {
