@@ -222,6 +222,14 @@
         },
         {
           "properties": {
+            "isMilitaryBase": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        {
+          "properties": {
             "country": {
               "not": {
                 "type": "string",
