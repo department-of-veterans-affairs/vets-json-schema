@@ -730,11 +730,15 @@
       "view:selectable686Options": {
         "type": "object",
         "properties": {
+          "addSpouse": {
+            "$ref": "#/definitions/genericTrueFalse",
+            "default": false
+          },
           "addChild": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
-          "addSpouse": {
+          "report674": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
@@ -742,11 +746,11 @@
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
-          "reportDeath": {
+          "reportStepchildNotInHousehold": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
-          "reportStepchildNotInHousehold": {
+          "reportDeath": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
@@ -755,10 +759,6 @@
             "default": false
           },
           "reportChild18OrOlderIsNotAttendingSchool": {
-            "$ref": "#/definitions/genericTrueFalse",
-            "default": false
-          },
-          "report674": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           }
@@ -855,8 +855,7 @@
                     "enum": [
                       "Yes",
                       "No"
-                    ],
-                    "default": "No"
+                    ]
                   },
                   "previousMarriageDetails": {
                     "type": "object",
@@ -871,8 +870,7 @@
                           "Death",
                           "Annulment",
                           "Other"
-                        ],
-                        "default": "Divorce"
+                        ]
                       },
                       "otherReasonMarriageEnded": {
                         "$ref": "#/definitions/genericTextInput"
@@ -1304,8 +1302,7 @@
                       "More than half",
                       "Half",
                       "Less than half"
-                    ],
-                    "default": "More than half"
+                    ]
                   },
                   "whoDoesTheStepchildLiveWith": {
                     "$ref": "#/definitions/fullName"
