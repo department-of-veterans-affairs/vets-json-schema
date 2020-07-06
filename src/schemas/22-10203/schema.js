@@ -88,7 +88,6 @@ const schema = {
     'veteranSocialSecurityNumber',
     'benefit',
     'isEnrolledStem',
-    'isPursuingTeachingCert',
     'benefitLeft',
     'degreeName',
     'schoolName',
@@ -97,8 +96,6 @@ const schema = {
     'isActiveDuty',
     'veteranAddress',
     'email',
-    'mobilePhone',
-    'bankAccount',
     'privacyAgreementAccepted',
   ],
 };
