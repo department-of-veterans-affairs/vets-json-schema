@@ -439,7 +439,6 @@
     "veteranSocialSecurityNumber",
     "benefit",
     "isEnrolledStem",
-    "isPursuingTeachingCert",
     "benefitLeft",
     "degreeName",
     "schoolName",
@@ -448,8 +447,6 @@
     "isActiveDuty",
     "veteranAddress",
     "email",
-    "mobilePhone",
-    "bankAccount",
     "privacyAgreementAccepted"
   ]
 }
