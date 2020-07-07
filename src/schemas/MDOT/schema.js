@@ -1,9 +1,44 @@
-import commonDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const { addressBuilder } = commonDefinitions;
-
-const addressWithIsMilitaryBase = addressBuilder(true);
+const addressWithIsMilitaryBase = {
+  type: 'object',
+  properties: {
+    isMilitaryBase: {
+      type: 'boolean',
+      default: false,
+    },
+    country: {
+      type: 'string',
+    },
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    street2: {
+      type: 'string',
+      maxLength: 50,
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 51,
+    },
+    state: {
+      type: 'string',
+    },
+    province: {
+      type: 'string',
+    },
+    postalCode: {
+      type: 'string',
+      pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)',
+    },
+    internationalPostalCode: {
+      type: 'string',
+    },
+  },
+};
 
 const supplies = {
   type: 'array',

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import constants from './constants';
 import schemaHelpers from './schema-helpers';
-import { statesWithFullCountryNames } from './address';
 
 const fullName = {
   type: 'object',
@@ -125,91 +124,6 @@ const address = (() => {
     },
   };
 })();
-
-const addressBuilder = (useCountryFullName = false) => {
-  const countries = constants.countries.map(object => (useCountryFullName ? object.label : object.value));
-  const countriesWithAnyState = Object.keys(
-    useCountryFullName ? statesWithFullCountryNames : constants.states,
-  ).filter(x => _.includes(countries, x));
-  const countryStateProperties = _.map(
-    useCountryFullName ? statesWithFullCountryNames : constants.states,
-    (value, key) => ({
-      properties: {
-        country: {
-          type: 'string',
-          enum: [key],
-        },
-        state: {
-          type: 'string',
-          enum: value.map(x => x.value),
-        },
-        postalCode: {
-          type: 'string',
-          maxLength: 10,
-        },
-      },
-    }),
-  );
-  countryStateProperties.push({
-    properties: {
-      country: {
-        not: {
-          type: 'string',
-          enum: countriesWithAnyState,
-        },
-      },
-      state: {
-        type: 'string',
-        maxLength: 51,
-      },
-      postalCode: {
-        type: 'string',
-        maxLength: 51,
-      },
-    },
-  });
-
-  return {
-    type: 'object',
-    oneOf: countryStateProperties,
-    properties: {
-      isMilitaryBase: {
-        type: 'boolean',
-        default: false,
-      },
-      country: {
-        type: 'string',
-      },
-      street: {
-        type: 'string',
-        minLength: 1,
-        maxLength: 50,
-      },
-      street2: {
-        type: 'string',
-        maxLength: 50,
-      },
-      city: {
-        type: 'string',
-        minLength: 1,
-        maxLength: 51,
-      },
-      state: {
-        type: 'string',
-      },
-      province: {
-        type: 'string',
-      },
-      postalCode: {
-        type: 'string',
-        pattern: '(^\\d{5}$)|(^\\d{5}-\\d{4}$)',
-      },
-      internationalPostalCode: {
-        type: 'string',
-      },
-    },
-  };
-};
 
 const centralMailAddress = _.cloneDeep(address);
 centralMailAddress.required = ['postalCode'];
@@ -707,7 +621,6 @@ export default {
   fullNameNoSuffix,
   otherIncome,
   address,
-  addressBuilder,
   usAddress,
   phone,
   ssn,
