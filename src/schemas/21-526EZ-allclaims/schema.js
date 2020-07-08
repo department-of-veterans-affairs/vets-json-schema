@@ -1068,6 +1068,10 @@ const schema = {
       },
     },
   },
+  required: [
+    isVaEmployee,
+    standardClaim
+  ]
 };
 
 export default schema;

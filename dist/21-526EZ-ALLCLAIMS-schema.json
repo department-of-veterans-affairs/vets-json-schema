@@ -1787,5 +1787,9 @@
         }
       }
     }
-  }
+  },
+  "required": [
+    "isVaEmployee",
+    "standardClaim"
+  ]
 }
