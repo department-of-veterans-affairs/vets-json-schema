@@ -1069,8 +1069,8 @@ const schema = {
     },
   },
   required: [
-    isVaEmployee,
-    standardClaim
+    'isVaEmployee',
+    'standardClaim'
   ]
 };
 
