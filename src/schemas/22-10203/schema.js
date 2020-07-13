@@ -82,6 +82,17 @@ const schema = {
     declineDirectDeposit: {
       type: 'boolean',
     },
+    remainingEntitlement: {
+      type: 'object',
+      properties: {
+        months: {
+          type: 'integer',
+        },
+        days: {
+          type: 'integer',
+        },
+      },
+    },
   },
   required: [
     'veteranFullName',
