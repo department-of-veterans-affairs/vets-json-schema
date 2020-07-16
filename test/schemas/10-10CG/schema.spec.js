@@ -33,8 +33,8 @@ const testData = {
       {
         // Hit min char count
         name: '',
-        type: 'clinic'
-      }
+        type: 'clinic',
+      },
     ],
   },
   vetRelationship: {
@@ -51,16 +51,13 @@ const testData = {
       'Friend/Neighbor',
       'Grandchild',
     ],
-    invalid: [
-      'foo',
-      'bar',
-    ],
+    invalid: ['foo', 'bar'],
   },
   boolean: {
     valid: [true, false],
     invalid: [null, 'some string', 42],
   },
-  string: (max) => {
+  string: max => {
     const breakingTestString = 'A'.repeat(max + 1);
 
     return {
@@ -72,10 +69,7 @@ const testData = {
 
 describe('10-10CG json schema', () => {
   it('should have the right required fields for each section', () => {
-    expect(schema.required).to.deep.equal([
-      'veteran',
-      'primaryCaregiver'
-    ]);
+    expect(schema.required).to.deep.equal(['veteran', 'primaryCaregiver']);
 
     expect(schema.properties.veteran.required).to.deep.equal([
       'fullName',
@@ -84,13 +78,10 @@ describe('10-10CG json schema', () => {
       'gender',
       'address',
       'primaryPhoneNumber',
-      'plannedClinic'
+      'plannedClinic',
     ]);
 
-    expect(schema.properties.veteran.properties.lastTreatmentFacility.required).to.deep.equal([
-      'name',
-      'type'
-    ]);
+    expect(schema.properties.veteran.properties.lastTreatmentFacility.required).to.deep.equal(['name', 'type']);
 
     expect(schema.properties.primaryCaregiver.required).to.deep.equal([
       'fullName',
@@ -102,8 +93,8 @@ describe('10-10CG json schema', () => {
       'vetRelationship',
       'medicaidEnrolled',
       'medicareEnrolled',
-      "tricareEnrolled",
-      "champvaEnrolled",
+      'tricareEnrolled',
+      'champvaEnrolled',
     ]);
 
     expect(schema.properties.secondaryCaregiverOne.required).to.deep.equal([
@@ -113,7 +104,7 @@ describe('10-10CG json schema', () => {
       'gender',
       'address',
       'primaryPhoneNumber',
-      'vetRelationship'
+      'vetRelationship',
     ]);
 
     expect(schema.properties.secondaryCaregiverTwo.required).to.deep.equal([
@@ -123,7 +114,7 @@ describe('10-10CG json schema', () => {
       'gender',
       'address',
       'primaryPhoneNumber',
-      'vetRelationship'
+      'vetRelationship',
     ]);
   });
 
@@ -149,7 +140,7 @@ describe('10-10CG json schema', () => {
     const sharedTests = new SharedTests(schemaTestHelper);
 
     // Veteran Info
-    sharedTests.runTest('fullNameNoSuffix', ['veteran.fullName'])
+    sharedTests.runTest('fullNameNoSuffix', ['veteran.fullName']);
     sharedTests.runTest('ssn', ['veteran.ssnOrTin']);
     sharedTests.runTest('date', ['veteran.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('veteran.gender', testData.gender);
@@ -235,7 +226,7 @@ describe('10-10CG json schema', () => {
           medicareEnrolled: false,
           champvaEnrolled: false,
           tricareEnrolled: true,
-        }
+        },
       });
 
       validSecondaryCaregiverOneData = {
@@ -246,7 +237,7 @@ describe('10-10CG json schema', () => {
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         primaryPhoneNumber: '1234567890',
         vetRelationship: 'Friend/Neighbor',
-      }
+      };
 
       validSecondaryCaregiverTwoData = {
         fullName: { first: 'Michael', last: 'Smith' },
@@ -256,7 +247,7 @@ describe('10-10CG json schema', () => {
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         primaryPhoneNumber: '1234567890',
         vetRelationship: 'Friend/Neighbor',
-      }
+      };
     });
 
     it('is valid with only "veteran" and "primaryCaregiver"', () => {
@@ -266,7 +257,9 @@ describe('10-10CG json schema', () => {
     it('requires additional fields if "secondaryCaregiverOne" is present', () => {
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: {} });
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: { ssnOrTin: '123456789' } });
-      schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: {  ssnOrTin: '123456789', dateOfBirth: '1990-01-01' } });
+      schemaTestHelper.schemaExpect(false, {
+        secondaryCaregiverOne: { ssnOrTin: '123456789', dateOfBirth: '1990-01-01' },
+      });
       schemaTestHelper.schemaExpect(true, { secondaryCaregiverOne: validSecondaryCaregiverOneData });
     });
 
@@ -274,11 +267,13 @@ describe('10-10CG json schema', () => {
       schemaTestHelper.defaults = {
         ...schemaTestHelper.defaults,
         secondaryCaregiverOne: validSecondaryCaregiverOneData,
-      }
+      };
 
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: {} });
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789' } });
-      schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789', dateOfBirth: '1990-01-01' } });
+      schemaTestHelper.schemaExpect(false, {
+        secondaryCaregiverTwo: { ssnOrTin: '123456789', dateOfBirth: '1990-01-01' },
+      });
       schemaTestHelper.schemaExpect(true, { secondaryCaregiverTwo: validSecondaryCaregiverTwoData });
     });
   });

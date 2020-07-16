@@ -371,14 +371,7 @@
       },
       "postalCode": {
         "type": "string",
-        "anyOf": [
-          {
-            "pattern": "^\\d{5}$"
-          },
-          {
-            "pattern": "^\\d{5}-\\d{4}$"
-          }
-        ]
+        "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
       }
     }
   },
@@ -880,14 +873,7 @@
   },
   "usaPostalCode": {
     "type": "string",
-    "anyOf": [
-      {
-        "pattern": "^\\d{5}$"
-      },
-      {
-        "pattern": "^\\d{5}-\\d{4}$"
-      }
-    ]
+    "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
   },
   "centralMailAddress": {
     "type": "object",
@@ -1052,14 +1038,7 @@
           },
           "postalCode": {
             "type": "string",
-            "anyOf": [
-              {
-                "pattern": "^\\d{5}$"
-              },
-              {
-                "pattern": "^\\d{5}-\\d{4}$"
-              }
-            ]
+            "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
           }
         }
       },

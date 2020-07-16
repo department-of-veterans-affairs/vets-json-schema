@@ -26,15 +26,14 @@ const vetRelationships = [
   'Grandchild',
 ];
 
-const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities)
-  .reduce((acc, stateId) => {
-    const stateFacilities = caregiverProgramFacilities[stateId];
-    const facilityIds = stateFacilities.map(facility => facility.code);
+const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities).reduce((acc, stateId) => {
+  const stateFacilities = caregiverProgramFacilities[stateId];
+  const facilityIds = stateFacilities.map(facility => facility.code);
 
-    Array.prototype.push.apply(acc, facilityIds);
+  Array.prototype.push.apply(acc, facilityIds);
 
-    return acc;
-  }, []);
+  return acc;
+}, []);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -46,7 +45,7 @@ const schema = {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
     date: definitions.date,
-    gender: gender,
+    gender,
     phone: definitions.phone,
     email: definitions.email,
     address: definitions.usAddress,
@@ -56,15 +55,7 @@ const schema = {
     veteran: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'ssnOrTin',
-        'dateOfBirth',
-        'gender',
-        'address',
-        'primaryPhoneNumber',
-        'plannedClinic'
-      ],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'plannedClinic'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -83,7 +74,7 @@ const schema = {
             name: buildDataType('string', { minLength: 1, maxLength: 100 }),
             type: {
               type: 'string',
-              enum: ['hospital', 'clinic']
+              enum: ['hospital', 'clinic'],
             },
           },
         },
@@ -127,15 +118,7 @@ const schema = {
     secondaryCaregiverOne: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'ssnOrTin',
-        'dateOfBirth',
-        'gender',
-        'address',
-        'primaryPhoneNumber',
-        'vetRelationship'
-      ],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -151,15 +134,7 @@ const schema = {
     secondaryCaregiverTwo: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'ssnOrTin',
-        'dateOfBirth',
-        'gender',
-        'address',
-        'primaryPhoneNumber',
-        'vetRelationship'
-      ],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
