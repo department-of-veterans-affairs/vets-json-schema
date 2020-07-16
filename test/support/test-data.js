@@ -161,6 +161,11 @@ export default {
         { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '3370101234' },
         { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701 1234' },
         { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701A1234' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '443342333' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '44334-' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '44334-' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '-2345' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '-' },
       ],
     }
   },
