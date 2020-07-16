@@ -53,14 +53,7 @@ const rejectOnlyWhitespace = {
 
 const usaPostalCode = {
   type: 'string',
-  anyOf: [
-    {
-      pattern: '^\\d{5}$',
-    },
-    {
-      pattern: '^\\d{5}-\\d{4}$',
-    },
-  ],
+  pattern: '^[a-zA-Z]\\d[a-zA-Z][ -]{0,1}\\d[a-zA-Z]\\d$',
 };
 
 const address = (() => {
