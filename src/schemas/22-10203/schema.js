@@ -82,6 +82,9 @@ const schema = {
     declineDirectDeposit: {
       type: 'boolean',
     },
+    scoEmailSent: {
+      type: 'boolean',
+    },
   },
   required: [
     'veteranFullName',
