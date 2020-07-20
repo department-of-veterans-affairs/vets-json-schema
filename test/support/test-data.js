@@ -581,4 +581,10 @@ export default {
       ],
     },
   },
+  boolean: {
+    data: {
+      valid: [true, false],
+      invalid: [null, 'some string', 42],
+    },
+  },
 };
