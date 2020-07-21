@@ -1,36 +1,32 @@
 import { expect } from 'chai';
-import { cloneDeep } from 'lodash';
-import { before, it } from 'mocha';
+import _, { cloneDeep } from 'lodash';
+import { it } from 'mocha';
 import schemas from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import SharedTests from '../../support/shared-tests';
-import _ from 'lodash';
 
-const schema = schemas['MDOT'];
+const schema = schemas.MDOT;
 const schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.anyOf;
 
 const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
-const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('mdot schema', () => {
-  sharedTests.runTest('email');
-
-  schemaTestHelper.testValidAndInvalid('supplies',{
+  schemaTestHelper.testValidAndInvalid('supplies', {
     valid: [
       [
         {
           deviceName: 'OMEGA XD3241',
           productName: 'ZA1239',
           productGroup: 'hearing aid batteries',
-          productId: '1',
+          productId: 17481,
           availableForReorder: false,
           lastOrderDate: '2020-01-01',
           nextAvailabilityDate: '2020-09-01',
-          quantity: 60
-        }
-      ]
+          quantity: 60,
+        },
+      ],
     ],
     invalid: [
       [
@@ -41,36 +37,34 @@ describe('mdot schema', () => {
           availableForReorder: 1,
           lastOrderDate: '2020-01-01',
           nextAvailabilityDate: '2020-09-01',
-          quantity: 'banana'
-        }
-      ]
-    ]
-  })
+          quantity: 'banana',
+        },
+      ],
+    ],
+  });
 
-  schemaTestHelper.testValidAndInvalid('eligibility',{
+  schemaTestHelper.testValidAndInvalid('eligibility', {
     valid: [
       {
-        batteries: true
-      }
+        batteries: true,
+      },
     ],
     invalid: [
       {
-        batteries: 7
-      }
-    ]
-  })
+        batteries: 7,
+      },
+    ],
+  });
 
   it('should have the correct required properties', () => {
     expect(schema.required).to.deep.equal([
-      'privacyAgreementAccepted',
       'fullName',
       'permanentAddress',
-      'temporaryAddress',
       'gender',
-      'email',
+      'vetEmail',
       'dateOfBirth',
       'supplies',
-      'eligibility'
+      'eligibility',
     ]);
 
     expect(schema.definitions.fullName.required).to.deep.equal(['first', 'last']);
@@ -88,10 +82,9 @@ describe('mdot schema', () => {
 
     const commonDefinitionAndPropertyNames = {
       fullName: ['fullName'],
-      address: ['permanentAddress'],
-      address: ['temporaryAddress'],
+      address: ['permanentAddress', 'temporaryAddress'],
       gender: ['gender'],
-      date: ['dateOfBirth']
+      date: ['dateOfBirth'],
     };
 
     for (const [commonDefinitionName, schemaPropertyName] of Object.entries(commonDefinitionAndPropertyNames)) {

@@ -45,7 +45,7 @@ const fullNameNoSuffix = {
       maxLength: 30,
     },
   },
-}
+};
 
 const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
@@ -53,14 +53,7 @@ const rejectOnlyWhitespace = {
 
 const usaPostalCode = {
   type: 'string',
-  anyOf: [
-    {
-      pattern: '^\\d{5}$',
-    },
-    {
-      pattern: '^\\d{5}-\\d{4}$',
-    },
-  ],
+  pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
 };
 
 const address = (() => {
@@ -612,7 +605,7 @@ const email = {
   type: 'string',
   minLength: 6,
   maxLength: 80,
-  pattern: '^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$',
+  format: 'email',
 };
 
 export default {

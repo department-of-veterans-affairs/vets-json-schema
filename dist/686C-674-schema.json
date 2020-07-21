@@ -47,7 +47,7 @@
       "type": "string",
       "minLength": 6,
       "maxLength": 80,
-      "pattern": "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+      "format": "email"
     },
     "files": {
       "type": "array",
@@ -79,10 +79,123 @@
     "genericLocation": {
       "type": "object",
       "properties": {
-        "state": {
+        "isOutsideUS": {
+          "type": "boolean",
+          "default": false
+        },
+        "country": {
           "type": "string",
           "maxLength": 30,
           "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL",
+            "AK",
+            "AZ",
+            "AR",
+            "CA",
+            "CO",
+            "CT",
+            "DE",
+            "DC",
+            "FL",
+            "GA",
+            "HI",
+            "ID",
+            "IL",
+            "IN",
+            "IA",
+            "KS",
+            "KY",
+            "LA",
+            "ME",
+            "MD",
+            "MA",
+            "MI",
+            "MN",
+            "MS",
+            "MO",
+            "MT",
+            "NE",
+            "NV",
+            "NH",
+            "NJ",
+            "NM",
+            "NY",
+            "NC",
+            "ND",
+            "OH",
+            "OK",
+            "OR",
+            "PA",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VT",
+            "VA",
+            "WA",
+            "WV",
+            "WI",
+            "WY"
+          ],
+          "enumNames": [
+            "Alabama",
+            "Alaska",
+            "Arizona",
+            "Arkansas",
+            "California",
+            "Colorado",
+            "Connecticut",
+            "Delaware",
+            "District Of Columbia",
+            "Florida",
+            "Georgia",
+            "Hawaii",
+            "Idaho",
+            "Illinois",
+            "Indiana",
+            "Iowa",
+            "Kansas",
+            "Kentucky",
+            "Louisiana",
+            "Maine",
+            "Maryland",
+            "Massachusetts",
+            "Michigan",
+            "Minnesota",
+            "Mississippi",
+            "Missouri",
+            "Montana",
+            "Nebraska",
+            "Nevada",
+            "New Hampshire",
+            "New Jersey",
+            "New Mexico",
+            "New York",
+            "North Carolina",
+            "North Dakota",
+            "Ohio",
+            "Oklahoma",
+            "Oregon",
+            "Pennsylvania",
+            "Rhode Island",
+            "South Carolina",
+            "South Dakota",
+            "Tennessee",
+            "Texas",
+            "Utah",
+            "Vermont",
+            "Virginia",
+            "Washington",
+            "West Virginia",
+            "Wisconsin",
+            "Wyoming"
+          ]
         },
         "city": {
           "type": "string",
@@ -730,11 +843,15 @@
       "view:selectable686Options": {
         "type": "object",
         "properties": {
+          "addSpouse": {
+            "$ref": "#/definitions/genericTrueFalse",
+            "default": false
+          },
           "addChild": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
-          "addSpouse": {
+          "report674": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
@@ -742,11 +859,11 @@
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
-          "reportDeath": {
+          "reportStepchildNotInHousehold": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
-          "reportStepchildNotInHousehold": {
+          "reportDeath": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           },
@@ -755,10 +872,6 @@
             "default": false
           },
           "reportChild18OrOlderIsNotAttendingSchool": {
-            "$ref": "#/definitions/genericTrueFalse",
-            "default": false
-          },
-          "report674": {
             "$ref": "#/definitions/genericTrueFalse",
             "default": false
           }
@@ -855,8 +968,7 @@
                     "enum": [
                       "Yes",
                       "No"
-                    ],
-                    "default": "No"
+                    ]
                   },
                   "previousMarriageDetails": {
                     "type": "object",
@@ -871,8 +983,7 @@
                           "Death",
                           "Annulment",
                           "Other"
-                        ],
-                        "default": "Divorce"
+                        ]
                       },
                       "otherReasonMarriageEnded": {
                         "$ref": "#/definitions/genericTextInput"
@@ -971,7 +1082,7 @@
                 "OTHER"
               ],
               "enumNames": [
-                "Ceremonial",
+                "Religious or civil ceremony (minister, justice of the peace, etc.)",
                 "Common-law",
                 "Tribal",
                 "Proxy",
@@ -1304,8 +1415,7 @@
                       "More than half",
                       "Half",
                       "Less than half"
-                    ],
-                    "default": "More than half"
+                    ]
                   },
                   "whoDoesTheStepchildLiveWith": {
                     "$ref": "#/definitions/fullName"

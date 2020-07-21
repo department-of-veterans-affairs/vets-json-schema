@@ -1,52 +1,23 @@
-import _ from 'lodash';
-import originalDefinitions from '../../common/definitions';
-import schemaHelpers from '../../common/schema-helpers';
-
-const definitions = _.cloneDeep(originalDefinitions);
-definitions.educationType.enum.push('cooperativeTraining');
+import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR STEM (22-10203)',
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, [
-    'fullName',
-    'address',
-    'phone',
-    'ssn',
-    'school',
-    'bankAccount',
-    'preferredContactMethod',
-    'privacyAgreementAccepted',
-  ]),
-  anyOf: [
-    {
-      required: ['vaFileNumber'],
-    },
-    {
-      required: ['veteranSocialSecurityNumber'],
-    },
-  ],
+  definitions: {
+    address: definitions.address,
+    bankAccount: definitions.bankAccount,
+    email: definitions.email,
+    fullName: definitions.fullName,
+    phone: definitions.phone,
+    ssn: definitions.ssn,
+    privacyAgreementAccepted: definitions.privacyAgreementAccepted,
+    usaStates: definitions.usAddress.properties.state,
+  },
   properties: {
     veteranFullName: {
       $ref: '#/definitions/fullName',
-    },
-    veteranAddress: {
-      $ref: '#/definitions/address',
-    },
-    homePhone: {
-      $ref: '#/definitions/phone',
-    },
-    mobilePhone: {
-      $ref: '#/definitions/phone',
-    },
-    email: {
-      type: 'string',
-      format: 'email',
-    },
-    preferredContactMethod: {
-      $ref: '#/definitions/preferredContactMethod',
     },
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
@@ -55,39 +26,81 @@ const schema = {
       type: 'string',
       enum: ['chapter33', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32'],
     },
-    bankAccount: {
-      $ref: '#/definitions/bankAccount',
-    },
-    civilianBenefitsAssistance: {
-      type: 'boolean',
-    },
-    nonVaAssistance: {
-      type: 'boolean',
-    },
-    remarks: {
-      type: 'string',
-    },
-    privacyAgreementAccepted: {
-      $ref: '#/definitions/privacyAgreementAccepted',
-    },
-    isEdithNourseRogersScholarship: {
-      type: 'boolean',
-    },
     isEnrolledStem: {
       type: 'boolean',
     },
     isPursuingTeachingCert: {
       type: 'boolean',
     },
+    benefitLeft: {
+      type: 'string',
+      enum: ['moreThanSixMonths', 'sixMonthsOrLess', 'none'],
+    },
+    degreeName: {
+      type: 'string',
+    },
+    schoolName: {
+      type: 'string',
+    },
+    schoolCity: {
+      type: 'string',
+    },
+    schoolState: {
+      $ref: '#/definitions/usaStates',
+    },
+    schoolStudentId: {
+      type: 'string',
+    },
+    schoolEmailAddress: {
+      $ref: '#/definitions/email',
+    },
     isActiveDuty: {
       type: 'boolean',
     },
+    veteranAddress: {
+      $ref: '#/definitions/address',
+    },
+    email: {
+      $ref: '#/definitions/email',
+    },
+    homePhone: {
+      $ref: '#/definitions/phone',
+    },
+    mobilePhone: {
+      $ref: '#/definitions/phone',
+    },
+    preferredContactMethod: {
+      type: 'string',
+      enum: ['mail', 'email', 'homePhone', 'mobilePhone'],
+    },
+    bankAccount: {
+      $ref: '#/definitions/bankAccount',
+    },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted',
+    },
+    declineDirectDeposit: {
+      type: 'boolean',
+    },
+    scoEmailSent: {
+      type: 'boolean',
+    },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName'],
+  required: [
+    'veteranFullName',
+    'veteranSocialSecurityNumber',
+    'benefit',
+    'isEnrolledStem',
+    'benefitLeft',
+    'degreeName',
+    'schoolName',
+    'schoolCity',
+    'schoolState',
+    'isActiveDuty',
+    'veteranAddress',
+    'email',
+    'privacyAgreementAccepted',
+  ],
 };
-
-[['vaFileNumber'], ['bankAccountChange']].forEach(args => {
-  schemaHelpers.addDefinitionToSchema(schema, ...args);
-});
 
 export default schema;

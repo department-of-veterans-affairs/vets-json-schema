@@ -20,15 +20,24 @@ const schema = {
     genericLocation: {
       type: 'object',
       properties: {
-        state: {
+        isOutsideUS: {
+          type: 'boolean',
+          default: false,
+        },
+        country: {
           type: 'string',
           maxLength: 30,
-          pattern: textOnlyPattern,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$',
+        },
+        state: {
+          type: 'string',
+          enum: states50AndDC.map(state => state.value),
+          enumNames: states50AndDC.map(state => state.label),
         },
         city: {
           type: 'string',
           maxLength: 30,
-          pattern: textOnlyPattern,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$',
         },
       },
     },
@@ -109,17 +118,17 @@ const schema = {
       'view:selectable686Options': {
         type: 'object',
         properties: {
-          addChild: { $ref: '#/definitions/genericTrueFalse', default: false },
           addSpouse: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportDivorce: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportDeath: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportStepchildNotInHousehold: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportMarriageOfChildUnder18: { $ref: '#/definitions/genericTrueFalse', default: false },
-          reportChild18OrOlderIsNotAttendingSchool: {
+          addChild: { $ref: '#/definitions/genericTrueFalse', default: false },
+          report674: {
             $ref: '#/definitions/genericTrueFalse',
             default: false,
           },
-          report674: {
+          reportDivorce: { $ref: '#/definitions/genericTrueFalse', default: false },
+          reportStepchildNotInHousehold: { $ref: '#/definitions/genericTrueFalse', default: false },
+          reportDeath: { $ref: '#/definitions/genericTrueFalse', default: false },
+          reportMarriageOfChildUnder18: { $ref: '#/definitions/genericTrueFalse', default: false },
+          reportChild18OrOlderIsNotAttendingSchool: {
             $ref: '#/definitions/genericTrueFalse',
             default: false,
           },
@@ -216,7 +225,6 @@ const schema = {
                   previouslyMarried: {
                     type: 'string',
                     enum: ['Yes', 'No'],
-                    default: 'No',
                   },
 
                   previousMarriageDetails: {
@@ -228,7 +236,6 @@ const schema = {
                       reasonMarriageEnded: {
                         type: 'string',
                         enum: ['Divorce', 'Death', 'Annulment', 'Other'],
-                        default: 'Divorce',
                       },
                       otherReasonMarriageEnded: {
                         $ref: '#/definitions/genericTextInput',
@@ -321,7 +328,13 @@ const schema = {
             type: {
               type: 'string',
               enum: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
-              enumNames: ['Ceremonial', 'Common-law', 'Tribal', 'Proxy', 'Other'],
+              enumNames: [
+                'Religious or civil ceremony (minister, justice of the peace, etc.)',
+                'Common-law',
+                'Tribal',
+                'Proxy',
+                'Other',
+              ],
             },
             typeOther: {
               $ref: '#/definitions/genericTextInput',
@@ -617,7 +630,6 @@ const schema = {
                   livingExpensesPaid: {
                     type: 'string',
                     enum: ['More than half', 'Half', 'Less than half'],
-                    default: 'More than half',
                   },
                   whoDoesTheStepchildLiveWith: {
                     $ref: '#/definitions/fullName',
