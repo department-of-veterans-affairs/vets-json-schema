@@ -9,8 +9,9 @@ const sharedTests = new SharedTests(schemaTestHelper);
 const testData = {
   genericLocation: {
     valid: [
-      { state: 'California', city: 'Los Angeles' },
-      { state: 'Hong Kong', city: 'Kowloon' },
+      { state: 'CA', city: 'Los Angeles' },
+      { state: 'AL', city: 'Kowloon' },
+      { isOutsideUS: true, country: 'Someplace', city: 'Kowloon' },
     ],
     invalid: [
       {
