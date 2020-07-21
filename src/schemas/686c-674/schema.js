@@ -20,15 +20,24 @@ const schema = {
     genericLocation: {
       type: 'object',
       properties: {
-        state: {
+        isOutsideUS: {
+          type: 'boolean',
+          default: false,
+        },
+        country: {
           type: 'string',
           maxLength: 30,
-          pattern: textOnlyPattern,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$',
+        },
+        state: {
+          type: 'string',
+          enum: states50AndDC.map(state => state.value),
+          enumNames: states50AndDC.map(state => state.label),
         },
         city: {
           type: 'string',
           maxLength: 30,
-          pattern: textOnlyPattern,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$',
         },
       },
     },
