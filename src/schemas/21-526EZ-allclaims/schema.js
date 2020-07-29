@@ -539,7 +539,7 @@ const schema = {
     },
     bankRoutingNumber: {
       type: 'string',
-      pattern: '^\\d{9}$',
+      pattern: '^[\\d*]{9}$',
     },
     bankName: {
       type: 'string',

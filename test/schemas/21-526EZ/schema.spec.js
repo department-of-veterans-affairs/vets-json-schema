@@ -347,7 +347,7 @@ const data = {
     invalid: ['', '123', makeString(20)],
   },
   bankRoutingNumber: {
-    valid: ['123456789', '987654321'],
+    valid: ['123456789', '987654321', '*****1234'],
     invalid: [null, '', '123', 'abcdefghi', 123456789],
   },
   bankName: {
