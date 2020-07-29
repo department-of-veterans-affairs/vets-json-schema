@@ -11,7 +11,7 @@ const testData = {
     valid: [
       { state: 'CA', city: 'Los Angeles' },
       { state: 'AL', city: 'Kowloon' },
-      { isOutsideUS: true, country: 'Someplace', city: 'Kowloon' },
+      { isOutsideUS: true, country: 'AFG', city: 'Kowloon' },
     ],
     invalid: [
       {
