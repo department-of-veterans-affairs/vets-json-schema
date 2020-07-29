@@ -26,8 +26,8 @@ const schema = {
         },
         country: {
           type: 'string',
-          maxLength: 30,
-          pattern: '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$',
+          enum: countries.map(country => country.value),
+          enumNames: countries.map(country => country.label),
         },
         state: {
           type: 'string',
