@@ -86,7 +86,6 @@
         "country": {
           "type": "string",
           "enum": [
-            "USA",
             "AFG",
             "ALB",
             "DZA",
@@ -316,7 +315,6 @@
             "ZWE"
           ],
           "enumNames": [
-            "United States",
             "Afghanistan",
             "Albania",
             "Algeria",
