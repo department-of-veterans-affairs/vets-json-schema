@@ -10,6 +10,12 @@ const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
 
 const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
 
+const countryNameFilter = country => {
+  if (country.value != 'USA') {
+    return country.value;
+  }
+};
+
 let definitions = cloneDeep(commonDefinitions);
 definitions = pick(definitions, 'fullName', 'phone', 'date', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
 const schema = {
@@ -26,8 +32,8 @@ const schema = {
         },
         country: {
           type: 'string',
-          enum: countries.map(country => country.value),
-          enumNames: countries.map(country => country.label),
+          enum: countries.filter(country => country.value != 'USA').map(country => country.value),
+          enumNames: countries.filter(country => country.label != 'United States').map(country => country.label),
         },
         state: {
           type: 'string',
