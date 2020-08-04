@@ -15,7 +15,7 @@ let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('covid vaccine trial schema', () => {
   sharedTests.runTest('email');
-  sharedTests.runTest('fullName', ['veteranFullName']);
+  sharedTests.runTest('fullName');
   sharedTests.runTest('date');
 
   // schemaTestHelper.testValidAndInvalid('address', {

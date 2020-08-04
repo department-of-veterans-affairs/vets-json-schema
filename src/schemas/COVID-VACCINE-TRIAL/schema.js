@@ -233,39 +233,6 @@ const raceEthnicityOrigin = {
   },
 };
 
-const closingText = {
-  type: 'object',
-  properties: {
-    'view:thankYouText': {
-      type: 'object',
-      properties: {},
-    },
-    'view:textDetail': {
-      type: 'object',
-      properties: {},
-    },
-    'view:eligibilityTextHeader': {
-      type: 'object',
-      properties: {},
-    },
-    'view:eligibileTextDetail': {
-      type: 'object',
-      properties: {},
-    },
-    'view:eligibileTextNote': {
-      type: 'object',
-      properties: {},
-    },
-    'view:notEligibileTextHeader': {
-      type: 'object',
-      properties: {},
-    },
-    'view:notEligibileTextDetail': {
-      type: 'object',
-      properties: {},
-    },
-  },
-};
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Covid Vaccine Trial',
@@ -292,12 +259,11 @@ const schema = {
     weight,
     gender,
     raceEthnicityOrigin,
-    closingText,
   },
   required: ['fullName'],
 };
 
-[['email'], ['fullName'], ['date']].forEach(args => {
+[['email'], ['fullName', 'veteranFullName'], ['date', 'veteranDateOfBirth']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
