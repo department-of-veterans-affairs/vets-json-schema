@@ -108,10 +108,6 @@ const transportation = {
     },
   },
 };
-const zipCode = {
-  type: 'string',
-  pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
-};
 const closeContact = {
   type: 'string',
   enum: ['ZERO', 'ONE_TEN', 'ELEVEN_THIRTY', 'THIRTYONE_FIFTY', 'MORE_THAN_FIFTY'],
@@ -164,13 +160,21 @@ const exposureRiskHeaderText = {
 const height = {
   type: 'object',
   properties: {
-    heightFeet: {
+    heightFeetText: {
       type: 'string',
-      enum: ['TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE'],
+      pattern: '^[0-9]{9}$',
     },
-    heightInches: {
+    'view:heightFtLabel': {
+      type: 'object',
+      properties: {},
+    },
+    heightInchesText: {
       type: 'string',
-      enum: ['ZERO', 'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE', 'TEN', 'ELEVEN', 'TWELVE'],
+      pattern: '^[1-9]{2}$',
+    },
+    'view:heightInLabel': {
+      type: 'object',
+      properties: {},
     },
   },
 };
@@ -254,7 +258,6 @@ const schema = {
     transportation,
     closeContact,
     contactHeaderText,
-    zipCode,
     height,
     weight,
     gender,
@@ -263,8 +266,10 @@ const schema = {
   required: ['fullName'],
 };
 
-[['email'], ['fullName', 'veteranFullName'], ['date', 'veteranDateOfBirth']].forEach(args => {
-  schemaHelpers.addDefinitionToSchema(schema, ...args);
-});
+[['email'], ['fullName', 'veteranFullName'], ['date', 'veteranDateOfBirth'], ['usaPostalCode', 'zipCode']].forEach(
+  args => {
+    schemaHelpers.addDefinitionToSchema(schema, ...args);
+  },
+);
 
 export default schema;

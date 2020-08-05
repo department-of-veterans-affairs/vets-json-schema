@@ -45,6 +45,10 @@
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
+    },
+    "usaPostalCode": {
+      "type": "string",
+      "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
     }
   },
   "properties": {
@@ -216,43 +220,24 @@
         }
       }
     },
-    "zipCode": {
-      "type": "string",
-      "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
-    },
     "height": {
       "type": "object",
       "properties": {
-        "heightFeet": {
+        "heightFeetText": {
           "type": "string",
-          "enum": [
-            "TWO",
-            "THREE",
-            "FOUR",
-            "FIVE",
-            "SIX",
-            "SEVEN",
-            "EIGHT",
-            "NINE"
-          ]
+          "pattern": "^[0-9]{9}$"
         },
-        "heightInches": {
+        "view:heightFtLabel": {
+          "type": "object",
+          "properties": {}
+        },
+        "heightInchesText": {
           "type": "string",
-          "enum": [
-            "ZERO",
-            "ONE",
-            "TWO",
-            "THREE",
-            "FOUR",
-            "FIVE",
-            "SIX",
-            "SEVEN",
-            "EIGHT",
-            "NINE",
-            "TEN",
-            "ELEVEN",
-            "TWELVE"
-          ]
+          "pattern": "^[1-9]{2}$"
+        },
+        "view:heightInLabel": {
+          "type": "object",
+          "properties": {}
         }
       }
     },
@@ -322,6 +307,9 @@
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
+    },
+    "zipCode": {
+      "$ref": "#/definitions/usaPostalCode"
     }
   },
   "required": [
