@@ -180,6 +180,7 @@ const height = {
 };
 const weight = {
   type: 'string',
+  pattern: '^([1-9]\\d*)(\\.(\\d{1}|\\d{2}))?$',
 };
 const gender = {
   type: 'object',

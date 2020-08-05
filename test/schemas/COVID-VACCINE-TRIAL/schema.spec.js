@@ -5,13 +5,12 @@ import schemas from '../../../dist/schemas';
 
 import SharedTests from '../../support/shared-tests';
 
-let schema = schemas['COVID-VACCINE-TRIAL'];
-console.log(schema);
-let schemaWithoutRequired = _.cloneDeep(schema);
+const schema = schemas['COVID-VACCINE-TRIAL'];
+const schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 
-let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
-let sharedTests = new SharedTests(schemaTestHelper);
+const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
+const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('covid vaccine trial schema', () => {
   sharedTests.runTest('email');
@@ -193,5 +192,9 @@ describe('covid vaccine trial schema', () => {
       { OTHER_RACE_ETHNICITY: 'invalid' },
       { PREFER_NO_ANSWER: 'invalid' },
     ],
+  });
+  schemaTestHelper.testValidAndInvalid('weight', {
+    valid: ['90', '90.5', '100', '100.25', '12345.6'],
+    invalid: ['INVALID', '1234.56789', '0', '099'],
   });
 });
