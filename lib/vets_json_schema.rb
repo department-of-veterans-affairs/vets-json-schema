@@ -4,6 +4,10 @@ require 'script_utils'
 module VetsJsonSchema
   base_dir = "#{__dir__}/../"
 
+  CONSTANTS = MultiJson.load(
+    File.read("#{base_dir}dist/constants.json")
+  )
+
   SCHEMAS = lambda do
     return_val = {}
 
