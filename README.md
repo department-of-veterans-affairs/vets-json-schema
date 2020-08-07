@@ -1,6 +1,20 @@
 # vets-json-schema [![Build Status](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema.svg?branch=master)](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema)
 
+## Purpose
+Forms on VA.gov use JSON schema to define a common contract for data validation between the front and back ends. This is where those schemas are kept.
+
 ## Development
+
+### Workflow
+1. Clone the repo
+1. Make a branch for your changes
+1. Make the changes needed for your form
+1. Update the version number in `package.json`
+1. Submit a PR
+1. Once that PR is merged
+    1. Create a PR in `vets-website` to update the `vets-json-schema` dependency
+        - This can be done with `yarn update:schema`
+    1. Create a PR in `vets-api` to update the dependency
 
 ### Environment
 node v6.11.1
@@ -9,7 +23,7 @@ node v6.11.1
 
 | I want to... | Then you should... |
 | ------------ | ------------------ |
-| clone the site | `git clone https://github.com/department-of-veterans-affairs/vets-json-schema.git` followed by `cd vets-json-schema`, `npm install`. Run `npm install` anytime `package.json` changes. |
+| clone the repo | `git clone https://github.com/department-of-veterans-affairs/vets-json-schema.git` followed by `cd vets-json-schema`, `npm install`. Run `npm install` any time `package.json` changes. |
 | build the json schemas and examples | `npm run build` |
 | watch for changes and rebuild when they happen | `npm run watch` |
 | run tests on the built schemas | `npm run test` |
