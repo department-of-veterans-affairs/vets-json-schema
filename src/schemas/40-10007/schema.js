@@ -145,6 +145,28 @@ definitions.phone.pattern = '^[0-9+\\s-]{0,20}$';
 
 definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
+definitions.race = {
+  type: 'array',
+  items: {
+    type: 'object',
+    required: ['raceCd'],
+    properties: {
+      raceCd: {
+        type: 'string',
+        enum: [
+          'I', // American Indian or Alaskan Native
+          'A', // Asian
+          'B', // Black or African American
+          'H', // Hispanic or Latino
+          'U', // Not Hispanic or Latino
+          'P', // Native Hawaiian or Other Pacific Islander
+          'W', // White
+        ],
+      },
+    },
+  },
+};
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR PRE-NEED DETERMINATION OF ELIGIBILITY IN A VA NATIONAL CEMETERY',
@@ -234,6 +256,7 @@ const schema = {
               type: 'string',
               enum: ['Female', 'Male'],
             },
+            race: schemaHelpers.getDefinition('race'),
             isDeceased: {
               type: 'string',
               enum: ['yes', 'no', 'unsure'],

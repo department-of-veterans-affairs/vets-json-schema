@@ -300,6 +300,29 @@
     "date": {
       "type": "string",
       "format": "date"
+    },
+    "race": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "raceCd"
+        ],
+        "properties": {
+          "raceCd": {
+            "type": "string",
+            "enum": [
+              "I",
+              "A",
+              "B",
+              "H",
+              "U",
+              "P",
+              "W"
+            ]
+          }
+        }
+      }
     }
   },
   "properties": {
@@ -495,6 +518,9 @@
                 "Female",
                 "Male"
               ]
+            },
+            "race": {
+              "$ref": "#/definitions/race"
             },
             "isDeceased": {
               "type": "string",
