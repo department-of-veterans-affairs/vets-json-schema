@@ -144,14 +144,14 @@ describe('covid vaccine trial schema', () => {
       { TRANSGENDER_MALE: true },
       { GENDER_VARIANT: true },
       { SELF_IDENTIFY: true },
-      { PREFER_NO_ANSWER: true },
+      { NONE_OF_ABOVE: true },
       { FEMALE: false },
       { MALE: false },
       { TRANSGENDER_FEMALE: false },
       { TRANSGENDER_MALE: false },
       { GENDER_VARIANT: false },
       { SELF_IDENTIFY: false },
-      { PREFER_NO_ANSWER: false },
+      { NONE_OF_ABOVE: false },
     ],
     invalid: [
       { FEMALE: 'invalid' },
@@ -160,7 +160,7 @@ describe('covid vaccine trial schema', () => {
       { TRANSGENDER_MALE: 'invalid' },
       { GENDER_VARIANT: 'invalid' },
       { SELF_IDENTIFY: 'invalid' },
-      { PREFER_NO_ANSWER: 'invalid' },
+      { NONE_OF_ABOVE: 'invalid' },
     ],
   });
   schemaTestHelper.testValidAndInvalid('raceEthnicityOrigin', {
@@ -172,7 +172,7 @@ describe('covid vaccine trial schema', () => {
       { HAWAIIAN_PACIFIC_ISLANDER: true },
       { WHITE: true },
       { OTHER_RACE_ETHNICITY: true },
-      { PREFER_NO_ANSWER: true },
+      { NONE_OF_ABOVE: true },
       { AMERICAN_INDIAN_ALASKA_NATIVE: false },
       { ASIAN: false },
       { BLACK_AFRICAN_AMERICAN: false },
@@ -180,7 +180,7 @@ describe('covid vaccine trial schema', () => {
       { HAWAIIAN_PACIFIC_ISLANDER: false },
       { WHITE: false },
       { OTHER_RACE_ETHNICITY: false },
-      { PREFER_NO_ANSWER: false },
+      { NONE_OF_ABOVE: false },
     ],
     invalid: [
       { AMERICAN_INDIAN_ALASKA_NATIVE: 'invalid' },
@@ -190,7 +190,7 @@ describe('covid vaccine trial schema', () => {
       { HAWAIIAN_PACIFIC_ISLANDER: 'invalid' },
       { WHITE: 'invalid' },
       { OTHER_RACE_ETHNICITY: 'invalid' },
-      { PREFER_NO_ANSWER: 'invalid' },
+      { NONE_OF_ABOVE: 'invalid' },
     ],
   });
   schemaTestHelper.testValidAndInvalid('weight', {

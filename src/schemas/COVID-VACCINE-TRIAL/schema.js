@@ -143,7 +143,7 @@ const gender = {
     SELF_IDENTIFY: {
       type: 'boolean',
     },
-    PREFER_NO_ANSWER: {
+    NONE_OF_ABOVE: {
       type: 'boolean',
     },
   },
@@ -172,7 +172,7 @@ const raceEthnicityOrigin = {
     OTHER_RACE_ETHNICITY: {
       type: 'boolean',
     },
-    PREFER_NO_ANSWER: {
+    NONE_OF_ABOVE: {
       type: 'boolean',
     },
   },
