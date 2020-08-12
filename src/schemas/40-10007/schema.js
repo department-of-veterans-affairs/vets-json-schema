@@ -160,9 +160,6 @@ definitions.race = {
     isSpanishHispanicLatino: {
       type: 'boolean',
     },
-    notSpanishHispanicLatino: {
-      type: 'boolean',
-    },
     isNativeHawaiianOrOtherPacificIslander: {
       type: 'boolean',
     },
