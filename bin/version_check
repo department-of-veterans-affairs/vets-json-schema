@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+# USAGE: ./bin/version_check || circleci step halt
+
+changes=`git show -m HEAD --name-only --pretty=""`
+json_changes=`echo $changes | egrep -q json && echo "1"`
+schema_changes=`echo $changes | egrep -q 'src/schemas' && echo "1"`
+
+# return 1 (bash error) if there are json or schema changes
+if [[ $json_changes = 1 ]]; then exit 1; fi
+if [[ $schema_changes = 1 ]]; then exit 1; fi

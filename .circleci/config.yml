@@ -1,12 +1,17 @@
 version: 2.1
 orbs:
   node: circleci/node@1.1.6
+commands:
+  bump-version-or-halt:
+    steps:
+      - run: ./bin/version_check
 jobs:
   build-and-test:
     executor:
       name: node/default
     steps:
       - checkout
+      - bump-version-or-halt
       - node/with-cache:
           steps:
             - run: npm install
