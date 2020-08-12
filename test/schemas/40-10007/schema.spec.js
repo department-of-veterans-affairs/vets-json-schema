@@ -240,18 +240,16 @@ describe('preneeds schema', () => {
 
   schemaTestHelper.testValidAndInvalid('application.veteran.race', {
     valid: [
-      [
-        { raceCd: 'I' }
-      ],
-      [
-        { raceCd: 'I' },
-        { raceCd: 'A' },
-      ]
+      {
+        isAmericanIndianOrAlaskanNative: true,
+        isAsian: true
+      },
+      {
+        isAmericanIndianOrAlaskanNative: true
+      }
     ],
     invalid: [
-      [
-        { foo: true }
-      ]
+      'race'
     ]
   });
 
