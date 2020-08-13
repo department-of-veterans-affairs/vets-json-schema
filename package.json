@@ -1,10 +1,6 @@
 {
   "name": "vets-json-schema",
-<<<<<<< HEAD
   "version": "6.7.1",
-=======
-  "version": "6.7.0",
->>>>>>> master
   "repository": {
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
