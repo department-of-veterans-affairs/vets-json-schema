@@ -50,6 +50,9 @@ const healthHistory = {
     ANOTHER_SERIOUS_CHRONIC_ILLNESS: {
       type: 'boolean',
     },
+    NONE_OF_ABOVE: {
+      type: 'boolean',
+    },
   },
 };
 
@@ -112,71 +115,8 @@ const closeContact = {
   type: 'string',
   enum: ['ZERO', 'ONE_TEN', 'ELEVEN_THIRTY', 'THIRTYONE_FIFTY', 'MORE_THAN_FIFTY'],
 };
-const descriptionText = {
-  type: 'object',
-  properties: {
-    'view:descriptionText': {
-      type: 'object',
-      properties: {},
-    },
-  },
-};
-const infoSharingText = {
-  type: 'object',
-  properties: {
-    'view:infoSharingText': {
-      type: 'object',
-      properties: {},
-    },
-  },
-};
-const contactHeaderText = {
-  type: 'object',
-  properties: {
-    'view:contactText': {
-      type: 'object',
-      properties: {},
-    },
-  },
-};
-const healthHeaderText = {
-  type: 'object',
-  properties: {
-    'view:healthText': {
-      type: 'object',
-      properties: {},
-    },
-  },
-};
-const exposureRiskHeaderText = {
-  type: 'object',
-  properties: {
-    'view:exposureRiskText': {
-      type: 'object',
-      properties: {},
-    },
-  },
-};
 const height = {
-  type: 'object',
-  properties: {
-    heightFeetText: {
-      type: 'string',
-      pattern: '^[0-9]{9}$',
-    },
-    'view:heightFtLabel': {
-      type: 'object',
-      properties: {},
-    },
-    heightInchesText: {
-      type: 'string',
-      pattern: '^[1-9]{2}$',
-    },
-    'view:heightInLabel': {
-      type: 'object',
-      properties: {},
-    },
-  },
+  type: 'number',
 };
 const weight = {
   type: 'string',
@@ -203,7 +143,7 @@ const gender = {
     SELF_IDENTIFY: {
       type: 'boolean',
     },
-    PREFER_NO_ANSWER: {
+    NONE_OF_ABOVE: {
       type: 'boolean',
     },
   },
@@ -232,7 +172,7 @@ const raceEthnicityOrigin = {
     OTHER_RACE_ETHNICITY: {
       type: 'boolean',
     },
-    PREFER_NO_ANSWER: {
+    NONE_OF_ABOVE: {
       type: 'boolean',
     },
   },
@@ -245,10 +185,6 @@ const schema = {
   additionalProperties: false,
   definitions: {},
   properties: {
-    descriptionText,
-    infoSharingText,
-    healthHeaderText,
-    exposureRiskHeaderText,
     residentsInHome,
     healthHistory,
     diagnosed,
@@ -258,19 +194,40 @@ const schema = {
     employmentStatus,
     transportation,
     closeContact,
-    contactHeaderText,
     height,
     weight,
     gender,
     raceEthnicityOrigin,
   },
-  required: ['fullName'],
+  required: [
+    'email',
+    'veteranFullName',
+    'veteranDateOfBirth',
+    'zipCode',
+    'phone',
+    'residentsInHome',
+    'healthHistory',
+    'diagnosed',
+    'closeContactPositive',
+    'hospitalized',
+    'smokeOrVape',
+    'employmentStatus',
+    'transportation',
+    'closeContact',
+    'weight',
+    'gender',
+    'raceEthnicityOrigin',
+  ],
 };
 
-[['email'], ['fullName', 'veteranFullName'], ['date', 'veteranDateOfBirth'], ['usaPostalCode', 'zipCode']].forEach(
-  args => {
-    schemaHelpers.addDefinitionToSchema(schema, ...args);
-  },
-);
+[
+  ['email', 'email'],
+  ['fullName', 'veteranFullName'],
+  ['date', 'veteranDateOfBirth'],
+  ['usaPostalCode', 'zipCode'],
+  ['usaPhone', 'phone'],
+].forEach(args => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
 
 export default schema;
