@@ -10,6 +10,7 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
+            - run: yarn danger ci
             - run: npm test
 workflows:
     build-and-test:
