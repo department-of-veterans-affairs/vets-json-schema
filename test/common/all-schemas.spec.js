@@ -1,6 +1,13 @@
 import schemas from '../../dist/schemas';
 import { expect } from 'chai';
 import _ from 'lodash';
+import {
+  is_definitions_path,
+  is_a_properties_object,
+  object_has_property_type_or_is_an_allowed_exception,
+  inside_an_allOf_anyOf_oneOf_or_not,
+  a_sibling_has_at_least_one_of_the_following_properties,
+} from './all-schemas.spec.helpers.js';
 
 const check_object_recursively = (root_obj, path = []) => {
   const obj = get(root_obj, path);
@@ -12,7 +19,7 @@ const check_object_recursively = (root_obj, path = []) => {
     const array = obj;
     array.forEach((_, i) => check_object_recursively(root_obj, [...path, i]));
   }
-}
+};
 
 const object_has_property_type_or_is_an_allowed_exception = (root_obj, path_to_obj_being_inspected) => {
   const path = path_to_obj_being_inspected;
@@ -22,17 +29,22 @@ const object_has_property_type_or_is_an_allowed_exception = (root_obj, path_to_o
     is_definitions_path(path) ||
     is_a_properties_object(path) ||
     object_has_at_least_one_of_the_following_properties(
-      ['type', '$ref', 'enum', 'const', 'allOf', 'anyOf', 'oneOf', 'not'], obj
+      ['type', '$ref', 'enum', 'const', 'allOf', 'anyOf', 'oneOf', 'not'],
+      obj,
     )
-  ) return;
+  )
+    return;
 
   const inside = inside_an_allOf_anyOf_oneOf_or_not(path);
 
-  if (!inside) throw new Error([
-    'object should probably have property "type"',
-    `(path: ${JSON.stringify(path)}`,
-    `object: ${JSON.stringify(obj)})`,
-  ].join(' '));
+  if (!inside)
+    throw new Error(
+      [
+        'object should probably have property "type"',
+        `(path: ${JSON.stringify(path)}`,
+        `object: ${JSON.stringify(obj)})`,
+      ].join(' '),
+    );
 
   // inside an allOf/anyOf/oneOf/not
   //
@@ -71,14 +83,15 @@ const object_has_property_type_or_is_an_allowed_exception = (root_obj, path_to_o
   //
   // inside the current object would have been caught above (the first if statement)
 
-  const obj_two_levels_up = get(root_obj, path.slice(0,-2));
+  const obj_two_levels_up = get(root_obj, path.slice(0, -2));
   if (
     a_sibling_has_at_least_one_of_the_following_properties(['type', '$ref', 'enum', 'const'], root_obj, path) ||
-      object_has_at_least_one_of_the_following_properties(['type', '$ref', 'enum', 'const'], obj_two_levels_up)
-  ) return;
+    object_has_at_least_one_of_the_following_properties(['type', '$ref', 'enum', 'const'], obj_two_levels_up)
+  )
+    return;
 
   throw new Error('allOf/anyOf/oneOf needs either a type/$ref/const/enum somewhere');
-}
+};
 
 describe('all schema tests', () => {
   it('schema properties should have types', () => {

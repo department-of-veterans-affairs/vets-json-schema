@@ -185,3 +185,11 @@ test([1], ['type', 'const', '$ref', 'enum'], [{ x: 1 }, { type: 2 }], [1]);
     path_to_element_that_has_a_property_we_are_looking_for,
   );
 }
+
+export {
+  is_definitions_path,
+  is_a_properties_object,
+  object_has_property_type_or_is_an_allowed_exception,
+  inside_an_allOf_anyOf_oneOf_or_not,
+  a_sibling_has_at_least_one_of_the_following_properties,
+};
