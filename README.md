@@ -21,7 +21,7 @@ Forms on VA.gov use JSON schema to define a common contract for data validation 
 
 ### Environment
 
-node v6.11.1
+node v8.10.0
 
 ### I want to...
 
