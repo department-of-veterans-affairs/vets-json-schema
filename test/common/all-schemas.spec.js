@@ -2,9 +2,17 @@ import schemas from '../../dist/schemas';
 import { expect } from 'chai';
 import _ from 'lodash';
 
+const check_object_recursively = (root_obj, path = []) => {
+  const obj = get(root_obj, path);
 
-
-
+  if (_.isObject(obj)) {
+    object_has_property_type_or_is_an_allowed_exception(root_obj, path);
+    for (const prop in obj) if (obj.hasOwnProperty(prop)) check_object_recursively(root_obj, [...path, prop]);
+  } else if (Array.isArray(obj)) {
+    const array = obj;
+    array.forEach((_, i) => check_object_recursively(root_obj, [...path, i]));
+  }
+}
 
 const object_has_property_type_or_is_an_allowed_exception = (root_obj, path_to_obj_being_inspected) => {
   const path = path_to_obj_being_inspected;
@@ -74,52 +82,6 @@ const object_has_property_type_or_is_an_allowed_exception = (root_obj, path_to_o
 
 describe('all schema tests', () => {
   it('schema properties should have types', () => {
-    const skipTypeArr = [
-      'allOf',
-      'anyOf',
-      'oneOf',
-      'not'
-    ];
-
-    const checkObjectTypes = (key, obj, skipTypeCheck = false) => {
-      const lastKey = _.tap(key.split('.'), keyArr => {
-        return keyArr[keyArr.length - 1];
-      });
-
-      _.tap(Object.keys(obj), objKeys => {
-        if (
-          !skipTypeCheck &&
-          objKeys.length === 1 &&
-          _.includes(skipTypeArr, objKeys[0])
-        ) {
-          skipTypeCheck = true;
-        }
-      });
-
-      if (!skipTypeCheck && obj.type == null && obj['$ref'] == null) {
-        throw new Error(`${key} needs type`);
-      }
-
-      for (let k in obj) {
-        let v = obj[k];
-        let skipNextTypeCheck = false;
-
-        if (_.isPlainObject(v) && v['$ref'] == null) {
-          if (obj['$schema'] && k === 'definitions') skipNextTypeCheck = true;
-
-          if (!skipNextTypeCheck && lastKey !== 'properties' && k === 'properties') skipNextTypeCheck = true;
-
-          checkObjectTypes(`${key}.${k}`, v, skipNextTypeCheck);
-        } else if (_.isArray(v)) {
-          if (_.includes(skipTypeArr, k) && obj.type != null) skipNextTypeCheck = true;
-
-          v.forEach((item) => {
-            if (_.isPlainObject(item)) checkObjectTypes(`${key}.${k}`, item, skipNextTypeCheck);
-          });
-        }
-      }
-    };
-
     throw new Error(`${Object.keys(schemas)}`);
     for (let k in schemas) {
       // skip "checkObjectTypes" for these dist files used as enums
@@ -128,7 +90,7 @@ describe('all schema tests', () => {
       // skip "checkObjectTypes" for dist files that contains "-example" (used for example data) AND does not contain "schema"
       if (k.indexOf('-example') > -1 && k.indexOf('schema') === -1) continue;
 
-      checkObjectTypes(k, schemas[k]);
+      check_object_recursively(k);
     }
   });
 });
