@@ -347,11 +347,6 @@ const is_object = obj => typeof obj === 'object' && obj !== null;
 
 export {
   get,
-  is_definitions_path,
-  is_a_properties_object,
-  object_has_at_least_one_of_the_following_properties,
-  inside_an_allOf_anyOf_oneOf_or_not,
-  a_sibling_has_at_least_one_of_the_following_properties,
   object_error,
   is_object,
 };
