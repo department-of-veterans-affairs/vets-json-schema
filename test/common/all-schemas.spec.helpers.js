@@ -12,7 +12,7 @@
 ////let test;
 
 const get = (object, path) => {
-  // simpler than lodash's *and* empty path returns object
+  // unlike lodash's get, empty path returns object
   if (!Array.isArray(path)) throw new Error('path must be an array');
 
   const length = path.length;
@@ -335,6 +335,16 @@ const object_error = (root_obj, path_to_obj_being_inspected) => {
 ////`);
 ////test(null, json, ['allOf', 0]);
 
+const is_object = obj => typeof obj === 'object' && obj !== null;
+////test = simpleTester('is_object');
+////test(true, {});
+////test(true, []);
+////test(false, 'cat');
+////test(false, undefined);
+////test(false, 0);
+////test(false, 1);
+////test(false, null);
+
 export {
   get,
   is_definitions_path,
@@ -343,4 +353,5 @@ export {
   inside_an_allOf_anyOf_oneOf_or_not,
   a_sibling_has_at_least_one_of_the_following_properties,
   object_error,
+  is_object,
 };

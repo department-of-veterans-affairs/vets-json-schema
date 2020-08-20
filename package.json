@@ -8,6 +8,7 @@
   "scripts": {
     "build": "node src/start build",
     "test": "mocha 'test/**/*.spec.js'",
+    "test:all-schemas": "mocha 'test/common/all-schemas.spec.js'",
     "watch": "node src/start watch",
     "lint": "eslint src -c .eslintrc --ext js",
     "lint:fix": "eslint src -c .eslintrc --fix --ext js",
