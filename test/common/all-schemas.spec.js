@@ -8,32 +8,27 @@ import {
   object_has_at_least_one_of_the_following_properties,
   inside_an_allOf_anyOf_oneOf_or_not,
   a_sibling_has_at_least_one_of_the_following_properties,
-  object_error
+  object_error,
 } from './all-schemas.spec.helpers.js';
 
+// recurse through object and check each object* found using object_error.
+// checks the root of an object (empty path) too.
+// * object that isn't an array. a thing with keys -> values
 const check_object_recursively = (root_obj, path = []) => {
   const obj = get(root_obj, path);
 
-  //console.log(JSON.stringify(path));
   if (Array.isArray(obj)) {
-    //console.log('  array');
     const array = obj;
-    //console.log(JSON.stringify(array));
     array.forEach((_, i) => check_object_recursively(root_obj, [...path, i]));
   } else if (_.isObject(obj)) {
-    //console.log('  object');
-    //console.log(JSON.stringify(obj));
-    //console.log('  checking object for errors');
-    const error = object_error(root_obj, path);
+    const error = object_error(root_obj, path); // ensure object's have a type (or $ref/const/enum)
     if (error) throw new Error(error);
-    //console.log('    ok');
     for (const prop in obj) if (obj.hasOwnProperty(prop)) check_object_recursively(root_obj, [...path, prop]);
   }
-  //console.log('  other');
 };
 
 describe('all schema tests', () => {
-  it('schema properties should have types', () => {
+  it('schema properties should have types (or $ref/const/enum)', () => {
     for (let k in schemas) {
       if (!schemas.hasOwnProperty(k)) continue;
 

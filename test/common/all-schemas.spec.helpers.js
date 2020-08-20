@@ -186,7 +186,6 @@ const a_sibling_has_at_least_one_of_the_following_properties = (properties, root
 ////  );
 ////}
 
-
 // an object should have a type (or $ref/const/enum) (there are a few exceptions (which are handled))
 // NOTE: this returns null when there is no problem or a string error message when there is
 const object_error = (root_obj, path_to_obj_being_inspected) => {
@@ -343,5 +342,5 @@ export {
   object_has_at_least_one_of_the_following_properties,
   inside_an_allOf_anyOf_oneOf_or_not,
   a_sibling_has_at_least_one_of_the_following_properties,
-  object_error
+  object_error,
 };
