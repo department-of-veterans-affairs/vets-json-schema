@@ -214,6 +214,7 @@ const schema = {
     'employmentStatus',
     'transportation',
     'closeContact',
+    'height',
     'weight',
     'gender',
     'raceEthnicityOrigin',
