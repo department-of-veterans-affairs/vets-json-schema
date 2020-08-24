@@ -7,7 +7,7 @@ import schema from '../../../src/schemas/10-10CG/schema';
 const testData = {
   gender: {
     valid: ['M', 'F'],
-    invalid: ['A', 'BB', 'CCC'],
+    invalid: ['A', 'BB', 'CCC', 'U'],
   },
   plannedClinic: {
     valid: ['636', '636A6', '740', '603'],
