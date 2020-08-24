@@ -9,7 +9,7 @@ const example = {
     alternativePhoneNumber: '8887775544',
     email: 'veteranEmail@email.com',
     plannedClinic: '740',
-    lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' }
+    lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
   },
   primaryCaregiver: {
     fullName: { first: 'Joan', last: 'Doe' },
@@ -30,7 +30,7 @@ const example = {
     fullName: { first: 'John Doe', middle: 'A', last: 'Doe' },
     ssnOrTin: '787787854',
     dateOfBirth: '1989-11-06',
-    gender: 'U',
+    gender: 'F',
     address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771-1234' },
     primaryPhoneNumber: '8887775544',
     alternativePhoneNumber: '8887775544',

@@ -43,8 +43,7 @@
       "type": "string",
       "enum": [
         "F",
-        "M",
-        "U"
+        "M"
       ]
     },
     "phone": {
@@ -180,7 +179,6 @@
         "fullName",
         "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "plannedClinic"
@@ -388,7 +386,6 @@
         "fullName",
         "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship",
@@ -451,7 +448,6 @@
         "fullName",
         "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship"
@@ -493,7 +489,6 @@
         "fullName",
         "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship"
