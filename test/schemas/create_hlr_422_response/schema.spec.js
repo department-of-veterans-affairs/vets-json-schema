@@ -13,8 +13,6 @@ fs.readdirSync(path.resolve(...examplesDir)).forEach(exampleFileName => {
   const examplePath = path.resolve(...[...examplesDir, exampleFileName]);
   const example = require(examplePath);
 
-  console.log(typeof example);
-
   const ajv = new Ajv();
   const exampleValidatesAgainstSchema = ajv.validate(schema, example);
 
