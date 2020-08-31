@@ -1,0 +1,35 @@
+import Fs from 'fs';
+
+export default function examples(examples_path) {
+  return {
+    valid: valid_examples(examples_path_array),
+    invalid: invalid_examples(examples_path_array),
+  };
+}
+
+function invalid_examples(path) {
+  return examples_from(path, 'invalid');
+}
+
+function valid_examples(path) {
+  return {
+    ...examples_from(path_array),
+    ...examples_from(path_array, 'valid'),
+  };
+}
+
+function examples_from(root_path_array, relative_path_array = []) {
+  const path_array = [...root_path_array, ...relative_path_array];
+  const example_filenames = example_filenames(path_array);
+  example_filenames.reduce((acc, filename) => {
+    const example_path = join_as_absolute_path([...path_array, filename]);
+    const key = relative_path_array.join('/') + '/' + filename;
+    return { ...acc, [key]: require(example_path) };
+  }, {});
+}
+
+function example_filenames(examples_path) {
+  return Fs.readdirSync(examples_path).filter(
+    filename => not_a_dir(filename) && filename.slice(-5) === '.json' && filename[0] !== '.' && filename[0] !== '#',
+  );
+}
