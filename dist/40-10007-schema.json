@@ -300,6 +300,32 @@
     "date": {
       "type": "string",
       "format": "date"
+    },
+    "race": {
+      "type": "object",
+      "properties": {
+        "isAmericanIndianOrAlaskanNative": {
+          "type": "boolean"
+        },
+        "isAsian": {
+          "type": "boolean"
+        },
+        "isBlackOrAfricanAmerican": {
+          "type": "boolean"
+        },
+        "isSpanishHispanicLatino": {
+          "type": "boolean"
+        },
+        "notSpanishHispanicLatino": {
+          "type": "boolean"
+        },
+        "isNativeHawaiianOrOtherPacificIslander": {
+          "type": "boolean"
+        },
+        "isWhite": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "properties": {
@@ -495,6 +521,9 @@
                 "Female",
                 "Male"
               ]
+            },
+            "race": {
+              "$ref": "#/definitions/race"
             },
             "isDeceased": {
               "type": "string",

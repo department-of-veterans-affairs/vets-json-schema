@@ -79,14 +79,13 @@
     "genericLocation": {
       "type": "object",
       "properties": {
-        "isOutsideUS": {
+        "isOutsideUs": {
           "type": "boolean",
           "default": false
         },
         "country": {
           "type": "string",
           "enum": [
-            "USA",
             "AFG",
             "ALB",
             "DZA",
@@ -316,7 +315,6 @@
             "ZWE"
           ],
           "enumNames": [
-            "United States",
             "Afghanistan",
             "Albania",
             "Algeria",
@@ -1513,7 +1511,7 @@
             "isVeteran": {
               "$ref": "#/definitions/genericTrueFalse"
             },
-            "VAFileNumber": {
+            "vaFileNumber": {
               "$ref": "#/definitions/genericNumberAndDashInput"
             },
             "serviceNumber": {
@@ -1891,7 +1889,7 @@
     "report674": {
       "type": "object",
       "properties": {
-        "studentNameAndSSN": {
+        "studentNameAndSsn": {
           "type": "object",
           "properties": {
             "view:674Information": {

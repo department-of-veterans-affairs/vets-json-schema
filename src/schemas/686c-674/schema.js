@@ -5,7 +5,6 @@ import { countries, states50AndDC } from '../../common/constants';
 import commonDefinitions from '../../common/definitions';
 
 // patterns
-const textOnlyPattern = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
 
 const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
@@ -20,14 +19,14 @@ const schema = {
     genericLocation: {
       type: 'object',
       properties: {
-        isOutsideUS: {
+        isOutsideUs: {
           type: 'boolean',
           default: false,
         },
         country: {
           type: 'string',
-          enum: countries.map(country => country.value),
-          enumNames: countries.map(country => country.label),
+          enum: countries.filter(country => country.value !== 'USA').map(country => country.value),
+          enumNames: countries.filter(country => country.label !== 'United States').map(country => country.label),
         },
         state: {
           type: 'string',
@@ -308,7 +307,7 @@ const schema = {
             isVeteran: {
               $ref: '#/definitions/genericTrueFalse',
             },
-            VAFileNumber: {
+            vaFileNumber: {
               $ref: '#/definitions/genericNumberAndDashInput',
             },
             serviceNumber: {
@@ -648,7 +647,7 @@ const schema = {
     report674: {
       type: 'object',
       properties: {
-        studentNameAndSSN: {
+        studentNameAndSsn: {
           type: 'object',
           properties: {
             'view:674Information': {
