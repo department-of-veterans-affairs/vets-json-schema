@@ -603,8 +603,7 @@ const form4142 = {
 
 const email = {
   type: 'string',
-  minLength: 6,
-  maxLength: 80,
+  maxLength: 256,
   format: 'email',
 };
 
