@@ -39,13 +39,13 @@ function schema_dir_path(path) {
   return Path.resolve(path, '..', '..', '..', 'src', 'schemas', schema_name(path));
 }
 
-function empty(object) {
-  return Object.keys(object).length === 0;
+function no_examples(examples) {
+  return Object.keys(examples['valid']).length === 0 && Object.keys(examples['invalid']).length === 0;
 }
 
 export default path => {
   const exs = examples(examples_path(path));
-  if (empty(exs)) throw 'no examples provided';
+  if (no_examples(exs)) throw 'no examples provided';
   validate_examples_against_schema({
     schema: schema(schema_dir_path(path)),
     examples: exs,

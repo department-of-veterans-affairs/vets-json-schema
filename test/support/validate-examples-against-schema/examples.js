@@ -29,8 +29,8 @@ function examples_from(root_path, relative_path = '') {
   }, {});
 }
 
-function example_filenames(examples_path) {
-  return Fs.readdirSync(examples_path).filter(filename => is_a_json_file(Path.resolve(examples_path, filename)));
+function example_filenames(dir) {
+  return Fs.readdirSync(dir).filter(filename => is_a_json_file(Path.resolve(dir, filename)));
 }
 
 function is_a_json_file(path) {
