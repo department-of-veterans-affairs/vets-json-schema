@@ -84,7 +84,7 @@ const testData = {
   report674: {
     valid: [
       {
-        studentNameAndSSN: {
+        studentNameAndSsn: {
           fullName: {
             first: 'John',
             last: 'Doe',
@@ -179,7 +179,7 @@ const testData = {
     ],
     invalid: [
       {
-        studentNameAndSSN: {
+        studentNameAndSsn: {
           fullName: {
             first: 'John',
             last: 'Doe',
@@ -261,16 +261,16 @@ describe('686c-674 schema', () => {
     'reportDivorce.fullName',
     'reportChildMarriage.fullName',
     'reportChildStoppedAttendingSchool.fullName',
-    'report674.studentNameAndSSN.fullName',
+    'report674.studentNameAndSsn.fullName',
   ]);
-  sharedTests.runTest('ssn', ['addSpouse.spouseNameInformation.ssn', 'report674.studentNameAndSSN.ssn']);
+  sharedTests.runTest('ssn', ['addSpouse.spouseNameInformation.ssn', 'report674.studentNameAndSsn.ssn']);
   sharedTests.runTest('date', [
     'addSpouse.spouseNameInformation.birthDate',
     'addSpouse.currentMarriageInformation.date',
     'reportDivorce.date',
     'reportChildMarriage.dateMarried',
     'reportChildStoppedAttendingSchool.dateChildLeftSchool',
-    'report674.studentNameAndSSN.birthDate',
+    'report674.studentNameAndSsn.birthDate',
     'report674.studentAddressMarriageTuition.marriageDate',
     'report674.studentAddressMarriageTuition.datePaymentsBegan',
     'report674.studentTermDates.currentTermDates.officialSchoolStartDate',

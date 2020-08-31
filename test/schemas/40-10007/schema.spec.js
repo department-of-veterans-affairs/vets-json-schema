@@ -238,6 +238,21 @@ describe('preneeds schema', () => {
     invalid: ['Taumatawhakatangi­hangakoauauotamatea­turipukakapikimaunga­horonukupokaiwhen­uakitanatahu, New Zealand']
   });
 
+  schemaTestHelper.testValidAndInvalid('application.veteran.race', {
+    valid: [
+      {
+        isAmericanIndianOrAlaskanNative: true,
+        isAsian: true
+      },
+      {
+        isAmericanIndianOrAlaskanNative: true
+      }
+    ],
+    invalid: [
+      'race'
+    ]
+  });
+
   schemaTestHelper.testValidAndInvalid('application.preneedAttachments', {
     valid: [
       [{

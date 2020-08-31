@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import constants from '../../common/constants';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -46,7 +47,11 @@ const schema = {
       type: 'string',
     },
     schoolState: {
-      $ref: '#/definitions/usaStates',
+      type: 'string',
+    },
+    schoolCountry: {
+      type: 'string',
+      enum: constants.countries.map(country => country.value),
     },
     schoolStudentId: {
       type: 'string',
@@ -95,7 +100,7 @@ const schema = {
     'degreeName',
     'schoolName',
     'schoolCity',
-    'schoolState',
+    'schoolCountry',
     'isActiveDuty',
     'veteranAddress',
     'email',
