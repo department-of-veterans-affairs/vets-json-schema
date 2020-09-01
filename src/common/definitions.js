@@ -242,6 +242,12 @@ const date = {
   type: 'string',
 };
 
+// XXXX-XX-XX not allowed
+const requiredDate = {
+  type: 'string',
+  pattern: '^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$'
+};
+
 const educationType = {
   type: 'string',
   enum: [
@@ -624,6 +630,7 @@ export default {
   serviceBefore1977,
   dateRange,
   date,
+  requiredDate,
   rejectOnlyWhitespace,
   dischargeType,
   educationType,
