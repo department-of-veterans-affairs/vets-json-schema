@@ -14,22 +14,8 @@ const schema = {
   title: 'EDUCATIONAL/VOCATIONAL COUNSELING APPLICATION (28-8832)',
   type: 'object',
   additionalProperties: false,
-  definitions: {},
-  properties: {
-    claimantInformation: {
-      type: 'object',
-      properties: {
-        fullName: definitions.fullName,
-        ssn: definitions.ssn,
-        vaFileNumber: definitions.vaFileNumber,
-        dateOfBirth: definitions.date,
-      },
-    },
-    claimantStaticInformation: {
-      type: 'object',
-      properties: {},
-    },
-    claimantAddress: {
+  definitions: {
+    addressSchema: {
       type: 'object',
       properties: {
         'view:livesOnMilitaryBase': {
@@ -81,6 +67,24 @@ const schema = {
           type: 'string',
         },
       },
+    },
+  },
+  properties: {
+    claimantInformation: {
+      type: 'object',
+      properties: {
+        fullName: definitions.fullName,
+        ssn: definitions.ssn,
+        VAFileNumber: definitions.vaFileNumber,
+        dateOfBirth: definitions.date,
+      },
+    },
+    claimantStaticInformation: {
+      type: 'object',
+      properties: {},
+    },
+    claimantAddress: {
+      $ref: '#/definitions/addressSchema',
     },
     statusSelection: {
       type: 'string',
