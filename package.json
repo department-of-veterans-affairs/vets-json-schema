@@ -14,6 +14,11 @@
     "lint:fix": "eslint src -c .eslintrc --fix --ext js",
     "lint:changed": "LIST=`git diff-index --name-only HEAD | grep \"\\.js[x]\\{0,1\\}$\"`; if [ \"$LIST\" ]; then eslint --fix --quiet $LIST; fi"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:fix && yarn build"
+    }
+  },
   "main": "dist/schemas.js",
   "files": [
     "dist"
@@ -33,6 +38,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
     "jsonfile": "^2.3.1",
     "lodash": "^4.17.19",
     "mocha": "^3.0.2",

@@ -316,7 +316,7 @@ const schema = {
           type: 'object',
           properties: {
             separationLocationCode: {
-              type: 'string'
+              type: 'string',
             },
             separationLocationName: {
               type: 'string',
@@ -1068,10 +1068,7 @@ const schema = {
       },
     },
   },
-  required: [
-    'isVaEmployee',
-    'standardClaim'
-  ]
+  required: ['isVaEmployee', 'standardClaim'],
 };
 
 export default schema;

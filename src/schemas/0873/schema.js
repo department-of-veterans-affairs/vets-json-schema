@@ -41,14 +41,8 @@ const schema = {
   required: ['privacyAgreementAccepted', 'fullName', 'preferredContactMethod'],
 };
 
-[
-  ['fullName'],
-  ['preferredContactMethod'],
-  ['email'],
-  ['phone'],
-  ['address'],
-  ['privacyAgreementAccepted'],
-].forEach(args => {
+[['fullName'], ['preferredContactMethod'], ['email'], ['phone'], ['address'], ['privacyAgreementAccepted']].forEach(
+  args => {
     schemaHelpers.addDefinitionToSchema(schema, ...args);
   },
 );

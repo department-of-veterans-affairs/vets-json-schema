@@ -1,4 +1,4 @@
-import schema from '../20-0996/schema.js';
+import schema from '../20-0996/schema';
 
 const definitions = {
   root: {
