@@ -3,12 +3,6 @@ import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 import { countries, states50AndDC } from '../../common/constants';
 
-// patterns
-const textOnlyPattern = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
-const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
-
-const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
-
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'EDUCATIONAL/VOCATIONAL COUNSELING APPLICATION (28-8832)',
