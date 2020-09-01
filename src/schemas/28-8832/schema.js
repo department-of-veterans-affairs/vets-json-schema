@@ -19,7 +19,7 @@ const schema = {
       type: 'object',
       properties: {
         'view:livesOnMilitaryBase': {
-          $ref: '#/definitions/genericTrueFalse',
+          type: 'boolean',
         },
         'view:livesOnMilitaryBaseInfo': {
           type: 'object',
