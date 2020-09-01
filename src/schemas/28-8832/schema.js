@@ -22,6 +22,7 @@ const schema = {
         fullName: definitions.fullName,
         ssn: definitions.ssn,
         vaFileNumber: definitions.vaFileNumber,
+        dateOfBirth: definitions.date,
       },
     },
     claimantStaticInformation: {
