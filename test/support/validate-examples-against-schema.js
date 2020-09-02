@@ -2,7 +2,7 @@ import Path from 'path';
 import { expect } from 'chai';
 import { it } from 'mocha';
 import Ajv from 'ajv';
-import examples from '../../src/examples.js'
+import examples from '../../src/examples.js';
 
 function validate_examples_against_schema({ schema, examples, schema_name }) {
   const { valid, invalid } = examples;
