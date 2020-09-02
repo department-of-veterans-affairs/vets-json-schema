@@ -1713,6 +1713,12 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
         "date": {
           "$ref": "#/definitions/date"
         },
@@ -1749,6 +1755,12 @@
                 "properties": {
                   "fullName": {
                     "$ref": "#/definitions/fullName"
+                  },
+                  "ssn": {
+                    "$ref": "#/definitions/ssn"
+                  },
+                  "birthDate": {
+                    "$ref": "#/definitions/date"
                   },
                   "dependentType": {
                     "type": "string",
@@ -1816,6 +1828,12 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
         "dateMarried": {
           "$ref": "#/definitions/date"
         }
@@ -1826,6 +1844,12 @@
       "properties": {
         "fullName": {
           "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
         },
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
@@ -1846,6 +1870,12 @@
                 "properties": {
                   "fullName": {
                     "$ref": "#/definitions/fullName"
+                  },
+                  "ssn": {
+                    "$ref": "#/definitions/ssn"
+                  },
+                  "birthDate": {
+                    "$ref": "#/definitions/date"
                   }
                 }
               }
