@@ -38,7 +38,9 @@
             },
             {
               "type": "boolean",
-              "const": false
+              "enum": [
+                false
+              ]
             }
           ]
         }

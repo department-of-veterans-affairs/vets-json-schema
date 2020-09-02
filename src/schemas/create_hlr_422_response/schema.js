@@ -21,7 +21,7 @@ const schema = {
         status: { type: 'integer' },
         detail: { type: 'string' },
         source: {
-          oneOf: [{ type: 'string' }, { type: 'boolean', const: false }],
+          oneOf: [{ type: 'string' }, { type: 'boolean', enum: [false] }],
         },
       },
       required: ['status', 'detail', 'source'],

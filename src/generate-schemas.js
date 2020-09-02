@@ -1,9 +1,11 @@
 import jsonfile from 'jsonfile';
 import fs from 'fs';
+import path from 'path';
 import definitions from './common/definitions';
 import constants from './common/constants';
 import vaMedicalFacilities from './common/va-medical-facilities';
 import caregiverProgramFacilities from './common/caregiver-program-facilities';
+import { dist_examples as distExamples } from './examples';
 
 const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities };
 
@@ -13,9 +15,10 @@ fs.readdirSync('src/schemas').forEach(schema => {
   });
 });
 
-fs.readdirSync('src/examples').forEach(schema => {
-  jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-example.json`, require(`./examples/${schema}/example`).default, {
-    spaces: 2,
+fs.readdirSync('src/schemas').forEach(schema => {
+  const examples = distExamples(path.resolve(__dirname, '..'), schema);
+  Object.keys(examples).forEach(key => {
+    jsonfile.writeFileSync(`dist/${key}`, examples[key], { spaces: 2 });
   });
 });
 

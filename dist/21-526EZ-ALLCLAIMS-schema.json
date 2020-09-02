@@ -334,12 +334,14 @@
         "OR",
         "PW",
         "PA",
+        "PI",
         "PR",
         "RI",
         "SC",
         "SD",
         "TN",
         "TX",
+        "UM",
         "UT",
         "VT",
         "VI",
@@ -347,9 +349,7 @@
         "WA",
         "WV",
         "WI",
-        "WY",
-        "PI",
-        "UM"
+        "WY"
       ],
       "enumNames": [
         "Alabama",
@@ -400,12 +400,14 @@
         "Oregon",
         "Palau",
         "Pennsylvania",
+        "Philippine Islands",
         "Puerto Rico",
         "Rhode Island",
         "South Carolina",
         "South Dakota",
         "Tennessee",
         "Texas",
+        "U.S. Minor Outlying Islands",
         "Utah",
         "Vermont",
         "Virgin Islands",
@@ -413,9 +415,7 @@
         "Washington",
         "West Virginia",
         "Wisconsin",
-        "Wyoming",
-        "Philippine Islands",
-        "U.S. Minor Outlying Islands"
+        "Wyoming"
       ]
     },
     "address": {
