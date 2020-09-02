@@ -2728,6 +2728,10 @@
       "value": "PA"
     },
     {
+      "label": "Philippine Islands",
+      "value": "PI"
+    },
+    {
       "label": "Puerto Rico",
       "value": "PR"
     },
@@ -2750,6 +2754,10 @@
     {
       "label": "Texas",
       "value": "TX"
+    },
+    {
+      "label": "U.S. Minor Outlying Islands",
+      "value": "UM"
     },
     {
       "label": "Utah",
@@ -2782,14 +2790,6 @@
     {
       "label": "Wyoming",
       "value": "WY"
-    },
-    {
-      "label": "Philippine Islands",
-      "value": "PI"
-    },
-    {
-      "label": "U.S. Minor Outlying Islands",
-      "value": "UM"
     }
   ],
   "salesforceCountries": [
