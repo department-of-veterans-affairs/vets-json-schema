@@ -104,7 +104,7 @@ function load_example_file(root_path, relative_path) {
     const file_path = Path.resolve(path, filename);
     if (!is_a_file(file_path)) return acc;
     const key = [...relative_path, filename].join('/');
-    return { ...acc, [key]: file_loader(example_file_path) };
+    return { ...acc, [key]: file_loader(file_path) };
   }, {});
 }
 
