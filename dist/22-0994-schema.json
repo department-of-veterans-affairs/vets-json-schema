@@ -396,7 +396,7 @@
                 "type": "string",
                 "enum": [
                   "AL",
-                  "UM",
+                  "AK",
                   "AS",
                   "AZ",
                   "AR",
@@ -427,7 +427,7 @@
                   "MI",
                   "MN",
                   "MS",
-                  "AK",
+                  "MO",
                   "MT",
                   "NE",
                   "NV",
@@ -443,12 +443,14 @@
                   "OR",
                   "PW",
                   "PA",
+                  "PI",
                   "PR",
                   "RI",
                   "SC",
                   "SD",
                   "TN",
                   "TX",
+                  "UM",
                   "UT",
                   "VT",
                   "VI",
@@ -456,13 +458,11 @@
                   "WA",
                   "WV",
                   "WI",
-                  "WY",
-                  "PI",
-                  "MO"
+                  "WY"
                 ],
                 "enumNames": [
                   "Alabama",
-                  "U.S. Minor Outlying Islands",
+                  "Alaska",
                   "American Samoa",
                   "Arizona",
                   "Arkansas",
@@ -493,7 +493,7 @@
                   "Michigan",
                   "Minnesota",
                   "Mississippi",
-                  "Alaska",
+                  "Missouri",
                   "Montana",
                   "Nebraska",
                   "Nevada",
@@ -509,12 +509,14 @@
                   "Oregon",
                   "Palau",
                   "Pennsylvania",
+                  "Philippine Islands",
                   "Puerto Rico",
                   "Rhode Island",
                   "South Carolina",
                   "South Dakota",
                   "Tennessee",
                   "Texas",
+                  "U.S. Minor Outlying Islands",
                   "Utah",
                   "Vermont",
                   "Virgin Islands",
@@ -522,9 +524,7 @@
                   "Washington",
                   "West Virginia",
                   "Wisconsin",
-                  "Wyoming",
-                  "Philippine Islands",
-                  "Missouri"
+                  "Wyoming"
                 ]
               }
             }
