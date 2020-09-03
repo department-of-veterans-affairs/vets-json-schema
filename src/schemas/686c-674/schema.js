@@ -484,6 +484,12 @@ const schema = {
         fullName: {
           $ref: '#/definitions/fullName',
         },
+        ssn: {
+          $ref: '#/definitions/ssn',
+        },
+        birthDate: {
+          $ref: '#/definitions/date',
+        },
         date: {
           $ref: '#/definitions/date',
         },
@@ -515,6 +521,12 @@ const schema = {
                 properties: {
                   fullName: {
                     $ref: '#/definitions/fullName',
+                  },
+                  ssn: {
+                    $ref: '#/definitions/ssn',
+                  },
+                  birthDate: {
+                    $ref: '#/definitions/date',
                   },
                   dependentType: {
                     type: 'string',
@@ -575,6 +587,12 @@ const schema = {
         fullName: {
           $ref: '#/definitions/fullName',
         },
+        ssn: {
+          $ref: '#/definitions/ssn',
+        },
+        birthDate: {
+          $ref: '#/definitions/date',
+        },
         dateMarried: {
           $ref: '#/definitions/date',
         },
@@ -586,6 +604,12 @@ const schema = {
       properties: {
         fullName: {
           $ref: '#/definitions/fullName',
+        },
+        ssn: {
+          $ref: '#/definitions/ssn',
+        },
+        birthDate: {
+          $ref: '#/definitions/date',
         },
         dateChildLeftSchool: {
           $ref: '#/definitions/date',
@@ -607,6 +631,12 @@ const schema = {
                 properties: {
                   fullName: {
                     $ref: '#/definitions/fullName',
+                  },
+                  ssn: {
+                    $ref: '#/definitions/ssn',
+                  },
+                  birthDate: {
+                    $ref: '#/definitions/date',
                   },
                 },
               },
