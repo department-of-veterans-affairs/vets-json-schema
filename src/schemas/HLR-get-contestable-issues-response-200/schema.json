@@ -14,62 +14,51 @@
             ]
           },
           "id": {
-            "type": "string",
-            "nullable": true
+            "type": ["string", "null"]
           },
           "attributes": {
             "type": "object",
             "properties": {
               "ratingIssueReferenceId": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "RatingIssue ID"
               },
               "ratingIssueProfileDate": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "format": "date",
                 "description": "(yyyy-mm-dd) RatingIssue profile date"
               },
               "ratingIssueDiagnosticCode": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "RatingIssue diagnostic code"
               },
               "ratingDecisionReferenceId": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "The BGS ID for the contested rating decision. This may be populated while ratingIssueReferenceId is nil"
               },
               "decisionIssueId": {
-                "type": "integer",
-                "nullable": true,
+                "type": ["integer", "null"],
                 "description": "DecisionIssue ID"
               },
               "approxDecisionDate": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "format": "date",
                 "description": "(yyyy-mm-dd) Approximate decision date"
               },
               "description": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "Description"
               },
               "rampClaimId": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "RampClaim ID"
               },
               "titleOfActiveReview": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "Title of DecisionReview that this issue is still active on"
               },
               "sourceReviewType": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "The type of DecisionReview (HigherLevelReview, SupplementalClaim, Appeal) the issue was last decided on (if any)"
               },
               "timely": {
@@ -83,25 +72,21 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "string",
-                      "nullable": true
+                      "type": ["string", "null"]
                     },
                     "approxDecisionDate": {
-                      "type": "string",
-                      "nullable": true,
+                      "type": ["string", "null"],
                       "format": "date"
                     }
                   }
                 }
               },
               "ratingIssueSubjectText": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "Short description of RatingIssue"
               },
               "ratingIssuePercentNumber": {
-                "type": "string",
-                "nullable": true,
+                "type": ["string", "null"],
                 "description": "Numerical rating for RatingIssue"
               },
               "isRating": {
