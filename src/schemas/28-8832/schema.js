@@ -80,7 +80,7 @@ const schema = {
     },
     claimantPhoneNumber: definitions.phone,
     claimantEmailAddress: definitions.email,
-    statusSelection: {
+    status: {
       type: 'string',
       enum: ['isActiveDuty', 'isVeteran', 'isSpouse', 'isChild'],
       enumNames: [

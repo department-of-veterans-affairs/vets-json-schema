@@ -686,7 +686,7 @@
       "maxLength": 256,
       "format": "email"
     },
-    "statusSelection": {
+    "status": {
       "type": "string",
       "enum": [
         "isActiveDuty",

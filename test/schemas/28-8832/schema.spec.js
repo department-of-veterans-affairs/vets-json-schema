@@ -19,5 +19,5 @@ describe('28-8832 schema', () => {
   sharedTests.runTest('date', ['claimantInformation.dateOfBirth']);
   sharedTests.runTest('phone', ['claimantPhoneNumber']);
   sharedTests.runTest('email', ['claimantEmailAddress']);
-  schemaTestHelper.testValidAndInvalid('statusSelection', testData.statusOptions);
+  schemaTestHelper.testValidAndInvalid('status', testData.statusOptions);
 });
