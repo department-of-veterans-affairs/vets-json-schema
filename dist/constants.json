@@ -5883,11 +5883,11 @@
       },
       {
         "value": "405GA",
-        "label": "BENNINGTON VERMONT OUTREACH CLINIC"
+        "label": "Bennington VA Clinic"
       },
       {
         "value": "405HA",
-        "label": "BURLINGTON LAKESIDE CBOC"
+        "label": "Burlington Lakeside VA Clinic"
       },
       {
         "value": "405HB",
@@ -5895,45 +5895,45 @@
       },
       {
         "value": "405HF",
-        "label": "RUTLAND VERMONT OUTREACH CLINIC"
+        "label": "Rutland VA Clinic"
       },
       {
         "value": "405GC",
-        "label": "BRATTLEBORO CBOC"
+        "label": "Brattleboro VA Clinic"
       },
       {
         "value": "405",
-        "label": "WHITE RIVER JCT VAMROC"
+        "label": "White River Junction Regional Benefit Office"
       }
     ],
     "MT": [
       {
         "value": "436GA",
-        "label": "ANACONDA CBOC"
+        "label": "Anaconda VA Clinic"
       },
       {
         "value": "436GB",
-        "label": "GREAT FALLS CBOC"
+        "label": "Great Falls VA Clinic"
       },
       {
         "value": "436GC",
-        "label": "DAVID J. THATCHER VA CLINIC"
+        "label": "David J. Thatcher VA Clinic"
       },
       {
         "value": "436GD",
-        "label": "BOZEMAN VA CLINIC"
+        "label": "Bozeman VA Clinic"
       },
       {
         "value": "436GF",
-        "label": "KALISPELL VA CLINIC"
+        "label": "Kalispell VA Clinic"
       },
       {
         "value": "436GH",
-        "label": "BENJAMIN C. STEELE VA CLINIC"
+        "label": "Benjamin Charles Steele VA Clinic"
       },
       {
         "value": "436GI",
-        "label": "GLASGOW VA CLINIC"
+        "label": "Glasgow VA Clinic"
       },
       {
         "value": "436GJ",
@@ -5941,199 +5941,199 @@
       },
       {
         "value": "436GK",
-        "label": "GLENDIVE VA CLINIC"
+        "label": "Glendive VA Clinic"
       },
       {
         "value": "436A4",
-        "label": "MILES CITY VA MEDICAL CENTER"
+        "label": "Miles City VA Community Living Center"
       },
       {
         "value": "436GL",
-        "label": "CUT BANK VA CLINIC"
+        "label": "Cut Bank VA Clinic"
       },
       {
         "value": "436GM",
-        "label": "LEWISTON CBOC"
+        "label": "Lewistown VA Clinic"
       },
       {
         "value": "436HC",
-        "label": "MERRIL LUNDMAN VA OPC"
+        "label": "Merril Lundman Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "436QB",
-        "label": "PLENTYWOOD VA CLINIC"
+        "label": "Plentywood VA Clinic"
       },
       {
         "value": "436QC",
-        "label": "HELENA VA CLINIC"
+        "label": "Helena VA Clinic"
       },
       {
         "value": "436QA",
-        "label": "HAMILTON VA CLINIC"
+        "label": "Hamilton VA Clinic"
       },
       {
         "value": "436GN",
-        "label": "DR. J MEDICINE CROW VA CLINIC"
+        "label": "Dr. Joseph Medicine Crow VA Clinic"
       },
       {
         "value": "436",
-        "label": "FORT HARRISON MEDICAL CENTER"
+        "label": "Fort Harrison Regional Benefit Office"
       }
     ],
     "ND": [
       {
         "value": "437GA",
-        "label": "GRAFTON VA CLINIC"
+        "label": "Grafton VA Clinic"
       },
       {
         "value": "437GB",
-        "label": "BISMARCK"
+        "label": "Bismarck VA Clinic"
       },
       {
         "value": "437GD",
-        "label": "MINOT CBOC"
+        "label": "Minot VA Clinic"
       },
       {
         "value": "437GI",
-        "label": "GRAND FORKS CBOC"
+        "label": "Grand Forks VA Clinic"
       },
       {
         "value": "437GF",
-        "label": "WILLISTON CBOC"
+        "label": "Williston VA Clinic"
       },
       {
         "value": "437GJ",
-        "label": "DICKINSON VA CLINIC"
+        "label": "Dickinson VA Clinic"
       },
       {
         "value": "437GK",
-        "label": "JAMESTOWN VA CLINIC"
+        "label": "Jamestown VA Clinic"
       },
       {
         "value": "437GL",
-        "label": "DEVILS LAKE VA CBOC"
+        "label": "Devils Lake VA Clinic"
       },
       {
         "value": "437",
-        "label": "FARGO VA HCS"
+        "label": "Fargo Regional Benefit Office"
       }
     ],
     "MN": [
       {
         "value": "437GC",
-        "label": "FERGUS FALLS"
+        "label": "Fergus Falls VA Clinic"
       },
       {
         "value": "618GA",
-        "label": "SOUTH CENTRAL CBOC"
+        "label": "St. James VA Clinic"
       },
       {
         "value": "618GB",
-        "label": "HIBBING (CBOC)"
+        "label": "Hibbing VA Clinic"
       },
       {
         "value": "618GD",
-        "label": "ST. PAUL (CBOC)"
+        "label": "Maplewood VA Clinic"
       },
       {
         "value": "618GG",
-        "label": "ROCHESTER (CBOC)"
+        "label": "Rochester VA Clinic"
       },
       {
         "value": "656GA",
-        "label": "BRAINERD VA COMMUNITY OUTPATIENT CLINIC"
+        "label": "Brainerd VA Clinic"
       },
       {
         "value": "656GB",
-        "label": "MONTEVIDEO CBOC"
+        "label": "Montevideo VA Clinic"
       },
       {
         "value": "437GE",
-        "label": "BEMIDJI CBOC"
+        "label": "Bemidji VA Clinic"
       },
       {
         "value": "656GC",
-        "label": "MAX J. BEILKE CBOC"
+        "label": "Max J. Beilke Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "618GI",
-        "label": "NORTHWEST METRO VA OPC"
+        "label": "Northwest Metro VA Clinic"
       },
       {
         "value": "618GK",
-        "label": "ALBERT LEA CBOC"
+        "label": "Albert Lea VA Clinic"
       },
       {
         "value": "618GL",
-        "label": "MINNEAPOLIS VA CBOC"
+        "label": "Minneapolis VA Clinic"
       },
       {
         "value": "618GJ",
-        "label": "SHAKOPEE CBOC"
+        "label": "Shakopee VA Clinic"
       },
       {
         "value": "618GN",
-        "label": "LYLE C PEARSON CBOC"
+        "label": "Lyle C. Pearson Community Based Outpatient Clinic"
       },
       {
         "value": "618QB",
-        "label": "ELY VA CLINIC"
+        "label": "Ely VA Clinic"
       },
       {
         "value": "618",
-        "label": "MINNEAPOLIS VA HCS"
+        "label": "Minneapolis VA Medical Center"
       },
       {
         "value": "656",
-        "label": "ST. CLOUD VA HEALTH CARE SYSTEM"
+        "label": "St. Cloud VA Medical Center"
       }
     ],
     "IA": [
       {
         "value": "438GA",
-        "label": "SPIRIT LAKE CBOC"
+        "label": "Spirit Lake VA Clinic"
       },
       {
         "value": "636A8",
-        "label": "IOWA CITY HCS"
+        "label": "Iowa City VA Medical Center"
       },
       {
         "value": "636A6",
-        "label": "VA CIHS, DES MOINES DIVISION"
+        "label": "Des Moines VA Medical Center"
       },
       {
         "value": "636GP",
-        "label": "SHENANDOAH CBOC"
+        "label": "Shenandoah VA Clinic"
       },
       {
         "value": "636GX",
-        "label": "FORT DODGE NORTH VA CLINIC"
+        "label": "Fort Dodge North VA Clinic"
       }
     ],
     "SD": [
       {
         "value": "438GC",
-        "label": "SIOUX CITY CBOC"
+        "label": "Sioux City VA Clinic"
       },
       {
         "value": "438GD",
-        "label": "ABERDEEN CBOC"
+        "label": "Aberdeen VA Clinic"
       },
       {
         "value": "568A4",
-        "label": "HOT SPRINGS, SD MC"
+        "label": "Hot Springs VA Medical Center"
       },
       {
         "value": "568GA",
-        "label": "RAPID CITY CBOC"
+        "label": "Rapid City VA Clinic"
       },
       {
         "value": "568GB",
-        "label": "PIERRE CBOC"
+        "label": "Pierre VA Clinic"
       },
       {
         "value": "568HF",
-        "label": "PINE RIDGE"
+        "label": "Pine Ridge VA Clinic"
       },
       {
         "value": "568HG",
@@ -6141,69 +6141,69 @@
       },
       {
         "value": "568HJ",
-        "label": "MISSION CBOC"
+        "label": "Mission VA Clinic"
       },
       {
         "value": "568HK",
-        "label": "MCLAUGHLIN VA CLINIC"
+        "label": "McLaughlin VA Clinic"
       },
       {
         "value": "568HP",
-        "label": "WINNER"
+        "label": "Winner VA Clinic"
       },
       {
         "value": "438GE",
-        "label": "WAGNER CBOC"
+        "label": "Wagner VA Clinic"
       },
       {
         "value": "438GF",
-        "label": "WATERTOWN CBOC"
+        "label": "Watertown VA Clinic"
       },
       {
         "value": "568",
-        "label": "BLACK HILLS HEALTH CARE SYSTEM - FT. MEADE DIVISION"
+        "label": "Fort Meade VA Medical Center"
       },
       {
         "value": "438",
-        "label": "SIOUX FALLS VA HCS"
+        "label": "Sioux Falls Regional Benefit Office"
       }
     ],
     "NE": [
       {
         "value": "442GB",
-        "label": "SIDNEY VA CLINC"
+        "label": "Sidney VA Clinic"
       },
       {
         "value": "636GA",
-        "label": "NORFOLK CBOC"
+        "label": "Norfolk VA Clinic"
       },
       {
         "value": "636GB",
-        "label": "NORTH PLATTE CBOC"
+        "label": "North Platte VA Clinic"
       },
       {
         "value": "568HB",
-        "label": "GORDON CBOC"
+        "label": "Gordon VA Clinic"
       },
       {
         "value": "568HH",
-        "label": "SCOTTSBLUFF CBOC"
+        "label": "Scottsbluff VA Clinic"
       },
       {
         "value": "636A4",
-        "label": "VA NWIHS, GRAND ISLAND DIV"
+        "label": "Grand Island VA Medical Center"
       },
       {
         "value": "636A5",
-        "label": "VA CENTRAL PLAINS HEALTH NETWORK - LINCOLN DIVISION"
+        "label": "Lincoln VA Clinic"
       },
       {
         "value": "636GQ",
-        "label": "HOLDREGE, NE CBOC"
+        "label": "Holdrege VA Clinic"
       },
       {
         "value": "636GL",
-        "label": "BELLEVUE VA CBOC"
+        "label": "Bellevue VA Clinic"
       },
       {
         "value": "636GV",
@@ -6211,257 +6211,257 @@
       },
       {
         "value": "636",
-        "label": "VA CENTRAL PLAINS HEALTH NETWORK - OMAHA DIVISION"
+        "label": "Omaha VA Medical Center"
       }
     ],
     "CO": [
       {
         "value": "442GC",
-        "label": "FORT COLLINS VA CLINIC"
+        "label": "Fort Collins VA Clinic"
       },
       {
         "value": "442GD",
-        "label": "LOVELAND VA CLINIC"
+        "label": "Loveland VA Clinic"
       },
       {
         "value": "501GJ",
-        "label": "DURANGO VA CLINIC"
+        "label": "Durango VA Clinic"
       },
       {
         "value": "554GB",
-        "label": "AURORA VA CLINIC"
+        "label": "Aurora VA Clinic"
       },
       {
         "value": "554GC",
-        "label": "GOLDEN VA CLINIC"
+        "label": "Golden VA Clinic"
       },
       {
         "value": "554GD",
-        "label": "PFC JAMES DUNN VA CLINIC"
+        "label": "PFC James Dunn VA Clinic"
       },
       {
         "value": "554GE",
-        "label": "FLOYD K. LINDSTROM VA CLINIC"
+        "label": "PFC Floyd K. Lindstrom Department of Veterans Affairs Clinic"
       },
       {
         "value": "554GF",
-        "label": "ALAMOSA VA CLINIC"
+        "label": "Alamosa VA Clinic"
       },
       {
         "value": "554GG",
-        "label": "LA JUNTA COMMUNITY BASED OUTPATIENT CLINIC (554GG)"
+        "label": "La Junta VA Clinic"
       },
       {
         "value": "554GH",
-        "label": "LAMAR VA CLINIC"
+        "label": "Lamar VA Clinic"
       },
       {
         "value": "575GA",
-        "label": "MONTROSE CBOC"
+        "label": "Montrose VA Clinic"
       },
       {
         "value": "554GI",
-        "label": "BURLINGTON VA CLINIC"
+        "label": "Burlington VA Clinic"
       },
       {
         "value": "575GB",
-        "label": "CRAIG TELEHEALTH OUTRCH CLINIC"
+        "label": "Major William Edward Adams Department of Veterans Affairs Clinic"
       },
       {
         "value": "554QA",
-        "label": "DENVER VA CLINIC"
+        "label": "York Street VA Clinic"
       },
       {
         "value": "442QE",
-        "label": "STERLING VA CLINIC"
+        "label": "Sterling VA Clinic"
       },
       {
         "value": "575QC",
-        "label": "GRAND JUNCTION VA MOBILE CLIN"
+        "label": "Grand Junction VA Mobile Clinic"
       },
       {
         "value": "554",
-        "label": "ROCKY MOUNTAIN REGIONAL VAMC"
+        "label": "Rocky Mountain Regional VA Medical Center"
       },
       {
         "value": "575",
-        "label": "GRAND JUNCTION VAMC"
+        "label": "Grand Junction VA Medical Center Vocational Rehabilitation Counselor"
       }
     ],
     "HI": [
       {
         "value": "459GA",
-        "label": "MAUI VA CLINIC"
+        "label": "Maui VA Clinic"
       },
       {
         "value": "459GB",
-        "label": "HILO CBOC"
+        "label": "Hilo VA Clinic"
       },
       {
         "value": "459GC",
-        "label": "KONA CBOC"
+        "label": "Kailua-Kona VA Clinic"
       },
       {
         "value": "459GD",
-        "label": "KAUAI CBOC"
+        "label": "Lihue VA Clinic"
       },
       {
         "value": "459GG",
-        "label": "LEEWARD OAHU CBOC"
+        "label": "Leeward Oahu VA Clinic"
       },
       {
         "value": "459",
-        "label": "SPARK M. MATSUNAGA VAMC"
+        "label": "Honolulu Regional Benefit Office"
       }
     ],
     "GU": [
       {
         "value": "459GE",
-        "label": "GUAM CBOC"
+        "label": "Guam VA Clinic"
       }
     ],
     "ME": [
       {
         "value": "402GA",
-        "label": "CARIBOU MAINE CBOC"
+        "label": "Caribou VA Clinic"
       },
       {
         "value": "402GB",
-        "label": "CALAIS MAINE CBOC"
+        "label": "Calais VA Clinic"
       },
       {
         "value": "402GC",
-        "label": "RUMFORD MAINE CBOC"
+        "label": "Rumford VA Clinic"
       },
       {
         "value": "402GD",
-        "label": "SACO MAINE CBOC"
+        "label": "Saco VA Clinic"
       },
       {
         "value": "402HB",
-        "label": "BANGOR MAINE CBOC"
+        "label": "Bangor VA Clinic"
       },
       {
         "value": "402HC",
-        "label": "PORTLAND MAINE MH ORC"
+        "label": "Portland VA Clinic"
       },
       {
         "value": "402HL",
-        "label": "RURAL AND COMNTY HLTCARE MOC"
+        "label": "Bingham VA Mobile Clinic"
       },
       {
         "value": "402GE",
-        "label": "LEWISTON AUBURN CBOC"
+        "label": "Lewiston VA Clinic"
       },
       {
         "value": "402GF",
-        "label": "LINCOLN VA CLINIC"
+        "label": "Lincoln VA Clinic"
       },
       {
         "value": "402",
-        "label": "MAINE VA HCS"
+        "label": "Togus Regional Benefit Office"
       }
     ],
     "NH": [
       {
         "value": "405HC",
-        "label": "ST. JOHNSBURY VERMONT OUTREACH CLINIC"
+        "label": "Littleton VA Clinic"
       },
       {
         "value": "405HE",
-        "label": "KEENE OUT REACH CENTER"
+        "label": "Keene VA Clinic"
       },
       {
         "value": "608GA",
-        "label": "PORTSMOUTH CBOC"
+        "label": "Portsmouth VA Clinic"
       },
       {
         "value": "608GC",
-        "label": "SOMERSWORTH CBOC"
+        "label": "Somersworth VA Clinic"
       },
       {
         "value": "608GD",
-        "label": "CONWAY CBOC"
+        "label": "Conway VA Clinic"
       },
       {
         "value": "608HA",
-        "label": "TILTON CBOC"
+        "label": "Tilton VA Clinic"
       },
       {
         "value": "608",
-        "label": "MANCHESTER VAMC"
+        "label": "Manchester VA Medical Center"
       }
     ],
     "AK": [
       {
         "value": "463GA",
-        "label": "FAIRBANKS VA CLINIC"
+        "label": "Fairbanks VA Clinic"
       },
       {
         "value": "463GB",
-        "label": "KENAI VA CLINIC"
+        "label": "Kenai VA Clinic"
       },
       {
         "value": "463GC",
-        "label": "MAT-SU VA CLINIC"
+        "label": "Mat-Su VA Clinic"
       },
       {
         "value": "463GD",
-        "label": "HOMER VA CLINIC"
+        "label": "Homer VA Clinic"
       },
       {
         "value": "463GE",
-        "label": "JUNEAU VA CLINIC"
+        "label": "Juneau VA Clinic"
       },
       {
         "value": "463",
-        "label": "ANCHORAGE VA MEDICAL CENTER"
+        "label": "Anchorage Regional Benefit Office"
       }
     ],
     "NM": [
       {
         "value": "501G2",
-        "label": "LAS VEGAS (CBOC)"
+        "label": "Las Vegas VA Clinic"
       },
       {
         "value": "501GA",
-        "label": "ARTESIA VA CLINIC"
+        "label": "Artesia VA Clinic"
       },
       {
         "value": "501GB",
-        "label": "FARMINGTON VA CLINIC"
+        "label": "Farmington VA Clinic"
       },
       {
         "value": "501GC",
-        "label": "SILVER CITY VA CLINIC"
+        "label": "Silver City VA Clinic"
       },
       {
         "value": "501GD",
-        "label": "GALLUP VA CLINIC"
+        "label": "Gallup VA Clinic"
       },
       {
         "value": "501GE",
-        "label": "ESPANOLA (CBOC)"
+        "label": "Espanola VA Clinic"
       },
       {
         "value": "501GH",
-        "label": "TRUTH OR CONSEQUENCES (CBOC)"
+        "label": "Truth or Consequences VA Clinic"
       },
       {
         "value": "501GI",
-        "label": "ALAMOGORDO VA CLINIC"
+        "label": "Alamogordo VA Clinic"
       },
       {
         "value": "501GK",
-        "label": "SANTA FE VA CLINIC"
+        "label": "Santa Fe VA Clinic"
       },
       {
         "value": "501HB",
-        "label": "RATON (CBOC)"
+        "label": "Raton VA Clinic"
       },
       {
         "value": "504BZ",
-        "label": "CLOVIS OUTPATIENT CLINIC"
+        "label": "Clovis VA Clinic"
       },
       {
         "value": "504HA",
@@ -6469,183 +6469,183 @@
       },
       {
         "value": "519GB",
-        "label": "HOBBS CBOC"
+        "label": "Hobbs VA Clinic"
       },
       {
         "value": "756GA",
-        "label": "LAS CRUCES CBOC"
+        "label": "Las Cruces VA Clinic"
       },
       {
         "value": "501GM",
-        "label": "NORTHWEST METRO VA CLINIC"
+        "label": "Northwest Metro VA Clinic"
       },
       {
         "value": "501GN",
-        "label": "TAOS VA CLINIC"
+        "label": "Taos VA Clinic"
       },
       {
         "value": "501",
-        "label": "RAYMOND G. MURPHY VAMC"
+        "label": "Raymond G. Murphy Department of Veterans Affairs Medical Center"
       }
     ],
     "LA": [
       {
         "value": "502GA",
-        "label": "JENNINGS CBOC"
+        "label": "Jennings VA Clinic"
       },
       {
         "value": "502GB",
-        "label": "LAFAYETTE VA CLINIC"
+        "label": "Lafayette VA Clinic"
       },
       {
         "value": "629GA",
-        "label": "HOUMA CBOC"
+        "label": "Houma VA Clinic"
       },
       {
         "value": "629GB",
-        "label": "HAMMOND CBOC"
+        "label": "Hammond VA Clinic"
       },
       {
         "value": "629GC",
-        "label": "SLIDELL CBOC"
+        "label": "Slidell VA Clinic"
       },
       {
         "value": "629GD",
-        "label": "ST. JOHN VA OUTPATIENT CLINIC"
+        "label": "St. John VA Clinic"
       },
       {
         "value": "667GB",
-        "label": "MONROE VA CLINIC"
+        "label": "Monroe VA Clinic"
       },
       {
         "value": "629BY",
-        "label": "VA BATON ROUGE OUTPATIENT CLINIC"
+        "label": "Baton Rouge VA Clinic"
       },
       {
         "value": "502GG",
-        "label": "NATCHITOCHES VA CLINIC"
+        "label": "Natchitoches VA Clinic"
       },
       {
         "value": "629GE",
-        "label": "FRANKLIN CBOC"
+        "label": "Franklin VA Clinic"
       },
       {
         "value": "629GF",
-        "label": "BOGALUSA CBOC"
+        "label": "Bogalusa VA Clinic"
       },
       {
         "value": "502GF",
-        "label": "FORT POLK VA CLINIC"
+        "label": "Fort Polk VA Clinic"
       },
       {
         "value": "502GE",
-        "label": "LAKE CHARLES VA CLINIC"
+        "label": "Douglas Fournet Department of Veterans Affairs Clinic"
       },
       {
         "value": "502QB",
-        "label": "LAFAYETTE CAMPUS B VA CLINIC"
+        "label": "Lafayette Campus B VA Clinic"
       },
       {
         "value": "502",
-        "label": "ALEXANDRIA VA MEDICAL CENTER"
+        "label": "Alexandria VA Medical Center"
       },
       {
         "value": "629",
-        "label": "NEW ORLEANS VAMC"
+        "label": "New Orleans VA Medical Center"
       },
       {
         "value": "667",
-        "label": "OVERTON BROOKS VA MEDICAL CENTER"
+        "label": "Overton Brooks Veterans' Administration Medical Center"
       }
     ],
     "PA": [
       {
         "value": "503GA",
-        "label": "JOHNSTOWN VA CLINIC"
+        "label": "Johnstown VA Clinic"
       },
       {
         "value": "503GB",
-        "label": "DUBOIS CBOC"
+        "label": "DuBois VA Clinic"
       },
       {
         "value": "503GC",
-        "label": "STATE COLLEGE VA CLINIC"
+        "label": "State College VA Clinic"
       },
       {
         "value": "529GA",
-        "label": "MICHAEL A. MARZANO VA OPC"
+        "label": "Michael A. Marzano Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "529GB",
-        "label": "LAWRENCE COUNTY VA CLINIC"
+        "label": "Lawrence County VA Clinic"
       },
       {
         "value": "529GC",
-        "label": "ARMSTRONG COUNTY VA CLINIC"
+        "label": "Armstrong County VA Clinic"
       },
       {
         "value": "529GD",
-        "label": "CLARION COUNTY VA CLINIC"
+        "label": "Clarion County VA Clinic"
       },
       {
         "value": "542GA",
-        "label": "DELAWARE COUNTY VA CLINIC"
+        "label": "Delaware County VA Clinic"
       },
       {
         "value": "542GE",
-        "label": "SPRING CITY VA CLINIC"
+        "label": "Spring City VA Clinic"
       },
       {
         "value": "562GA",
-        "label": "CRAWFORD COUNTY VA CLINIC"
+        "label": "Crawford County VA Clinic"
       },
       {
         "value": "562GC",
-        "label": "MCKEAN COUNTY VA CLINIC"
+        "label": "McKean County VA Clinic"
       },
       {
         "value": "646GE",
-        "label": "FAYETTE COUNTY VA CLINIC"
+        "label": "Fayette County VA Clinic"
       },
       {
         "value": "693GG",
-        "label": "NORTHAMPTON COUNTY CLINIC"
+        "label": "Northampton County VA Clinic"
       },
       {
         "value": "595GA",
-        "label": "CUMBERLAND COUNTY VA CLINIC"
+        "label": "Cumberland County VA Clinic"
       },
       {
         "value": "595GC",
-        "label": "LANCASTER VA CLINIC"
+        "label": "Lancaster County VA Clinic"
       },
       {
         "value": "595GD",
-        "label": "BERKS VA OUTPATIENT CLINIC"
+        "label": "Berks County VA Clinic"
       },
       {
         "value": "595GE",
-        "label": "YORK VA CLINIC"
+        "label": "York VA Clinic"
       },
       {
         "value": "642GC",
-        "label": "VICTOR J. SARACINI VA OPC"
+        "label": "Victor J. Saracini Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "646A4",
-        "label": "H. JOHN HEINZ III VAMC"
+        "label": "H. John Heinz III Department of Veterans Affairs Medical Center"
       },
       {
         "value": "646GB",
-        "label": "WESTMORELAND COUNTY VA CLINIC"
+        "label": "Westmoreland County VA Clinic"
       },
       {
         "value": "646GC",
-        "label": "BEAVER COUNTY VA CLINIC"
+        "label": "Beaver County VA Clinic"
       },
       {
         "value": "646GD",
-        "label": "WASHINGTON VA PRIMARY CARE OUTPATIENT CLINIC"
+        "label": "Washington County VA Clinic"
       },
       {
         "value": "693GE",
@@ -6653,23 +6653,23 @@
       },
       {
         "value": "529GF",
-        "label": "CRANBERRY TOWNSHIP VA CLINIC"
+        "label": "Cranberry Township VA Clinic"
       },
       {
         "value": "693B4",
-        "label": "ALLENTOWN OPC"
+        "label": "Allentown VA Clinic"
       },
       {
         "value": "693GA",
-        "label": "SAYRE OPC"
+        "label": "Sayre VA Clinic"
       },
       {
         "value": "693GB",
-        "label": "WILLIAMSPORT VA CLINIC"
+        "label": "Williamsport VA Clinic"
       },
       {
         "value": "693GC",
-        "label": "TOBYHANNA VA CLINIC"
+        "label": "Tobyhanna VA Clinic"
       },
       {
         "value": "693GD",
@@ -6677,101 +6677,101 @@
       },
       {
         "value": "693GF",
-        "label": "COLUMBIA COUNTY VA CLINIC"
+        "label": "Columbia County VA Clinic"
       },
       {
         "value": "595GF",
-        "label": "SCHUYLKILL COUNTY VA CLINIC"
+        "label": "Schuylkill County VA Clinic"
       },
       {
         "value": "562GD",
-        "label": "VENANGO COUNTY VA CLINIC"
+        "label": "Venango County VA Clinic"
       },
       {
         "value": "562GE",
-        "label": "WARREN COUNTY CLINIC"
+        "label": "Warren County VA Clinic"
       },
       {
         "value": "503GD",
-        "label": "HUNTINGDON COUNTY VA CLINIC"
+        "label": "Huntingdon County VA Clinic"
       },
       {
         "value": "503GE",
-        "label": "INDIANA COUNTY VA CLINIC"
+        "label": "Indiana County VA Clinic"
       },
       {
         "value": "642QA",
-        "label": "CHESTNUT STREET VA CLINIC"
+        "label": "Chestnut Street VA Clinic"
       },
       {
         "value": "595QA",
-        "label": "FORT INDIANTOWN GAP VA CLINIC"
+        "label": "Fort Indiantown Gap VA Clinic"
       },
       {
         "value": "529A4",
-        "label": "BUTLER VAMC"
+        "label": "Butler VA Medical Center"
       },
       {
         "value": "642GH",
-        "label": "WEST PHILADELPHIA VA CLINIC"
+        "label": "West Philadelphia VA Clinic"
       },
       {
         "value": "595",
-        "label": "LEBANON VA MEDICAL CENTER"
+        "label": "Lebanon VA Medical Center"
       },
       {
         "value": "503",
-        "label": "JAMES E VAN ZANDT VAMC"
+        "label": "James E. Van Zandt Veterans' Administration Medical Center"
       },
       {
         "value": "642",
-        "label": "PHILADELPHIA, PA VAMC"
+        "label": "Corporal Michael J. Crescenz Department of Veterans Affairs Medical Center"
       },
       {
         "value": "646",
-        "label": "PITTSBURGH VAMC UNIVERSITY DR."
+        "label": "Pittsburgh VA Medical Center-University Drive"
       },
       {
         "value": "693",
-        "label": "WILKES-BARRE VAMC"
+        "label": "Wilkes-Barre VA Medical Center"
       },
       {
         "value": "542",
-        "label": "COATESVILLE VA MEDICAL CENTER"
+        "label": "Coatesville VA Medical Center"
       },
       {
         "value": "562",
-        "label": "ERIE VA MEDICAL CENTER"
+        "label": "Erie VA Medical Center"
       },
       {
         "value": "529",
-        "label": "ABIE ABRAHAM VA CLINIC"
+        "label": "Abie Abraham VA Clinic"
       }
     ],
     "TX": [
       {
         "value": "504BY",
-        "label": "LUBBOCK OUTPATIENT CLINIC"
+        "label": "Lubbock VA Clinic"
       },
       {
         "value": "504GA",
-        "label": "CHILDRESS VA CLINIC"
+        "label": "Childress VA Clinic"
       },
       {
         "value": "504HB",
-        "label": "DALHART CBOC"
+        "label": "Dalhart VA Clinic"
       },
       {
         "value": "549GE",
-        "label": "BRIDGEPORT VA CLINIC"
+        "label": "Decatur VA Clinic"
       },
       {
         "value": "549GF",
-        "label": "GRANBURY VA CLINIC"
+        "label": "Granbury VA Clinic"
       },
       {
         "value": "549GH",
-        "label": "GREENVILLE VA CLINIC TX"
+        "label": "Greenville VA Clinic"
       },
       {
         "value": "549GI",
@@ -6779,19 +6779,19 @@
       },
       {
         "value": "580BY",
-        "label": "BEAUMONT"
+        "label": "Beaumont VA Clinic"
       },
       {
         "value": "519GA",
-        "label": "PERMIAN BASIN CBOC"
+        "label": "Wilson and Young Medal of Honor VA Clinic"
       },
       {
         "value": "519GD",
-        "label": "FT. STOCKTON CBOC"
+        "label": "Fort Stockton VA Clinic"
       },
       {
         "value": "519HC",
-        "label": "ABILENE CBOC"
+        "label": "Abilene VA Clinic"
       },
       {
         "value": "519HD",
@@ -6799,15 +6799,15 @@
       },
       {
         "value": "519HF",
-        "label": "SAN ANGELO CBOC"
+        "label": "San Angelo VA Clinic"
       },
       {
         "value": "549A4",
-        "label": "SAM RAYBURN MEM VET CENTER"
+        "label": "Sam Rayburn Memorial Veterans Center"
       },
       {
         "value": "549BY",
-        "label": "FORT WORTH VA CLINIC"
+        "label": "Fort Worth VA Clinic"
       },
       {
         "value": "549GA",
@@ -6823,15 +6823,15 @@
       },
       {
         "value": "549GD",
-        "label": "DENTON VA CLINIC"
+        "label": "Denton VA Clinic"
       },
       {
         "value": "635GB",
-        "label": "WICHITA FALLS CBOC VETERANS CLINIC OF NORTH TEXAS"
+        "label": "Wichita Falls VA Clinic"
       },
       {
         "value": "580BZ",
-        "label": "LUFKIN OUTPATIENT CLINIC"
+        "label": "Charles Wilson Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "580GA",
@@ -6839,35 +6839,35 @@
       },
       {
         "value": "580GC",
-        "label": "GALVESTON COUNTY VA CLINIC"
+        "label": "Galveston County VA Clinic"
       },
       {
         "value": "674GA",
-        "label": "PALESTINE VA CLINIC"
+        "label": "Palestine VA Clinic"
       },
       {
         "value": "674GB",
-        "label": "BROWNWOOD VA CLINIC"
+        "label": "Brownwood VA Clinic"
       },
       {
         "value": "674GC",
-        "label": "BRYAN VA CLINIC"
+        "label": "Bryan VA Clinic"
       },
       {
         "value": "674GD",
-        "label": "CEDAR PARK VA CLINIC"
+        "label": "Cedar Park VA Clinic"
       },
       {
         "value": "671GO",
-        "label": "NORTH CENTRAL FED VA CLINIC"
+        "label": "North Central Federal VA Clinic"
       },
       {
         "value": "667GC",
-        "label": "LONGVIEW CBOC"
+        "label": "Longview VA Clinic"
       },
       {
         "value": "671A4",
-        "label": "KERRVILLE VA MEDICAL CENTER"
+        "label": "Kerrville VA Medical Center"
       },
       {
         "value": "671B0",
@@ -6875,7 +6875,7 @@
       },
       {
         "value": "671BY",
-        "label": "FRANK M. TEJEDA VA OPC"
+        "label": "Frank M. Tejeda Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "671BZ",
@@ -6887,7 +6887,7 @@
       },
       {
         "value": "671GB",
-        "label": "VICTORIA VA CLINIC"
+        "label": "Victoria VA Clinic"
       },
       {
         "value": "671GC",
@@ -6903,7 +6903,7 @@
       },
       {
         "value": "671GF",
-        "label": "SOUTH BEXAR COUNTY VA CLINIC"
+        "label": "South Bexar County VA Clinic"
       },
       {
         "value": "671GG",
@@ -6911,7 +6911,7 @@
       },
       {
         "value": "671GH",
-        "label": "BEEVILLE VA CLINIC"
+        "label": "Beeville VA Clinic"
       },
       {
         "value": "671GI",
@@ -6923,39 +6923,39 @@
       },
       {
         "value": "671GK",
-        "label": "SAN ANTONIO VA CLINIC"
+        "label": "San Antonio VA Clinic"
       },
       {
         "value": "671GL",
-        "label": "NEW BRAUNFELS VA CLINIC"
+        "label": "New Braunfels VA Clinic"
       },
       {
         "value": "671GN",
-        "label": "SEGUIN VA CLINIC"
+        "label": "Seguin VA Clinic"
       },
       {
         "value": "549GJ",
-        "label": "SHERMAN VA CLINIC"
+        "label": "Sherman VA Clinic"
       },
       {
         "value": "674HB",
-        "label": "LAGRANGE VA CLINIC"
+        "label": "LaGrange VA Clinic"
       },
       {
         "value": "740GA",
-        "label": "HARLINGEN OPC"
+        "label": "Harlingen VA Clinic-Treasure Hills"
       },
       {
         "value": "740GC",
-        "label": "CORPUS CHRISTI OPC"
+        "label": "Corpus Christi VA Clinic"
       },
       {
         "value": "740GD",
-        "label": "LAREDO OPC"
+        "label": "Laredo VA Clinic"
       },
       {
         "value": "740GB",
-        "label": "MCALLEN OPC"
+        "label": "McAllen VA Clinic"
       },
       {
         "value": "740GE",
@@ -6963,249 +6963,249 @@
       },
       {
         "value": "756GB",
-        "label": "EL PASO EASTSIDE CBOC"
+        "label": "El Paso Eastside VA Clinic"
       },
       {
         "value": "580GF",
-        "label": "LAKE JACKSON CBOC"
+        "label": "Lake Jackson VA Clinic"
       },
       {
         "value": "580GG",
-        "label": "RICHMOND CBOC"
+        "label": "Richmond VA Clinic"
       },
       {
         "value": "674A4",
-        "label": "WACO, TX VAMC"
+        "label": "Doris Miller Department of Veterans Affairs Medical Center"
       },
       {
         "value": "674BY",
-        "label": "AUSTIN VA CLINIC"
+        "label": "Austin VA Clinic"
       },
       {
         "value": "580GD",
-        "label": "CONROE CBOC"
+        "label": "Conroe VA Clinic"
       },
       {
         "value": "580GE",
-        "label": "KATY CBOC"
+        "label": "Katy VA Clinic"
       },
       {
         "value": "580GH",
-        "label": "TOMBALL CBOC"
+        "label": "Tomball VA Clinic"
       },
       {
         "value": "671GP",
-        "label": "BALCONES HEIGHTS VA CLINIC"
+        "label": "Balcones Heights VA Clinic"
       },
       {
         "value": "740GH",
-        "label": "SOUTH ENTERPRIZE VA CLINIC"
+        "label": "South Enterprize VA Clinic"
       },
       {
         "value": "740GJ",
-        "label": "NORTH TENTH STREET VA CLINIC"
+        "label": "North Tenth Street VA Clinic"
       },
       {
         "value": "671GQ",
-        "label": "SHAVANO PARK VA CLINIC"
+        "label": "Shavano Park VA Clinic"
       },
       {
         "value": "674GF",
-        "label": "TEMPLE VA CLINIC"
+        "label": "Temple VA Clinic"
       },
       {
         "value": "740GI",
-        "label": "OLD BROWNSVILLE VA CLINIC"
+        "label": "Old Brownsville VA Clinic"
       },
       {
         "value": "549GM",
-        "label": "GRAND PRAIRIE VA CLINIC"
+        "label": "Grand Prairie VA Clinic"
       },
       {
         "value": "549GL",
-        "label": "PLANO VA CLINIC"
+        "label": "Plano VA Clinic"
       },
       {
         "value": "756QB",
-        "label": "EL PASO CENTRAL VA CLINIC"
+        "label": "El Paso Central VA Clinic"
       },
       {
         "value": "580QB",
-        "label": "HOUSTON VA MOBILE CLINIC"
+        "label": "Houston VA Mobile Clinic"
       },
       {
         "value": "549GK",
-        "label": "POLK STREET VA CLINIC"
+        "label": "Polk Street VA Clinic"
       },
       {
         "value": "580GJ",
-        "label": "TEXAS CITY VA CLINIC"
+        "label": "Texas City VA Clinic"
       },
       {
         "value": "504",
-        "label": "AMARILLO HCS"
+        "label": "Thomas E. Creek Department of Veterans Affairs Medical Center"
       },
       {
         "value": "519",
-        "label": "WEST TEXAS VA HEALTH CARE SYSTEM - BIG SPRING DIVISION"
+        "label": "George H. O'Brien, Jr., Department of Veterans Affairs Medical Center"
       },
       {
         "value": "671",
-        "label": "AUDIE L. MURPHY MEMORIAL HOSP"
+        "label": "Audie L. Murphy Memorial Veterans' Hospital"
       },
       {
         "value": "674",
-        "label": "OLIN E. TEAGUE VET CENTER"
+        "label": "Olin E. Teague Veterans' Center"
       },
       {
         "value": "756",
-        "label": "EL PASO HCS"
+        "label": "El Paso VA Clinic"
       },
       {
         "value": "549",
-        "label": "DALLAS VA MEDICAL CENTER"
+        "label": "Dallas VA Medical Center"
       },
       {
         "value": "580",
-        "label": "MICHAEL E. DEBAKEY VA MEDICAL CENTER"
+        "label": "Michael E. DeBakey Department of Veterans Affairs Medical Center"
       },
       {
         "value": "740",
-        "label": "HARLINGEN VA CLINIC"
+        "label": "Harlingen VA Clinic"
       }
     ],
     "OH": [
       {
         "value": "506GA",
-        "label": "TOLEDO VA CLINIC"
+        "label": "Toledo VA Outpatient Clinic"
       },
       {
         "value": "539GB",
-        "label": "CINCINNATI (CLERMONT COUNTY)"
+        "label": "Clermont County Community Based Outpatient Clinic"
       },
       {
         "value": "541BY",
-        "label": "CANTON CBOC"
+        "label": "Canton Outpatient Clinic"
       },
       {
         "value": "541BZ",
-        "label": "YOUNGSTOWN CBOC"
+        "label": "Youngstown Outpatient Clinic"
       },
       {
         "value": "541GB",
-        "label": "LORAIN CBOC"
+        "label": "Lorain Community Based Outpatient Clinic"
       },
       {
         "value": "541GC",
-        "label": "SANDUSKY CBOC"
+        "label": "Sandusky Community Based Outpatient Clinic"
       },
       {
         "value": "541GD",
-        "label": "MANSFIELD CBOC"
+        "label": "Mansfield Community Based Outpatient Clinic"
       },
       {
         "value": "538GA",
-        "label": "ATHENS VA CLINIC"
+        "label": "Athens Community Based Outpatient Clinic"
       },
       {
         "value": "538GB",
-        "label": "PORTSMOUTH VA CLINIC"
+        "label": "Portsmouth Community Based Outpatient Clinic"
       },
       {
         "value": "538GC",
-        "label": "MARIETTA VA CLINIC"
+        "label": "Marietta Community Based Outpatient Clinic"
       },
       {
         "value": "538GD",
-        "label": "LANCASTER VA CLINIC"
+        "label": "Lancaster Community Based Outpatient Clinic"
       },
       {
         "value": "552GA",
-        "label": "MIDDLETOWN CBOC"
+        "label": "Middletown Community Based Outpatient Clinic"
       },
       {
         "value": "552GB",
-        "label": "LIMA CBOC"
+        "label": "Lima VA Clinic"
       },
       {
         "value": "552GD",
-        "label": "SPRINGFIELD CBOC"
+        "label": "Springfield VA Clinic"
       },
       {
         "value": "541GE",
-        "label": "MCCAFERTY CBOC"
+        "label": "McCafferty Community Based Outpatient Clinic"
       },
       {
         "value": "541GF",
-        "label": "PAINSVILLE CBOC"
+        "label": "Painesville Community Based Outpatient Clinic"
       },
       {
         "value": "541GG",
-        "label": "AKRON CBOC"
+        "label": "Akron Community Based Outpatient Clinic"
       },
       {
         "value": "541GH",
-        "label": "EAST LIVERPOOL CBOC"
+        "label": "East Liverpool/Calcutta Community Based Outpatient Clinic"
       },
       {
         "value": "541GI",
-        "label": "WARREN CBOC"
+        "label": "Warren Community Based Outpatient Clinic"
       },
       {
         "value": "562GB",
-        "label": "ASHTABULA COUNTY VA CLINIC"
+        "label": "Ashtabula County VA Clinic"
       },
       {
         "value": "757GB",
-        "label": "GROVE CITY CBOC"
+        "label": "Grove City VA Clinic"
       },
       {
         "value": "541GJ",
-        "label": "NEW PHILADELPHIA CBOC"
+        "label": "New Philadelphia VA Clinic"
       },
       {
         "value": "541GK",
-        "label": "RAVENNA CBOC"
+        "label": "Ravenna VA Clinic"
       },
       {
         "value": "757GC",
-        "label": "MARION CBOC"
+        "label": "Marion VA Clinic"
       },
       {
         "value": "646GA",
-        "label": "BELMONT COUNTY VA CLINIC"
+        "label": "Belmont County VA Clinic"
       },
       {
         "value": "538GE",
-        "label": "CAMBRIDGE VA CLINIC"
+        "label": "Cambridge VA Clinic"
       },
       {
         "value": "757GD",
-        "label": "NEWARK CBOC"
+        "label": "Daniel L. Kinnard VA Clinic"
       },
       {
         "value": "757GA",
-        "label": "ZANESVILLE CBOC"
+        "label": "Zanesville VA Clinic"
       },
       {
         "value": "539GE",
-        "label": "HAMILTON OHIO CBOC"
+        "label": "Hamilton Community Based Outpatient Clinic"
       },
       {
         "value": "539GF",
-        "label": "GEORGETOWN CBOC"
+        "label": "Georgetown Community Based Outpatient Clinic"
       },
       {
         "value": "541GL",
-        "label": "PARMA CBOC"
+        "label": "Parma Community Based Outpatient Clinic"
       },
       {
         "value": "541GM",
-        "label": "CLEVELAND AMBULATORY CTR CBOC"
+        "label": "Cleveland VA Clinic-Superior"
       },
       {
         "value": "538GF",
-        "label": "WILMINGTON VA CLINIC (OH)"
+        "label": "Wilmington Community-Based Outpatient Clinic"
       },
       {
         "value": "541GN",
@@ -7213,281 +7213,281 @@
       },
       {
         "value": "581GG",
-        "label": "GALLIPOLIS VA CLINIC"
+        "label": "Gallipolis VA Clinic"
       },
       {
         "value": "539QC",
-        "label": "VINE STREET VA CLINIC"
+        "label": "Vine Street VA Clinic"
       },
       {
         "value": "539QD",
-        "label": "NORWOOD VA CLINIC"
+        "label": "Norwood VA Clinic"
       },
       {
         "value": "757",
-        "label": "CHALMERS P. WYLIE VA AMBULATORY CARE CENTER (757)"
+        "label": "Chalmers P. Wylie Veterans Outpatient Clinic"
       },
       {
         "value": "538",
-        "label": "CHILLICOTHE VA MEDICAL CENTER"
+        "label": "Chillicothe VA Medical Center"
       },
       {
         "value": "539",
-        "label": "CINCINNATI VAMC"
+        "label": "Cincinnati VA Medical Center"
       },
       {
         "value": "541",
-        "label": "CLEVELAND VAMC"
+        "label": "Louis Stokes Cleveland VA Medical Center (Wade Park Campus)"
       },
       {
         "value": "552",
-        "label": "DAYTON, OH VAMC"
+        "label": "Dayton VA Medical Center"
       }
     ],
     "MI": [
       {
         "value": "506GB",
-        "label": "FLINT VA CLINIC"
+        "label": "Flint VA Clinic"
       },
       {
         "value": "506GC",
-        "label": "JACKSON CBOC"
+        "label": "Jackson VA Clinic"
       },
       {
         "value": "553GA",
-        "label": "YALE VA CLINIC"
+        "label": "Yale VA Clinic"
       },
       {
         "value": "553GB",
-        "label": "PONTIAC VA CLINIC"
+        "label": "Pontiac VA Clinic"
       },
       {
         "value": "515BY",
-        "label": "WYOMING HEALTH CARE CENTER"
+        "label": "Wyoming VA Clinic"
       },
       {
         "value": "515GA",
-        "label": "MUSKEGON VA CLINIC"
+        "label": "Muskegon VA Clinic"
       },
       {
         "value": "515GB",
-        "label": "LANSING CBOC"
+        "label": "Lansing South VA Clinic"
       },
       {
         "value": "515GC",
-        "label": "BENTON HARBOR VA CLINIC"
+        "label": "Benton Harbor VA Clinic"
       },
       {
         "value": "585GA",
-        "label": "HANCOCK CBOC"
+        "label": "Hancock VA Clinic"
       },
       {
         "value": "585GC",
-        "label": "MENOMINEE CBOC"
+        "label": "Menominee VA Clinic"
       },
       {
         "value": "585GD",
-        "label": "IRONWOOD CBOC"
+        "label": "Ironwood VA Clinic"
       },
       {
         "value": "585HA",
-        "label": "MARQUETTE CBOC"
+        "label": "Marquette VA Clinic"
       },
       {
         "value": "585HB",
-        "label": "SAULT SAINT MARIE CBOC"
+        "label": "Sault Saint Marie VA Clinic"
       },
       {
         "value": "655GA",
-        "label": "GAYLORD VA OUTPATIENT CLINIC"
+        "label": "Gaylord VA Clinic"
       },
       {
         "value": "655GB",
-        "label": "TRAVERSE CITY VA CLINIC"
+        "label": "Colonel Demas T. Craw VA Clinic"
       },
       {
         "value": "655GC",
-        "label": "OSCODA VA CLINIC"
+        "label": "Oscoda VA Clinic"
       },
       {
         "value": "655GD",
-        "label": "LT. COL CLEMENT VAN WAGONER VA"
+        "label": "Lieutenant Colonel Clement C. Van Wagoner Department of Veterans Affairs Clinic"
       },
       {
         "value": "655GH",
-        "label": "CHEBOYGAN COUNTY VA CLINIC"
+        "label": "Cheboygan County VA Clinic"
       },
       {
         "value": "655GI",
-        "label": "GRAYLING VA CLINIC"
+        "label": "Grayling VA Clinic"
       },
       {
         "value": "655GF",
-        "label": "BAD AXE VA CLINIC"
+        "label": "Bad Axe VA Clinic"
       },
       {
         "value": "655GE",
-        "label": "CLARE VA CLINIC"
+        "label": "Clare VA Clinic"
       },
       {
         "value": "655GG",
-        "label": "CADILLAC VA CLINIC"
+        "label": "Cadillac VA Clinic"
       },
       {
         "value": "506",
-        "label": "ANN ARBOR VA MEDICAL CENTER"
+        "label": "Ann Arbor VA Medical Center"
       },
       {
         "value": "515",
-        "label": "BATTLE CREEK VA MEDICAL CENTER"
+        "label": "Battle Creek VA Medical Center"
       },
       {
         "value": "655",
-        "label": "ALEDA E. LUTZ VAMC"
+        "label": "Aleda E. Lutz Department of Veterans Affairs Medical Center"
       },
       {
         "value": "553",
-        "label": "JOHN D. DINGELL VAMC"
+        "label": "John D. Dingell Department of Veterans Affairs Medical Center"
       },
       {
         "value": "585",
-        "label": "IRON MOUNTAIN VA MEDICAL CENTER"
+        "label": "Oscar G. Johnson Department of Veterans Affairs Medical Facility"
       }
     ],
     "GA": [
       {
         "value": "508GA",
-        "label": "ATLANTA VA CBOC"
+        "label": "Fort McPherson VA Clinic"
       },
       {
         "value": "508GE",
-        "label": "OAKWOOD VA CLINIC"
+        "label": "Oakwood VA Clinic"
       },
       {
         "value": "508GF",
-        "label": "AUSTELL CBOC"
+        "label": "Austell VA Clinic"
       },
       {
         "value": "508GH",
-        "label": "LAWRENCEVILLE CBOC"
+        "label": "Lawrenceville VA Clinic"
       },
       {
         "value": "509A0",
-        "label": "AUGUSTA VAMC - UPTOWN"
+        "label": "Augusta VA Medical Center-Uptown"
       },
       {
         "value": "534BY",
-        "label": "SAVANNAH PRIMARY CARE CLINIC"
+        "label": "Savannah VA Clinic"
       },
       {
         "value": "557GA",
-        "label": "MACON VA CBOC"
+        "label": "Macon VA Clinic"
       },
       {
         "value": "557GB",
-        "label": "ALBANY VA CBOC"
+        "label": "Albany VA Clinic"
       },
       {
         "value": "573GA",
-        "label": "VALDOSTA VA CLINIC"
+        "label": "Valdosta VA Clinic"
       },
       {
         "value": "619GA",
-        "label": "CENTRAL ALABAMA HCS - COLUMBUS CBOC"
+        "label": "Columbus VA Clinic"
       },
       {
         "value": "509GA",
-        "label": "ATHENS CBOC"
+        "label": "Athens VA Clinic"
       },
       {
         "value": "557HA",
-        "label": "PERRY OUTREACH CLINIC"
+        "label": "Perry VA Clinic"
       },
       {
         "value": "508GG",
-        "label": "STOCKBRIDGE CBOC"
+        "label": "Stockbridge VA Clinic"
       },
       {
         "value": "573GJ",
-        "label": "ST. MARYS VA CLINIC"
+        "label": "St. Marys VA Clinic"
       },
       {
         "value": "508GI",
-        "label": "NEWNAN CBOC"
+        "label": "Newnan VA Clinic"
       },
       {
         "value": "508GK",
-        "label": "CARROLLTON CBOC"
+        "label": "Trinka Davis Veterans Village"
       },
       {
         "value": "557GC",
-        "label": "BALDWIN CBOC"
+        "label": "Milledgeville VA Clinic"
       },
       {
         "value": "508GJ",
-        "label": "BLAIRSVILLE CBOC"
+        "label": "Blairsville VA Clinic"
       },
       {
         "value": "557GE",
-        "label": "BRUNSWICK CBOC"
+        "label": "Brunswick VA Clinic"
       },
       {
         "value": "534GE",
-        "label": "HINESVILLE CBOC"
+        "label": "Hinesville VA Clinic"
       },
       {
         "value": "557GF",
-        "label": "TIFTON VA CLINIC"
+        "label": "Tifton VA Clinic"
       },
       {
         "value": "619QB",
-        "label": "FORT BENNING VA CLINIC"
+        "label": "Fort Benning VA Clinic"
       },
       {
         "value": "573GM",
-        "label": "WAYCROSS VA CLINIC"
+        "label": "Waycross VA Clinic"
       },
       {
         "value": "508GL",
-        "label": "ROME VA CLINIC"
+        "label": "Rome VA Clinic"
       },
       {
         "value": "509QA",
-        "label": "STATESBORO VA CLINIC"
+        "label": "Ray Hendrix Department Of Veterans Affairs Clinic"
       },
       {
         "value": "508",
-        "label": "ATLANTA VAMC"
+        "label": "Atlanta VA Medical Center"
       },
       {
         "value": "509",
-        "label": "AUGUSTA VAMC"
+        "label": "Charlie Norwood Department of Veterans Affairs Medical Center"
       },
       {
         "value": "557",
-        "label": "DUBLIN"
+        "label": "Carl Vinson Veterans' Administration Medical Center"
       }
     ],
     "MD": [
       {
         "value": "512GA",
-        "label": "CAMBRIDGE VA CLINIC"
+        "label": "Cambridge VA Clinic"
       },
       {
         "value": "512GC",
-        "label": "GLEN BURNIE VA CLINIC"
+        "label": "Glen Burnie VA Clinic"
       },
       {
         "value": "512GD",
-        "label": "LOCH RAVEN VAMC"
+        "label": "Loch Raven VA Medical Center"
       },
       {
         "value": "512GE",
-        "label": "POCOMOKE CITY VA CLINIC"
+        "label": "Pocomoke City VA Clinic"
       },
       {
         "value": "512GF",
-        "label": "E. BALTIMORE COUNTY VA CLINIC"
+        "label": "Eastern Baltimore County VA Clinic"
       },
       {
         "value": "460HM",
@@ -7495,73 +7495,73 @@
       },
       {
         "value": "613GA",
-        "label": "CUMBERLAND CBOC"
+        "label": "Cumberland VA Clinic"
       },
       {
         "value": "613GB",
-        "label": "HAGERSTOWN VA CLINIC"
+        "label": "Hagerstown VA Clinic"
       },
       {
         "value": "688GD",
-        "label": "CHARLOTTE HALL VA CLINIC"
+        "label": "Charlotte Hall VA Clinic"
       },
       {
         "value": "512A5",
-        "label": "PERRY POINT VAMC"
+        "label": "Perry Point VA Medical Center"
       },
       {
         "value": "688GE",
-        "label": "S PRINCE GEORGES CITY VA CLINIC"
+        "label": "Southern Prince George's County VA Clinic"
       },
       {
         "value": "613GG",
-        "label": "FORT DETRICK VA CLINIC"
+        "label": "Fort Detrick VA Clinic"
       },
       {
         "value": "512GG",
-        "label": "FORT MEADE VA CLINIC"
+        "label": "Fort Meade VA Clinic"
       },
       {
         "value": "512QA",
-        "label": "BALTIMORE VA CLINIC"
+        "label": "Baltimore VA Clinic"
       },
       {
         "value": "688GF",
-        "label": "MONTGOMERY COUNTY VA CLINIC"
+        "label": "Montgomery County VA Clinic"
       },
       {
         "value": "512",
-        "label": "VA MARYLAND HEALTH CARE SYS"
+        "label": "Baltimore VA Medical Center"
       }
     ],
     "KY": [
       {
         "value": "539GA",
-        "label": "BELLEVUE CBOC"
+        "label": "Bellevue VA Clinic"
       },
       {
         "value": "626GC",
-        "label": "BOWLING GREEN COMMUNITY BASED OUTPATIENT CLINIC"
+        "label": "Bowling Green VA Clinic"
       },
       {
         "value": "581GA",
-        "label": "PRESTONSBURG CBOC"
+        "label": "Prestonsburg VA Clinic"
       },
       {
         "value": "603GD",
-        "label": "DUPONT VA CLINIC"
+        "label": "Stonybrook VA Clinic"
       },
       {
         "value": "603GE",
-        "label": "NEWBURG VA CLINIC"
+        "label": "Newburg VA Clinic"
       },
       {
         "value": "596A4",
-        "label": "LEXINGTON VETERANS AFFAIRS MEDICAL CENTER"
+        "label": "Troy Bowling Campus"
       },
       {
         "value": "596GA",
-        "label": "SOMERSET VA CLINIC"
+        "label": "Somerset VA Clinic"
       },
       {
         "value": "596HA",
@@ -7569,155 +7569,155 @@
       },
       {
         "value": "603GA",
-        "label": "VA HEALTHCARE CENTER, FT. KNOX"
+        "label": "Fort Knox VA Clinic"
       },
       {
         "value": "603GC",
-        "label": "SHIVELY VA CLINIC"
+        "label": "Shively VA Clinic"
       },
       {
         "value": "539GD",
-        "label": "FLORENCE CBOC"
+        "label": "Florence VA Clinic"
       },
       {
         "value": "596GD",
-        "label": "BEREA VA CLINIC"
+        "label": "Berea VA Clinic"
       },
       {
         "value": "596GC",
-        "label": "HAZARD VA CLINIC"
+        "label": "Hazard VA Clinic"
       },
       {
         "value": "603GF",
-        "label": "GRAYSON COUNTY VA CLINIC"
+        "label": "Grayson County VA Clinic"
       },
       {
         "value": "603GH",
-        "label": "CARROLLTON VA CLINIC"
+        "label": "Carrollton VA Clinic"
       },
       {
         "value": "596GB",
-        "label": "MOREHEAD VA CLINIC"
+        "label": "Morehead VA Clinic"
       },
       {
         "value": "626GJ",
-        "label": "HOPKINSVILLE VA CLINIC"
+        "label": "Hopkinsville VA Clinic"
       },
       {
         "value": "539A4",
-        "label": "CINCINNATI VAMC FORT THOMAS"
+        "label": "Cincinnati VA Medical Center-Fort Thomas"
       },
       {
         "value": "596",
-        "label": "LEXINGTON VAMC-LEESTOWN"
+        "label": "Franklin R. Sousley Campus"
       },
       {
         "value": "603",
-        "label": "ROBLEY REX VAMC"
+        "label": "Robley Rex Department of Veterans Affairs Medical Center"
       }
     ],
     "IN": [
       {
         "value": "539GC",
-        "label": "LAWRENCEBURG (DEARBORN COUNTY)"
+        "label": "Dearborn VA Clinic"
       },
       {
         "value": "537BY",
-        "label": "ADAM BENJAMIN JR OPC"
+        "label": "Adam Benjamin Jr., Veterans' Administration Outpatient Clinic"
       },
       {
         "value": "552GC",
-        "label": "RICHMOND CBOC"
+        "label": "Richmond VA Clinic"
       },
       {
         "value": "610A4",
-        "label": "FORT WAYNE VA MEDICAL CENTER"
+        "label": "VA Northern Indiana Health Care System (Marion)"
       },
       {
         "value": "610GB",
-        "label": "MUNCIE VA CLINIC"
+        "label": "Muncie VA Clinic"
       },
       {
         "value": "583GA",
-        "label": "TERRE HAUTE VA CLINIC"
+        "label": "Terre Haute VA Clinic"
       },
       {
         "value": "583GB",
-        "label": "BLOOMINGTON VA CLINIC"
+        "label": "Bloomington VA Clinic"
       },
       {
         "value": "603GB",
-        "label": "NEW ALBANY VA CLINIC"
+        "label": "New Albany VA Clinic"
       },
       {
         "value": "603GG",
-        "label": "SCOTT COUNTY VA CLINIC"
+        "label": "Scott County VA Clinic"
       },
       {
         "value": "610GC",
-        "label": "GOSHEN VA CLINIC"
+        "label": "Goshen VA Clinic"
       },
       {
         "value": "610GD",
-        "label": "PERU VA CLINIC"
+        "label": "Peru VA Clinic"
       },
       {
         "value": "583GC",
-        "label": "MARTINSVILLE VA CLINIC"
+        "label": "Martinsville VA Clinic"
       },
       {
         "value": "583GE",
-        "label": "WEST LAFAYETTE VA CLINIC"
+        "label": "West Lafayette VA Clinic"
       },
       {
         "value": "583GD",
-        "label": "INDIANAPOLIS WEST VA CLINIC"
+        "label": "Indianapolis West VA Clinic"
       },
       {
         "value": "583QB",
-        "label": "INDIANAPOLIS VA CLINIC"
+        "label": "Indianapolis VA Clinic"
       },
       {
         "value": "583GG",
-        "label": "SHELBYVILLE VA CLINIC"
+        "label": "Shelbyville VA Clinic"
       },
       {
         "value": "583QD",
-        "label": "INDIANAPOLIS YMCA VA CLINIC"
+        "label": "Indianapolis YMCA VA Clinic"
       },
       {
         "value": "610BY",
-        "label": "ST. JOSEPH COUNTY VA CLINIC"
+        "label": "St. Joseph County VA Clinic"
       },
       {
         "value": "610",
-        "label": "MARION VA MEDICAL CENTER"
+        "label": "Marion VA Medical Center"
       },
       {
         "value": "583",
-        "label": "RICHARD L. ROUDEBUSH VAMC"
+        "label": "Seamless Transition Integrated Care Clinic (STICC)"
       }
     ],
     "WV": [
       {
         "value": "540GA",
-        "label": "TUCKER COUNTY VA CLINIC"
+        "label": "Tucker County VA Clinic"
       },
       {
         "value": "540GB",
-        "label": "CLARKSBURG/WOOD"
+        "label": "Wood County VA Clinic"
       },
       {
         "value": "540GC",
-        "label": "BRAXTON COUNTY VA CLINIC"
+        "label": "Braxton County VA Clinic"
       },
       {
         "value": "613GD",
-        "label": "FRANKLIN VA CLINIC"
+        "label": "Franklin VA Clinic"
       },
       {
         "value": "613GE",
-        "label": "PETERSBURG VA CLINIC"
+        "label": "Petersburg VA Clinic"
       },
       {
         "value": "613HK",
@@ -7725,97 +7725,97 @@
       },
       {
         "value": "581GB",
-        "label": "CHARLESTON VA CLINIC"
+        "label": "Charleston VA Clinic"
       },
       {
         "value": "540HK",
-        "label": "CLARKSBURG VA MOBILE CLINIC"
+        "label": "Clarksburg VA Mobile Clinic"
       },
       {
         "value": "540GD",
-        "label": "MONONGALIA COUNTY VA CLINIC"
+        "label": "Monongalia County VA Clinic"
       },
       {
         "value": "517GB",
-        "label": "GREENBRIER COUNTY VA CLINIC"
+        "label": "Greenbrier County VA Clinic"
       },
       {
         "value": "581GH",
-        "label": "LENORE VA CLINIC"
+        "label": "Lenore VA Clinic"
       },
       {
         "value": "517",
-        "label": "BECKLEY VA MEDICAL CENTER"
+        "label": "Beckley VA Medical Center"
       },
       {
         "value": "613",
-        "label": "MARTINSBURG VA MEDICAL CENTER"
+        "label": "Martinsburg VA Medical Center"
       },
       {
         "value": "540",
-        "label": "LOUIS A JOHNSON VAMC"
+        "label": "Louis A. Johnson Veterans' Administration Medical Center"
       },
       {
         "value": "581",
-        "label": "HUNTINGTON VAMC"
+        "label": "Hershel \"Woody\" Williams VA Medical Center"
       }
     ],
     "SC": [
       {
         "value": "544BZ",
-        "label": "GREENVILLE VA CLINIC SC"
+        "label": "Greenville VA Clinic"
       },
       {
         "value": "544GB",
-        "label": "FLORENCE CBOC"
+        "label": "Florence VA Clinic"
       },
       {
         "value": "544GC",
-        "label": "ROCK HILL CBOC"
+        "label": "Rock Hill VA Clinic"
       },
       {
         "value": "544GD",
-        "label": "ANDERSON CBOC"
+        "label": "Anderson VA Clinic"
       },
       {
         "value": "544GE",
-        "label": "ORANGEBURG CBOC"
+        "label": "Orangeburg VA Clinic"
       },
       {
         "value": "544GF",
-        "label": "SUMTER CBOC"
+        "label": "Sumter VA Clinic"
       },
       {
         "value": "534GB",
-        "label": "MYRTLE  BEACH PRIMARY CARE CLINIC"
+        "label": "Myrtle Beach VA Clinic"
       },
       {
         "value": "534GC",
-        "label": "BEAUFORT PRIMARY CARE CLINIC"
+        "label": "Beaufort VA Clinic"
       },
       {
         "value": "509GB",
-        "label": "AIKEN CBOC"
+        "label": "Aiken VA Clinic"
       },
       {
         "value": "534GD",
-        "label": "GOOSE CREEK CBOC"
+        "label": "Goose Creek VA Clinic"
       },
       {
         "value": "544GG",
-        "label": "SPARTANBURG CBOC"
+        "label": "Spartanburg VA Clinic"
       },
       {
         "value": "534GF",
-        "label": "NORTH CHARLESTON VA CBOC"
+        "label": "Trident 1 VA Clinic"
       },
       {
         "value": "544",
-        "label": "WM JENNINGS BRYAN DORN VETERANS AFFAIRS MEDICAL CENTER"
+        "label": "Wm. Jennings Bryan Dorn Department of Veterans Affairs Medical Center"
       },
       {
         "value": "534",
-        "label": "RALPH H. JOHNSON VA MEDICAL CENTER (534)"
+        "label": "Ralph H. Johnson Department of Veterans Affairs Medical Center"
       }
     ],
     "FL": [
@@ -7825,55 +7825,55 @@
       },
       {
         "value": "546BZ",
-        "label": "WILLIAM BILL KLING VAOC"
+        "label": "William \"Bill\" Kling Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "546GA",
-        "label": "MIAMI (ALCOHOL/DRUG)"
+        "label": "Miami Flagler VA Clinic"
       },
       {
         "value": "546GB",
-        "label": "KEY WEST CBOC"
+        "label": "Key West VA Clinic"
       },
       {
         "value": "546GC",
-        "label": "HOMESTEAD VA CLINIC"
+        "label": "Homestead VA Clinic"
       },
       {
         "value": "516BZ",
-        "label": "LEE COUNTY VA CLINIC"
+        "label": "Lee County VA Clinic"
       },
       {
         "value": "516GA",
-        "label": "SARASOTA COUNTY CBOC"
+        "label": "Sarasota VA Clinic"
       },
       {
         "value": "516GB",
-        "label": "ST. PETERSBURG VA CLINIC"
+        "label": "St. Petersburg VA Clinic"
       },
       {
         "value": "516GC",
-        "label": "PALM HARBOR VA CLINIC"
+        "label": "Palm Harbor VA Clinic"
       },
       {
         "value": "516GD",
-        "label": "BRADENTON VA CLINIC"
+        "label": "Bradenton VA Clinic"
       },
       {
         "value": "516GE",
-        "label": "PORT CHARLOTTE VA CLINIC"
+        "label": "Port Charlotte VA Clinic"
       },
       {
         "value": "516GF",
-        "label": "NAPLES VA CLINIC"
+        "label": "Naples VA Clinic"
       },
       {
         "value": "573A4",
-        "label": "LAKE CITY VA MEDICAL CENTER"
+        "label": "Lake City VA Medical Center"
       },
       {
         "value": "573BY",
-        "label": "JACKSONVILLE 1 VA CLINIC"
+        "label": "Jacksonville 1 VA Clinic"
       },
       {
         "value": "573GB",
@@ -7881,15 +7881,15 @@
       },
       {
         "value": "573GD",
-        "label": "OCALA VA CLINIC"
+        "label": "Ocala VA Clinic"
       },
       {
         "value": "573GE",
-        "label": "SAINT AUGUSTINE VA CLINIC"
+        "label": "Saint Augustine VA Clinic"
       },
       {
         "value": "573GF",
-        "label": "SGT E.I. BOOTS THOMAS VA CLIN"
+        "label": "Sergeant Ernest I. \"Boots\" Thomas VA Clinic"
       },
       {
         "value": "573GG",
@@ -7897,233 +7897,233 @@
       },
       {
         "value": "516GH",
-        "label": "SEBRING VA CLINIC"
+        "label": "Sebring VA Clinic"
       },
       {
         "value": "520BZ",
-        "label": "PENSACOLA VA CLINIC"
+        "label": "Pensacola VA Clinic"
       },
       {
         "value": "520GB",
-        "label": "PANAMA CITY BEACH VA CLINIC"
+        "label": "Panama City Beach VA Clinic"
       },
       {
         "value": "546GD",
-        "label": "PEMBROKE PINES VA CLINIC"
+        "label": "Pembroke Pines VA Clinic"
       },
       {
         "value": "546GE",
-        "label": "KEY LARGO VA CLINIC"
+        "label": "Key Largo VA Clinic"
       },
       {
         "value": "548GA",
-        "label": "FORT PIERCE VA CLINIC"
+        "label": "Fort Pierce VA Clinic"
       },
       {
         "value": "548GB",
-        "label": "DELRAY BEACH VA CLINIC"
+        "label": "Delray Beach VA Clinic"
       },
       {
         "value": "548GC",
-        "label": "STUART VA CLINIC"
+        "label": "Stuart VA Clinic"
       },
       {
         "value": "548GD",
-        "label": "BOCA RATON CBOC"
+        "label": "Boca Raton VA Clinic"
       },
       {
         "value": "548GE",
-        "label": "VERO BEACH VA CLINIC"
+        "label": "Vero Beach VA Clinic"
       },
       {
         "value": "548GF",
-        "label": "OKEECHOBEE VA CLINIC"
+        "label": "Okeechobee VA Clinic"
       },
       {
         "value": "573GI",
-        "label": "THE VILLAGES VA CLINIC"
+        "label": "The Villages VA Clinic"
       },
       {
         "value": "675GA",
-        "label": "VIERA VA CLINIC"
+        "label": "Viera VA Clinic"
       },
       {
         "value": "675GE",
-        "label": "TAVARES VA CLINIC"
+        "label": "Tavares VA Clinic"
       },
       {
         "value": "675GF",
-        "label": "CLERMONT CBOC"
+        "label": "Clermont VA Clinic"
       },
       {
         "value": "520GC",
-        "label": "EGLIN AIR FORCE BASE VA CLINIC"
+        "label": "Eglin Air Force Base VA Clinic"
       },
       {
         "value": "573GK",
-        "label": "MARIANNA VA CLINIC"
+        "label": "Marianna VA Clinic"
       },
       {
         "value": "675GD",
-        "label": "DELTONA VA CLINIC"
+        "label": "Deltona VA Clinic"
       },
       {
         "value": "675GB",
-        "label": "WILLIAM V. CHAPPELL, JR. VOC"
+        "label": "William V. Chappell, Jr. Veterans' Outpatient Clinic"
       },
       {
         "value": "675GC",
-        "label": "KISSIMMEE VA CLINIC"
+        "label": "Kissimmee VA Clinic"
       },
       {
         "value": "675GG",
-        "label": "LAKE BALDWIN VA CLINIC"
+        "label": "Lake Baldwin VA Clinic"
       },
       {
         "value": "573GL",
-        "label": "PALATKA VA CLINIC"
+        "label": "Palatka VA Clinic"
       },
       {
         "value": "673BZ",
-        "label": "PORT RICHEY OUTPATIENT CLINIC"
+        "label": "New Port Richey VA Clinic"
       },
       {
         "value": "673GB",
-        "label": "LAKELAND VA CLINIC"
+        "label": "Lakeland VA Clinic"
       },
       {
         "value": "673GC",
-        "label": "BROOKSVILLE CBOC"
+        "label": "Brooksville VA Clinic"
       },
       {
         "value": "673GF",
-        "label": "ZEPHYRHILLS VA CLINIC"
+        "label": "Zephyrhills VA Clinic"
       },
       {
         "value": "546GF",
-        "label": "HOLLYWOOD VA CLINIC"
+        "label": "Hollywood VA Clinic"
       },
       {
         "value": "546GH",
-        "label": "DEERFIELD BEACH CLINIC"
+        "label": "Deerfield Beach VA Clinic"
       },
       {
         "value": "520QA",
-        "label": "PANAMA CITY BEACH WEST VA CLIN"
+        "label": "Panama City Beach West VA Clinic"
       },
       {
         "value": "573GN",
-        "label": "PERRY VA CLINIC"
+        "label": "Perry VA Clinic"
       },
       {
         "value": "673GG",
-        "label": "SOUTH HILLSBOROUGH VA CLINIC"
+        "label": "South Hillsborough VA Clinic"
       },
       {
         "value": "573QK",
-        "label": "LAKE CITY VA CLINIC"
+        "label": "Lake City VA Clinic"
       },
       {
         "value": "673GH",
-        "label": "LECANTO VA CLINIC (TAMPA)"
+        "label": "Lecanto VA Clinic"
       },
       {
         "value": "516",
-        "label": "C.W. BILL YOUNG DEPT OF VAMC"
+        "label": "C.W. Bill Young Department of Veterans Affairs Medical Center"
       },
       {
         "value": "673",
-        "label": "JAMES A. HALEY VETERANS HOSP"
+        "label": "James A. Haley Veterans' Hospital"
       },
       {
         "value": "546",
-        "label": "BRUCE W. CARTER DEPT OF VAMC"
+        "label": "Bruce W. Carter Department of Veterans Affairs Medical Center"
       },
       {
         "value": "548",
-        "label": "WEST PALM BEACH VAMC"
+        "label": "West Palm Beach VA Medical Center"
       },
       {
         "value": "573",
-        "label": "MALCOM RANDALL DEPT OF VAMC"
+        "label": "Malcom Randall Department of Veterans Affairs Medical Center"
       },
       {
         "value": "675",
-        "label": "ORLANDO VAMC"
+        "label": "Orlando VA Medical Center"
       }
     ],
     "NY": [
       {
         "value": "528A4",
-        "label": "VA HEALTHCARE NETWORK UPSTATE NEW YORK SYSTEM VISN 2 - BATAVIA DIVISION"
+        "label": "Batavia VA Medical Center"
       },
       {
         "value": "528A5",
-        "label": "CANANDAIGUA VA MEDICAL CENTER"
+        "label": "Canandaigua VA Medical Center"
       },
       {
         "value": "528A6",
-        "label": "BATH VA MEDICAL CENTER"
+        "label": "Bath VA Medical Center"
       },
       {
         "value": "528A7",
-        "label": "SYRACUSE VA MEDICAL CENTER"
+        "label": "Syracuse VA Medical Center"
       },
       {
         "value": "528A8",
-        "label": "SAMUEL S. STRATTON VAMC"
+        "label": "Samuel S. Stratton Department of Veterans Affairs Medical Center"
       },
       {
         "value": "528GB",
-        "label": "JAMESTOWN VA CLINIC"
+        "label": "Jamestown VA Clinic"
       },
       {
         "value": "528GC",
-        "label": "DUNKIRK VA CLINIC"
+        "label": "Dunkirk VA Clinic"
       },
       {
         "value": "528GD",
-        "label": "NIAGARA FALLS VA CLINIC"
+        "label": "Niagara Falls VA Clinic"
       },
       {
         "value": "528GK",
-        "label": "LOCKPORT"
+        "label": "Lockport VA Clinic"
       },
       {
         "value": "528GQ",
-        "label": "LACKAWANNA CBOC"
+        "label": "Lackawanna VA Clinic"
       },
       {
         "value": "528GR",
-        "label": "OLEAN CBOC"
+        "label": "Olean VA Clinic"
       },
       {
         "value": "526GA",
-        "label": "WHITE PLAINS CLINIC"
+        "label": "White Plains VA Clinic"
       },
       {
         "value": "526GB",
-        "label": "YONKERS CLINIC"
+        "label": "Yonkers VA Clinic"
       },
       {
         "value": "526GD",
-        "label": "NORTH QUEENS CLINIC"
+        "label": "Thomas P. Noonan Jr. Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "630A4",
-        "label": "VA NEW YORK HARBOR HEALTHCARE SYSTEM - BROOKLYN DIVISION"
+        "label": "Brooklyn VA Medical Center"
       },
       {
         "value": "630A5",
-        "label": "ST ALBANS EXTENDED CARE CNTR"
+        "label": "St. Albans VA Medical Center"
       },
       {
         "value": "630GA",
-        "label": "HARLEM CBOC-NYHHS"
+        "label": "Harlem VA Clinic"
       },
       {
         "value": "630GB",
-        "label": "STATEN ISLAND CBOC-NYHHCS"
+        "label": "Staten Island Community VA Clinic"
       },
       {
         "value": "630GC",
@@ -8131,237 +8131,237 @@
       },
       {
         "value": "632GA",
-        "label": "EAST MEADOW CBOC"
+        "label": "East Meadow VA Clinic"
       },
       {
         "value": "632HA",
-        "label": "VALLEY STREAM CBOC"
+        "label": "Valley Stream VA Clinic"
       },
       {
         "value": "632HB",
-        "label": "RIVERHEAD,NY ORC"
+        "label": "Riverhead VA Clinic"
       },
       {
         "value": "632HC",
-        "label": "BAY SHORE CBOC"
+        "label": "Bay Shore VA Clinic"
       },
       {
         "value": "632HD",
-        "label": "PATCHOGUE,NY ORC"
+        "label": "Patchogue VA Clinic"
       },
       {
         "value": "620A4",
-        "label": "VA HUDSON VALLEY HEALTH CARE - CASTLE POINT DIVISION"
+        "label": "Castle Point VA Medical Center"
       },
       {
         "value": "620GA",
-        "label": "NEW CITY"
+        "label": "New City VA Clinic"
       },
       {
         "value": "620GB",
-        "label": "PUTNAM COUNTY"
+        "label": "Carmel VA Clinic"
       },
       {
         "value": "620GD",
-        "label": "GOSHEN CBOC"
+        "label": "Goshen VA Clinic"
       },
       {
         "value": "620GE",
-        "label": "PORT JERVIS"
+        "label": "Port Jervis VA Clinic"
       },
       {
         "value": "620GF",
-        "label": "HARRIS"
+        "label": "Monticello VA Clinic"
       },
       {
         "value": "620GG",
-        "label": "POUGHKEEPSIE"
+        "label": "Poughkeepsie VA Clinic"
       },
       {
         "value": "620GH",
-        "label": "EASTERN DUTCHESS CBOC"
+        "label": "Eastern Dutchess VA Clinic"
       },
       {
         "value": "620",
-        "label": "VA HUDSON VALLEY HEALTH CARE SYSTEM - MONTROSE DIVISION"
+        "label": "Franklin Delano Roosevelt Hospital"
       },
       {
         "value": "630",
-        "label": "VA NEW YORK HARBOR HEALTHCARE SYSTEM - NEW YORK DIVISION"
+        "label": "Manhattan VA Medical Center"
       },
       {
         "value": "632",
-        "label": "NORTHPORT VAMC NY"
+        "label": "Northport VA Medical Center"
       },
       {
         "value": "526",
-        "label": "BRONX VA HOSPITAL"
+        "label": "James J. Peters Department of Veterans Affairs Medical Center"
       },
       {
         "value": "528",
-        "label": "BUFFALO VA MEDICAL CENTER"
+        "label": "Buffalo VA Medical Center"
       }
     ],
     "ID": [
       {
         "value": "531GE",
-        "label": "TWIN FALLS VA CLINIC"
+        "label": "Twin Falls VA Clinic"
       },
       {
         "value": "687GB",
-        "label": "LEWISTON VA CLINIC"
+        "label": "Lewiston VA Clinic"
       },
       {
         "value": "668GB",
-        "label": "COEUR D ALENE VA CLINIC"
+        "label": "Coeur d 'Alene VA Clinic"
       },
       {
         "value": "660GA",
-        "label": "POCATELLO VA CLINIC"
+        "label": "Pocatello VA Clinic"
       },
       {
         "value": "531GG",
-        "label": "CALDWELL VA CLINIC"
+        "label": "Caldwell VA Clinic"
       },
       {
         "value": "531GI",
-        "label": "MOUNTAIN HOME VA CLINIC"
+        "label": "Mountain Home VA Clinic"
       },
       {
         "value": "531GJ",
-        "label": "SALMON VA CLINIC"
+        "label": "Salmon VA Clinic"
       },
       {
         "value": "531",
-        "label": "BOISE VA MEDICAL CENTER"
+        "label": "Boise VA Medical Center"
       }
     ],
     "IL": [
       {
         "value": "537GA",
-        "label": "CHICAGO HEIGHTS CBOC"
+        "label": "Chicago Heights VA Clinic"
       },
       {
         "value": "537HA",
-        "label": "BEVERLY CBOC"
+        "label": "Auburn Gresham VA Clinic"
       },
       {
         "value": "550BY",
-        "label": "BOB MICHEL VA OPC"
+        "label": "Bob Michel Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "550GA",
-        "label": "DECATUR VA CLINIC"
+        "label": "Decatur VA Clinic"
       },
       {
         "value": "550GD",
-        "label": "SPRINGFIELD VA CLINIC"
+        "label": "Springfield VA Clinic"
       },
       {
         "value": "556GA",
-        "label": "EVANSTON CBOC"
+        "label": "Evanston VA Clinic"
       },
       {
         "value": "556GC",
-        "label": "MCHENRY CBOC"
+        "label": "McHenry VA Clinic"
       },
       {
         "value": "578GA",
-        "label": "JOLIET CBOC (578GA)"
+        "label": "Joliet VA Clinic"
       },
       {
         "value": "578GD",
-        "label": "AURORA CBOC (578GD)"
+        "label": "Aurora VA Clinic"
       },
       {
         "value": "578GF",
-        "label": "LASSALLE CBOC (578GF)"
+        "label": "LaSalle VA Clinic"
       },
       {
         "value": "578GG",
-        "label": "OAK LAWN CBOC (578GG)"
+        "label": "Oak Lawn VA Clinic"
       },
       {
         "value": "607HA",
-        "label": "ROCKFORD, IL OPC"
+        "label": "Rockford VA Clinic"
       },
       {
         "value": "657A5",
-        "label": "MARION VA MEDICAL CENTER"
+        "label": "Marion VA Medical Center"
       },
       {
         "value": "657GA",
-        "label": "ST. CLAIR CNTY VA CLINIC"
+        "label": "St. Clair County VA Clinic"
       },
       {
         "value": "537GD",
-        "label": "LAKESIDE CBOC"
+        "label": "Lakeside VA Clinic"
       },
       {
         "value": "607GF",
-        "label": "FREEPORT CBOC"
+        "label": "Freeport VA Clinic"
       },
       {
         "value": "550GF",
-        "label": "MATTOON VA CLINIC"
+        "label": "Mattoon VA Clinic"
       },
       {
         "value": "578GC",
-        "label": "KANKAKEE COUNTY CBOC"
+        "label": "Kankakee County VA Clinic"
       },
       {
         "value": "578GE",
-        "label": "HOFFMAN ESTATES VA CLINIC"
+        "label": "Hoffman Estates VA Clinic"
       },
       {
         "value": "537",
-        "label": "JESSE BROWN VA MEDICAL CENTER"
+        "label": "Jesse Brown Department of Veterans Affairs Medical Center"
       },
       {
         "value": "550",
-        "label": "DANVILLE VA MEDICAL CENTER"
+        "label": "Danville VA Medical Center"
       },
       {
         "value": "556",
-        "label": "CAPTN JAMES LOVELL FED HLT CTR"
+        "label": "Captain James A. Lovell Federal Health Care Center"
       },
       {
         "value": "578",
-        "label": "EDWARD J. HINES JR. HOSPITAL"
+        "label": "Edward Hines Junior Hospital"
       }
     ],
     "WI": [
       {
         "value": "556GD",
-        "label": "KENOSHA CBOC"
+        "label": "Kenosha VA Clinic"
       },
       {
         "value": "585GB",
-        "label": "RHINELANDER CBOC"
+        "label": "Rhinelander VA Clinic"
       },
       {
         "value": "618BY",
-        "label": "TWIN PORTS CBOC"
+        "label": "Twin Ports VA Clinic"
       },
       {
         "value": "607GC",
-        "label": "JANESVILLE, WI CBOC"
+        "label": "Janesville VA Clinic"
       },
       {
         "value": "607GD",
-        "label": "BARABOO, WI CBOC"
+        "label": "Baraboo VA Clinic"
       },
       {
         "value": "607GE",
-        "label": "BEAVER DAM, WI CBOC"
+        "label": "Beaver Dam VA Clinic"
       },
       {
         "value": "618GE",
-        "label": "CHIPPEWA VALLEY CBOC"
+        "label": "Chippewa Valley VA Clinic"
       },
       {
         "value": "676GA",
-        "label": "WAUSAU CBOC"
+        "label": "Wausau VA Clinic"
       },
       {
         "value": "676GB",
@@ -8369,31 +8369,31 @@
       },
       {
         "value": "676GC",
-        "label": "LACROSSE CBOC"
+        "label": "River Valley VA Clinic"
       },
       {
         "value": "695GD",
-        "label": "MILO C. HUEMPFNER CBOC"
+        "label": "Milo C. Huempfner Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "676GD",
-        "label": "WISCONSIN RAPIDS CBOC"
+        "label": "Wisconsin Rapids VA Clinic"
       },
       {
         "value": "676GE",
-        "label": "CLARK COUNTY CBOC"
+        "label": "Clark County VA Clinic"
       },
       {
         "value": "695BY",
-        "label": "FOX VALLEY"
+        "label": "John H. Bradley Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "695GA",
-        "label": "UNION GROVE"
+        "label": "Union Grove VA Clinic"
       },
       {
         "value": "695GC",
-        "label": "CLEVELAND CBOC"
+        "label": "Cleveland VA Clinic"
       },
       {
         "value": "695HK",
@@ -8401,49 +8401,49 @@
       },
       {
         "value": "618GH",
-        "label": "HAYWARD CBOC"
+        "label": "Hayward VA Clinic"
       },
       {
         "value": "618GM",
-        "label": "RICE LAKE VA CBOC"
+        "label": "Rice Lake VA Clinic"
       },
       {
         "value": "607GG",
-        "label": "MADISON WEST VA CLINIC"
+        "label": "Madison West VA Clinic"
       },
       {
         "value": "607",
-        "label": "WILLIAM S. MIDDLETON MEMORIAL VA HOSPITAL"
+        "label": "William S. Middleton Memorial Veterans' Hospital"
       },
       {
         "value": "676",
-        "label": "TOMAH VAMC"
+        "label": "Tomah VA Medical Center"
       },
       {
         "value": "695",
-        "label": "CLEMENT J ZABLOCKI"
+        "label": "Clement J. Zablocki Veterans' Administration Medical Center"
       }
     ],
     "NC": [
       {
         "value": "558GA",
-        "label": "GREENVILLE VA CLINIC NC"
+        "label": "Greenville VA Clinic"
       },
       {
         "value": "558GB",
-        "label": "RALEIGH VA CLINIC"
+        "label": "Raleigh VA Clinic"
       },
       {
         "value": "558GC",
-        "label": "MOREHEAD CITY VA CLINIC"
+        "label": "Morehead City VA Clinic"
       },
       {
         "value": "565GA",
-        "label": "JACKSONVILLE VA CLINIC"
+        "label": "Jacksonville VA Clinic"
       },
       {
         "value": "565GC",
-        "label": "WILMINGTON VA CLINIC (NC)"
+        "label": "Wilmington VA Clinic"
       },
       {
         "value": "659GB",
@@ -8451,39 +8451,39 @@
       },
       {
         "value": "659BY",
-        "label": "KERNERSVILLE VA CLINIC"
+        "label": "Kernersville VA Clinic"
       },
       {
         "value": "659GA",
-        "label": "NORTH CHARLOTTE VA CLINIC"
+        "label": "North Charlotte VA Clinic"
       },
       {
         "value": "565GD",
-        "label": "HAMLET VA CLINIC"
+        "label": "Hamlet VA Clinic"
       },
       {
         "value": "590GC",
-        "label": "ALBEMARLE VA CLINIC"
+        "label": "Albemarle VA Clinic"
       },
       {
         "value": "637GB",
-        "label": "RUTHERFORD COUNTY VA CLINIC"
+        "label": "Rutherford County VA Clinic"
       },
       {
         "value": "565GE",
-        "label": "ROBESON COUNTY VA CLINIC"
+        "label": "Robeson County VA Clinic"
       },
       {
         "value": "637GA",
-        "label": "FRANKLIN VA CLINIC"
+        "label": "Franklin VA Clinic"
       },
       {
         "value": "565GF",
-        "label": "GOLDSBORO VA CLINIC"
+        "label": "Goldsboro VA Clinic"
       },
       {
         "value": "565GG",
-        "label": "LEE COUNTY VA CLINIC"
+        "label": "Lee County VA Clinic"
       },
       {
         "value": "659GC",
@@ -8491,31 +8491,31 @@
       },
       {
         "value": "637GC",
-        "label": "HICKORY VA CLINIC"
+        "label": "Hickory VA Clinic"
       },
       {
         "value": "565GL",
-        "label": "CUMBERLAND COUNTY VA CLINIC"
+        "label": "Cumberland County VA Clinic"
       },
       {
         "value": "659BZ",
-        "label": "SOUTH CHARLOTTE VA CLINIC"
+        "label": "South Charlotte VA Clinic"
       },
       {
         "value": "558GD",
-        "label": "DURHAM COUNTY VA CLINIC"
+        "label": "Durham County VA Clinic"
       },
       {
         "value": "558GE",
-        "label": "HILLANDALE ROAD VA CLINIC"
+        "label": "Hillandale Road VA Clinic"
       },
       {
         "value": "558GF",
-        "label": "WAKE COUNTY VA CLINIC"
+        "label": "Wake County VA Clinic"
       },
       {
         "value": "565GH",
-        "label": "BRUNSWICK COUNTY VA CLINIC"
+        "label": "Brunswick County VA Clinic"
       },
       {
         "value": "565GI",
@@ -8527,49 +8527,49 @@
       },
       {
         "value": "565QC",
-        "label": "FAYETTEVILLE 2 MOBILE CLINIC"
+        "label": "Fayetteville 2 VA Mobile Clinic"
       },
       {
         "value": "565QD",
-        "label": "RAEFORD ROAD VA CLINIC"
+        "label": "Raeford Road VA Clinic"
       },
       {
         "value": "565GM",
-        "label": "JACKSONVILLE 3 VA CLINIC"
+        "label": "Jacksonville 3 VA Clinic"
       },
       {
         "value": "637",
-        "label": "CHARLES GEORGE VAMC"
+        "label": "Charles George Department of Veterans Affairs Medical Center"
       },
       {
         "value": "659",
-        "label": "W.G. HEFNER SALISBURY VAMC"
+        "label": "W.G. (Bill) Hefner Salisbury Department of Veterans Affairs Medical Center"
       },
       {
         "value": "558",
-        "label": "DURHAM VA MEDICAL CENTER"
+        "label": "Durham VA Medical Center"
       },
       {
         "value": "565",
-        "label": "FAYETTEVILLE VA MEDICAL CENTER"
+        "label": "Fayetteville VA Medical Center"
       }
     ],
     "NJ": [
       {
         "value": "561A4",
-        "label": "NEW JERSEY HEALTH CARE SYSTEM - LYONS CAMPUS"
+        "label": "Lyons VA Medical Center"
       },
       {
         "value": "561BY",
-        "label": "NEWARK DTC"
+        "label": "Newark VA Clinic"
       },
       {
         "value": "561BZ",
-        "label": "JAMES J HOWARD OUTPATIENT CLINIC"
+        "label": "James J. Howard Veterans' Outpatient Clinic"
       },
       {
         "value": "561GA",
-        "label": "HAMILTON CBOC"
+        "label": "Hamilton VA Clinic"
       },
       {
         "value": "561GB",
@@ -8577,27 +8577,27 @@
       },
       {
         "value": "561GD",
-        "label": "HACKENSACK CBOC"
+        "label": "Hackensack VA Clinic"
       },
       {
         "value": "561GE",
-        "label": "JERSEY CITY CBOC"
+        "label": "Jersey City VA Clinic"
       },
       {
         "value": "561GF",
-        "label": "PISCATAWAY CBOC"
+        "label": "Piscataway VA Clinic"
       },
       {
         "value": "561GH",
-        "label": "MORRIS PLAINS CBOC"
+        "label": "Morristown VA Clinic"
       },
       {
         "value": "561GI",
-        "label": "TINTON FALLS CBOC"
+        "label": "Tinton Falls VA Clinic"
       },
       {
         "value": "460HE",
-        "label": "ATLANTIC COUNTY VA CLINIC"
+        "label": "Atlantic County VA Clinic"
       },
       {
         "value": "460HO",
@@ -8605,45 +8605,45 @@
       },
       {
         "value": "561GJ",
-        "label": "PATERSON CBOC"
+        "label": "Paterson VA Clinic"
       },
       {
         "value": "642GD",
-        "label": "GLOUCESTER COUNTY VA CLINIC"
+        "label": "Gloucester County VA Clinic"
       },
       {
         "value": "561GK",
-        "label": "SUSSEX VA CLINIC"
+        "label": "Sussex VA Clinic"
       },
       {
         "value": "642GA",
-        "label": "BURLINGTON COUNTY VA CLINIC"
+        "label": "Burlington County VA Clinic"
       },
       {
         "value": "460HG",
-        "label": "CUMBERLAND COUNTY VA CLINIC"
+        "label": "Cumberland County VA Clinic"
       },
       {
         "value": "460GD",
-        "label": "CAPE MAY (WILMINGTON)"
+        "label": "Cape May County VA Clinic"
       },
       {
         "value": "642GF",
-        "label": "CAMDEN VA CLINIC"
+        "label": "Camden VA Clinic"
       },
       {
         "value": "561",
-        "label": "NEW JERSEY HEALTH CARE SYSTEM - EAST ORANGE"
+        "label": "East Orange VA Medical Center"
       }
     ],
     "DE": [
       {
         "value": "460GA",
-        "label": "SUSSEX COUNTY VA CLINIC"
+        "label": "Sussex County VA Clinic"
       },
       {
         "value": "460HK",
-        "label": "WILMINGTON VA MOBILE CLINIC"
+        "label": "Wilmington VA Mobile Clinic"
       },
       {
         "value": "460HL",
@@ -8651,33 +8651,33 @@
       },
       {
         "value": "460GC",
-        "label": "KENT COUNTY VA CLINIC"
+        "label": "Kent County VA Clinic"
       },
       {
         "value": "460",
-        "label": "WILMINGTON VA MEDICAL CENTER"
+        "label": "Wilmington Regional Benefit Office"
       }
     ],
     "MS": [
       {
         "value": "586GA",
-        "label": "KOSCIUSKO VA CLINIC"
+        "label": "Kosciusko VA Clinic"
       },
       {
         "value": "586GB",
-        "label": "MERIDIAN"
+        "label": "Meridian VA Clinic"
       },
       {
         "value": "586GC",
-        "label": "GREENVILLE"
+        "label": "Greenville VA Clinic"
       },
       {
         "value": "614GA",
-        "label": "TUPELO CBOC"
+        "label": "Tupelo VA Clinic"
       },
       {
         "value": "614GC",
-        "label": "HOLLY SPRINGS VA CLINIC"
+        "label": "Holly Springs VA Clinic"
       },
       {
         "value": "520A0",
@@ -8689,15 +8689,15 @@
       },
       {
         "value": "586GF",
-        "label": "COLUMBUS"
+        "label": "Columbus VA Clinic"
       },
       {
         "value": "586GD",
-        "label": "HATTIESBURG"
+        "label": "Hattiesburg VA Clinic"
       },
       {
         "value": "586GE",
-        "label": "NATCHEZ"
+        "label": "Natchez VA Clinic"
       },
       {
         "value": "586UMC",
@@ -8705,11 +8705,11 @@
       },
       {
         "value": "586GG",
-        "label": "MCCOMB CBOC"
+        "label": "McComb VA Clinic"
       },
       {
         "value": "586QB",
-        "label": "DOGWOOD VIEW PARKWAY VA CLINIC"
+        "label": "Dogwood View Parkway VA Clinic"
       },
       {
         "value": "586QC",
@@ -8717,101 +8717,101 @@
       },
       {
         "value": "520",
-        "label": "BILOXI VA MEDICAL CENTER"
+        "label": "Biloxi VA Medical Center"
       },
       {
         "value": "586",
-        "label": "G.V. (SONNY) MONTGOMERY"
+        "label": "G.V. (Sonny) Montgomery Department of Veterans Affairs Medical Center"
       }
     ],
     "CA": [
       {
         "value": "640A0",
-        "label": "PALO ALTO HEALTH CARE SYSTEM - MENLO PARK DIVSION"
+        "label": "Palo Alto VA Medical Center-Menlo Park"
       },
       {
         "value": "640A4",
-        "label": "PALO ALTO VAMC-LIVERMORE"
+        "label": "Palo Alto VA Medical Center-Livermore"
       },
       {
         "value": "640BY",
-        "label": "SAN JOSE VA CLINIC"
+        "label": "San Jose VA Clinic"
       },
       {
         "value": "570GA",
-        "label": "MERCED VA CLINIC"
+        "label": "Merced VA Clinic"
       },
       {
         "value": "570GB",
-        "label": "TULARE VA CLINIC"
+        "label": "Tulare VA Clinic"
       },
       {
         "value": "612A4",
-        "label": "SACRAMENTO VA MEDICAL CENTER"
+        "label": "Sacramento VA Medical Center"
       },
       {
         "value": "612B4",
-        "label": "REDDING VA CLINIC"
+        "label": "Redding VA Clinic"
       },
       {
         "value": "612BY",
-        "label": "OAKLAND VA CLINIC"
+        "label": "Oakland VA Clinic"
       },
       {
         "value": "612GD",
-        "label": "FAIRFIELD VA CLINIC"
+        "label": "Fairfield VA Clinic"
       },
       {
         "value": "612GE",
-        "label": "MARE ISLAND VA CLINIC"
+        "label": "Mare Island VA Clinic"
       },
       {
         "value": "612GF",
-        "label": "MARTINEZ VA MEDICAL CENTER"
+        "label": "Martinez VA Medical Center"
       },
       {
         "value": "612GG",
-        "label": "CHICO VA CLINIC"
+        "label": "Chico VA Clinic"
       },
       {
         "value": "612GH",
-        "label": "MCCLELLAN VA CLINIC"
+        "label": "McClellan VA Clinic"
       },
       {
         "value": "605GA",
-        "label": "VICTORVILLE CBOC"
+        "label": "Victorville VA Clinic"
       },
       {
         "value": "605GB",
-        "label": "MURRIETA CBOC"
+        "label": "Murrieta VA Clinic"
       },
       {
         "value": "605GC",
-        "label": "PALM DESERT CBOC"
+        "label": "Palm Desert VA Clinic"
       },
       {
         "value": "605GD",
-        "label": "CORONA CBOC"
+        "label": "Corona VA Clinic"
       },
       {
         "value": "605GE",
-        "label": "RANCHO CUCAMONGA CBOC"
+        "label": "Rancho Cucamonga VA Clinic"
       },
       {
         "value": "600GA",
-        "label": "ANAHEIM VETERANS HEALTH CLINIC"
+        "label": "Anaheim VA Clinic"
       },
       {
         "value": "600GB",
-        "label": "SANTA ANA VETERANS HEALTH CLINIC"
+        "label": "Santa Ana VA Clinic"
       },
       {
         "value": "600GC",
-        "label": "CABRILLO VETERANS HEALTH CLINIC"
+        "label": "Cabrillo VA Clinic"
       },
       {
         "value": "600GD",
-        "label": "SANTA FE SPRINGS VA CLINIC"
+        "label": "Santa Fe Springs VA Clinic"
       },
       {
         "value": "654GA",
@@ -8819,23 +8819,23 @@
       },
       {
         "value": "662GE",
-        "label": "SAN BRUNO CBOC"
+        "label": "San Bruno VA Clinic"
       },
       {
         "value": "640HC",
-        "label": "MONTEREY VA CLINIC"
+        "label": "Major General William H. Gourley VA-DoD Outpatient Clinic"
       },
       {
         "value": "600GE",
-        "label": "LAGUNA HILLS VET HLTH CLINIC"
+        "label": "Laguna Hills VA Clinic"
       },
       {
         "value": "662GF",
-        "label": "SAN FRANCISCO VA CLINIC"
+        "label": "San Francisco VA Clinic"
       },
       {
         "value": "662GA",
-        "label": "SANTA ROSA, CA CBOC"
+        "label": "Santa Rosa VA Clinic"
       },
       {
         "value": "662GB",
@@ -8843,71 +8843,71 @@
       },
       {
         "value": "662GC",
-        "label": "EUREKA VA CLINIC"
+        "label": "Eureka VA Clinic"
       },
       {
         "value": "662GD",
-        "label": "UKIAH VA CLINIC"
+        "label": "Ukiah VA Clinic"
       },
       {
         "value": "664BY",
-        "label": "MISSION VALLEY SOC"
+        "label": "Mission Valley VA Clinic"
       },
       {
         "value": "664GA",
-        "label": "IMPERIAL VALLEY CBOC"
+        "label": "Imperial Valley VA Clinic"
       },
       {
         "value": "664GB",
-        "label": "OCEANSIDE CBOC"
+        "label": "Oceanside VA Clinic"
       },
       {
         "value": "664GC",
-        "label": "CHULA VISTA CBOC"
+        "label": "Chula Vista VA Clinic"
       },
       {
         "value": "664GD",
-        "label": "ESCONDIDO CBOC"
+        "label": "Escondido VA Clinic"
       },
       {
         "value": "640GA",
-        "label": "CAPITOLA VA CLINIC"
+        "label": "Capitola VA Clinic"
       },
       {
         "value": "640GB",
-        "label": "SONORA VA CLINIC"
+        "label": "Sonora VA Clinic"
       },
       {
         "value": "640HA",
-        "label": "PALO ALTO HEALTH CARE SYSTEM - STOCKTON DIVSION"
+        "label": "Stockton VA Clinic"
       },
       {
         "value": "640HB",
-        "label": "MODESTO VA CLINIC"
+        "label": "Modesto VA Clinic"
       },
       {
         "value": "691GE",
-        "label": "LOS ANGELES CBOC"
+        "label": "Los Angeles VA Clinic"
       },
       {
         "value": "691GF",
-        "label": "EAST LOS ANGELES CBOC"
+        "label": "East Los Angeles VA Clinic"
       },
       {
         "value": "691GG",
-        "label": "ANTELOPE VALLEY VA CLINIC"
+        "label": "Antelope Valley VA Clinic"
       },
       {
         "value": "691GK",
-        "label": "SAN LUIS OBISPO CBOC"
+        "label": "San Luis Obispo VA Clinic"
       },
       {
         "value": "691GL",
-        "label": "SANTA MARIA CBOC"
+        "label": "Santa Maria VA Clinic"
       },
       {
         "value": "691GM",
-        "label": "OXNARD CBOC"
+        "label": "Oxnard VA Clinic"
       },
       {
         "value": "691GN",
@@ -8919,59 +8919,59 @@
       },
       {
         "value": "640GC",
-        "label": "FREMONT VA CLINIC"
+        "label": "Fremont VA Clinic"
       },
       {
         "value": "654GD",
-        "label": "DIAMOND VIEW VA CLINIC"
+        "label": "Diamond View VA Clinic"
       },
       {
         "value": "570GC",
-        "label": "OAKHURST VA CLINIC"
+        "label": "Oakhurst VA Clinic"
       },
       {
         "value": "662GG",
-        "label": "CLEARLAKE VA CLINIC"
+        "label": "Clearlake VA Clinic"
       },
       {
         "value": "612GI",
-        "label": "YUBA CITY CBOC"
+        "label": "Yuba City VA Clinic"
       },
       {
         "value": "691A4",
-        "label": "SEPULVEDA OUTPATIENT & NURSING HOME CARE"
+        "label": "Sepulveda VA Medical Center"
       },
       {
         "value": "691GB",
-        "label": "SANTA BARBARA CBOC"
+        "label": "Santa Barbara VA Clinic"
       },
       {
         "value": "691GC",
-        "label": "GARDENA CBOC"
+        "label": "Gardena VA Clinic"
       },
       {
         "value": "691GD",
-        "label": "BAKERSFIELD CBOC"
+        "label": "Bakersfield VA Clinic"
       },
       {
         "value": "612GJ",
-        "label": "YREKA VA CLINIC"
+        "label": "Yreka VA Clinic"
       },
       {
         "value": "605BZ",
-        "label": "LOMA LINDA VA CLINIC"
+        "label": "Loma Linda VA Clinic"
       },
       {
         "value": "612QD",
-        "label": "HOWE ROAD VA CLINIC"
+        "label": "Howe Road VA Clinic"
       },
       {
         "value": "600",
-        "label": "VA LONG BEACH HEALTHCARE SYSTEM"
+        "label": "Tibor Rubin VA Medical Center"
       },
       {
         "value": "605",
-        "label": "LOMA LINDA HCS"
+        "label": "Jerry L. Pettis Memorial Veterans' Hospital"
       },
       {
         "value": "612",
@@ -8979,49 +8979,49 @@
       },
       {
         "value": "640",
-        "label": "PALO ALTO VA MEDICAL CENTER"
+        "label": "Palo Alto VA Medical Center"
       },
       {
         "value": "662",
-        "label": "SAN FRANCISCO VAMC"
+        "label": "San Francisco VA Medical Center"
       },
       {
         "value": "664",
-        "label": "VA SAN DIEGO HEALTHCARE SYSTEM (664)"
+        "label": "San Diego VA Medical Center"
       },
       {
         "value": "691",
-        "label": "VA GREATER LOS ANGELES HEALTHCARE SYSTEM - WEST LOS ANGELES DIVISION"
+        "label": "West Los Angeles VA Medical Center"
       },
       {
         "value": "570",
-        "label": "FRESNO VA MEDICAL CENTER"
+        "label": "Fresno VA Medical Center"
       }
     ],
     "WY": [
       {
         "value": "568HA",
-        "label": "NEWCASTLE"
+        "label": "Newcastle VA Clinic"
       },
       {
         "value": "666GF",
-        "label": "ROCK SPRINGS CBOC"
+        "label": "Rock Springs VA Clinic"
       },
       {
         "value": "666GB",
-        "label": "CASPER CBOC"
+        "label": "Casper VA Clinic"
       },
       {
         "value": "666GC",
-        "label": "RIVERTON VA CLINIC"
+        "label": "Riverton VA Clinic"
       },
       {
         "value": "666GD",
-        "label": "CODY VA CLINIC"
+        "label": "Cody VA Clinic"
       },
       {
         "value": "666GE",
-        "label": "GILLETTE VA CLINIC"
+        "label": "Gillette VA Clinic"
       },
       {
         "value": "442MB",
@@ -9029,45 +9029,45 @@
       },
       {
         "value": "442HK",
-        "label": "WHEATLAND VA MOBILE CLINIC"
+        "label": "Wheatland VA Mobile Clinic"
       },
       {
         "value": "666QA",
-        "label": "AFTON VA CLINIC"
+        "label": "Afton VA Clinic"
       },
       {
         "value": "666QB",
-        "label": "EVANSTON VA CLINIC"
+        "label": "Evanston VA Clinic"
       },
       {
         "value": "666QC",
-        "label": "WORLAND VA CLINIC"
+        "label": "Worland VA Clinic"
       },
       {
         "value": "442QD",
-        "label": "LARAMIE VA MOBILE CLINIC"
+        "label": "Laramie VA Mobile Clinic"
       },
       {
         "value": "666",
-        "label": "SHERIDAN VA MEDICAL CENTER"
+        "label": "Sheridan VA Medical Center Outbased Benefit Office"
       },
       {
         "value": "442",
-        "label": "CHEYENNE VA MEDICAL"
+        "label": "Cheyenne Regional Benefit Office and VA Medical Center"
       }
     ],
     "MA": [
       {
         "value": "518GA",
-        "label": "LYNN VA CLINIC"
+        "label": "Lynn VA Clinic"
       },
       {
         "value": "518GB",
-        "label": "HAVERHILL VA CLINIC"
+        "label": "Haverhill VA Clinic"
       },
       {
         "value": "518GE",
-        "label": "GLOUCESTER VA CLINIC"
+        "label": "Gloucester VA Clinic"
       },
       {
         "value": "518GG",
@@ -9075,23 +9075,23 @@
       },
       {
         "value": "523A4",
-        "label": "VA BOSTON HEALTHCARE SYSTEM - WEST ROXBURY DIVISION"
+        "label": "West Roxbury VA Medical Center"
       },
       {
         "value": "523A5",
-        "label": "VA BOSTON HEALTHCARE SYSTEM - BROCKTON DIVISION"
+        "label": "Brockton VA Medical Center"
       },
       {
         "value": "523BY",
-        "label": "VA BOSTON HEALTHCARE SYSTEM - LOWELL DIVISION"
+        "label": "Lowell VA Clinic"
       },
       {
         "value": "523BZ",
-        "label": "VA BOSTON HEALTHCARE SYSTEM - BOSTON OPC DIVISION"
+        "label": "Causeway VA Clinic"
       },
       {
         "value": "523GA",
-        "label": "VA BOSTON HEALTHCARE SYSTEM - FRAMINGHAM CBOC"
+        "label": "Framingham VA Clinic"
       },
       {
         "value": "523GB",
@@ -9099,261 +9099,261 @@
       },
       {
         "value": "523GC",
-        "label": "VA BOSTON HEALTHCARE SYSTEM - QUINCY CBOC"
+        "label": "Quincy VA Clinic"
       },
       {
         "value": "523GD",
-        "label": "PLYMOUTH CBOC"
+        "label": "Plymouth VA Clinic"
       },
       {
         "value": "631BY",
-        "label": "SPRINGFIELD OPC"
+        "label": "Springfield VA Clinic"
       },
       {
         "value": "631GC",
-        "label": "PITTSFIELD CBOC"
+        "label": "Pittsfield VA Clinic"
       },
       {
         "value": "631GD",
-        "label": "GREENFIELD CBOC"
+        "label": "Greenfield VA Clinic"
       },
       {
         "value": "650GA",
-        "label": "NEW BEDFORD CBOC"
+        "label": "New Bedford VA Clinic"
       },
       {
         "value": "650GB",
-        "label": "HYANNIS CBOC"
+        "label": "Hyannis VA Clinic"
       },
       {
         "value": "631GE",
-        "label": "WORCESTER CBOC"
+        "label": "Worcester VA Clinic"
       },
       {
         "value": "631GF",
-        "label": "FITCHBURG CBOC"
+        "label": "Fitchburg VA Clinic"
       },
       {
         "value": "631QB",
-        "label": "LAKE AVENUE VA CLINIC"
+        "label": "Lake Avenue VA Clinic"
       },
       {
         "value": "518",
-        "label": "EDITH NOURSE ROGERS VAMC"
+        "label": "Edith Nourse Rogers Memorial Veterans' Hospital"
       },
       {
         "value": "523",
-        "label": "VA BOSTON HEALTHCARE SYSTEM - BOSTON DIVISION"
+        "label": "Jamaica Plain VA Medical Center"
       },
       {
         "value": "631",
-        "label": "VA CNTRL WSTRN MASSCHUSETS HCS"
+        "label": "Edward P. Boland Department of Veterans Affairs Medical Center"
       }
     ],
     "VA": [
       {
         "value": "613GC",
-        "label": "STEPHENS CITY VA CLINIC"
+        "label": "Stephens City VA Clinic"
       },
       {
         "value": "613GF",
-        "label": "HARRISONBURG VA CLINIC"
+        "label": "Harrisonburg VA Clinic"
       },
       {
         "value": "652GA",
-        "label": "FREDERICKSBURG VA CLINIC"
+        "label": "Fredericksburg VA Clinic"
       },
       {
         "value": "688GA",
-        "label": "FORT BELVOIR VA CLINIC"
+        "label": "Fort Belvoir VA Clinic"
       },
       {
         "value": "652GE",
-        "label": "CHARLOTTESVILLE VA CLINIC"
+        "label": "Charlottesville VA Clinic"
       },
       {
         "value": "658GA",
-        "label": "TAZEWELL VA CLINIC"
+        "label": "Tazewell VA Clinic"
       },
       {
         "value": "658GB",
-        "label": "DANVILLE VA CLINIC"
+        "label": "Danville VA Clinic"
       },
       {
         "value": "658GC",
-        "label": "LYNCHBURG VA CLINIC"
+        "label": "Lynchburg VA Clinic"
       },
       {
         "value": "621GJ",
-        "label": "BRISTOL VA CLINIC"
+        "label": "Bristol VA Clinic"
       },
       {
         "value": "590GB",
-        "label": "VIRGINIA BEACH VA CLINIC"
+        "label": "Virginia Beach VA Clinic"
       },
       {
         "value": "652GF",
-        "label": "EMPORIA VA CLINIC"
+        "label": "Emporia VA Clinic"
       },
       {
         "value": "658GE",
-        "label": "WYTHEVILLE VA CLINIC"
+        "label": "Wytheville VA Clinic"
       },
       {
         "value": "658GD",
-        "label": "STAUNTON CBOC"
+        "label": "Staunton VA Clinic"
       },
       {
         "value": "621GC",
-        "label": "NORTON VA CLINIC"
+        "label": "Norton VA Clinic"
       },
       {
         "value": "652GH",
-        "label": "HUNTER HOLMES MCGUIRE 2 MOB CL"
+        "label": "Hunter Holmes McGuire 2 VA Mobile Clinic"
       },
       {
         "value": "652GG",
-        "label": "RICHMOND VA MOBILE CLINIC"
+        "label": "Richmond 1 VA Mobile Clinic"
       },
       {
         "value": "590GD",
-        "label": "CHESAPEAKE VA CLINIC"
+        "label": "Chesapeake VA Clinic"
       },
       {
         "value": "652GB",
-        "label": "FREDERICKSBURG 2 VA CLINIC"
+        "label": "Fredericksburg 2 VA Clinic"
       },
       {
         "value": "590",
-        "label": "HAMPTON VA MEDICAL CENTER"
+        "label": "Hampton VA Medical Center"
       },
       {
         "value": "652",
-        "label": "HUNTER HOLMES MCGUIRE HOSPITAL"
+        "label": "Hunter Holmes McGuire Hospital"
       },
       {
         "value": "658",
-        "label": "SALEM VA MEDICAL CENTER"
+        "label": "Salem VA Medical Center"
       }
     ],
     "AR": [
       {
         "value": "614GB",
-        "label": "JONESBORO VA CLINIC"
+        "label": "Jonesboro VA Clinic"
       },
       {
         "value": "564GA",
-        "label": "HARRISON VA CLINIC"
+        "label": "Harrison VA Clinic"
       },
       {
         "value": "564GB",
-        "label": "FORT SMITH VA CLINIC"
+        "label": "Fort Smith VA Clinic"
       },
       {
         "value": "598GD",
-        "label": "MENA, AR (CBOC)"
+        "label": "Mena VA Clinic"
       },
       {
         "value": "598A0",
-        "label": "NORTH LITTLE ROCK, AR VANPH"
+        "label": "Eugene J. Towbin Healthcare Center"
       },
       {
         "value": "598GA",
-        "label": "MOUNTAIN HOME, AR CBOC"
+        "label": "Mountain Home VA Clinic"
       },
       {
         "value": "598GB",
-        "label": "EL DORADO, AR CBOC"
+        "label": "El Dorado VA Clinic"
       },
       {
         "value": "598GC",
-        "label": "HOT SPRINGS, AR CBOC"
+        "label": "Hot Springs VA Clinic"
       },
       {
         "value": "598GE",
-        "label": "PINE BLUFF CBOC"
+        "label": "Pine Bluff VA Clinic"
       },
       {
         "value": "598GF",
-        "label": "SEARCY CBOC"
+        "label": "Searcy VA Clinic"
       },
       {
         "value": "667GA",
-        "label": "TEXARKANA CBOC"
+        "label": "Texarkana VA Clinic"
       },
       {
         "value": "614GN",
-        "label": "HELENA VA CLINIC"
+        "label": "Helena VA Clinic"
       },
       {
         "value": "564GD",
-        "label": "OZARK CBOC"
+        "label": "Ozark VA Clinic"
       },
       {
         "value": "598GG",
-        "label": "CONWAY CBOC"
+        "label": "Conway VA Clinic"
       },
       {
         "value": "598GH",
-        "label": "RUSSELLVILLE CBOC"
+        "label": "Russellville VA Clinic"
       },
       {
         "value": "598",
-        "label": "CENTRAL ARKANSAS HEALTH CARE SYSTEM - LITTLE ROCK"
+        "label": "John L. McClellan Memorial Veterans' Hospital"
       },
       {
         "value": "564",
-        "label": "FAYETTEVILLE VA MEDICAL"
+        "label": "Fayetteville VA Medical Center"
       }
     ],
     "TN": [
       {
         "value": "614GD",
-        "label": "SAVANNAH VA CLINIC"
+        "label": "Savannah VA Clinic"
       },
       {
         "value": "621GA",
-        "label": "ROGERSVILLE VA CLINIC"
+        "label": "Rogersville VA Clinic"
       },
       {
         "value": "626A4",
-        "label": "ALVIN C. YORK VAMC"
+        "label": "Alvin C. York Veterans' Administration Medical Center"
       },
       {
         "value": "626GA",
-        "label": "DOVER VA CLINIC"
+        "label": "Dover VA Clinic"
       },
       {
         "value": "626GE",
-        "label": "CLARKSVILLE VA CLINIC"
+        "label": "Clarksville VA Clinic"
       },
       {
         "value": "626GF",
-        "label": "CHATTANOOGA VA CLINIC"
+        "label": "Chattanooga VA Clinic"
       },
       {
         "value": "626GG",
-        "label": "TULLAHOMA COMMUNITY BASED OUTPATIENT CLINIC"
+        "label": "Tullahoma VA Clinic"
       },
       {
         "value": "626GH",
-        "label": "COOKEVILLE VA CLINIC"
+        "label": "Cookeville VA Clinic"
       },
       {
         "value": "614GF",
-        "label": "NONCONNAH BOULEVARD VA CLINIC"
+        "label": "Nonconnah Boulevard VA Clinic"
       },
       {
         "value": "614GE",
-        "label": "COVINGTON VA CLINIC"
+        "label": "Covington VA Clinic"
       },
       {
         "value": "621BY",
-        "label": "WILLIAM C. TALLENT VA OPC"
+        "label": "William C. Tallent Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "614GG",
-        "label": "JACKSON VA CLINIC"
+        "label": "Jackson VA Clinic"
       },
       {
         "value": "614GH",
@@ -9361,159 +9361,159 @@
       },
       {
         "value": "614GI",
-        "label": "DYERSBURG VA CLINIC"
+        "label": "Dyersburg VA Clinic"
       },
       {
         "value": "621GI",
-        "label": "DANNIE A. CARR VETERANS OPC"
+        "label": "Dannie A. Carr Veterans Outpatient Clinic"
       },
       {
         "value": "626GM",
-        "label": "MAURY COUNTY CBOC"
+        "label": "Maury County VA Clinic"
       },
       {
         "value": "626GL",
-        "label": "ROANE COUNTY VA CLINIC"
+        "label": "Roane County VA Clinic"
       },
       {
         "value": "626GK",
-        "label": "MCMINNVILLE VA CLINIC"
+        "label": "McMinnville VA Clinic"
       },
       {
         "value": "621GG",
-        "label": "MORRISTOWN VA CLINIC"
+        "label": "Morristown VA Clinic"
       },
       {
         "value": "621GK",
-        "label": "CAMPBELL COUNTY VA CLINIC"
+        "label": "Campbell County VA Clinic"
       },
       {
         "value": "626QA",
-        "label": "ALBION STREET VA CLINIC"
+        "label": "Albion Street VA Clinic"
       },
       {
         "value": "626QB",
-        "label": "CHARLOTTE AVENUE VA CLINIC"
+        "label": "Charlotte Avenue VA Clinic"
       },
       {
         "value": "626QC",
-        "label": "POINTE CENTRE VA CLINIC"
+        "label": "Pointe Centre VA Clinic"
       },
       {
         "value": "621QE",
-        "label": "DOWNTOWN WEST VA CLINIC"
+        "label": "Downtown West VA Clinic"
       },
       {
         "value": "626GP",
-        "label": "GALLATIN VA CLINIC"
+        "label": "Gallatin VA Clinic"
       },
       {
         "value": "626GO",
-        "label": "INTERNATIONAL PLAZA VA CLINIC"
+        "label": "International Plaza VA Clinic"
       },
       {
         "value": "614",
-        "label": "MEMPHIS VA MEDICAL CENTER"
+        "label": "Memphis VA Medical Center"
       },
       {
         "value": "621",
-        "label": "JAMES H. QUILLEN VAMC"
+        "label": "James H. Quillen Department of Veterans Affairs Medical Center"
       },
       {
         "value": "626",
-        "label": "TENNESSEE VALLEY HCS"
+        "label": "Nashville VA Medical Center"
       }
     ],
     "MO": [
       {
         "value": "564BY",
-        "label": "GENE TAYLOR VA OPC"
+        "label": "Gene Taylor Veterans' Outpatient Clinic"
       },
       {
         "value": "657A0",
-        "label": "VA HEARTLAND-EAST, VISN 15 HCS JEFFERSON BARRACKS"
+        "label": "St. Louis VA Medical Center-Jefferson Barracks"
       },
       {
         "value": "657A4",
-        "label": "JOHN PERSHING VAMC"
+        "label": "John J. Pershing Veterans' Administration Medical Center"
       },
       {
         "value": "657GB",
-        "label": "ST LOUIS COUNTY VA CLINIC"
+        "label": "St. Louis County VA Clinic"
       },
       {
         "value": "657GD",
-        "label": "ST CHARLES VA CLINIC"
+        "label": "St. Charles County VA Clinic"
       },
       {
         "value": "589A4",
-        "label": "HARRY S. TRUMAN VAMC"
+        "label": "Harry S. Truman Memorial Veterans' Hospital"
       },
       {
         "value": "589G1",
-        "label": "WARRENSBURG MO CBOC"
+        "label": "Warrensburg VA Clinic"
       },
       {
         "value": "589GB",
-        "label": "BELTON VA CLINIC"
+        "label": "Belton VA Clinic"
       },
       {
         "value": "589GD",
-        "label": "NEVADA VA CLINIC"
+        "label": "Nevada VA Clinic"
       },
       {
         "value": "589GZ",
-        "label": "CAMERON CBOC"
+        "label": "Cameron VA Clinic"
       },
       {
         "value": "564GC",
-        "label": "BRANSON CBOC"
+        "label": "Branson VA Clinic"
       },
       {
         "value": "589JB",
-        "label": "EXCELSIOR SPRINGS CBOC"
+        "label": "Excelsior Springs VA Clinic"
       },
       {
         "value": "657GS",
-        "label": "WASHINGTON VA CLINIC"
+        "label": "Franklin County VA Clinic"
       },
       {
         "value": "589HK",
-        "label": "KANSAS CITY MOC"
+        "label": "Kansas City VA Mobile Clinic"
       },
       {
         "value": "564GF",
-        "label": "JOPLIN VA CLINIC"
+        "label": "Joplin VA Clinic"
       },
       {
         "value": "657GX",
-        "label": "ST. LOUIS VA CLINIC"
+        "label": "Washington Avenue VA Clinic"
       },
       {
         "value": "657GY",
-        "label": "MANCHESTER VA CLINIC"
+        "label": "Manchester Avenue VA Clinic"
       },
       {
         "value": "589JF",
-        "label": "HONOR VA CLINIC"
+        "label": "Honor VA Clinic"
       },
       {
         "value": "589",
-        "label": "KANSAS CITY VAMC"
+        "label": "Kansas City VA Medical Center"
       },
       {
         "value": "657",
-        "label": "VA HEARTLAND-EAST, VISN 15 HCS JOHN COCHRAN MEMORIAL HOSPITAL"
+        "label": "John Cochran Veterans Hospital"
       }
     ],
     "AL": [
       {
         "value": "520GA",
-        "label": "MOBILE OPC"
+        "label": "Mobile VA Clinic"
       },
       {
         "value": "521GA",
-        "label": "HUNTSVILLE CBOC"
+        "label": "Huntsville VA Clinic"
       },
       {
         "value": "521GB",
@@ -9521,229 +9521,229 @@
       },
       {
         "value": "521GC",
-        "label": "FLORENCE CBOC"
+        "label": "Florence VA Clinic"
       },
       {
         "value": "521GD",
-        "label": "RAINBOW CITY CBOC"
+        "label": "Rainbow City VA Clinic"
       },
       {
         "value": "521GE",
-        "label": "ANNISTON CBOC"
+        "label": "Oxford VA Clinic"
       },
       {
         "value": "521GF",
-        "label": "JASPER VA CLINIC"
+        "label": "Jasper VA Clinic"
       },
       {
         "value": "619A4",
-        "label": "CENTRAL ALABAMA HEALTH CARE SYSTEM - TUSKEGEE DIVISION"
+        "label": "Central Alabama VA Medical Center-Tuskegee"
       },
       {
         "value": "619GB",
-        "label": "CENTRAL ALABAMA HCS - DOTHAN CBOC"
+        "label": "Dothan 1 VA Clinic"
       },
       {
         "value": "521GG",
-        "label": "BESSEMER CBOC"
+        "label": "Bessemer VA Clinic"
       },
       {
         "value": "619GD",
-        "label": "WIREGRASS CBOC"
+        "label": "Wiregrass VA Clinic"
       },
       {
         "value": "521GI",
-        "label": "GUNTERSVILLE CBOC"
+        "label": "Guntersville VA Clinic"
       },
       {
         "value": "521GH",
-        "label": "CHILDERSBURG CBOC"
+        "label": "Childersburg VA Clinic"
       },
       {
         "value": "679HK",
-        "label": "MOBILE CLINIC TUSCALOOSA"
+        "label": "Tuscaloosa VA Mobile Clinic"
       },
       {
         "value": "619GE",
-        "label": "MONROE COUNTY CBOC"
+        "label": "Monroe County VA Clinic"
       },
       {
         "value": "679GA",
-        "label": "SELMA VA CLINIC"
+        "label": "Selma VA Clinic"
       },
       {
         "value": "521GJ",
-        "label": "BIRMINGHAM VA CLINIC"
+        "label": "Birmingham VA Clinic"
       },
       {
         "value": "521",
-        "label": "BIRMINGHAM VAMC"
+        "label": "Birmingham VA Medical Center"
       },
       {
         "value": "619",
-        "label": "CENTRAL ALABAMA HEALTH CARE SYSTEM - MONTGOMERY DIVISION"
+        "label": "Central Alabama VA Medical Center-Montgomery"
       },
       {
         "value": "679",
-        "label": "TUSCALOOSA VA MEDICAL CENTER"
+        "label": "Tuscaloosa VA Medical Center"
       }
     ],
     "OR": [
       {
         "value": "653BY",
-        "label": "EUGENE, OR CBOC"
+        "label": "Eugene VA Clinic"
       },
       {
         "value": "653GA",
-        "label": "NORTH BEND VA CLINIC"
+        "label": "North Bend VA Clinic"
       },
       {
         "value": "653GB",
-        "label": "BROOKINGS VA CLINIC"
+        "label": "Brookings VA Clinic"
       },
       {
         "value": "648GA",
-        "label": "BEND, OR CBOC"
+        "label": "Bend VA Clinic"
       },
       {
         "value": "648GB",
-        "label": "SALEM VA CLINIC"
+        "label": "Salem VA Clinic"
       },
       {
         "value": "648GD",
-        "label": "NORTH COAST VA CLINIC"
+        "label": "North Coast VA Clinic"
       },
       {
         "value": "692GA",
-        "label": "KLAMATH FALLS VA CLINIC"
+        "label": "Klamath Falls VA Clinic"
       },
       {
         "value": "648GF",
-        "label": "HILLSBORO VA CLINIC"
+        "label": "Hillsboro VA Clinic"
       },
       {
         "value": "692GB",
-        "label": "GRANTS PASS CBOC"
+        "label": "Grants Pass VA Clinic"
       },
       {
         "value": "648GG",
-        "label": "WEST LINN CBOC"
+        "label": "West Linn VA Clinic"
       },
       {
         "value": "648GE",
-        "label": "EAST PORTLAND VA CLINIC"
+        "label": "Fairview VA Clinic"
       },
       {
         "value": "687GC",
-        "label": "LA GRANDE CBOC"
+        "label": "La Grande VA Clinic"
       },
       {
         "value": "648GH",
-        "label": "NEWPORT VA CLINIC"
+        "label": "Newport VA Clinic"
       },
       {
         "value": "531GH",
-        "label": "BURNS VA CLINIC"
+        "label": "Eastern Oregon VA Clinic"
       },
       {
         "value": "648GI",
-        "label": "PORTLAND VA CLINIC"
+        "label": "Portland VA Clinic"
       },
       {
         "value": "648GJ",
-        "label": "LOREN R KAUFMAN VA CLINIC"
+        "label": "Loren R. Kaufman VA Clinic"
       },
       {
         "value": "653QA",
-        "label": "DOWNTOWN EUGENE VA CLINIC"
+        "label": "Downtown Eugene VA Clinic"
       },
       {
         "value": "648",
-        "label": "PORTLAND VA MEDICAL CENTER"
+        "label": "Portland VA Medical Center"
       },
       {
         "value": "653",
-        "label": "ROSEBURG VA MEDICAL CENTER"
+        "label": "Roseburg VA Medical Center"
       },
       {
         "value": "692",
-        "label": "WHITE CITY VA MEDICAL CENTER"
+        "label": "White City VA Medical Center"
       }
     ],
     "OK": [
       {
         "value": "623BY",
-        "label": "TULSA, OK CBOC"
+        "label": "Ernest Childers Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "623GA",
-        "label": "MCALESTER VA CLINIC"
+        "label": "McAlester VA Clinic"
       },
       {
         "value": "635GA",
-        "label": "LAWTON/FT. SILL VA OUTPATIENT CLINIC"
+        "label": "Lawton VA Clinic"
       },
       {
         "value": "635GC",
-        "label": "BLACKWELL CBOC"
+        "label": "Blackwell VA Clinic"
       },
       {
         "value": "635GD",
-        "label": "ADA CBOC"
+        "label": "Ada VA Clinic"
       },
       {
         "value": "635HB",
-        "label": "ARDMORE VETERANS CENTER CLINIC"
+        "label": "Ardmore VA Clinic"
       },
       {
         "value": "564GE",
-        "label": "JAY CBOC"
+        "label": "Jay VA Clinic"
       },
       {
         "value": "623GB",
-        "label": "VINITA CBOC"
+        "label": "Vinita VA Clinic"
       },
       {
         "value": "635GE",
-        "label": "STILLWATER CBOC"
+        "label": "Stillwater VA Clinic"
       },
       {
         "value": "635GF",
-        "label": "ALTUS CBOC"
+        "label": "Altus VA Clinic"
       },
       {
         "value": "635GG",
-        "label": "ENID CBOC"
+        "label": "Enid VA Clinic"
       },
       {
         "value": "635QB",
-        "label": "SOUTH OKLAHOMA CITY VA CLINIC"
+        "label": "South Oklahoma City VA Clinic"
       },
       {
         "value": "623QC",
-        "label": "YALE AVENUE VA CLINIC"
+        "label": "Yale Avenue VA Clinic"
       },
       {
         "value": "635QC",
-        "label": "FOURTEENTH STREET VA CLINIC"
+        "label": "Fourteenth Street VA Clinic"
       },
       {
         "value": "623",
-        "label": "MUSKOGEE, OK VAMC"
+        "label": "Jack C. Montgomery Department of Veterans Affairs Medical Center"
       },
       {
         "value": "635",
-        "label": "OKLAHOMA CITY VA MEDICAL CENTER"
+        "label": "Oklahoma City VA Medical Center"
       }
     ],
     "NV": [
       {
         "value": "654GB",
-        "label": "CARSON VALLEY VA CLINIC"
+        "label": "Carson Valley VA Clinic"
       },
       {
         "value": "593GC",
-        "label": "PAHRUMP CBOC"
+        "label": "Pahrump VA Clinic"
       },
       {
         "value": "660GC",
@@ -9751,65 +9751,65 @@
       },
       {
         "value": "654GC",
-        "label": "LAHONTAN VALLEY VA CLINIC"
+        "label": "Lahontan Valley VA Clinic"
       },
       {
         "value": "593GD",
-        "label": "NORTHWEST PCC"
+        "label": "Northwest Las Vegas VA Clinic"
       },
       {
         "value": "593GE",
-        "label": "SOUTHEAST PCC"
+        "label": "Southeast Las Vegas VA Clinic"
       },
       {
         "value": "593GF",
-        "label": "SOUTHWEST PCC"
+        "label": "Southwest Las Vegas VA Clinic"
       },
       {
         "value": "593GG",
-        "label": "NORTHEAST PCC"
+        "label": "Northeast Las Vegas VA Clinic"
       },
       {
         "value": "654GE",
-        "label": "RENO EAST VA CLINIC"
+        "label": "Reno East VA Clinic"
       },
       {
         "value": "593GH",
-        "label": "JESSE DEAN VA CLINIC"
+        "label": "Master Chief Petty Officer Jesse Dean VA Clinic"
       },
       {
         "value": "593QC",
-        "label": "WEST CHEYENNE VA CLINIC"
+        "label": "West Cheyenne VA Clinic"
       },
       {
         "value": "654QD",
-        "label": "VIRGINIA STREET VA CLINIC"
+        "label": "Virginia Street VA Clinic"
       },
       {
         "value": "593",
-        "label": "SOUTHERN NEVADA HCS"
+        "label": "North Las Vegas VA Medical Center"
       },
       {
         "value": "654",
-        "label": "IOANNIS A. LOUGARIS VAMC"
+        "label": "Ioannis A. Lougaris Veterans' Administration Medical Center"
       }
     ],
     "KS": [
       {
         "value": "589A5",
-        "label": "COLMERY O NEIL VAMC"
+        "label": "Colmery-O'Neil Veterans' Administration Medical Center"
       },
       {
         "value": "589A6",
-        "label": "DWIGHT D. EISENHOWER VAMC"
+        "label": "Dwight D. Eisenhower Department of Veterans Affairs Medical Center"
       },
       {
         "value": "589A7",
-        "label": "ROBERT J. DOLE VAMC"
+        "label": "Robert J. Dole Department of Veterans Affairs Medical and Regional Office Center"
       },
       {
         "value": "589GC",
-        "label": "PAOLA VA CLINIC"
+        "label": "Paola VA Clinic"
       },
       {
         "value": "589G9",
@@ -9817,49 +9817,49 @@
       },
       {
         "value": "589JC",
-        "label": "JOHNSON COUNTY VA CLINIC"
+        "label": "Shawnee VA Clinic"
       }
     ],
     "AZ": [
       {
         "value": "644BY",
-        "label": "SOUTHEAST CBOC"
+        "label": "Southeast VA Clinic"
       },
       {
         "value": "644GA",
-        "label": "SUN CITY, AZ CBOC"
+        "label": "Northwest VA Clinic"
       },
       {
         "value": "644GB",
-        "label": "SHOW LOW CBOC"
+        "label": "Show Low VA Clinic"
       },
       {
         "value": "644GC",
-        "label": "SOUTHWEST CBOC"
+        "label": "Southwest VA Clinic"
       },
       {
         "value": "644GD",
-        "label": "PAYSON CBOC"
+        "label": "Payson VA Clinic"
       },
       {
         "value": "649GA",
-        "label": "KINGMAN CBOC"
+        "label": "Kingman VA Clinic"
       },
       {
         "value": "649GB",
-        "label": "FLAGSTAFF CBOC"
+        "label": "Flagstaff VA Clinic"
       },
       {
         "value": "649GC",
-        "label": "PRESCOTT CBOC LAKE HAVASU CITY"
+        "label": "Lake Havasu City VA Clinic"
       },
       {
         "value": "649GD",
-        "label": "ANTHEM CBOC"
+        "label": "Anthem VA Clinic"
       },
       {
         "value": "649GE",
-        "label": "COTTONWOOD CBOC"
+        "label": "Cottonwood VA Clinic"
       },
       {
         "value": "649HK",
@@ -9867,195 +9867,195 @@
       },
       {
         "value": "678GA",
-        "label": "SIERRA VISTA CBOC"
+        "label": "Sierra Vista VA Clinic"
       },
       {
         "value": "678GB",
-        "label": "YUMA CBOC"
+        "label": "Yuma VA Clinic"
       },
       {
         "value": "678GD",
-        "label": "SAFFORD CBOC"
+        "label": "Safford VA Clinic"
       },
       {
         "value": "678GE",
-        "label": "GREEN VALLEY CBOC"
+        "label": "Green Valley VA Clinic"
       },
       {
         "value": "644GF",
-        "label": "GLOBE HEALTH CARE CLINIC"
+        "label": "Globe VA Clinic"
       },
       {
         "value": "678GG",
-        "label": "SOUTHEAST TUCSON"
+        "label": "Southeast Tucson VA Clinic"
       },
       {
         "value": "678GC",
-        "label": "CASA GRANDE CBOC"
+        "label": "Casa Grande VA Clinic"
       },
       {
         "value": "644GE",
-        "label": "THUNDERBIRD VA CBOC"
+        "label": "Thunderbird VA Clinic"
       },
       {
         "value": "678GF",
-        "label": "NORTHWEST TUCSON URBAN CBOC"
+        "label": "Northwest Tucson VA Clinic"
       },
       {
         "value": "644GG",
-        "label": "N EAST PHOENIX VA CLINIC"
+        "label": "Northeast Phoenix VA Clinic"
       },
       {
         "value": "644GH",
-        "label": "PHOENIX MIDTOWN VA CLINIC"
+        "label": "Phoenix Midtown VA Clinic"
       },
       {
         "value": "678QA",
-        "label": "COCHISE COUNTY VA CLINIC"
+        "label": "Cochise County VA Clinic"
       },
       {
         "value": "644QB",
-        "label": "PHOENIX VA MOBILE CLINIC"
+        "label": "Phoenix VA Mobile Clinic"
       },
       {
         "value": "678QB",
-        "label": "PINAL COUNTY VA CLINIC"
+        "label": "Pinal County VA Clinic"
       },
       {
         "value": "644",
-        "label": "PHOENIX VAMC"
+        "label": "Carl T. Hayden Veterans' Administration Medical Center"
       },
       {
         "value": "649",
-        "label": "NORTHERN ARIZONA HEALTH CARE SYSTEM - PRESCOTT DIVISION"
+        "label": "Bob Stump Department of Veterans Affairs Medical Center"
       },
       {
         "value": "678",
-        "label": "SOUTHERN ARIZONA HEALTH CARE SYSTEM - TUCSON DIVISION"
+        "label": "Tucson VA Medical Center"
       }
     ],
     "WA": [
       {
         "value": "648A4",
-        "label": "VANCOUVER,WA DIV PORTLAND VAMC"
+        "label": "Portland VA Medical Center-Vancouver"
       },
       {
         "value": "687GA",
-        "label": "RICHLAND VA CLINIC"
+        "label": "Richland VA Clinic"
       },
       {
         "value": "687HA",
-        "label": "YAKIMA CBOC"
+        "label": "Yakima VA Clinic"
       },
       {
         "value": "668GA",
-        "label": "WENATCHEE VA CLINIC"
+        "label": "Wenatchee VA Clinic"
       },
       {
         "value": "663HK",
-        "label": "PUGET SOUND VA MOBILE CLINIC"
+        "label": "Puget Sound VA Mobile Clinic"
       },
       {
         "value": "668HK",
-        "label": "SPOKANE MORC"
+        "label": "Spokane VA Mobile Clinic"
       },
       {
         "value": "663A4",
-        "label": "PUGET SOUND HEALTH CARE SYSTEM - AMERICAN LAKE DIVISION"
+        "label": "American Lake VA Medical Center"
       },
       {
         "value": "663GA",
-        "label": "BELLEVUE VA CLINIC"
+        "label": "Bellevue VA Clinic"
       },
       {
         "value": "663GB",
-        "label": "BREMERTON VA CLINIC"
+        "label": "Silverdale VA Clinic"
       },
       {
         "value": "663GD",
-        "label": "SOUTH SOUND VA CLINIC"
+        "label": "South Sound VA Clinic"
       },
       {
         "value": "663GC",
-        "label": "MOUNT VERNON VA CLINIC"
+        "label": "Mount Vernon VA Clinic"
       },
       {
         "value": "663GE",
-        "label": "PORT ANGELES VA CBOC"
+        "label": "North Olympic Peninsula VA Clinic"
       },
       {
         "value": "663",
-        "label": "SEATTLE VA MEDICAL CENTER"
+        "label": "Seattle VA Medical Center"
       },
       {
         "value": "668",
-        "label": "MANN-GRANDSTAFF VAMC"
+        "label": "Mann-Grandstaff Department of Veterans Affairs Medical Center"
       },
       {
         "value": "687",
-        "label": "JONATHAN M. WAINWRIGHT VAMC"
+        "label": "Jonathan M. Wainwright Memorial VA Medical Center"
       }
     ],
     "RI": [
       {
         "value": "650GD",
-        "label": "MIDDLETOWN CBOC"
+        "label": "Middletown VA Clinic"
       },
       {
         "value": "650QA",
-        "label": "EAGLE SQUARE VA CLINIC"
+        "label": "Eagle Square VA Clinic"
       },
       {
         "value": "650QB",
-        "label": "EAGLE STREET VA CLINIC"
+        "label": "Eagle Street VA Clinic"
       },
       {
         "value": "650",
-        "label": "PROVIDENCE VAMC"
+        "label": "Providence VA Medical Center"
       }
     ],
     "DC": [
       {
         "value": "688GB",
-        "label": "SOUTHEAST WASHINGTON VA CLINIC"
+        "label": "Southeast Washington VA Clinic"
       },
       {
         "value": "688QA",
-        "label": "FRANKLIN STREET VA CLINIC"
+        "label": "Franklin Street VA Clinic"
       },
       {
         "value": "688",
-        "label": "WASHINGTON VA MEDICAL CENTER"
+        "label": "Washington VA Medical Center"
       }
     ],
     "CT": [
       {
         "value": "689A4",
-        "label": "NEWINGTON"
+        "label": "Newington VA Clinic"
       },
       {
         "value": "689GA",
-        "label": "WATERBURY"
+        "label": "Waterbury VA Clinic"
       },
       {
         "value": "689GB",
-        "label": "STAMFORD VA PRIMARY CARE CTR"
+        "label": "Stamford VA Clinic"
       },
       {
         "value": "689GC",
-        "label": "WINDHAM CBOC"
+        "label": "Willimantic VA Clinic"
       },
       {
         "value": "689GD",
-        "label": "WINSTED"
+        "label": "Winsted VA Clinic"
       },
       {
         "value": "689GE",
-        "label": "DANBURY"
+        "label": "Danbury VA Clinic"
       },
       {
         "value": "689HC",
-        "label": "NEW LONDON"
+        "label": "John J. McGuirk Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "689HK",
@@ -10063,91 +10063,91 @@
       },
       {
         "value": "689",
-        "label": "VA CONNECTICUT HEALTHCARE SYSTEM - WEST HAVEN DIVISION"
+        "label": "West Haven VA Medical Center"
       }
     ],
     "UT": [
       {
         "value": "660GJ",
-        "label": "WESTERN SALT LAKE VA CLINIC"
+        "label": "Western Salt Lake VA Clinic"
       },
       {
         "value": "660GB",
-        "label": "OGDEN VA CLINIC"
+        "label": "Ogden VA Clinic"
       },
       {
         "value": "660GD",
-        "label": "ROOSEVELT VA CLINIC"
+        "label": "Roosevelt VA Clinic"
       },
       {
         "value": "660GE",
-        "label": "OREM VA CLINIC"
+        "label": "Orem VA Clinic"
       },
       {
         "value": "660GG",
-        "label": "ST. GEORGE VA CLINIC"
+        "label": "St. George VA Clinic"
       },
       {
         "value": "660QC",
-        "label": "WEBER COUNTY VA CLINIC"
+        "label": "Weber County VA Clinic"
       },
       {
         "value": "660",
-        "label": "GEORGE E. WAHLEN VAMC"
+        "label": "George E. Wahlen Department of Veterans Affairs Medical Center"
       }
     ],
     "PR": [
       {
         "value": "672B0",
-        "label": "PONCE OPC"
+        "label": "Eurípides Rubio Department of Veterans Affairs Outpatient Clinic"
       },
       {
         "value": "672BZ",
-        "label": "MAYAGUEZ OUTPATIENT CLINIC"
+        "label": "Mayaguez VA Clinic"
       },
       {
         "value": "672GC",
-        "label": "ARECIBO VETERANS CLINIC (CBOC)"
+        "label": "Arecibo VA Clinic"
       },
       {
         "value": "672GE",
-        "label": "GUAYAMA VA CLINIC"
+        "label": "Guayama VA Clinic"
       },
       {
         "value": "672GD",
-        "label": "CEIBA VA CLINIC"
+        "label": "Ceiba VA Clinic"
       },
       {
         "value": "672",
-        "label": "SAN JUAN VA MEDICAL CENTER"
+        "label": "San Juan VA Medical Center"
       }
     ],
     "VI": [
       {
         "value": "672GA",
-        "label": "ST.CROIX VETERANS CLINIC"
+        "label": "Saint Croix VA Clinic"
       },
       {
         "value": "672GB",
-        "label": "ST.THOMAS VETERANS CLINIC"
+        "label": "Saint Thomas VA Clinic"
       }
     ],
     "AS": [
       {
         "value": "459GF",
-        "label": "FALEOMAVAEGA HUNKIN VA CLINIC"
+        "label": "Faleomavaega Eni Fa'aua'a Hunkin VA Clinic"
       }
     ],
     "MP": [
       {
         "value": "459GH",
-        "label": "SAIPAN VA CLINIC"
+        "label": "Saipan VA Clinic"
       }
     ],
     "PI": [
       {
         "value": "358",
-        "label": "MANILA RO"
+        "label": "Manila Regional Benefit Office"
       }
     ]
   },
