@@ -1,6 +1,4 @@
-import { merge } from 'lodash';
 import definitions from '../../common/definitions';
-import schemaHelpers from '../../common/schema-helpers';
 import { countries, states50AndDC } from '../../common/constants';
 
 const schema = {
@@ -80,6 +78,9 @@ const schema = {
     claimantAddress: {
       $ref: '#/definitions/addressSchema',
     },
+    claimantPhoneNumber: definitions.phone,
+    claimantEmailAddress: definitions.email,
+    'view:claimantEmailAddress': definitions.email,
     statusSelection: {
       type: 'string',
       enum: ['isActiveDuty', 'isVeteran', 'isSpouse', 'isChild'],

@@ -677,6 +677,20 @@
     "claimantAddress": {
       "$ref": "#/definitions/addressSchema"
     },
+    "claimantPhoneNumber": {
+      "type": "string",
+      "minLength": 10
+    },
+    "claimantEmailAddress": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "view:claimantEmailAddress": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
     "statusSelection": {
       "type": "string",
       "enum": [
