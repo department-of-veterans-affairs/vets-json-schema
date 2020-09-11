@@ -7,11 +7,6 @@ const buildDataType = (type, additionals = {}) => {
 
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
 
-const gender = {
-  type: 'string',
-  enum: ['F', 'M', 'U'],
-};
-
 const vetRelationships = [
   'Spouse',
   'Father',
@@ -45,7 +40,7 @@ const schema = {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
     date: definitions.date,
-    gender,
+    gender: definitions.gender,
     phone: definitions.phone,
     email: definitions.email,
     address: definitions.usAddress,
@@ -55,7 +50,7 @@ const schema = {
     veteran: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'plannedClinic'],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'plannedClinic'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -87,7 +82,6 @@ const schema = {
         'fullName',
         'ssnOrTin',
         'dateOfBirth',
-        'gender',
         'address',
         'primaryPhoneNumber',
         'vetRelationship',
@@ -118,7 +112,7 @@ const schema = {
     secondaryCaregiverOne: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'vetRelationship'],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -134,7 +128,7 @@ const schema = {
     secondaryCaregiverTwo: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'vetRelationship'],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),

@@ -6,8 +6,8 @@ import schema from '../../../src/schemas/10-10CG/schema';
 
 const testData = {
   gender: {
-    valid: ['M', 'F', 'U'],
-    invalid: ['A', 'BB', 'CCC'],
+    valid: ['M', 'F'],
+    invalid: ['A', 'BB', 'CCC', 'U'],
   },
   plannedClinic: {
     valid: ['636', '636A6', '740', '603'],
@@ -75,7 +75,6 @@ describe('10-10CG json schema', () => {
       'fullName',
       'ssnOrTin',
       'dateOfBirth',
-      'gender',
       'address',
       'primaryPhoneNumber',
       'plannedClinic',
@@ -87,7 +86,6 @@ describe('10-10CG json schema', () => {
       'fullName',
       'ssnOrTin',
       'dateOfBirth',
-      'gender',
       'address',
       'primaryPhoneNumber',
       'vetRelationship',
@@ -101,7 +99,6 @@ describe('10-10CG json schema', () => {
       'fullName',
       'ssnOrTin',
       'dateOfBirth',
-      'gender',
       'address',
       'primaryPhoneNumber',
       'vetRelationship',
@@ -111,7 +108,6 @@ describe('10-10CG json schema', () => {
       'fullName',
       'ssnOrTin',
       'dateOfBirth',
-      'gender',
       'address',
       'primaryPhoneNumber',
       'vetRelationship',
