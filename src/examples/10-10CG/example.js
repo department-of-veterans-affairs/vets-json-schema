@@ -19,10 +19,6 @@ const example = {
     alternativePhoneNumber: '8887775544',
     email: 'primaryCaregiverEmail@email.com',
     vetRelationship: 'Spouse',
-    medicaidEnrolled: false,
-    medicareEnrolled: false,
-    champvaEnrolled: false,
-    tricareEnrolled: true,
   },
   secondaryCaregiverOne: {
     fullName: { first: 'John Doe', middle: 'A', last: 'Doe' },

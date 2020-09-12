@@ -89,10 +89,6 @@ describe('10-10CG json schema', () => {
       'address',
       'primaryPhoneNumber',
       'vetRelationship',
-      'medicaidEnrolled',
-      'medicareEnrolled',
-      'tricareEnrolled',
-      'champvaEnrolled',
     ]);
 
     expect(schema.properties.secondaryCaregiverOne.required).to.deep.equal([
@@ -155,12 +151,6 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['primaryCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['primaryCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['primaryCaregiver.email']);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.vetRelationship', testData.vetRelationship);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.medicaidEnrolled', testData.boolean);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.medicareEnrolled', testData.boolean);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.tricareEnrolled', testData.boolean);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.champvaEnrolled', testData.boolean);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.otherHealthInsuranceName', testData.string(100));
     // Secondary One Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverOne.fullName']);
     sharedTests.runTest('ssn', ['secondaryCaregiverOne.ssnOrTin']);
@@ -218,10 +208,6 @@ describe('10-10CG json schema', () => {
           alternativePhoneNumber: '8887775544',
           email: 'primaryCaregiverEmail@email.com',
           vetRelationship: 'Spouse',
-          medicaidEnrolled: false,
-          medicareEnrolled: false,
-          champvaEnrolled: false,
-          tricareEnrolled: true,
         },
       });
 

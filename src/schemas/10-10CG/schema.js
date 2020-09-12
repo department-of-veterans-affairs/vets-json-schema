@@ -50,7 +50,14 @@ const schema = {
     veteran: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'plannedClinic'],
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'address',
+        'primaryPhoneNumber',
+        'plannedClinic'
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -84,11 +91,7 @@ const schema = {
         'dateOfBirth',
         'address',
         'primaryPhoneNumber',
-        'vetRelationship',
-        'medicaidEnrolled',
-        'medicareEnrolled',
-        'tricareEnrolled',
-        'champvaEnrolled',
+        'vetRelationship'
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
@@ -99,14 +102,7 @@ const schema = {
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
-        vetRelationship: buildDefinitionReference('vetRelationship'),
-        medicaidEnrolled: buildDataType('boolean'),
-        medicareEnrolled: buildDataType('boolean'),
-        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
-        tricareEnrolled: buildDataType('boolean'),
-        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
-        champvaEnrolled: buildDataType('boolean'),
-        otherHealthInsuranceName: buildDataType('string', { minLength: 1, maxLength: 100 }),
+        vetRelationship: buildDefinitionReference('vetRelationship')
       },
     },
     secondaryCaregiverOne: {

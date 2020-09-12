@@ -387,11 +387,7 @@
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
-        "vetRelationship",
-        "medicaidEnrolled",
-        "medicareEnrolled",
-        "tricareEnrolled",
-        "champvaEnrolled"
+        "vetRelationship"
       ],
       "properties": {
         "fullName": {
@@ -420,23 +416,6 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
-        },
-        "medicaidEnrolled": {
-          "type": "boolean"
-        },
-        "medicareEnrolled": {
-          "type": "boolean"
-        },
-        "tricareEnrolled": {
-          "type": "boolean"
-        },
-        "champvaEnrolled": {
-          "type": "boolean"
-        },
-        "otherHealthInsuranceName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100
         }
       }
     },
