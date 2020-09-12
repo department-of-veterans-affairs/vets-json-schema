@@ -91,7 +91,8 @@ const schema = {
         'dateOfBirth',
         'address',
         'primaryPhoneNumber',
-        'vetRelationship'
+        'vetRelationship',
+        'hasHealthInsurance',
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
@@ -102,7 +103,8 @@ const schema = {
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
-        vetRelationship: buildDefinitionReference('vetRelationship')
+        vetRelationship: buildDefinitionReference('vetRelationship'),
+        hasHealthInsurance: buildDataType('boolean'),
       },
     },
     secondaryCaregiverOne: {

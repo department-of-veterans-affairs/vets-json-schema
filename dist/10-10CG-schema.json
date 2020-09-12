@@ -387,7 +387,8 @@
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
-        "vetRelationship"
+        "vetRelationship",
+        "hasHealthInsurance"
       ],
       "properties": {
         "fullName": {
@@ -416,6 +417,9 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
+        },
+        "hasHealthInsurance": {
+          "type": "boolean"
         }
       }
     },

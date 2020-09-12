@@ -37,7 +37,8 @@
     "primaryPhoneNumber": "8887775544",
     "alternativePhoneNumber": "8887775544",
     "email": "primaryCaregiverEmail@email.com",
-    "vetRelationship": "Spouse"
+    "vetRelationship": "Spouse",
+    "hasHealthInsurance": true
   },
   "secondaryCaregiverOne": {
     "fullName": {

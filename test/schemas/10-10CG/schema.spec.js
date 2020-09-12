@@ -89,6 +89,7 @@ describe('10-10CG json schema', () => {
       'address',
       'primaryPhoneNumber',
       'vetRelationship',
+      'hasHealthInsurance',
     ]);
 
     expect(schema.properties.secondaryCaregiverOne.required).to.deep.equal([
@@ -151,6 +152,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['primaryCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['primaryCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['primaryCaregiver.email']);
+    schemaTestHelper.testValidAndInvalid('primaryCaregiver.hasHealthInsurance', testData.boolean);
     // Secondary One Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverOne.fullName']);
     sharedTests.runTest('ssn', ['secondaryCaregiverOne.ssnOrTin']);
@@ -208,6 +210,7 @@ describe('10-10CG json schema', () => {
           alternativePhoneNumber: '8887775544',
           email: 'primaryCaregiverEmail@email.com',
           vetRelationship: 'Spouse',
+          hasHealthInsurance: true
         },
       });
 
