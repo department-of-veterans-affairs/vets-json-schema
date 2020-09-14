@@ -677,7 +677,16 @@
     "claimantAddress": {
       "$ref": "#/definitions/addressSchema"
     },
-    "statusSelection": {
+    "claimantPhoneNumber": {
+      "type": "string",
+      "minLength": 10
+    },
+    "claimantEmailAddress": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "status": {
       "type": "string",
       "enum": [
         "isActiveDuty",
