@@ -115,12 +115,28 @@ const closeContact = {
   type: 'string',
   enum: ['ZERO', 'ONE_TEN', 'ELEVEN_THIRTY', 'THIRTYONE_FIFTY', 'MORE_THAN_FIFTY'],
 };
-const height = {
-  type: 'number',
-};
-const weight = {
-  type: 'string',
-  pattern: '^([1-9]\\d*)(\\.(\\d{1}|\\d{2}))?$',
+const VETERAN = {
+  type: 'object',
+  properties: {
+    'VETERAN::VETERAN': {
+      type: 'boolean',
+    },
+    'VETERAN::NON_VETERAN': {
+      type: 'boolean',
+    },
+    'VETERAN::VA_EMPLOYEE': {
+      type: 'boolean',
+    },
+    'VETERAN::RELATED_TO_VETERAN': {
+      type: 'boolean',
+    },
+    'VETERAN::RECEIVE_CARE_AT_VA': {
+      type: 'boolean',
+    },
+    'VETERAN::NONE_OF_ABOVE': {
+      type: 'boolean',
+    },
+  },
 };
 const GENDER = {
   type: 'object',
@@ -194,8 +210,7 @@ const schema = {
     EMPLOYMENT_STATUS,
     TRANSPORTATION,
     closeContact,
-    height,
-    weight,
+    VETERAN,
     GENDER,
     RACE_ETHNICITY_ORIGIN,
   },
@@ -214,8 +229,7 @@ const schema = {
     'EMPLOYMENT_STATUS',
     'TRANSPORTATION',
     'closeContact',
-    'height',
-    'weight',
+    'VETERAN',
     'GENDER',
     'RACE_ETHNICITY_ORIGIN',
   ],

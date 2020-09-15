@@ -181,12 +181,28 @@
         "MORE_THAN_FIFTY"
       ]
     },
-    "height": {
-      "type": "number"
-    },
-    "weight": {
-      "type": "string",
-      "pattern": "^([1-9]\\d*)(\\.(\\d{1}|\\d{2}))?$"
+    "VETERAN": {
+      "type": "object",
+      "properties": {
+        "VETERAN::VETERAN": {
+          "type": "boolean"
+        },
+        "VETERAN::NON_VETERAN": {
+          "type": "boolean"
+        },
+        "VETERAN::VA_EMPLOYEE": {
+          "type": "boolean"
+        },
+        "VETERAN::RELATED_TO_VETERAN": {
+          "type": "boolean"
+        },
+        "VETERAN::RECEIVE_CARE_AT_VA": {
+          "type": "boolean"
+        },
+        "VETERAN::NONE_OF_ABOVE": {
+          "type": "boolean"
+        }
+      }
     },
     "GENDER": {
       "type": "object",
@@ -274,8 +290,7 @@
     "EMPLOYMENT_STATUS",
     "TRANSPORTATION",
     "closeContact",
-    "height",
-    "weight",
+    "VETERAN",
     "GENDER",
     "RACE_ETHNICITY_ORIGIN"
   ]
