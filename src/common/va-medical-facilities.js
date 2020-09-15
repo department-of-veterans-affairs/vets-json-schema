@@ -26,7 +26,7 @@ module.exports = {
     },
     {
       value: '405',
-      label: 'White River Junction Regional Benefit Office',
+      label: 'White River Junction VA Medical Center',
     },
   ],
   MT: [
@@ -100,7 +100,7 @@ module.exports = {
     },
     {
       value: '436',
-      label: 'Fort Harrison Regional Benefit Office',
+      label: 'Fort Harrison VA Medical Center',
     },
   ],
   ND: [
@@ -138,7 +138,7 @@ module.exports = {
     },
     {
       value: '437',
-      label: 'Fargo Regional Benefit Office',
+      label: 'Fargo VA Medical Center',
     },
   ],
   MN: [
@@ -288,7 +288,7 @@ module.exports = {
     },
     {
       value: '438',
-      label: 'Sioux Falls Regional Benefit Office',
+      label: "Royal C. Johnson Veterans' Memorial Hospital",
     },
   ],
   NE: [
@@ -408,7 +408,7 @@ module.exports = {
     },
     {
       value: '575',
-      label: 'Grand Junction VA Medical Center Vocational Rehabilitation Counselor',
+      label: 'Grand Junction VA Medical Center',
     },
   ],
   HI: [
@@ -434,7 +434,7 @@ module.exports = {
     },
     {
       value: '459',
-      label: 'Honolulu Regional Benefit Office',
+      label: 'Spark M. Matsunaga Department of Veterans Affairs Medical Center',
     },
   ],
   GU: [
@@ -482,7 +482,7 @@ module.exports = {
     },
     {
       value: '402',
-      label: 'Togus Regional Benefit Office',
+      label: 'Togus VA Medical Center',
     },
   ],
   NH: [
@@ -538,7 +538,7 @@ module.exports = {
     },
     {
       value: '463',
-      label: 'Anchorage Regional Benefit Office',
+      label: 'Anchorage VA Medical Center',
     },
   ],
   NM: [
@@ -1200,51 +1200,51 @@ module.exports = {
   OH: [
     {
       value: '506GA',
-      label: 'Toledo VA Outpatient Clinic',
+      label: 'Toledo VA Clinic',
     },
     {
       value: '539GB',
-      label: 'Clermont County Community Based Outpatient Clinic',
+      label: 'Clermont County VA Clinic',
     },
     {
       value: '541BY',
-      label: 'Canton Outpatient Clinic',
+      label: 'Canton VA Clinic',
     },
     {
       value: '541BZ',
-      label: 'Youngstown Outpatient Clinic',
+      label: 'Youngstown VA Clinic',
     },
     {
       value: '541GB',
-      label: 'Lorain Community Based Outpatient Clinic',
+      label: 'Lorain VA Clinic',
     },
     {
       value: '541GC',
-      label: 'Sandusky Community Based Outpatient Clinic',
+      label: 'Sandusky VA Clinic',
     },
     {
       value: '541GD',
-      label: 'Mansfield Community Based Outpatient Clinic',
+      label: 'David F. Winder Department of Veterans Affairs Community Based Outpatient Clinic',
     },
     {
       value: '538GA',
-      label: 'Athens Community Based Outpatient Clinic',
+      label: 'Athens VA Clinic',
     },
     {
       value: '538GB',
-      label: 'Portsmouth Community Based Outpatient Clinic',
+      label: 'Portsmouth VA Clinic',
     },
     {
       value: '538GC',
-      label: 'Marietta Community Based Outpatient Clinic',
+      label: 'Marietta VA Clinic',
     },
     {
       value: '538GD',
-      label: 'Lancaster Community Based Outpatient Clinic',
+      label: 'Lancaster VA Clinic',
     },
     {
       value: '552GA',
-      label: 'Middletown Community Based Outpatient Clinic',
+      label: 'Middletown VA Clinic',
     },
     {
       value: '552GB',
@@ -1256,23 +1256,23 @@ module.exports = {
     },
     {
       value: '541GE',
-      label: 'McCafferty Community Based Outpatient Clinic',
+      label: 'MCCAFERTY CBOC',
     },
     {
       value: '541GF',
-      label: 'Painesville Community Based Outpatient Clinic',
+      label: 'Lake County VA Clinic',
     },
     {
       value: '541GG',
-      label: 'Akron Community Based Outpatient Clinic',
+      label: 'Akron VA Clinic',
     },
     {
       value: '541GH',
-      label: 'East Liverpool/Calcutta Community Based Outpatient Clinic',
+      label: 'East Liverpool VA Clinic',
     },
     {
       value: '541GI',
-      label: 'Warren Community Based Outpatient Clinic',
+      label: 'Warren VA Clinic',
     },
     {
       value: '562GB',
@@ -1312,15 +1312,15 @@ module.exports = {
     },
     {
       value: '539GE',
-      label: 'Hamilton Community Based Outpatient Clinic',
+      label: 'Hamilton VA Clinic',
     },
     {
       value: '539GF',
-      label: 'Georgetown Community Based Outpatient Clinic',
+      label: 'Georgetown VA Clinic',
     },
     {
       value: '541GL',
-      label: 'Parma Community Based Outpatient Clinic',
+      label: 'Parma VA Clinic',
     },
     {
       value: '541GM',
@@ -1328,7 +1328,7 @@ module.exports = {
     },
     {
       value: '538GF',
-      label: 'Wilmington Community-Based Outpatient Clinic',
+      label: 'Wilmington VA Clinic',
     },
     {
       value: '541GN',
@@ -1360,7 +1360,7 @@ module.exports = {
     },
     {
       value: '541',
-      label: 'Louis Stokes Cleveland VA Medical Center (Wade Park Campus)',
+      label: 'Louis Stokes Cleveland Department of Veterans Affairs Medical Center',
     },
     {
       value: '552',
@@ -1754,7 +1754,7 @@ module.exports = {
     },
     {
       value: '610A4',
-      label: 'VA Northern Indiana Health Care System (Marion)',
+      label: 'Fort Wayne VA Medical Center',
     },
     {
       value: '610GB',
@@ -1818,7 +1818,7 @@ module.exports = {
     },
     {
       value: '583',
-      label: 'Seamless Transition Integrated Care Clinic (STICC)',
+      label: "Richard L. Roudebush Veterans' Administration Medical Center",
     },
   ],
   WV: [
@@ -2778,7 +2778,7 @@ module.exports = {
     },
     {
       value: '460',
-      label: 'Wilmington Regional Benefit Office',
+      label: 'Wilmington VA Medical Center',
     },
   ],
   MS: [
@@ -3172,11 +3172,11 @@ module.exports = {
     },
     {
       value: '666',
-      label: 'Sheridan VA Medical Center Outbased Benefit Office',
+      label: 'Sheridan VA Medical Center',
     },
     {
       value: '442',
-      label: 'Cheyenne Regional Benefit Office and VA Medical Center',
+      label: 'Cheyenne VA Medical Center',
     },
   ],
   MA: [
@@ -4270,7 +4270,7 @@ module.exports = {
   PI: [
     {
       value: '358',
-      label: 'Manila Regional Benefit Office',
+      label: 'Manila VA Clinic',
     },
   ],
 };
