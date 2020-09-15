@@ -141,19 +141,16 @@ const VETERAN = {
 const GENDER = {
   type: 'object',
   properties: {
-    'GENDER::FEMALE': {
-      type: 'boolean',
-    },
     'GENDER::MALE': {
       type: 'boolean',
     },
-    'GENDER::TRANSGENDER_FEMALE': {
+    'GENDER::FEMALE': {
       type: 'boolean',
     },
     'GENDER::TRANSGENDER_MALE': {
       type: 'boolean',
     },
-    'GENDER::GENDER_VARIANT': {
+    'GENDER::TRANSGENDER_FEMALE': {
       type: 'boolean',
     },
     'GENDER::SELF_IDENTIFY': {
