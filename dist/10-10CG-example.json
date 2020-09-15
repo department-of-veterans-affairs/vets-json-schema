@@ -6,7 +6,6 @@
     },
     "ssnOrTin": "789787893",
     "dateOfBirth": "1990-07-03",
-    "gender": "M",
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
@@ -29,7 +28,6 @@
     },
     "ssnOrTin": "202901412",
     "dateOfBirth": "1978-07-03",
-    "gender": "F",
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",
@@ -53,7 +51,6 @@
     },
     "ssnOrTin": "787787854",
     "dateOfBirth": "1989-11-06",
-    "gender": "U",
     "address": {
       "street": "111 2nd St S",
       "city": "Seattle",

@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
-// import fixtures from '../../support/fixtures';
-
 import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['COVID-VACCINE-TRIAL'];

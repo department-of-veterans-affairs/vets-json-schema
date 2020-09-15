@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "status": 422,
+      "code": "invalid_receipt_date",
+      "title": "Invalid Receipt Date",
+      "detail": "\"2020-07-02\" is in the future (today: 2020-07-01; time zone: (GMT-05:00) America/New_York)."
+    }
+  ],
+  "code": "invalid_receipt_date",
+  "detail": "Invalid Receipt Date",
+  "source": "\"2020-07-02\" is in the future (today: 2020-07-01; time zone: (GMT-05:00) America/New_York)."
+}

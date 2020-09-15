@@ -27,19 +27,10 @@
         },
         "suffix": {
           "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
+          "enum": ["Jr.", "Sr.", "II", "III", "IV"]
         }
       },
-      "required": [
-        "first",
-        "last"
-      ]
+      "required": ["first", "last"]
     },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
@@ -57,12 +48,7 @@
   "properties": {
     "residentsInHome": {
       "type": "string",
-      "enum": [
-        "ONE_TWO",
-        "THREE_FIVE",
-        "SIX_TEN",
-        "MORE_THAN_TEN"
-      ]
+      "enum": ["ONE_TWO", "THREE_FIVE", "SIX_TEN", "MORE_THAN_TEN"]
     },
     "HEALTH_HISTORY": {
       "type": "object",
@@ -110,11 +96,7 @@
     },
     "closeContactPositive": {
       "type": "string",
-      "enum": [
-        "YES",
-        "NO",
-        "UNSURE"
-      ]
+      "enum": ["YES", "NO", "UNSURE"]
     },
     "hospitalized": {
       "type": "boolean"
@@ -173,13 +155,7 @@
     },
     "closeContact": {
       "type": "string",
-      "enum": [
-        "ZERO",
-        "ONE_TEN",
-        "ELEVEN_THIRTY",
-        "THIRTYONE_FIFTY",
-        "MORE_THAN_FIFTY"
-      ]
+      "enum": ["ZERO", "ONE_TEN", "ELEVEN_THIRTY", "THIRTYONE_FIFTY", "MORE_THAN_FIFTY"]
     },
     "VETERAN": {
       "type": "object",
