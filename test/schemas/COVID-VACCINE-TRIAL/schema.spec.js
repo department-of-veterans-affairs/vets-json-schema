@@ -136,6 +136,30 @@ describe('covid vaccine trial schema', () => {
     valid: ['12345', '12345-6789'],
     invalid: ['INVALID', '123456789', '12345678910'],
   });
+  schemaTestHelper.testValidAndInvalid('VETERAN', {
+    valid: [
+      { 'VETERAN::VETERAN': true },
+      { 'VETERAN::NON_VETERAN': true },
+      { 'VETERAN::VA_EMPLOYEE': true },
+      { 'VETERAN::RELATED_TO_VETERAN': true },
+      { 'VETERAN::RECEIVE_CARE_AT_VA': true },
+      { 'VETERAN::NONE_OF_ABOVE': true },
+      { 'VETERAN::VETERAN': false },
+      { 'VETERAN::NON_VETERAN': false },
+      { 'VETERAN::VA_EMPLOYEE': false },
+      { 'VETERAN::RELATED_TO_VETERAN': false },
+      { 'VETERAN::RECEIVE_CARE_AT_VA': false },
+      { 'VETERAN::NONE_OF_ABOVE': false },
+    ],
+    invalid: [
+      { 'VETERAN::VETERAN': 'invalid' },
+      { 'VETERAN::NON_VETERAN': 'invalid' },
+      { 'VETERAN::VA_EMPLOYEE': 'invalid' },
+      { 'VETERAN::RELATED_TO_VETERAN': 'invalid' },
+      { 'VETERAN::RECEIVE_CARE_AT_VA': 'invalid' },
+      { 'VETERAN::NONE_OF_ABOVE': 'invalid' },
+    ],
+  });
   schemaTestHelper.testValidAndInvalid('GENDER', {
     valid: [
       { 'GENDER::FEMALE': true },
@@ -192,13 +216,5 @@ describe('covid vaccine trial schema', () => {
       { 'RACE_ETHNICITY_ORIGIN::OTHER_RACE_ETHNICITY': 'invalid' },
       { 'RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE': 'invalid' },
     ],
-  });
-  schemaTestHelper.testValidAndInvalid('weight', {
-    valid: ['90', '90.5', '100', '100.25', '12345.6'],
-    invalid: ['INVALID', '1234.56789', '0', '099'],
-  });
-  schemaTestHelper.testValidAndInvalid('height', {
-    valid: [42, 66, 72, 78],
-    invalid: ['INVALID', '0', '099'],
   });
 });
