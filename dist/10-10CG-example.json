@@ -13,13 +13,7 @@
       "postalCode": "33771"
     },
     "primaryPhoneNumber": "8887775544",
-    "alternativePhoneNumber": "8887775544",
-    "email": "veteranEmail@email.com",
-    "plannedClinic": "740",
-    "lastTreatmentFacility": {
-      "name": "My Hospital",
-      "type": "hospital"
-    }
+    "plannedClinic": "740"
   },
   "primaryCaregiver": {
     "fullName": {
@@ -34,8 +28,6 @@
       "postalCode": "33771"
     },
     "primaryPhoneNumber": "8887775544",
-    "alternativePhoneNumber": "8887775544",
-    "email": "primaryCaregiverEmail@email.com",
     "vetRelationship": "Spouse",
     "hasHealthInsurance": true
   },
@@ -53,8 +45,6 @@
       "postalCode": "33771-1234"
     },
     "primaryPhoneNumber": "8887775544",
-    "alternativePhoneNumber": "8887775544",
-    "email": "secondaryOneCaregiverEmail@email.com",
     "vetRelationship": "Daughter"
   }
 }
