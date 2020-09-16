@@ -12,18 +12,15 @@ const schema = {
       type: 'array',
       minItems: 1,
       maxItems: 1,
-      items: { $ref: '#/definitions/failed_json_schema' },
+      items: { $ref: '#/definitions/not_found' },
     },
-    failed_json_schema: {
+    not_found: {
       type: 'object',
       properties: {
-        status: { type: 'integer' },
+        status: { type: 'integer', enum: [404] },
         detail: { type: 'string' },
-        source: {
-          oneOf: [{ type: 'string' }, { type: 'boolean', enum: [false] }],
-        },
       },
-      required: ['status', 'detail', 'source'],
+      required: ['status', 'detail'],
       additionalProperties: false,
     },
   },

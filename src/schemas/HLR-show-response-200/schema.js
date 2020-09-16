@@ -1,4 +1,4 @@
-import schema from '../20-0996/schema.js';
+import schema from '../HLR-create-request-body/schema.js';
 
 const definitions = {
   root: {
