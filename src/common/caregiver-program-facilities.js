@@ -262,8 +262,8 @@ Object.keys(caregiverFacilitesCodesByState).forEach((stateId) => {
     }
 
     return {
-      label: matchingVaMedicalFacility.label,
       code: matchingVaMedicalFacility.value,
+      label: matchingVaMedicalFacility.label,
     };
   });
 });
@@ -271,7 +271,7 @@ Object.keys(caregiverFacilitesCodesByState).forEach((stateId) => {
 [
   // If there is a Caregiver Program Facility that is not listed in vaMedicalFacilities,
   // add it to this list in the following format:
-  // { stateId: 'TX', facilities: [{ label: 'Water Lake County VA Medical Center', code: '123Z0' }] }
+  // { stateId: 'TX', facilities: [{ code: '123Z0', label: 'Water Lake County VA Medical Center' }] }
 ].forEach((additionalFacilitiesDefinition) => {
   Array.prototype.push.apply(
     caregiverProgramFacilities[additionalFacilitiesDefinition.stateId],
