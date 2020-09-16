@@ -87,7 +87,6 @@ const schema = {
       additionalProperties: false,
       required: [
         'fullName',
-        'ssnOrTin',
         'dateOfBirth',
         'address',
         'primaryPhoneNumber',
@@ -110,7 +109,13 @@ const schema = {
     secondaryCaregiverOne: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship'],
+      required: [
+        'fullName',
+        'dateOfBirth',
+        'address',
+        'primaryPhoneNumber',
+        'vetRelationship',
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -126,7 +131,13 @@ const schema = {
     secondaryCaregiverTwo: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship'],
+      required: [
+        'fullName',
+        'dateOfBirth',
+        'address',
+        'primaryPhoneNumber',
+        'vetRelationship',
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),

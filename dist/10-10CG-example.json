@@ -26,7 +26,6 @@
       "first": "Joan",
       "last": "Doe"
     },
-    "ssnOrTin": "202901412",
     "dateOfBirth": "1978-07-03",
     "address": {
       "street": "111 2nd St S",
@@ -46,7 +45,6 @@
       "middle": "A",
       "last": "Doe"
     },
-    "ssnOrTin": "787787854",
     "dateOfBirth": "1989-11-06",
     "address": {
       "street": "111 2nd St S",

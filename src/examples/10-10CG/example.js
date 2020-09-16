@@ -12,7 +12,6 @@ const example = {
   },
   primaryCaregiver: {
     fullName: { first: 'Joan', last: 'Doe' },
-    ssnOrTin: '202901412',
     dateOfBirth: '1978-07-03',
     address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
     primaryPhoneNumber: '8887775544',
@@ -23,7 +22,6 @@ const example = {
   },
   secondaryCaregiverOne: {
     fullName: { first: 'John Doe', middle: 'A', last: 'Doe' },
-    ssnOrTin: '787787854',
     dateOfBirth: '1989-11-06',
     address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771-1234' },
     primaryPhoneNumber: '8887775544',

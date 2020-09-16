@@ -84,7 +84,6 @@ describe('10-10CG json schema', () => {
 
     expect(schema.properties.primaryCaregiver.required).to.deep.equal([
       'fullName',
-      'ssnOrTin',
       'dateOfBirth',
       'address',
       'primaryPhoneNumber',
@@ -94,7 +93,6 @@ describe('10-10CG json schema', () => {
 
     expect(schema.properties.secondaryCaregiverOne.required).to.deep.equal([
       'fullName',
-      'ssnOrTin',
       'dateOfBirth',
       'address',
       'primaryPhoneNumber',
@@ -103,7 +101,6 @@ describe('10-10CG json schema', () => {
 
     expect(schema.properties.secondaryCaregiverTwo.required).to.deep.equal([
       'fullName',
-      'ssnOrTin',
       'dateOfBirth',
       'address',
       'primaryPhoneNumber',
@@ -202,7 +199,6 @@ describe('10-10CG json schema', () => {
         },
         primaryCaregiver: {
           fullName: { first: 'Joan', last: 'Doe' },
-          ssnOrTin: '202901412',
           dateOfBirth: '1978-07-03',
           gender: 'F',
           address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
@@ -216,7 +212,6 @@ describe('10-10CG json schema', () => {
 
       validSecondaryCaregiverOneData = {
         fullName: { first: 'Jane', last: 'Smith' },
-        ssnOrTin: '389484893',
         dateOfBirth: '1980-01-01',
         gender: 'F',
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
@@ -226,7 +221,6 @@ describe('10-10CG json schema', () => {
 
       validSecondaryCaregiverTwoData = {
         fullName: { first: 'Michael', last: 'Smith' },
-        ssnOrTin: '558853340',
         dateOfBirth: '1980-01-01',
         gender: 'M',
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
@@ -243,7 +237,7 @@ describe('10-10CG json schema', () => {
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: {} });
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: { ssnOrTin: '123456789' } });
       schemaTestHelper.schemaExpect(false, {
-        secondaryCaregiverOne: { ssnOrTin: '123456789', dateOfBirth: '1990-01-01' },
+        secondaryCaregiverOne: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
       });
       schemaTestHelper.schemaExpect(true, { secondaryCaregiverOne: validSecondaryCaregiverOneData });
     });
@@ -257,7 +251,7 @@ describe('10-10CG json schema', () => {
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: {} });
       schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789' } });
       schemaTestHelper.schemaExpect(false, {
-        secondaryCaregiverTwo: { ssnOrTin: '123456789', dateOfBirth: '1990-01-01' },
+        secondaryCaregiverTwo: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
       });
       schemaTestHelper.schemaExpect(true, { secondaryCaregiverTwo: validSecondaryCaregiverTwoData });
     });

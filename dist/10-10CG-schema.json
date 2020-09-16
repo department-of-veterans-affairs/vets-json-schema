@@ -383,7 +383,6 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
@@ -428,7 +427,6 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
@@ -469,7 +467,6 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
