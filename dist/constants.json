@@ -6015,7 +6015,7 @@
       },
       {
         "value": "437",
-        "label": "Fargo VA Medical Center"
+        "label": "FARGO VA HCS"
       }
     ],
     "MN": [
@@ -6081,11 +6081,11 @@
       },
       {
         "value": "618",
-        "label": "Minneapolis VA Medical Center"
+        "label": "MINNEAPOLIS VA HCS"
       },
       {
         "value": "656",
-        "label": "St. Cloud VA Medical Center"
+        "label": "ST. CLOUD VA HEALTH CARE SYSTEM"
       }
     ],
     "IA": [
@@ -6095,7 +6095,7 @@
       },
       {
         "value": "636A8",
-        "label": "Iowa City VA Medical Center"
+        "label": "IOWA CITY HCS"
       },
       {
         "value": "636A6",
@@ -6165,7 +6165,7 @@
       },
       {
         "value": "438",
-        "label": "Royal C. Johnson Veterans' Memorial Hospital"
+        "label": "SIOUX FALLS VA HCS"
       }
     ],
     "NE": [
@@ -6365,7 +6365,7 @@
     "NH": [
       {
         "value": "405HC",
-        "label": "Littleton VA Clinic"
+        "label": "ST. JOHNSBURY VERMONT OUTREACH CLINIC"
       },
       {
         "value": "405HE",
@@ -7043,7 +7043,7 @@
       },
       {
         "value": "504",
-        "label": "Thomas E. Creek Department of Veterans Affairs Medical Center"
+        "label": "AMARILLO HCS"
       },
       {
         "value": "519",
@@ -7059,7 +7059,7 @@
       },
       {
         "value": "756",
-        "label": "El Paso VA Clinic"
+        "label": "EL PASO HCS"
       },
       {
         "value": "549",
@@ -7531,7 +7531,7 @@
       },
       {
         "value": "512",
-        "label": "Baltimore VA Medical Center"
+        "label": "VA MARYLAND HEALTH CARE SYS"
       }
     ],
     "KY": [
@@ -8967,11 +8967,11 @@
       },
       {
         "value": "600",
-        "label": "Tibor Rubin VA Medical Center"
+        "label": "VA LONG BEACH HEALTHCARE SYSTEM"
       },
       {
         "value": "605",
-        "label": "Jerry L. Pettis Memorial Veterans' Hospital"
+        "label": "LOMA LINDA HCS"
       },
       {
         "value": "612",
@@ -8987,7 +8987,7 @@
       },
       {
         "value": "664",
-        "label": "San Diego VA Medical Center"
+        "label": "VA SAN DIEGO HEALTHCARE SYSTEM (664)"
       },
       {
         "value": "691",
@@ -9147,7 +9147,7 @@
       },
       {
         "value": "631",
-        "label": "Edward P. Boland Department of Veterans Affairs Medical Center"
+        "label": "VA CNTRL WSTRN MASSCHUSETS HCS"
       }
     ],
     "VA": [
@@ -9421,7 +9421,7 @@
       },
       {
         "value": "626",
-        "label": "Nashville VA Medical Center"
+        "label": "TENNESSEE VALLEY HCS"
       }
     ],
     "MO": [
@@ -9787,7 +9787,7 @@
       },
       {
         "value": "593",
-        "label": "North Las Vegas VA Medical Center"
+        "label": "SOUTHERN NEVADA HCS"
       },
       {
         "value": "654",
