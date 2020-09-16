@@ -156,7 +156,7 @@
     },
     {
       "value": "618GD",
-      "label": "Maplewood VA Clinic"
+      "label": "ST. PAUL (CBOC)"
     },
     {
       "value": "618GG",
@@ -392,7 +392,7 @@
     },
     {
       "value": "554QA",
-      "label": "York Street VA Clinic"
+      "label": "DENVER VA CLINIC"
     },
     {
       "value": "442QE",
@@ -1204,7 +1204,7 @@
     },
     {
       "value": "539GB",
-      "label": "Clermont County VA Clinic"
+      "label": "CINCINNATI (CLERMONT COUNTY)"
     },
     {
       "value": "541BY",
@@ -1268,7 +1268,7 @@
     },
     {
       "value": "541GH",
-      "label": "East Liverpool VA Clinic"
+      "label": "EAST LIVERPOOL CBOC"
     },
     {
       "value": "541GI",
@@ -1360,7 +1360,7 @@
     },
     {
       "value": "541",
-      "label": "Louis Stokes Cleveland Department of Veterans Affairs Medical Center"
+      "label": "CLEVELAND VAMC"
     },
     {
       "value": "552",
@@ -1480,7 +1480,7 @@
   "GA": [
     {
       "value": "508GA",
-      "label": "Fort McPherson VA Clinic"
+      "label": "ATLANTA VA CBOC"
     },
     {
       "value": "508GE",
@@ -1576,7 +1576,7 @@
     },
     {
       "value": "509QA",
-      "label": "Ray Hendrix Department Of Veterans Affairs Clinic"
+      "label": "STATESBORO VA CLINIC"
     },
     {
       "value": "508",
@@ -1584,11 +1584,11 @@
     },
     {
       "value": "509",
-      "label": "Charlie Norwood Department of Veterans Affairs Medical Center"
+      "label": "AUGUSTA VAMC"
     },
     {
       "value": "557",
-      "label": "Carl Vinson Veterans' Administration Medical Center"
+      "label": "DUBLIN"
     }
   ],
   "MD": [
@@ -1930,7 +1930,7 @@
     },
     {
       "value": "534GF",
-      "label": "Trident 1 VA Clinic"
+      "label": "NORTH CHARLESTON VA CBOC"
     },
     {
       "value": "544",
@@ -2230,7 +2230,7 @@
     },
     {
       "value": "526GD",
-      "label": "Thomas P. Noonan Jr. Department of Veterans Affairs Outpatient Clinic"
+      "label": "NORTH QUEENS CLINIC"
     },
     {
       "value": "630A4",
