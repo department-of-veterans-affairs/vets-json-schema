@@ -215,4 +215,8 @@ describe('covid vaccine trial schema', () => {
       { 'RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE': 'invalid' },
     ],
   });
+  schemaTestHelper.testValidAndInvalid('consentAgreementAccepted', {
+    valid: [true, false],
+    invalid: ['INVALID'],
+  });
 });

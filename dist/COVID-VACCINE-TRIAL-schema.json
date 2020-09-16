@@ -262,6 +262,9 @@
         }
       }
     },
+    "consentAgreementAccepted": {
+      "type": "boolean"
+    },
     "email": {
       "$ref": "#/definitions/email"
     },

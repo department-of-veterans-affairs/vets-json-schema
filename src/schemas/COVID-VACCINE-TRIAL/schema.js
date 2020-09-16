@@ -196,7 +196,9 @@ const RACE_ETHNICITY_ORIGIN = {
     },
   },
 };
-
+const consentAgreementAccepted = {
+  type: 'boolean',
+};
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Covid Vaccine Trial',
@@ -217,6 +219,7 @@ const schema = {
     GENDER,
     GENDER_SELF_IDENTIFY_DETAILS,
     RACE_ETHNICITY_ORIGIN,
+    consentAgreementAccepted,
   },
   required: [
     'email',
