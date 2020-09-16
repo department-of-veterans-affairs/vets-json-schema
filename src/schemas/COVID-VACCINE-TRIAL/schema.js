@@ -121,16 +121,19 @@ const VETERAN = {
     'VETERAN::VETERAN': {
       type: 'boolean',
     },
-    'VETERAN::NON_VETERAN': {
+    'VETERAN::ACTIVE_DUTY': {
+      type: 'boolean',
+    },
+    'VETERAN::NATIONAL_GUARD_RESERVES': {
       type: 'boolean',
     },
     'VETERAN::VA_EMPLOYEE': {
       type: 'boolean',
     },
-    'VETERAN::RELATED_TO_VETERAN': {
+    'VETERAN::FAMILY_MEMBER_CAREGIVER': {
       type: 'boolean',
     },
-    'VETERAN::RECEIVE_CARE_AT_VA': {
+    'VETERAN::VA_HEALTHCARE_CHAMPVA': {
       type: 'boolean',
     },
     'VETERAN::NONE_OF_ABOVE': {
@@ -160,6 +163,9 @@ const GENDER = {
       type: 'boolean',
     },
   },
+};
+const GENDER_SELF_IDENTIFY_DETAILS = {
+  type: 'string',
 };
 const RACE_ETHNICITY_ORIGIN = {
   type: 'object',
@@ -209,6 +215,7 @@ const schema = {
     closeContact,
     VETERAN,
     GENDER,
+    GENDER_SELF_IDENTIFY_DETAILS,
     RACE_ETHNICITY_ORIGIN,
   },
   required: [
