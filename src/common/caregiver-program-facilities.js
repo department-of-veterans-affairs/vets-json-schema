@@ -1,674 +1,282 @@
-module.exports = {
+import * as vaMedicalFacilities from './va-medical-facilities'
+
+const caregiverFacilitesCodesByState = {
   TX: [
-    {
-      code: '740',
-      label: 'HARLINGEN VA CLINIC',
-    },
-    {
-      code: '756',
-      label: 'EL PASO HCS',
-    },
-    {
-      code: '580',
-      label: 'MICHAEL E. DEBAKEY VA MEDICAL CENTER',
-    },
-    {
-      code: '504',
-      label: 'AMARILLO HCS',
-    },
-    {
-      code: '519',
-      label: 'WEST TEXAS VA HEALTH CARE SYSTEM - BIG SPRING DIVISION',
-    },
-    {
-      code: '549',
-      label: 'DALLAS VA MEDICAL CENTER',
-    },
-    {
-      code: '671',
-      label: 'AUDIE L. MURPHY MEMORIAL HOSP',
-    },
-    {
-      code: '674',
-      label: 'OLIN E. TEAGUE VET CENTER',
-    },
+    '740',
+    '756',
+    '580',
+    '504',
+    '519',
+    '549',
+    '671',
+    '674',
   ],
   SD: [
-    {
-      code: '568A4',
-      label: 'HOT SPRINGS, SD MC',
-    },
-    {
-      code: '438',
-      label: 'SIOUX FALLS VA HCS',
-    },
-    {
-      code: '568',
-      label: 'BLACK HILLS HEALTH CARE SYSTEM - FT. MEADE DIVISION',
-    },
+    '568A4',
+    '438',
+    '568',
   ],
   KS: [
-    {
-      code: '589A6',
-      label: 'DWIGHT D. EISENHOWER VAMC',
-    },
-    {
-      code: '589A5',
-      label: 'COLMERY O NEIL VAMC',
-    },
-    {
-      code: '589A7',
-      label: 'ROBERT J. DOLE VAMC',
-    },
+    '589A6',
+    '589A5',
+    '589A7',
   ],
   CA: [
-    {
-      code: '612A4',
-      label: 'SACRAMENTO VA MEDICAL CENTER',
-    },
-    {
-      code: '570',
-      label: 'FRESNO VA MEDICAL CENTER',
-    },
-    {
-      code: '640',
-      label: 'PALO ALTO VA MEDICAL CENTER',
-    },
-    {
-      code: '662',
-      label: 'SAN FRANCISCO VAMC',
-    },
-    {
-      code: '600',
-      label: 'VA LONG BEACH HEALTHCARE SYSTEM',
-    },
-    {
-      code: '605',
-      label: 'LOMA LINDA HCS',
-    },
-    {
-      code: '664',
-      label: 'VA SAN DIEGO HEALTHCARE SYSTEM (664)',
-    },
-    {
-      code: '691',
-      label: 'VA GREATER LOS ANGELES HEALTHCARE SYSTEM - WEST LOS ANGELES DIVISION',
-    },
+    '612A4',
+    '570',
+    '640',
+    '662',
+    '600',
+    '605',
+    '664',
+    '691',
   ],
   ME: [
-    {
-      code: '402',
-      label: 'MAINE VA HCS',
-    },
+    '402',
   ],
   VT: [
-    {
-      code: '405',
-      label: 'WHITE RIVER JCT VAMROC',
-    },
+    '405',
   ],
   MA: [
-    {
-      code: '518',
-      label: 'EDITH NOURSE ROGERS VAMC',
-    },
-    {
-      code: '523',
-      label: 'VA BOSTON HEALTHCARE SYSTEM - BOSTON DIVISION',
-    },
-    {
-      code: '631',
-      label: 'VA CNTRL WSTRN MASSCHUSETS HCS',
-    },
+    '518',
+    '523',
+    '631',
   ],
   NH: [
-    {
-      code: '608',
-      label: 'MANCHESTER VAMC',
-    },
+    '608',
   ],
   RI: [
-    {
-      code: '650',
-      label: 'PROVIDENCE VAMC',
-    },
+    '650',
   ],
   CT: [
-    {
-      code: '689',
-      label: 'VA CONNECTICUT HEALTHCARE SYSTEM - WEST HAVEN DIVISION',
-    },
+    '689',
   ],
   MI: [
-    {
-      code: '506',
-      label: 'ANN ARBOR VA MEDICAL CENTER',
-    },
-    {
-      code: '515',
-      label: 'BATTLE CREEK VA MEDICAL CENTER',
-    },
-    {
-      code: '553',
-      label: 'JOHN D. DINGELL VAMC',
-    },
-    {
-      code: '655',
-      label: 'ALEDA E. LUTZ VAMC',
-    },
-    {
-      code: '585',
-      label: 'IRON MOUNTAIN VA MEDICAL CENTER',
-    },
+    '506',
+    '515',
+    '553',
+    '655',
+    '585',
   ],
   OH: [
-    {
-      code: '538',
-      label: 'CHILLICOTHE VA MEDICAL CENTER',
-    },
-    {
-      code: '539',
-      label: 'CINCINNATI VAMC',
-    },
-    {
-      code: '541',
-      label: 'CLEVELAND VAMC',
-    },
-    {
-      code: '552',
-      label: 'DAYTON, OH VAMC',
-    },
-    {
-      code: '757',
-      label: 'CHALMERS P. WYLIE VA AMBULATORY CARE CENTER (757)',
-    },
+    '538',
+    '539',
+    '541',
+    '552',
+    '757',
   ],
   IN: [
-    {
-      code: '583',
-      label: 'RICHARD L. ROUDEBUSH VAMC',
-    },
-    {
-      code: '610',
-      label: 'MARION VA MEDICAL CENTER',
-    },
+    '583',
+    '610',
   ],
   IL: [
-    {
-      code: '537',
-      label: 'JESSE BROWN VA MEDICAL CENTER',
-    },
-    {
-      code: '550',
-      label: 'DANVILLE VA MEDICAL CENTER',
-    },
-    {
-      code: '556',
-      label: 'CAPTN JAMES LOVELL FED HLT CTR',
-    },
-    {
-      code: '578',
-      label: 'EDWARD J. HINES JR. HOSPITAL',
-    },
-    {
-      code: '657A5',
-      label: 'MARION VA MEDICAL CENTER',
-    },
+    '537',
+    '550',
+    '556',
+    '578',
+    '657A5',
   ],
   WI: [
-    {
-      code: '607',
-      label: 'WILLIAM S. MIDDLETON MEMORIAL VA HOSPITAL',
-    },
-    {
-      code: '676',
-      label: 'TOMAH VAMC',
-    },
-    {
-      code: '695',
-      label: 'CLEMENT J ZABLOCKI',
-    },
+    '607',
+    '676',
+    '695',
   ],
   MO: [
-    {
-      code: '589',
-      label: 'KANSAS CITY VAMC',
-    },
-    {
-      code: '589A4',
-      label: 'HARRY S. TRUMAN VAMC',
-    },
-    {
-      code: '657',
-      label: 'VA HEARTLAND-EAST, VISN 15 HCS JOHN COCHRAN MEMORIAL HOSPITAL',
-    },
-    {
-      code: '657A4',
-      label: 'JOHN PERSHING VAMC',
-    },
+    '589',
+    '589A4',
+    '657',
+    '657A4',
   ],
   LA: [
-    {
-      code: '502',
-      label: 'ALEXANDRIA VA MEDICAL CENTER',
-    },
-    {
-      code: '629',
-      label: 'NEW ORLEANS VAMC',
-    },
-    {
-      code: '667',
-      label: 'OVERTON BROOKS VA MEDICAL CENTER',
-    },
+    '502',
+    '629',
+    '667',
   ],
   MS: [
-    {
-      code: '520',
-      label: 'BILOXI VA MEDICAL CENTER',
-    },
-    {
-      code: '586',
-      label: 'G.V. (SONNY) MONTGOMERY',
-    },
+    '520',
+    '586',
   ],
   AR: [
-    {
-      code: '564',
-      label: 'FAYETTEVILLE VA MEDICAL',
-    },
-    {
-      code: '598',
-      label: 'CENTRAL ARKANSAS HEALTH CARE SYSTEM - LITTLE ROCK',
-    },
+    '564',
+    '598',
   ],
   MT: [
-    {
-      code: '436',
-      label: 'FORT HARRISON MEDICAL CENTER',
-    },
+    '436',
   ],
   WY: [
-    {
-      code: '442',
-      label: 'CHEYENNE VA MEDICAL',
-    },
-    {
-      code: '666',
-      label: 'SHERIDAN VA MEDICAL CENTER',
-    },
+    '442',
+    '666',
   ],
   CO: [
-    {
-      code: '554',
-      label: 'ROCKY MOUNTAIN REGIONAL VAMC',
-    },
-    {
-      code: '575',
-      label: 'GRAND JUNCTION VAMC',
-    },
+    '554',
+    '575',
   ],
   OK: [
-    {
-      code: '623',
-      label: 'MUSKOGEE, OK VAMC',
-    },
-    {
-      code: '635',
-      label: 'OKLAHOMA CITY VA MEDICAL CENTER',
-    },
+    '623',
+    '635',
   ],
   UT: [
-    {
-      code: '660',
-      label: 'GEORGE E. WAHLEN VAMC',
-    },
+    '660',
   ],
   NY: [
-    {
-      code: '526',
-      label: 'BRONX VA HOSPITAL',
-    },
-    {
-      code: '528',
-      label: 'BUFFALO VA MEDICAL CENTER',
-    },
-    {
-      code: '528A5',
-      label: 'CANANDAIGUA VA MEDICAL CENTER',
-    },
-    {
-      code: '528A6',
-      label: 'BATH VA MEDICAL CENTER',
-    },
-    {
-      code: '528A7',
-      label: 'SYRACUSE VA MEDICAL CENTER',
-    },
-    {
-      code: '528A8',
-      label: 'SAMUEL S. STRATTON VAMC',
-    },
-    {
-      code: '620',
-      label: 'VA HUDSON VALLEY HEALTH CARE SYSTEM - MONTROSE DIVISION',
-    },
-    {
-      code: '630',
-      label: 'VA NEW YORK HARBOR HEALTHCARE SYSTEM - NEW YORK DIVISION',
-    },
-    {
-      code: '632',
-      label: 'NORTHPORT VAMC NY',
-    },
+    '526',
+    '528',
+    '528A5',
+    '528A6',
+    '528A7',
+    '528A8',
+    '620',
+    '630',
+    '632',
   ],
   NJ: [
-    {
-      code: '561',
-      label: 'NEW JERSEY HEALTH CARE SYSTEM - EAST ORANGE',
-    },
+    '561',
   ],
   AK: [
-    {
-      code: '463',
-      label: 'ANCHORAGE VA MEDICAL CENTER',
-    },
+    '463',
   ],
   ID: [
-    {
-      code: '531',
-      label: 'BOISE VA MEDICAL CENTER',
-    },
+    '531',
   ],
   OR: [
-    {
-      code: '648',
-      label: 'PORTLAND VA MEDICAL CENTER',
-    },
-    {
-      code: '653',
-      label: 'ROSEBURG VA MEDICAL CENTER',
-    },
-    {
-      code: '692',
-      label: 'WHITE CITY VA MEDICAL CENTER',
-    },
+    '648',
+    '653',
+    '692',
   ],
   WA: [
-    {
-      code: '663',
-      label: 'SEATTLE VA MEDICAL CENTER',
-    },
-    {
-      code: '668',
-      label: 'MANN-GRANDSTAFF VAMC',
-    },
-    {
-      code: '687',
-      label: 'JONATHAN M. WAINWRIGHT VAMC',
-    },
+    '663',
+    '668',
+    '687',
   ],
   HI: [
-    {
-      code: '459',
-      label: 'SPARK M. MATSUNAGA VAMC',
-    },
+    '459',
   ],
   NV: [
-    {
-      code: '593',
-      label: 'SOUTHERN NEVADA HCS',
-    },
-    {
-      code: '654',
-      label: 'IOANNIS A. LOUGARIS VAMC',
-    },
+    '593',
+    '654',
   ],
   NM: [
-    {
-      code: '501',
-      label: 'RAYMOND G. MURPHY VAMC',
-    },
+    '501',
   ],
   AZ: [
-    {
-      code: '644',
-      label: 'PHOENIX VAMC',
-    },
-    {
-      code: '649',
-      label: 'NORTHERN ARIZONA HEALTH CARE SYSTEM - PRESCOTT DIVISION',
-    },
-    {
-      code: '678',
-      label: 'SOUTHERN ARIZONA HEALTH CARE SYSTEM - TUCSON DIVISION',
-    },
+    '644',
+    '649',
+    '678',
   ],
   ND: [
-    {
-      code: '437',
-      label: 'FARGO VA HCS',
-    },
+    '437',
   ],
   MN: [
-    {
-      code: '618',
-      label: 'MINNEAPOLIS VA HCS',
-    },
-    {
-      code: '656',
-      label: 'ST. CLOUD VA HEALTH CARE SYSTEM',
-    },
+    '618',
+    '656',
   ],
   NE: [
-    {
-      code: '636',
-      label: 'VA CENTRAL PLAINS HEALTH NETWORK - OMAHA DIVISION',
-    },
+    '636',
   ],
   IA: [
-    {
-      code: '636A6',
-      label: 'VA CIHS, DES MOINES DIVISION',
-    },
-    {
-      code: '636A8',
-      label: 'IOWA CITY HCS',
-    },
+    '636A6',
+    '636A8',
   ],
   DE: [
-    {
-      code: '460',
-      label: 'WILMINGTON VA MEDICAL CENTER',
-    },
+    '460',
   ],
   PA: [
-    {
-      code: '503',
-      label: 'JAMES E VAN ZANDT VAMC',
-    },
-    {
-      code: '529',
-      label: 'ABIE ABRAHAM VA CLINIC',
-    },
-    {
-      code: '542',
-      label: 'COATESVILLE VA MEDICAL CENTER',
-    },
-    {
-      code: '562',
-      label: 'ERIE VA MEDICAL CENTER',
-    },
-    {
-      code: '595',
-      label: 'LEBANON VA MEDICAL CENTER',
-    },
-    {
-      code: '642',
-      label: 'PHILADELPHIA, PA VAMC',
-    },
-    {
-      code: '646',
-      label: 'PITTSBURGH VAMC UNIVERSITY DR.',
-    },
-    {
-      code: '693',
-      label: 'WILKES-BARRE VAMC',
-    },
+    '503',
+    '529',
+    '542',
+    '562',
+    '595',
+    '642',
+    '646',
+    '693',
   ],
   MD: [
-    {
-      code: '512',
-      label: 'VA MARYLAND HEALTH CARE SYS',
-    },
+    '512',
   ],
   WV: [
-    {
-      code: '517',
-      label: 'BECKLEY VA MEDICAL CENTER',
-    },
-    {
-      code: '540',
-      label: 'LOUIS A JOHNSON VAMC',
-    },
-    {
-      code: '581',
-      label: 'HUNTINGTON VAMC',
-    },
-    {
-      code: '613',
-      label: 'MARTINSBURG VA MEDICAL CENTER',
-    },
+    '517',
+    '540',
+    '581',
+    '613',
   ],
   DC: [
-    {
-      code: '688',
-      label: 'WASHINGTON VA MEDICAL CENTER',
-    },
+    '688',
   ],
   NC: [
-    {
-      code: '558',
-      label: 'DURHAM VA MEDICAL CENTER',
-    },
-    {
-      code: '565',
-      label: 'FAYETTEVILLE VA MEDICAL CENTER',
-    },
-    {
-      code: '637',
-      label: 'CHARLES GEORGE VAMC',
-    },
-    {
-      code: '659',
-      label: 'W.G. HEFNER SALISBURY VAMC',
-    },
+    '558',
+    '565',
+    '637',
+    '659',
   ],
   VA: [
-    {
-      code: '590',
-      label: 'HAMPTON VA MEDICAL CENTER',
-    },
-    {
-      code: '652',
-      label: 'HUNTER HOLMES MCGUIRE HOSPITAL',
-    },
-    {
-      code: '658',
-      label: 'SALEM VA MEDICAL CENTER',
-    },
+    '590',
+    '652',
+    '658',
   ],
   GA: [
-    {
-      code: '508',
-      label: 'ATLANTA VAMC',
-    },
-    {
-      code: '509',
-      label: 'AUGUSTA VAMC',
-    },
-    {
-      code: '557',
-      label: 'DUBLIN',
-    },
+    '508',
+    '509',
+    '557',
   ],
   AL: [
-    {
-      code: '521',
-      label: 'BIRMINGHAM VAMC',
-    },
-    {
-      code: '619',
-      label: 'CENTRAL ALABAMA HEALTH CARE SYSTEM - MONTGOMERY DIVISION',
-    },
-    {
-      code: '679',
-      label: 'TUSCALOOSA VA MEDICAL CENTER',
-    },
+    '521',
+    '619',
+    '679',
   ],
   SC: [
-    {
-      code: '534',
-      label: 'RALPH H. JOHNSON VA MEDICAL CENTER (534)',
-    },
-    {
-      code: '544',
-      label: 'WM JENNINGS BRYAN DORN VETERANS AFFAIRS MEDICAL CENTER',
-    },
+    '534',
+    '544',
   ],
   FL: [
-    {
-      code: '516',
-      label: 'C.W. BILL YOUNG DEPT OF VAMC',
-    },
-    {
-      code: '546',
-      label: 'BRUCE W. CARTER DEPT OF VAMC',
-    },
-    {
-      code: '548',
-      label: 'WEST PALM BEACH VAMC',
-    },
-    {
-      code: '573',
-      label: 'MALCOM RANDALL DEPT OF VAMC',
-    },
-    {
-      code: '673',
-      label: 'JAMES A. HALEY VETERANS HOSP',
-    },
-    {
-      code: '675',
-      label: 'ORLANDO VAMC',
-    },
+    '516',
+    '546',
+    '548',
+    '573',
+    '673',
+    '675',
   ],
   PR: [
-    {
-      code: '672',
-      label: 'SAN JUAN VA MEDICAL CENTER',
-    },
+    '672',
   ],
   KY: [
-    {
-      code: '596',
-      label: 'LEXINGTON VAMC-LEESTOWN',
-    },
-    {
-      code: '603',
-      label: 'ROBLEY REX VAMC',
-    },
+    '596',
+    '603',
   ],
   TN: [
-    {
-      code: '614',
-      label: 'MEMPHIS VA MEDICAL CENTER',
-    },
-    {
-      code: '621',
-      label: 'JAMES H. QUILLEN VAMC',
-    },
-    {
-      code: '626',
-      label: 'TENNESSEE VALLEY HCS',
-    },
+    '614',
+    '621',
+    '626',
   ],
-};
+}
+
+const caregiverProgramFacilities = {};
+
+Object.keys(caregiverFacilitesCodesByState).forEach((stateId) => {
+  const stateFacilityCodes = caregiverFacilitesCodesByState[stateId];
+
+  caregiverProgramFacilities[stateId] = stateFacilityCodes.map(targetFacilityCode => {
+    const matchingVaMedicalFacility = vaMedicalFacilities[stateId].find(vaMedicalFacility => vaMedicalFacility.value === targetFacilityCode);
+
+    if (!matchingVaMedicalFacility) {
+      throw `The code ${targetFacilityCode} was not found in "vaMedicalFacilities". Add this facility to the "caregiverProgramFacilities" manually.`;
+    }
+
+    return {
+      label: matchingVaMedicalFacility.label,
+      code: matchingVaMedicalFacility.value,
+    };
+  });
+});
+
+[
+  // If there is a Caregiver Program Facility that is not listed in vaMedicalFacilities,
+  // add it to this list in the following format:
+  // { stateId: 'TX', facilities: [{ label: 'Water Lake County VA Medical Center', code: '123Z0' }] }
+].forEach((additionalFacilitiesDefinition) => {
+  Array.prototype.push.apply(
+    caregiverProgramFacilities[additionalFacilitiesDefinition.stateId],
+    additionalFacilitiesDefinition.facilities,
+  );
+});
+
+module.exports = caregiverProgramFacilities;
