@@ -216,6 +216,7 @@ describe('10-10CG json schema', () => {
         gender: 'F',
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         primaryPhoneNumber: '1234567890',
+        alternativePhoneNumber: '8887775544',
         vetRelationship: 'Friend/Neighbor',
       };
 
@@ -225,6 +226,7 @@ describe('10-10CG json schema', () => {
         gender: 'M',
         address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
         primaryPhoneNumber: '1234567890',
+        alternativePhoneNumber: '8887775544',
         vetRelationship: 'Friend/Neighbor',
       };
     });
