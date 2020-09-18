@@ -181,29 +181,45 @@
         "MORE_THAN_FIFTY"
       ]
     },
-    "height": {
-      "type": "number"
-    },
-    "weight": {
-      "type": "string",
-      "pattern": "^([1-9]\\d*)(\\.(\\d{1}|\\d{2}))?$"
+    "VETERAN": {
+      "type": "object",
+      "properties": {
+        "VETERAN::VETERAN": {
+          "type": "boolean"
+        },
+        "VETERAN::ACTIVE_DUTY": {
+          "type": "boolean"
+        },
+        "VETERAN::NATIONAL_GUARD_RESERVES": {
+          "type": "boolean"
+        },
+        "VETERAN::VA_EMPLOYEE": {
+          "type": "boolean"
+        },
+        "VETERAN::FAMILY_MEMBER_CAREGIVER": {
+          "type": "boolean"
+        },
+        "VETERAN::VA_HEALTHCARE_CHAMPVA": {
+          "type": "boolean"
+        },
+        "VETERAN::NONE_OF_ABOVE": {
+          "type": "boolean"
+        }
+      }
     },
     "GENDER": {
       "type": "object",
       "properties": {
-        "GENDER::FEMALE": {
-          "type": "boolean"
-        },
         "GENDER::MALE": {
           "type": "boolean"
         },
-        "GENDER::TRANSGENDER_FEMALE": {
+        "GENDER::FEMALE": {
           "type": "boolean"
         },
         "GENDER::TRANSGENDER_MALE": {
           "type": "boolean"
         },
-        "GENDER::GENDER_VARIANT": {
+        "GENDER::TRANSGENDER_FEMALE": {
           "type": "boolean"
         },
         "GENDER::SELF_IDENTIFY": {
@@ -214,34 +230,41 @@
         }
       }
     },
-    "RACE_ETHNICITY_ORIGIN": {
+    "GENDER_SELF_IDENTIFY_DETAILS": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "RACE_ETHNICITY": {
       "type": "object",
       "properties": {
-        "RACE_ETHNICITY_ORIGIN::AMERICAN_INDIAN_ALASKA_NATIVE": {
+        "RACE_ETHNICITY::AMERICAN_INDIAN_ALASKA_NATIVE": {
           "type": "boolean"
         },
-        "RACE_ETHNICITY_ORIGIN::ASIAN": {
+        "RACE_ETHNICITY::ASIAN": {
           "type": "boolean"
         },
-        "RACE_ETHNICITY_ORIGIN::BLACK_AFRICAN_AMERICAN": {
+        "RACE_ETHNICITY::BLACK_AFRICAN_AMERICAN": {
           "type": "boolean"
         },
-        "RACE_ETHNICITY_ORIGIN::HISPANIC_LATINO_SPANISH_ORIGIN": {
+        "RACE_ETHNICITY::HISPANIC_LATINO_SPANISH_ORIGIN": {
           "type": "boolean"
         },
-        "RACE_ETHNICITY_ORIGIN::HAWAIIAN_PACIFIC_ISLANDER": {
+        "RACE_ETHNICITY::HAWAIIAN_PACIFIC_ISLANDER": {
           "type": "boolean"
         },
-        "RACE_ETHNICITY_ORIGIN::WHITE": {
+        "RACE_ETHNICITY::WHITE": {
           "type": "boolean"
         },
-        "RACE_ETHNICITY_ORIGIN::OTHER_RACE_ETHNICITY": {
+        "RACE_ETHNICITY::OTHER_RACE_ETHNICITY": {
           "type": "boolean"
         },
-        "RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE": {
+        "RACE_ETHNICITY::NONE_OF_ABOVE": {
           "type": "boolean"
         }
       }
+    },
+    "consentAgreementAccepted": {
+      "type": "boolean"
     },
     "email": {
       "$ref": "#/definitions/email"
@@ -274,9 +297,8 @@
     "EMPLOYMENT_STATUS",
     "TRANSPORTATION",
     "closeContact",
-    "height",
-    "weight",
+    "VETERAN",
     "GENDER",
-    "RACE_ETHNICITY_ORIGIN"
+    "RACE_ETHNICITY"
   ]
 }
