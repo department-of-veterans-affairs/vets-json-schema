@@ -166,32 +166,33 @@ const GENDER = {
 };
 const GENDER_SELF_IDENTIFY_DETAILS = {
   type: 'string',
+  maxLength: 50,
 };
-const RACE_ETHNICITY_ORIGIN = {
+const RACE_ETHNICITY = {
   type: 'object',
   properties: {
-    'RACE_ETHNICITY_ORIGIN::AMERICAN_INDIAN_ALASKA_NATIVE': {
+    'RACE_ETHNICITY::AMERICAN_INDIAN_ALASKA_NATIVE': {
       type: 'boolean',
     },
-    'RACE_ETHNICITY_ORIGIN::ASIAN': {
+    'RACE_ETHNICITY::ASIAN': {
       type: 'boolean',
     },
-    'RACE_ETHNICITY_ORIGIN::BLACK_AFRICAN_AMERICAN': {
+    'RACE_ETHNICITY::BLACK_AFRICAN_AMERICAN': {
       type: 'boolean',
     },
-    'RACE_ETHNICITY_ORIGIN::HISPANIC_LATINO_SPANISH_ORIGIN': {
+    'RACE_ETHNICITY::HISPANIC_LATINO_SPANISH_ORIGIN': {
       type: 'boolean',
     },
-    'RACE_ETHNICITY_ORIGIN::HAWAIIAN_PACIFIC_ISLANDER': {
+    'RACE_ETHNICITY::HAWAIIAN_PACIFIC_ISLANDER': {
       type: 'boolean',
     },
-    'RACE_ETHNICITY_ORIGIN::WHITE': {
+    'RACE_ETHNICITY::WHITE': {
       type: 'boolean',
     },
-    'RACE_ETHNICITY_ORIGIN::OTHER_RACE_ETHNICITY': {
+    'RACE_ETHNICITY::OTHER_RACE_ETHNICITY': {
       type: 'boolean',
     },
-    'RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE': {
+    'RACE_ETHNICITY::NONE_OF_ABOVE': {
       type: 'boolean',
     },
   },
@@ -218,7 +219,7 @@ const schema = {
     VETERAN,
     GENDER,
     GENDER_SELF_IDENTIFY_DETAILS,
-    RACE_ETHNICITY_ORIGIN,
+    RACE_ETHNICITY,
     consentAgreementAccepted,
   },
   required: [
@@ -238,7 +239,7 @@ const schema = {
     'closeContact',
     'VETERAN',
     'GENDER',
-    'RACE_ETHNICITY_ORIGIN',
+    'RACE_ETHNICITY',
   ],
 };
 
