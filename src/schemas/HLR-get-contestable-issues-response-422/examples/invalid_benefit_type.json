@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "status": 422,
+      "code": "invalid_benefit_type",
+      "title": "Invalid Benefit Type",
+      "detail": "Benefit type nil is invalid. Must be one of: [\"compensation\", \"pension\", \"fiduciary\", \"insurance\", \"education\", \"voc_rehab\", \"loan_guaranty\", \"vha\", \"nca\"]"
+    }
+  ],
+  "code": "invalid_benefit_type",
+  "detail": "Invalid Benefit Type",
+  "source": "Benefit type nil is invalid. Must be one of: [\"compensation\", \"pension\", \"fiduciary\", \"insurance\", \"education\", \"voc_rehab\", \"loan_guaranty\", \"vha\", \"nca\"]"
+}

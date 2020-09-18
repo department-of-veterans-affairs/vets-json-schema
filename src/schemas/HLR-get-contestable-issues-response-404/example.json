@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "status": 404,
+      "code": "veteran_not_found",
+      "title": "Veteran Not Found"
+    }
+  ]
+}

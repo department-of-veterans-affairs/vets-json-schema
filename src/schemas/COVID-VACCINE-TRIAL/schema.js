@@ -115,29 +115,45 @@ const closeContact = {
   type: 'string',
   enum: ['ZERO', 'ONE_TEN', 'ELEVEN_THIRTY', 'THIRTYONE_FIFTY', 'MORE_THAN_FIFTY'],
 };
-const height = {
-  type: 'number',
-};
-const weight = {
-  type: 'string',
-  pattern: '^([1-9]\\d*)(\\.(\\d{1}|\\d{2}))?$',
+const VETERAN = {
+  type: 'object',
+  properties: {
+    'VETERAN::VETERAN': {
+      type: 'boolean',
+    },
+    'VETERAN::ACTIVE_DUTY': {
+      type: 'boolean',
+    },
+    'VETERAN::NATIONAL_GUARD_RESERVES': {
+      type: 'boolean',
+    },
+    'VETERAN::VA_EMPLOYEE': {
+      type: 'boolean',
+    },
+    'VETERAN::FAMILY_MEMBER_CAREGIVER': {
+      type: 'boolean',
+    },
+    'VETERAN::VA_HEALTHCARE_CHAMPVA': {
+      type: 'boolean',
+    },
+    'VETERAN::NONE_OF_ABOVE': {
+      type: 'boolean',
+    },
+  },
 };
 const GENDER = {
   type: 'object',
   properties: {
-    'GENDER::FEMALE': {
-      type: 'boolean',
-    },
     'GENDER::MALE': {
       type: 'boolean',
     },
-    'GENDER::TRANSGENDER_FEMALE': {
+    'GENDER::FEMALE': {
       type: 'boolean',
     },
     'GENDER::TRANSGENDER_MALE': {
       type: 'boolean',
     },
-    'GENDER::GENDER_VARIANT': {
+    'GENDER::TRANSGENDER_FEMALE': {
       type: 'boolean',
     },
     'GENDER::SELF_IDENTIFY': {
@@ -147,6 +163,9 @@ const GENDER = {
       type: 'boolean',
     },
   },
+};
+const GENDER_SELF_IDENTIFY_DETAILS = {
+  type: 'string',
 };
 const RACE_ETHNICITY_ORIGIN = {
   type: 'object',
@@ -177,7 +196,9 @@ const RACE_ETHNICITY_ORIGIN = {
     },
   },
 };
-
+const consentAgreementAccepted = {
+  type: 'boolean',
+};
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Covid Vaccine Trial',
@@ -194,10 +215,11 @@ const schema = {
     EMPLOYMENT_STATUS,
     TRANSPORTATION,
     closeContact,
-    height,
-    weight,
+    VETERAN,
     GENDER,
+    GENDER_SELF_IDENTIFY_DETAILS,
     RACE_ETHNICITY_ORIGIN,
+    consentAgreementAccepted,
   },
   required: [
     'email',
@@ -214,8 +236,7 @@ const schema = {
     'EMPLOYMENT_STATUS',
     'TRANSPORTATION',
     'closeContact',
-    'height',
-    'weight',
+    'VETERAN',
     'GENDER',
     'RACE_ETHNICITY_ORIGIN',
   ],

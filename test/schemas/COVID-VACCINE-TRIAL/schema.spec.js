@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
-// import fixtures from '../../support/fixtures';
-
 import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['COVID-VACCINE-TRIAL'];
@@ -136,20 +134,45 @@ describe('covid vaccine trial schema', () => {
     valid: ['12345', '12345-6789'],
     invalid: ['INVALID', '123456789', '12345678910'],
   });
+  schemaTestHelper.testValidAndInvalid('VETERAN', {
+    valid: [
+      { 'VETERAN::VETERAN': true },
+      { 'VETERAN::ACTIVE_DUTY': true },
+      { 'VETERAN::NATIONAL_GUARD_RESERVES': true },
+      { 'VETERAN::VA_EMPLOYEE': true },
+      { 'VETERAN::FAMILY_MEMBER_CAREGIVER': true },
+      { 'VETERAN::VA_HEALTHCARE_CHAMPVA': true },
+      { 'VETERAN::NONE_OF_ABOVE': true },
+      { 'VETERAN::VETERAN': false },
+      { 'VETERAN::ACTIVE_DUTY': false },
+      { 'VETERAN::NATIONAL_GUARD_RESERVES': false },
+      { 'VETERAN::VA_EMPLOYEE': false },
+      { 'VETERAN::FAMILY_MEMBER_CAREGIVER': false },
+      { 'VETERAN::VA_HEALTHCARE_CHAMPVA': false },
+      { 'VETERAN::NONE_OF_ABOVE': false },
+    ],
+    invalid: [
+      { 'VETERAN::VETERAN': 'invalid' },
+      { 'VETERAN::ACTIVE_DUTY': 'invalid' },
+      { 'VETERAN::NATIONAL_GUARD_RESERVES': 'invalid' },
+      { 'VETERAN::VA_EMPLOYEE': 'invalid' },
+      { 'VETERAN::FAMILY_MEMBER_CAREGIVER': 'invalid' },
+      { 'VETERAN::VA_HEALTHCARE_CHAMPVA': 'invalid' },
+      { 'VETERAN::NONE_OF_ABOVE': 'invalid' },
+    ],
+  });
   schemaTestHelper.testValidAndInvalid('GENDER', {
     valid: [
       { 'GENDER::FEMALE': true },
       { 'GENDER::MALE': true },
       { 'GENDER::TRANSGENDER_FEMALE': true },
       { 'GENDER::TRANSGENDER_MALE': true },
-      { 'GENDER::GENDER_VARIANT': true },
       { 'GENDER::SELF_IDENTIFY': true },
       { 'GENDER::NONE_OF_ABOVE': true },
       { 'GENDER::FEMALE': false },
       { 'GENDER::MALE': false },
       { 'GENDER::TRANSGENDER_FEMALE': false },
       { 'GENDER::TRANSGENDER_MALE': false },
-      { 'GENDER::GENDER_VARIANT': false },
       { 'GENDER::SELF_IDENTIFY': false },
       { 'GENDER::NONE_OF_ABOVE': false },
     ],
@@ -158,7 +181,6 @@ describe('covid vaccine trial schema', () => {
       { 'GENDER::MALE': 'invalid' },
       { 'GENDER::TRANSGENDER_FEMALE': 'invalid' },
       { 'GENDER::TRANSGENDER_MALE': 'invalid' },
-      { 'GENDER::GENDER_VARIANT': 'invalid' },
       { 'GENDER::SELF_IDENTIFY': 'invalid' },
       { 'GENDER::NONE_OF_ABOVE': 'invalid' },
     ],
@@ -193,12 +215,8 @@ describe('covid vaccine trial schema', () => {
       { 'RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE': 'invalid' },
     ],
   });
-  schemaTestHelper.testValidAndInvalid('weight', {
-    valid: ['90', '90.5', '100', '100.25', '12345.6'],
-    invalid: ['INVALID', '1234.56789', '0', '099'],
-  });
-  schemaTestHelper.testValidAndInvalid('height', {
-    valid: [42, 66, 72, 78],
-    invalid: ['INVALID', '0', '099'],
+  schemaTestHelper.testValidAndInvalid('consentAgreementAccepted', {
+    valid: [true, false],
+    invalid: ['INVALID'],
   });
 });
