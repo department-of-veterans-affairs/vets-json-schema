@@ -231,7 +231,8 @@
       }
     },
     "GENDER_SELF_IDENTIFY_DETAILS": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 50
     },
     "RACE_ETHNICITY": {
       "type": "object",
