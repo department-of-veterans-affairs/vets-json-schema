@@ -40,9 +40,10 @@ const schema = {
       required: ['first', 'last'],
     },
     preferredContactMethod: {
+      default: 'email',
       type: 'string',
       enum: ['email', 'mail', 'phone'],
-      enumNames: ['Email', 'Mail', 'Phone'],
+      enumNames: ['Email', 'US Mail', 'Phone'],
     },
     topic: {
       type: 'string',
