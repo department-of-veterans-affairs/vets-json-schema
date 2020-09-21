@@ -29,7 +29,7 @@ describe('IRIS Ask a Question json schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('topic', {
-    valid: ['Policy Questions'],
+    valid: ['Policy Question'],
     invalid: ['foo'],
   });
 
