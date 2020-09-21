@@ -17,7 +17,7 @@ const schema = {
       required: ['address'],
     },
   ],
-  required: ['fullName', 'preferredContactMethod'],
+  required: ['fullName', 'preferredContactMethod', 'topic', 'inquiryType', 'query', 'veteranStatus'],
   properties: {
     fullName: {
       type: 'object',
@@ -170,6 +170,10 @@ const schema = {
         veteranIsDeceased: {
           type: 'boolean',
         },
+        dateOfDeath: {
+          pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+          type: 'string',
+        },
         branchOfService: {
           type: 'string',
           enum: [
@@ -205,7 +209,7 @@ const schema = {
   },
 };
 
-[['email'], ['phone'], ['address'], ['date', 'dateOfDeath'], ['privacyAgreementAccepted']].forEach(args => {
+[['email'], ['phone'], ['address'], ['privacyAgreementAccepted']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

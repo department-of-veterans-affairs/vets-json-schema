@@ -12,6 +12,13 @@ const schemaDefaults = {
     last: 'smith',
   },
   preferredContactMethod: 'email',
+  email: 'bobsmith@va.gov',
+  topic: 'Policy Question',
+  inquiryType: 'Question',
+  query: 'I have a policy question',
+  veteranStatus: {
+    veteranStatus: 'general',
+  },
 };
 
 const schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
