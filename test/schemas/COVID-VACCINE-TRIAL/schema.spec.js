@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
-// import fixtures from '../../support/fixtures';
-
 import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['COVID-VACCINE-TRIAL'];
@@ -136,20 +134,45 @@ describe('covid vaccine trial schema', () => {
     valid: ['12345', '12345-6789'],
     invalid: ['INVALID', '123456789', '12345678910'],
   });
+  schemaTestHelper.testValidAndInvalid('VETERAN', {
+    valid: [
+      { 'VETERAN::VETERAN': true },
+      { 'VETERAN::ACTIVE_DUTY': true },
+      { 'VETERAN::NATIONAL_GUARD_RESERVES': true },
+      { 'VETERAN::VA_EMPLOYEE': true },
+      { 'VETERAN::FAMILY_MEMBER_CAREGIVER': true },
+      { 'VETERAN::VA_HEALTHCARE_CHAMPVA': true },
+      { 'VETERAN::NONE_OF_ABOVE': true },
+      { 'VETERAN::VETERAN': false },
+      { 'VETERAN::ACTIVE_DUTY': false },
+      { 'VETERAN::NATIONAL_GUARD_RESERVES': false },
+      { 'VETERAN::VA_EMPLOYEE': false },
+      { 'VETERAN::FAMILY_MEMBER_CAREGIVER': false },
+      { 'VETERAN::VA_HEALTHCARE_CHAMPVA': false },
+      { 'VETERAN::NONE_OF_ABOVE': false },
+    ],
+    invalid: [
+      { 'VETERAN::VETERAN': 'invalid' },
+      { 'VETERAN::ACTIVE_DUTY': 'invalid' },
+      { 'VETERAN::NATIONAL_GUARD_RESERVES': 'invalid' },
+      { 'VETERAN::VA_EMPLOYEE': 'invalid' },
+      { 'VETERAN::FAMILY_MEMBER_CAREGIVER': 'invalid' },
+      { 'VETERAN::VA_HEALTHCARE_CHAMPVA': 'invalid' },
+      { 'VETERAN::NONE_OF_ABOVE': 'invalid' },
+    ],
+  });
   schemaTestHelper.testValidAndInvalid('GENDER', {
     valid: [
       { 'GENDER::FEMALE': true },
       { 'GENDER::MALE': true },
       { 'GENDER::TRANSGENDER_FEMALE': true },
       { 'GENDER::TRANSGENDER_MALE': true },
-      { 'GENDER::GENDER_VARIANT': true },
       { 'GENDER::SELF_IDENTIFY': true },
       { 'GENDER::NONE_OF_ABOVE': true },
       { 'GENDER::FEMALE': false },
       { 'GENDER::MALE': false },
       { 'GENDER::TRANSGENDER_FEMALE': false },
       { 'GENDER::TRANSGENDER_MALE': false },
-      { 'GENDER::GENDER_VARIANT': false },
       { 'GENDER::SELF_IDENTIFY': false },
       { 'GENDER::NONE_OF_ABOVE': false },
     ],
@@ -158,47 +181,42 @@ describe('covid vaccine trial schema', () => {
       { 'GENDER::MALE': 'invalid' },
       { 'GENDER::TRANSGENDER_FEMALE': 'invalid' },
       { 'GENDER::TRANSGENDER_MALE': 'invalid' },
-      { 'GENDER::GENDER_VARIANT': 'invalid' },
       { 'GENDER::SELF_IDENTIFY': 'invalid' },
       { 'GENDER::NONE_OF_ABOVE': 'invalid' },
     ],
   });
-  schemaTestHelper.testValidAndInvalid('RACE_ETHNICITY_ORIGIN', {
+  schemaTestHelper.testValidAndInvalid('RACE_ETHNICITY', {
     valid: [
-      { 'RACE_ETHNICITY_ORIGIN::AMERICAN_INDIAN_ALASKA_NATIVE': true },
-      { 'RACE_ETHNICITY_ORIGIN::ASIAN': true },
-      { 'RACE_ETHNICITY_ORIGIN::BLACK_AFRICAN_AMERICAN': true },
-      { 'RACE_ETHNICITY_ORIGIN::HISPANIC_LATINO_SPANISH_ORIGIN': true },
-      { 'RACE_ETHNICITY_ORIGIN::HAWAIIAN_PACIFIC_ISLANDER': true },
-      { 'RACE_ETHNICITY_ORIGIN::WHITE': true },
-      { 'RACE_ETHNICITY_ORIGIN::OTHER_RACE_ETHNICITY': true },
-      { 'RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE': true },
-      { 'RACE_ETHNICITY_ORIGIN::AMERICAN_INDIAN_ALASKA_NATIVE': false },
-      { 'RACE_ETHNICITY_ORIGIN::ASIAN': false },
-      { 'RACE_ETHNICITY_ORIGIN::BLACK_AFRICAN_AMERICAN': false },
-      { 'RACE_ETHNICITY_ORIGIN::HISPANIC_LATINO_SPANISH_ORIGIN': false },
-      { 'RACE_ETHNICITY_ORIGIN::HAWAIIAN_PACIFIC_ISLANDER': false },
-      { 'RACE_ETHNICITY_ORIGIN::WHITE': false },
-      { 'RACE_ETHNICITY_ORIGIN::OTHER_RACE_ETHNICITY': false },
-      { 'RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE': false },
+      { 'RACE_ETHNICITY::AMERICAN_INDIAN_ALASKA_NATIVE': true },
+      { 'RACE_ETHNICITY::ASIAN': true },
+      { 'RACE_ETHNICITY::BLACK_AFRICAN_AMERICAN': true },
+      { 'RACE_ETHNICITY::HISPANIC_LATINO_SPANISH_ORIGIN': true },
+      { 'RACE_ETHNICITY::HAWAIIAN_PACIFIC_ISLANDER': true },
+      { 'RACE_ETHNICITY::WHITE': true },
+      { 'RACE_ETHNICITY::OTHER_RACE_ETHNICITY': true },
+      { 'RACE_ETHNICITY::NONE_OF_ABOVE': true },
+      { 'RACE_ETHNICITY::AMERICAN_INDIAN_ALASKA_NATIVE': false },
+      { 'RACE_ETHNICITY::ASIAN': false },
+      { 'RACE_ETHNICITY::BLACK_AFRICAN_AMERICAN': false },
+      { 'RACE_ETHNICITY::HISPANIC_LATINO_SPANISH_ORIGIN': false },
+      { 'RACE_ETHNICITY::HAWAIIAN_PACIFIC_ISLANDER': false },
+      { 'RACE_ETHNICITY::WHITE': false },
+      { 'RACE_ETHNICITY::OTHER_RACE_ETHNICITY': false },
+      { 'RACE_ETHNICITY::NONE_OF_ABOVE': false },
     ],
     invalid: [
-      { 'RACE_ETHNICITY_ORIGIN::AMERICAN_INDIAN_ALASKA_NATIVE': 'invalid' },
-      { 'RACE_ETHNICITY_ORIGIN::ASIAN': 'invalid' },
-      { 'RACE_ETHNICITY_ORIGIN::BLACK_AFRICAN_AMERICAN': 'invalid' },
-      { 'RACE_ETHNICITY_ORIGIN::HISPANIC_LATINO_SPANISH_ORIGIN': 'invalid' },
-      { 'RACE_ETHNICITY_ORIGIN::HAWAIIAN_PACIFIC_ISLANDER': 'invalid' },
-      { 'RACE_ETHNICITY_ORIGIN::WHITE': 'invalid' },
-      { 'RACE_ETHNICITY_ORIGIN::OTHER_RACE_ETHNICITY': 'invalid' },
-      { 'RACE_ETHNICITY_ORIGIN::NONE_OF_ABOVE': 'invalid' },
+      { 'RACE_ETHNICITY::AMERICAN_INDIAN_ALASKA_NATIVE': 'invalid' },
+      { 'RACE_ETHNICITY::ASIAN': 'invalid' },
+      { 'RACE_ETHNICITY::BLACK_AFRICAN_AMERICAN': 'invalid' },
+      { 'RACE_ETHNICITY::HISPANIC_LATINO_SPANISH_ORIGIN': 'invalid' },
+      { 'RACE_ETHNICITY::HAWAIIAN_PACIFIC_ISLANDER': 'invalid' },
+      { 'RACE_ETHNICITY::WHITE': 'invalid' },
+      { 'RACE_ETHNICITY::OTHER_RACE_ETHNICITY': 'invalid' },
+      { 'RACE_ETHNICITY::NONE_OF_ABOVE': 'invalid' },
     ],
   });
-  schemaTestHelper.testValidAndInvalid('weight', {
-    valid: ['90', '90.5', '100', '100.25', '12345.6'],
-    invalid: ['INVALID', '1234.56789', '0', '099'],
-  });
-  schemaTestHelper.testValidAndInvalid('height', {
-    valid: [42, 66, 72, 78],
-    invalid: ['INVALID', '0', '099'],
+  schemaTestHelper.testValidAndInvalid('consentAgreementAccepted', {
+    valid: [true, false],
+    invalid: ['INVALID'],
   });
 });
