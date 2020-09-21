@@ -5,7 +5,6 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'EDUCATIONAL/VOCATIONAL COUNSELING APPLICATION (28-8832)',
   type: 'object',
-  additionalProperties: false,
   definitions: {
     addressSchema: {
       type: 'object',
