@@ -383,15 +383,11 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
         "vetRelationship",
-        "medicaidEnrolled",
-        "medicareEnrolled",
-        "tricareEnrolled",
-        "champvaEnrolled"
+        "hasHealthInsurance"
       ],
       "properties": {
         "fullName": {
@@ -421,22 +417,8 @@
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
         },
-        "medicaidEnrolled": {
+        "hasHealthInsurance": {
           "type": "boolean"
-        },
-        "medicareEnrolled": {
-          "type": "boolean"
-        },
-        "tricareEnrolled": {
-          "type": "boolean"
-        },
-        "champvaEnrolled": {
-          "type": "boolean"
-        },
-        "otherHealthInsuranceName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100
         }
       }
     },
@@ -445,7 +427,6 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
@@ -486,7 +467,6 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",

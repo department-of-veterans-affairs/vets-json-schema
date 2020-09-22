@@ -1,5 +1,6 @@
 node_modules
 /.project
+package-lock.json
 
 # WebStorm indexing
 .idea
