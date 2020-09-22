@@ -166,7 +166,7 @@ const GENDER = {
 };
 const GENDER_SELF_IDENTIFY_DETAILS = {
   type: 'string',
-  maxLength: 50,
+  maxLength: 255,
 };
 const RACE_ETHNICITY = {
   type: 'object',
