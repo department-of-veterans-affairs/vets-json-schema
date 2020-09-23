@@ -84,7 +84,6 @@ const caregiverFacilitesCodesByState = {
   MO: [
     '589',
     '589A4',
-    '657',
     '657A4',
   ],
   LA: [
@@ -268,10 +267,23 @@ Object.keys(caregiverFacilitesCodesByState).forEach((stateId) => {
   });
 });
 
+// If there is a Caregiver Program Facility that is not listed in vaMedicalFacilities,
+// add it to this list in the following format:
+// { stateId: 'TX', facilities: [{ code: '123Z0', label: 'Water Lake County VA Medical Center' }] }
 [
-  // If there is a Caregiver Program Facility that is not listed in vaMedicalFacilities,
-  // add it to this list in the following format:
-  // { stateId: 'TX', facilities: [{ code: '123Z0', label: 'Water Lake County VA Medical Center' }] }
+  // The Caregiver Program requested that this facility use the label "VA St. Louis Health Care System".
+  // 
+  // These codes are currently serving two purposes: It defines what VA facility an online 10-10CG submission gets
+  // routed to for processing, and it is used for the applicant to signify where they plan to, or currently, receive care.
+  // 
+  // In the long term we plan to add a "processing" facility code to each individual facility. This way
+  // the applicant chooses a single facility (where to get care), and we know what facility to send the
+  // application to (where the application gets processed).
+  // 
+  // When that happens, we can have both "John Cochran Veterans Hospital" and "St. Louis VA Medical Center-Jefferson Barracks"
+  // as individual facilites the applicant can select while sending both to 657 (John Cochran Veterans Hospital) for processing.
+  // 
+  { stateId: 'MO', facilities: [{ code: '657', label: 'VA St. Louis Health Care System' }] }
 ].forEach((additionalFacilitiesDefinition) => {
   Array.prototype.push.apply(
     caregiverProgramFacilities[additionalFacilitiesDefinition.stateId],

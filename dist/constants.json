@@ -341,12 +341,12 @@
         "label": "Harry S. Truman Memorial Veterans' Hospital"
       },
       {
-        "code": "657",
-        "label": "John Cochran Veterans Hospital"
-      },
-      {
         "code": "657A4",
         "label": "John J. Pershing Veterans' Administration Medical Center"
+      },
+      {
+        "code": "657",
+        "label": "VA St. Louis Health Care System"
       }
     ],
     "LA": [
