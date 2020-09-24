@@ -26,6 +26,9 @@ const HEALTH_HISTORY = {
     'HEALTH_HISTORY::CANCER': {
       type: 'boolean',
     },
+    'HEALTH_HISTORY::IMMUNOCOMPROMISED': {
+      type: 'boolean',
+    },
     'HEALTH_HISTORY::DIABETES': {
       type: 'boolean',
     },
@@ -33,9 +36,6 @@ const HEALTH_HISTORY = {
       type: 'boolean',
     },
     'HEALTH_HISTORY::HIGH_BLOOD_PRESSURE': {
-      type: 'boolean',
-    },
-    'HEALTH_HISTORY::IMMUNOCOMPROMISED': {
       type: 'boolean',
     },
     'HEALTH_HISTORY::KIDNEY_LIVER_DISEASE': {
@@ -92,6 +92,9 @@ const TRANSPORTATION = {
   type: 'object',
   properties: {
     'TRANSPORTATION::CAR': {
+      type: 'boolean',
+    },
+    'TRANSPORTATION::CARPOOL_OR_VANPOOL': {
       type: 'boolean',
     },
     'TRANSPORTATION::FREQUENT_AIR_TRAVEL': {
@@ -154,6 +157,9 @@ const GENDER = {
       type: 'boolean',
     },
     'GENDER::TRANSGENDER_FEMALE': {
+      type: 'boolean',
+    },
+    'GENDER::NON_BINARY': {
       type: 'boolean',
     },
     'GENDER::SELF_IDENTIFY': {
