@@ -1,10 +1,19 @@
-import schemaHelpers from '../../common/schema-helpers';
+import _ from 'lodash';
+import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'IRIS Ask a Question',
   type: 'object',
-  definitions: {},
+  definitions: _.pick(definitions, [
+    'address',
+    'date',
+    'dateRange',
+    'email',
+    'phone',
+    'ssn',
+    'privacyAgreementAccepted',
+  ]),
   additionalProperties: false,
   anyOf: [
     {
@@ -17,7 +26,7 @@ const schema = {
       required: ['address'],
     },
   ],
-  required: ['fullName', 'preferredContactMethod'],
+  required: ['fullName', 'preferredContactMethod', 'topic', 'inquiryType', 'query', 'veteranStatus'],
   properties: {
     fullName: {
       type: 'object',
@@ -46,71 +55,55 @@ const schema = {
       enumNames: ['Email', 'US Mail', 'Phone'],
     },
     topic: {
-      type: 'string',
-      enum: [
-        'Policy Question',
-        'Question about Women Veterans Programs',
-        'Compensation Request',
-        'All Other Burial Benefit Inquiries',
-        'Pre-Need Burial Eligibility Determination',
-        'Headstones & Markers',
-        'Presidential Memorial Certificates',
-        'General Caregiver Support/Education',
-        'Comprehensive Family Caregiver Program',
-        'VA Supportive Services',
-        "Can't Register (Not in DEERS msg.)",
-        'About eBenefits',
-        'Error messages',
-        'eBenefits Accounts and Passwords',
-        'Need help navigating eBenefits Site',
-        'Home Loan/Mortgage Certificates of Elig',
-        'Homeloan VIP Portal Access',
-        'Web Page Issues',
-        'Dividends',
-        'Insurance Claims',
-        'Insurance Premiums',
-        'Insurance Web Site Technical Issues',
-        'Online Policy Access Issues',
-        'Other Issue',
-        'Policy Loan',
-        'Service Disabled Veterans’ Life Insuranc',
-        'Servicemembers Group Life Ins (SGLI)',
-        'SGLI Family Coverage',
-        'Veterans’ Group Life Insurance (VGLI)',
-        'Veterans’ Mortgage Life Insurance',
-        'Filing for pension benefits',
-        'Issues/Questions about pension received',
-        'Apply for Direct Deposit',
-        'Change Direct Deposit Destination',
-        'Aid and Attendance Benefits',
-        'Guardianship/Custodianship Issues',
-        'Orientation',
-        'Servicemembers',
-        'Cannot Login',
-        'Address Issue',
-        'Claim Access Issue',
-        'Other Technical Issue',
-        'Home Loan Guaranty VIP Portal Access',
-        'Home Loan Guaranty Web Page Issues',
-        'E-Benefits Website Technical Issue',
-        'MyHealtheVet Website Technical Issue',
-        'VA Dept Website - Report Broken Links (provide link inform',
-        'VA Dept Website - Unable to access web page',
-        'Can I get a link on VA site to my site',
-        'Correction to posted information needed',
-        'May I link to www.va.gov',
-        'Use of VA logo or VA seal',
-        'Use of images on VA websites',
-        'All other Web related technical issues',
-        'VBA Website - Report Broken Links (provide link inform',
-        'VBA Website - Unable to access web page',
-        'Can I get a link on VBA site to my site',
-        'E-Benefits Password/Access Problem',
-        'Education Password/Access Problems',
-        'VBA Homeloan VIP Portal Access',
-        'Life Insurance Password/Access Problem',
-        'MyHealtheVet Password/Access Problem',
-        'VONAPP Password/Access Problem',
+      type: 'object',
+      oneOf: [
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Caregiver Support Program'],
+            },
+            levelTwo: {
+              type: 'string',
+              enum: [
+                'General Caregiver Support/Education',
+                'Comprehensive Family Caregiver Program',
+                'VA Supportive Services',
+              ],
+            },
+          },
+        },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Health & Medical Issues & Services'],
+            },
+            levelTwo: {
+              type: 'string',
+              enum: [
+                'Medical Care Issues at Specific Facility',
+                'Health/Medical Eligibility & Programs',
+                'My HealtheVet',
+                'Prosthetics, Med Devices & Sensory Aids',
+                'Vet Center / Readjustment Counseling Service (RCS)',
+                'Women Veterans Health Care',
+              ],
+            },
+          },
+        },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['VA Ctr for Women Vets, Policies & Progs'],
+            },
+            levelTwo: {
+              type: 'string',
+              enum: ['Policy Questions', 'Question about Women Veterans Programs'],
+            },
+          },
+        },
       ],
     },
     inquiryType: {
@@ -171,6 +164,9 @@ const schema = {
         veteranIsDeceased: {
           type: 'boolean',
         },
+        dateOfDeath: {
+          $ref: '#/definitions/date',
+        },
         branchOfService: {
           type: 'string',
           enum: [
@@ -203,11 +199,38 @@ const schema = {
         },
       },
     },
+    veteranInformation: {
+      dateOfBirth: {
+        $ref: '#/definitions/date',
+      },
+      socialSecurityNumber: {
+        $ref: '#/definitions/ssn',
+      },
+      serviceNumber: {
+        type: 'string',
+        pattern: '^\\d{0,12}$',
+      },
+      claimNumber: {
+        type: 'string',
+        pattern: '^\\d{6,8}$',
+      },
+      serviceDateRange: {
+        $ref: '#/definitions/dateRange',
+      },
+    },
+    email: {
+      $ref: '#/definitions/email',
+    },
+    phone: {
+      $ref: '#/definitions/phone',
+    },
+    address: {
+      $ref: '#/definitions/address',
+    },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted',
+    },
   },
 };
-
-[['email'], ['phone'], ['address'], ['date', 'dateOfDeath'], ['privacyAgreementAccepted']].forEach(args => {
-  schemaHelpers.addDefinitionToSchema(schema, ...args);
-});
 
 export default schema;
