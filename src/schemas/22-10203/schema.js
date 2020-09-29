@@ -51,7 +51,7 @@ const schema = {
     },
     schoolCountry: {
       type: 'string',
-      enum: constants.countries.map(country => country.value),
+      enum: constants.countries.map((country) => country.value),
     },
     schoolStudentId: {
       type: 'string',
@@ -88,6 +88,9 @@ const schema = {
       type: 'boolean',
     },
     scoEmailSent: {
+      type: 'boolean',
+    },
+    receiveTexts: {
       type: 'boolean',
     },
   },
