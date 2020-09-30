@@ -667,6 +667,9 @@
     },
     "scoEmailSent": {
       "type": "boolean"
+    },
+    "receiveTexts": {
+      "type": "boolean"
     }
   },
   "required": [
