@@ -200,22 +200,25 @@ const schema = {
       },
     },
     veteranInformation: {
-      dateOfBirth: {
-        $ref: '#/definitions/date',
-      },
-      socialSecurityNumber: {
-        $ref: '#/definitions/ssn',
-      },
-      serviceNumber: {
-        type: 'string',
-        pattern: '^\\d{0,12}$',
-      },
-      claimNumber: {
-        type: 'string',
-        pattern: '^\\d{6,8}$',
-      },
-      serviceDateRange: {
-        $ref: '#/definitions/dateRange',
+      type: 'object',
+      properties: {
+        dateOfBirth: {
+          $ref: '#/definitions/date',
+        },
+        socialSecurityNumber: {
+          $ref: '#/definitions/ssn',
+        },
+        serviceNumber: {
+          type: 'string',
+          pattern: '^\\d{0,12}$',
+        },
+        claimNumber: {
+          type: 'string',
+          pattern: '^\\d{6,8}$',
+        },
+        serviceDateRange: {
+          $ref: '#/definitions/dateRange',
+        },
       },
     },
     email: {
