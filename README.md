@@ -27,10 +27,10 @@ node v8.10.0
 
 | I want to...                                   | Then you should...                                                                                                                                                                      |
 | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| clone the repo                                 | `git clone https://github.com/department-of-veterans-affairs/vets-json-schema.git` followed by `cd vets-json-schema`, `npm install`. Run `npm install` any time `package.json` changes. |
-| build the json schemas and examples            | `npm run build`                                                                                                                                                                         |
-| watch for changes and rebuild when they happen | `npm run watch`                                                                                                                                                                         |
-| run tests on the built schemas                 | `npm run test`                                                                                                                                                                          |
+| clone the repo                                 | `git clone https://github.com/department-of-veterans-affairs/vets-json-schema.git` followed by `cd vets-json-schema`, `yarn install`. Run `yarn install` any time `package.json` changes. |
+| build the json schemas and examples            | `yarn run build`                                                                                                                                                                         |
+| watch for changes and rebuild when they happen | `yarn run watch`                                                                                                                                                                         |
+| run tests on the built schemas                 | `yarn run test`                                                                                                                                                                          |
 | create a new schema                            | https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/platform/engineering/frontend/vets-website/creating-form-schema.md                                            |
 
 ### Updating Version
@@ -44,8 +44,8 @@ node v8.10.0
     - Changing the `type` on a schema's property
     - Removing values in the `enum` key of a schema's property
     - ect.
-- Run `npm update` update `package-lock.json`.
-- Commit the changes to `package.json` and `package-lock.json`
+- Run `yarn update`.
+- Commit the changes to `package.json` and `yarn.lock`
 - After changes to `vets-json-schema` have been merged into master:
   - update `vets-website` to point to the latest `vets-json-schema` version by running `yarn update:schema` and making a PR
   - update `vets-api` by running `bundle update vets_json_schema` and making a PR. _Caution: verify that you changes are only related to vets_json_schema version. If you see sidekiq changes, follow [these instructions](https://github.com/department-of-veterans-affairs/va.gov-team-sensitive/blob/master/platform/engineering/sidekiq-enterprise-setup.md)_
