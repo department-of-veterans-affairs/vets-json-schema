@@ -6,7 +6,7 @@ import commonDefinitions from '../../common/definitions';
 
 let definitions = cloneDeep(commonDefinitions);
 
-definitions = pick(definitions, ['date', 'fullName', 'ssn', 'vaFileNumber', 'phone', 'email']);
+definitions = pick(definitions, 'date', 'fullName', 'ssn', 'vaFileNumber', 'phone', 'email');
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
