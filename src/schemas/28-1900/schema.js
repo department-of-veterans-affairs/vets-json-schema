@@ -1,116 +1,138 @@
-import _ from 'lodash';
-import definitions from '../../common/definitions';
-import schemaHelpers from '../../common/schema-helpers';
+import cloneDeep from 'lodash/cloneDeep';
+import merge from 'lodash/merge';
+import pick from 'lodash/pick';
+import { countries, states50AndDC } from '../../common/constants';
+import commonDefinitions from '../../common/definitions';
+
+let definitions = cloneDeep(commonDefinitions);
+
+definitions = pick(definitions, ['date', 'fullName', 'ssn', 'vaFileNumber', 'phone', 'email']);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DISABLED VETERANS APPLICATION FOR VOCATIONAL REHABILITATION (28-1900)',
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, ['date', 'dateRange', 'year']),
-  properties: {
-    email: {
-      type: 'string',
-      format: 'email',
-    },
-    vaRecordsOffice: {
-      type: 'string',
-    },
-    yearsOfEducation: {
-      type: 'integer',
-      minimum: 0,
-    },
-    previousPrograms: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          program: {
-            type: 'string',
-          },
-          yearStarted: {
-            $ref: '#/definitions/year',
-          },
-          yearLeft: {
-            $ref: '#/definitions/year',
-          },
+  definitions: merge(definitions, {
+    address: {
+      type: 'object',
+      properties: {
+        countryName: {
+          type: 'string',
+          enum: countries.map(country => country.value),
+          enumNames: countries.map(country => country.label),
+        },
+        addressLine1: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 100,
+          pattern: '^.*\\S.*',
+        },
+        addressLine2: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 100,
+          pattern: '^.*\\S.*',
+        },
+        addressLine3: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 100,
+          pattern: '^.*\\S.*',
+        },
+        city: {
+          type: 'string',
+        },
+        stateCode: {
+          type: 'string',
+          enum: states50AndDC.map(state => state.value),
+          enumNames: states50AndDC.map(state => state.label),
+        },
+        province: {
+          type: 'string',
+        },
+        zipCode: {
+          type: 'string',
+          pattern: '^\\d{5}$',
+        },
+        internationalPostalCode: {
+          type: 'string',
         },
       },
     },
-    jobDuties: {
-      type: 'string',
-    },
-    employer: {
-      type: 'string',
-    },
-    monthlyIncome: {
-      type: 'number',
-      minimum: 0,
-    },
-    dischargeDocuments: { ...definitions.files, minItems: 1 },
-    disabilityRating: {
-      type: 'number',
-      enum: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-    },
-    disabilities: {
-      type: 'string',
-    },
-    dtap: {
-      // disabled transition assistance program
-      type: 'boolean',
-    },
-    // TODO We may not need all these booleans depending on stakeholder feedback
-    serviceFlags: {
+  }),
+  properties: {
+    veteranInformation: {
       type: 'object',
       properties: {
-        ww2: {
-          type: 'boolean',
+        fullName: {
+          $ref: '#/definitions/fullName',
         },
-        postWw2: {
-          type: 'boolean',
+        ssn: {
+          $ref: '#/defintions/ssn',
         },
-        korea: {
-          type: 'boolean',
+        vaFileNumber: {
+          $ref: '#/definitions/vaFileNumber',
         },
-        postKorea: {
-          type: 'boolean',
+        dob: {
+          $ref: '#/definitions/date',
         },
-        vietnam: {
+      },
+    },
+    isMilitaryAddress: {
+      type: 'boolean',
+      default: false,
+    },
+    veteranAddress: {
+      $ref: '#/definitions/address',
+    },
+    mainPhone: {
+      $ref: '#/definitions/phone',
+    },
+    cellPhone: {
+      $ref: '#/definitions/phone',
+    },
+    email: {
+      $ref: '#/definitions/email',
+    },
+    yearsOfEducation: {
+      type: 'string',
+      pattern: '^\\d+$',
+    },
+    isMoving: {
+      type: 'boolean',
+    },
+    newAddress: {
+      $ref: '#/definitions/address',
+    },
+    useEva: {
+      type: 'boolean',
+    },
+    useTelecounseling: {
+      type: 'boolean',
+    },
+    appointmentTimePreferences: {
+      type: 'object',
+      properties: {
+        morning: {
           type: 'boolean',
+          default: false,
         },
-        postVietnam: {
+        midDay: {
           type: 'boolean',
+          default: false,
         },
-        gulf: {
+        afternoon: {
           type: 'boolean',
+          default: false,
         },
-        operationEnduringFreedom: {
+        other: {
           type: 'boolean',
-        },
-        operationIraqiFreedom: {
-          type: 'boolean',
+          default: false,
         },
       },
     },
   },
-  required: ['privacyAgreementAccepted'], // TODO Determine set of required fields
 };
-
-[
-  ['vaFileNumber', 'veteranVaFileNumber'],
-  ['privacyAgreementAccepted'],
-  ['fullName', 'veteranFullName'],
-  ['ssn', 'veteranSocialSecurityNumber'],
-  ['date', 'veteranDateOfBirth'], // TODO Change if partial dates disallowed
-  ['address', 'veteranAddress'],
-  ['address', 'newVeteranAddress'],
-  ['address', 'employerAddress'],
-  ['address', 'hospitalAddress'],
-  ['phone', 'daytimePhone'],
-  ['phone', 'eveningPhone'],
-  ['requiredServiceHistory', 'serviceHistory'],
-].forEach(args => {
-  schemaHelpers.addDefinitionToSchema(schema, ...args);
-});
 
 export default schema;
