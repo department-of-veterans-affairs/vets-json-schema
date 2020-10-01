@@ -1,4 +1,6 @@
 import schemaHelpers from '../../common/schema-helpers';
+import definitions from '../../common/definitions';
+import { countries, states50AndDC } from '../../common/constants';
 
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
 
@@ -34,14 +36,14 @@ const personalData = {
     'married',
   ],
   properties: {
-    veteranFullName: buildDefinitionReference('fullname'),
+    veteranFullName: definitions.fullName,
     veteranAddress: buildDefinitionReference('address'),
     phoneNumber: buildDefinitionReference('phone'),
     dateOfBirth: buildDefinitionReference('date'),
     married: {
       type: 'boolean',
     },
-    spouseFullName: buildDefinitionReference('fullname'),
+    spouseFullName: buildDefinitionReference('fullName'),
     agesOfOtherDependents: {
       type: 'array',
       items: {
@@ -264,36 +266,142 @@ const additionalData = {
   },
 };
 
+// const schema = {
+//   $schema: 'http://json-schema.org/draft-04/schema#',
+//   title: 'FINANCIAL STATUS REPORT',
+//   type: 'object',
+//   additionalProperties: false,
+//   anyOf: [
+//     {
+//       required: ['vaFileNumber'],
+//     },
+//     {
+//       required: ['veteranSocialSecurityNumber'],
+//     },
+//   ],
+//   required: [
+//     'personalData',
+//     'income',
+//     'expenses',
+//     'discretionaryIncome',
+//     'assets',
+//     'installmentContractsAndOtherDebts',
+//     'additionalData',
+//   ],
+//   definitions: {
+//     fullName: definitions.fullName,
+//     date: definitions.date,
+//     phone: definitions.phone,
+//     address: definitions.usAddress,
+//   },
+//   properties: {
+//     personalData: personalData,
+//     income: incomes,
+//     expenses: expenses,
+//     discretionaryIncome: discretionaryIncome,
+//     assets: assets,
+//     installmentContractsAndOtherDebts: installmentContractsAndOtherDebts,
+//     additionalData: additionalData,
+//   },
+// };
+
+// export default schema;
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'FINANCIAL STATUS REPORT',
   type: 'object',
-  additionalProperties: false,
-  anyOf: [
-    {
-      required: ['vaFileNumber'],
+  definitions: {
+    addressSchema: {
+      type: 'object',
+      properties: {
+        'view:livesOnMilitaryBase': {
+          type: 'boolean',
+        },
+        'view:livesOnMilitaryBaseInfo': {
+          type: 'object',
+          properties: {},
+        },
+        countryName: {
+          type: 'string',
+          enum: countries.map(country => country.value),
+          enumNames: countries.map(country => country.label),
+        },
+        addressLine1: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 100,
+          pattern: '^.*\\S.*',
+        },
+        addressLine2: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 100,
+          pattern: '^.*\\S.*',
+        },
+        addressLine3: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 100,
+          pattern: '^.*\\S.*',
+        },
+        city: {
+          type: 'string',
+        },
+        stateCode: {
+          type: 'string',
+          enum: states50AndDC.map(state => state.value),
+          enumNames: states50AndDC.map(state => state.label),
+        },
+        province: {
+          type: 'string',
+        },
+        zipCode: {
+          type: 'string',
+          pattern: '^\\d{5}$',
+        },
+        internationalPostalCode: {
+          type: 'string',
+        },
+      },
     },
-    {
-      required: ['veteranSocialSecurityNumber'],
-    },
-  ],
-  required: [
-    'personalData',
-    'income',
-    'expenses',
-    'discretionaryIncome',
-    'assets',
-    'installmentContractsAndOtherDebts',
-    'additionalData',
-  ],
+  },
   properties: {
-    personalData: personalData,
-    income: incomes,
-    expenses: expenses,
-    discretionaryIncome: discretionaryIncome,
-    assets: assets,
-    installmentContractsAndOtherDebts: installmentContractsAndOtherDebts,
-    additionalData: additionalData,
+    personalData: {
+      type: 'object',
+      properties: {
+        fullName: definitions.fullName,
+        address: definitions.address,
+        VAFileNumber: definitions.vaFileNumber,
+        dateOfBirth: definitions.date,
+      },
+    },
+    claimantStaticInformation: {
+      type: 'object',
+      properties: {},
+    },
+    claimantAddress: {
+      $ref: '#/definitions/addressSchema',
+    },
+    claimantPhoneNumber: definitions.phone,
+    claimantEmailAddress: definitions.email,
+    status: {
+      type: 'string',
+      enum: ['isActiveDuty', 'isVeteran', 'isSpouse', 'isChild'],
+      enumNames: [
+        'Active duty service member',
+        'Veteran',
+        'Spouse of a Veteran or service member',
+        'Child of a Veteran or service member',
+      ],
+    },
+    veteranInformation: {
+      type: 'object',
+      properties: {
+        fullName: definitions.fullName,
+        ssn: definitions.ssn,
+      },
+    },
   },
 };
 
