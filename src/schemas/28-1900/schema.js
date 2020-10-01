@@ -17,6 +17,13 @@ const schema = {
     address: {
       type: 'object',
       properties: {
+        'view:livesOnMilitaryBase': {
+          type: 'boolean',
+        },
+        'view:livesOnMilitaryBaseInfo': {
+          type: 'object',
+          properties: {},
+        },
         countryName: {
           type: 'string',
           enum: countries.map(country => country.value),
