@@ -86,10 +86,6 @@ const schema = {
         },
       },
     },
-    isMilitaryAddress: {
-      type: 'boolean',
-      default: false,
-    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
