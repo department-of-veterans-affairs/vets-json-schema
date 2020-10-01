@@ -69,7 +69,7 @@ const schema = {
           $ref: '#/definitions/fullName',
         },
         ssn: {
-          $ref: '#/defintions/ssn',
+          $ref: '#/definitions/ssn',
         },
         vaFileNumber: {
           $ref: '#/definitions/vaFileNumber',
