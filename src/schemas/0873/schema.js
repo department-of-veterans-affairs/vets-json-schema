@@ -170,6 +170,7 @@ const schema = {
             },
           },
         },
+        {},
       ],
       properties: {
         vaMedicalCenter: {
