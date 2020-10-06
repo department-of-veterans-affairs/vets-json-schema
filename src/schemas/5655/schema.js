@@ -230,8 +230,8 @@ const installmentContractsAndOtherDebts = {
       creditorName: {
         type: 'string',
       },
-      creditorAddress: buildDefinitionReference('address'),
-      dateStarted: buildDefinitionReference('date'),
+      creditorAddress: definitions.address,
+      dateStarted: definitions.date,
       purpose: {
         type: 'string',
       },
@@ -365,6 +365,8 @@ const schema = {
     expenses: expenses,
     discretionaryIncome: discretionaryIncome,
     assets: assets,
+    installmentContractsAndOtherDebts: installmentContractsAndOtherDebts,
+    additionalData: additionalData,
   },
 };
 

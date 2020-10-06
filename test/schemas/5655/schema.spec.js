@@ -183,6 +183,44 @@ const testData = {
       },
     ],
   },
+  installmentContractsAndOtherDebts: {
+    valid: [[
+      {
+        creditorName: 'Faker Bank',
+        creditorAddress: {
+          street: '555 Bogus Street',
+          city: 'Fakerville',
+          state: 'CO',
+          country: 'USA',
+          postalCode: '11111'
+        },
+        dateStarted: '2017-05-01',
+        purpose: 'debt consolidation loan',
+        originalAmount: 1500000,
+        unpaidBalance: 100000,
+        amountDueMonthly: 50000,
+        amountPastDue: 0
+      }
+    ]],
+    invalid: [[
+      {
+        creditorName: 'Faker Bank',
+        creditorAddress: {
+          street: '555 Bogus Street',
+          city: 'Fakerville',
+          state: 'CO',
+          country: 'USA',
+          postalCode: '11111'
+        },
+        dateStarted: null,
+        purpose: 'debt consolidation loan',
+        originalAmount: 1500000,
+        unpaidBalance: 100000,
+        amountDueMonthly: 50000,
+        amountPastDue: true
+      }
+    ]],
+  },
 };
 
 describe('5655 schema', () => {
@@ -198,4 +236,5 @@ describe('5655 schema', () => {
   schemaTestHelper.testValidAndInvalid('expenses', testData.expenses);
   schemaTestHelper.testValidAndInvalid('discretionaryIncome', testData.discretionaryIncome);
   schemaTestHelper.testValidAndInvalid('assets', testData.assets);
+  schemaTestHelper.testValidAndInvalid('installmentContractsAndOtherDebts', testData.installmentContractsAndOtherDebts);
 });
