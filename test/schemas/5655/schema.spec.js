@@ -46,11 +46,53 @@ const testData = {
   income: {
     valid: [
       {
-        monthlyGrossSalary: 10000,
-      }
+        monthlyGrossSalary: 450000,
+        deductions: {
+          taxes: 67500,
+          retirement: 67500,
+          socialSecurity: 67500,
+          other: [
+            {
+              deductionName: 'health savings account',
+              deductionAmount: 50000,
+            },
+          ],
+        },
+        totalDeductions: 252500,
+        netTakeHomePay: 197500,
+        otherIncome: [
+          {
+            name: 'VA Disability Compensation',
+            amount: 150000,
+          },
+        ],
+        totalMonthlyNetIncome: 347500,
+      },
     ],
     invalid: [
-
+      {
+        monthlyGrossSalary: true,
+        deductions: {
+          taxes: 'invalid',
+          retirement: 67500,
+          socialSecurity: 67500,
+          other: [
+            {
+              deductionName: null,
+              deductionAmount: 50000,
+            },
+          ],
+        },
+        totalDeductions: 252500,
+        netTakeHomePay: 197500,
+        otherIncome: [
+          {
+            name: 'VA Disability Compensation',
+            amount: 150000,
+          },
+        ],
+        totalMonthlyNetIncome: 347500,
+      },
     ],
   },
 };
@@ -63,4 +105,6 @@ describe('5655 schema', () => {
   schemaTestHelper.testValidAndInvalid('personalData.agesOfOtherDependents', testData.agesOfOtherDependents);
   schemaTestHelper.testValidAndInvalid('personalData.employmentHistory.veteran', testData.employmentHistory);
   schemaTestHelper.testValidAndInvalid('personalData.employmentHistory.spouse', testData.employmentHistory);
+  schemaTestHelper.testValidAndInvalid('income.veteran', testData.income);
+  schemaTestHelper.testValidAndInvalid('income.spouse', testData.income);
 });
