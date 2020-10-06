@@ -162,60 +162,63 @@ const discretionaryIncome = {
 };
 
 const assets = {
-  cashInBank: {
-    type: 'integer',
-  },
-  cashOnHand: {
-    type: 'integer',
-  },
-  automobiles: {
-    type: 'array',
-    items: {
-      type: 'object',
-      properties: {
-        make: {
-          type: 'string',
-        },
-        model: {
-          type: 'string',
-        },
-        year: {
-          type: 'integer',
-        },
-        resaleValue: {
-          type: 'integer',
+  type: 'object',
+  properties: {
+    cashInBank: {
+      type: 'integer',
+    },
+    cashOnHand: {
+      type: 'integer',
+    },
+    automobiles: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          make: {
+            type: 'string',
+          },
+          model: {
+            type: 'string',
+          },
+          year: {
+            type: 'integer',
+          },
+          resaleValue: {
+            type: 'integer',
+          },
         },
       },
     },
-  },
-  trailerBoatsCampers: {
-    type: 'integer',
-  },
-  usSavingsBonds: {
-    type: 'integer',
-  },
-  stocksAndOtherBonds: {
-    type: 'integer',
-  },
-  realEstateOwned: {
-    type: 'integer',
-  },
-  otherAssets: {
-    type: 'array',
-    items: {
-      type: 'object',
-      properties: {
-        assetName: {
-          type: 'string',
-        },
-        assetValue: {
-          type: 'integer',
+    trailerBoatsCampers: {
+      type: 'integer',
+    },
+    usSavingsBonds: {
+      type: 'integer',
+    },
+    stocksAndOtherBonds: {
+      type: 'integer',
+    },
+    realEstateOwned: {
+      type: 'integer',
+    },
+    otherAssets: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          assetName: {
+            type: 'string',
+          },
+          assetValue: {
+            type: 'integer',
+          },
         },
       },
     },
-  },
-  totalAssets: {
-    type: 'intger',
+    totalAssets: {
+      type: 'integer',
+    },
   },
 };
 
@@ -361,6 +364,7 @@ const schema = {
     income: incomes,
     expenses: expenses,
     discretionaryIncome: discretionaryIncome,
+    assets: assets,
   },
 };
 

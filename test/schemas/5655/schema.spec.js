@@ -131,6 +131,58 @@ const testData = {
       },
     ],
   },
+  assets: {
+    valid: [
+      {
+        cashInBank: 1000000,
+        cashOnHand: 300000,
+        automobiles: [
+          {
+            make: 'Pontiac',
+            model: 'Grand AM',
+            year: 1999,
+            resaleValue: 200000
+          }
+        ],
+        trailersBoatsCampers: 0,
+        usSavingsBonds: 0,
+        stocksAndOtherBonds: 10000000,
+        realEstateOwned: 25000000,
+        otherAssets: [
+          {
+            assetName: 'gold',
+            assetValue: 2500000
+          }
+        ],
+        totalAssets: 39000000
+      },
+    ],
+    invalid: [
+      {
+        cashInBank: null,
+        cashOnHand: 300000,
+        automobiles: [
+          {
+            make: 77,
+            model: 'Grand AM',
+            year: 1999,
+            resaleValue: 200000
+          }
+        ],
+        trailersBoatsCampers: null,
+        usSavingsBonds: null,
+        stocksAndOtherBonds: true,
+        realEstateOwned: 25000000,
+        otherAssets: [
+          {
+            assetName: 'gold',
+            assetValue: 2500000
+          }
+        ],
+        totalAssets: 39000000
+      },
+    ],
+  },
 };
 
 describe('5655 schema', () => {
@@ -145,4 +197,5 @@ describe('5655 schema', () => {
   schemaTestHelper.testValidAndInvalid('income.spouse', testData.income);
   schemaTestHelper.testValidAndInvalid('expenses', testData.expenses);
   schemaTestHelper.testValidAndInvalid('discretionaryIncome', testData.discretionaryIncome);
+  schemaTestHelper.testValidAndInvalid('assets', testData.assets);
 });
