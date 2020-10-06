@@ -12,7 +12,7 @@ const validAddress = {
   postalCode: '00000',
   street: '123 Fake Street',
   city: 'Fakerville'
-}
+};
 
 const testData = {
   married: {
@@ -95,6 +95,42 @@ const testData = {
       },
     ],
   },
+  expenses:{
+    valid: [
+      {
+        rentOrMortgage: 100000,
+        food: 60000,
+        utilities: 30000,
+        other: null,
+        installmentContractsAndOtherDebts: 50000,
+        totalMonthlyExpenses: 240000,
+      },
+    ],
+    invalid: [
+      {
+        rentOrMortgage: true,
+        food: 'no',
+        utilities: 30000,
+        other: null,
+        installmentContractsAndOtherDebts: 50000,
+        totalMonthlyExpenses: 240000,
+      },
+    ],
+  },
+  discretionaryIncome: {
+    valid: [
+      {
+        netMonthlyIncomeLessExpenses: 107500,
+        amountCanBePaidTowardDebt: 107500,
+      },
+    ],
+    invalid: [
+      {
+        netMonthlyIncomeLessExpenses: null,
+        amountCanBePaidTowardDebt: true,
+      },
+    ],
+  },
 };
 
 describe('5655 schema', () => {
@@ -107,4 +143,6 @@ describe('5655 schema', () => {
   schemaTestHelper.testValidAndInvalid('personalData.employmentHistory.spouse', testData.employmentHistory);
   schemaTestHelper.testValidAndInvalid('income.veteran', testData.income);
   schemaTestHelper.testValidAndInvalid('income.spouse', testData.income);
+  schemaTestHelper.testValidAndInvalid('expenses', testData.expenses);
+  schemaTestHelper.testValidAndInvalid('discretionaryIncome', testData.discretionaryIncome);
 });

@@ -1497,6 +1497,43 @@
           }
         }
       }
+    },
+    "expenses": {
+      "type": "object",
+      "properties": {
+        "rentOrMortgage": {
+          "type": "integer"
+        },
+        "food": {
+          "type": "integer"
+        },
+        "utilities": {
+          "type": "integer"
+        },
+        "other": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "installmentContractsAndOtherDebts": {
+          "type": "integer"
+        },
+        "totalMonthlyExpenses": {
+          "type": "integer"
+        }
+      }
+    },
+    "discretionaryIncome": {
+      "type": "object",
+      "properties": {
+        "netMonthlyIncomeLessExpenses": {
+          "type": "integer"
+        },
+        "amountCanBePaidTowardDebt": {
+          "type": "integer"
+        }
+      }
     }
   }
 }

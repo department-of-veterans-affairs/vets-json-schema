@@ -138,7 +138,7 @@ const expenses = {
       type: 'integer',
     },
     other: {
-      type: 'integer',
+      type: ['integer', 'null'],
     },
     installmentContractsAndOtherDebts: {
       type: 'integer',
@@ -150,11 +150,14 @@ const expenses = {
 };
 
 const discretionaryIncome = {
-  netMonthlyIncomeLessExpenses: {
-    type: 'integer',
-  },
-  amountCanBePaidTowardDebt: {
-    type: 'integer',
+  type: 'object',
+  properties: {
+    netMonthlyIncomeLessExpenses: {
+      type: 'integer',
+    },
+    amountCanBePaidTowardDebt: {
+      type: 'integer',
+    },
   },
 };
 
@@ -356,6 +359,8 @@ const schema = {
       },
     },
     income: incomes,
+    expenses: expenses,
+    discretionaryIncome: discretionaryIncome,
   },
 };
 
