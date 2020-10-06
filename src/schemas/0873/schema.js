@@ -138,7 +138,7 @@ const schema = {
                     },
                     levelThree: {
                       type: 'string',
-                      enum: ['General Concern'],
+                      enum: ['General Concern', 'Complaint about Women Vets health care'],
                     },
                   },
                 },
