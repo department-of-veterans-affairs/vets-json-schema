@@ -1843,18 +1843,31 @@
               "type": "boolean"
             },
             "dateDischarged": {
-              "$ref": "#/definitions/date"
+              "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+              "type": [
+                "string",
+                "null"
+              ]
             },
             "courtLocation": {
-              "type": "string"
+              "type": [
+                "string",
+                "null"
+              ]
             },
             "docketNumber": {
-              "type": "string"
+              "type": [
+                "string",
+                "null"
+              ]
             }
           }
         },
         "additionalComments": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     }

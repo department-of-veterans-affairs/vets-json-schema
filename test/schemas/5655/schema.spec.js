@@ -221,6 +221,30 @@ const testData = {
       }
     ]],
   },
+  additionalData: {
+    valid: [
+      {
+        bankruptcy: {
+          hasBeenAdjucatedBankrupt: false,
+          dateDischarged: null,
+          courtLocation: null,
+          docketNumber: null
+        },
+        additionalComments: null
+      }
+    ],
+    invalid: [
+      {
+        bankruptcy: {
+          hasBeenAdjucatedBankrupt: 1,
+          dateDischarged: null,
+          courtLocation: 30,
+          docketNumber: null
+        },
+        additionalComments: null
+      }
+    ],
+  },
 };
 
 describe('5655 schema', () => {
@@ -237,4 +261,5 @@ describe('5655 schema', () => {
   schemaTestHelper.testValidAndInvalid('discretionaryIncome', testData.discretionaryIncome);
   schemaTestHelper.testValidAndInvalid('assets', testData.assets);
   schemaTestHelper.testValidAndInvalid('installmentContractsAndOtherDebts', testData.installmentContractsAndOtherDebts);
+  schemaTestHelper.testValidAndInvalid('additionalData', testData.additionalData);
 });

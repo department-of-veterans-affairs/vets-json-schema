@@ -28,31 +28,27 @@ const employmentHistory = {
 
 const personalData = {
   type: 'object',
-  required: [
-    'veteranFullName',
-    'veteranAddress',
-    'phoneNumber',
-    'dateOfBirth',
-    'married',
-  ],
   properties: {
-    veteranFullName: definitions.fullName,
-    veteranAddress: buildDefinitionReference('address'),
-    phoneNumber: buildDefinitionReference('phone'),
-    dateOfBirth: buildDefinitionReference('date'),
+    fullName: definitions.fullName,
+    address: definitions.address,
+    fileNumber: definitions.vaFileNumber,
+    dateOfBirth: definitions.date,
     married: {
-      type: 'boolean',
+      type: 'boolean'
     },
-    spouseFullName: buildDefinitionReference('fullName'),
+    spouseFullName: definitions.fullName,
     agesOfOtherDependents: {
       type: 'array',
       items: {
-        type: 'integer',
-      },
+        type: 'integer'
+      }
     },
     employmentHistory: {
-      veteran: employmentHistory,
-      spouse: employmentHistory,
+      type: 'object',
+      properties: {
+        veteran: employmentHistory,
+        spouse: employmentHistory,
+      },
     },
   },
 };
@@ -260,17 +256,17 @@ const additionalData = {
         hasBeenAdjudicatedBankrupt: {
           type: 'boolean',
         },
-        dateDischarged: buildDefinitionReference('date'),
+        dateDischarged: definitions.nullableDate,
         courtLocation: {
-          type: 'string',
+          type: ['string', 'null'],
         },
         docketNumber: {
-          type: 'string',
+          type: ['string', 'null'],
         },
       },
     },
     additionalComments: {
-      type: 'string',
+      type: ['string', 'null'],
     },
   },
 };
@@ -335,32 +331,7 @@ const schema = {
     },
   },
   properties: {
-    personalData: {
-      type: 'object',
-      properties: {
-        fullName: definitions.fullName,
-        address: definitions.address,
-        fileNumber: definitions.vaFileNumber,
-        dateOfBirth: definitions.date,
-        married: {
-          type: 'boolean'
-        },
-        spouseFullName: definitions.fullName,
-        agesOfOtherDependents: {
-          type: 'array',
-          items: {
-            type: 'integer'
-          }
-        },
-        employmentHistory: {
-          type: 'object',
-          properties: {
-            veteran: employmentHistory,
-            spouse: employmentHistory,
-          },
-        },
-      },
-    },
+    personalData: personalData,
     income: incomes,
     expenses: expenses,
     discretionaryIncome: discretionaryIncome,
