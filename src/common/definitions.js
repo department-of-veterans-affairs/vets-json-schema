@@ -263,7 +263,7 @@ const educationType = {
 
 const preferredContactMethod = {
   type: 'string',
-  enum: ['mail', 'email', 'phone'],
+  enum: ['mail', 'email', 'phone', 'mobile'],
 };
 
 const privacyAgreementAccepted = {
