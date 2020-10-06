@@ -29,6 +29,9 @@
         },
         "included": {
           "$ref": "#/definitions/hlrCreateIncluded"
+        },
+        "nonPrefill": {
+          "type": "object"
         }
       },
       "additionalProperties": false,
