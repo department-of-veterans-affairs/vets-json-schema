@@ -21,7 +21,7 @@ const employmentHistory = {
       employerName: {
         type: 'string',
       },
-      employerAddress: buildDefinitionReference('address'),
+      employerAddress: definitions.address,
     },
   },
 };
@@ -109,6 +109,9 @@ const income = {
             },
           },
         },
+        totalMonthlyNetIncome: {
+          type: 'integer'
+        }
       },
     },
   },
@@ -266,47 +269,6 @@ const additionalData = {
   },
 };
 
-// const schema = {
-//   $schema: 'http://json-schema.org/draft-04/schema#',
-//   title: 'FINANCIAL STATUS REPORT',
-//   type: 'object',
-//   additionalProperties: false,
-//   anyOf: [
-//     {
-//       required: ['vaFileNumber'],
-//     },
-//     {
-//       required: ['veteranSocialSecurityNumber'],
-//     },
-//   ],
-//   required: [
-//     'personalData',
-//     'income',
-//     'expenses',
-//     'discretionaryIncome',
-//     'assets',
-//     'installmentContractsAndOtherDebts',
-//     'additionalData',
-//   ],
-//   definitions: {
-//     fullName: definitions.fullName,
-//     date: definitions.date,
-//     phone: definitions.phone,
-//     address: definitions.usAddress,
-//   },
-//   properties: {
-//     personalData: personalData,
-//     income: incomes,
-//     expenses: expenses,
-//     discretionaryIncome: discretionaryIncome,
-//     assets: assets,
-//     installmentContractsAndOtherDebts: installmentContractsAndOtherDebts,
-//     additionalData: additionalData,
-//   },
-// };
-
-// export default schema;
-
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'FINANCIAL STATUS REPORT',
@@ -372,36 +334,28 @@ const schema = {
       properties: {
         fullName: definitions.fullName,
         address: definitions.address,
-        VAFileNumber: definitions.vaFileNumber,
+        fileNumber: definitions.vaFileNumber,
         dateOfBirth: definitions.date,
+        married: {
+          type: 'boolean'
+        },
+        spouseFullName: definitions.fullName,
+        agesOfOtherDependents: {
+          type: 'array',
+          items: {
+            type: 'integer'
+          }
+        },
+        employmentHistory: {
+          type: 'object',
+          properties: {
+            veteran: employmentHistory,
+            spouse: employmentHistory,
+          },
+        },
       },
     },
-    claimantStaticInformation: {
-      type: 'object',
-      properties: {},
-    },
-    claimantAddress: {
-      $ref: '#/definitions/addressSchema',
-    },
-    claimantPhoneNumber: definitions.phone,
-    claimantEmailAddress: definitions.email,
-    status: {
-      type: 'string',
-      enum: ['isActiveDuty', 'isVeteran', 'isSpouse', 'isChild'],
-      enumNames: [
-        'Active duty service member',
-        'Veteran',
-        'Spouse of a Veteran or service member',
-        'Child of a Veteran or service member',
-      ],
-    },
-    veteranInformation: {
-      type: 'object',
-      properties: {
-        fullName: definitions.fullName,
-        ssn: definitions.ssn,
-      },
-    },
+    income: incomes,
   },
 };
 

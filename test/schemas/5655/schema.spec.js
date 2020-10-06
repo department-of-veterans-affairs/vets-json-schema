@@ -1,49 +1,3 @@
-// import { expect } from 'chai';
-// import { _, cloneDeep } from 'lodash';
-// import SchemaTestHelper from '../../support/schema-test-helper';
-// import schemas from '../../../dist/schemas';
-// import SharedTests from '../../support/shared-tests';
-
-// const schema = schemas['5655'];
-// let schemaWithoutRequired = _.cloneDeep(schema);
-// delete schemaWithoutRequired.required;
-// delete schemaWithoutRequired.anyOf;
-// let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
-// let sharedTests = new SharedTests(schemaTestHelper);
-
-// const personalDataTestData = {
-//   married: {
-//     valid: [true, false],
-//     invalid: ['yes', 123, null],
-//   },
-// };
-
-  // describe('5655 schema', () => {
-  // expect(schema.required).to.deep.equal([
-  //   'personalData',
-  //   'income',
-  //   'expenses',
-  //   'discretionaryIncome',
-  //   'assets',
-  //   'installmentContractsAndOtherDebts',
-  //   'additionalData',
-  // ]);
-
-  // expect(schema.properties.personalData.required).to.deep.equal([
-  //   'veteranFullName',
-  //   'veteranAddress',
-  //   'phoneNumber',
-  //   'dateOfBirth',
-  //   'married',
-  // ]);
-
-  // Personal Data
-  // sharedTests.runTest('fullName', ['personalData.veteranFullName']);
-  // sharedTests.runTest('address', ['personalData.veteranAddress']);
-  // sharedTests.runTest('phone', ['personalData.phoneNumber']);
-  // sharedTests.runTest('date', ['personalData.dateOfBirth']);
-// });
-
 import SharedTests from '../../support/shared-tests';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
@@ -52,19 +6,61 @@ const schema = schemas['5655'];
 const schemaTestHelper = new SchemaTestHelper(schema);
 const sharedTests = new SharedTests(schemaTestHelper);
 
+const validAddress = {
+  country: 'USA',
+  state: 'MO',
+  postalCode: '00000',
+  street: '123 Fake Street',
+  city: 'Fakerville'
+}
+
 const testData = {
-  statusOptions: {
-    valid: ['isActiveDuty', 'isVeteran', 'isSpouse', 'isChild'],
-    invalid: ['notAVeteran', 'notAServiceMember'],
+  married: {
+    valid: [true, false],
+    invalid: [0, 'invalid'],
+  },
+  agesOfOtherDependents: {
+    valid: [[8, 20]],
+    invalid: [false, 'invalid']
+  },
+  employmentHistory: {
+    valid: [[
+      {
+        occupationName: 'valid job name',
+        from: '2015-10',
+        to: '2020-01',
+        employerName: 'widgets inc.',
+        employerAddress: validAddress,
+      },
+    ]],
+    invalid: [[
+      {
+        occupationName: false,
+        from: 2020,
+        to: true,
+        employerName: 1.5,
+        employerAddress: null,
+      },
+    ]],
+  },
+  income: {
+    valid: [
+      {
+        monthlyGrossSalary: 10000,
+      }
+    ],
+    invalid: [
+
+    ],
   },
 };
 
 describe('5655 schema', () => {
-  sharedTests.runTest('fullName', ['personalData.fullName']);
+  sharedTests.runTest('fullName', ['personalData.fullName', 'personalData.spouseFullName']);
   sharedTests.runTest('address', ['personalData.address']);
-  // sharedTests.runTest('ssn', ['claimantInformation.ssn', 'veteranInformation.ssn']);
-  // sharedTests.runTest('date', ['claimantInformation.dateOfBirth']);
-  // sharedTests.runTest('phone', ['claimantPhoneNumber']);
-  // sharedTests.runTest('email', ['claimantEmailAddress']);
-  // schemaTestHelper.testValidAndInvalid('status', testData.statusOptions);
+  sharedTests.runTest('date', ['personalData.dateOfBirth']);
+  schemaTestHelper.testValidAndInvalid('personalData.married', testData.married);
+  schemaTestHelper.testValidAndInvalid('personalData.agesOfOtherDependents', testData.agesOfOtherDependents);
+  schemaTestHelper.testValidAndInvalid('personalData.employmentHistory.veteran', testData.employmentHistory);
+  schemaTestHelper.testValidAndInvalid('personalData.employmentHistory.spouse', testData.employmentHistory);
 });
