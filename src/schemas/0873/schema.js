@@ -56,7 +56,7 @@ const schema = {
     },
     topic: {
       type: 'object',
-      oneOf: [
+      anyOf: [
         {
           properties: {
             levelOne: {
@@ -81,7 +81,7 @@ const schema = {
             },
             levelTwo: {
               type: 'object',
-              oneOf: [
+              anyOf: [
                 {
                   properties: {
                     subLevelTwo: {
