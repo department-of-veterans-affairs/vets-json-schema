@@ -1,6 +1,4 @@
-import schemaHelpers from '../../common/schema-helpers';
 import definitions from '../../common/definitions';
-import { countries, states50AndDC } from '../../common/constants';
 
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
 
@@ -21,7 +19,7 @@ const employmentHistory = {
       employerName: {
         type: 'string',
       },
-      employerAddress: definitions.address,
+      employerAddress: buildDefinitionReference('address'),
     },
   },
 };
@@ -29,14 +27,14 @@ const employmentHistory = {
 const personalData = {
   type: 'object',
   properties: {
-    fullName: definitions.fullName,
-    address: definitions.address,
-    fileNumber: definitions.vaFileNumber,
-    dateOfBirth: definitions.date,
+    fullName: buildDefinitionReference('fullName'),
+    address: buildDefinitionReference('address'),
+    fileNumber: buildDefinitionReference('vaFileNumber'),
+    dateOfBirth: buildDefinitionReference('date'),
     married: {
       type: 'boolean'
     },
-    spouseFullName: definitions.fullName,
+    spouseFullName: buildDefinitionReference('fullName'),
     agesOfOtherDependents: {
       type: 'array',
       items: {
@@ -226,8 +224,8 @@ const installmentContractsAndOtherDebts = {
       creditorName: {
         type: 'string',
       },
-      creditorAddress: definitions.address,
-      dateStarted: definitions.date,
+      creditorAddress: buildDefinitionReference('address'),
+      dateStarted: buildDefinitionReference('date'),
       purpose: {
         type: 'string',
       },
@@ -256,7 +254,7 @@ const additionalData = {
         hasBeenAdjudicatedBankrupt: {
           type: 'boolean',
         },
-        dateDischarged: definitions.nullableDate,
+        dateDischarged: buildDefinitionReference('nullableDate'),
         courtLocation: {
           type: ['string', 'null'],
         },
@@ -276,59 +274,11 @@ const schema = {
   title: 'FINANCIAL STATUS REPORT',
   type: 'object',
   definitions: {
-    addressSchema: {
-      type: 'object',
-      properties: {
-        'view:livesOnMilitaryBase': {
-          type: 'boolean',
-        },
-        'view:livesOnMilitaryBaseInfo': {
-          type: 'object',
-          properties: {},
-        },
-        countryName: {
-          type: 'string',
-          enum: countries.map(country => country.value),
-          enumNames: countries.map(country => country.label),
-        },
-        addressLine1: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 100,
-          pattern: '^.*\\S.*',
-        },
-        addressLine2: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 100,
-          pattern: '^.*\\S.*',
-        },
-        addressLine3: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 100,
-          pattern: '^.*\\S.*',
-        },
-        city: {
-          type: 'string',
-        },
-        stateCode: {
-          type: 'string',
-          enum: states50AndDC.map(state => state.value),
-          enumNames: states50AndDC.map(state => state.label),
-        },
-        province: {
-          type: 'string',
-        },
-        zipCode: {
-          type: 'string',
-          pattern: '^\\d{5}$',
-        },
-        internationalPostalCode: {
-          type: 'string',
-        },
-      },
-    },
+    fullName: definitions.fullName,
+    address: definitions.address,
+    vaFileNumber: definitions.vaFileNumber,
+    date: definitions.date,
+    nullableDate: definitions.nullableDate,
   },
   properties: {
     personalData: personalData,
