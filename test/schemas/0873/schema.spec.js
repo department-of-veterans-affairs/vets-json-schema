@@ -7,11 +7,20 @@ const schema = schemas['0873'];
 
 const schemaDefaults = {
   privacyAgreementAccepted: true,
+  topic: {
+    levelOne: 'Caregiver Support Program',
+    levelTwo: 'VA Supportive Services',
+  },
+  inquiryType: 'Question',
+  query: 'How do I apply for caregiver assistance?',
   fullName: {
     first: 'bob',
     last: 'smith',
   },
   preferredContactMethod: 'email',
+  veteranStatus: {
+    veteranStatus: 'general',
+  },
 };
 
 const schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
@@ -29,7 +38,7 @@ describe('IRIS Ask a Question json schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('topic', {
-    valid: ['Policy Question'],
+    valid: [{ levelOne: 'Caregiver Support Program', levelTwo: 'VA Supportive Services' }],
     invalid: ['foo'],
   });
 
