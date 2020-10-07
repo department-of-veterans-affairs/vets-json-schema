@@ -108,6 +108,23 @@
     "diagnosed": {
       "type": "boolean"
     },
+    "DIAGNOSED_DETAILS": {
+      "type": "object",
+      "properties": {
+        "DIAGNOSED_DETAILS::SYMPTOMS_ONLY": {
+          "type": "boolean"
+        },
+        "DIAGNOSED_DETAILS::ANTIBODY_BLOOD_TEST": {
+          "type": "boolean"
+        },
+        "DIAGNOSED_DETAILS::NASAL_SWAB_TEST_POSITIVE": {
+          "type": "boolean"
+        },
+        "DIAGNOSED_DETAILS::DIFFERENT_METHOD": {
+          "type": "boolean"
+        }
+      }
+    },
     "closeContactPositive": {
       "type": "string",
       "enum": [
