@@ -39,7 +39,7 @@
       "at-least-18-years-of-age",
       "member-of-veterans-family",
       "agree-to-perform-services--as-primary",
-      "understand-revokable-status--as-primary",
+      "understand-revocable-status--as-primary",
       "have-understanding-of-non-employment-relationship"
     ]
   },
@@ -64,7 +64,7 @@
       "not-member-of-veterans-family",
       "currently-or-will-reside-with-veteran--as-secondary",
       "agree-to-perform-services--as-secondary",
-      "understand-revokable-status--as-secondary",
+      "understand-revocable-status--as-secondary",
       "have-understanding-of-non-employment-relationship"
     ]
   }

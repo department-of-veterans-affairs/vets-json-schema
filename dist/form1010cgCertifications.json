@@ -73,15 +73,15 @@
       "secondaryCaregiverTwo"
     ]
   },
-  "understand-revokable-status--as-primary": {
-    "id": "understand-revokable-status--as-primary",
+  "understand-revocable-status--as-primary": {
+    "id": "understand-revocable-status--as-primary",
     "text": "I understand that the Veteran or the Veteran's surrogate may request my discharge from the Program of Comprehensive Assistance for Family Caregivers (PCAFC) at any time and that my designation as a Primary Family Caregiver may be revoked or I may be discharged from PCAFC by the Secretary of Veterans Affairs (or designee) as set forth in 38 CFR 71.45.",
     "availableFor": [
       "primaryCaregiver"
     ]
   },
-  "understand-revokable-status--as-secondary": {
-    "id": "understand-revokable-status--as-secondary",
+  "understand-revocable-status--as-secondary": {
+    "id": "understand-revocable-status--as-secondary",
     "text": "I understand that the Veteran or the Veteran's surrogate may request my discharge from the Program of Comprehensive Assistance for Family Caregivers (PCAFC) at any time and that my designation as a Secondary Family Caregiver may be revoked or I may be discharged from PCAFC by the Secretary of Veterans Affairs (or designee) as set forth in 38 CFR 71.45.",
     "availableFor": [
       "secondaryCaregiverOne",

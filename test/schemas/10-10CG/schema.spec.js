@@ -94,7 +94,7 @@ const testData = {
           'at-least-18-years-of-age',
           'member-of-veterans-family',
           'agree-to-perform-services--as-primary',
-          'understand-revokable-status--as-primary',
+          'understand-revocable-status--as-primary',
           'have-understanding-of-non-employment-relationship',
         ],
         [
@@ -104,7 +104,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-primary',
           'agree-to-perform-services--as-primary',
-          'understand-revokable-status--as-primary',
+          'understand-revocable-status--as-primary',
           'have-understanding-of-non-employment-relationship',
         ],
       ],
@@ -120,7 +120,7 @@ const testData = {
           'at-least-18-years-of-age',
           'member-of-veterans-family',
           'agree-to-perform-services--as-primary',
-          'understand-revokable-status--as-primary',
+          'understand-revocable-status--as-primary',
         ],
         [
           // Too many items
@@ -129,7 +129,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-primary',
           'agree-to-perform-services--as-primary',
-          'understand-revokable-status--as-primary',
+          'understand-revocable-status--as-primary',
           'have-understanding-of-non-employment-relationship',
           'consent-to-caregivers-to-perform-care',
         ],
@@ -140,7 +140,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-primary',
           'agree-to-perform-services--as-primary',
-          'understand-revokable-status--as-primary',
+          'understand-revocable-status--as-primary',
           'have-understanding-of-non-employment-relationship',
           'information-is-correct-and-true',
         ],
@@ -150,7 +150,7 @@ const testData = {
           'at-least-18-years-of-age',
           'member-of-veterans-family',
           'agree-to-perform-services--as-secondary',
-          'understand-revokable-status--as-secondary',
+          'understand-revocable-status--as-secondary',
         ],
         [
           // Contains secondary caregiver specific assertions (non-family-member example)
@@ -159,7 +159,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-secondary',
           'agree-to-perform-services--as-secondary',
-          'understand-revokable-status--as-secondary',
+          'understand-revocable-status--as-secondary',
           'have-understanding-of-non-employment-relationship',
         ]
       ],
@@ -173,7 +173,7 @@ const testData = {
           'at-least-18-years-of-age',
           'member-of-veterans-family',
           'agree-to-perform-services--as-secondary',
-          'understand-revokable-status--as-secondary',
+          'understand-revocable-status--as-secondary',
           'have-understanding-of-non-employment-relationship',
         ],
         [
@@ -183,7 +183,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-secondary',
           'agree-to-perform-services--as-secondary',
-          'understand-revokable-status--as-secondary',
+          'understand-revocable-status--as-secondary',
           'have-understanding-of-non-employment-relationship',
         ],
       ],
@@ -199,7 +199,7 @@ const testData = {
           'at-least-18-years-of-age',
           'member-of-veterans-family',
           'agree-to-perform-services--as-secondary',
-          'understand-revokable-status--as-secondary',
+          'understand-revocable-status--as-secondary',
         ],
         [
           // Too many items
@@ -208,7 +208,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-secondary',
           'agree-to-perform-services--as-secondary',
-          'understand-revokable-status--as-secondary',
+          'understand-revocable-status--as-secondary',
           'have-understanding-of-non-employment-relationship',
           'consent-to-caregivers-to-perform-care',
         ],
@@ -219,7 +219,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-secondary',
           'agree-to-perform-services--as-secondary',
-          'understand-revokable-status--as-secondary',
+          'understand-revocable-status--as-secondary',
           'have-understanding-of-non-employment-relationship',
           'information-is-correct-and-true',
         ],
@@ -229,7 +229,7 @@ const testData = {
           'at-least-18-years-of-age',
           'member-of-veterans-family',
           'agree-to-perform-services--as-primary',
-          'understand-revokable-status--as-primary',
+          'understand-revocable-status--as-primary',
         ],
         [
           // Contains primary caregiver specific assertions (non-family-member example)
@@ -238,7 +238,7 @@ const testData = {
           'not-member-of-veterans-family',
           'currently-or-will-reside-with-veteran--as-primary',
           'agree-to-perform-services--as-primary',
-          'understand-revokable-status--as-primary',
+          'understand-revocable-status--as-primary',
           'have-understanding-of-non-employment-relationship',
         ]
       ],
