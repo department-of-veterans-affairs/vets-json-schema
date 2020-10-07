@@ -242,6 +242,11 @@ const date = {
   type: 'string',
 };
 
+const nullableDate = {
+  pattern: date.pattern,
+  type: ['string', 'null']
+};
+
 // XXXX-XX-XX not allowed
 const requiredDate = {
   type: 'string',
@@ -263,7 +268,7 @@ const educationType = {
 
 const preferredContactMethod = {
   type: 'string',
-  enum: ['mail', 'email', 'phone'],
+  enum: ['mail', 'email', 'phone', 'mobile'],
 };
 
 const privacyAgreementAccepted = {
@@ -629,6 +634,7 @@ export default {
   serviceBefore1977,
   dateRange,
   date,
+  nullableDate,
   requiredDate,
   rejectOnlyWhitespace,
   dischargeType,
