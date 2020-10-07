@@ -440,9 +440,5 @@ describe('10-10CG json schema', () => {
       });
       schemaTestHelper.schemaExpect(true, { secondaryCaregiverTwo: validSecondaryCaregiverTwoData });
     });
-
-    describe('for "lastTreatmentFacility"', () => {
-      // Has requirements when present
-    });
   });
 });
