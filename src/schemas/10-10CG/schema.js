@@ -54,7 +54,6 @@ const certificationSchemas = [
 
   certificationSchemasAcc[formSubject] = {
     type: 'array',
-    additionalItems: false,
     uniqueItems: true,
     minItems: minItemsRequired,
     maxItems: maxItemsRequired,

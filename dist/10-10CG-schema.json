@@ -378,7 +378,6 @@
         },
         "certifications": {
           "type": "array",
-          "additionalItems": false,
           "uniqueItems": true,
           "minItems": 2,
           "maxItems": 2,
@@ -436,7 +435,6 @@
         },
         "certifications": {
           "type": "array",
-          "additionalItems": false,
           "uniqueItems": true,
           "minItems": 6,
           "maxItems": 7,
@@ -496,7 +494,6 @@
         },
         "certifications": {
           "type": "array",
-          "additionalItems": false,
           "uniqueItems": true,
           "minItems": 6,
           "maxItems": 7,
@@ -556,7 +553,6 @@
         },
         "certifications": {
           "type": "array",
-          "additionalItems": false,
           "uniqueItems": true,
           "minItems": 6,
           "maxItems": 7,
