@@ -68,9 +68,15 @@ const testData = {
   certifications: {
     veteran: {
       valid: [
+        undefined,
         ['information-is-correct-and-true', 'consent-to-caregivers-to-perform-care'],
       ],
       invalid: [
+        null,
+        '',
+        12,
+        {}, // wrong type
+        [], // empty / too few items
         ['information-is-correct-and-true'], // only one item
         ['consent-to-caregivers-to-perform-care'], // only one item
         ['information-is-correct-and-true', 'consent-to-caregivers-to-perform-care', 'at-least-18-years-of-age'], // too many items
@@ -81,6 +87,7 @@ const testData = {
     },
     primaryCaregiver: {
       valid: [
+        undefined,
         [
           // Family Member of Veteran
           'information-is-correct-and-true',
@@ -102,6 +109,11 @@ const testData = {
         ],
       ],
       invalid: [
+        null,
+        '',
+        12,
+        {}, // wrong type
+        [], // empty / too few items
         [
           // Too few items
           'information-is-correct-and-true',
@@ -154,6 +166,7 @@ const testData = {
     },
     secondaryCaregiver: {
       valid: [
+        undefined,
         [
           // Family Member of Veteran
           'information-is-correct-and-true',
@@ -175,6 +188,11 @@ const testData = {
         ],
       ],
       invalid: [
+        null,
+        '',
+        12,
+        {}, // wrong type
+        [], // empty / too few items
         [
           // Too few items
           'information-is-correct-and-true',
