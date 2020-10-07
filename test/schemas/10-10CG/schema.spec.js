@@ -65,6 +65,185 @@ const testData = {
       invalid: [null, 42, true, false, breakingTestString],
     };
   },
+  certifications: {
+    veteran: {
+      valid: [
+        undefined,
+        ['information-is-correct-and-true', 'consent-to-caregivers-to-perform-care'],
+      ],
+      invalid: [
+        null,
+        '',
+        12,
+        {}, // wrong type
+        [], // empty / too few items
+        ['information-is-correct-and-true'], // only one item
+        ['consent-to-caregivers-to-perform-care'], // only one item
+        ['information-is-correct-and-true', 'consent-to-caregivers-to-perform-care', 'at-least-18-years-of-age'], // too many items
+        ['information-is-correct-and-true', 'at-least-18-years-of-age'], // one invalid item
+        ['have-understanding-of-non-employment-relationship', 'at-least-18-years-of-age'], // two invalid items
+        ['at-least-18-years-of-age', 'at-least-18-years-of-age'], // contains duplicate
+      ],
+    },
+    primaryCaregiver: {
+      valid: [
+        undefined,
+        [
+          // Family Member of Veteran
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'member-of-veterans-family',
+          'agree-to-perform-services--as-primary',
+          'understand-revocable-status--as-primary',
+          'have-understanding-of-non-employment-relationship',
+        ],
+        [
+          // Non-Family Member of Veteran
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-primary',
+          'agree-to-perform-services--as-primary',
+          'understand-revocable-status--as-primary',
+          'have-understanding-of-non-employment-relationship',
+        ],
+      ],
+      invalid: [
+        null,
+        '',
+        12,
+        {}, // wrong type
+        [], // empty / too few items
+        [
+          // Too few items
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'member-of-veterans-family',
+          'agree-to-perform-services--as-primary',
+          'understand-revocable-status--as-primary',
+        ],
+        [
+          // Too many items
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-primary',
+          'agree-to-perform-services--as-primary',
+          'understand-revocable-status--as-primary',
+          'have-understanding-of-non-employment-relationship',
+          'consent-to-caregivers-to-perform-care',
+        ],
+        [
+          // Contains Duplicate
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-primary',
+          'agree-to-perform-services--as-primary',
+          'understand-revocable-status--as-primary',
+          'have-understanding-of-non-employment-relationship',
+          'information-is-correct-and-true',
+        ],
+        [
+          // Contains secondary caregiver specific assertions (family-member example)
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'member-of-veterans-family',
+          'agree-to-perform-services--as-secondary',
+          'understand-revocable-status--as-secondary',
+        ],
+        [
+          // Contains secondary caregiver specific assertions (non-family-member example)
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-secondary',
+          'agree-to-perform-services--as-secondary',
+          'understand-revocable-status--as-secondary',
+          'have-understanding-of-non-employment-relationship',
+        ]
+      ],
+    },
+    secondaryCaregiver: {
+      valid: [
+        undefined,
+        [
+          // Family Member of Veteran
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'member-of-veterans-family',
+          'agree-to-perform-services--as-secondary',
+          'understand-revocable-status--as-secondary',
+          'have-understanding-of-non-employment-relationship',
+        ],
+        [
+          // Non-Family Member of Veteran
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-secondary',
+          'agree-to-perform-services--as-secondary',
+          'understand-revocable-status--as-secondary',
+          'have-understanding-of-non-employment-relationship',
+        ],
+      ],
+      invalid: [
+        null,
+        '',
+        12,
+        {}, // wrong type
+        [], // empty / too few items
+        [
+          // Too few items
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'member-of-veterans-family',
+          'agree-to-perform-services--as-secondary',
+          'understand-revocable-status--as-secondary',
+        ],
+        [
+          // Too many items
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-secondary',
+          'agree-to-perform-services--as-secondary',
+          'understand-revocable-status--as-secondary',
+          'have-understanding-of-non-employment-relationship',
+          'consent-to-caregivers-to-perform-care',
+        ],
+        [
+          // Contains Duplicate
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-secondary',
+          'agree-to-perform-services--as-secondary',
+          'understand-revocable-status--as-secondary',
+          'have-understanding-of-non-employment-relationship',
+          'information-is-correct-and-true',
+        ],
+        [
+          // Contains primary caregiver specific assertions (family-member example)
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'member-of-veterans-family',
+          'agree-to-perform-services--as-primary',
+          'understand-revocable-status--as-primary',
+        ],
+        [
+          // Contains primary caregiver specific assertions (non-family-member example)
+          'information-is-correct-and-true',
+          'at-least-18-years-of-age',
+          'not-member-of-veterans-family',
+          'currently-or-will-reside-with-veteran--as-primary',
+          'agree-to-perform-services--as-primary',
+          'understand-revocable-status--as-primary',
+          'have-understanding-of-non-employment-relationship',
+        ]
+      ],
+    },
+  },
 };
 
 describe('10-10CG json schema', () => {
@@ -140,6 +319,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['veteran.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['veteran.alternativePhoneNumber']);
     sharedTests.runTest('email', ['veteran.email']);
+    schemaTestHelper.testValidAndInvalid('veteran.certifications', testData.certifications.veteran);
     // Primary Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['primaryCaregiver.fullName']);
     sharedTests.runTest('ssn', ['primaryCaregiver.ssnOrTin']);
@@ -150,6 +330,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['primaryCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['primaryCaregiver.email']);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.hasHealthInsurance', testData.boolean);
+    schemaTestHelper.testValidAndInvalid('primaryCaregiver.certifications', testData.certifications.primaryCaregiver);
     // Secondary One Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverOne.fullName']);
     sharedTests.runTest('ssn', ['secondaryCaregiverOne.ssnOrTin']);
@@ -160,6 +341,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['secondaryCaregiverOne.alternativePhoneNumber']);
     sharedTests.runTest('email', ['secondaryCaregiverOne.email']);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.vetRelationship', testData.vetRelationship);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.certifications', testData.certifications.secondaryCaregiver);
     // Secondary Two Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverTwo.fullName']);
     sharedTests.runTest('ssn', ['secondaryCaregiverTwo.ssnOrTin']);
@@ -170,6 +352,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['secondaryCaregiverTwo.alternativePhoneNumber']);
     sharedTests.runTest('email', ['secondaryCaregiverTwo.email']);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.vetRelationship', testData.vetRelationship);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.certifications', testData.certifications.secondaryCaregiver);
 
     it('"plannedClinic" should use the "caregiverProgramFacilities" enum list', () => {
       expect(!!schema.properties.veteran.properties.plannedClinic.enum).to.be.true;
