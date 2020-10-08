@@ -250,6 +250,7 @@ const testData = {
 describe('5655 schema', () => {
   sharedTests.runTest('fullName', ['personalData.fullName', 'personalData.spouseFullName']);
   sharedTests.runTest('address', ['personalData.address']);
+  sharedTests.runTest('phone', ['personalData.phone']);
   sharedTests.runTest('date', ['personalData.dateOfBirth']);
   schemaTestHelper.testValidAndInvalid('personalData.married', testData.married);
   schemaTestHelper.testValidAndInvalid('personalData.agesOfOtherDependents', testData.agesOfOtherDependents);
