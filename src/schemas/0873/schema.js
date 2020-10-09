@@ -5,15 +5,23 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'IRIS Ask a Question',
   type: 'object',
-  definitions: _.pick(definitions, [
-    'address',
-    'date',
-    'dateRange',
-    'email',
-    'phone',
-    'ssn',
-    'privacyAgreementAccepted',
-  ]),
+  definitions: {
+    ..._.pick(definitions, ['address', 'date', 'dateRange', 'email', 'phone', 'ssn', 'privacyAgreementAccepted']),
+    first: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+    last: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+    suffix: {
+      type: 'string',
+      enum: ['Jr.', 'Sr.', 'II', 'III', 'IV'],
+    },
+  },
   additionalProperties: false,
   anyOf: [
     {
@@ -1281,6 +1289,62 @@ const schema = {
         dateOfDeath: {
           $ref: '#/definitions/date',
         },
+      },
+    },
+    dependentInformation: {
+      type: 'object',
+      properties: {
+        first: {
+          $ref: '#/definitions/first',
+        },
+        last: {
+          $ref: '#/definitions/last',
+        },
+        address: {
+          $ref: '#/definitions/address',
+        },
+        phone: {
+          $ref: '#/definitions/phone',
+        },
+        email: {
+          $ref: '#/definitions/email',
+        },
+      },
+    },
+    veteranInformation: {
+      type: 'object',
+      properties: {
+        first: {
+          $ref: '#/definitions/first',
+        },
+        last: {
+          $ref: '#/definitions/last',
+        },
+        address: {
+          $ref: '#/definitions/address',
+        },
+        phone: {
+          $ref: '#/definitions/phone',
+        },
+        email: {
+          $ref: '#/definitions/email',
+        },
+      },
+    },
+    veteranServiceInformation: {
+      type: 'object',
+      properties: {
+        socialSecurityNumber: {
+          $ref: '#/definitions/ssn',
+        },
+        serviceNumber: {
+          type: 'string',
+          pattern: '^\\d{0,12}$',
+        },
+        claimNumber: {
+          type: 'string',
+          pattern: '^\\d{6,8}$',
+        },
         branchOfService: {
           type: 'string',
           enum: [
@@ -1311,24 +1375,8 @@ const schema = {
             'Other',
           ],
         },
-      },
-    },
-    veteranInformation: {
-      type: 'object',
-      properties: {
         dateOfBirth: {
           $ref: '#/definitions/date',
-        },
-        socialSecurityNumber: {
-          $ref: '#/definitions/ssn',
-        },
-        serviceNumber: {
-          type: 'string',
-          pattern: '^\\d{0,12}$',
-        },
-        claimNumber: {
-          type: 'string',
-          pattern: '^\\d{6,8}$',
         },
         serviceDateRange: {
           $ref: '#/definitions/dateRange',
