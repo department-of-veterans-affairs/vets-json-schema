@@ -29,6 +29,7 @@ const personalData = {
   properties: {
     fullName: buildDefinitionReference('fullName'),
     address: buildDefinitionReference('address'),
+    phone: buildDefinitionReference('phone'),
     fileNumber: buildDefinitionReference('vaFileNumber'),
     dateOfBirth: buildDefinitionReference('date'),
     married: {
@@ -276,6 +277,7 @@ const schema = {
   definitions: {
     fullName: definitions.fullName,
     address: definitions.address,
+    phone: definitions.phone,
     vaFileNumber: definitions.vaFileNumber,
     date: definitions.date,
     nullableDate: definitions.nullableDate,
