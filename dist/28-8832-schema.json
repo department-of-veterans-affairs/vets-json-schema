@@ -3,17 +3,17 @@
   "title": "EDUCATIONAL/VOCATIONAL COUNSELING APPLICATION (28-8832)",
   "type": "object",
   "definitions": {
-    "addressSchema": {
+    "address": {
       "type": "object",
       "properties": {
-        "view:livesOnMilitaryBase": {
+        "isMilitary": {
           "type": "boolean"
         },
-        "view:livesOnMilitaryBaseInfo": {
+        "view:militaryBaseDescription": {
           "type": "object",
           "properties": {}
         },
-        "countryName": {
+        "country": {
           "type": "string",
           "enum": [
             "USA",
@@ -476,144 +476,30 @@
             "Zimbabwe"
           ]
         },
-        "addressLine1": {
+        "street": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 100,
-          "pattern": "^.*\\S.*"
+          "maxLength": 100
         },
-        "addressLine2": {
+        "street2": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 100,
-          "pattern": "^.*\\S.*"
+          "maxLength": 100
         },
-        "addressLine3": {
+        "street3": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 100,
-          "pattern": "^.*\\S.*"
+          "maxLength": 100
         },
         "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
           "type": "string"
         },
-        "stateCode": {
-          "type": "string",
-          "enum": [
-            "AL",
-            "AK",
-            "AZ",
-            "AR",
-            "CA",
-            "CO",
-            "CT",
-            "DE",
-            "DC",
-            "FL",
-            "GA",
-            "HI",
-            "ID",
-            "IL",
-            "IN",
-            "IA",
-            "KS",
-            "KY",
-            "LA",
-            "ME",
-            "MD",
-            "MA",
-            "MI",
-            "MN",
-            "MS",
-            "MO",
-            "MT",
-            "NE",
-            "NV",
-            "NH",
-            "NJ",
-            "NM",
-            "NY",
-            "NC",
-            "ND",
-            "OH",
-            "OK",
-            "OR",
-            "PA",
-            "RI",
-            "SC",
-            "SD",
-            "TN",
-            "TX",
-            "UT",
-            "VT",
-            "VA",
-            "WA",
-            "WV",
-            "WI",
-            "WY"
-          ],
-          "enumNames": [
-            "Alabama",
-            "Alaska",
-            "Arizona",
-            "Arkansas",
-            "California",
-            "Colorado",
-            "Connecticut",
-            "Delaware",
-            "District Of Columbia",
-            "Florida",
-            "Georgia",
-            "Hawaii",
-            "Idaho",
-            "Illinois",
-            "Indiana",
-            "Iowa",
-            "Kansas",
-            "Kentucky",
-            "Louisiana",
-            "Maine",
-            "Maryland",
-            "Massachusetts",
-            "Michigan",
-            "Minnesota",
-            "Mississippi",
-            "Missouri",
-            "Montana",
-            "Nebraska",
-            "Nevada",
-            "New Hampshire",
-            "New Jersey",
-            "New Mexico",
-            "New York",
-            "North Carolina",
-            "North Dakota",
-            "Ohio",
-            "Oklahoma",
-            "Oregon",
-            "Pennsylvania",
-            "Rhode Island",
-            "South Carolina",
-            "South Dakota",
-            "Tennessee",
-            "Texas",
-            "Utah",
-            "Vermont",
-            "Virginia",
-            "Washington",
-            "West Virginia",
-            "Wisconsin",
-            "Wyoming"
-          ]
-        },
-        "province": {
-          "type": "string"
-        },
-        "zipCode": {
-          "type": "string",
-          "pattern": "^\\d{5}$"
-        },
-        "internationalPostalCode": {
+        "postalCode": {
           "type": "string"
         }
       }
@@ -674,7 +560,7 @@
       "properties": {}
     },
     "claimantAddress": {
-      "$ref": "#/definitions/addressSchema"
+      "$ref": "#/definitions/address"
     },
     "claimantPhoneNumber": {
       "type": "string",
