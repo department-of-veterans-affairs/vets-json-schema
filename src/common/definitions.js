@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { countries } from './address';
 import constants from './constants';
 import schemaHelpers from './schema-helpers';
 
@@ -156,6 +157,51 @@ const usAddress = {
   },
 };
 
+// Used to make the address pattern in VA.gov profile replicable in a react-json-schemaform application
+const profileAddress = {
+  type: 'object',
+  properties: {
+    isMilitary: {
+      type: 'boolean',
+    },
+    'view:militaryBaseDescription': {
+      type: 'object',
+      properties: {},
+    },
+    country: {
+      type: 'string',
+      enum: constants.countries.map(country => country.value),
+      enumNames: countries.map(country => country.label),
+    },
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    street3: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    state: {
+      type: 'string',
+    },
+    postalCode: {
+      type: 'string',
+    },
+  },
+};
+
 const phone = {
   type: 'string',
   minLength: 10,
@@ -244,13 +290,13 @@ const date = {
 
 const nullableDate = {
   pattern: date.pattern,
-  type: ['string', 'null']
+  type: ['string', 'null'],
 };
 
 // XXXX-XX-XX not allowed
 const requiredDate = {
   type: 'string',
-  pattern: '^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$'
+  pattern: '^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
 };
 
 const educationType = {
@@ -625,6 +671,7 @@ export default {
   otherIncome,
   address,
   usAddress,
+  profileAddress,
   phone,
   ssn,
   ssnLastFour,
