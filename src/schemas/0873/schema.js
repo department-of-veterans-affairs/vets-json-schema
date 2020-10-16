@@ -99,16 +99,16 @@ const schema = {
                     levelThree: {
                       type: 'string',
                       enum: [
-                        'Apply for Health Benefits (Veterans)',
-                        'Medical Care for Veterans within USA',
-                        'Medical Care-Overseas Vets (Foreign Med)',
-                        'Children of Women Vietnam Vets Healthcare',
                         'Apply for Health Benefits (Dependents)',
+                        'Apply for Health Benefits (Veterans)',
+                        'CHAMPVA CITI (In house Treatment Initiated)',
                         'CHAMPVA-Civilian Health & Medical Prog',
                         'CHAMPVA Password/Access Problems',
-                        'CHAMPVA CITI (In house Treatment Initiated)',
-                        'Spina Bifida Program for Children of Vet',
+                        'Children of Women Vietnam Vets Healthcare',
                         'Licensed Health Professional Employment',
+                        'Medical Care-Overseas Vets (Foreign Med)',
+                        'Medical Care for Veterans within USA',
+                        'Spina Bifida Program for Children of Vet',
                       ],
                     },
                   },
@@ -146,7 +146,7 @@ const schema = {
                     },
                     levelThree: {
                       type: 'string',
-                      enum: ['General Concern', 'Complaint about Women Vets health care'],
+                      enum: ['Complaint about Women Vets health care', 'General Concern'],
                     },
                   },
                 },
@@ -175,6 +175,43 @@ const schema = {
             levelTwo: {
               type: 'string',
               enum: ['Policy Questions', 'Question about Women Veterans Programs'],
+            },
+          },
+        },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Burial & Memorial Benefits (NCA)'],
+            },
+            levelTwo: {
+              type: 'object',
+              anyOf: [
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: ['Burial Benefits'],
+                    },
+                    levelThree: {
+                      type: 'string',
+                      enum: ['Compensation Request', 'All Other Burial Benefit Inquiries'],
+                    },
+                  },
+                },
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: [
+                        'Pre-Need Burial Eligibility',
+                        'Headstones & Markers',
+                        'Presidential Memorial Certificates',
+                      ],
+                    },
+                  },
+                },
+              ],
             },
           },
         },
