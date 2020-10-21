@@ -255,6 +255,9 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
+                  childIncome: {
+                    type: 'boolean',
+                  },
                   doesChildLiveWithYou: {
                     $ref: '#/definitions/genericTrueFalse',
                   },
