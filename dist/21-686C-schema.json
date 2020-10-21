@@ -1417,6 +1417,9 @@
         "liveWithSpouse": {
           "type": "boolean"
         },
+        "spouseIncome": {
+          "type": "boolean"
+        },
         "spouseSocialSecurityNumber": {
           "$ref": "#/definitions/ssn"
         },
@@ -1532,6 +1535,9 @@
           },
           "personWhoLivesWithChild": {
             "$ref": "#/definitions/fullName"
+          },
+          "childIncome": {
+            "type": "boolean"
           },
           "childHasNoSsnReason": {
             "type": "string",

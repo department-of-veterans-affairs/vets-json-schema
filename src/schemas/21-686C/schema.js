@@ -325,6 +325,9 @@ const schema = {
         liveWithSpouse: {
           type: 'boolean',
         },
+        spouseIncome: {
+          type: 'boolean',
+        },
         spouseSocialSecurityNumber: { $ref: '#/definitions/ssn' },
         spouseHasNoSsnReason: {
           type: 'string',
@@ -408,6 +411,9 @@ const schema = {
             oneOf: addressDefs,
           },
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
+          childIncome: {
+            type: 'boolean',
+          },
           childHasNoSsnReason: {
             type: 'string',
             enum: ['NONRESIDENTALIEN', 'NOSSNASSIGNEDBYSSA'],
