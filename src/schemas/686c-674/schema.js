@@ -255,9 +255,6 @@ const schema = {
               items: {
                 type: 'object',
                 properties: {
-                  childIncome: {
-                    type: 'boolean',
-                  },
                   doesChildLiveWithYou: {
                     $ref: '#/definitions/genericTrueFalse',
                   },
@@ -271,6 +268,22 @@ const schema = {
                         $ref: '#/definitions/addressSchema',
                       },
                     },
+                  },
+                },
+              },
+            },
+          },
+        },
+        addChildIncome: {
+          type: 'object',
+          properties: {
+            childrenToAdd: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  childIncome: {
+                    type: 'boolean',
                   },
                 },
               },
@@ -323,6 +336,9 @@ const schema = {
           properties: {
             date: {
               $ref: '#/definitions/date',
+            },
+            spouseIncome: {
+              $ref: '#/definitions/genericTrueFalse',
             },
             location: {
               $ref: '#/definitions/genericLocation',
@@ -575,6 +591,9 @@ const schema = {
                   },
                   location: {
                     $ref: '#/definitions/genericLocation',
+                  },
+                  childIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
                   },
                 },
               },
@@ -887,6 +906,19 @@ const schema = {
               },
             },
           },
+        },
+      },
+    },
+
+    householdIncome: {
+      type: 'object',
+      properties: {
+        householdIncome: {
+          $ref: '#/definitions/genericTrueFalse',
+        },
+        'view:calculateNetWorth': {
+          type: 'object',
+          properties: {},
         },
       },
     },

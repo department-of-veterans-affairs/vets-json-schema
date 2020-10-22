@@ -1459,9 +1459,6 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "childIncome": {
-                    "type": "boolean"
-                  },
                   "doesChildLiveWithYou": {
                     "$ref": "#/definitions/genericTrueFalse"
                   },
@@ -1475,6 +1472,22 @@
                         "$ref": "#/definitions/addressSchema"
                       }
                     }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "addChildIncome": {
+          "type": "object",
+          "properties": {
+            "childrenToAdd": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "childIncome": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -1526,6 +1539,9 @@
           "properties": {
             "date": {
               "$ref": "#/definitions/date"
+            },
+            "spouseIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             },
             "location": {
               "$ref": "#/definitions/genericLocation"
@@ -1816,6 +1832,9 @@
                   },
                   "location": {
                     "$ref": "#/definitions/genericLocation"
+                  },
+                  "childIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -2122,6 +2141,18 @@
               }
             }
           }
+        }
+      }
+    },
+    "householdIncome": {
+      "type": "object",
+      "properties": {
+        "householdIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
+        },
+        "view:calculateNetWorth": {
+          "type": "object",
+          "properties": {}
         }
       }
     }
