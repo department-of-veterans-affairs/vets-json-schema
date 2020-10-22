@@ -241,6 +241,9 @@ const schema = {
                       },
                     },
                   },
+                  childIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
                 },
               },
             },
@@ -268,22 +271,6 @@ const schema = {
                         $ref: '#/definitions/addressSchema',
                       },
                     },
-                  },
-                },
-              },
-            },
-          },
-        },
-        addChildIncome: {
-          type: 'object',
-          properties: {
-            childrenToAdd: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  childIncome: {
-                    type: 'boolean',
                   },
                 },
               },
@@ -591,9 +578,6 @@ const schema = {
                   },
                   location: {
                     $ref: '#/definitions/genericLocation',
-                  },
-                  childIncome: {
-                    $ref: '#/definitions/genericTrueFalse',
                   },
                 },
               },

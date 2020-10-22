@@ -1444,6 +1444,9 @@
                         "$ref": "#/definitions/genericTextInput"
                       }
                     }
+                  },
+                  "childIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -1472,22 +1475,6 @@
                         "$ref": "#/definitions/addressSchema"
                       }
                     }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "addChildIncome": {
-          "type": "object",
-          "properties": {
-            "childrenToAdd": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "childIncome": {
-                    "type": "boolean"
                   }
                 }
               }
@@ -1832,9 +1819,6 @@
                   },
                   "location": {
                     "$ref": "#/definitions/genericLocation"
-                  },
-                  "childIncome": {
-                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
