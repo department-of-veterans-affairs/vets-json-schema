@@ -900,10 +900,6 @@ const schema = {
         householdIncome: {
           $ref: '#/definitions/genericTrueFalse',
         },
-        'view:calculateNetWorth': {
-          type: 'object',
-          properties: {},
-        },
       },
     },
   },
