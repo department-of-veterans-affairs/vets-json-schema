@@ -1527,9 +1527,6 @@
             "date": {
               "$ref": "#/definitions/date"
             },
-            "spouseIncome": {
-              "$ref": "#/definitions/genericTrueFalse"
-            },
             "location": {
               "$ref": "#/definitions/genericLocation"
             },
@@ -1575,6 +1572,9 @@
             },
             "address": {
               "$ref": "#/definitions/addressSchema"
+            },
+            "spouseIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             }
           }
         },

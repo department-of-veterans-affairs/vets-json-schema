@@ -324,9 +324,6 @@ const schema = {
             date: {
               $ref: '#/definitions/date',
             },
-            spouseIncome: {
-              $ref: '#/definitions/genericTrueFalse',
-            },
             location: {
               $ref: '#/definitions/genericLocation',
             },
@@ -362,6 +359,9 @@ const schema = {
             },
             address: {
               $ref: '#/definitions/addressSchema',
+            },
+            spouseIncome: {
+              $ref: '#/definitions/genericTrueFalse',
             },
           },
         },
