@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import definitions from '../../common/definitions';
+import constants from '../../common/constants';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -1331,6 +1332,10 @@ const schema = {
     dependentInformation: {
       type: 'object',
       properties: {
+        relationshipToVeteran: {
+          enum: constants.dependentRelationships,
+          type: 'string',
+        },
         first: {
           $ref: '#/definitions/first',
         },
