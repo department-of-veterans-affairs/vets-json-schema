@@ -248,7 +248,9 @@ const testData = {
 
 describe('10-10CG json schema', () => {
   it('should have the right required fields for each section', () => {
-    expect(schema.required).to.deep.equal(['veteran', 'primaryCaregiver']);
+    expect(schema.required).to.deep.equal(['veteran']);
+    expect(schema.anyOf).to.include({ required: ['primaryCaregiver']});
+    expect(schema.anyOf).to.include({ required: ['secondaryCaregiverOne']});
 
     expect(schema.properties.veteran.required).to.deep.equal([
       'fullName',
@@ -300,6 +302,7 @@ describe('10-10CG json schema', () => {
 
     // Removed these restrictions so the attrs can be checked
     delete unrestrictedSchema.required;
+    delete unrestrictedSchema.anyOf;
     delete unrestrictedSchema.properties.veteran.required;
     delete unrestrictedSchema.properties.primaryCaregiver.required;
     delete unrestrictedSchema.properties.secondaryCaregiverOne.required;
@@ -362,36 +365,37 @@ describe('10-10CG json schema', () => {
   });
 
   describe('conditional validation:', () => {
-    let schemaTestHelper;
+    let schemaTestHelperWithPC;
+    let schemaTestHelperWithSC;
+    let validPrimaryCaregiverData;
     let validSecondaryCaregiverOneData;
     let validSecondaryCaregiverTwoData;
 
     before(() => {
-      schemaTestHelper = new SchemaTestHelper(schema, {
-        veteran: {
-          fullName: { first: 'John', last: 'Doe' },
-          ssnOrTin: '789787893',
-          dateOfBirth: '1978-01-15',
-          gender: 'M',
-          address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
-          primaryPhoneNumber: '8887775544',
-          alternativePhoneNumber: '8887775544',
-          email: 'veteranEmail@email.com',
-          plannedClinic: '636',
-          lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
-        },
-        primaryCaregiver: {
-          fullName: { first: 'Joan', last: 'Doe' },
-          dateOfBirth: '1978-07-03',
-          gender: 'F',
-          address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
-          primaryPhoneNumber: '8887775544',
-          alternativePhoneNumber: '8887775544',
-          email: 'primaryCaregiverEmail@email.com',
-          vetRelationship: 'Spouse',
-          hasHealthInsurance: true
-        },
-      });
+      const validVeteranData = {
+        fullName: { first: 'John', last: 'Doe' },
+        ssnOrTin: '789787893',
+        dateOfBirth: '1978-01-15',
+        gender: 'M',
+        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        primaryPhoneNumber: '8887775544',
+        alternativePhoneNumber: '8887775544',
+        email: 'veteranEmail@email.com',
+        plannedClinic: '636',
+        lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
+      };
+
+      validPrimaryCaregiverData = {
+        fullName: { first: 'Joan', last: 'Doe' },
+        dateOfBirth: '1978-07-03',
+        gender: 'F',
+        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        primaryPhoneNumber: '8887775544',
+        alternativePhoneNumber: '8887775544',
+        email: 'primaryCaregiverEmail@email.com',
+        vetRelationship: 'Spouse',
+        hasHealthInsurance: true
+      };
 
       validSecondaryCaregiverOneData = {
         fullName: { first: 'Jane', last: 'Smith' },
@@ -412,33 +416,88 @@ describe('10-10CG json schema', () => {
         alternativePhoneNumber: '8887775544',
         vetRelationship: 'Friend/Neighbor',
       };
-    });
 
-    it('is valid with only "veteran" and "primaryCaregiver"', () => {
-      schemaTestHelper.schemaExpect(true);
-    });
-
-    it('requires additional fields if "secondaryCaregiverOne" is present', () => {
-      schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: {} });
-      schemaTestHelper.schemaExpect(false, { secondaryCaregiverOne: { ssnOrTin: '123456789' } });
-      schemaTestHelper.schemaExpect(false, {
-        secondaryCaregiverOne: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
+      schemaTestHelperWithPC = new SchemaTestHelper(schema, {
+        veteran: validVeteranData,
+        primaryCaregiver: validPrimaryCaregiverData,
       });
-      schemaTestHelper.schemaExpect(true, { secondaryCaregiverOne: validSecondaryCaregiverOneData });
+
+      schemaTestHelperWithSC = new SchemaTestHelper(schema, {
+        veteran: validVeteranData,
+        secondaryCaregiverOne: validSecondaryCaregiverOneData
+      });
     });
 
-    it('requires additional fields if "secondaryCaregiverTwo" is present', () => {
-      schemaTestHelper.defaults = {
-        ...schemaTestHelper.defaults,
-        secondaryCaregiverOne: validSecondaryCaregiverOneData,
-      };
-
-      schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: {} });
-      schemaTestHelper.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789' } });
-      schemaTestHelper.schemaExpect(false, {
-        secondaryCaregiverTwo: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
+    describe('with application for primaryCaregiver', () => {
+      it('is valid with only "veteran" and "primaryCaregiver"', () => {
+        schemaTestHelperWithPC.schemaExpect(true);
       });
-      schemaTestHelper.schemaExpect(true, { secondaryCaregiverTwo: validSecondaryCaregiverTwoData });
+
+      it('is valid with both "secondaryCaregiverOne" and "secondaryCaregiverTwo"', () => {
+        schemaTestHelperWithSC.schemaExpect(true, {
+          secondaryCaregiverOne: validSecondaryCaregiverOneData,
+          secondaryCaregiverTwo: validSecondaryCaregiverTwoData,
+        });
+      });
+
+      it('requires additional fields if "secondaryCaregiverOne" is present', () => {
+        schemaTestHelperWithPC.schemaExpect(false, { secondaryCaregiverOne: {} });
+        schemaTestHelperWithPC.schemaExpect(false, { secondaryCaregiverOne: { ssnOrTin: '123456789' } });
+        schemaTestHelperWithPC.schemaExpect(false, {
+          secondaryCaregiverOne: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
+        });
+        schemaTestHelperWithPC.schemaExpect(true, { secondaryCaregiverOne: validSecondaryCaregiverOneData });
+      });
+
+      it('requires additional fields if "secondaryCaregiverTwo" is present', () => {
+        schemaTestHelperWithPC.defaults = {
+          ...schemaTestHelperWithPC.defaults,
+          secondaryCaregiverOne: validSecondaryCaregiverOneData,
+        };
+
+        schemaTestHelperWithPC.schemaExpect(false, { secondaryCaregiverTwo: {} });
+        schemaTestHelperWithPC.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789' } });
+        schemaTestHelperWithPC.schemaExpect(false, {
+          secondaryCaregiverTwo: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
+        });
+        schemaTestHelperWithPC.schemaExpect(true, { secondaryCaregiverTwo: validSecondaryCaregiverTwoData });
+      });
+    });
+
+    describe('with application for secondaryCaregiverOne', () => {
+      it('is valid with only "veteran" and "secondaryCaregiverOne"', () => {
+        schemaTestHelperWithSC.schemaExpect(true);
+      });
+
+      it('is valid with both "primaryCaregiver" and "secondaryCaregiverTwo"', () => {
+        schemaTestHelperWithSC.schemaExpect(true, {
+          secondaryCaregiverTwo: validSecondaryCaregiverTwoData,
+          primaryCaregiver: validPrimaryCaregiverData,
+        });
+      });
+
+      it('requires additional fields if "primaryCaregiver" is present', () => {
+        schemaTestHelperWithSC.schemaExpect(false, { primaryCaregiver: {} });
+        schemaTestHelperWithSC.schemaExpect(false, { primaryCaregiver: { ssnOrTin: '123456789' } });
+        schemaTestHelperWithSC.schemaExpect(false, {
+          primaryCaregiver: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
+        });
+        schemaTestHelperWithSC.schemaExpect(true, { primaryCaregiver: validPrimaryCaregiverData });
+      });
+
+      it('requires additional fields if "secondaryCaregiverTwo" is present', () => {
+        schemaTestHelperWithSC.defaults = {
+          ...schemaTestHelperWithSC.defaults,
+          secondaryCaregiverOne: validSecondaryCaregiverOneData,
+        };
+
+        schemaTestHelperWithSC.schemaExpect(false, { secondaryCaregiverTwo: {} });
+        schemaTestHelperWithSC.schemaExpect(false, { secondaryCaregiverTwo: { ssnOrTin: '123456789' } });
+        schemaTestHelperWithSC.schemaExpect(false, {
+          secondaryCaregiverTwo: { vetRelationship: 'Friend/Neighbor', dateOfBirth: '1990-01-01' },
+        });
+        schemaTestHelperWithSC.schemaExpect(true, { secondaryCaregiverTwo: validSecondaryCaregiverTwoData });
+      });
     });
   });
 });
