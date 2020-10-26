@@ -1444,6 +1444,9 @@
                         "$ref": "#/definitions/genericTextInput"
                       }
                     }
+                  },
+                  "childIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -1569,6 +1572,9 @@
             },
             "address": {
               "$ref": "#/definitions/addressSchema"
+            },
+            "spouseIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             }
           }
         },
@@ -2119,6 +2125,14 @@
               }
             }
           }
+        }
+      }
+    },
+    "householdIncome": {
+      "type": "object",
+      "properties": {
+        "householdIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     }
