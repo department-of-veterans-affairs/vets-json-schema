@@ -216,6 +216,39 @@ const schema = {
             },
           },
         },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Homeloan Guaranty/All VA Mortgage Issues'],
+            },
+            levelTwo: {
+              type: 'object',
+              anyOf: [
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: ['Home Loan/Mortgage Webaccess & Tech prob'],
+                    },
+                    levelThree: {
+                      type: 'string',
+                      enum: ['Homeloan VIP Portal Access', 'Web Page Issues'],
+                    },
+                  },
+                },
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: ['Home Loan/Mortgage Certificates of Elig', 'Home Loan/Mortgage Guaranty Issues'],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
         {},
       ],
       properties: {
@@ -1263,6 +1296,10 @@ const schema = {
             '459GH',
             '358',
           ],
+        },
+        routeToState: {
+          type: 'string',
+          enum: constants.usaStates,
         },
       },
     },
