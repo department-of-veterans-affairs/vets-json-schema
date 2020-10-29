@@ -22,7 +22,7 @@ const testData = {
     invalid: [0, 'invalid'],
   },
   agesOfOtherDependents: {
-    valid: [[8, 20]],
+    valid: [['8', '20']],
     invalid: [false, 'invalid']
   },
   employmentHistory: {
@@ -50,27 +50,27 @@ const testData = {
   income: {
     valid: [
       {
-        monthlyGrossSalary: 450000,
+        monthlyGrossSalary: '450000',
         deductions: {
-          taxes: 67500,
-          retirement: 67500,
-          socialSecurity: 67500,
+          taxes: '67500',
+          retirement: '67500',
+          socialSecurity: '67500',
           other: [
             {
               deductionName: 'health savings account',
-              deductionAmount: 50000,
+              deductionAmount: '50000',
             },
           ],
         },
-        totalDeductions: 252500,
-        netTakeHomePay: 197500,
+        totalDeductions: '252500',
+        netTakeHomePay: '197500',
         otherIncome: [
           {
             name: 'VA Disability Compensation',
-            amount: 150000,
+            amount: '150000',
           },
         ],
-        totalMonthlyNetIncome: 347500,
+        totalMonthlyNetIncome: '347500',
       },
     ],
     invalid: [
@@ -102,12 +102,12 @@ const testData = {
   expenses:{
     valid: [
       {
-        rentOrMortgage: 100000,
-        food: 60000,
-        utilities: 30000,
+        rentOrMortgage: '100000',
+        food: '60000',
+        utilities: '30000',
         other: null,
-        installmentContractsAndOtherDebts: 50000,
-        totalMonthlyExpenses: 240000,
+        installmentContractsAndOtherDebts: '50000',
+        totalMonthlyExpenses: '240000',
       },
     ],
     invalid: [

@@ -82,7 +82,7 @@ const personalData = {
     agesOfOtherDependents: {
       type: 'array',
       items: {
-        type: 'integer'
+        type: 'string'
       }
     },
     employmentHistory: buildDefinitionReference('employmentHistory'),
@@ -96,19 +96,19 @@ const income = {
       type: 'string'
     },
     monthlyGrossSalary: {
-      type: 'integer',
+      type: 'string',
     },
     deductions: {
       type: 'object',
       properties: {
         taxes: {
-          type: 'integer',
+          type: 'string',
         },
         retirement: {
-          type: 'integer',
+          type: 'string',
         },
         socialSecurity: {
-          type: 'integer',
+          type: 'string',
         },
         otherDeductions: {
           type: 'array',
@@ -119,16 +119,16 @@ const income = {
                 type: 'string',
               },
               amount: {
-                type: 'integer',
+                type: 'string',
               },
             },
           },
         },
         totalDeductions: {
-          type: 'integer',
+          type: 'string',
         },
         netTakeHomePay: {
-          type: 'integer',
+          type: 'string',
         },
         otherIncome: {
           type: 'array',
@@ -139,13 +139,13 @@ const income = {
                 type: 'string',
               },
               amount: {
-                type: 'integer',
+                type: 'string',
               },
             },
           },
         },
         totalMonthlyNetIncome: {
-          type: 'integer'
+          type: 'string'
         }
       },
     },
@@ -164,13 +164,13 @@ const expenses = {
   type: 'object',
   properties: {
     rentOrMortgage: {
-      type: 'integer',
+      type: 'string',
     },
     food: {
-      type: 'integer',
+      type: 'string',
     },
     utilities: {
-      type: 'integer',
+      type: 'string',
     },
     otherLivingExpenses: {
       type: 'array',
@@ -187,10 +187,10 @@ const expenses = {
       },
     },
     installmentContractsAndOtherDebts: {
-      type: 'integer',
+      type: 'string',
     },
     totalMonthlyExpenses: {
-      type: 'integer',
+      type: 'string',
     },
   },
 };
