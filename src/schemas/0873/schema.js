@@ -229,7 +229,7 @@ const schema = {
                   properties: {
                     subLevelTwo: {
                       type: 'string',
-                      enum: ['Home Loan/Mortgage Webaccess & Tech prob'],
+                      enum: ['Home Loan/Mortgage Web access & Tech problem'],
                     },
                     levelThree: {
                       type: 'string',
@@ -241,7 +241,7 @@ const schema = {
                   properties: {
                     subLevelTwo: {
                       type: 'string',
-                      enum: ['Home Loan/Mortgage Certificates of Elig', 'Home Loan/Mortgage Guaranty Issues'],
+                      enum: ['Home Loan/Mortgage Certificates of Eligibility', 'Home Loan/Mortgage Guaranty Issues'],
                     },
                   },
                 },
