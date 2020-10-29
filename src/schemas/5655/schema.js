@@ -7,6 +7,9 @@ const employmentHistory = {
   items: {
     type: 'object',
     properties: {
+      veteranORSpouse: {
+        type: 'string',
+      },
       occupationName: {
         type: 'string',
       },
@@ -16,6 +19,9 @@ const employmentHistory = {
       to: {
         type: 'string',
       },
+      present: {
+        type: 'boolean',
+      },
       employerName: {
         type: 'string',
       },
@@ -24,13 +30,50 @@ const employmentHistory = {
   },
 };
 
+const address = {
+  type: 'object',
+  properties: {
+    addresslineOne: {
+      type: 'string'
+    },
+    addresslineTwo: {
+      type: 'string'
+    },
+    addresslineThree: {
+      type: 'string'
+    },
+    city: {
+      type: 'string'
+    },
+    stateORProvince: {
+      type: 'string'
+    },
+    zipORPostalCode: {
+      type: 'string'
+    },
+    countryName: {
+      type: 'string'
+    },
+  },
+};
+
+const personalIdentification = {
+  type: 'object',
+  properties: {
+    sSN: buildDefinitionReference('ssn'),
+    fileNumber: buildDefinitionReference('vaFileNumber'),
+    fsrReason: {
+      type: 'string'
+    },
+  },
+};
+
 const personalData = {
   type: 'object',
   properties: {
-    fullName: buildDefinitionReference('fullName'),
+    veteranFullName: buildDefinitionReference('fullName'),
     address: buildDefinitionReference('address'),
-    phone: buildDefinitionReference('phone'),
-    fileNumber: buildDefinitionReference('vaFileNumber'),
+    telephoneNumber: buildDefinitionReference('phone'),
     dateOfBirth: buildDefinitionReference('date'),
     married: {
       type: 'boolean'
@@ -42,19 +85,16 @@ const personalData = {
         type: 'integer'
       }
     },
-    employmentHistory: {
-      type: 'object',
-      properties: {
-        veteran: employmentHistory,
-        spouse: employmentHistory,
-      },
-    },
+    employmentHistory: buildDefinitionReference('employmentHistory'),
   },
 };
 
 const income = {
   type: 'object',
   properties: {
+    veteranORSpouse: {
+      type: 'string'
+    },
     monthlyGrossSalary: {
       type: 'integer',
     },
@@ -70,15 +110,15 @@ const income = {
         socialSecurity: {
           type: 'integer',
         },
-        other: {
+        otherDeductions: {
           type: 'array',
           items: {
             type: 'object',
             properties: {
-              deductionName: {
+              name: {
                 type: 'string',
               },
-              deductionAmount: {
+              amount: {
                 type: 'integer',
               },
             },
@@ -132,8 +172,19 @@ const expenses = {
     utilities: {
       type: 'integer',
     },
-    other: {
-      type: ['integer', 'null'],
+    otherLivingExpenses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+          },
+          amount: {
+            type: 'string',
+          },
+        },
+      },
     },
     installmentContractsAndOtherDebts: {
       type: 'integer',
@@ -148,10 +199,10 @@ const discretionaryIncome = {
   type: 'object',
   properties: {
     netMonthlyIncomeLessExpenses: {
-      type: 'integer',
+      type: 'string',
     },
     amountCanBePaidTowardDebt: {
-      type: 'integer',
+      type: 'string',
     },
   },
 };
@@ -160,10 +211,10 @@ const assets = {
   type: 'object',
   properties: {
     cashInBank: {
-      type: 'integer',
+      type: 'string',
     },
     cashOnHand: {
-      type: 'integer',
+      type: 'string',
     },
     automobiles: {
       type: 'array',
@@ -177,42 +228,42 @@ const assets = {
             type: 'string',
           },
           year: {
-            type: 'integer',
+            type: 'string',
           },
           resaleValue: {
-            type: 'integer',
+            type: 'string',
           },
         },
       },
     },
-    trailerBoatsCampers: {
-      type: 'integer',
+    trailersBoatsCampers: {
+      type: 'string',
     },
     usSavingsBonds: {
-      type: 'integer',
+      type: 'string',
     },
     stocksAndOtherBonds: {
-      type: 'integer',
+      type: 'string',
     },
     realEstateOwned: {
-      type: 'integer',
+      type: 'string',
     },
     otherAssets: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          assetName: {
+          name: {
             type: 'string',
           },
-          assetValue: {
-            type: 'integer',
+          amount: {
+            type: 'string',
           },
         },
       },
     },
     totalAssets: {
-      type: 'integer',
+      type: 'string',
     },
   },
 };
@@ -231,16 +282,16 @@ const installmentContractsAndOtherDebts = {
         type: 'string',
       },
       originalAmount: {
-        type: 'integer',
+        type: 'string',
       },
       unpaidBalance: {
-        type: 'integer',
+        type: 'string',
       },
       amountDueMonthly: {
-        type: 'integer',
+        type: 'string',
       },
       amountPastDue: {
-        type: 'integer',
+        type: 'string',
       },
     },
   },
@@ -275,14 +326,18 @@ const schema = {
   title: 'FINANCIAL STATUS REPORT',
   type: 'object',
   definitions: {
+    personalIdentification: definitions.personalIdentification,
     fullName: definitions.fullName,
-    address: definitions.address,
+    address: address,
     phone: definitions.phone,
     vaFileNumber: definitions.vaFileNumber,
     date: definitions.date,
     nullableDate: definitions.nullableDate,
+    ssn: definitions.ssn,
+    employmentHistory: employmentHistory,
   },
   properties: {
+    personalIdentification: personalIdentification,
     personalData: personalData,
     income: incomes,
     expenses: expenses,

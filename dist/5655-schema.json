@@ -37,209 +37,27 @@
     },
     "address": {
       "type": "object",
-      "oneOf": [
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "CAN"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "AB",
-                "BC",
-                "MB",
-                "NB",
-                "NF",
-                "NT",
-                "NV",
-                "NU",
-                "ON",
-                "PE",
-                "QC",
-                "SK",
-                "YT"
-              ]
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 10
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "MEX"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "aguascalientes",
-                "baja-california-norte",
-                "baja-california-sur",
-                "campeche",
-                "chiapas",
-                "chihuahua",
-                "coahuila",
-                "colima",
-                "distrito-federal",
-                "durango",
-                "guanajuato",
-                "guerrero",
-                "hidalgo",
-                "jalisco",
-                "mexico",
-                "michoacan",
-                "morelos",
-                "nayarit",
-                "nuevo-leon",
-                "oaxaca",
-                "puebla",
-                "queretaro",
-                "quintana-roo",
-                "san-luis-potosi",
-                "sinaloa",
-                "sonora",
-                "tabasco",
-                "tamaulipas",
-                "tlaxcala",
-                "veracruz",
-                "yucatan",
-                "zacatecas"
-              ]
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 10
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "USA"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "AL",
-                "AK",
-                "AS",
-                "AZ",
-                "AR",
-                "AA",
-                "AE",
-                "AP",
-                "CA",
-                "CO",
-                "CT",
-                "DE",
-                "DC",
-                "FM",
-                "FL",
-                "GA",
-                "GU",
-                "HI",
-                "ID",
-                "IL",
-                "IN",
-                "IA",
-                "KS",
-                "KY",
-                "LA",
-                "ME",
-                "MH",
-                "MD",
-                "MA",
-                "MI",
-                "MN",
-                "MS",
-                "MO",
-                "MT",
-                "NE",
-                "NV",
-                "NH",
-                "NJ",
-                "NM",
-                "NY",
-                "NC",
-                "ND",
-                "MP",
-                "OH",
-                "OK",
-                "OR",
-                "PW",
-                "PA",
-                "PR",
-                "RI",
-                "SC",
-                "SD",
-                "TN",
-                "TX",
-                "UT",
-                "VT",
-                "VI",
-                "VA",
-                "WA",
-                "WV",
-                "WI",
-                "WY"
-              ]
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 10
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "not": {
-                "type": "string",
-                "enum": [
-                  "CAN",
-                  "MEX",
-                  "USA"
-                ]
-              }
-            },
-            "state": {
-              "type": "string",
-              "maxLength": 51
-            },
-            "postalCode": {
-              "type": "string",
-              "maxLength": 51
-            }
-          }
-        }
-      ],
       "properties": {
-        "street": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 50
+        "addresslineOne": {
+          "type": "string"
         },
-        "street2": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 50
+        "addresslineTwo": {
+          "type": "string"
+        },
+        "addresslineThree": {
+          "type": "string"
         },
         "city": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 51
+          "type": "string"
+        },
+        "stateORProvince": {
+          "type": "string"
+        },
+        "zipORPostalCode": {
+          "type": "string"
+        },
+        "countryName": {
+          "type": "string"
         }
       }
     },
@@ -261,23 +79,67 @@
         "string",
         "null"
       ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "employmentHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "veteranORSpouse": {
+            "type": "string"
+          },
+          "occupationName": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "present": {
+            "type": "boolean"
+          },
+          "employerName": {
+            "type": "string"
+          },
+          "employerAddress": {
+            "$ref": "#/definitions/address"
+          }
+        }
+      }
     }
   },
   "properties": {
+    "personalIdentification": {
+      "type": "object",
+      "properties": {
+        "sSN": {
+          "$ref": "#/definitions/ssn"
+        },
+        "fileNumber": {
+          "$ref": "#/definitions/vaFileNumber"
+        },
+        "fsrReason": {
+          "type": "string"
+        }
+      }
+    },
     "personalData": {
       "type": "object",
       "properties": {
-        "fullName": {
+        "veteranFullName": {
           "$ref": "#/definitions/fullName"
         },
         "address": {
           "$ref": "#/definitions/address"
         },
-        "phone": {
+        "telephoneNumber": {
           "$ref": "#/definitions/phone"
-        },
-        "fileNumber": {
-          "$ref": "#/definitions/vaFileNumber"
         },
         "dateOfBirth": {
           "$ref": "#/definitions/date"
@@ -295,55 +157,7 @@
           }
         },
         "employmentHistory": {
-          "type": "object",
-          "properties": {
-            "veteran": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "occupationName": {
-                    "type": "string"
-                  },
-                  "from": {
-                    "type": "string"
-                  },
-                  "to": {
-                    "type": "string"
-                  },
-                  "employerName": {
-                    "type": "string"
-                  },
-                  "employerAddress": {
-                    "$ref": "#/definitions/address"
-                  }
-                }
-              }
-            },
-            "spouse": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "occupationName": {
-                    "type": "string"
-                  },
-                  "from": {
-                    "type": "string"
-                  },
-                  "to": {
-                    "type": "string"
-                  },
-                  "employerName": {
-                    "type": "string"
-                  },
-                  "employerAddress": {
-                    "$ref": "#/definitions/address"
-                  }
-                }
-              }
-            }
-          }
+          "$ref": "#/definitions/employmentHistory"
         }
       }
     },
@@ -353,6 +167,9 @@
         "veteran": {
           "type": "object",
           "properties": {
+            "veteranORSpouse": {
+              "type": "string"
+            },
             "monthlyGrossSalary": {
               "type": "integer"
             },
@@ -368,15 +185,15 @@
                 "socialSecurity": {
                   "type": "integer"
                 },
-                "other": {
+                "otherDeductions": {
                   "type": "array",
                   "items": {
                     "type": "object",
                     "properties": {
-                      "deductionName": {
+                      "name": {
                         "type": "string"
                       },
-                      "deductionAmount": {
+                      "amount": {
                         "type": "integer"
                       }
                     }
@@ -412,6 +229,9 @@
         "spouse": {
           "type": "object",
           "properties": {
+            "veteranORSpouse": {
+              "type": "string"
+            },
             "monthlyGrossSalary": {
               "type": "integer"
             },
@@ -427,15 +247,15 @@
                 "socialSecurity": {
                   "type": "integer"
                 },
-                "other": {
+                "otherDeductions": {
                   "type": "array",
                   "items": {
                     "type": "object",
                     "properties": {
-                      "deductionName": {
+                      "name": {
                         "type": "string"
                       },
-                      "deductionAmount": {
+                      "amount": {
                         "type": "integer"
                       }
                     }
@@ -482,11 +302,19 @@
         "utilities": {
           "type": "integer"
         },
-        "other": {
-          "type": [
-            "integer",
-            "null"
-          ]
+        "otherLivingExpenses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "string"
+              }
+            }
+          }
         },
         "installmentContractsAndOtherDebts": {
           "type": "integer"
@@ -500,10 +328,10 @@
       "type": "object",
       "properties": {
         "netMonthlyIncomeLessExpenses": {
-          "type": "integer"
+          "type": "string"
         },
         "amountCanBePaidTowardDebt": {
-          "type": "integer"
+          "type": "string"
         }
       }
     },
@@ -511,10 +339,10 @@
       "type": "object",
       "properties": {
         "cashInBank": {
-          "type": "integer"
+          "type": "string"
         },
         "cashOnHand": {
-          "type": "integer"
+          "type": "string"
         },
         "automobiles": {
           "type": "array",
@@ -528,42 +356,42 @@
                 "type": "string"
               },
               "year": {
-                "type": "integer"
+                "type": "string"
               },
               "resaleValue": {
-                "type": "integer"
+                "type": "string"
               }
             }
           }
         },
-        "trailerBoatsCampers": {
-          "type": "integer"
+        "trailersBoatsCampers": {
+          "type": "string"
         },
         "usSavingsBonds": {
-          "type": "integer"
+          "type": "string"
         },
         "stocksAndOtherBonds": {
-          "type": "integer"
+          "type": "string"
         },
         "realEstateOwned": {
-          "type": "integer"
+          "type": "string"
         },
         "otherAssets": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "assetName": {
+              "name": {
                 "type": "string"
               },
-              "assetValue": {
-                "type": "integer"
+              "amount": {
+                "type": "string"
               }
             }
           }
         },
         "totalAssets": {
-          "type": "integer"
+          "type": "string"
         }
       }
     },
@@ -585,16 +413,16 @@
             "type": "string"
           },
           "originalAmount": {
-            "type": "integer"
+            "type": "string"
           },
           "unpaidBalance": {
-            "type": "integer"
+            "type": "string"
           },
           "amountDueMonthly": {
-            "type": "integer"
+            "type": "string"
           },
           "amountPastDue": {
-            "type": "integer"
+            "type": "string"
           }
         }
       }
