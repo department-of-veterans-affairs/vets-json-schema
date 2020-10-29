@@ -30,33 +30,6 @@ const employmentHistory = {
   },
 };
 
-const address = {
-  type: 'object',
-  properties: {
-    addresslineOne: {
-      type: 'string'
-    },
-    addresslineTwo: {
-      type: 'string'
-    },
-    addresslineThree: {
-      type: 'string'
-    },
-    city: {
-      type: 'string'
-    },
-    stateORProvince: {
-      type: 'string'
-    },
-    zipORPostalCode: {
-      type: 'string'
-    },
-    countryName: {
-      type: 'string'
-    },
-  },
-};
-
 const personalIdentification = {
   type: 'object',
   properties: {
@@ -328,7 +301,7 @@ const schema = {
   definitions: {
     personalIdentification: definitions.personalIdentification,
     fullName: definitions.fullName,
-    address: address,
+    address: definitions.address,
     phone: definitions.phone,
     vaFileNumber: definitions.vaFileNumber,
     date: definitions.date,

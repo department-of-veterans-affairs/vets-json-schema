@@ -7,13 +7,11 @@ const schemaTestHelper = new SchemaTestHelper(schema);
 const sharedTests = new SharedTests(schemaTestHelper);
 
 const validAddress = {
-  addresslineOne: '123 Fake Street',
-  addresslineTwo: 'Apt 120',
-  addresslineThree: '',
+  country: 'USA',
+  state: 'MO',
+  postalCode: '00000',
+  street: '123 Fake Street',
   city: 'Fakerville',
-  stateORProvince: 'CO',
-  zipORPostalCode: '11111',
-  countryName: 'USA',
 };
 
 const testData = {
@@ -253,7 +251,7 @@ const testData = {
 
 describe('5655 schema', () => {
   sharedTests.runTest('fullName', ['personalData.veteranFullName', 'personalData.spouseFullName']);
-  //sharedTests.runTest('address', ['personalData.address']);
+  sharedTests.runTest('address', ['personalData.address']);
   sharedTests.runTest('phone', ['personalData.telephoneNumber']);
   sharedTests.runTest('date', ['personalData.dateOfBirth']);
   schemaTestHelper.testValidAndInvalid('personalData.married', testData.married);
