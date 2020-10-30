@@ -220,7 +220,7 @@ const schema = {
           properties: {
             levelOne: {
               type: 'string',
-              enum: ['Homeloan Guaranty/All VA Mortgage Issues'],
+              enum: ['Home Loan Guaranty/All VA Mortgage Issues'],
             },
             levelTwo: {
               type: 'object',
@@ -233,7 +233,7 @@ const schema = {
                     },
                     levelThree: {
                       type: 'string',
-                      enum: ['Homeloan VIP Portal Access', 'Web Page Issues'],
+                      enum: ['Home Loan VIP Portal Access', 'Web Page Issues'],
                     },
                   },
                 },
