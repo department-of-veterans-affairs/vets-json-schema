@@ -33,8 +33,8 @@ const employmentHistory = {
 const personalIdentification = {
   type: 'object',
   properties: {
-    sSN: buildDefinitionReference('ssn'),
-    fileNumber: buildDefinitionReference('vaFileNumber'),
+    sSN: buildDefinitionReference('ssnLastFour'),
+    fileNumber: buildDefinitionReference('ssnLastFour'),
     fsrReason: {
       type: 'string'
     },
@@ -300,10 +300,9 @@ const schema = {
     fullName: definitions.fullName,
     address: definitions.address,
     phone: definitions.phone,
-    vaFileNumber: definitions.vaFileNumber,
     date: definitions.date,
     nullableDate: definitions.nullableDate,
-    ssn: definitions.ssn,
+    ssnLastFour: definitions.ssnLastFour,
     employmentHistory: employmentHistory,
   },
   properties: {

@@ -247,10 +247,6 @@
       "type": "string",
       "minLength": 10
     },
-    "vaFileNumber": {
-      "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
-    },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
@@ -262,9 +258,9 @@
         "null"
       ]
     },
-    "ssn": {
+    "ssnLastFour": {
       "type": "string",
-      "pattern": "^[0-9]{9}$"
+      "pattern": "^(?!0000)[0-9]{4}$"
     },
     "employmentHistory": {
       "type": "array",
@@ -301,10 +297,10 @@
       "type": "object",
       "properties": {
         "sSN": {
-          "$ref": "#/definitions/ssn"
+          "$ref": "#/definitions/ssnLastFour"
         },
         "fileNumber": {
-          "$ref": "#/definitions/vaFileNumber"
+          "$ref": "#/definitions/ssnLastFour"
         },
         "fsrReason": {
           "type": "string"
