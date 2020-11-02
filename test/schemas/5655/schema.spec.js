@@ -46,8 +46,9 @@ const testData = {
     ]],
   },
   income: {
-    valid: [
+    valid: [[
       {
+        veteranORSpouse: 'VETERAN',
         monthlyGrossSalary: '450000',
         deductions: {
           taxes: '67500',
@@ -69,10 +70,11 @@ const testData = {
           },
         ],
         totalMonthlyNetIncome: '347500',
-      },
-    ],
-    invalid: [
+      },      
+    ]],
+    invalid: [[
       {
+        veteranORSpouse: true,
         monthlyGrossSalary: true,
         deductions: {
           taxes: 'invalid',
@@ -95,9 +97,9 @@ const testData = {
         ],
         totalMonthlyNetIncome: 347500,
       },
-    ],
+    ]],
   },
-  expenses:{
+  expenses: {
     valid: [
       {
         rentOrMortgage: '100000',
@@ -257,8 +259,7 @@ describe('5655 schema', () => {
   schemaTestHelper.testValidAndInvalid('personalData.married', testData.married);
   schemaTestHelper.testValidAndInvalid('personalData.agesOfOtherDependents', testData.agesOfOtherDependents);
   schemaTestHelper.testValidAndInvalid('personalData.employmentHistory', testData.employmentHistory);
-  schemaTestHelper.testValidAndInvalid('income.veteran', testData.income);
-  schemaTestHelper.testValidAndInvalid('income.spouse', testData.income);
+  schemaTestHelper.testValidAndInvalid('income', testData.income);
   schemaTestHelper.testValidAndInvalid('expenses', testData.expenses);
   schemaTestHelper.testValidAndInvalid('discretionaryIncome', testData.discretionaryIncome);
   schemaTestHelper.testValidAndInvalid('assets', testData.assets);

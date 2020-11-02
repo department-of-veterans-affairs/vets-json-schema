@@ -344,128 +344,64 @@
       }
     },
     "income": {
-      "type": "object",
-      "properties": {
-        "veteran": {
-          "type": "object",
-          "properties": {
-            "veteranORSpouse": {
-              "type": "string"
-            },
-            "monthlyGrossSalary": {
-              "type": "string"
-            },
-            "deductions": {
-              "type": "object",
-              "properties": {
-                "taxes": {
-                  "type": "string"
-                },
-                "retirement": {
-                  "type": "string"
-                },
-                "socialSecurity": {
-                  "type": "string"
-                },
-                "otherDeductions": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "amount": {
-                        "type": "string"
-                      }
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "veteranORSpouse": {
+            "type": "string"
+          },
+          "monthlyGrossSalary": {
+            "type": "string"
+          },
+          "deductions": {
+            "type": "object",
+            "properties": {
+              "taxes": {
+                "type": "string"
+              },
+              "retirement": {
+                "type": "string"
+              },
+              "socialSecurity": {
+                "type": "string"
+              },
+              "otherDeductions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "string"
                     }
                   }
-                },
-                "totalDeductions": {
-                  "type": "string"
-                },
-                "netTakeHomePay": {
-                  "type": "string"
-                },
-                "otherIncome": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "amount": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                },
-                "totalMonthlyNetIncome": {
-                  "type": "string"
                 }
-              }
-            }
-          }
-        },
-        "spouse": {
-          "type": "object",
-          "properties": {
-            "veteranORSpouse": {
-              "type": "string"
-            },
-            "monthlyGrossSalary": {
-              "type": "string"
-            },
-            "deductions": {
-              "type": "object",
-              "properties": {
-                "taxes": {
-                  "type": "string"
-                },
-                "retirement": {
-                  "type": "string"
-                },
-                "socialSecurity": {
-                  "type": "string"
-                },
-                "otherDeductions": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "amount": {
-                        "type": "string"
-                      }
+              },
+              "totalDeductions": {
+                "type": "string"
+              },
+              "netTakeHomePay": {
+                "type": "string"
+              },
+              "otherIncome": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "string"
                     }
                   }
-                },
-                "totalDeductions": {
-                  "type": "string"
-                },
-                "netTakeHomePay": {
-                  "type": "string"
-                },
-                "otherIncome": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "amount": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                },
-                "totalMonthlyNetIncome": {
-                  "type": "string"
                 }
+              },
+              "totalMonthlyNetIncome": {
+                "type": "string"
               }
             }
           }

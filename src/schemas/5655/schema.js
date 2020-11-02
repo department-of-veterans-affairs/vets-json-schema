@@ -126,11 +126,8 @@ const income = {
 };
 
 const incomes = {
-  type: 'object',
-  properties: {
-    veteran: income,
-    spouse: income,
-  },
+  type: 'array',
+  items: income,
 };
 
 const expenses = {
