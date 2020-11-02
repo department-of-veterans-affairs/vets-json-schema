@@ -14,43 +14,43 @@ const smokeOrVape = {
   type: 'boolean',
 };
 
-const healthHistory = {
+const HEALTH_HISTORY = {
   type: 'object',
   properties: {
-    ALLERGY_VACCINE: {
+    'HEALTH_HISTORY::ALLERGY_VACCINE': {
       type: 'boolean',
     },
-    AUTOIMMUNE_DISEASE: {
+    'HEALTH_HISTORY::AUTOIMMUNE_DISEASE': {
       type: 'boolean',
     },
-    CANCER: {
+    'HEALTH_HISTORY::CANCER': {
       type: 'boolean',
     },
-    DIABETES: {
+    'HEALTH_HISTORY::IMMUNOCOMPROMISED': {
       type: 'boolean',
     },
-    HEART_DISEASE: {
+    'HEALTH_HISTORY::DIABETES': {
       type: 'boolean',
     },
-    HIGH_BLOOD_PRESSURE: {
+    'HEALTH_HISTORY::HEART_DISEASE': {
       type: 'boolean',
     },
-    IMMUNOCOMPROMISED: {
+    'HEALTH_HISTORY::HIGH_BLOOD_PRESSURE': {
       type: 'boolean',
     },
-    KIDNEY_LIVER_DISEASE: {
+    'HEALTH_HISTORY::KIDNEY_LIVER_DISEASE': {
       type: 'boolean',
     },
-    LUNG_DISEASE: {
+    'HEALTH_HISTORY::LUNG_DISEASE': {
       type: 'boolean',
     },
-    STROKE: {
+    'HEALTH_HISTORY::STROKE': {
       type: 'boolean',
     },
-    ANOTHER_SERIOUS_CHRONIC_ILLNESS: {
+    'HEALTH_HISTORY::ANOTHER_SERIOUS_CHRONIC_ILLNESS': {
       type: 'boolean',
     },
-    NONE_OF_ABOVE: {
+    'HEALTH_HISTORY::NONE_OF_ABOVE': {
       type: 'boolean',
     },
   },
@@ -61,52 +61,55 @@ const residentsInHome = {
   enum: ['ONE_TWO', 'THREE_FIVE', 'SIX_TEN', 'MORE_THAN_TEN'],
 };
 
-const employmentStatus = {
+const EMPLOYMENT_STATUS = {
   type: 'object',
   properties: {
-    EMPLOYED_HOME: {
+    'EMPLOYMENT_STATUS::EMPLOYED_HOME': {
       type: 'boolean',
     },
-    EMPLOYED_OUTSIDE_OF_HOME: {
+    'EMPLOYMENT_STATUS::EMPLOYED_OUTSIDE_OF_HOME': {
       type: 'boolean',
     },
-    FRONTLINE_WORKER: {
+    'EMPLOYMENT_STATUS::FRONTLINE_WORKER': {
       type: 'boolean',
     },
-    FURLOUGHED_UNEMPLOYED: {
+    'EMPLOYMENT_STATUS::FURLOUGHED_UNEMPLOYED': {
       type: 'boolean',
     },
-    RETIRED: {
+    'EMPLOYMENT_STATUS::RETIRED': {
       type: 'boolean',
     },
-    STUDENT: {
+    'EMPLOYMENT_STATUS::STUDENT': {
       type: 'boolean',
     },
-    NONE_OF_ABOVE: {
+    'EMPLOYMENT_STATUS::NONE_OF_ABOVE': {
       type: 'boolean',
     },
   },
 };
 
-const transportation = {
+const TRANSPORTATION = {
   type: 'object',
   properties: {
-    CAR: {
+    'TRANSPORTATION::CAR': {
       type: 'boolean',
     },
-    FREQUENT_AIR_TRAVEL: {
+    'TRANSPORTATION::CARPOOL_OR_VANPOOL': {
       type: 'boolean',
     },
-    PUBLIC_TRANSPORT: {
+    'TRANSPORTATION::FREQUENT_AIR_TRAVEL': {
       type: 'boolean',
     },
-    WALK_BIKE: {
+    'TRANSPORTATION::PUBLIC_TRANSPORT': {
       type: 'boolean',
     },
-    WORK_FROM_HOME: {
+    'TRANSPORTATION::WALK_BIKE': {
       type: 'boolean',
     },
-    NONE_OF_ABOVE: {
+    'TRANSPORTATION::WORK_FROM_HOME': {
+      type: 'boolean',
+    },
+    'TRANSPORTATION::NONE_OF_ABOVE': {
       type: 'boolean',
     },
   },
@@ -115,69 +118,94 @@ const closeContact = {
   type: 'string',
   enum: ['ZERO', 'ONE_TEN', 'ELEVEN_THIRTY', 'THIRTYONE_FIFTY', 'MORE_THAN_FIFTY'],
 };
-const height = {
-  type: 'number',
+const VETERAN = {
+  type: 'object',
+  properties: {
+    'VETERAN::VETERAN': {
+      type: 'boolean',
+    },
+    'VETERAN::ACTIVE_DUTY': {
+      type: 'boolean',
+    },
+    'VETERAN::NATIONAL_GUARD_RESERVES': {
+      type: 'boolean',
+    },
+    'VETERAN::VA_EMPLOYEE': {
+      type: 'boolean',
+    },
+    'VETERAN::FAMILY_MEMBER_CAREGIVER': {
+      type: 'boolean',
+    },
+    'VETERAN::VA_HEALTHCARE_CHAMPVA': {
+      type: 'boolean',
+    },
+    'VETERAN::NONE_OF_ABOVE': {
+      type: 'boolean',
+    },
+  },
 };
-const weight = {
+const GENDER = {
+  type: 'object',
+  properties: {
+    'GENDER::MALE': {
+      type: 'boolean',
+    },
+    'GENDER::FEMALE': {
+      type: 'boolean',
+    },
+    'GENDER::TRANSGENDER_MALE': {
+      type: 'boolean',
+    },
+    'GENDER::TRANSGENDER_FEMALE': {
+      type: 'boolean',
+    },
+    'GENDER::NON_BINARY': {
+      type: 'boolean',
+    },
+    'GENDER::SELF_IDENTIFY': {
+      type: 'boolean',
+    },
+    'GENDER::NONE_OF_ABOVE': {
+      type: 'boolean',
+    },
+  },
+};
+const GENDER_SELF_IDENTIFY_DETAILS = {
   type: 'string',
-  pattern: '^([1-9]\\d*)(\\.(\\d{1}|\\d{2}))?$',
+  maxLength: 255,
 };
-const gender = {
+const RACE_ETHNICITY = {
   type: 'object',
   properties: {
-    FEMALE: {
+    'RACE_ETHNICITY::AMERICAN_INDIAN_ALASKA_NATIVE': {
       type: 'boolean',
     },
-    MALE: {
+    'RACE_ETHNICITY::ASIAN': {
       type: 'boolean',
     },
-    TRANSGENDER_FEMALE: {
+    'RACE_ETHNICITY::BLACK_AFRICAN_AMERICAN': {
       type: 'boolean',
     },
-    TRANSGENDER_MALE: {
+    'RACE_ETHNICITY::HISPANIC_LATINO_SPANISH_ORIGIN': {
       type: 'boolean',
     },
-    GENDER_VARIANT: {
+    'RACE_ETHNICITY::HAWAIIAN_PACIFIC_ISLANDER': {
       type: 'boolean',
     },
-    SELF_IDENTIFY: {
+    'RACE_ETHNICITY::WHITE': {
       type: 'boolean',
     },
-    NONE_OF_ABOVE: {
+    'RACE_ETHNICITY::OTHER_RACE_ETHNICITY': {
+      type: 'boolean',
+    },
+    'RACE_ETHNICITY::NONE_OF_ABOVE': {
       type: 'boolean',
     },
   },
 };
-const raceEthnicityOrigin = {
-  type: 'object',
-  properties: {
-    AMERICAN_INDIAN_ALASKA_NATIVE: {
-      type: 'boolean',
-    },
-    ASIAN: {
-      type: 'boolean',
-    },
-    BLACK_AFRICAN_AMERICAN: {
-      type: 'boolean',
-    },
-    HISPANIC_LATINO_SPANISH_ORIGIN: {
-      type: 'boolean',
-    },
-    HAWAIIAN_PACIFIC_ISLANDER: {
-      type: 'boolean',
-    },
-    WHITE: {
-      type: 'boolean',
-    },
-    OTHER_RACE_ETHNICITY: {
-      type: 'boolean',
-    },
-    NONE_OF_ABOVE: {
-      type: 'boolean',
-    },
-  },
+const consentAgreementAccepted = {
+  type: 'boolean',
 };
-
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Covid Vaccine Trial',
@@ -186,18 +214,19 @@ const schema = {
   definitions: {},
   properties: {
     residentsInHome,
-    healthHistory,
+    HEALTH_HISTORY,
     diagnosed,
     closeContactPositive,
     hospitalized,
     smokeOrVape,
-    employmentStatus,
-    transportation,
+    EMPLOYMENT_STATUS,
+    TRANSPORTATION,
     closeContact,
-    height,
-    weight,
-    gender,
-    raceEthnicityOrigin,
+    VETERAN,
+    GENDER,
+    GENDER_SELF_IDENTIFY_DETAILS,
+    RACE_ETHNICITY,
+    consentAgreementAccepted,
   },
   required: [
     'email',
@@ -206,17 +235,17 @@ const schema = {
     'zipCode',
     'phone',
     'residentsInHome',
-    'healthHistory',
+    'HEALTH_HISTORY',
     'diagnosed',
     'closeContactPositive',
     'hospitalized',
     'smokeOrVape',
-    'employmentStatus',
-    'transportation',
+    'EMPLOYMENT_STATUS',
+    'TRANSPORTATION',
     'closeContact',
-    'weight',
-    'gender',
-    'raceEthnicityOrigin',
+    'VETERAN',
+    'GENDER',
+    'RACE_ETHNICITY',
   ],
 };
 

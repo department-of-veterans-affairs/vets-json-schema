@@ -451,7 +451,8 @@
       "enum": [
         "mail",
         "email",
-        "phone"
+        "phone",
+        "mobile"
       ]
     },
     "relationship": {

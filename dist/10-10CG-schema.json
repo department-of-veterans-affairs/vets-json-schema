@@ -43,8 +43,7 @@
       "type": "string",
       "enum": [
         "F",
-        "M",
-        "U"
+        "M"
       ]
     },
     "phone": {
@@ -53,8 +52,7 @@
     },
     "email": {
       "type": "string",
-      "minLength": 6,
-      "maxLength": 80,
+      "maxLength": 256,
       "format": "email"
     },
     "address": {
@@ -180,7 +178,6 @@
         "fullName",
         "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "plannedClinic"
@@ -265,8 +262,8 @@
             "695",
             "589",
             "589A4",
-            "657",
             "657A4",
+            "657",
             "502",
             "629",
             "667",
@@ -378,6 +375,19 @@
               ]
             }
           }
+        },
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "consent-to-caregivers-to-perform-care"
+            ]
+          }
         }
       }
     },
@@ -386,16 +396,11 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship",
-        "medicaidEnrolled",
-        "medicareEnrolled",
-        "tricareEnrolled",
-        "champvaEnrolled"
+        "hasHealthInsurance"
       ],
       "properties": {
         "fullName": {
@@ -425,22 +430,27 @@
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
         },
-        "medicaidEnrolled": {
+        "hasHealthInsurance": {
           "type": "boolean"
         },
-        "medicareEnrolled": {
-          "type": "boolean"
-        },
-        "tricareEnrolled": {
-          "type": "boolean"
-        },
-        "champvaEnrolled": {
-          "type": "boolean"
-        },
-        "otherHealthInsuranceName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "at-least-18-years-of-age",
+              "member-of-veterans-family",
+              "not-member-of-veterans-family",
+              "currently-or-will-reside-with-veteran--as-primary",
+              "agree-to-perform-services--as-primary",
+              "understand-revocable-status--as-primary",
+              "have-understanding-of-non-employment-relationship"
+            ]
+          }
         }
       }
     },
@@ -449,9 +459,7 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship"
@@ -483,6 +491,25 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
+        },
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "at-least-18-years-of-age",
+              "member-of-veterans-family",
+              "not-member-of-veterans-family",
+              "currently-or-will-reside-with-veteran--as-secondary",
+              "agree-to-perform-services--as-secondary",
+              "understand-revocable-status--as-secondary",
+              "have-understanding-of-non-employment-relationship"
+            ]
+          }
         }
       }
     },
@@ -491,9 +518,7 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship"
@@ -525,6 +550,25 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
+        },
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "at-least-18-years-of-age",
+              "member-of-veterans-family",
+              "not-member-of-veterans-family",
+              "currently-or-will-reside-with-veteran--as-secondary",
+              "agree-to-perform-services--as-secondary",
+              "understand-revocable-status--as-secondary",
+              "have-understanding-of-non-employment-relationship"
+            ]
+          }
         }
       }
     }

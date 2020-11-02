@@ -45,8 +45,7 @@
     },
     "email": {
       "type": "string",
-      "minLength": 6,
-      "maxLength": 80,
+      "maxLength": 256,
       "format": "email"
     },
     "files": {
@@ -1445,6 +1444,9 @@
                         "$ref": "#/definitions/genericTextInput"
                       }
                     }
+                  },
+                  "childIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -1570,6 +1572,9 @@
             },
             "address": {
               "$ref": "#/definitions/addressSchema"
+            },
+            "spouseIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             }
           }
         },
@@ -1713,6 +1718,12 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
         "date": {
           "$ref": "#/definitions/date"
         },
@@ -1749,6 +1760,12 @@
                 "properties": {
                   "fullName": {
                     "$ref": "#/definitions/fullName"
+                  },
+                  "ssn": {
+                    "$ref": "#/definitions/ssn"
+                  },
+                  "birthDate": {
+                    "$ref": "#/definitions/date"
                   },
                   "dependentType": {
                     "type": "string",
@@ -1816,6 +1833,12 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
         "dateMarried": {
           "$ref": "#/definitions/date"
         }
@@ -1826,6 +1849,12 @@
       "properties": {
         "fullName": {
           "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
         },
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
@@ -1846,6 +1875,12 @@
                 "properties": {
                   "fullName": {
                     "$ref": "#/definitions/fullName"
+                  },
+                  "ssn": {
+                    "$ref": "#/definitions/ssn"
+                  },
+                  "birthDate": {
+                    "$ref": "#/definitions/date"
                   }
                 }
               }
@@ -2090,6 +2125,14 @@
               }
             }
           }
+        }
+      }
+    },
+    "householdIncome": {
+      "type": "object",
+      "properties": {
+        "householdIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     }

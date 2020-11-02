@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "status": 422,
+      "code": "invalid_receipt_date",
+      "title": "Invalid Receipt Date",
+      "detail": "\"2019-02-18\" is before AMA Activation Date (2019-02-19)."
+    }
+  ],
+  "code": "invalid_receipt_date",
+  "detail": "Invalid Receipt Date",
+  "source": "\"2019-02-18\" is before AMA Activation Date (2019-02-19)."
+}

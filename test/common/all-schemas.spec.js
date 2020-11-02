@@ -1,63 +1,37 @@
 import schemas from '../../dist/schemas';
 import { expect } from 'chai';
-import _ from 'lodash';
+import { get, object_error, is_object } from './all-schemas.spec.helpers.js';
+
+// recurse through object and check each object* found using object_error.
+// checks the root of an object (empty path) too.
+// * object that isn't an array. a thing with keys -> values
+const check_object_recursively = (root_obj, path = []) => {
+  const obj = get(root_obj, path);
+
+  if (Array.isArray(obj)) {
+    const array = obj;
+    array.forEach((_, i) => check_object_recursively(root_obj, [...path, i]));
+    return;
+  }
+
+  if (!is_object(obj)) return;
+
+  const error = object_error(root_obj, path); // ensure object's have a type (or $ref/const/enum)
+  if (error) throw new Error(error);
+
+  for (const prop in obj) if (obj.hasOwnProperty(prop)) check_object_recursively(root_obj, [...path, prop]);
+};
 
 describe('all schema tests', () => {
-  it('schema properties should have types', () => {
-    const skipTypeArr = [
-      'allOf',
-      'anyOf',
-      'oneOf',
-      'not'
-    ];
+  for (let k in schemas) {
+    if (!schemas.hasOwnProperty(k)) continue;
 
-    const checkObjectTypes = (key, obj, skipTypeCheck = false) => {
-      const lastKey = _.tap(key.split('.'), keyArr => {
-        return keyArr[keyArr.length - 1];
-      });
+    // skip "checkObjectTypes" for these dist files used as enums
+    if (['definitions', 'constants', 'vaMedicalFacilities', 'caregiverProgramFacilities', 'form1010cgCertifications'].includes(k)) continue;
 
-      _.tap(Object.keys(obj), objKeys => {
-        if (
-          !skipTypeCheck &&
-          objKeys.length === 1 &&
-          _.includes(skipTypeArr, objKeys[0])
-        ) {
-          skipTypeCheck = true;
-        }
-      });
+    // skip "checkObjectTypes" for dist files that contains "-example" (used for example data) AND does not contain "schema"
+    if (k.indexOf('-example') > -1 && k.indexOf('schema') === -1) continue;
 
-      if (!skipTypeCheck && obj.type == null) {
-        throw new Error(`${key} needs type`);
-      }
-
-      for (let k in obj) {
-        let v = obj[k];
-        let skipNextTypeCheck = false;
-
-        if (_.isPlainObject(v) && v['$ref'] == null) {
-          if (obj['$schema'] && k === 'definitions') skipNextTypeCheck = true;
-
-          if (!skipNextTypeCheck && lastKey !== 'properties' && k === 'properties') skipNextTypeCheck = true;
-
-          checkObjectTypes(`${key}.${k}`, v, skipNextTypeCheck);
-        } else if (_.isArray(v)) {
-          if (_.includes(skipTypeArr, k) && obj.type != null) skipNextTypeCheck = true;
-
-          v.forEach((item) => {
-            if (_.isPlainObject(item)) checkObjectTypes(`${key}.${k}`, item, skipNextTypeCheck);
-          });
-        }
-      }
-    };
-
-    for (let k in schemas) {
-      // skip "checkObjectTypes" for these dist files used as enums
-      if (['definitions', 'constants', 'vaMedicalFacilities', 'caregiverProgramFacilities'].includes(k)) continue;
-
-      // skip "checkObjectTypes" for dist files that contains "-example" (used for example data) AND does not contain "schema"
-      if (k.indexOf('-example') > -1 && k.indexOf('schema') === -1) continue;
-
-      checkObjectTypes(k, schemas[k]);
-    }
-  });
+    it(`${k} - schema properties should have types (or $ref/const/enum)`, () => check_object_recursively(schemas, [k]));
+  }
 });

@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import form1010cgCertifications from '../../common/form-10-10cg-certifications';
 import { caregiverProgramFacilities } from '../../common/constants';
 
 const buildDataType = (type, additionals = {}) => {
@@ -6,11 +7,6 @@ const buildDataType = (type, additionals = {}) => {
 };
 
 const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
-
-const gender = {
-  type: 'string',
-  enum: ['F', 'M', 'U'],
-};
 
 const vetRelationships = [
   'Spouse',
@@ -35,6 +31,41 @@ const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities).redu
   return acc;
 }, []);
 
+const certificationSchemas = [
+  'veteran',
+  'primaryCaregiver',
+  'secondaryCaregiverOne',
+  'secondaryCaregiverTwo',
+].reduce((certificationSchemasAcc, formSubject) => {
+  const minItemsRequired = formSubject === 'veteran' ? 2 : 6;
+  const maxItemsRequired = formSubject === 'veteran' ? 2 : 7;
+
+  const relevantCertificationIds = Object.keys(form1010cgCertifications)
+    .reduce((relevantCertificationIdsAcc, certId) => {
+      const certificationDefinition = form1010cgCertifications[certId];
+      const isAvailableForFormSubject = certificationDefinition.availableFor.indexOf(formSubject) > -1;
+
+      if (isAvailableForFormSubject) {
+        relevantCertificationIdsAcc.push(certId);
+      }
+
+      return relevantCertificationIdsAcc;
+    }, []);
+
+  certificationSchemasAcc[formSubject] = {
+    type: 'array',
+    uniqueItems: true,
+    minItems: minItemsRequired,
+    maxItems: maxItemsRequired,
+    items: {
+      type: 'string',
+      enum: relevantCertificationIds,
+    },
+  };
+
+  return certificationSchemasAcc;
+}, {});
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)',
@@ -45,7 +76,7 @@ const schema = {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
     date: definitions.date,
-    gender,
+    gender: definitions.gender,
     phone: definitions.phone,
     email: definitions.email,
     address: definitions.usAddress,
@@ -55,7 +86,14 @@ const schema = {
     veteran: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'plannedClinic'],
+      required: [
+        'fullName',
+        'ssnOrTin',
+        'dateOfBirth',
+        'address',
+        'primaryPhoneNumber',
+        'plannedClinic'
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -78,6 +116,7 @@ const schema = {
             },
           },
         },
+        certifications: certificationSchemas['veteran'],
       },
     },
     primaryCaregiver: {
@@ -85,16 +124,11 @@ const schema = {
       additionalProperties: false,
       required: [
         'fullName',
-        'ssnOrTin',
         'dateOfBirth',
-        'gender',
         'address',
         'primaryPhoneNumber',
         'vetRelationship',
-        'medicaidEnrolled',
-        'medicareEnrolled',
-        'tricareEnrolled',
-        'champvaEnrolled',
+        'hasHealthInsurance',
       ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
@@ -106,19 +140,20 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
-        medicaidEnrolled: buildDataType('boolean'),
-        medicareEnrolled: buildDataType('boolean'),
-        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
-        tricareEnrolled: buildDataType('boolean'),
-        // TODO: not on 1010CG Field Map. Get Confirmation that this is needed (does it fall into otherHealthIn...Name)
-        champvaEnrolled: buildDataType('boolean'),
-        otherHealthInsuranceName: buildDataType('string', { minLength: 1, maxLength: 100 }),
+        hasHealthInsurance: buildDataType('boolean'),
+        certifications: certificationSchemas['primaryCaregiver'],
       },
     },
     secondaryCaregiverOne: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'vetRelationship'],
+      required: [
+        'fullName',
+        'dateOfBirth',
+        'address',
+        'primaryPhoneNumber',
+        'vetRelationship',
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -129,12 +164,19 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
+        certifications: certificationSchemas['secondaryCaregiverOne'],
       },
     },
     secondaryCaregiverTwo: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'gender', 'address', 'primaryPhoneNumber', 'vetRelationship'],
+      required: [
+        'fullName',
+        'dateOfBirth',
+        'address',
+        'primaryPhoneNumber',
+        'vetRelationship',
+      ],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -145,6 +187,7 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
+        certifications: certificationSchemas['secondaryCaregiverTwo'],
       },
     },
   },

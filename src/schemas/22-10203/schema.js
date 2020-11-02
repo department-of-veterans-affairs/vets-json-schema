@@ -91,6 +91,9 @@ const schema = {
     scoEmailSent: {
       type: 'boolean',
     },
+    receiveTexts: {
+      type: 'boolean',
+    },
   },
   required: [
     'veteranFullName',

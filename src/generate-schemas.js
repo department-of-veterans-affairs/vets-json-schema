@@ -4,8 +4,11 @@ import definitions from './common/definitions';
 import constants from './common/constants';
 import vaMedicalFacilities from './common/va-medical-facilities';
 import caregiverProgramFacilities from './common/caregiver-program-facilities';
+import form1010cgCertifications from './common/form-10-10cg-certifications';
+import path from 'path';
+import { dist_examples as distExamples } from './examples.js';
 
-const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities };
+const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities, form1010cgCertifications };
 
 fs.readdirSync('src/schemas').forEach(schema => {
   jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-schema.json`, require(`./schemas/${schema}/schema`).default, {
@@ -13,9 +16,10 @@ fs.readdirSync('src/schemas').forEach(schema => {
   });
 });
 
-fs.readdirSync('src/examples').forEach(schema => {
-  jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-example.json`, require(`./examples/${schema}/example`).default, {
-    spaces: 2,
+fs.readdirSync('src/schemas').forEach(schema => {
+  const examples = distExamples(path.resolve(__dirname, '..'), schema);
+  Object.keys(examples).forEach(key => {
+    jsonfile.writeFileSync(`dist/${key}`, examples[key], { spaces: 2 });
   });
 });
 
