@@ -15,12 +15,6 @@
         }
       }
     },
-    "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
-    },
     "centralMailAddress": {
       "type": "object",
       "oneOf": [
@@ -29,7 +23,7 @@
             "country": {
               "type": "string",
               "enum": [
-                "CAN"
+                "CA"
               ]
             },
             "state": {
@@ -61,7 +55,7 @@
             "country": {
               "type": "string",
               "enum": [
-                "MEX"
+                "MX"
               ]
             },
             "state": {
@@ -112,7 +106,7 @@
             "country": {
               "type": "string",
               "enum": [
-                "USA"
+                "US"
               ]
             },
             "state": {
@@ -194,9 +188,9 @@
               "not": {
                 "type": "string",
                 "enum": [
-                  "CAN",
-                  "MEX",
-                  "USA"
+                  "CA",
+                  "MX",
+                  "US"
                 ]
               }
             },
@@ -230,6 +224,12 @@
       },
       "required": [
         "postalCode"
+      ]
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
       ]
     },
     "usaPhone": {
