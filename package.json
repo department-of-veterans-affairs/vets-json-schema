@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "node src/start build",
+    "postinstall": "node ./script/check-node-version.js",
     "test": "mocha 'test/**/*.spec.js'",
     "test:all-schemas": "mocha 'test/common/all-schemas.spec.js'",
     "watch": "node src/start watch",
@@ -24,6 +25,7 @@
     "@babel/register": "^7.11.5",
     "ajv": "^4.5.0",
     "chai": "^3.5.0",
+    "chalk": "^2.4.2",
     "danger": "^10.5.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -37,7 +39,11 @@
     "lodash": "^4.17.20",
     "mocha": "^3.0.2",
     "node-watch": "^0.4.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "semver": "^7.3.2"
+  },
+  "engines": {
+    "node": ">=14.15.0"
   },
   "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme"
 }
