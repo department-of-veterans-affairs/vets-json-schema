@@ -15,7 +15,6 @@ const schema = {
     ssn: definitions.ssn,
     privacyAgreementAccepted: definitions.privacyAgreementAccepted,
     usaStates: definitions.usAddress.properties.state,
-    countries: constants.countries,
   },
   properties: {
     veteranFullName: {
