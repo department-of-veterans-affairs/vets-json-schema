@@ -32,22 +32,6 @@ describe('feedback tool schema', () => {
     invalid: [[false]]
   });
 
-  schemaTestHelper.testValidAndInvalid('socialSecurityNumberLastFour', {
-    valid: [
-      '1234',
-      '8012',
-    ],
-    invalid: [
-      '',
-      '0000',
-      '1',
-      '12',
-      '123',
-      '12345',
-      'abcd',
-    ]
-  });
-
   schemaTestHelper.testValidAndInvalid('onBehalfOf', {
     valid: [
       'Myself'
