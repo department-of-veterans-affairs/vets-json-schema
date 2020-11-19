@@ -354,27 +354,17 @@
             "626"
           ]
         },
-        "lastTreatmentFacility": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "name",
-            "type"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "hospital",
-                "clinic"
-              ]
-            }
-          }
+        "lastTreatmentFacilityName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "lastTreatmentFacilityType": {
+          "type": "string",
+          "enum": [
+            "hospital",
+            "clinic"
+          ]
         },
         "certifications": {
           "type": "array",
