@@ -62,7 +62,7 @@ class SchemaTestHelper {
  */
 SchemaTestHelper.expect = (schema, data, expectation) => {
   const ajv = new Ajv();
-  const [result, errors] = [ajv.validate(schema, data), ajv.errors]
+  const [result, errors] = [ajv.validate(schema, data), ajv.errors];
 
   if (expectation === true && errors) {
     throw new Error('Valdation failed when expected to pass: ' + JSON.stringify(errors));

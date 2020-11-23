@@ -13,29 +13,14 @@ const testData = {
     valid: ['636', '636A6', '740', '603'],
     invalid: ['405HK', '436GA', '501GJ', '358', '123RE'],
   },
-  lastTreatmentFacility: {
-    valid: [
-      { name: 'My Hospital', type: 'hospital' },
-      { name: 'My Clinic', type: 'clinic' },
-      { name: 'random stringsssss', type: 'clinic' },
-      { name: 'random stringsssss', type: 'clinic' },
-    ],
-    invalid: [
-      {},
-      { name: 'Some Hospital Name' },
-      { name: 'Some Clinic Name', type: 'non-enum' },
-      { name: 'Some Hospital Name', type: 'hospital', extraProp: 'not allowed' },
-      {
-        // Hit max char count
-        name: 'A'.repeat(101),
-        type: 'clinic',
-      },
-      {
-        // Hit min char count
-        name: '',
-        type: 'clinic',
-      },
-    ],
+  lastTreatmentFacilityName: {
+    valid: ['My Hospital', 'My Clinic', 'random stringsssss', 'random stringsssss'],
+    // max and min lengths
+    invalid: ['A'.repeat(101), ''],
+  },
+  lastTreatmentFacilityType: {
+    valid: ['hospital', 'clinic'],
+    invalid: ['Some Hospital Name', 'non-enum'],
   },
   vetRelationship: {
     valid: [
@@ -258,8 +243,6 @@ describe('10-10CG json schema', () => {
       'plannedClinic',
     ]);
 
-    expect(schema.properties.veteran.properties.lastTreatmentFacility.required).to.deep.equal(['name', 'type']);
-
     expect(schema.properties.primaryCaregiver.required).to.deep.equal([
       'fullName',
       'dateOfBirth',
@@ -314,7 +297,8 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('date', ['veteran.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('veteran.gender', testData.gender);
     schemaTestHelper.testValidAndInvalid('veteran.plannedClinic', testData.plannedClinic);
-    schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacility', testData.lastTreatmentFacility);
+    schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacilityName', testData.lastTreatmentFacilityName);
+    schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacilityType', testData.lastTreatmentFacilityType);
     sharedTests.runTest('usAddress', ['veteran.address']);
     sharedTests.runTest('phone', ['veteran.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['veteran.alternativePhoneNumber']);
@@ -379,7 +363,8 @@ describe('10-10CG json schema', () => {
         alternativePhoneNumber: '8887775544',
         email: 'veteranEmail@email.com',
         plannedClinic: '636',
-        lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
+        lastTreatmentFacilityName: 'My Hospital',
+        lastTreatmentFacilityType: 'hospital',
       },
       primaryCaregiver: {
         fullName: { first: 'Joan', last: 'Doe' },
