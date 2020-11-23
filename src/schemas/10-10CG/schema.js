@@ -72,10 +72,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   required: ['veteran'],
-  anyOf: [
-    { required: ['primaryCaregiver'] },
-    { required: ['secondaryCaregiverOne'] },
-  ],
+  anyOf: [{ required: ['primaryCaregiver'] }, { required: ['secondaryCaregiverOne'] }],
   definitions: {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
