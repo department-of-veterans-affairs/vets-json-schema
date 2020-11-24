@@ -3,6 +3,23 @@ import schemaHelpers from '../../common/schema-helpers';
 const diagnosed = {
   type: 'boolean',
 };
+const DIAGNOSED_DETAILS = {
+  type: 'object',
+  properties: {
+    'DIAGNOSED_DETAILS::SYMPTOMS_ONLY': {
+      type: 'boolean',
+    },
+    'DIAGNOSED_DETAILS::ANTIBODY_BLOOD_TEST': {
+      type: 'boolean',
+    },
+    'DIAGNOSED_DETAILS::NASAL_SWAB_TEST_POSITIVE': {
+      type: 'boolean',
+    },
+    'DIAGNOSED_DETAILS::DIFFERENT_METHOD': {
+      type: 'boolean',
+    },
+  },
+};
 const closeContactPositive = {
   type: 'string',
   enum: ['YES', 'NO', 'UNSURE'],
@@ -216,6 +233,7 @@ const schema = {
     residentsInHome,
     HEALTH_HISTORY,
     diagnosed,
+    DIAGNOSED_DETAILS,
     closeContactPositive,
     hospitalized,
     smokeOrVape,
