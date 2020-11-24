@@ -47,6 +47,7 @@ const personalData = {
     veteranFullName: buildDefinitionReference('fullName'),
     address: buildDefinitionReference('address'),
     telephoneNumber: buildDefinitionReference('phone'),
+    email: buildDefinitionReference('email'),
     dateOfBirth: buildDefinitionReference('date'),
     married: {
       type: 'boolean'
@@ -300,6 +301,7 @@ const schema = {
     fullName: definitions.fullName,
     address: definitions.address,
     phone: definitions.phone,
+    email: definitions.email,
     date: definitions.date,
     nullableDate: definitions.nullableDate,
     ssnLastFour: definitions.ssnLastFour,

@@ -247,6 +247,11 @@
       "type": "string",
       "minLength": 10
     },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
@@ -318,6 +323,9 @@
         },
         "telephoneNumber": {
           "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
         },
         "dateOfBirth": {
           "$ref": "#/definitions/date"

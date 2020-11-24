@@ -255,6 +255,7 @@ describe('5655 schema', () => {
   sharedTests.runTest('fullName', ['personalData.veteranFullName', 'personalData.spouseFullName']);
   sharedTests.runTest('address', ['personalData.address']);
   sharedTests.runTest('phone', ['personalData.telephoneNumber']);
+  sharedTests.runTest('email', ['personalData.email']);
   sharedTests.runTest('date', ['personalData.dateOfBirth']);
   schemaTestHelper.testValidAndInvalid('personalData.married', testData.married);
   schemaTestHelper.testValidAndInvalid('personalData.agesOfOtherDependents', testData.agesOfOtherDependents);
