@@ -71,7 +71,11 @@ const schema = {
   title: 'Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)',
   type: 'object',
   additionalProperties: false,
-  required: ['veteran', 'primaryCaregiver'],
+  required: ['veteran'],
+  anyOf: [
+    { required: ['primaryCaregiver'] },
+    { required: ['secondaryCaregiverOne'] },
+  ],
   definitions: {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,

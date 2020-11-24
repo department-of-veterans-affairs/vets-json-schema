@@ -4,8 +4,19 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "veteran",
-    "primaryCaregiver"
+    "veteran"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "primaryCaregiver"
+      ]
+    },
+    {
+      "required": [
+        "secondaryCaregiverOne"
+      ]
+    }
   ],
   "definitions": {
     "fullName": {

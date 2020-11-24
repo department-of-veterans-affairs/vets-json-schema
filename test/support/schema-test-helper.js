@@ -23,7 +23,7 @@ const objectBuilder = (keys, value) => {
   return object;
 };
 
-export default class SchemaTestHelper {
+class SchemaTestHelper {
   constructor(schema, defaults = {}) {
     this.schema = schema;
     this.defaults = defaults;
@@ -53,3 +53,26 @@ export default class SchemaTestHelper {
     });
   }
 }
+
+/**
+ * Execute a test expectation for the provided data against the provided schema.
+ * @param {object} schema - The json-schema definition to test the @data against
+ * @param {object} data - The data to validate against the provided @schema.
+ * @param {boolean} expectation - A boolean to assert the result of the validation against.
+ */
+SchemaTestHelper.expect = (schema, data, expectation) => {
+  const ajv = new Ajv();
+  const [result, errors] = [ajv.validate(schema, data), ajv.errors]
+
+  if (expectation === true && errors) {
+    throw new Error('Valdation failed when expected to pass: ' + JSON.stringify(errors));
+  }
+
+  if (expectation === false && result === true) {
+    throw new Error('Valdation passed when expected to fail: ' + JSON.stringify(data));
+  }
+
+  return expect(result).to.equal(expectation);
+};
+
+export default SchemaTestHelper;
