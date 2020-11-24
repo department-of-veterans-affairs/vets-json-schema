@@ -62,6 +62,24 @@ describe('covid vaccine trial schema', () => {
     valid: [true, false],
     invalid: ['INVALID'],
   });
+  schemaTestHelper.testValidAndInvalid('DIAGNOSED_DETAILS', {
+    valid: [
+      { 'DIAGNOSED_DETAILS::SYMPTOMS_ONLY': true },
+      { 'DIAGNOSED_DETAILS::ANTIBODY_BLOOD_TEST': true },
+      { 'DIAGNOSED_DETAILS::NASAL_SWAB_TEST_POSITIVE': true },
+      { 'DIAGNOSED_DETAILS::DIFFERENT_METHOD': true },
+      { 'DIAGNOSED_DETAILS::SYMPTOMS_ONLY': false },
+      { 'DIAGNOSED_DETAILS::ANTIBODY_BLOOD_TEST': false },
+      { 'DIAGNOSED_DETAILS::NASAL_SWAB_TEST_POSITIVE': false },
+      { 'DIAGNOSED_DETAILS::DIFFERENT_METHOD': false },
+    ],
+    invalid: [
+      { 'DIAGNOSED_DETAILS::SYMPTOMS_ONLY': 'invalid' },
+      { 'DIAGNOSED_DETAILS::ANTIBODY_BLOOD_TEST': 'invalid' },
+      { 'DIAGNOSED_DETAILS::NASAL_SWAB_TEST_POSITIVE': 'invalid' },
+      { 'DIAGNOSED_DETAILS::DIFFERENT_METHOD': 'invalid' },
+    ],
+  });
   schemaTestHelper.testValidAndInvalid('closeContactPositive', {
     valid: ['YES', 'NO', 'UNSURE'],
     invalid: ['INVALID'],
