@@ -1,19 +1,28 @@
 import _ from 'lodash';
 import definitions from '../../common/definitions';
+import constants from '../../common/constants';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'IRIS Ask a Question',
   type: 'object',
-  definitions: _.pick(definitions, [
-    'address',
-    'date',
-    'dateRange',
-    'email',
-    'phone',
-    'ssn',
-    'privacyAgreementAccepted',
-  ]),
+  definitions: {
+    ..._.pick(definitions, ['address', 'date', 'dateRange', 'email', 'phone', 'ssn', 'privacyAgreementAccepted']),
+    first: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+    last: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
+    },
+    suffix: {
+      type: 'string',
+      enum: ['Jr.', 'Sr.', 'II', 'III', 'IV'],
+    },
+  },
   additionalProperties: false,
   anyOf: [
     {
@@ -91,16 +100,16 @@ const schema = {
                     levelThree: {
                       type: 'string',
                       enum: [
-                        'Apply for Health Benefits (Veterans)',
-                        'Medical Care for Veterans within USA',
-                        'Medical Care-Overseas Vets (Foreign Med)',
-                        'Children of Women Vietnam Vets Healthcare',
                         'Apply for Health Benefits (Dependents)',
+                        'Apply for Health Benefits (Veterans)',
+                        'CHAMPVA CITI (In house Treatment Initiated)',
                         'CHAMPVA-Civilian Health & Medical Prog',
                         'CHAMPVA Password/Access Problems',
-                        'CHAMPVA CITI (In house Treatment Initiated)',
-                        'Spina Bifida Program for Children of Vet',
+                        'Children of Women Vietnam Vets Healthcare',
                         'Licensed Health Professional Employment',
+                        'Medical Care-Overseas Vets (Foreign Med)',
+                        'Medical Care for Veterans within USA',
+                        'Spina Bifida Program for Children of Vet',
                       ],
                     },
                   },
@@ -138,7 +147,7 @@ const schema = {
                     },
                     levelThree: {
                       type: 'string',
-                      enum: ['General Concern', 'Complaint about Women Vets health care'],
+                      enum: ['Complaint about Women Vets health care', 'General Concern'],
                     },
                   },
                 },
@@ -167,6 +176,76 @@ const schema = {
             levelTwo: {
               type: 'string',
               enum: ['Policy Questions', 'Question about Women Veterans Programs'],
+            },
+          },
+        },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Burial & Memorial Benefits (NCA)'],
+            },
+            levelTwo: {
+              type: 'object',
+              anyOf: [
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: ['Burial Benefits'],
+                    },
+                    levelThree: {
+                      type: 'string',
+                      enum: ['Compensation Request', 'All Other Burial Benefit Inquiries'],
+                    },
+                  },
+                },
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: [
+                        'Pre-Need Burial Eligibility',
+                        'Headstones & Markers',
+                        'Presidential Memorial Certificates',
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Home Loan Guaranty/All VA Mortgage Issues'],
+            },
+            levelTwo: {
+              type: 'object',
+              anyOf: [
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: ['Home Loan/Mortgage Web access & Tech problem'],
+                    },
+                    levelThree: {
+                      type: 'string',
+                      enum: ['Home Loan VIP Portal Access', 'Web Page Issues'],
+                    },
+                  },
+                },
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: ['Home Loan/Mortgage Certificates of Eligibility', 'Home Loan/Mortgage Guaranty Issues'],
+                    },
+                  },
+                },
+              ],
             },
           },
         },
@@ -1218,6 +1297,10 @@ const schema = {
             '358',
           ],
         },
+        routeToState: {
+          type: 'string',
+          enum: constants.usaStates,
+        },
       },
     },
     inquiryType: {
@@ -1281,6 +1364,66 @@ const schema = {
         dateOfDeath: {
           $ref: '#/definitions/date',
         },
+      },
+    },
+    dependentInformation: {
+      type: 'object',
+      properties: {
+        relationshipToVeteran: {
+          enum: constants.dependentRelationships,
+          type: 'string',
+        },
+        first: {
+          $ref: '#/definitions/first',
+        },
+        last: {
+          $ref: '#/definitions/last',
+        },
+        address: {
+          $ref: '#/definitions/address',
+        },
+        phone: {
+          $ref: '#/definitions/phone',
+        },
+        email: {
+          $ref: '#/definitions/email',
+        },
+      },
+    },
+    veteranInformation: {
+      type: 'object',
+      properties: {
+        first: {
+          $ref: '#/definitions/first',
+        },
+        last: {
+          $ref: '#/definitions/last',
+        },
+        address: {
+          $ref: '#/definitions/address',
+        },
+        phone: {
+          $ref: '#/definitions/phone',
+        },
+        email: {
+          $ref: '#/definitions/email',
+        },
+      },
+    },
+    veteranServiceInformation: {
+      type: 'object',
+      properties: {
+        socialSecurityNumber: {
+          $ref: '#/definitions/ssn',
+        },
+        serviceNumber: {
+          type: 'string',
+          pattern: '^\\d{0,12}$',
+        },
+        claimNumber: {
+          type: 'string',
+          pattern: '^\\d{6,8}$',
+        },
         branchOfService: {
           type: 'string',
           enum: [
@@ -1311,24 +1454,8 @@ const schema = {
             'Other',
           ],
         },
-      },
-    },
-    veteranInformation: {
-      type: 'object',
-      properties: {
         dateOfBirth: {
           $ref: '#/definitions/date',
-        },
-        socialSecurityNumber: {
-          $ref: '#/definitions/ssn',
-        },
-        serviceNumber: {
-          type: 'string',
-          pattern: '^\\d{0,12}$',
-        },
-        claimNumber: {
-          type: 'string',
-          pattern: '^\\d{6,8}$',
         },
         serviceDateRange: {
           $ref: '#/definitions/dateRange',

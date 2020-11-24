@@ -244,6 +244,26 @@
       "enum": [
         true
       ]
+    },
+    "first": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "last": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "suffix": {
+      "type": "string",
+      "enum": [
+        "Jr.",
+        "Sr.",
+        "II",
+        "III",
+        "IV"
+      ]
     }
   },
   "additionalProperties": false,
@@ -359,16 +379,16 @@
                     "levelThree": {
                       "type": "string",
                       "enum": [
-                        "Apply for Health Benefits (Veterans)",
-                        "Medical Care for Veterans within USA",
-                        "Medical Care-Overseas Vets (Foreign Med)",
-                        "Children of Women Vietnam Vets Healthcare",
                         "Apply for Health Benefits (Dependents)",
+                        "Apply for Health Benefits (Veterans)",
+                        "CHAMPVA CITI (In house Treatment Initiated)",
                         "CHAMPVA-Civilian Health & Medical Prog",
                         "CHAMPVA Password/Access Problems",
-                        "CHAMPVA CITI (In house Treatment Initiated)",
-                        "Spina Bifida Program for Children of Vet",
-                        "Licensed Health Professional Employment"
+                        "Children of Women Vietnam Vets Healthcare",
+                        "Licensed Health Professional Employment",
+                        "Medical Care-Overseas Vets (Foreign Med)",
+                        "Medical Care for Veterans within USA",
+                        "Spina Bifida Program for Children of Vet"
                       ]
                     }
                   }
@@ -411,8 +431,8 @@
                     "levelThree": {
                       "type": "string",
                       "enum": [
-                        "General Concern",
-                        "Complaint about Women Vets health care"
+                        "Complaint about Women Vets health care",
+                        "General Concern"
                       ]
                     }
                   }
@@ -446,6 +466,93 @@
               "enum": [
                 "Policy Questions",
                 "Question about Women Veterans Programs"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "levelOne": {
+              "type": "string",
+              "enum": [
+                "Burial & Memorial Benefits (NCA)"
+              ]
+            },
+            "levelTwo": {
+              "type": "object",
+              "anyOf": [
+                {
+                  "properties": {
+                    "subLevelTwo": {
+                      "type": "string",
+                      "enum": [
+                        "Burial Benefits"
+                      ]
+                    },
+                    "levelThree": {
+                      "type": "string",
+                      "enum": [
+                        "Compensation Request",
+                        "All Other Burial Benefit Inquiries"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "subLevelTwo": {
+                      "type": "string",
+                      "enum": [
+                        "Pre-Need Burial Eligibility",
+                        "Headstones & Markers",
+                        "Presidential Memorial Certificates"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "levelOne": {
+              "type": "string",
+              "enum": [
+                "Home Loan Guaranty/All VA Mortgage Issues"
+              ]
+            },
+            "levelTwo": {
+              "type": "object",
+              "anyOf": [
+                {
+                  "properties": {
+                    "subLevelTwo": {
+                      "type": "string",
+                      "enum": [
+                        "Home Loan/Mortgage Web access & Tech problem"
+                      ]
+                    },
+                    "levelThree": {
+                      "type": "string",
+                      "enum": [
+                        "Home Loan VIP Portal Access",
+                        "Web Page Issues"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "subLevelTwo": {
+                      "type": "string",
+                      "enum": [
+                        "Home Loan/Mortgage Certificates of Eligibility",
+                        "Home Loan/Mortgage Guaranty Issues"
+                      ]
+                    }
+                  }
+                }
               ]
             }
           }
@@ -1497,6 +1604,73 @@
             "459GH",
             "358"
           ]
+        },
+        "routeToState": {
+          "type": "string",
+          "enum": [
+            "AL",
+            "AK",
+            "AS",
+            "AZ",
+            "AR",
+            "AA",
+            "AE",
+            "AP",
+            "CA",
+            "CO",
+            "CT",
+            "DE",
+            "DC",
+            "FM",
+            "FL",
+            "GA",
+            "GU",
+            "HI",
+            "ID",
+            "IL",
+            "IN",
+            "IA",
+            "KS",
+            "KY",
+            "LA",
+            "ME",
+            "MH",
+            "MD",
+            "MA",
+            "MI",
+            "MN",
+            "MS",
+            "MO",
+            "MT",
+            "NE",
+            "NV",
+            "NH",
+            "NJ",
+            "NM",
+            "NY",
+            "NC",
+            "ND",
+            "MP",
+            "OH",
+            "OK",
+            "OR",
+            "PW",
+            "PA",
+            "PR",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VT",
+            "VI",
+            "VA",
+            "WA",
+            "WV",
+            "WI",
+            "WY"
+          ]
         }
       }
     },
@@ -1567,6 +1741,75 @@
         },
         "dateOfDeath": {
           "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "dependentInformation": {
+      "type": "object",
+      "properties": {
+        "relationshipToVeteran": {
+          "enum": [
+            "Daughter",
+            "Son",
+            "Stepson",
+            "Stepdaughter",
+            "Father",
+            "Mother",
+            "Spouse",
+            "Other"
+          ],
+          "type": "string"
+        },
+        "first": {
+          "$ref": "#/definitions/first"
+        },
+        "last": {
+          "$ref": "#/definitions/last"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "phone": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        }
+      }
+    },
+    "veteranInformation": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "$ref": "#/definitions/first"
+        },
+        "last": {
+          "$ref": "#/definitions/last"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "phone": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        }
+      }
+    },
+    "veteranServiceInformation": {
+      "type": "object",
+      "properties": {
+        "socialSecurityNumber": {
+          "$ref": "#/definitions/ssn"
+        },
+        "serviceNumber": {
+          "type": "string",
+          "pattern": "^\\d{0,12}$"
+        },
+        "claimNumber": {
+          "type": "string",
+          "pattern": "^\\d{6,8}$"
         },
         "branchOfService": {
           "type": "string",
@@ -1597,25 +1840,9 @@
             "Womens Voluntary Emerg Srv (WAVES)",
             "Other"
           ]
-        }
-      }
-    },
-    "veteranInformation": {
-      "type": "object",
-      "properties": {
+        },
         "dateOfBirth": {
           "$ref": "#/definitions/date"
-        },
-        "socialSecurityNumber": {
-          "$ref": "#/definitions/ssn"
-        },
-        "serviceNumber": {
-          "type": "string",
-          "pattern": "^\\d{0,12}$"
-        },
-        "claimNumber": {
-          "type": "string",
-          "pattern": "^\\d{6,8}$"
         },
         "serviceDateRange": {
           "$ref": "#/definitions/dateRange"

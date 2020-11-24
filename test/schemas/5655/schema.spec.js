@@ -11,7 +11,7 @@ const validAddress = {
   state: 'MO',
   postalCode: '00000',
   street: '123 Fake Street',
-  city: 'Fakerville'
+  city: 'Fakerville',
 };
 
 const testData = {
@@ -20,15 +20,17 @@ const testData = {
     invalid: [0, 'invalid'],
   },
   agesOfOtherDependents: {
-    valid: [[8, 20]],
+    valid: [['8', '20']],
     invalid: [false, 'invalid']
   },
   employmentHistory: {
     valid: [[
       {
+        veteranORSpouse: 'VETERAN',
         occupationName: 'valid job name',
         from: '2015-10',
         to: '2020-01',
+        present: true,
         employerName: 'widgets inc.',
         employerAddress: validAddress,
       },
@@ -44,33 +46,35 @@ const testData = {
     ]],
   },
   income: {
-    valid: [
+    valid: [[
       {
-        monthlyGrossSalary: 450000,
+        veteranORSpouse: 'VETERAN',
+        monthlyGrossSalary: '450000',
         deductions: {
-          taxes: 67500,
-          retirement: 67500,
-          socialSecurity: 67500,
+          taxes: '67500',
+          retirement: '67500',
+          socialSecurity: '67500',
           other: [
             {
               deductionName: 'health savings account',
-              deductionAmount: 50000,
+              deductionAmount: '50000',
             },
           ],
         },
-        totalDeductions: 252500,
-        netTakeHomePay: 197500,
+        totalDeductions: '252500',
+        netTakeHomePay: '197500',
         otherIncome: [
           {
             name: 'VA Disability Compensation',
-            amount: 150000,
+            amount: '150000',
           },
         ],
-        totalMonthlyNetIncome: 347500,
-      },
-    ],
-    invalid: [
+        totalMonthlyNetIncome: '347500',
+      },      
+    ]],
+    invalid: [[
       {
+        veteranORSpouse: true,
         monthlyGrossSalary: true,
         deductions: {
           taxes: 'invalid',
@@ -93,17 +97,17 @@ const testData = {
         ],
         totalMonthlyNetIncome: 347500,
       },
-    ],
+    ]],
   },
-  expenses:{
+  expenses: {
     valid: [
       {
-        rentOrMortgage: 100000,
-        food: 60000,
-        utilities: 30000,
+        rentOrMortgage: '100000',
+        food: '60000',
+        utilities: '30000',
         other: null,
-        installmentContractsAndOtherDebts: 50000,
-        totalMonthlyExpenses: 240000,
+        installmentContractsAndOtherDebts: '50000',
+        totalMonthlyExpenses: '240000',
       },
     ],
     invalid: [
@@ -120,8 +124,8 @@ const testData = {
   discretionaryIncome: {
     valid: [
       {
-        netMonthlyIncomeLessExpenses: 107500,
-        amountCanBePaidTowardDebt: 107500,
+        netMonthlyIncomeLessExpenses: '107500',
+        amountCanBePaidTowardDebt: '107500',
       },
     ],
     invalid: [
@@ -134,27 +138,27 @@ const testData = {
   assets: {
     valid: [
       {
-        cashInBank: 1000000,
-        cashOnHand: 300000,
+        cashInBank: '1000000',
+        cashOnHand: '300000',
         automobiles: [
           {
             make: 'Pontiac',
             model: 'Grand AM',
-            year: 1999,
-            resaleValue: 200000
+            year: '1999',
+            resaleValue: '200000'
           }
         ],
-        trailersBoatsCampers: 0,
-        usSavingsBonds: 0,
-        stocksAndOtherBonds: 10000000,
-        realEstateOwned: 25000000,
+        trailersBoatsCampers: '0',
+        usSavingsBonds: '0',
+        stocksAndOtherBonds: '10000000',
+        realEstateOwned: '25000000',
         otherAssets: [
           {
-            assetName: 'gold',
-            assetValue: 2500000
+            name: 'gold',
+            amount: '2500000'
           }
         ],
-        totalAssets: 39000000
+        totalAssets: '39000000'
       },
     ],
     invalid: [
@@ -175,8 +179,8 @@ const testData = {
         realEstateOwned: 25000000,
         otherAssets: [
           {
-            assetName: 'gold',
-            assetValue: 2500000
+            name: 'gold',
+            amount: 2500000
           }
         ],
         totalAssets: 39000000
@@ -196,10 +200,10 @@ const testData = {
         },
         dateStarted: '2017-05-01',
         purpose: 'debt consolidation loan',
-        originalAmount: 1500000,
-        unpaidBalance: 100000,
-        amountDueMonthly: 50000,
-        amountPastDue: 0
+        originalAmount: '1500000',
+        unpaidBalance: '100000',
+        amountDueMonthly: '50000',
+        amountPastDue: '0'
       }
     ]],
     invalid: [[
@@ -248,15 +252,14 @@ const testData = {
 };
 
 describe('5655 schema', () => {
-  sharedTests.runTest('fullName', ['personalData.fullName', 'personalData.spouseFullName']);
+  sharedTests.runTest('fullName', ['personalData.veteranFullName', 'personalData.spouseFullName']);
   sharedTests.runTest('address', ['personalData.address']);
+  sharedTests.runTest('phone', ['personalData.telephoneNumber']);
   sharedTests.runTest('date', ['personalData.dateOfBirth']);
   schemaTestHelper.testValidAndInvalid('personalData.married', testData.married);
   schemaTestHelper.testValidAndInvalid('personalData.agesOfOtherDependents', testData.agesOfOtherDependents);
-  schemaTestHelper.testValidAndInvalid('personalData.employmentHistory.veteran', testData.employmentHistory);
-  schemaTestHelper.testValidAndInvalid('personalData.employmentHistory.spouse', testData.employmentHistory);
-  schemaTestHelper.testValidAndInvalid('income.veteran', testData.income);
-  schemaTestHelper.testValidAndInvalid('income.spouse', testData.income);
+  schemaTestHelper.testValidAndInvalid('personalData.employmentHistory', testData.employmentHistory);
+  schemaTestHelper.testValidAndInvalid('income', testData.income);
   schemaTestHelper.testValidAndInvalid('expenses', testData.expenses);
   schemaTestHelper.testValidAndInvalid('discretionaryIncome', testData.discretionaryIncome);
   schemaTestHelper.testValidAndInvalid('assets', testData.assets);

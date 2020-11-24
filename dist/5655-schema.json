@@ -243,9 +243,9 @@
         }
       }
     },
-    "vaFileNumber": {
+    "phone": {
       "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
+      "minLength": 10
     },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
@@ -257,20 +257,67 @@
         "string",
         "null"
       ]
+    },
+    "ssnLastFour": {
+      "type": "string",
+      "pattern": "^(?!0000)[0-9]{4}$"
+    },
+    "employmentHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "veteranORSpouse": {
+            "type": "string"
+          },
+          "occupationName": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "present": {
+            "type": "boolean"
+          },
+          "employerName": {
+            "type": "string"
+          },
+          "employerAddress": {
+            "$ref": "#/definitions/address"
+          }
+        }
+      }
     }
   },
   "properties": {
+    "personalIdentification": {
+      "type": "object",
+      "properties": {
+        "sSN": {
+          "$ref": "#/definitions/ssnLastFour"
+        },
+        "fileNumber": {
+          "$ref": "#/definitions/ssnLastFour"
+        },
+        "fsrReason": {
+          "type": "string"
+        }
+      }
+    },
     "personalData": {
       "type": "object",
       "properties": {
-        "fullName": {
+        "veteranFullName": {
           "$ref": "#/definitions/fullName"
         },
         "address": {
           "$ref": "#/definitions/address"
         },
-        "fileNumber": {
-          "$ref": "#/definitions/vaFileNumber"
+        "telephoneNumber": {
+          "$ref": "#/definitions/phone"
         },
         "dateOfBirth": {
           "$ref": "#/definitions/date"
@@ -284,179 +331,73 @@
         "agesOfOtherDependents": {
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "string"
           }
         },
         "employmentHistory": {
-          "type": "object",
-          "properties": {
-            "veteran": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "occupationName": {
-                    "type": "string"
-                  },
-                  "from": {
-                    "type": "string"
-                  },
-                  "to": {
-                    "type": "string"
-                  },
-                  "employerName": {
-                    "type": "string"
-                  },
-                  "employerAddress": {
-                    "$ref": "#/definitions/address"
-                  }
-                }
-              }
-            },
-            "spouse": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "occupationName": {
-                    "type": "string"
-                  },
-                  "from": {
-                    "type": "string"
-                  },
-                  "to": {
-                    "type": "string"
-                  },
-                  "employerName": {
-                    "type": "string"
-                  },
-                  "employerAddress": {
-                    "$ref": "#/definitions/address"
-                  }
-                }
-              }
-            }
-          }
+          "$ref": "#/definitions/employmentHistory"
         }
       }
     },
     "income": {
-      "type": "object",
-      "properties": {
-        "veteran": {
-          "type": "object",
-          "properties": {
-            "monthlyGrossSalary": {
-              "type": "integer"
-            },
-            "deductions": {
-              "type": "object",
-              "properties": {
-                "taxes": {
-                  "type": "integer"
-                },
-                "retirement": {
-                  "type": "integer"
-                },
-                "socialSecurity": {
-                  "type": "integer"
-                },
-                "other": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "deductionName": {
-                        "type": "string"
-                      },
-                      "deductionAmount": {
-                        "type": "integer"
-                      }
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "veteranORSpouse": {
+            "type": "string"
+          },
+          "monthlyGrossSalary": {
+            "type": "string"
+          },
+          "deductions": {
+            "type": "object",
+            "properties": {
+              "taxes": {
+                "type": "string"
+              },
+              "retirement": {
+                "type": "string"
+              },
+              "socialSecurity": {
+                "type": "string"
+              },
+              "otherDeductions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "string"
                     }
                   }
-                },
-                "totalDeductions": {
-                  "type": "integer"
-                },
-                "netTakeHomePay": {
-                  "type": "integer"
-                },
-                "otherIncome": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "amount": {
-                        "type": "integer"
-                      }
-                    }
-                  }
-                },
-                "totalMonthlyNetIncome": {
-                  "type": "integer"
                 }
-              }
-            }
-          }
-        },
-        "spouse": {
-          "type": "object",
-          "properties": {
-            "monthlyGrossSalary": {
-              "type": "integer"
-            },
-            "deductions": {
-              "type": "object",
-              "properties": {
-                "taxes": {
-                  "type": "integer"
-                },
-                "retirement": {
-                  "type": "integer"
-                },
-                "socialSecurity": {
-                  "type": "integer"
-                },
-                "other": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "deductionName": {
-                        "type": "string"
-                      },
-                      "deductionAmount": {
-                        "type": "integer"
-                      }
+              },
+              "totalDeductions": {
+                "type": "string"
+              },
+              "netTakeHomePay": {
+                "type": "string"
+              },
+              "otherIncome": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "string"
                     }
                   }
-                },
-                "totalDeductions": {
-                  "type": "integer"
-                },
-                "netTakeHomePay": {
-                  "type": "integer"
-                },
-                "otherIncome": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "amount": {
-                        "type": "integer"
-                      }
-                    }
-                  }
-                },
-                "totalMonthlyNetIncome": {
-                  "type": "integer"
                 }
+              },
+              "totalMonthlyNetIncome": {
+                "type": "string"
               }
             }
           }
@@ -467,25 +408,33 @@
       "type": "object",
       "properties": {
         "rentOrMortgage": {
-          "type": "integer"
+          "type": "string"
         },
         "food": {
-          "type": "integer"
+          "type": "string"
         },
         "utilities": {
-          "type": "integer"
+          "type": "string"
         },
-        "other": {
-          "type": [
-            "integer",
-            "null"
-          ]
+        "otherLivingExpenses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "string"
+              }
+            }
+          }
         },
         "installmentContractsAndOtherDebts": {
-          "type": "integer"
+          "type": "string"
         },
         "totalMonthlyExpenses": {
-          "type": "integer"
+          "type": "string"
         }
       }
     },
@@ -493,10 +442,10 @@
       "type": "object",
       "properties": {
         "netMonthlyIncomeLessExpenses": {
-          "type": "integer"
+          "type": "string"
         },
         "amountCanBePaidTowardDebt": {
-          "type": "integer"
+          "type": "string"
         }
       }
     },
@@ -504,10 +453,10 @@
       "type": "object",
       "properties": {
         "cashInBank": {
-          "type": "integer"
+          "type": "string"
         },
         "cashOnHand": {
-          "type": "integer"
+          "type": "string"
         },
         "automobiles": {
           "type": "array",
@@ -521,42 +470,42 @@
                 "type": "string"
               },
               "year": {
-                "type": "integer"
+                "type": "string"
               },
               "resaleValue": {
-                "type": "integer"
+                "type": "string"
               }
             }
           }
         },
-        "trailerBoatsCampers": {
-          "type": "integer"
+        "trailersBoatsCampers": {
+          "type": "string"
         },
         "usSavingsBonds": {
-          "type": "integer"
+          "type": "string"
         },
         "stocksAndOtherBonds": {
-          "type": "integer"
+          "type": "string"
         },
         "realEstateOwned": {
-          "type": "integer"
+          "type": "string"
         },
         "otherAssets": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "assetName": {
+              "name": {
                 "type": "string"
               },
-              "assetValue": {
-                "type": "integer"
+              "amount": {
+                "type": "string"
               }
             }
           }
         },
         "totalAssets": {
-          "type": "integer"
+          "type": "string"
         }
       }
     },
@@ -578,16 +527,16 @@
             "type": "string"
           },
           "originalAmount": {
-            "type": "integer"
+            "type": "string"
           },
           "unpaidBalance": {
-            "type": "integer"
+            "type": "string"
           },
           "amountDueMonthly": {
-            "type": "integer"
+            "type": "string"
           },
           "amountPastDue": {
-            "type": "integer"
+            "type": "string"
           }
         }
       }

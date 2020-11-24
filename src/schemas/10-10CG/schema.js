@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import form1010cgCertifications from '../../common/form-10-10cg-certifications';
 import { caregiverProgramFacilities } from '../../common/constants';
 
 const buildDataType = (type, additionals = {}) => {
@@ -30,12 +31,51 @@ const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities).redu
   return acc;
 }, []);
 
+const certificationSchemas = [
+  'veteran',
+  'primaryCaregiver',
+  'secondaryCaregiverOne',
+  'secondaryCaregiverTwo',
+].reduce((certificationSchemasAcc, formSubject) => {
+  const minItemsRequired = formSubject === 'veteran' ? 2 : 6;
+  const maxItemsRequired = formSubject === 'veteran' ? 2 : 7;
+
+  const relevantCertificationIds = Object.keys(form1010cgCertifications)
+    .reduce((relevantCertificationIdsAcc, certId) => {
+      const certificationDefinition = form1010cgCertifications[certId];
+      const isAvailableForFormSubject = certificationDefinition.availableFor.indexOf(formSubject) > -1;
+
+      if (isAvailableForFormSubject) {
+        relevantCertificationIdsAcc.push(certId);
+      }
+
+      return relevantCertificationIdsAcc;
+    }, []);
+
+  certificationSchemasAcc[formSubject] = {
+    type: 'array',
+    uniqueItems: true,
+    minItems: minItemsRequired,
+    maxItems: maxItemsRequired,
+    items: {
+      type: 'string',
+      enum: relevantCertificationIds,
+    },
+  };
+
+  return certificationSchemasAcc;
+}, {});
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Application for Comprehensive Assistance for Family Caregivers Program (10-10CG)',
   type: 'object',
   additionalProperties: false,
-  required: ['veteran', 'primaryCaregiver'],
+  required: ['veteran'],
+  anyOf: [
+    { required: ['primaryCaregiver'] },
+    { required: ['secondaryCaregiverOne'] },
+  ],
   definitions: {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
@@ -80,6 +120,7 @@ const schema = {
             },
           },
         },
+        certifications: certificationSchemas['veteran'],
       },
     },
     primaryCaregiver: {
@@ -104,6 +145,7 @@ const schema = {
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
         hasHealthInsurance: buildDataType('boolean'),
+        certifications: certificationSchemas['primaryCaregiver'],
       },
     },
     secondaryCaregiverOne: {
@@ -126,6 +168,7 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
+        certifications: certificationSchemas['secondaryCaregiverOne'],
       },
     },
     secondaryCaregiverTwo: {
@@ -148,6 +191,7 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
+        certifications: certificationSchemas['secondaryCaregiverTwo'],
       },
     },
   },

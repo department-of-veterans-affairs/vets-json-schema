@@ -215,9 +215,6 @@ const schema = {
       },
       fullName,
     ),
-    socialSecurityNumberLastFour: {
-      $ref: '#/definitions/ssnLastFour',
-    },
     anonymousEmail: {
       // TRANSLATE rename "email" if present
       type: 'string', // Type: email (no length limit)

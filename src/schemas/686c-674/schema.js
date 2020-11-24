@@ -241,6 +241,9 @@ const schema = {
                       },
                     },
                   },
+                  childIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
                 },
               },
             },
@@ -356,6 +359,9 @@ const schema = {
             },
             address: {
               $ref: '#/definitions/addressSchema',
+            },
+            spouseIncome: {
+              $ref: '#/definitions/genericTrueFalse',
             },
           },
         },
@@ -884,6 +890,15 @@ const schema = {
               },
             },
           },
+        },
+      },
+    },
+
+    householdIncome: {
+      type: 'object',
+      properties: {
+        householdIncome: {
+          $ref: '#/definitions/genericTrueFalse',
         },
       },
     },

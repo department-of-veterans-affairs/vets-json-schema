@@ -294,9 +294,6 @@
         "last"
       ]
     },
-    "socialSecurityNumberLastFour": {
-      "$ref": "#/definitions/ssnLastFour"
-    },
     "anonymousEmail": {
       "type": "string",
       "format": "email"
