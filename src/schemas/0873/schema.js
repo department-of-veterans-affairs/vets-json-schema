@@ -253,7 +253,7 @@ const schema = {
           properties: {
             levelOne: {
               type: 'string',
-              enum: ['Compensation (Service-Connected Bens)'],
+              enum: ['Compensation (Service-Connected Benefits)'],
             },
             levelTwo: {
               type: 'string',
