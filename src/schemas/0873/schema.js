@@ -1377,7 +1377,7 @@ const schema = {
           type: 'string',
           enum: constants.usaStates,
         },
-        showFacilityCode: {
+        facilityCode: {
           type: 'string',
         },
         stateOfResidence: {
