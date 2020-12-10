@@ -52,7 +52,6 @@ describe('veteran readiness and employment', () => {
   schemaTestHelper.testValidAndInvalid('appointmentTimePreferences.morning', testData.boolean);
   schemaTestHelper.testValidAndInvalid('appointmentTimePreferences.midDay', testData.boolean);
   schemaTestHelper.testValidAndInvalid('appointmentTimePreferences.afternoon', testData.boolean);
-  schemaTestHelper.testValidAndInvalid('appointmentTimePreferences.other', testData.boolean);
   schemaTestHelper.testValidAndInvalid('veteranAddress', testData.address);
   schemaTestHelper.testValidAndInvalid('newAddress', testData.address);
 });
