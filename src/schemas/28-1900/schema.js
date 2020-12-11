@@ -71,10 +71,6 @@ const schema = {
           type: 'boolean',
           default: false,
         },
-        other: {
-          type: 'boolean',
-          default: false,
-        },
       },
     },
   },
