@@ -269,6 +269,9 @@ const schema = {
     veteranAddress: {
       $ref: '#/definitions/address',
     },
+    veteranMailingAddress: {
+      $ref: '#/definitions/address',
+    },
     email: {
       type: 'string',
       // regex from client/validations.js' isValidEmail, with some extra escaping
