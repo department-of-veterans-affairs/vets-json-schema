@@ -269,7 +269,7 @@ const schema = {
     veteranAddress: {
       $ref: '#/definitions/address',
     },
-    veteranMailingAddress: {
+    veteranHomeAddress: {
       $ref: '#/definitions/address',
     },
     email: {
