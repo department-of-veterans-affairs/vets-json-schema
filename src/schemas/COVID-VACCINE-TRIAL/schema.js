@@ -179,10 +179,10 @@ const GENDER = {
     'GENDER::NON_BINARY': {
       type: 'boolean',
     },
-    'GENDER::SELF_IDENTIFY': {
+    'GENDER::NONE_OF_ABOVE': {
       type: 'boolean',
     },
-    'GENDER::NONE_OF_ABOVE': {
+    'GENDER::SELF_IDENTIFY': {
       type: 'boolean',
     },
   },
