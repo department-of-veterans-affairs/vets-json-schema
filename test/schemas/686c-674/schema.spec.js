@@ -109,7 +109,7 @@ const testData = {
         studentSchoolAddress: {
           schoolInformation: {
             name: 'Phoenix Online',
-            trainingProgram: 'Marine Biology',
+            trainingProgram: 'HighSch',
             address: {
               countryName: 'USA',
               addressLine1: '123 At Home Dr',

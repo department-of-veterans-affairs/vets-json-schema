@@ -736,7 +736,9 @@ const schema = {
                   $ref: '#/definitions/genericTextInput',
                 },
                 trainingProgram: {
-                  $ref: '#/definitions/genericTextInput',
+                  type: 'string',
+                  enum: ['HighSch', 'College', 'HomeSch'],
+                  enumNames: ['High School', 'Post Secondary', 'Home School'],
                 },
                 address: {
                   $ref: '#/definitions/addressSchema',
