@@ -738,7 +738,7 @@ const schema = {
                 trainingProgram: {
                   type: 'string',
                   enum: ['HighSch', 'College', 'HomeSch'],
-                  enumNames: ['High School', 'Post Secondary', 'Home School'],
+                  enumNames: ['High School', 'Postsecondary', 'Home School'],
                 },
                 address: {
                   $ref: '#/definitions/addressSchema',
