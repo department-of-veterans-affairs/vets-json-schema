@@ -741,10 +741,13 @@ const schema = {
                 name: {
                   $ref: '#/definitions/genericTextInput',
                 },
-                trainingProgram: {
+                schoolType: {
                   type: 'string',
                   enum: ['HighSch', 'College', 'HomeSch'],
                   enumNames: ['High School', 'Postsecondary', 'Home School'],
+                },
+                trainingProgram: {
+                  $ref: '#/definitions/genericTextInput',
                 },
                 address: {
                   $ref: '#/definitions/addressSchema',

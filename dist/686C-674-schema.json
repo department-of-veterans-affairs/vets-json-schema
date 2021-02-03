@@ -1980,7 +1980,7 @@
                 "name": {
                   "$ref": "#/definitions/genericTextInput"
                 },
-                "trainingProgram": {
+                "schoolType": {
                   "type": "string",
                   "enum": [
                     "HighSch",
@@ -1992,6 +1992,9 @@
                     "Postsecondary",
                     "Home School"
                   ]
+                },
+                "trainingProgram": {
+                  "$ref": "#/definitions/genericTextInput"
                 },
                 "address": {
                   "$ref": "#/definitions/addressSchema"
