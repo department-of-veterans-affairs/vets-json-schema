@@ -510,6 +510,9 @@ const schema = {
         explanationOfOther: {
           $ref: '#/definitions/genericTextInput',
         },
+        spouseIncome: {
+          $ref: '#/definitions/genericTrueFalse',
+        },
       },
     },
 
@@ -558,6 +561,9 @@ const schema = {
                         $ref: '#/definitions/genericTrueFalse',
                       },
                     },
+                  },
+                  dependentIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
                   },
                 },
               },

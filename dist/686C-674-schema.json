@@ -1743,6 +1743,9 @@
         },
         "explanationOfOther": {
           "$ref": "#/definitions/genericTextInput"
+        },
+        "spouseIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1799,6 +1802,9 @@
                         "$ref": "#/definitions/genericTrueFalse"
                       }
                     }
+                  },
+                  "dependentIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
