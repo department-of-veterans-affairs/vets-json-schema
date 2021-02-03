@@ -562,9 +562,6 @@ const schema = {
                       },
                     },
                   },
-                  dependentIncome: {
-                    $ref: '#/definitions/genericTrueFalse',
-                  },
                 },
               },
             },
@@ -584,6 +581,9 @@ const schema = {
                   },
                   location: {
                     $ref: '#/definitions/genericLocation',
+                  },
+                  dependentIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
                   },
                 },
               },

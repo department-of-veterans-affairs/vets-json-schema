@@ -1802,9 +1802,6 @@
                         "$ref": "#/definitions/genericTrueFalse"
                       }
                     }
-                  },
-                  "dependentIncome": {
-                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -1825,6 +1822,9 @@
                   },
                   "location": {
                     "$ref": "#/definitions/genericLocation"
+                  },
+                  "dependentIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
