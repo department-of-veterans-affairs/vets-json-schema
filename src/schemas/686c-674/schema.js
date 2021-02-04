@@ -510,6 +510,9 @@ const schema = {
         explanationOfOther: {
           $ref: '#/definitions/genericTextInput',
         },
+        spouseIncome: {
+          $ref: '#/definitions/genericTrueFalse',
+        },
       },
     },
 
@@ -578,6 +581,9 @@ const schema = {
                   },
                   location: {
                     $ref: '#/definitions/genericLocation',
+                  },
+                  dependentIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
                   },
                 },
               },
@@ -735,10 +741,13 @@ const schema = {
                 name: {
                   $ref: '#/definitions/genericTextInput',
                 },
-                trainingProgram: {
+                schoolType: {
                   type: 'string',
                   enum: ['HighSch', 'College', 'HomeSch'],
                   enumNames: ['High School', 'Postsecondary', 'Home School'],
+                },
+                trainingProgram: {
+                  $ref: '#/definitions/genericTextInput',
                 },
                 address: {
                   $ref: '#/definitions/addressSchema',

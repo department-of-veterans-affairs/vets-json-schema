@@ -109,7 +109,8 @@ const testData = {
         studentSchoolAddress: {
           schoolInformation: {
             name: 'Phoenix Online',
-            trainingProgram: 'HighSch',
+            schoolType: 'HighSch',
+            trainingProgram: 'Marine Biology',
             address: {
               countryName: 'USA',
               addressLine1: '123 At Home Dr',
@@ -199,6 +200,7 @@ const testData = {
         studentSchoolAddress: {
           schoolInformation: {
             name: 'Phoenix Online',
+            schoolType: 'HighSch',
             trainingProgram: 'Marine Biology',
             address: {
               countryName: 'United States',
