@@ -98,30 +98,36 @@ const income = {
             },
           },
         },
-        totalDeductions: {
-          type: 'string',
-        },
-        netTakeHomePay: {
-          type: 'string',
-        },
-        otherIncome: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string',
-              },
-              amount: {
-                type: 'string',
-              },
+      },
+      totalDeductions: {
+        type: 'string',
+      },
+      netTakeHomePay: {
+        type: 'string',
+      },
+      compensationAndPension: {
+        type: 'string',
+      },
+      education: {
+        type: 'string',
+      },
+      otherIncome: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+            },
+            amount: {
+              type: 'string',
             },
           },
         },
-        totalMonthlyNetIncome: {
-          type: 'string'
-        }
       },
+      totalMonthlyNetIncome: {
+        type: 'string'
+      }
     },
   },
 };
