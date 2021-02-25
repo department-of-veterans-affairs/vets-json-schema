@@ -72,7 +72,7 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": ["string", "null"]
+                      "type": ["string", "null", "integer"]
                     },
                     "approxDecisionDate": {
                       "type": ["string", "null"],
