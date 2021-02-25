@@ -107,7 +107,8 @@
                     "id": {
                       "type": [
                         "string",
-                        "null"
+                        "null",
+                        "integer"
                       ]
                     },
                     "approxDecisionDate": {
