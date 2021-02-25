@@ -608,6 +608,9 @@ const schema = {
         dateMarried: {
           $ref: '#/definitions/date',
         },
+        dependentIncome: {
+          $ref: '#/definitions/genericTrueFalse',
+        },
       },
     },
 
@@ -625,6 +628,9 @@ const schema = {
         },
         dateChildLeftSchool: {
           $ref: '#/definitions/date',
+        },
+        dependentIncome: {
+          $ref: '#/definitions/genericTrueFalse',
         },
       },
     },
@@ -704,6 +710,9 @@ const schema = {
             },
             birthDate: {
               $ref: '#/definitions/date',
+            },
+            dependentIncome: {
+              $ref: '#/definitions/genericTrueFalse',
             },
           },
         },
