@@ -1847,6 +1847,9 @@
         },
         "dateMarried": {
           "$ref": "#/definitions/date"
+        },
+        "dependentIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1864,6 +1867,9 @@
         },
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
+        },
+        "dependentIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1945,6 +1951,9 @@
             },
             "birthDate": {
               "$ref": "#/definitions/date"
+            },
+            "dependentIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             }
           }
         },
