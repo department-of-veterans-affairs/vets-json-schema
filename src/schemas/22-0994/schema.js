@@ -64,6 +64,12 @@ const schema = {
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
+    expectedReleaseDate: {
+      $ref: '#/definitions/date',
+    },
+    expectedActiveDutyStatusChange: {
+      type: 'boolean',
+    },
     emailAddress: {
       $ref: '#/definitions/email',
     },
