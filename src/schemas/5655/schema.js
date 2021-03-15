@@ -47,6 +47,7 @@ const personalData = {
     veteranFullName: buildDefinitionReference('fullName'),
     address: buildDefinitionReference('address'),
     telephoneNumber: buildDefinitionReference('phone'),
+    email: buildDefinitionReference('email'),
     dateOfBirth: buildDefinitionReference('date'),
     married: {
       type: 'boolean'
@@ -97,30 +98,36 @@ const income = {
             },
           },
         },
-        totalDeductions: {
-          type: 'string',
-        },
-        netTakeHomePay: {
-          type: 'string',
-        },
-        otherIncome: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string',
-              },
-              amount: {
-                type: 'string',
-              },
+      },
+      totalDeductions: {
+        type: 'string',
+      },
+      netTakeHomePay: {
+        type: 'string',
+      },
+      compensationAndPension: {
+        type: 'string',
+      },
+      education: {
+        type: 'string',
+      },
+      otherIncome: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+            },
+            amount: {
+              type: 'string',
             },
           },
         },
-        totalMonthlyNetIncome: {
-          type: 'string'
-        }
       },
+      totalMonthlyNetIncome: {
+        type: 'string'
+      }
     },
   },
 };
@@ -300,6 +307,7 @@ const schema = {
     fullName: definitions.fullName,
     address: definitions.address,
     phone: definitions.phone,
+    email: definitions.email,
     date: definitions.date,
     nullableDate: definitions.nullableDate,
     ssnLastFour: definitions.ssnLastFour,

@@ -510,6 +510,9 @@ const schema = {
         explanationOfOther: {
           $ref: '#/definitions/genericTextInput',
         },
+        spouseIncome: {
+          $ref: '#/definitions/genericTrueFalse',
+        },
       },
     },
 
@@ -579,6 +582,9 @@ const schema = {
                   location: {
                     $ref: '#/definitions/genericLocation',
                   },
+                  dependentIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
                 },
               },
             },
@@ -602,6 +608,9 @@ const schema = {
         dateMarried: {
           $ref: '#/definitions/date',
         },
+        dependentIncome: {
+          $ref: '#/definitions/genericTrueFalse',
+        },
       },
     },
 
@@ -619,6 +628,9 @@ const schema = {
         },
         dateChildLeftSchool: {
           $ref: '#/definitions/date',
+        },
+        dependentIncome: {
+          $ref: '#/definitions/genericTrueFalse',
         },
       },
     },
@@ -699,6 +711,9 @@ const schema = {
             birthDate: {
               $ref: '#/definitions/date',
             },
+            dependentIncome: {
+              $ref: '#/definitions/genericTrueFalse',
+            },
           },
         },
 
@@ -734,6 +749,11 @@ const schema = {
               properties: {
                 name: {
                   $ref: '#/definitions/genericTextInput',
+                },
+                schoolType: {
+                  type: 'string',
+                  enum: ['HighSch', 'College', 'HomeSch'],
+                  enumNames: ['High School', 'Postsecondary', 'Home School'],
                 },
                 trainingProgram: {
                   $ref: '#/definitions/genericTextInput',

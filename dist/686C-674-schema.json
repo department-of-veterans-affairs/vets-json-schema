@@ -1743,6 +1743,9 @@
         },
         "explanationOfOther": {
           "$ref": "#/definitions/genericTextInput"
+        },
+        "spouseIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1819,6 +1822,9 @@
                   },
                   "location": {
                     "$ref": "#/definitions/genericLocation"
+                  },
+                  "dependentIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -1841,6 +1847,9 @@
         },
         "dateMarried": {
           "$ref": "#/definitions/date"
+        },
+        "dependentIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1858,6 +1867,9 @@
         },
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
+        },
+        "dependentIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1939,6 +1951,9 @@
             },
             "birthDate": {
               "$ref": "#/definitions/date"
+            },
+            "dependentIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             }
           }
         },
@@ -1973,6 +1988,19 @@
               "properties": {
                 "name": {
                   "$ref": "#/definitions/genericTextInput"
+                },
+                "schoolType": {
+                  "type": "string",
+                  "enum": [
+                    "HighSch",
+                    "College",
+                    "HomeSch"
+                  ],
+                  "enumNames": [
+                    "High School",
+                    "Postsecondary",
+                    "Home School"
+                  ]
                 },
                 "trainingProgram": {
                   "$ref": "#/definitions/genericTextInput"

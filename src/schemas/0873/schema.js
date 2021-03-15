@@ -249,6 +249,82 @@ const schema = {
             },
           },
         },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Compensation (Service-Connected Benefits)'],
+            },
+            levelTwo: {
+              type: 'string',
+              enum: [
+                'Filing for compensation benefits',
+                'Status of a pending claim',
+                'Issues/Questions about compensation received',
+                'Direct deposit inquiries',
+                'Aid and Attendance Benefits',
+                'Guardianship/Custodians',
+              ],
+            },
+          },
+        },
+        {
+          properties: {
+            levelOne: {
+              type: 'string',
+              enum: ['Education/ GI Bill'],
+            },
+            levelTwo: {
+              type: 'object',
+              anyOf: [
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: ['Work Study'],
+                    },
+                    levelThree: {
+                      type: 'string',
+                      enum: [
+                        'Application',
+                        'Inquiries (VAI)',
+                        'Position Descriptions',
+                        'Time Cards',
+                        'Signed Contracts',
+                      ],
+                    },
+                  },
+                },
+                {
+                  properties: {
+                    subLevelTwo: {
+                      type: 'string',
+                      enum: [
+                        'Post-9/11 GI Bill',
+                        'School Officials Only',
+                        'On-the-Job Training (OJT)/Apprenticeship',
+                        'Survivors & Dependents',
+                        'MGIB - Active Duty (Ch 30)',
+                        'MGIB - Selected Reserve (Ch 1606)',
+                        'School Certifying Official File Transfer',
+                        'Licensing and Certification Tests',
+                        'VR&E Counselors',
+                        'Transfer of Benefits to Dependents (TEB)',
+                        'Tuition Assistance Top-Up',
+                        'WAVE',
+                        'Counseling',
+                        'VEAP (Ch 32)',
+                        'Reserve Ed Asst Prog (Ch 1607) (REAP)',
+                        'National Testing Programs',
+                        'Colmery Section 110',
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
         {},
       ],
       properties: {
@@ -1300,6 +1376,20 @@ const schema = {
         routeToState: {
           type: 'string',
           enum: constants.usaStates,
+        },
+        facilityCode: {
+          type: 'string',
+        },
+        stateOfResidence: {
+          type: 'string',
+          enum: constants.usaStates,
+        },
+        stateOfSchool: {
+          type: 'string',
+          enum: constants.usaStates,
+        },
+        socialSecurityNumber: {
+          $ref: '#/definitions/ssn',
         },
       },
     },
