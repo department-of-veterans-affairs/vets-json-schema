@@ -592,23 +592,10 @@
             "caregiverOfVeteran",
             "CHAMPVA"
           ]
-        }
-      }
-    },
-    "complianceAgreement": {
-      "type": "object",
-      "properties": {
-        "veteranCertify": {
-          "type": "boolean"
         },
-        "spouseCertify": {
-          "type": "boolean"
-        },
-        "caregiverCertify": {
-          "type": "boolean"
-        },
-        "champVaRecipientCertify": {
-          "type": "boolean"
+        "complianceAgreement": {
+          "type": "boolean",
+          "default": true
         }
       }
     },

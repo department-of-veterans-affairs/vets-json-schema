@@ -72,22 +72,9 @@ const schema = {
           type: 'string',
           enum: ['veteran', 'spouse', 'caregiverEnrolled', 'caregiverOfVeteran', 'CHAMPVA'],
         },
-      },
-    },
-    complianceAgreement: {
-      type: 'object',
-      properties: {
-        veteranCertify: {
+        complianceAgreement: {
           type: 'boolean',
-        },
-        spouseCertify: {
-          type: 'boolean',
-        },
-        caregiverCertify: {
-          type: 'boolean',
-        },
-        champVaRecipientCertify: {
-          type: 'boolean',
+          default: true,
         },
       },
     },
