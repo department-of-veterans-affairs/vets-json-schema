@@ -68,26 +68,9 @@ const schema = {
             },
           },
         },
-        notEligibleText: {
-          type: 'object',
-          properties: {
-            'view:notEligibleText': {
-              type: 'object',
-              properties: {},
-            },
-          },
-        },
         applicantType: {
           type: 'string',
           enum: ['veteran', 'spouse', 'caregiverEnrolled', 'caregiverOfVeteran', 'CHAMPVA'],
-        },
-      },
-    },
-    notEligible: {
-      type: 'object',
-      properties: {
-        eligibility: {
-          type: 'string',
         },
       },
     },

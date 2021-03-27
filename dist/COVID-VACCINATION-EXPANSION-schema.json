@@ -583,15 +583,6 @@
             }
           }
         },
-        "notEligibleText": {
-          "type": "object",
-          "properties": {
-            "view:notEligibleText": {
-              "type": "object",
-              "properties": {}
-            }
-          }
-        },
         "applicantType": {
           "type": "string",
           "enum": [
@@ -601,14 +592,6 @@
             "caregiverOfVeteran",
             "CHAMPVA"
           ]
-        }
-      }
-    },
-    "notEligible": {
-      "type": "object",
-      "properties": {
-        "eligibility": {
-          "type": "string"
         }
       }
     },
