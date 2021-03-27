@@ -213,6 +213,9 @@ const schema = {
           type: 'string',
           pattern: '\\(?\\d{3}\\)?-?\\d{3}-?\\d{4}$',
         },
+        smsAcknowledgement: {
+           type: 'boolean'
+        },
       },
       required: ['countryName', 'city', 'stateCode', 'addressLine1', 'zipCode', 'homePhone'],
     },
