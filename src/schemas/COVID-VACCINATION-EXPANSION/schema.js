@@ -74,7 +74,7 @@ const schema = {
         },
         complianceAgreement: {
           type: 'boolean',
-          default: true,
+          default: false,
         },
       },
     },
