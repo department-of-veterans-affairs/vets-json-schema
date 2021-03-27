@@ -201,23 +201,17 @@ const schema = {
         },
         emailAddress: {
           type: 'string',
+          format: 'email',
         },
-        'view:confirmEmail': {
-          type: 'string',
-        },
-        homePhone: {
-          type: 'string',
-          pattern: '\\(?\\d{3}\\)?-?\\d{3}-?\\d{4}$',
-        },
-        mobilePhone: {
+        phone: {
           type: 'string',
           pattern: '\\(?\\d{3}\\)?-?\\d{3}-?\\d{4}$',
         },
         smsAcknowledgement: {
-           type: 'boolean'
+          type: 'boolean',
         },
       },
-      required: ['countryName', 'city', 'stateCode', 'addressLine1', 'zipCode', 'homePhone'],
+      required: ['countryName', 'city', 'stateCode', 'addressLine1', 'zipCode', 'phone'],
     },
     vaLocation: {
       type: 'object',
