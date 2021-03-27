@@ -699,8 +699,8 @@
         "birthSex": {
           "type": "string",
           "enum": [
-            "Male",
             "Female",
+            "Male",
             "Prefer not to answer"
           ]
         },
@@ -1316,18 +1316,15 @@
           "pattern": "^\\d{5}$"
         },
         "emailAddress": {
-          "type": "string"
+          "type": "string",
+          "format": "email"
         },
-        "view:confirmEmail": {
-          "type": "string"
-        },
-        "homePhone": {
+        "phone": {
           "type": "string",
           "pattern": "\\(?\\d{3}\\)?-?\\d{3}-?\\d{4}$"
         },
-        "mobilePhone": {
-          "type": "string",
-          "pattern": "\\(?\\d{3}\\)?-?\\d{3}-?\\d{4}$"
+        "smsAcknowledgement": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -1336,7 +1333,7 @@
         "stateCode",
         "addressLine1",
         "zipCode",
-        "homePhone"
+        "phone"
       ]
     },
     "vaLocation": {

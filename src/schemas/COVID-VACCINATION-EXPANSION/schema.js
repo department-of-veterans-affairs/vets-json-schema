@@ -153,7 +153,7 @@ const schema = {
         },
         birthSex: {
           type: 'string',
-          enum: ['Male', 'Female', 'Prefer not to answer'],
+          enum: ['Female', 'Male', 'Prefer not to answer'],
         },
         ssn: {
           type: 'string',
@@ -201,20 +201,17 @@ const schema = {
         },
         emailAddress: {
           type: 'string',
+          format: 'email',
         },
-        'view:confirmEmail': {
-          type: 'string',
-        },
-        homePhone: {
+        phone: {
           type: 'string',
           pattern: '\\(?\\d{3}\\)?-?\\d{3}-?\\d{4}$',
         },
-        mobilePhone: {
-          type: 'string',
-          pattern: '\\(?\\d{3}\\)?-?\\d{3}-?\\d{4}$',
+        smsAcknowledgement: {
+          type: 'boolean',
         },
       },
-      required: ['countryName', 'city', 'stateCode', 'addressLine1', 'zipCode', 'homePhone'],
+      required: ['countryName', 'city', 'stateCode', 'addressLine1', 'zipCode', 'phone'],
     },
     vaLocation: {
       type: 'object',
