@@ -68,43 +68,13 @@ const schema = {
             },
           },
         },
-        notEligibleText: {
-          type: 'object',
-          properties: {
-            'view:notEligibleText': {
-              type: 'object',
-              properties: {},
-            },
-          },
-        },
         applicantType: {
           type: 'string',
           enum: ['veteran', 'spouse', 'caregiverEnrolled', 'caregiverOfVeteran', 'CHAMPVA'],
         },
-      },
-    },
-    notEligible: {
-      type: 'object',
-      properties: {
-        eligibility: {
-          type: 'string',
-        },
-      },
-    },
-    complianceAgreement: {
-      type: 'object',
-      properties: {
-        veteranCertify: {
+        complianceAgreement: {
           type: 'boolean',
-        },
-        spouseCertify: {
-          type: 'boolean',
-        },
-        caregiverCertify: {
-          type: 'boolean',
-        },
-        champVaRecipientCertify: {
-          type: 'boolean',
+          default: false,
         },
       },
     },
