@@ -153,7 +153,7 @@ const schema = {
         },
         birthSex: {
           type: 'string',
-          enum: ['Male', 'Female', 'Prefer not to answer'],
+          enum: ['Female', 'Male', 'Prefer not to answer'],
         },
         ssn: {
           type: 'string',
