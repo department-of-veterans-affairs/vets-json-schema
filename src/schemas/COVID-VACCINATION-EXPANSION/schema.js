@@ -72,10 +72,6 @@ const schema = {
           type: 'string',
           enum: ['veteran', 'spouse', 'caregiverEnrolled', 'caregiverOfVeteran', 'CHAMPVA'],
         },
-        complianceAgreement: {
-          type: 'boolean',
-          default: false,
-        },
       },
     },
     militaryHistory: {

@@ -592,10 +592,6 @@
             "caregiverOfVeteran",
             "CHAMPVA"
           ]
-        },
-        "complianceAgreement": {
-          "type": "boolean",
-          "default": false
         }
       }
     },
