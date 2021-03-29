@@ -18,7 +18,7 @@ const schema = {
     _.pick(definitions, [
       'address',
       'fullName',
-      'phone',
+      'usaPhone',
       'ssn',
       'bankAccount',
       'serviceBefore1977',
@@ -71,10 +71,10 @@ const schema = {
       format: 'email',
     },
     homePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     preferredContactMethod: {
       $ref: '#/definitions/preferredContactMethod',
@@ -92,7 +92,7 @@ const schema = {
           $ref: '#/definitions/address',
         },
         phone: {
-          $ref: '#/definitions/phone',
+          $ref: '#/definitions/usaPhone',
         },
       },
     },
