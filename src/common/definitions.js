@@ -664,6 +664,11 @@ const email = {
   format: 'email',
 };
 
+const uuid = {
+  type: 'string',
+  format: 'uuid',
+};
+
 export default {
   usaPhone,
   fullName,
@@ -711,4 +716,5 @@ export default {
   year,
   form4142,
   email,
+  uuid,
 };

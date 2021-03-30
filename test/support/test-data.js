@@ -587,4 +587,26 @@ export default {
       invalid: [null, 'some string', 42],
     },
   },
+  uuid: {
+    data: {
+      valid: [
+        'abcdefab-1234-1233-9abc-123456789012',
+        'abcdefab-1234-2233-9abc-123456789012',
+        'abcdefab-1234-3233-9abc-123456789012',
+        'abcdefab-1234-4233-8abc-123456789012',
+        'abcdefab-1234-4233-9abc-123456789012',
+        'abcdefab-1234-4233-Aabc-123456789012',
+        'abcdefab-1234-4233-Babc-123456789012',
+        'abcdefab-1234-4233-Eabc-123456789012', // warning: invalid v4 uuid can pass validation
+      ],
+      invalid: [
+        null,
+        '',
+        0,
+        '',
+        'random-string',
+        'xbcdefab-1234-4233-9abc-123456789012',
+      ],
+    },
+  },
 };
