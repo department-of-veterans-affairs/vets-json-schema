@@ -711,7 +711,7 @@ const schema = {
             birthDate: {
               $ref: '#/definitions/date',
             },
-            yourChildOrAreGuardian: {
+            isParentOrGuardian: {
               $ref: '#/definitions/genericTrueFalse',
             },
             dependentIncome: {
