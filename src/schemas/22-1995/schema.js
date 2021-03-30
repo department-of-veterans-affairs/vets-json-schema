@@ -13,7 +13,7 @@ const schema = {
   definitions: _.pick(definitions, [
     'fullName',
     'address',
-    'phone',
+    'usaPhone',
     'ssn',
     'school',
     'bankAccount',
@@ -40,10 +40,10 @@ const schema = {
       $ref: '#/definitions/address',
     },
     homePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     email: {
       type: 'string',
