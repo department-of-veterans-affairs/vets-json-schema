@@ -1647,9 +1647,5 @@
   "uuid": {
     "type": "string",
     "format": "uuid"
-  },
-  "uuidv4": {
-    "type": "string",
-    "format": "^[[:xdigit:]]{8}-[[:xdigit:]]{4}-4[[:xdigit:]]{3}-[89AB][[:xdigit:]]{3}-[[:xdigit:]]{12}$"
   }
 }
