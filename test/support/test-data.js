@@ -601,7 +601,8 @@ export default {
       ],
       invalid: [
         null,
-        '',
+        false,
+        true,
         0,
         '',
         'random-string',
