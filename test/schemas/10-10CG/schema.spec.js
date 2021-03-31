@@ -362,6 +362,8 @@ describe('10-10CG json schema', () => {
       // Test that the number of values match the number of Caregiver Program Facilities
       expect(schema.properties.veteran.properties.plannedClinic.enum.length).to.equal(142);
     });
+
+    sharedTests.runTest('uuid', ['poaAttachmentId']);
   });
 
   describe('conditional validation:', () => {
