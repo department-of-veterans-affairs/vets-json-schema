@@ -1643,5 +1643,9 @@
     "type": "string",
     "maxLength": 256,
     "format": "email"
+  },
+  "uuid": {
+    "type": "string",
+    "format": "uuid"
   }
 }

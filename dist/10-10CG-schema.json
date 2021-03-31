@@ -179,6 +179,10 @@
         "Friend/Neighbor",
         "Grandchild"
       ]
+    },
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
     }
   },
   "properties": {
@@ -582,6 +586,9 @@
           }
         }
       }
+    },
+    "poaAttachmentId": {
+      "$ref": "#/definitions/uuid"
     }
   }
 }

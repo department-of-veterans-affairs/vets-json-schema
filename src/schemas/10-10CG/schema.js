@@ -85,6 +85,7 @@ const schema = {
     email: definitions.email,
     address: definitions.usAddress,
     vetRelationship: { type: 'string', enum: vetRelationships },
+    uuid: definitions.uuid,
   },
   properties: {
     veteran: {
@@ -194,6 +195,7 @@ const schema = {
         certifications: certificationSchemas['secondaryCaregiverTwo'],
       },
     },
+    poaAttachmentId: buildDefinitionReference('uuid'),
   },
 };
 
