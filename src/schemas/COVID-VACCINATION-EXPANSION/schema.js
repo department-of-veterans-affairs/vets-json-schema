@@ -70,7 +70,7 @@ const schema = {
         },
         applicantType: {
           type: 'string',
-          enum: ['veteran', 'spouse', 'caregiverEnrolled', 'caregiverOfVeteran', 'CHAMPVA'],
+          enum: ['veteran', 'spouse', 'caregiverOfVeteran', 'CHAMPVA'],
         },
       },
     },

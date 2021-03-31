@@ -205,6 +205,11 @@
           "minLength": 1,
           "maxLength": 50
         },
+        "street3": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
         "city": {
           "type": "string",
           "minLength": 1,
@@ -215,6 +220,9 @@
     "bankAccount": {
       "type": "object",
       "properties": {
+        "bankName": {
+          "type": "string"
+        },
         "accountType": {
           "type": "string",
           "enum": [

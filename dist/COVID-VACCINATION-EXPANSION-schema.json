@@ -588,7 +588,6 @@
           "enum": [
             "veteran",
             "spouse",
-            "caregiverEnrolled",
             "caregiverOfVeteran",
             "CHAMPVA"
           ]
