@@ -130,11 +130,6 @@ const schema = {
     addressInformation: {
       type: 'object',
       properties: {
-        countryName: {
-          type: 'string',
-          enum: addressDefinitions.countries.map(country => country.value),
-          enumNames: addressDefinitions.countries.map(country => country.label),
-        },
         addressLine1: {
           type: 'string',
           minLength: 1,
@@ -177,7 +172,7 @@ const schema = {
           type: 'boolean',
         },
       },
-      required: ['countryName', 'city', 'stateCode', 'addressLine1', 'zipCode', 'phone'],
+      required: ['city', 'stateCode', 'addressLine1', 'zipCode', 'phone'],
     },
     vaLocation: {
       type: 'object',
