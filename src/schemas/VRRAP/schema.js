@@ -38,6 +38,9 @@ const schema = {
     address: {
       $ref: '#/definitions/address',
     },
+    bankName: {
+      type: 'string',
+    },
     bankAccount: {
       $ref: '#/definitions/bankAccount',
     },
