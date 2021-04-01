@@ -11,7 +11,7 @@ const schema = {
     date: definitions.date,
     email: definitions.email,
     fullName: definitions.fullName,
-    phone: definitions.phone,
+    usaPhone: definitions.usaPhone,
     ssn: definitions.ssn,
     privacyAgreementAccepted: definitions.privacyAgreementAccepted,
     usaStates: definitions.usAddress.properties.state,
@@ -30,10 +30,10 @@ const schema = {
       $ref: '#/definitions/email',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     alternatePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     address: {
       $ref: '#/definitions/address',

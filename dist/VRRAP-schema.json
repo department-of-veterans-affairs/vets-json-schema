@@ -205,11 +205,6 @@
           "minLength": 1,
           "maxLength": 50
         },
-        "street3": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 50
-        },
         "city": {
           "type": "string",
           "minLength": 1,
@@ -220,9 +215,6 @@
     "bankAccount": {
       "type": "object",
       "properties": {
-        "bankName": {
-          "type": "string"
-        },
         "accountType": {
           "type": "string",
           "enum": [
@@ -280,9 +272,9 @@
         "last"
       ]
     },
-    "phone": {
+    "usaPhone": {
       "type": "string",
-      "minLength": 10
+      "pattern": "^\\d{10}$"
     },
     "ssn": {
       "type": "string",
@@ -376,10 +368,10 @@
       "$ref": "#/definitions/email"
     },
     "mobilePhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "alternatePhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "address": {
       "$ref": "#/definitions/address"
