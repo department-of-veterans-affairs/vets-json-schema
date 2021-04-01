@@ -36,13 +36,28 @@ const schema = {
       $ref: '#/definitions/phone',
     },
     address: {
-      $ref: '#/definitions/address',
-    },
-    bankName: {
-      type: 'string',
+      ...definitions.address,
+      properties: {
+        ...definitions.address.properties,
+        street: {
+          ...definitions.address.properties.street,
+          ...definitions.rejectOnlyWhitespace,
+        },
+        street3: definitions.address.properties.street2,
+        city: {
+          ...definitions.address.properties.city,
+          ...definitions.rejectOnlyWhitespace,
+        },
+      },
     },
     bankAccount: {
-      $ref: '#/definitions/bankAccount',
+      ...definitions.bankAccount,
+      properties: {
+        ...definitions.bankAccount.properties,
+        bankName: {
+          type: 'string',
+        },
+      },
     },
     hasSelectedProgram: {
       type: 'boolean',
