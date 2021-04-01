@@ -247,9 +247,9 @@
         "last"
       ]
     },
-    "phone": {
+    "usaPhone": {
       "type": "string",
-      "minLength": 10
+      "pattern": "^\\d{10}$"
     },
     "ssn": {
       "type": "string",
@@ -562,10 +562,10 @@
       "format": "email"
     },
     "homePhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "mobilePhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "preferredContactMethod": {
       "$ref": "#/definitions/preferredContactMethod"
@@ -583,7 +583,7 @@
           "$ref": "#/definitions/address"
         },
         "phone": {
-          "$ref": "#/definitions/phone"
+          "$ref": "#/definitions/usaPhone"
         }
       }
     },

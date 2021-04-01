@@ -134,7 +134,7 @@ const schema = {
               city: {
                 type: 'string',
                 maxLength: 30,
-                pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$",
+                ...definitions.rejectOnlyWhitespace,
               },
               state: {
                 type: 'string',

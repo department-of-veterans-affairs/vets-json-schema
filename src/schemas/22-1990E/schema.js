@@ -15,7 +15,7 @@ const schema = {
     'date',
     'fullName',
     'address',
-    'phone',
+    'usaPhone',
     'bankAccount',
     'educationType',
     'educationProgram',
@@ -52,10 +52,10 @@ const schema = {
       $ref: '#/definitions/address',
     },
     homePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     email: {
       type: 'string',
