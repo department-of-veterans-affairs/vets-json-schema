@@ -65,6 +65,15 @@ const testData = {
       invalid: [null, 42, true, false, breakingTestString],
     };
   },
+  signature: {
+    valid: [
+      'Kevin Mircovich',
+      'Some really long signature that has many names and characters'
+    ],
+    invalid: [
+      null, 42, true, false, 'A'.repeat(150 + 1)
+    ],
+  },
   certifications: {
     veteran: {
       valid: [
@@ -322,6 +331,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['veteran.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['veteran.alternativePhoneNumber']);
     sharedTests.runTest('email', ['veteran.email']);
+    schemaTestHelper.testValidAndInvalid('veteran.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('veteran.certifications', testData.certifications.veteran);
     // Primary Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['primaryCaregiver.fullName']);
@@ -333,6 +343,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['primaryCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['primaryCaregiver.email']);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.hasHealthInsurance', testData.boolean);
+    schemaTestHelper.testValidAndInvalid('primaryCaregiver.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.certifications', testData.certifications.primaryCaregiver);
     // Secondary One Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverOne.fullName']);
@@ -344,6 +355,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['secondaryCaregiverOne.alternativePhoneNumber']);
     sharedTests.runTest('email', ['secondaryCaregiverOne.email']);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.vetRelationship', testData.vetRelationship);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.certifications', testData.certifications.secondaryCaregiver);
     // Secondary Two Caregiver Info
     sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverTwo.fullName']);
@@ -355,6 +367,7 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['secondaryCaregiverTwo.alternativePhoneNumber']);
     sharedTests.runTest('email', ['secondaryCaregiverTwo.email']);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.vetRelationship', testData.vetRelationship);
+    schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.certifications', testData.certifications.secondaryCaregiver);
 
     it('"plannedClinic" should use the "caregiverProgramFacilities" enum list', () => {

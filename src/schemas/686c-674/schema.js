@@ -288,10 +288,6 @@ const schema = {
               type: 'string',
               enum: ['Adoption Decree', 'Birth Certificate'],
             },
-            'view:additionalEvidenceFileTypes': {
-              type: 'object',
-              properties: {},
-            }, 
             supportingDocuments: {
               $ref: '#/definitions/files',
             },
@@ -487,10 +483,6 @@ const schema = {
             spouseEvidenceDocumentType: {
               type: 'string',
               enum: ['Marriage Certificate / License', 'Divorce Decree', 'Report of Death'],
-            },
-            'view:additionalEvidenceFileTypes': {
-              type: 'object',
-              properties: {},
             },
             supportingDocuments: {
               $ref: '#/definitions/files',

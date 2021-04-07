@@ -1495,10 +1495,6 @@
                 "Birth Certificate"
               ]
             },
-            "view:additionalEvidenceFileTypes": {
-              "type": "object",
-              "properties": {}
-            },
             "supportingDocuments": {
               "$ref": "#/definitions/files"
             }
@@ -1723,10 +1719,6 @@
                 "Divorce Decree",
                 "Report of Death"
               ]
-            },
-            "view:additionalEvidenceFileTypes": {
-              "type": "object",
-              "properties": {}
             },
             "supportingDocuments": {
               "$ref": "#/definitions/files"

@@ -183,6 +183,11 @@
     "uuid": {
       "type": "string",
       "format": "uuid"
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150
     }
   },
   "properties": {
@@ -391,6 +396,9 @@
             }
           }
         },
+        "signature": {
+          "$ref": "#/definitions/signature"
+        },
         "certifications": {
           "type": "array",
           "uniqueItems": true,
@@ -447,6 +455,9 @@
         },
         "hasHealthInsurance": {
           "type": "boolean"
+        },
+        "signature": {
+          "$ref": "#/definitions/signature"
         },
         "certifications": {
           "type": "array",
@@ -507,6 +518,9 @@
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
         },
+        "signature": {
+          "$ref": "#/definitions/signature"
+        },
         "certifications": {
           "type": "array",
           "uniqueItems": true,
@@ -565,6 +579,9 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
+        },
+        "signature": {
+          "$ref": "#/definitions/signature"
         },
         "certifications": {
           "type": "array",
