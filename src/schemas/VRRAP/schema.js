@@ -71,7 +71,6 @@ const schema = {
     'veteranFullName',
     'dateOfBirth',
     'veteranSocialSecurityNumber',
-    'address',
     'email',
     'privacyAgreementAccepted',
   ],
