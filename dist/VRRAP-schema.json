@@ -413,7 +413,6 @@
     "veteranFullName",
     "dateOfBirth",
     "veteranSocialSecurityNumber",
-    "address",
     "email",
     "privacyAgreementAccepted"
   ]
