@@ -1967,7 +1967,7 @@
             "birthDate": {
               "$ref": "#/definitions/date"
             },
-            "isParentOrGuardian": {
+            "isParent": {
               "$ref": "#/definitions/genericTrueFalse"
             },
             "dependentIncome": {
