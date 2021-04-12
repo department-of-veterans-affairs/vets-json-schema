@@ -47,7 +47,6 @@ const schema = {
   definitions: pick(
     definitions,
     'date',
-    'fullName',
     'ssn',
     'vaFileNumber',
     'phone',
@@ -105,12 +104,15 @@ const schema = {
       properties: {
         firstName: {
           type: 'string',
+          maxLength: 25,
         },
         middleName: {
           type: 'string',
+          maxLength: 25,
         },
         lastName: {
           type: 'string',
+          maxLength: 35,
         },
         birthDate: {
           type: 'string',
