@@ -586,44 +586,6 @@
           },
           "classificationCode": {
             "type": "string"
-          },
-          "secondaryDisabilities": {
-            "type": "array",
-            "maxItems": 100,
-            "items": {
-              "type": "object",
-              "required": [
-                "name",
-                "disabilityActionType"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "disabilityActionType": {
-                  "type": "string",
-                  "enum": [
-                    "NONE",
-                    "NEW",
-                    "SECONDARY",
-                    "INCREASE",
-                    "REOPEN"
-                  ]
-                },
-                "specialIssues": {
-                  "$ref": "#/definitions/specialIssues"
-                },
-                "ratedDisabilityId": {
-                  "type": "string"
-                },
-                "diagnosticCode": {
-                  "type": "number"
-                },
-                "classificationCode": {
-                  "type": "string"
-                }
-              }
-            }
           }
         }
       },

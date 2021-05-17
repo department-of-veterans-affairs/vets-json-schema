@@ -215,7 +215,6 @@ const data = {
           ratedDisabilityId: '123',
           diagnosticCode: 123,
           classificationCode: '234',
-          secondaryDisabilities: [],
         },
       ],
       [{ name: 'issue 5', disabilityActionType: 'REOPEN' }],
