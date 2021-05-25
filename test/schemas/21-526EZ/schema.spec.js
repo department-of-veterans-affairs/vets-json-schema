@@ -589,7 +589,6 @@ describe('21-526-ALLCLAIMS schema', () => {
   testValidAndInvalidDefinitions('secondaryPtsdIncident');
 
   sharedTests.runTest('boolean', [
-    'servedInCombatZonePost911',
     'waiveRetirementPay',
     'hasSeparationPay',
     'hasTrainingPay',
