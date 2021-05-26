@@ -33,6 +33,9 @@ const schema = {
     isPursuingTeachingCert: {
       type: 'boolean',
     },
+    isPursuingTeachingCert: {
+      "type": "boolean"
+    },
     benefitLeft: {
       type: 'string',
       enum: ['moreThanSixMonths', 'sixMonthsOrLess', 'none'],
