@@ -6,7 +6,7 @@ const definitions = cloneDeep(commonDefinitions);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'DEPENDENCY VERIFICAION (0538)',
+  title: 'DEPENDENCY VERIFICATION (0538)',
   type: 'object',
   additionalProperties: false,
   definitions: pick(definitions, 'date', 'fullName', 'ssn', 'email'),
