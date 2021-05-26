@@ -111,6 +111,10 @@ const schema = {
     eduBenefitsPamphlet: {
       type: 'boolean',
     },
+    sponsorStatus: {
+      type: 'string',
+      enum: ['diedOnDuty', 'diedFromDisabilityOrOnReserve', 'powOrMia'],
+    },
   },
   required: ['privacyAgreementAccepted', 'relativeFullName'],
 };

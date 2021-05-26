@@ -720,6 +720,14 @@
     "eduBenefitsPamphlet": {
       "type": "boolean"
     },
+    "sponsorStatus": {
+      "type": "string",
+      "enum": [
+        "diedOnDuty",
+        "diedFromDisabilityOrOnReserve",
+        "powOrMia"
+      ]
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
