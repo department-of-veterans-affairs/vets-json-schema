@@ -33,7 +33,7 @@ const schema = {
     isPursuingTeachingCert: {
       type: 'boolean',
     },
-    isPursuingTeachingCert: {
+    isPursuingClinicalTraining: {
       "type": "boolean"
     },
     benefitLeft: {
