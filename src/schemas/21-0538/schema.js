@@ -11,21 +11,29 @@ const schema = {
   additionalProperties: false,
   definitions: pick(definitions, 'date', 'fullName', 'ssn', 'email'),
   properties: {
-    updateDiaries: {
-      type: 'boolean',
-    },
-    veteranInformation: {
-      fullName: {
-        $ref: '#/definitions/fullName',
-      },
-      ssn: {
-        $ref: '#/definitions/ssn',
-      },
-      dateOfBirth: {
-        $ref: '#/definitions/date',
-      },
-      email: {
-        $ref: '#/definitions/email',
+    dependencyVerification: {
+      type: 'object',
+      properties: {
+        updateDiaries: {
+          type: 'boolean',
+        },
+        veteranInformation: {
+          type: 'object',
+          properties: {
+            fullName: {
+              $ref: '#/definitions/fullName',
+            },
+            ssn: {
+              $ref: '#/definitions/ssn',
+            },
+            dateOfBirth: {
+              $ref: '#/definitions/date',
+            },
+            email: {
+              $ref: '#/definitions/email',
+            },
+          },
+        },
       },
     },
   },

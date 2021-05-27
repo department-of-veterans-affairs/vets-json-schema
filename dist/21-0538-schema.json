@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "DEPENDENCY VERIFICAION (0538)",
+  "title": "DEPENDENCY VERIFICATION (0538)",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
@@ -51,21 +51,29 @@
     }
   },
   "properties": {
-    "updateDiaries": {
-      "type": "boolean"
-    },
-    "veteranInformation": {
-      "fullName": {
-        "$ref": "#/definitions/fullName"
-      },
-      "ssn": {
-        "$ref": "#/definitions/ssn"
-      },
-      "dateOfBirth": {
-        "$ref": "#/definitions/date"
-      },
-      "email": {
-        "$ref": "#/definitions/email"
+    "dependencyVerification": {
+      "type": "object",
+      "properties": {
+        "updateDiaries": {
+          "type": "boolean"
+        },
+        "veteranInformation": {
+          "type": "object",
+          "properties": {
+            "fullName": {
+              "$ref": "#/definitions/fullName"
+            },
+            "ssn": {
+              "$ref": "#/definitions/ssn"
+            },
+            "dateOfBirth": {
+              "$ref": "#/definitions/date"
+            },
+            "email": {
+              "$ref": "#/definitions/email"
+            }
+          }
+        }
       }
     }
   }
