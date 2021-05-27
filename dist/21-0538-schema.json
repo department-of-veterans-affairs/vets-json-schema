@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DEPENDENCY VERIFICATION (0538)",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    }
+  },
+  "properties": {
+    "dependencyVerification": {
+      "type": "object",
+      "properties": {
+        "updateDiaries": {
+          "type": "boolean"
+        },
+        "veteranInformation": {
+          "type": "object",
+          "properties": {
+            "fullName": {
+              "$ref": "#/definitions/fullName"
+            },
+            "ssn": {
+              "$ref": "#/definitions/ssn"
+            },
+            "dateOfBirth": {
+              "$ref": "#/definitions/date"
+            },
+            "email": {
+              "$ref": "#/definitions/email"
+            }
+          }
+        }
+      }
+    }
+  }
+}
