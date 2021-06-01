@@ -373,7 +373,7 @@
     "isPursuingTeachingCert": {
       "type": "boolean"
     },
-    "isPursuingClinicalTraining":{
+    "isPursuingClinicalTraining": {
       "type": "boolean"
     },
     "benefitLeft": {
