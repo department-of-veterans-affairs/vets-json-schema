@@ -8,7 +8,7 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DEPENDENCY VERIFICATION (0538)',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   definitions: pick(definitions, 'date', 'fullName', 'ssn', 'email'),
   properties: {
     dependencyVerification: {
