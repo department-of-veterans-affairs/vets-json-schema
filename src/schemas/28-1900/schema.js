@@ -42,7 +42,15 @@ const schema = {
     },
     yearsOfEducation: {
       type: 'string',
-      pattern: '^\\d+$',
+      enum: ['10', '12', '14', '15', '17', '19'],
+      enumNames: [
+        'Some high school',
+        'High school / GED',
+        'Some college',
+        'Associate degree',
+        'Bachelor’s degree',
+        'Master’s degree or higher',
+      ],
     },
     isMoving: {
       type: 'boolean',

@@ -373,6 +373,9 @@
     "isPursuingTeachingCert": {
       "type": "boolean"
     },
+    "isPursuingClinicalTraining": {
+      "type": "boolean"
+    },
     "benefitLeft": {
       "type": "string",
       "enum": [

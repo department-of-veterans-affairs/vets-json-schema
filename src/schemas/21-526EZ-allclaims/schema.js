@@ -316,7 +316,7 @@ const schema = {
           type: 'object',
           properties: {
             separationLocationCode: {
-              type: 'string'
+              type: 'string',
             },
             separationLocationName: {
               type: 'string',
@@ -354,9 +354,6 @@ const schema = {
           },
         },
       },
-    },
-    servedInCombatZonePost911: {
-      type: 'boolean',
     },
     confinements: {
       type: 'array',
@@ -1068,10 +1065,7 @@ const schema = {
       },
     },
   },
-  required: [
-    'isVaEmployee',
-    'standardClaim'
-  ]
+  required: ['isVaEmployee', 'standardClaim'],
 };
 
 export default schema;

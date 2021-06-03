@@ -6,6 +6,14 @@ import addressDefinitions from '../../common/address';
 
 const definitions = cloneDeep(commonDefinitions);
 
+const states50AndDCAndOthers = addressDefinitions.states50AndDC
+  .concat([
+    { label: 'Guam', value: 'GU' },
+    { label: 'Puerto Rico', value: 'PR' },
+    { label: 'Virgin Islands', value: 'VI' },
+  ])
+  .sort((stateA, stateB) => stateA.label.localeCompare(stateB.label));
+
 const dischargeTypeLabels = {
   honorable: 'Honorable',
   general: 'General',
@@ -31,6 +39,8 @@ const lastServiceBranchLabels = {
   other: 'Other',
 };
 
+
+
 export const serviceBranchEnum = () => {
   return Object.values(lastServiceBranchLabels);
 };
@@ -47,7 +57,6 @@ const schema = {
   definitions: pick(
     definitions,
     'date',
-    'fullName',
     'ssn',
     'vaFileNumber',
     'phone',
@@ -91,27 +100,29 @@ const schema = {
     veteranInformation: {
       type: 'object',
       properties: {
-        veteranBirthDate: {
+        veteranFirstName: {
           type: 'string',
-          pattern: '^\\d{4}-\\d{2}-\\d{2}$',
         },
-        veteranSsn: {
+        veteranLastName: {
           type: 'string',
         },
       },
-      required: ['veteranBirthDate', 'veteranSsn'],
+      required: ['veteranFirstName', 'veteranLastName'],
     },
     personalInformation: {
       type: 'object',
       properties: {
         firstName: {
           type: 'string',
+          maxLength: 25,
         },
         middleName: {
           type: 'string',
+          maxLength: 25,
         },
         lastName: {
           type: 'string',
+          maxLength: 35,
         },
         birthDate: {
           type: 'string',
@@ -153,8 +164,8 @@ const schema = {
         },
         stateCode: {
           type: 'string',
-          enum: addressDefinitions.states50AndDC.map(state => state.value),
-          enumNames: addressDefinitions.states50AndDC.map(state => state.label),
+          enum: states50AndDCAndOthers.map(state => state.value),
+          enumNames: states50AndDCAndOthers.map(state => state.label),
         },
         zipCode: {
           type: 'string',

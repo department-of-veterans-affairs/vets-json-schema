@@ -8,38 +8,6 @@
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
     },
-    "fullName": {
-      "type": "object",
-      "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "middle": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
-        }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
-    },
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
@@ -632,30 +600,32 @@
     "veteranInformation": {
       "type": "object",
       "properties": {
-        "veteranBirthDate": {
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        "veteranFirstName": {
+          "type": "string"
         },
-        "veteranSsn": {
+        "veteranLastName": {
           "type": "string"
         }
       },
       "required": [
-        "veteranBirthDate",
-        "veteranSsn"
+        "veteranFirstName",
+        "veteranLastName"
       ]
     },
     "personalInformation": {
       "type": "object",
       "properties": {
         "firstName": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 25
         },
         "middleName": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 25
         },
         "lastName": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 35
         },
         "birthDate": {
           "type": "string",
@@ -718,6 +688,7 @@
             "DC",
             "FL",
             "GA",
+            "GU",
             "HI",
             "ID",
             "IL",
@@ -746,6 +717,7 @@
             "OK",
             "OR",
             "PA",
+            "PR",
             "RI",
             "SC",
             "SD",
@@ -753,6 +725,7 @@
             "TX",
             "UT",
             "VT",
+            "VI",
             "VA",
             "WA",
             "WV",
@@ -771,6 +744,7 @@
             "District Of Columbia",
             "Florida",
             "Georgia",
+            "Guam",
             "Hawaii",
             "Idaho",
             "Illinois",
@@ -799,6 +773,7 @@
             "Oklahoma",
             "Oregon",
             "Pennsylvania",
+            "Puerto Rico",
             "Rhode Island",
             "South Carolina",
             "South Dakota",
@@ -806,6 +781,7 @@
             "Texas",
             "Utah",
             "Vermont",
+            "Virgin Islands",
             "Virginia",
             "Washington",
             "West Virginia",

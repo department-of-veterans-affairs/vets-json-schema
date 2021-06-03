@@ -286,7 +286,15 @@ const schema = {
             },
             childEvidenceDocumentType: {
               type: 'string',
-              enum: ['Adoption Decree', 'Birth Certificate']
+              enum: ['13', '25', '58', '59', '663', '10'],
+              enumNames: [
+                'Adoption Decree',
+                'Birth Certificate',
+                'Medical Treatment Record - Government Facility',
+                'Medical Treatment Record - Non-Government Facility',
+                'Medical Opinion',
+                'Unknown',
+              ],
             },
             supportingDocuments: {
               $ref: '#/definitions/files',
@@ -482,11 +490,17 @@ const schema = {
             },
             spouseEvidenceDocumentType: {
               type: 'string',
-              enum: ['Marriage Certificate / License', 'Divorce Decree', 'Report of Death']
+              enum: ['14', '61', '119', '10'],
+              enumNames: [
+                'Affidavit',
+                'Marriage Certificate / License',
+                'VA 21-4171 Supporting Statement Regarding Marriage',
+                'Unknown',
+              ],
             },
             supportingDocuments: {
               $ref: '#/definitions/files',
-            }, 
+            },
           },
         },
       },
@@ -719,7 +733,7 @@ const schema = {
             birthDate: {
               $ref: '#/definitions/date',
             },
-            isParentOrGuardian: {
+            isParent: {
               $ref: '#/definitions/genericTrueFalse',
             },
             dependentIncome: {
