@@ -296,7 +296,7 @@ const schema = {
                 'Unknown',
               ],
             },
-            supportingDocuments: {
+            childSupportingDocuments: {
               $ref: '#/definitions/files',
             },
           },
@@ -498,7 +498,7 @@ const schema = {
                 'Unknown',
               ],
             },
-            supportingDocuments: {
+            spouseSupportingDocuments: {
               $ref: '#/definitions/files',
             },
           },

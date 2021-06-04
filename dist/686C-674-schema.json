@@ -1507,7 +1507,7 @@
                 "Unknown"
               ]
             },
-            "supportingDocuments": {
+            "childSupportingDocuments": {
               "$ref": "#/definitions/files"
             }
           }
@@ -1739,7 +1739,7 @@
                 "Unknown"
               ]
             },
-            "supportingDocuments": {
+            "spouseSupportingDocuments": {
               "$ref": "#/definitions/files"
             }
           }
