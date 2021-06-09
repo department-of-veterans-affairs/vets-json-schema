@@ -34,6 +34,7 @@ const branchesServed = [
   { value: 'merchant seaman', label: 'Merchant Seaman' },
   { value: 'navy', label: 'Navy' },
   { value: 'noaa', label: 'Noaa' },
+  { value: 'space force', label: 'Space Force' },
   { value: 'usphs', label: 'USPHS' },
   { value: 'f.commonwealth', label: 'Filipino Commonwealth Army' },
   { value: 'f.guerilla', label: 'Filipino Guerilla Forces' },

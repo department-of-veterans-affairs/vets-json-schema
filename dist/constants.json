@@ -76,6 +76,10 @@
       "label": "Noaa"
     },
     {
+      "value": "space force",
+      "label": "Space Force"
+    },
+    {
       "value": "usphs",
       "label": "USPHS"
     },

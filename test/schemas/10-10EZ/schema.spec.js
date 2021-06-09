@@ -148,4 +148,9 @@ describe('healthcare-application json schema', () => {
     valid: ['a@a.com', 'a@a.net', 'a+2@a.com', 'Foo@foo.com', 'foo.bar@foo.org'],
     invalid: ['@', 'foo', 'foo.com', 'a@a', 'a@a.', '@a.com'],
   });
+
+  schemaTestHelper.testValidAndInvalid('lastServiceBranch', {
+    valid: ['air force', 'army', 'coast guard', 'marine corps', 'merchant seaman', 'navy', 'noaa', 'space force', 'usphs', 'f.commonwealth', 'f.guerilla', 'f.scouts new', 'f.scouts old'],
+    invalid: [null, 3, 'random-string'],
+  });
 });
