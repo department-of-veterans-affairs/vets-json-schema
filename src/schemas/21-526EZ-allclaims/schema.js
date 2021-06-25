@@ -145,7 +145,6 @@ const schema = {
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
-    dateRangeFromRequired: _.set('required', ['from'], definitions.dateRange),
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
