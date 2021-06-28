@@ -145,7 +145,6 @@ const schema = {
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
-    dateRangeFromRequired: _.set('required', ['from'], definitions.dateRange),
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -489,7 +488,7 @@ const schema = {
             pattern: "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$",
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRangeFromRequired',
+            $ref: '#/definitions/dateRange',
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/vaTreatmentCenterAddress',
