@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "JSON Schema for VA Form 20-0996 https://github.com/department-of-veterans-affairs/vets-api/blob/master/modules/appeals_api/config/schemas/v1/200996.json",
+  "description": "JSON Schema for VA Form 20-0996 copied from https://github.com/department-of-veterans-affairs/vets-api/blob/master/modules/appeals_api/config/schemas/v1/200996.json",
   "$ref": "#/definitions/root",
   "definitions": {
     "nonBlankString": {
