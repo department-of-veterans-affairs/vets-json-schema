@@ -40,14 +40,6 @@
         "last"
       ]
     },
-    "ssn": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
-    },
-    "vaFileNumber": {
-      "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
-    },
     "phone": {
       "type": "string",
       "minLength": 10
@@ -565,12 +557,6 @@
       "properties": {
         "fullName": {
           "$ref": "#/definitions/fullName"
-        },
-        "ssn": {
-          "$ref": "#/definitions/ssn"
-        },
-        "vaFileNumber": {
-          "$ref": "#/definitions/vaFileNumber"
         },
         "dob": {
           "$ref": "#/definitions/date"
