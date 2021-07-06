@@ -577,10 +577,6 @@ describe('21-526-ALLCLAIMS schema', () => {
   testValidAndInvalidDefinitions('vaTreatmentCenterAddress');
   testValidAndInvalidDefinitions('dateRange');
   testValidAndInvalidDefinitions('dateRangeAllRequired');
-  testValidAndInvalidDefinitions('dateRangeFromRequired', {
-    valid: testData.dateRange.data.valid,
-    invalid: [{}, { to: fixtures.dateRange }, { from: 'foo' }, { from: 123 }],
-  });
   testValidAndInvalidDefinitions('ratedDisabilities');
   testValidAndInvalidDefinitions('newDisabilities');
   testValidAndInvalidDefinitions('unitAssigned', data.string(100));
