@@ -538,6 +538,20 @@
         "to"
       ]
     },
+    "dateRangeFromRequired": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "from"
+      ]
+    },
     "ratedDisabilities": {
       "type": "array",
       "maxItems": 100,
