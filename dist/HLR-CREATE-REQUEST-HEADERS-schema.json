@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "JSON Schema for Higher-Level Review Creation endpoint headers (Decision Reviews API)",
+  "description": "JSON Schema for Higher-Level Review Creation endpoint headers (Decision Reviews API) copied from https://github.com/department-of-veterans-affairs/vets-api/blob/master/modules/appeals_api/config/schemas/v1/10182_headers.json",
   "$ref": "#/definitions/hlrCreateParameters",
   "definitions": {
     "hlrCreateParameters": {
@@ -29,6 +29,12 @@
         },
         "X-VA-Insurance-Policy-Number": {
           "$ref": "#/definitions/X-VA-Insurance-Policy-Number"
+        },
+        "X-Consumer-Username": {
+          "$ref": "#/definitions/X-Consumer-Username"
+        },
+        "X-Consumer-ID": {
+          "$ref": "#/definitions/X-Consumer-ID"
         }
       },
       "additionalProperties": false,
@@ -58,7 +64,7 @@
         {
           "type": "string",
           "maxLength": 12,
-          "$comment": "can be whitespace, to accomodate those with 1 legal name"
+          "$comment": "can be whitespace, to accommodate those with 1 legal name"
         }
       ]
     },
@@ -119,6 +125,26 @@
         },
         {
           "$ref": "#/definitions/nonBlankStringMaxLength18"
+        }
+      ]
+    },
+    "X-Consumer-Username": {
+      "allOf": [
+        {
+          "description": "Consumer User Name (passed from Kong)"
+        },
+        {
+          "$ref": "#/definitions/nonBlankString"
+        }
+      ]
+    },
+    "X-Consumer-ID": {
+      "allOf": [
+        {
+          "description": "Consumer GUID"
+        },
+        {
+          "$ref": "#/definitions/nonBlankString"
         }
       ]
     },
