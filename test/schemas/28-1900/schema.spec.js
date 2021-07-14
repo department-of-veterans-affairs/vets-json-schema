@@ -41,8 +41,6 @@ const testData = {
 
 describe('veteran readiness and employment', () => {
   sharedTests.runTest('fullName', ['veteranInformation.fullName']);
-  sharedTests.runTest('ssn', ['veteranInformation.ssn']);
-  sharedTests.runTest('vaFileNumber', ['veteranInformation.vaFileNumber']);
   sharedTests.runTest('date', ['veteranInformation.dob']);
   sharedTests.runTest('email', ['email']);
   sharedTests.runTest('phone', ['mainPhone', 'cellPhone']);
