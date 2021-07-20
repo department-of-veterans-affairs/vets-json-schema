@@ -1,13 +1,17 @@
 import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
 import pick from 'lodash/pick';
-import { countries, states50AndDC } from '../../common/constants';
+import { countries, states } from '../../common/constants';
 import commonDefinitions from '../../common/definitions';
 
 // patterns
 const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
 
 const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
+
+// filter out military states
+const militaryStates = ['AA', 'AE', 'AP'];
+const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
 
 let definitions = cloneDeep(commonDefinitions);
 definitions = pick(definitions, 'fullName', 'phone', 'date', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
@@ -30,8 +34,8 @@ const schema = {
         },
         state: {
           type: 'string',
-          enum: states50AndDC.map(state => state.value),
-          enumNames: states50AndDC.map(state => state.label),
+          enum: filteredStates.map(state => state.value),
+          enumNames: filteredStates.map(state => state.label),
         },
         city: {
           type: 'string',
@@ -95,8 +99,8 @@ const schema = {
         },
         stateCode: {
           type: 'string',
-          enum: states50AndDC.map(state => state.value),
-          enumNames: states50AndDC.map(state => state.label),
+          enum: filteredStates.map(state => state.value),
+          enumNames: filteredStates.map(state => state.label),
         },
         province: {
           type: 'string',
