@@ -11,7 +11,7 @@ const testData = {
   },
   plannedClinic: {
     valid: ['636', '636A6', '740', '603'],
-    invalid: ['405HK', '436GA', '501GJ', '358', '123RE'],
+    invalid: [[], {}, 358, true],
   },
   lastTreatmentFacility: {
     valid: [
@@ -369,13 +369,6 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.vetRelationship', testData.vetRelationship);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.certifications', testData.certifications.secondaryCaregiver);
-
-    it('"plannedClinic" should use the "caregiverProgramFacilities" enum list', () => {
-      expect(!!schema.properties.veteran.properties.plannedClinic.enum).to.be.true;
-      // Test that the number of values match the number of Caregiver Program Facilities
-      expect(schema.properties.veteran.properties.plannedClinic.enum.length).to.equal(142);
-    });
-
     sharedTests.runTest('uuid', ['poaAttachmentId']);
   });
 
