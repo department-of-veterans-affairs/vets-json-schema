@@ -45,5 +45,11 @@
   "engines": {
     "node": ">=14.15.0"
   },
-  "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme"
+  "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme",
+  "resolutions": {
+    "**/debug": "^3.1.0",
+    "**/diff": "^3.5.0",
+    "**/growl": "1.10.2",
+    "**/minimist": "^1.2.3" 
+  }
 }
