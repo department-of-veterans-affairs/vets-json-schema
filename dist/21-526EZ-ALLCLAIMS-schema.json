@@ -538,20 +538,6 @@
         "to"
       ]
     },
-    "dateRangeFromRequired": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
-        },
-        "to": {
-          "$ref": "#/definitions/date"
-        }
-      },
-      "required": [
-        "from"
-      ]
-    },
     "ratedDisabilities": {
       "type": "array",
       "maxItems": 100,
@@ -1042,7 +1028,7 @@
             "pattern": "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$"
           },
           "treatmentDateRange": {
-            "$ref": "#/definitions/dateRangeFromRequired"
+            "$ref": "#/definitions/dateRange"
           },
           "treatmentCenterAddress": {
             "$ref": "#/definitions/vaTreatmentCenterAddress"
