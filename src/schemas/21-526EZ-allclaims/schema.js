@@ -918,7 +918,7 @@ const schema = {
                 "Associate's degree",
                 'Bachelor’s degree',
                 'Master’s degree',
-                'Doctoral degree',
+                'Doctoral degre',
                 'Other',
               ],
             },
