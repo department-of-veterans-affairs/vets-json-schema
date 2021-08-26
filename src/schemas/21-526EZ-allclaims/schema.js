@@ -171,30 +171,37 @@ const schema = {
           },
           primaryDescription: {
             type: 'string',
+            maxLength: 400,
           },
           causedByDisability: {
             type: 'string',
           },
           causedByDisabilityDescription: {
             type: 'string',
+            maxLength: 400,
           },
           specialIssues: {
             $ref: '#/definitions/specialIssues',
           },
           worsenedDescription: {
             type: 'string',
+            maxLength: 50,
           },
           worsenedEffects: {
             type: 'string',
+            maxLength: 350,
           },
           vaMistreatmentDescription: {
             type: 'string',
+            maxLength: 350,
           },
           vaMistreatmentLocation: {
             type: 'string',
+            maxLength: 25,
           },
           vaMistreatmentDate: {
             type: 'string',
+            maxLength: 25,
           },
         },
       },
