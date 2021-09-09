@@ -216,7 +216,7 @@ const schema = {
                       dateBecameDependent: {
                         $ref: '#/definitions/date',
                       },
-                      stephChildParent: {
+                      stephchildParent: {
                         $ref: '#/definitions/fullName',
                       },
                       ssn: {
