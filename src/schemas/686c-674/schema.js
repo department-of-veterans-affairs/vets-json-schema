@@ -210,9 +210,6 @@ const schema = {
                       adopted: {
                         $ref: '#/definitions/genericTrueFalse',
                       },
-                      notCapable: {
-                        $ref: '#/definitions/genericTrueFalse',
-                      },
                       stepchild: {
                         $ref: '#/definitions/genericTrueFalse',
                       },
@@ -222,6 +219,13 @@ const schema = {
                     },
                   },
                   'view:childStatusInformation': {
+                    type: 'object',
+                    properties: {},
+                  },
+                  notSelfSufficient: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
+                  'view:notSelfSufficientDescription': {
                     type: 'object',
                     properties: {},
                   },
