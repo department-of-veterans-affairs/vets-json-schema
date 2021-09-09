@@ -216,6 +216,15 @@ const schema = {
                       dateBecameDependent: {
                         $ref: '#/definitions/date',
                       },
+                      stephChildParent: {
+                        $ref: '#/definitions/fullName',
+                      },
+                      ssn: {
+                        $ref: '#/definitions/ssn',
+                      },
+                      birthDate: {
+                        $ref: '#/definitions/date',
+                      },
                     },
                   },
                   'view:childStatusInformation': {
