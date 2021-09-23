@@ -873,9 +873,10 @@
           "type": "string",
           "enum": [
             "VETERAN",
-            "ACTIVEDUTY",
-            "NONACTIVEDUTY",
-            "NONACTIVEDUTYDISCHARGED"
+            "ADSM",
+            "NADNA",
+            "DNANA",
+            "DRNA"
           ],
           "enumNames": [
             "I’m a Veteran",

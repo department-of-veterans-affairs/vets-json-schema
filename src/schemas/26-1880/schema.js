@@ -164,7 +164,12 @@ const schema = {
       properties: {
         identity: {
           type: 'string',
-          enum: ['VETERAN', 'ACTIVEDUTY', 'NONACTIVEDUTY', 'NONACTIVEDUTYDISCHARGED'],
+          // Abbreviation keys:
+          // ADSM - Active Duty Service Member
+          // NADNA - Non Active Duty Never Activated
+          // DNANA - Discharged National Guard Never Activated
+          // DRNA - Discharged Reserves Never Activaed
+          enum: ['VETERAN', 'ADSM', 'NADNA', 'DNANA', 'DRNA'],
           enumNames: [
             'I’m a Veteran',
             'I’m an active-duty service member',
