@@ -1014,8 +1014,16 @@
             "Report of Separation and Record of Service (NGB Form 22)",
             "Retirement Points Statement (NGB Form 23)",
             "Proof of honorable service",
-            "Annual retirement points"
+            "Annual retirement points",
+            "Closing Disclosure",
+            "HUD-1 Settlement Statement",
+            "Statement from Loan Servicer",
+            "Alta Statement",
+            "Other"
           ]
+        },
+        "fileDescription": {
+          "type": "string"
         },
         "files": {
           "$ref": "#/definitions/files"

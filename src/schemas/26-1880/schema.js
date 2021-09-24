@@ -295,7 +295,15 @@ const schema = {
             'Retirement Points Statement (NGB Form 23)',
             'Proof of honorable service',
             'Annual retirement points',
+            'Closing Disclosure',
+            'HUD-1 Settlement Statement',
+            'Statement from Loan Servicer',
+            'Alta Statement',
+            'Other',
           ],
+        },
+        fileDescription: {
+          type: 'string',
         },
         files: {
           $ref: '#/definitions/files',
