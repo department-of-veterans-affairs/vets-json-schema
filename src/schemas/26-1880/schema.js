@@ -164,12 +164,18 @@ const schema = {
       properties: {
         identity: {
           type: 'string',
-          enum: ['VETERAN', 'ACTIVEDUTY', 'NONACTIVEDUTY', 'NONACTIVEDUTYDISCHARGED'],
+          // Abbreviation keys:
+          // ADSM - Active Duty Service Member
+          // NADNA - Non Active Duty Never Activated
+          // DNANA - Discharged National Guard Never Activated
+          // DRNA - Discharged Reserves Never Activaed
+          enum: ['VETERAN', 'ADSM', 'NADNA', 'DNANA', 'DRNA'],
           enumNames: [
             'I’m a Veteran',
             'I’m an active-duty service member',
-            'I’m a current member of the National Guard or Reserves',
-            'I’m a discharged member of the National Guard or Reserves',
+            'I’m a current member of the National Guard or Reserves and was never activated',
+            'I’m a discharged member of the National Guard and was never activated',
+            'I’m a discharged member of the Reserves and was never activated',
           ],
         },
       },
@@ -289,7 +295,15 @@ const schema = {
             'Retirement Points Statement (NGB Form 23)',
             'Proof of honorable service',
             'Annual retirement points',
+            'Closing Disclosure',
+            'HUD-1 Settlement Statement',
+            'Statement from Loan Servicer',
+            'Alta Statement',
+            'Other',
           ],
+        },
+        fileDescription: {
+          type: 'string',
         },
         files: {
           $ref: '#/definitions/files',
