@@ -1074,6 +1074,10 @@
                   },
                   "socDate": {
                     "$ref": "#/definitions/date"
+                  },
+                  "disagreementArea": {
+                    "type": "string",
+                    "maxLength": 90
                   }
                 },
                 "additionalProperties": false,
