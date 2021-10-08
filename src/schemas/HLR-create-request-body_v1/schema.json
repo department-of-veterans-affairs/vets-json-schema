@@ -144,6 +144,7 @@
                   "ratingDecisionReferenceId": { "type": "string" },
                   "socDate":                   { "$ref": "#/definitions/date" },
                   "disagreementArea":          { "type": "string", "maxLength": 90 }
+                  
                 },
                 "additionalProperties": false,
                 "required": [ "issue", "decisionDate" ] }
