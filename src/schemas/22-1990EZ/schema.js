@@ -54,6 +54,9 @@ const schema = {
     veteranFullName: {
       $ref: '#/definitions/fullName',
     },
+    userFullName: {
+      $ref: '#/definitions/fullName',
+    },
     gender: {
       $ref: '#/definitions/gender',
     },
