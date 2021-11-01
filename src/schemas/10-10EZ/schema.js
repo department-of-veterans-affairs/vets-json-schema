@@ -236,7 +236,11 @@ const schema = {
     },
     vaCompensationType: {
       type: 'string',
-      enum: ['lowDisability', 'highDisability', 'pension', 'none'],
+      enum: ['lowDisability', 'highDisability', 'none'],
+    },
+    vaPensionType: {
+      type: 'string',
+      enum: ['Yes', 'No'],
     },
     isEssentialAcaCoverage: {
       type: 'boolean',
