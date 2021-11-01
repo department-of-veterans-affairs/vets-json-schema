@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": "35",
+      "type": "legacyAppeal",
+      "attributes": {
+        "issues": [
+          {
+            "summary": "Service connection, benign ear neoplasm"
+          },
+          {
+            "summary": "New and material evidence to reopen claim for service connection, impairment of knee"
+          },
+          {
+            "summary": "Service connection, migraines"
+          }
+        ],
+        "veteranFullName": "Cara Bartlett",
+        "decisionDate": "2021-10-17T00:00:00.000Z",
+        "latestSocSsocDate": "2021-09-18T00:00:00.000Z"
+        }
+    }
+  ]
+}
