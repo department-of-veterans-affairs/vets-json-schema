@@ -55,8 +55,13 @@ const dischargeTypes = [
 const suffixes = ['Jr.', 'Sr.', 'II', 'III', 'IV'];
 
 const genders = [
-  { label: 'Female', value: 'F' },
-  { label: 'Male', value: 'M' },
+  { label: 'Woman', value: 'F' },
+  { label: 'Man', value: 'M' },
+  { label: 'Transgender Woman', value: 'TF' },
+  { label: 'Transgender Man', value: 'TM' },
+  { label: 'A Gender Not Listed Here', value: 'O' },
+  { label: 'Nonbinary', value: 'NB' },
+  { label: 'Prefer not to answer', value: 'NA' },
 ];
 
 const months = [
