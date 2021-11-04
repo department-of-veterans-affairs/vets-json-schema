@@ -210,18 +210,31 @@ const schema = {
                       adopted: {
                         $ref: '#/definitions/genericTrueFalse',
                       },
-                      notCapable: {
-                        $ref: '#/definitions/genericTrueFalse',
-                      },
                       stepchild: {
                         $ref: '#/definitions/genericTrueFalse',
                       },
                       dateBecameDependent: {
                         $ref: '#/definitions/date',
                       },
+                      stepchildParent: {
+                        $ref: '#/definitions/fullName',
+                      },
+                      ssn: {
+                        $ref: '#/definitions/ssn',
+                      },
+                      birthDate: {
+                        $ref: '#/definitions/date',
+                      },
                     },
                   },
                   'view:childStatusInformation': {
+                    type: 'object',
+                    properties: {},
+                  },
+                  notSelfSufficient: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
+                  'view:notSelfSufficientDescription': {
                     type: 'object',
                     properties: {},
                   },
