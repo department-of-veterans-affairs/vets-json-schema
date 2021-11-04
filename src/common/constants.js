@@ -54,6 +54,11 @@ const dischargeTypes = [
 
 const suffixes = ['Jr.', 'Sr.', 'II', 'III', 'IV'];
 
+const birth_sexes = [
+  { label: 'Female', value: 'F' },
+  { label: 'Male', value: 'M' },
+];
+
 const genders = [
   { label: 'Woman', value: 'F' },
   { label: 'Man', value: 'M' },
