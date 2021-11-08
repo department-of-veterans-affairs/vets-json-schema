@@ -252,6 +252,27 @@ const schema = {
     wantsInitialVaContact: {
       type: 'boolean',
     },
+    isGenderMan: {
+      type: 'boolean',
+    },
+    isGenderWoman: {
+      type: 'boolean',
+    },
+    isGenderTransMan: {
+      type: 'boolean',
+    },
+    isGenderTransWoman: {
+      type: 'boolean',
+    },
+    isGenderNonBinary: {
+      type: 'boolean',
+    },
+    isGenderNotListed: {
+      type: 'boolean',
+    },
+    isGenderPreferNoAnswer: {
+      type: 'boolean',
+    },
     isSpanishHispanicLatino: {
       type: 'boolean',
     },
