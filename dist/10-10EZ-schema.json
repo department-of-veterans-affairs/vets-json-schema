@@ -534,8 +534,14 @@
       "enum": [
         "lowDisability",
         "highDisability",
-        "pension",
         "none"
+      ]
+    },
+    "vaPensionType": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
       ]
     },
     "isEssentialAcaCoverage": {
@@ -1605,6 +1611,9 @@
       "type": "boolean"
     },
     "isWhite": {
+      "type": "boolean"
+    },
+    "noAnswer": {
       "type": "boolean"
     },
     "veteranAddress": {
