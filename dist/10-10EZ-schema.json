@@ -399,11 +399,23 @@
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
-    "gender": {
+    "birthSex": {
       "type": "string",
       "enum": [
         "F",
         "M"
+      ]
+    },
+    "sigiGenders": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M",
+        "TF",
+        "TM",
+        "O",
+        "NB",
+        "NA"
       ]
     },
     "cityOfBirth": {

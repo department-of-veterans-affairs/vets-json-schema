@@ -59,6 +59,16 @@ const genders = [
   { label: 'Male', value: 'M' },
 ];
 
+const sigiGenders = [
+  { label: 'Woman', value: 'F' },
+  { label: 'Man', value: 'M' },
+  { label: 'Transgender woman', value: 'TF' },
+  { label: 'Transgender man', value: 'TM' },
+  { label: 'A gender not listed here', value: 'O' },
+  { label: 'Nonbinary', value: 'NB' },
+  { label: 'Prefer not to answer', value: 'NA' },
+];
+
 const months = [
   { label: 'Jan', value: 1 },
   { label: 'Feb', value: 2 },
@@ -266,6 +276,7 @@ module.exports = {
   dischargeTypes,
   documentTypes526,
   genders,
+  sigiGenders,
   maritalStatuses,
   marriageTypes,
   militaryCities,
