@@ -22,7 +22,7 @@
     }
   },
   "lint-staged": {
-    "src/*.(js|jsx)": "yarn lint:fix"
+    "*.(js|jsx)": "yarn lint:fix"
   },
   "main": "dist/schemas.js",
   "files": [
