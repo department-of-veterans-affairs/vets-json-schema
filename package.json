@@ -22,7 +22,7 @@
     }
   },
   "lint-staged": {
-    "*.(js|jsx)": "eslint --fix"
+    "*.(js|jsx)": "yarn lint:fix"
   },
   "main": "dist/schemas.js",
   "files": [
