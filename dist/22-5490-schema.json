@@ -480,7 +480,8 @@
       "enum": [
         "mail",
         "email",
-        "phone"
+        "phone",
+        "mobile"
       ]
     }
   },
@@ -718,6 +719,14 @@
     },
     "eduBenefitsPamphlet": {
       "type": "boolean"
+    },
+    "sponsorStatus": {
+      "type": "string",
+      "enum": [
+        "diedOnDuty",
+        "diedFromDisabilityOrOnReserve",
+        "powOrMia"
+      ]
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"

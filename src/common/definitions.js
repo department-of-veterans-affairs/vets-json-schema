@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { countries } from './address';
 import constants from './constants';
 import schemaHelpers from './schema-helpers';
 
@@ -156,6 +157,51 @@ const usAddress = {
   },
 };
 
+// Used to make the address pattern in VA.gov profile replicable in a react-json-schemaform application
+const profileAddress = {
+  type: 'object',
+  properties: {
+    isMilitary: {
+      type: 'boolean',
+    },
+    country: {
+      type: 'string',
+      enum: constants.countries.map(country => country.value),
+      enumNames: countries.map(country => country.label),
+    },
+    'view:militaryBaseDescription': {
+      type: 'object',
+      properties: {},
+    },
+    street: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    street2: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    street3: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    city: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 100,
+    },
+    state: {
+      type: 'string',
+    },
+    postalCode: {
+      type: 'string',
+    },
+  },
+};
+
 const phone = {
   type: 'string',
   minLength: 10,
@@ -242,6 +288,17 @@ const date = {
   type: 'string',
 };
 
+const nullableDate = {
+  pattern: date.pattern,
+  type: ['string', 'null'],
+};
+
+// XXXX-XX-XX not allowed
+const requiredDate = {
+  type: 'string',
+  pattern: '^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
+};
+
 const educationType = {
   type: 'string',
   enum: [
@@ -257,7 +314,7 @@ const educationType = {
 
 const preferredContactMethod = {
   type: 'string',
-  enum: ['mail', 'email', 'phone'],
+  enum: ['mail', 'email', 'phone', 'mobile'],
 };
 
 const privacyAgreementAccepted = {
@@ -603,9 +660,13 @@ const form4142 = {
 
 const email = {
   type: 'string',
-  minLength: 6,
-  maxLength: 80,
+  maxLength: 256,
   format: 'email',
+};
+
+const uuid = {
+  type: 'string',
+  format: 'uuid',
 };
 
 export default {
@@ -615,6 +676,7 @@ export default {
   otherIncome,
   address,
   usAddress,
+  profileAddress,
   phone,
   ssn,
   ssnLastFour,
@@ -624,6 +686,8 @@ export default {
   serviceBefore1977,
   dateRange,
   date,
+  nullableDate,
+  requiredDate,
   rejectOnlyWhitespace,
   dischargeType,
   educationType,
@@ -652,4 +716,5 @@ export default {
   year,
   form4142,
   email,
+  uuid,
 };

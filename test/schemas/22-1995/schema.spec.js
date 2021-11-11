@@ -23,7 +23,6 @@ describe('change of program json schema', () => {
     'ssn',
     'fullName',
     'address',
-    'phone',
     'email',
     'bankAccount',
     'vaFileNumber',

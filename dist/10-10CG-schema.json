@@ -4,8 +4,19 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "veteran",
-    "primaryCaregiver"
+    "veteran"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "primaryCaregiver"
+      ]
+    },
+    {
+      "required": [
+        "secondaryCaregiverOne"
+      ]
+    }
   ],
   "definitions": {
     "fullName": {
@@ -43,8 +54,7 @@
       "type": "string",
       "enum": [
         "F",
-        "M",
-        "U"
+        "M"
       ]
     },
     "phone": {
@@ -53,8 +63,7 @@
     },
     "email": {
       "type": "string",
-      "minLength": 6,
-      "maxLength": 80,
+      "maxLength": 256,
       "format": "email"
     },
     "address": {
@@ -170,6 +179,15 @@
         "Friend/Neighbor",
         "Grandchild"
       ]
+    },
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150
     }
   },
   "properties": {
@@ -180,7 +198,6 @@
         "fullName",
         "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "plannedClinic"
@@ -211,151 +228,7 @@
           "$ref": "#/definitions/email"
         },
         "plannedClinic": {
-          "type": "string",
-          "enum": [
-            "740",
-            "756",
-            "580",
-            "504",
-            "519",
-            "549",
-            "671",
-            "674",
-            "568A4",
-            "438",
-            "568",
-            "589A6",
-            "589A5",
-            "589A7",
-            "612A4",
-            "570",
-            "640",
-            "662",
-            "600",
-            "605",
-            "664",
-            "691",
-            "402",
-            "405",
-            "518",
-            "523",
-            "631",
-            "608",
-            "650",
-            "689",
-            "506",
-            "515",
-            "553",
-            "655",
-            "585",
-            "538",
-            "539",
-            "541",
-            "552",
-            "757",
-            "583",
-            "610",
-            "537",
-            "550",
-            "556",
-            "578",
-            "657A5",
-            "607",
-            "676",
-            "695",
-            "589",
-            "589A4",
-            "657",
-            "657A4",
-            "502",
-            "629",
-            "667",
-            "520",
-            "586",
-            "564",
-            "598",
-            "436",
-            "442",
-            "666",
-            "554",
-            "575",
-            "623",
-            "635",
-            "660",
-            "526",
-            "528",
-            "528A5",
-            "528A6",
-            "528A7",
-            "528A8",
-            "620",
-            "630",
-            "632",
-            "561",
-            "463",
-            "531",
-            "648",
-            "653",
-            "692",
-            "663",
-            "668",
-            "687",
-            "459",
-            "593",
-            "654",
-            "501",
-            "644",
-            "649",
-            "678",
-            "437",
-            "618",
-            "656",
-            "636",
-            "636A6",
-            "636A8",
-            "460",
-            "503",
-            "529",
-            "542",
-            "562",
-            "595",
-            "642",
-            "646",
-            "693",
-            "512",
-            "517",
-            "540",
-            "581",
-            "613",
-            "688",
-            "558",
-            "565",
-            "637",
-            "659",
-            "590",
-            "652",
-            "658",
-            "508",
-            "509",
-            "557",
-            "521",
-            "619",
-            "679",
-            "534",
-            "544",
-            "516",
-            "546",
-            "548",
-            "573",
-            "673",
-            "675",
-            "672",
-            "596",
-            "603",
-            "614",
-            "621",
-            "626"
-          ]
+          "type": "string"
         },
         "lastTreatmentFacility": {
           "type": "object",
@@ -378,6 +251,22 @@
               ]
             }
           }
+        },
+        "signature": {
+          "$ref": "#/definitions/signature"
+        },
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "consent-to-caregivers-to-perform-care"
+            ]
+          }
         }
       }
     },
@@ -386,16 +275,11 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship",
-        "medicaidEnrolled",
-        "medicareEnrolled",
-        "tricareEnrolled",
-        "champvaEnrolled"
+        "hasHealthInsurance"
       ],
       "properties": {
         "fullName": {
@@ -425,22 +309,30 @@
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
         },
-        "medicaidEnrolled": {
+        "hasHealthInsurance": {
           "type": "boolean"
         },
-        "medicareEnrolled": {
-          "type": "boolean"
+        "signature": {
+          "$ref": "#/definitions/signature"
         },
-        "tricareEnrolled": {
-          "type": "boolean"
-        },
-        "champvaEnrolled": {
-          "type": "boolean"
-        },
-        "otherHealthInsuranceName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "at-least-18-years-of-age",
+              "member-of-veterans-family",
+              "not-member-of-veterans-family",
+              "currently-or-will-reside-with-veteran--as-primary",
+              "agree-to-perform-services--as-primary",
+              "understand-revocable-status--as-primary",
+              "have-understanding-of-non-employment-relationship"
+            ]
+          }
         }
       }
     },
@@ -449,9 +341,7 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship"
@@ -483,6 +373,28 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
+        },
+        "signature": {
+          "$ref": "#/definitions/signature"
+        },
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "at-least-18-years-of-age",
+              "member-of-veterans-family",
+              "not-member-of-veterans-family",
+              "currently-or-will-reside-with-veteran--as-secondary",
+              "agree-to-perform-services--as-secondary",
+              "understand-revocable-status--as-secondary",
+              "have-understanding-of-non-employment-relationship"
+            ]
+          }
         }
       }
     },
@@ -491,9 +403,7 @@
       "additionalProperties": false,
       "required": [
         "fullName",
-        "ssnOrTin",
         "dateOfBirth",
-        "gender",
         "address",
         "primaryPhoneNumber",
         "vetRelationship"
@@ -525,8 +435,33 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
+        },
+        "signature": {
+          "$ref": "#/definitions/signature"
+        },
+        "certifications": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "enum": [
+              "information-is-correct-and-true",
+              "at-least-18-years-of-age",
+              "member-of-veterans-family",
+              "not-member-of-veterans-family",
+              "currently-or-will-reside-with-veteran--as-secondary",
+              "agree-to-perform-services--as-secondary",
+              "understand-revocable-status--as-secondary",
+              "have-understanding-of-non-employment-relationship"
+            ]
+          }
         }
       }
+    },
+    "poaAttachmentId": {
+      "$ref": "#/definitions/uuid"
     }
   }
 }

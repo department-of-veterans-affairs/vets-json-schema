@@ -27,7 +27,8 @@ describe('all schema tests', () => {
     if (!schemas.hasOwnProperty(k)) continue;
 
     // skip "checkObjectTypes" for these dist files used as enums
-    if (['definitions', 'constants', 'vaMedicalFacilities', 'caregiverProgramFacilities'].includes(k)) continue;
+    if (['HLR-CREATE-REQUEST-BODY_V1', 'HLR-CREATE-RESPONSE-200_V1','HLR-SHOW-RESPONSE-200_V1', 'definitions', 
+         'constants', 'vaMedicalFacilities', 'caregiverProgramFacilities', 'form1010cgCertifications'].includes(k)) continue;
 
     // skip "checkObjectTypes" for dist files that contains "-example" (used for example data) AND does not contain "schema"
     if (k.indexOf('-example') > -1 && k.indexOf('schema') === -1) continue;

@@ -1,12 +1,13 @@
 {
   "name": "vets-json-schema",
-  "version": "7.3.3",
+  "version": "20.15.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
   },
   "scripts": {
     "build": "node src/start build",
+    "postinstall": "node ./script/check-node-version.js",
     "test": "mocha 'test/**/*.spec.js'",
     "test:all-schemas": "mocha 'test/common/all-schemas.spec.js'",
     "watch": "node src/start watch",
@@ -24,26 +25,37 @@
     "dist"
   ],
   "devDependencies": {
-    "@babel/core": "^7.11.0",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/register": "^7.10.5",
+    "@babel/core": "^7.13.13",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/register": "^7.13.8",
     "ajv": "^4.5.0",
     "chai": "^3.5.0",
-    "danger": "^10.3.0",
+    "chalk": "^4.1.2",
+    "danger": "^10.6.4",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-chai-expect": "^2.2.0",
     "eslint-plugin-fp": "^2.3.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-mocha": "^6.3.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.2.5",
+    "eslint-plugin-prettier": "^3.3.1",
     "jsonfile": "^2.3.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "mocha": "^3.0.2",
     "node-watch": "^0.4.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "semver": "^7.3.2"
   },
-  "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme"
+  "engines": {
+    "node": ">=14.15.0"
+  },
+  "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme",
+  "resolutions": {
+    "**/debug": "^3.1.0",
+    "**/diff": "^3.5.0",
+    "**/growl": "1.10.2",
+    "**/minimist": "^1.2.3"
+  },
+  "dependencies": {}
 }

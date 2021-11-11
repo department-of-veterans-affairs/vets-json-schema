@@ -64,6 +64,12 @@ const schema = {
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
+    expectedReleaseDate: {
+      $ref: '#/definitions/date',
+    },
+    expectedActiveDutyStatusChange: {
+      type: 'boolean',
+    },
     emailAddress: {
       $ref: '#/definitions/email',
     },
@@ -128,7 +134,7 @@ const schema = {
               city: {
                 type: 'string',
                 maxLength: 30,
-                pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$",
+                ...definitions.rejectOnlyWhitespace,
               },
               state: {
                 type: 'string',

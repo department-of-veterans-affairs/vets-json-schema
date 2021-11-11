@@ -21,7 +21,6 @@ let sharedTests = new SharedTests(schemaTestHelper);
 describe('transfer benefits schema', () => {
   [
     'gender',
-    'phone',
     'email',
     'bankAccount',
     'educationProgram',
@@ -41,6 +40,8 @@ describe('transfer benefits schema', () => {
   sharedTests.runTest('address', ['relativeAddress', 'veteranAddress']);
 
   sharedTests.runTest('date', ['relativeDateOfBirth', 'highSchoolOrGedCompletionDate']);
+
+  sharedTests.runTest('usaPhone', ['homePhone', 'mobilePhone']);
 
   schemaTestHelper.testValidAndInvalid('benefit', {
     valid: ['chapter33'],

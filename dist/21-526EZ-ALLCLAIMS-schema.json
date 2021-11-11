@@ -538,20 +538,6 @@
         "to"
       ]
     },
-    "dateRangeFromRequired": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
-        },
-        "to": {
-          "$ref": "#/definitions/date"
-        }
-      },
-      "required": [
-        "from"
-      ]
-    },
     "ratedDisabilities": {
       "type": "array",
       "maxItems": 100,
@@ -654,31 +640,38 @@
             "type": "string"
           },
           "primaryDescription": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 400
           },
           "causedByDisability": {
             "type": "string"
           },
           "causedByDisabilityDescription": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 400
           },
           "specialIssues": {
             "$ref": "#/definitions/specialIssues"
           },
           "worsenedDescription": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 50
           },
           "worsenedEffects": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 350
           },
           "vaMistreatmentDescription": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 350
           },
           "vaMistreatmentLocation": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 25
           },
           "vaMistreatmentDate": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 25
           }
         }
       }
@@ -861,9 +854,6 @@
         }
       }
     },
-    "servedInCombatZonePost911": {
-      "type": "boolean"
-    },
     "confinements": {
       "type": "array",
       "minItems": 1,
@@ -1045,7 +1035,7 @@
             "pattern": "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$"
           },
           "treatmentDateRange": {
-            "$ref": "#/definitions/dateRangeFromRequired"
+            "$ref": "#/definitions/dateRange"
           },
           "treatmentCenterAddress": {
             "$ref": "#/definitions/vaTreatmentCenterAddress"

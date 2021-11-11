@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "type": "contestableIssue",
+      "id": "string",
+      "attributes": {
+        "ratingIssueReferenceId": "string",
+        "ratingIssueProfileDate": "2020-08-31",
+        "ratingIssueDiagnosticCode": "string",
+        "ratingDecisionReferenceId": "string",
+        "decisionIssueId": 0,
+        "approxDecisionDate": "2020-08-31",
+        "description": "string",
+        "rampClaimId": "string",
+        "titleOfActiveReview": "string",
+        "sourceReviewType": "string",
+        "timely": true,
+        "latestIssuesInChain": [
+          {
+            "id": "string",
+            "approxDecisionDate": "2020-08-31"
+          }
+        ],
+        "ratingIssueSubjectText": "string",
+        "ratingIssuePercentNumber": "string",
+        "isRating": true
+      }
+    }
+  ]
+}

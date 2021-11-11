@@ -11,7 +11,7 @@ const schema = {
     bankAccount: definitions.bankAccount,
     email: definitions.email,
     fullName: definitions.fullName,
-    phone: definitions.phone,
+    usaPhone: definitions.usaPhone,
     ssn: definitions.ssn,
     privacyAgreementAccepted: definitions.privacyAgreementAccepted,
     usaStates: definitions.usAddress.properties.state,
@@ -32,6 +32,9 @@ const schema = {
     },
     isPursuingTeachingCert: {
       type: 'boolean',
+    },
+    isPursuingClinicalTraining: {
+      "type": "boolean"
     },
     benefitLeft: {
       type: 'string',
@@ -69,10 +72,10 @@ const schema = {
       $ref: '#/definitions/email',
     },
     homePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     mobilePhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/usaPhone',
     },
     preferredContactMethod: {
       type: 'string',
@@ -88,6 +91,9 @@ const schema = {
       type: 'boolean',
     },
     scoEmailSent: {
+      type: 'boolean',
+    },
+    receiveTexts: {
       type: 'boolean',
     },
   },

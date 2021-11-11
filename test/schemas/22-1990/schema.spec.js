@@ -33,7 +33,6 @@ describe('education benefits json schema', () => {
     'educationType',
     'educationProgram',
     'nonMilitaryJobs',
-    'secondaryContact',
     'toursOfDuty',
     'currentlyActiveDuty'
   ].forEach((test) => {
@@ -42,7 +41,7 @@ describe('education benefits json schema', () => {
 
   sharedTests.runTest('address', ['veteranAddress', 'secondaryContact.address']);
 
-  sharedTests.runTest('phone', ['homePhone', 'mobilePhone', 'secondaryContact.phone']);
+  sharedTests.runTest('usaPhone', ['homePhone', 'mobilePhone', 'secondaryContact.phone']);
 
   context('serviceAcademyGraduationYear validations', () => {
     schemaTestHelper.testValidAndInvalid('serviceAcademyGraduationYear', {

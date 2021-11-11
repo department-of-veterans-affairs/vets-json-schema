@@ -233,8 +233,7 @@
     },
     "email": {
       "type": "string",
-      "minLength": 6,
-      "maxLength": 80,
+      "maxLength": 256,
       "format": "email"
     },
     "fullName": {
@@ -269,9 +268,9 @@
         "last"
       ]
     },
-    "phone": {
+    "usaPhone": {
       "type": "string",
-      "minLength": 10
+      "pattern": "^\\d{10}$"
     },
     "ssn": {
       "type": "string",
@@ -372,6 +371,9 @@
       "type": "boolean"
     },
     "isPursuingTeachingCert": {
+      "type": "boolean"
+    },
+    "isPursuingClinicalTraining": {
       "type": "boolean"
     },
     "benefitLeft": {
@@ -643,10 +645,10 @@
       "$ref": "#/definitions/email"
     },
     "homePhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "mobilePhone": {
-      "$ref": "#/definitions/phone"
+      "$ref": "#/definitions/usaPhone"
     },
     "preferredContactMethod": {
       "type": "string",
@@ -667,6 +669,9 @@
       "type": "boolean"
     },
     "scoEmailSent": {
+      "type": "boolean"
+    },
+    "receiveTexts": {
       "type": "boolean"
     }
   },

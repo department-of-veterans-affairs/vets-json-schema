@@ -145,7 +145,6 @@ const schema = {
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
-    dateRangeFromRequired: _.set('required', ['from'], definitions.dateRange),
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -172,30 +171,37 @@ const schema = {
           },
           primaryDescription: {
             type: 'string',
+            maxLength: 400,
           },
           causedByDisability: {
             type: 'string',
           },
           causedByDisabilityDescription: {
             type: 'string',
+            maxLength: 400,
           },
           specialIssues: {
             $ref: '#/definitions/specialIssues',
           },
           worsenedDescription: {
             type: 'string',
+            maxLength: 50,
           },
           worsenedEffects: {
             type: 'string',
+            maxLength: 350,
           },
           vaMistreatmentDescription: {
             type: 'string',
+            maxLength: 350,
           },
           vaMistreatmentLocation: {
             type: 'string',
+            maxLength: 25,
           },
           vaMistreatmentDate: {
             type: 'string',
+            maxLength: 25,
           },
         },
       },
@@ -355,9 +361,6 @@ const schema = {
         },
       },
     },
-    servedInCombatZonePost911: {
-      type: 'boolean',
-    },
     confinements: {
       type: 'array',
       minItems: 1,
@@ -492,7 +495,7 @@ const schema = {
             pattern: "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$",
           },
           treatmentDateRange: {
-            $ref: '#/definitions/dateRangeFromRequired',
+            $ref: '#/definitions/dateRange',
           },
           treatmentCenterAddress: {
             $ref: '#/definitions/vaTreatmentCenterAddress',

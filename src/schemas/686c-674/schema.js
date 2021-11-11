@@ -1,13 +1,17 @@
 import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
 import pick from 'lodash/pick';
-import { countries, states50AndDC } from '../../common/constants';
+import { countries, states } from '../../common/constants';
 import commonDefinitions from '../../common/definitions';
 
 // patterns
 const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
 
 const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
+
+// filter out military states
+const militaryStates = ['AA', 'AE', 'AP'];
+const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
 
 let definitions = cloneDeep(commonDefinitions);
 definitions = pick(definitions, 'fullName', 'phone', 'date', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
@@ -30,8 +34,8 @@ const schema = {
         },
         state: {
           type: 'string',
-          enum: states50AndDC.map(state => state.value),
-          enumNames: states50AndDC.map(state => state.label),
+          enum: filteredStates.map(state => state.value),
+          enumNames: filteredStates.map(state => state.label),
         },
         city: {
           type: 'string',
@@ -95,8 +99,8 @@ const schema = {
         },
         stateCode: {
           type: 'string',
-          enum: states50AndDC.map(state => state.value),
-          enumNames: states50AndDC.map(state => state.label),
+          enum: filteredStates.map(state => state.value),
+          enumNames: filteredStates.map(state => state.label),
         },
         province: {
           type: 'string',
@@ -206,18 +210,31 @@ const schema = {
                       adopted: {
                         $ref: '#/definitions/genericTrueFalse',
                       },
-                      notCapable: {
-                        $ref: '#/definitions/genericTrueFalse',
-                      },
                       stepchild: {
                         $ref: '#/definitions/genericTrueFalse',
                       },
                       dateBecameDependent: {
                         $ref: '#/definitions/date',
                       },
+                      stepchildParent: {
+                        $ref: '#/definitions/fullName',
+                      },
+                      ssn: {
+                        $ref: '#/definitions/ssn',
+                      },
+                      birthDate: {
+                        $ref: '#/definitions/date',
+                      },
                     },
                   },
                   'view:childStatusInformation': {
+                    type: 'object',
+                    properties: {},
+                  },
+                  notSelfSufficient: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
+                  'view:notSelfSufficientDescription': {
                     type: 'object',
                     properties: {},
                   },
@@ -240,6 +257,9 @@ const schema = {
                         $ref: '#/definitions/genericTextInput',
                       },
                     },
+                  },
+                  childIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
                   },
                 },
               },
@@ -281,7 +301,19 @@ const schema = {
               type: 'object',
               properties: {},
             },
-            supportingDocuments: {
+            childEvidenceDocumentType: {
+              type: 'string',
+              enum: ['13', '25', '58', '59', '663', '10'],
+              enumNames: [
+                'Adoption Decree',
+                'Birth Certificate',
+                'Medical Treatment Record - Government Facility',
+                'Medical Treatment Record - Non-Government Facility',
+                'Medical Opinion',
+                'Unknown',
+              ],
+            },
+            childSupportingDocuments: {
               $ref: '#/definitions/files',
             },
           },
@@ -356,6 +388,9 @@ const schema = {
             },
             address: {
               $ref: '#/definitions/addressSchema',
+            },
+            spouseIncome: {
+              $ref: '#/definitions/genericTrueFalse',
             },
           },
         },
@@ -470,7 +505,17 @@ const schema = {
               type: 'object',
               properties: {},
             },
-            supportingDocuments: {
+            spouseEvidenceDocumentType: {
+              type: 'string',
+              enum: ['14', '61', '119', '10'],
+              enumNames: [
+                'Affidavit',
+                'Marriage Certificate / License',
+                'VA 21-4171 Supporting Statement Regarding Marriage',
+                'Unknown',
+              ],
+            },
+            spouseSupportingDocuments: {
               $ref: '#/definitions/files',
             },
           },
@@ -483,6 +528,12 @@ const schema = {
       properties: {
         fullName: {
           $ref: '#/definitions/fullName',
+        },
+        ssn: {
+          $ref: '#/definitions/ssn',
+        },
+        birthDate: {
+          $ref: '#/definitions/date',
         },
         date: {
           $ref: '#/definitions/date',
@@ -497,6 +548,9 @@ const schema = {
         },
         explanationOfOther: {
           $ref: '#/definitions/genericTextInput',
+        },
+        spouseIncome: {
+          $ref: '#/definitions/genericTrueFalse',
         },
       },
     },
@@ -515,6 +569,12 @@ const schema = {
                 properties: {
                   fullName: {
                     $ref: '#/definitions/fullName',
+                  },
+                  ssn: {
+                    $ref: '#/definitions/ssn',
+                  },
+                  birthDate: {
+                    $ref: '#/definitions/date',
                   },
                   dependentType: {
                     type: 'string',
@@ -561,6 +621,9 @@ const schema = {
                   location: {
                     $ref: '#/definitions/genericLocation',
                   },
+                  dependentIncome: {
+                    $ref: '#/definitions/genericTrueFalse',
+                  },
                 },
               },
             },
@@ -575,8 +638,17 @@ const schema = {
         fullName: {
           $ref: '#/definitions/fullName',
         },
+        ssn: {
+          $ref: '#/definitions/ssn',
+        },
+        birthDate: {
+          $ref: '#/definitions/date',
+        },
         dateMarried: {
           $ref: '#/definitions/date',
+        },
+        dependentIncome: {
+          $ref: '#/definitions/genericTrueFalse',
         },
       },
     },
@@ -587,8 +659,17 @@ const schema = {
         fullName: {
           $ref: '#/definitions/fullName',
         },
+        ssn: {
+          $ref: '#/definitions/ssn',
+        },
+        birthDate: {
+          $ref: '#/definitions/date',
+        },
         dateChildLeftSchool: {
           $ref: '#/definitions/date',
+        },
+        dependentIncome: {
+          $ref: '#/definitions/genericTrueFalse',
         },
       },
     },
@@ -607,6 +688,12 @@ const schema = {
                 properties: {
                   fullName: {
                     $ref: '#/definitions/fullName',
+                  },
+                  ssn: {
+                    $ref: '#/definitions/ssn',
+                  },
+                  birthDate: {
+                    $ref: '#/definitions/date',
                   },
                 },
               },
@@ -663,6 +750,12 @@ const schema = {
             birthDate: {
               $ref: '#/definitions/date',
             },
+            isParent: {
+              $ref: '#/definitions/genericTrueFalse',
+            },
+            dependentIncome: {
+              $ref: '#/definitions/genericTrueFalse',
+            },
           },
         },
 
@@ -698,6 +791,11 @@ const schema = {
               properties: {
                 name: {
                   $ref: '#/definitions/genericTextInput',
+                },
+                schoolType: {
+                  type: 'string',
+                  enum: ['HighSch', 'College', 'HomeSch'],
+                  enumNames: ['High School', 'Postsecondary', 'Home School'],
                 },
                 trainingProgram: {
                   $ref: '#/definitions/genericTextInput',
@@ -854,6 +952,15 @@ const schema = {
               },
             },
           },
+        },
+      },
+    },
+
+    householdIncome: {
+      type: 'object',
+      properties: {
+        householdIncome: {
+          $ref: '#/definitions/genericTrueFalse',
         },
       },
     },

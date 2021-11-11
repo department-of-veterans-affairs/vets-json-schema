@@ -1,11 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "JSON Schema for VA Form 20-0996",
+  "description": "JSON Schema for VA Form 20-0996 copied from https://github.com/department-of-veterans-affairs/vets-api/blob/master/modules/appeals_api/config/schemas/v1/200996.json",
   "$ref": "#/definitions/hlrCreate",
   "definitions": {
     "nonBlankString": {
       "type": "string",
-      "pattern": "[^ \\f\\n\\r\\t\\v\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]"
+      "pattern": "[^ \\f\\n\\r\\t\\v\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]",
+      "$comment": "The pattern used ensures that a string has at least one non-whitespace character. The pattern comes from JavaScript's \\s character class. \"\\s Matches a single white space character, including space, tab, form feed, line feed, and other Unicode spaces. Equivalent to [ \\f\\n\\r\\t\\v\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff].\": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Character_Classes  We are using simple character classes at JSON Schema's recommendation: https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-4.3"
     },
     "nonBlankStringMaxLength140": {
       "allOf": [
@@ -29,6 +30,9 @@
         },
         "included": {
           "$ref": "#/definitions/hlrCreateIncluded"
+        },
+        "nonPrefill": {
+          "type": "object"
         }
       },
       "additionalProperties": false,
@@ -87,6 +91,7 @@
           ]
         },
         {
+          "$comment": "if informalConference requested, desired times must be included (rep is optional)",
           "type": "object",
           "properties": {
             "informalConference": {
@@ -164,7 +169,9 @@
       ]
     },
     "hlrCreatePhone": {
+      "$comment": "the phone fields must not exceed 20 chars, when concatenated",
       "type": "object",
+      "description": "The phone number of the veteran. Cannot exceed 20 characters when all fields are concatenated.",
       "properties": {
         "countryCode": {
           "type": "string",
@@ -199,12 +206,13 @@
         },
         "emailAddressText": {
           "type": "string",
-          "pattern": ".@.",
+          "format": "email",
           "maxLength": 44
         },
         "timezone": {
           "type": "string",
           "description": "Veteran's timezone (either [IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) or [Rails](https://github.com/rails/rails/blob/master/activesupport/lib/active_support/values/time_zone.rb) style). Used for adding the current date to the signature according to the veteran's local time. If not specified, the current UTC date will be used for the signature (which may be ahead or behind the local date).",
+          "$comment": "Generated using: File.write('timezones.json', (TZInfo::Timezone.all.map(&:name) + ActiveSupport::TimeZone.all.map(&:name)).uniq.sort) #Although this might seem like it should be generated dynamically, it's been written to file in case TZInfo or ActiveSupport deletes/modifies a timezone with a future version, which would change our APIs enum (a non-additve change to the current API version).",
           "enum": [
             "Abu Dhabi",
             "Adelaide",
@@ -962,6 +970,7 @@
       "properties": {
         "zipCode5": {
           "type": "string",
+          "description": "5-digit zipcode. Use \"00000\" if Veteran is outside the United States",
           "pattern": "^[0-9]{5}$"
         }
       },

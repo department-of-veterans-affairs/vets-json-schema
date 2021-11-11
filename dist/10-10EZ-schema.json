@@ -534,8 +534,14 @@
       "enum": [
         "lowDisability",
         "highDisability",
-        "pension",
         "none"
+      ]
+    },
+    "vaPensionType": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
       ]
     },
     "isEssentialAcaCoverage": {
@@ -1607,7 +1613,13 @@
     "isWhite": {
       "type": "boolean"
     },
+    "noAnswer": {
+      "type": "boolean"
+    },
     "veteranAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "veteranHomeAddress": {
       "$ref": "#/definitions/address"
     },
     "email": {
@@ -1711,6 +1723,7 @@
         "merchant seaman",
         "navy",
         "noaa",
+        "space force",
         "usphs",
         "f.commonwealth",
         "f.guerilla",

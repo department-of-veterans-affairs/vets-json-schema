@@ -1,5 +1,15 @@
-// The 20-0996 schema is supplied to us from Lighthouse: https://api.va.gov/services/appeals/v1/decision_reviews/higher_level_reviews/schema
-import schema from './schema.json';
+import { cloneDeep } from 'lodash';
 
-schema.$schema = 'http://json-schema.org/draft-04/schema#';
+const schema = cloneDeep(require('../HLR-create-request-body/schema.js').default);
+
+const { hlrCreate } = schema.definitions;
+
+schema.definitions.hlrCreate = {
+  ...hlrCreate,
+  properties: {
+    ...hlrCreate.properties,
+    nonPrefill: { type: 'object' },
+  },
+};
+
 export default schema;

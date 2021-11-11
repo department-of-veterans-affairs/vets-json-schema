@@ -45,8 +45,7 @@
     },
     "email": {
       "type": "string",
-      "minLength": 6,
-      "maxLength": 80,
+      "maxLength": 256,
       "format": "email"
     },
     "files": {
@@ -549,6 +548,7 @@
           "enum": [
             "AL",
             "AK",
+            "AS",
             "AZ",
             "AR",
             "CA",
@@ -556,8 +556,10 @@
             "CT",
             "DE",
             "DC",
+            "FM",
             "FL",
             "GA",
+            "GU",
             "HI",
             "ID",
             "IL",
@@ -567,6 +569,7 @@
             "KY",
             "LA",
             "ME",
+            "MH",
             "MD",
             "MA",
             "MI",
@@ -582,10 +585,13 @@
             "NY",
             "NC",
             "ND",
+            "MP",
             "OH",
             "OK",
             "OR",
+            "PW",
             "PA",
+            "PR",
             "RI",
             "SC",
             "SD",
@@ -593,6 +599,7 @@
             "TX",
             "UT",
             "VT",
+            "VI",
             "VA",
             "WA",
             "WV",
@@ -602,6 +609,7 @@
           "enumNames": [
             "Alabama",
             "Alaska",
+            "American Samoa",
             "Arizona",
             "Arkansas",
             "California",
@@ -609,8 +617,10 @@
             "Connecticut",
             "Delaware",
             "District Of Columbia",
+            "Federated States Of Micronesia",
             "Florida",
             "Georgia",
+            "Guam",
             "Hawaii",
             "Idaho",
             "Illinois",
@@ -620,6 +630,7 @@
             "Kentucky",
             "Louisiana",
             "Maine",
+            "Marshall Islands",
             "Maryland",
             "Massachusetts",
             "Michigan",
@@ -635,10 +646,13 @@
             "New York",
             "North Carolina",
             "North Dakota",
+            "Northern Mariana Islands",
             "Ohio",
             "Oklahoma",
             "Oregon",
+            "Palau",
             "Pennsylvania",
+            "Puerto Rico",
             "Rhode Island",
             "South Carolina",
             "South Dakota",
@@ -646,6 +660,7 @@
             "Texas",
             "Utah",
             "Vermont",
+            "Virgin Islands",
             "Virginia",
             "Washington",
             "West Virginia",
@@ -1176,6 +1191,7 @@
           "enum": [
             "AL",
             "AK",
+            "AS",
             "AZ",
             "AR",
             "CA",
@@ -1183,8 +1199,10 @@
             "CT",
             "DE",
             "DC",
+            "FM",
             "FL",
             "GA",
+            "GU",
             "HI",
             "ID",
             "IL",
@@ -1194,6 +1212,7 @@
             "KY",
             "LA",
             "ME",
+            "MH",
             "MD",
             "MA",
             "MI",
@@ -1209,10 +1228,13 @@
             "NY",
             "NC",
             "ND",
+            "MP",
             "OH",
             "OK",
             "OR",
+            "PW",
             "PA",
+            "PR",
             "RI",
             "SC",
             "SD",
@@ -1220,6 +1242,7 @@
             "TX",
             "UT",
             "VT",
+            "VI",
             "VA",
             "WA",
             "WV",
@@ -1229,6 +1252,7 @@
           "enumNames": [
             "Alabama",
             "Alaska",
+            "American Samoa",
             "Arizona",
             "Arkansas",
             "California",
@@ -1236,8 +1260,10 @@
             "Connecticut",
             "Delaware",
             "District Of Columbia",
+            "Federated States Of Micronesia",
             "Florida",
             "Georgia",
+            "Guam",
             "Hawaii",
             "Idaho",
             "Illinois",
@@ -1247,6 +1273,7 @@
             "Kentucky",
             "Louisiana",
             "Maine",
+            "Marshall Islands",
             "Maryland",
             "Massachusetts",
             "Michigan",
@@ -1262,10 +1289,13 @@
             "New York",
             "North Carolina",
             "North Dakota",
+            "Northern Mariana Islands",
             "Ohio",
             "Oklahoma",
             "Oregon",
+            "Palau",
             "Pennsylvania",
+            "Puerto Rico",
             "Rhode Island",
             "South Carolina",
             "South Dakota",
@@ -1273,6 +1303,7 @@
             "Texas",
             "Utah",
             "Vermont",
+            "Virgin Islands",
             "Virginia",
             "Washington",
             "West Virginia",
@@ -1404,18 +1435,31 @@
                       "adopted": {
                         "$ref": "#/definitions/genericTrueFalse"
                       },
-                      "notCapable": {
-                        "$ref": "#/definitions/genericTrueFalse"
-                      },
                       "stepchild": {
                         "$ref": "#/definitions/genericTrueFalse"
                       },
                       "dateBecameDependent": {
                         "$ref": "#/definitions/date"
+                      },
+                      "stepchildParent": {
+                        "$ref": "#/definitions/fullName"
+                      },
+                      "ssn": {
+                        "$ref": "#/definitions/ssn"
+                      },
+                      "birthDate": {
+                        "$ref": "#/definitions/date"
                       }
                     }
                   },
                   "view:childStatusInformation": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "notSelfSufficient": {
+                    "$ref": "#/definitions/genericTrueFalse"
+                  },
+                  "view:notSelfSufficientDescription": {
                     "type": "object",
                     "properties": {}
                   },
@@ -1445,6 +1489,9 @@
                         "$ref": "#/definitions/genericTextInput"
                       }
                     }
+                  },
+                  "childIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -1486,7 +1533,26 @@
               "type": "object",
               "properties": {}
             },
-            "supportingDocuments": {
+            "childEvidenceDocumentType": {
+              "type": "string",
+              "enum": [
+                "13",
+                "25",
+                "58",
+                "59",
+                "663",
+                "10"
+              ],
+              "enumNames": [
+                "Adoption Decree",
+                "Birth Certificate",
+                "Medical Treatment Record - Government Facility",
+                "Medical Treatment Record - Non-Government Facility",
+                "Medical Opinion",
+                "Unknown"
+              ]
+            },
+            "childSupportingDocuments": {
               "$ref": "#/definitions/files"
             }
           }
@@ -1570,6 +1636,9 @@
             },
             "address": {
               "$ref": "#/definitions/addressSchema"
+            },
+            "spouseIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             }
           }
         },
@@ -1700,7 +1769,22 @@
               "type": "object",
               "properties": {}
             },
-            "supportingDocuments": {
+            "spouseEvidenceDocumentType": {
+              "type": "string",
+              "enum": [
+                "14",
+                "61",
+                "119",
+                "10"
+              ],
+              "enumNames": [
+                "Affidavit",
+                "Marriage Certificate / License",
+                "VA 21-4171 Supporting Statement Regarding Marriage",
+                "Unknown"
+              ]
+            },
+            "spouseSupportingDocuments": {
               "$ref": "#/definitions/files"
             }
           }
@@ -1712,6 +1796,12 @@
       "properties": {
         "fullName": {
           "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
         },
         "date": {
           "$ref": "#/definitions/date"
@@ -1732,6 +1822,9 @@
         },
         "explanationOfOther": {
           "$ref": "#/definitions/genericTextInput"
+        },
+        "spouseIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1749,6 +1842,12 @@
                 "properties": {
                   "fullName": {
                     "$ref": "#/definitions/fullName"
+                  },
+                  "ssn": {
+                    "$ref": "#/definitions/ssn"
+                  },
+                  "birthDate": {
+                    "$ref": "#/definitions/date"
                   },
                   "dependentType": {
                     "type": "string",
@@ -1802,6 +1901,9 @@
                   },
                   "location": {
                     "$ref": "#/definitions/genericLocation"
+                  },
+                  "dependentIncome": {
+                    "$ref": "#/definitions/genericTrueFalse"
                   }
                 }
               }
@@ -1816,8 +1918,17 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
         "dateMarried": {
           "$ref": "#/definitions/date"
+        },
+        "dependentIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1827,8 +1938,17 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
         "dateChildLeftSchool": {
           "$ref": "#/definitions/date"
+        },
+        "dependentIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     },
@@ -1846,6 +1966,12 @@
                 "properties": {
                   "fullName": {
                     "$ref": "#/definitions/fullName"
+                  },
+                  "ssn": {
+                    "$ref": "#/definitions/ssn"
+                  },
+                  "birthDate": {
+                    "$ref": "#/definitions/date"
                   }
                 }
               }
@@ -1904,6 +2030,12 @@
             },
             "birthDate": {
               "$ref": "#/definitions/date"
+            },
+            "isParent": {
+              "$ref": "#/definitions/genericTrueFalse"
+            },
+            "dependentIncome": {
+              "$ref": "#/definitions/genericTrueFalse"
             }
           }
         },
@@ -1938,6 +2070,19 @@
               "properties": {
                 "name": {
                   "$ref": "#/definitions/genericTextInput"
+                },
+                "schoolType": {
+                  "type": "string",
+                  "enum": [
+                    "HighSch",
+                    "College",
+                    "HomeSch"
+                  ],
+                  "enumNames": [
+                    "High School",
+                    "Postsecondary",
+                    "Home School"
+                  ]
                 },
                 "trainingProgram": {
                   "$ref": "#/definitions/genericTextInput"
@@ -2090,6 +2235,14 @@
               }
             }
           }
+        }
+      }
+    },
+    "householdIncome": {
+      "type": "object",
+      "properties": {
+        "householdIncome": {
+          "$ref": "#/definitions/genericTrueFalse"
         }
       }
     }
