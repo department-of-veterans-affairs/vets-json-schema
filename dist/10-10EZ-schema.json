@@ -399,7 +399,7 @@
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
-    "birthSex": {
+    "gender": {
       "type": "string",
       "enum": [
         "F",

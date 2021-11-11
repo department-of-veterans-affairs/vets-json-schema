@@ -214,7 +214,7 @@ const schema = {
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
     },
-    birthSex: {
+    gender: {
       type: 'string',
       enum: constants.genders.map(option => option.value),
     },
