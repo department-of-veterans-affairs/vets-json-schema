@@ -36,7 +36,7 @@ const personalIdentification = {
     sSN: buildDefinitionReference('ssnLastFour'),
     fileNumber: buildDefinitionReference('ssnLastFour'),
     fsrReason: {
-      type: 'string'
+      type: 'string',
     },
   },
 };
@@ -50,14 +50,14 @@ const personalData = {
     email: buildDefinitionReference('email'),
     dateOfBirth: buildDefinitionReference('date'),
     married: {
-      type: 'boolean'
+      type: 'boolean',
     },
     spouseFullName: buildDefinitionReference('fullName'),
     agesOfOtherDependents: {
       type: 'array',
       items: {
-        type: 'string'
-      }
+        type: 'string',
+      },
     },
     employmentHistory: buildDefinitionReference('employmentHistory'),
   },
@@ -67,7 +67,7 @@ const income = {
   type: 'object',
   properties: {
     veteranORSpouse: {
-      type: 'string'
+      type: 'string',
     },
     monthlyGrossSalary: {
       type: 'string',
@@ -126,8 +126,8 @@ const income = {
         },
       },
       totalMonthlyNetIncome: {
-        type: 'string'
-      }
+        type: 'string',
+      },
     },
   },
 };
@@ -311,17 +311,17 @@ const schema = {
     date: definitions.date,
     nullableDate: definitions.nullableDate,
     ssnLastFour: definitions.ssnLastFour,
-    employmentHistory: employmentHistory,
+    employmentHistory,
   },
   properties: {
-    personalIdentification: personalIdentification,
-    personalData: personalData,
+    personalIdentification,
+    personalData,
     income: incomes,
-    expenses: expenses,
-    discretionaryIncome: discretionaryIncome,
-    assets: assets,
-    installmentContractsAndOtherDebts: installmentContractsAndOtherDebts,
-    additionalData: additionalData,
+    expenses,
+    discretionaryIncome,
+    assets,
+    installmentContractsAndOtherDebts,
+    additionalData,
   },
 };
 

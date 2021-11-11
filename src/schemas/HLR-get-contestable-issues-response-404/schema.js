@@ -19,7 +19,7 @@ const schema = {
       properties: {
         status: { type: 'integer', enum: [404] },
         code: { type: 'string', enum: ['veteran_not_found'] },
-        title: { type: 'string', enum: ['Veteran Not Found']  },
+        title: { type: 'string', enum: ['Veteran Not Found'] },
       },
       required: ['status', 'code', 'title'],
       additionalProperties: false,

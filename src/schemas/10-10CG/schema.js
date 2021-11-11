@@ -31,40 +31,40 @@ const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities).redu
   return acc;
 }, []);
 
-const certificationSchemas = [
-  'veteran',
-  'primaryCaregiver',
-  'secondaryCaregiverOne',
-  'secondaryCaregiverTwo',
-].reduce((certificationSchemasAcc, formSubject) => {
-  const minItemsRequired = formSubject === 'veteran' ? 2 : 6;
-  const maxItemsRequired = formSubject === 'veteran' ? 2 : 7;
+const certificationSchemas = ['veteran', 'primaryCaregiver', 'secondaryCaregiverOne', 'secondaryCaregiverTwo'].reduce(
+  (certificationSchemasAcc, formSubject) => {
+    const minItemsRequired = formSubject === 'veteran' ? 2 : 6;
+    const maxItemsRequired = formSubject === 'veteran' ? 2 : 7;
 
-  const relevantCertificationIds = Object.keys(form1010cgCertifications)
-    .reduce((relevantCertificationIdsAcc, certId) => {
-      const certificationDefinition = form1010cgCertifications[certId];
-      const isAvailableForFormSubject = certificationDefinition.availableFor.indexOf(formSubject) > -1;
+    const relevantCertificationIds = Object.keys(form1010cgCertifications).reduce(
+      (relevantCertificationIdsAcc, certId) => {
+        const certificationDefinition = form1010cgCertifications[certId];
+        const isAvailableForFormSubject = certificationDefinition.availableFor.indexOf(formSubject) > -1;
 
-      if (isAvailableForFormSubject) {
-        relevantCertificationIdsAcc.push(certId);
-      }
+        if (isAvailableForFormSubject) {
+          relevantCertificationIdsAcc.push(certId);
+        }
 
-      return relevantCertificationIdsAcc;
-    }, []);
+        return relevantCertificationIdsAcc;
+      },
+      [],
+    );
 
-  certificationSchemasAcc[formSubject] = {
-    type: 'array',
-    uniqueItems: true,
-    minItems: minItemsRequired,
-    maxItems: maxItemsRequired,
-    items: {
-      type: 'string',
-      enum: relevantCertificationIds,
-    },
-  };
+    certificationSchemasAcc[formSubject] = {
+      type: 'array',
+      uniqueItems: true,
+      minItems: minItemsRequired,
+      maxItems: maxItemsRequired,
+      items: {
+        type: 'string',
+        enum: relevantCertificationIds,
+      },
+    };
 
-  return certificationSchemasAcc;
-}, {});
+    return certificationSchemasAcc;
+  },
+  {},
+);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -72,10 +72,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   required: ['veteran'],
-  anyOf: [
-    { required: ['primaryCaregiver'] },
-    { required: ['secondaryCaregiverOne'] },
-  ],
+  anyOf: [{ required: ['primaryCaregiver'] }, { required: ['secondaryCaregiverOne'] }],
   definitions: {
     fullName: definitions.fullNameNoSuffix,
     ssn: definitions.ssn,
@@ -92,14 +89,7 @@ const schema = {
     veteran: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'ssnOrTin',
-        'dateOfBirth',
-        'address',
-        'primaryPhoneNumber',
-        'plannedClinic'
-      ],
+      required: ['fullName', 'ssnOrTin', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'plannedClinic'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -123,20 +113,13 @@ const schema = {
           },
         },
         signature: buildDefinitionReference('signature'),
-        certifications: certificationSchemas['veteran'],
+        certifications: certificationSchemas.veteran,
       },
     },
     primaryCaregiver: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'dateOfBirth',
-        'address',
-        'primaryPhoneNumber',
-        'vetRelationship',
-        'hasHealthInsurance',
-      ],
+      required: ['fullName', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship', 'hasHealthInsurance'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -149,19 +132,13 @@ const schema = {
         vetRelationship: buildDefinitionReference('vetRelationship'),
         hasHealthInsurance: buildDataType('boolean'),
         signature: buildDefinitionReference('signature'),
-        certifications: certificationSchemas['primaryCaregiver'],
+        certifications: certificationSchemas.primaryCaregiver,
       },
     },
     secondaryCaregiverOne: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'dateOfBirth',
-        'address',
-        'primaryPhoneNumber',
-        'vetRelationship',
-      ],
+      required: ['fullName', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -173,19 +150,13 @@ const schema = {
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
         signature: buildDefinitionReference('signature'),
-        certifications: certificationSchemas['secondaryCaregiverOne'],
+        certifications: certificationSchemas.secondaryCaregiverOne,
       },
     },
     secondaryCaregiverTwo: {
       type: 'object',
       additionalProperties: false,
-      required: [
-        'fullName',
-        'dateOfBirth',
-        'address',
-        'primaryPhoneNumber',
-        'vetRelationship',
-      ],
+      required: ['fullName', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
@@ -197,7 +168,7 @@ const schema = {
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
         signature: buildDefinitionReference('signature'),
-        certifications: certificationSchemas['secondaryCaregiverTwo'],
+        certifications: certificationSchemas.secondaryCaregiverTwo,
       },
     },
     poaAttachmentId: buildDefinitionReference('uuid'),
