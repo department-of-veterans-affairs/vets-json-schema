@@ -1,4 +1,4 @@
-yarn lint:fix
-yarn lint:fix
-yarn lint:fix
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
 yarn lint-staged

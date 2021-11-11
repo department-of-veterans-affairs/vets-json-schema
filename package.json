@@ -21,6 +21,9 @@
       "pre-commit": "yarn lint:fix && yarn build"
     }
   },
+  "lint-staged": {
+    "*.(js|jsx)": "eslint --fix"
+  },
   "main": "dist/schemas.js",
   "files": [
     "dist"
