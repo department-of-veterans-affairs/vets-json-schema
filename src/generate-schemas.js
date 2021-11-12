@@ -6,7 +6,7 @@ import constants from './common/constants';
 import vaMedicalFacilities from './common/va-medical-facilities';
 import caregiverProgramFacilities from './common/caregiver-program-facilities';
 import form1010cgCertifications from './common/form-10-10cg-certifications';
-import { dist_examples as distExamples } from './examples.js';
+import { dist_examples as distExamples } from './examples';
 
 const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities, form1010cgCertifications };
 

@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash';
 
-const schema = cloneDeep(require('../HLR-create-request-body/schema.js').default);
+const schema = cloneDeep(require('../HLR-create-request-body/schema').default);
 
 const definitions = {
   root: {

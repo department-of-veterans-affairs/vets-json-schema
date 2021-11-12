@@ -1,6 +1,5 @@
 import definitions from '../../common/definitions';
 import form1010cgCertifications from '../../common/form-10-10cg-certifications';
-import { caregiverProgramFacilities } from '../../common/constants';
 
 const buildDataType = (type, additionals = {}) => {
   return { type, ...additionals };
@@ -21,16 +20,6 @@ const vetRelationships = [
   'Friend/Neighbor',
   'Grandchild',
 ];
-
-const caregiverProgramFacilityIds = Object.keys(caregiverProgramFacilities).reduce((acc, stateId) => {
-  const stateFacilities = caregiverProgramFacilities[stateId];
-  const facilityIds = stateFacilities.map(facility => facility.code);
-
-  Array.prototype.push.apply(acc, facilityIds);
-
-  return acc;
-}, []);
-
 const certificationSchemas = ['veteran', 'primaryCaregiver', 'secondaryCaregiverOne', 'secondaryCaregiverTwo'].reduce(
   (certificationSchemasAcc, formSubject) => {
     const minItemsRequired = formSubject === 'veteran' ? 2 : 6;
@@ -50,6 +39,7 @@ const certificationSchemas = ['veteran', 'primaryCaregiver', 'secondaryCaregiver
       [],
     );
 
+    // eslint-disable-next-line no-param-reassign
     certificationSchemasAcc[formSubject] = {
       type: 'array',
       uniqueItems: true,

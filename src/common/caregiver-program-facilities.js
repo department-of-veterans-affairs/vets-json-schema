@@ -66,7 +66,9 @@ Object.keys(caregiverFacilitesCodesByState).forEach(stateId => {
     );
 
     if (!matchingVaMedicalFacility) {
-      throw `The code ${targetFacilityCode} was not found in "vaMedicalFacilities". Add this facility to the "caregiverProgramFacilities" manually.`;
+      throw Error(
+        `The code ${targetFacilityCode} was not found in "vaMedicalFacilities". Add this facility to the "caregiverProgramFacilities" manually.`,
+      );
     }
 
     return {
