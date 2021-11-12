@@ -16,11 +16,6 @@
     "lint:changed": "LIST=`git diff-index --name-only HEAD | grep \"\\.js[x]\\{0,1\\}$\"`; if [ \"$LIST\" ]; then eslint --fix --quiet $LIST; fi",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:fix && yarn build"
-    }
-  },
   "lint-staged": {
     "*.(js|jsx)": "yarn lint:fix"
   },
@@ -62,6 +57,5 @@
     "**/diff": "^3.5.0",
     "**/growl": "1.10.2",
     "**/minimist": "^1.2.3"
-  },
-  "dependencies": {}
+  }
 }
