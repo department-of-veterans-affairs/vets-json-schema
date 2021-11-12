@@ -1,3 +1,7 @@
+/* eslint-disable no-unreachable */
+/* eslint-disable no-use-before-define */
+/* eslint-disable camelcase */
+
 import Fs from 'fs';
 import Path from 'path';
 
