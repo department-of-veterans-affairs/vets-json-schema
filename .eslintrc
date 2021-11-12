@@ -3,16 +3,8 @@
     "browser": true,
     "es6": true
   },
-  "extends": [
-    "airbnb-base",
-    "plugin:prettier/recommended"
-  ],
-  "plugins": [
-    "fp",
-    "chai-expect",
-    "mocha",
-    "prettier"
-  ],
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "plugins": ["fp", "chai-expect", "mocha", "prettier"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
@@ -25,23 +17,7 @@
   "rules": {
     // Override airbnb style.
     "prettier/prettier": "error",
-    "camelcase": [
-      2,
-      {
-        "properties": "always"
-      }
-    ],
-    "eol-last": [
-      "error",
-      "always"
-    ],
-    "no-multiple-empty-lines": [
-      "error",
-      {
-        "max": 1,
-        "maxEOF": 0
-      }
-    ],
+    "camelcase": [2, { "properties": "always" }],
     "fp/no-proxy": 2, // IE 11 has not polyfill for Proxy
     "func-names": 2,
     "import/no-extraneous-dependencies": 0,
@@ -51,24 +27,19 @@
     "import/no-cycle": 0,
     "import/prefer-default-export": 0,
     "no-underscore-dangle": 0, // We have build flags that use this
-    "import/no-dynamic-require": 0,
+    "import/no-dynamic-require":  0,
     "global-require": 0,
     "import/named": 0,
     "no-unused-vars": [
       2,
-      {
-        "args": "after-used",
-        "argsIgnorePattern": "^_",
-        "vars": "local"
-      }
+      { "args": "after-used", "argsIgnorePattern": "^_", "vars": "local" }
     ],
-    "no-restricted-imports": [
-      "error",
-      "raven"
-    ],
+    "no-restricted-imports": ["error", "raven"],
     "prefer-rest-params": 2,
+
     // Additional plugins
     "mocha/no-exclusive-tests": 2,
+
     // this is the airbnb default, minus for..of
     "no-restricted-syntax": [
       2,
