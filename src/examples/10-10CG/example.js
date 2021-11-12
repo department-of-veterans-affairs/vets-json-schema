@@ -6,10 +6,7 @@ const example = {
     address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
     primaryPhoneNumber: '8887775544',
     plannedClinic: '740',
-    certifications: [
-      'information-is-correct-and-true',
-      'consent-to-caregivers-to-perform-care',
-    ],
+    certifications: ['information-is-correct-and-true', 'consent-to-caregivers-to-perform-care'],
   },
   primaryCaregiver: {
     fullName: { first: 'Joan', last: 'Doe' },

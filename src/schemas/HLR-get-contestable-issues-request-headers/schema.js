@@ -1,4 +1,4 @@
-import definitions from '../../common/definitions.js';
+import definitions from '../../common/definitions';
 
 const { ssn, requiredDate } = definitions;
 
