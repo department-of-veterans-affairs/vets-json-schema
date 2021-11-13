@@ -274,6 +274,9 @@ const schema = {
     isWhite: {
       type: 'boolean',
     },
+    hasDemographicNoAnswer: {
+      type: 'boolean',
+    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },

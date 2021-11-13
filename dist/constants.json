@@ -2234,28 +2234,28 @@
   ],
   "sigiGenders": [
     {
-      "label": "Woman",
-      "value": "F"
-    },
-    {
       "label": "Man",
       "value": "M"
     },
     {
-      "label": "Transgender woman",
-      "value": "TF"
+      "label": "Woman",
+      "value": "F"
+    },
+    {
+      "label": "Nonbinary",
+      "value": "NB"
     },
     {
       "label": "Transgender man",
       "value": "TM"
     },
     {
-      "label": "A gender not listed here",
-      "value": "O"
+      "label": "Transgender woman",
+      "value": "TF"
     },
     {
-      "label": "Nonbinary",
-      "value": "NB"
+      "label": "A gender not listed here",
+      "value": "O"
     },
     {
       "label": "Prefer not to answer",

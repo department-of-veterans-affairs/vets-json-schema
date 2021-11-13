@@ -409,12 +409,12 @@
     "sigiGenders": {
       "type": "string",
       "enum": [
-        "F",
         "M",
-        "TF",
-        "TM",
-        "O",
+        "F",
         "NB",
+        "TM",
+        "TF",
+        "O",
         "NA"
       ]
     },
@@ -1623,6 +1623,9 @@
       "type": "boolean"
     },
     "isWhite": {
+      "type": "boolean"
+    },
+    "hasDemographicNoAnswer": {
       "type": "boolean"
     },
     "veteranAddress": {
