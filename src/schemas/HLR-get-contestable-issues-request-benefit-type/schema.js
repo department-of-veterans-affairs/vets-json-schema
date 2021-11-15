@@ -1,10 +1,10 @@
-import schema from '../HLR-create-request-body/schema';
+import schema from '../HLR-create-request-body/schema.js';
 
-const benefitTypeSchema = schema.definitions.hlrCreateBenefitType;
+const benefit_type_schema = schema['definitions']['hlrCreateBenefitType'];
 
-if (!benefitTypeSchema) throw Error('benefit_type_schema missing');
+if (!benefit_type_schema) throw 'benefit_type_schema missing';
 
 export default {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  ...benefitTypeSchema,
+  ...benefit_type_schema,
 };
