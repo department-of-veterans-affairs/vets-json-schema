@@ -14,7 +14,6 @@ const schema = {
       maxItems: 1,
       items: { $ref: '#/definitions/failed_json_schema' },
     },
-    // eslint-disable-next-line camelcase
     failed_json_schema: {
       type: 'object',
       properties: {

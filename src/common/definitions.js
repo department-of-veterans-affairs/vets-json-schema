@@ -58,8 +58,9 @@ const usaPostalCode = {
 };
 
 const address = (() => {
-  const countryValues = constants.countries.map(object => object.value);
-  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countryValues, x));
+  // eslint-disable-next-line import/no-named-as-default-member
+  const countries = constants.countries.map(object => object.value);
+  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
   const countryStateProperties = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
