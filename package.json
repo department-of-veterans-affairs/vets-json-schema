@@ -1,6 +1,6 @@
 {
   "name": "vets-json-schema",
-  "version": "20.16.0",
+  "version": "20.15.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
@@ -13,11 +13,7 @@
     "watch": "node src/start watch",
     "lint": "eslint src -c .eslintrc --ext js",
     "lint:fix": "eslint src -c .eslintrc --fix --ext js",
-    "lint:changed": "LIST=`git diff-index --name-only HEAD | grep \"\\.js[x]\\{0,1\\}$\"`; if [ \"$LIST\" ]; then eslint --fix --quiet $LIST; fi",
-    "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*.(js|jsx)": "yarn lint:fix"
+    "lint:changed": "LIST=`git diff-index --name-only HEAD | grep \"\\.js[x]\\{0,1\\}$\"`; if [ \"$LIST\" ]; then eslint --fix --quiet $LIST; fi"
   },
   "main": "dist/schemas.js",
   "files": [
@@ -39,9 +35,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "husky": "^7.0.4",
     "jsonfile": "^2.3.1",
-    "lint-staged": "^11.2.6",
     "lodash": "^4.17.21",
     "mocha": "^3.0.2",
     "node-watch": "^0.4.0",

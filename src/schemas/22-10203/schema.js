@@ -34,7 +34,7 @@ const schema = {
       type: 'boolean',
     },
     isPursuingClinicalTraining: {
-      type: 'boolean',
+      "type": "boolean"
     },
     benefitLeft: {
       type: 'string',

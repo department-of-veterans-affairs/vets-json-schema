@@ -67,7 +67,13 @@ const schema = {
       $ref: '#/definitions/privacyAgreementAccepted',
     },
   },
-  required: ['veteranFullName', 'dateOfBirth', 'veteranSocialSecurityNumber', 'email', 'privacyAgreementAccepted'],
+  required: [
+    'veteranFullName',
+    'dateOfBirth',
+    'veteranSocialSecurityNumber',
+    'email',
+    'privacyAgreementAccepted',
+  ],
 };
 
 export default schema;
