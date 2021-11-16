@@ -218,6 +218,10 @@ const schema = {
       type: 'string',
       enum: constants.genders.map(option => option.value),
     },
+    sigiGenders: {
+      type: 'string',
+      enum: constants.sigiGenders.map(option => option.value),
+    },
     cityOfBirth: {
       type: 'string',
       minLength: 2,
@@ -270,7 +274,7 @@ const schema = {
     isWhite: {
       type: 'boolean',
     },
-    noAnswer: {
+    hasDemographicNoAnswer: {
       type: 'boolean',
     },
     veteranAddress: {

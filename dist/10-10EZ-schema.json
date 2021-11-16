@@ -406,6 +406,18 @@
         "M"
       ]
     },
+    "sigiGenders": {
+      "type": "string",
+      "enum": [
+        "M",
+        "F",
+        "NB",
+        "TM",
+        "TF",
+        "O",
+        "NA"
+      ]
+    },
     "cityOfBirth": {
       "type": "string",
       "minLength": 2,
@@ -1613,7 +1625,7 @@
     "isWhite": {
       "type": "boolean"
     },
-    "noAnswer": {
+    "hasDemographicNoAnswer": {
       "type": "boolean"
     },
     "veteranAddress": {
