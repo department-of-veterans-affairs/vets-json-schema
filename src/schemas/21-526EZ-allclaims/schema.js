@@ -126,7 +126,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'string',
-        enum: ['ALS', 'HEPC', 'POW', 'PTSD/1', 'PTSD/2', 'PTSD/3', 'PTSD/4', 'MST'],
+        enum: ['ALS', 'HEPC', 'POW', 'PTSD/1', 'PTSD/2', 'PTSD/3', 'PTSD/4', 'MST', 'RRD'],
       },
     },
     // Pulling out country and state to avoid the long list duplication
