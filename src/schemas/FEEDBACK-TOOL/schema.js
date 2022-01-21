@@ -272,11 +272,6 @@ const schema = {
               default: false,
               title: 'Tuition Assistance Top-Up',
             },
-            reap: {
-              type: 'boolean',
-              default: false,
-              title: 'Reserve Educational Assistance Program (REAP) (Chapter 1607)',
-            },
             chapter35: {
               type: 'boolean',
               default: false,
