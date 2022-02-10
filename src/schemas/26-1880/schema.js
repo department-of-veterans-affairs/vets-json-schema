@@ -1,166 +1,51 @@
-import { countries, states } from '../../common/constants';
-
-// filter out military states
-const militaryStates = ['AA', 'AE', 'AP'];
-const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
+import definitions from './definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Apply for Certificate of Eligibility (26-1880)',
   type: 'object',
-  additionalProperties: false,
-  definitions: {
-    date: {
-      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
-      type: 'string',
+  additionalProperties: true,
+  definitions,
+  properties: {
+    personalInformation: {
+      type: 'object',
+      properties: {
+        fullName: {
+          $ref: '#/definitions/fullName',
+        },
+        dateOfBirth: {
+          type: 'string',
+          title: 'Date of birth',
+          pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+        },
+      },
+      required: ['dateOfBirth'],
     },
-    files: {
-      type: 'array',
-      items: {
+    contactInformation: {
+      type: 'object',
+      mailingAddress: {
         type: 'object',
         properties: {
-          name: {
-            type: 'string',
-          },
-          size: {
-            type: 'integer',
-          },
-          confirmationCode: {
-            type: 'string',
+          applicantAddress: {
+            $ref: '#/definitions/profileAddress',
           },
         },
       },
-    },
-    profileAddress: {
-      type: 'object',
-      properties: {
-        isMilitary: {
-          type: 'boolean',
+      additionalInformation: {
+        type: 'object',
+        properties: {
+          contactPhone: {
+            $ref: '#/definitions/usaPhone',
+          },
+          contactEmail: {
+            $ref: '#/definitions/email',
+          },
         },
-        country: {
-          type: 'string',
-          enum: countries.filter(country => country.value !== 'USA').map(country => country.value),
-          enumNames: countries.filter(country => country.label !== 'United States').map(country => country.label),
-        },
-        'view:militaryBaseDescription': {
-          type: 'object',
-          properties: {},
-        },
-        street: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 100,
-        },
-        street2: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 100,
-        },
-        street3: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 100,
-        },
-        city: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 100,
-        },
-        state: {
-          type: 'string',
-          enum: filteredStates.map(state => state.value),
-          enumNames: filteredStates.map(state => state.label),
-        },
-        postalCode: {
-          type: 'string',
-        },
-      },
-    },
-    usAddress: {
-      type: 'object',
-      additionalProperties: false,
-      required: ['street', 'city', 'state', 'postalCode'],
-      properties: {
-        street: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 50,
-        },
-        street2: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 50,
-        },
-        city: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 51,
-        },
-        state: {
-          type: 'string',
-          enum: filteredStates.map(state => state.value),
-          enumNames: filteredStates.map(state => state.label),
-        },
-        postalCode: {
-          type: 'string',
-          pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
-        },
-      },
-    },
-    usaPhone: {
-      type: 'string',
-      pattern: '^\\d{10}$',
-    },
-    email: {
-      type: 'string',
-      maxLength: 256,
-      format: 'email',
-    },
-    dateRangeFromRequired: {
-      type: 'object',
-      properties: {
-        from: {
-          $ref: '#/definitions/date',
-        },
-        to: {
-          $ref: '#/definitions/date',
-        },
-      },
-      required: ['from'],
-    },
-  },
-  properties: {
-    applicantInformation: {
-      type: 'object',
-      properties: {},
-    },
-    applicantContactInformation: {
-      type: 'object',
-      properties: {
-        applicantAddress: {
-          $ref: '#/definitions/profileAddress',
-        },
-        phoneNumber: {
-          $ref: '#/definitions/usaPhone',
-        },
-        email: {
-          $ref: '#/definitions/email',
-        },
-      },
-    },
-    communicationPreferences: {
-      type: 'object',
-      properties: {
-        preferredMethod: {
-          type: 'string',
-          enum: ['EMAIL', 'PHONE', 'MAIL'],
-          enumNames: ['Email', 'Phone', 'U.S. Mail'],
-        },
+        required: ['contactPhone', 'contactEmail'],
       },
     },
     serviceStatus: {
       type: 'object',
-      required: ['identity'],
       properties: {
         identity: {
           type: 'string',
@@ -170,30 +55,24 @@ const schema = {
           // DNANA - Discharged National Guard Never Activated
           // DRNA - Discharged Reserves Never Activaed
           enum: ['VETERAN', 'ADSM', 'NADNA', 'DNANA', 'DRNA'],
-          enumNames: [
-            'I’m a Veteran',
-            'I’m an active-duty service member',
-            'I’m a current member of the National Guard or Reserves and was never activated',
-            'I’m a discharged member of the National Guard and was never activated',
-            'I’m a discharged member of the Reserves and was never activated',
-          ],
+          // enumNames are jsx, so we will handle those in vets-website
         },
       },
+      required: ['identity'],
     },
     serviceHistory: {
       type: 'object',
-      required: ['servicePeriods'],
+      required: ['periodsOfService'],
       properties: {
-        servicePeriods: {
+        periodsOfService: {
           type: 'array',
           minItems: 1,
           maxItems: 100,
           items: {
             type: 'object',
             title: 'service period',
-            required: ['serviceBranch', 'dateRange'],
             properties: {
-              serviceBranch: {
+              militaryBranch: {
                 type: 'string',
                 enum: [
                   'Air Force',
@@ -213,9 +92,10 @@ const schema = {
                 ],
               },
               dateRange: {
-                $ref: '#/definitions/dateRangeFromRequired',
+                $ref: '#/definitions/serviceDateRange',
               },
             },
+            required: ['militaryBranch', 'dateRange'],
           },
         },
       },
@@ -226,9 +106,9 @@ const schema = {
     },
     hasExistingLoan: {
       type: 'object',
-      required: ['existingLoan'],
+      required: ['vaLoanIndicator'],
       properties: {
-        existingLoan: {
+        vaLoanIndicator: {
           type: 'boolean',
         },
       },
@@ -239,19 +119,14 @@ const schema = {
         intent: {
           type: 'string',
           enum: ['ONETIMERESTORATION', 'REFI', 'IRRRL', 'INQUIRY'],
-          enumNames: [
-            'A one-time restoration of entitlement to buy another home',
-            'A regular cash-out refinance of a current VA home loan',
-            'An Interest Rate Reduction Refinancing Loan (IRRRL) to refinance the balance of a current VA home loan',
-            'An entitlement inquiry only',
-          ],
+          // enumNames are jsx, so we will handle those in vets-website
         },
       },
     },
     loanHistory: {
       type: 'object',
       properties: {
-        loans: {
+        relevantPriorLoans: {
           type: 'array',
           minItems: 1,
           items: {
@@ -259,12 +134,16 @@ const schema = {
             title: 'Existing VA loan',
             properties: {
               dateRange: {
-                $ref: '#/definitions/dateRangeFromRequired',
+                $ref: '#/definitions/loanDateRange',
               },
-              address: {
-                $ref: '#/definitions/usAddress',
+              propertyAddress: {
+                $ref: '#/definitions/loanAddress',
               },
-              isCurrentlyOwned: {
+              vaLoanNumber: {
+                type: 'number',
+                title: 'VA loan number',
+              },
+              propertyOwned: {
                 type: 'boolean',
               },
               willRefinance: {
