@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Apply for Certificate of Eligibility (26-1880)",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "definitions": {
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
@@ -24,6 +24,38 @@
           }
         }
       }
+    },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffixName": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName"
+      ]
     },
     "profileAddress": {
       "type": "object",
@@ -646,32 +678,32 @@
         }
       }
     },
-    "usAddress": {
+    "loanAddress": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "street",
-        "city",
-        "state",
-        "postalCode"
+        "propertyAddress1",
+        "propertyCity",
+        "propertyState",
+        "propertyZip"
       ],
       "properties": {
-        "street": {
+        "propertyAddress1": {
           "type": "string",
           "minLength": 1,
           "maxLength": 50
         },
-        "street2": {
+        "propertyAddress2": {
           "type": "string",
           "minLength": 1,
           "maxLength": 50
         },
-        "city": {
+        "propertyCity": {
           "type": "string",
           "minLength": 1,
           "maxLength": 51
         },
-        "state": {
+        "propertyState": {
           "type": "string",
           "enum": [
             "AL",
@@ -796,7 +828,7 @@
             "Wyoming"
           ]
         },
-        "postalCode": {
+        "propertyZip": {
           "type": "string",
           "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
         }
@@ -811,7 +843,7 @@
       "maxLength": 256,
       "format": "email"
     },
-    "dateRangeFromRequired": {
+    "serviceDateRange": {
       "type": "object",
       "properties": {
         "from": {
@@ -824,50 +856,67 @@
       "required": [
         "from"
       ]
+    },
+    "loanDateRange": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "$ref": "#/definitions/date"
+        },
+        "paidOffDate": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "startDate"
+      ]
     }
   },
   "properties": {
-    "applicantInformation": {
-      "type": "object",
-      "properties": {}
-    },
-    "applicantContactInformation": {
+    "personalInformation": {
       "type": "object",
       "properties": {
-        "applicantAddress": {
-          "$ref": "#/definitions/profileAddress"
+        "fullName": {
+          "$ref": "#/definitions/fullName"
         },
-        "phoneNumber": {
-          "$ref": "#/definitions/usaPhone"
-        },
-        "email": {
-          "$ref": "#/definitions/email"
-        }
-      }
-    },
-    "communicationPreferences": {
-      "type": "object",
-      "properties": {
-        "preferredMethod": {
+        "dateOfBirth": {
           "type": "string",
-          "enum": [
-            "EMAIL",
-            "PHONE",
-            "MAIL"
-          ],
-          "enumNames": [
-            "Email",
-            "Phone",
-            "U.S. Mail"
-          ]
+          "title": "Date of birth",
+          "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$"
         }
+      },
+      "required": [
+        "dateOfBirth"
+      ]
+    },
+    "contactInformation": {
+      "type": "object",
+      "mailingAddress": {
+        "type": "object",
+        "properties": {
+          "applicantAddress": {
+            "$ref": "#/definitions/profileAddress"
+          }
+        }
+      },
+      "additionalInformation": {
+        "type": "object",
+        "properties": {
+          "contactPhone": {
+            "$ref": "#/definitions/usaPhone"
+          },
+          "contactEmail": {
+            "$ref": "#/definitions/email"
+          }
+        },
+        "required": [
+          "contactPhone",
+          "contactEmail"
+        ]
       }
     },
     "serviceStatus": {
       "type": "object",
-      "required": [
-        "identity"
-      ],
       "properties": {
         "identity": {
           "type": "string",
@@ -877,36 +926,28 @@
             "NADNA",
             "DNANA",
             "DRNA"
-          ],
-          "enumNames": [
-            "I’m a Veteran",
-            "I’m an active-duty service member",
-            "I’m a current member of the National Guard or Reserves and was never activated",
-            "I’m a discharged member of the National Guard and was never activated",
-            "I’m a discharged member of the Reserves and was never activated"
           ]
         }
-      }
+      },
+      "required": [
+        "identity"
+      ]
     },
     "serviceHistory": {
       "type": "object",
       "required": [
-        "servicePeriods"
+        "periodsOfService"
       ],
       "properties": {
-        "servicePeriods": {
+        "periodsOfService": {
           "type": "array",
           "minItems": 1,
           "maxItems": 100,
           "items": {
             "type": "object",
             "title": "service period",
-            "required": [
-              "serviceBranch",
-              "dateRange"
-            ],
             "properties": {
-              "serviceBranch": {
+              "militaryBranch": {
                 "type": "string",
                 "enum": [
                   "Air Force",
@@ -926,9 +967,13 @@
                 ]
               },
               "dateRange": {
-                "$ref": "#/definitions/dateRangeFromRequired"
+                "$ref": "#/definitions/serviceDateRange"
               }
-            }
+            },
+            "required": [
+              "militaryBranch",
+              "dateRange"
+            ]
           }
         }
       }
@@ -940,10 +985,10 @@
     "hasExistingLoan": {
       "type": "object",
       "required": [
-        "existingLoan"
+        "vaLoanIndicator"
       ],
       "properties": {
-        "existingLoan": {
+        "vaLoanIndicator": {
           "type": "boolean"
         }
       }
@@ -958,12 +1003,6 @@
             "REFI",
             "IRRRL",
             "INQUIRY"
-          ],
-          "enumNames": [
-            "A one-time restoration of entitlement to buy another home",
-            "A regular cash-out refinance of a current VA home loan",
-            "An Interest Rate Reduction Refinancing Loan (IRRRL) to refinance the balance of a current VA home loan",
-            "An entitlement inquiry only"
           ]
         }
       }
@@ -971,7 +1010,7 @@
     "loanHistory": {
       "type": "object",
       "properties": {
-        "loans": {
+        "relevantPriorLoans": {
           "type": "array",
           "minItems": 1,
           "items": {
@@ -979,12 +1018,16 @@
             "title": "Existing VA loan",
             "properties": {
               "dateRange": {
-                "$ref": "#/definitions/dateRangeFromRequired"
+                "$ref": "#/definitions/loanDateRange"
               },
-              "address": {
-                "$ref": "#/definitions/usAddress"
+              "propertyAddress": {
+                "$ref": "#/definitions/loanAddress"
               },
-              "isCurrentlyOwned": {
+              "vaLoanNumber": {
+                "type": "number",
+                "title": "VA loan number"
+              },
+              "propertyOwned": {
                 "type": "boolean"
               },
               "willRefinance": {
