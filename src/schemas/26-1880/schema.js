@@ -72,7 +72,7 @@ const schema = {
             type: 'object',
             title: 'service period',
             properties: {
-              militaryBranch: {
+              serviceBranch: {
                 type: 'string',
                 enum: [
                   'Air Force',
@@ -85,17 +85,16 @@ const schema = {
                   'Coast Guard Reserve',
                   'Marine Corps',
                   'Marine Corps Reserve',
-                  'NOAA',
                   'Navy',
                   'Navy Reserve',
-                  'Public Health Service',
+                  'Other',
                 ],
               },
               dateRange: {
                 $ref: '#/definitions/serviceDateRange',
               },
             },
-            required: ['militaryBranch', 'dateRange'],
+            required: ['serviceBranch', 'dateRange'],
           },
         },
       },
