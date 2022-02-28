@@ -3,13 +3,13 @@ export const testData = {
     valid: [
       {
         fullName: {
-          first: 'John',
-          last: 'Doe',
+          firstName: 'John',
+          lastName: 'Doe',
         },
         dateOfBirth: '2001-01-02',
       },
     ],
-    invalid: [],
+    invalid: [{}],
   },
   contactInformation: {
     valid: [
@@ -17,12 +17,12 @@ export const testData = {
         mailingAddress: {
           applicantAddress: {
             isMilitary: false,
-            country: 'US',
+            country: 'AFG',
             street: '123 someplace ave',
-            street2: '',
-            street3: '',
+            street2: 'Unit 1',
+            street3: 'A',
             city: 'Someplace',
-            state: 'Arizona',
+            state: 'AZ',
             postalCode: '12345',
           },
         },
