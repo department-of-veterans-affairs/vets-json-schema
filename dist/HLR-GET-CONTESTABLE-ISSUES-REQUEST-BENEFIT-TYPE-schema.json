@@ -2,15 +2,6 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "string",
   "enum": [
-    "compensation",
-    "pension",
-    "fiduciary",
-    "insurance",
-    "education",
-    "voc_rehab",
-    "loan_guaranty",
-    "vha",
-    "nca"
+    "compensation"
   ]
 }
-

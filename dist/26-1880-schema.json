@@ -947,7 +947,7 @@
             "type": "object",
             "title": "service period",
             "properties": {
-              "militaryBranch": {
+              "serviceBranch": {
                 "type": "string",
                 "enum": [
                   "Air Force",
@@ -960,10 +960,9 @@
                   "Coast Guard Reserve",
                   "Marine Corps",
                   "Marine Corps Reserve",
-                  "NOAA",
                   "Navy",
                   "Navy Reserve",
-                  "Public Health Service"
+                  "Other"
                 ]
               },
               "dateRange": {
@@ -971,7 +970,7 @@
               }
             },
             "required": [
-              "militaryBranch",
+              "serviceBranch",
               "dateRange"
             ]
           }
