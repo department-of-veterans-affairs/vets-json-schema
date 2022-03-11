@@ -37,6 +37,22 @@ const testData = {
       },
     ],
   },
+  appointmentTimes: {
+    valid: [
+      [
+        {
+          morning: true,
+        },
+        {
+          midDay: false,
+        },
+        {
+          afternoon: true,
+        },
+      ],
+    ],
+    invalid: [],
+  },
 };
 
 describe('veteran readiness and employment', () => {
@@ -47,9 +63,7 @@ describe('veteran readiness and employment', () => {
   schemaTestHelper.testValidAndInvalid('isMoving', testData.boolean);
   schemaTestHelper.testValidAndInvalid('useEva', testData.boolean);
   schemaTestHelper.testValidAndInvalid('useTelecounseling', testData.boolean);
-  schemaTestHelper.testValidAndInvalid('appointmentTimePreferences.morning', testData.boolean);
-  schemaTestHelper.testValidAndInvalid('appointmentTimePreferences.midDay', testData.boolean);
-  schemaTestHelper.testValidAndInvalid('appointmentTimePreferences.afternoon', testData.boolean);
+  schemaTestHelper.testValidAndInvalid('appointmentTimePreferences', testData.appointmentTimes);
   schemaTestHelper.testValidAndInvalid('veteranAddress', testData.address);
   schemaTestHelper.testValidAndInvalid('newAddress', testData.address);
 });

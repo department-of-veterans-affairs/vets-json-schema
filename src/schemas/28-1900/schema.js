@@ -60,18 +60,21 @@ const schema = {
     },
     appointmentTimePreferences: {
       type: 'array',
-      properties: {
-        morning: {
-          type: 'boolean',
-          default: false,
-        },
-        midDay: {
-          type: 'boolean',
-          default: false,
-        },
-        afternoon: {
-          type: 'boolean',
-          default: false,
+      items: {
+        type: 'object',
+        properties: {
+          morning: {
+            type: 'boolean',
+            default: false,
+          },
+          midDay: {
+            type: 'boolean',
+            default: false,
+          },
+          afternoon: {
+            type: 'boolean',
+            default: false,
+          },
         },
       },
     },
