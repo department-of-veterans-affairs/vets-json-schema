@@ -59,7 +59,7 @@ const schema = {
       type: 'boolean',
     },
     appointmentTimePreferences: {
-      type: 'object',
+      type: 'array',
       properties: {
         morning: {
           type: 'boolean',
