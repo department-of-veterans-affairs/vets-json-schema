@@ -180,9 +180,6 @@ const schema = {
             'Other',
           ],
         },
-        fileDescription: {
-          type: 'string',
-        },
         files: {
           $ref: '#/definitions/files',
         },
