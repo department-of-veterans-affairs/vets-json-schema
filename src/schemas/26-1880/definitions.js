@@ -44,25 +44,25 @@ const definitions = {
   fullName: {
     type: 'object',
     properties: {
-      firstName: {
+      first: {
         type: 'string',
         minLength: 1,
         maxLength: 30,
       },
-      middleName: {
+      middle: {
         type: 'string',
       },
-      lastName: {
+      last: {
         type: 'string',
         minLength: 1,
         maxLength: 30,
       },
-      suffixName: {
+      suffix: {
         type: 'string',
         enum: ['Jr.', 'Sr.', 'II', 'III', 'IV'],
       },
     },
-    required: ['firstName', 'lastName'],
+    required: ['first', 'last'],
   },
   profileAddress: {
     type: 'object',
