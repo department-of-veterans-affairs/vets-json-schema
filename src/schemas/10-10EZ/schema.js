@@ -431,14 +431,9 @@ const schema = {
     'veteranSocialSecurityNumber',
     'veteranDateOfBirth',
     'gender',
-    'maritalStatus',
     'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
-    'isEnrolledMedicarePartA',
-    'lastServiceBranch',
-    'lastEntryDate',
-    'lastDischargeDate',
   ],
 };
 

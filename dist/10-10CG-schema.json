@@ -462,6 +462,9 @@
     },
     "poaAttachmentId": {
       "$ref": "#/definitions/uuid"
+    },
+    "signAsRepresentative": {
+      "type": "boolean"
     }
   }
 }

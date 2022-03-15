@@ -201,6 +201,7 @@ const schema = {
       },
     },
     poaAttachmentId: buildDefinitionReference('uuid'),
+    signAsRepresentative: buildDataType('boolean'),
   },
 };
 
