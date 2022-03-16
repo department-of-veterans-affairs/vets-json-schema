@@ -164,22 +164,6 @@ const schema = {
     documentUpload: {
       type: 'object',
       properties: {
-        fileType: {
-          type: 'string',
-          enum: [
-            'Discharge or separation papers (DD214)',
-            'Statement of service',
-            'Report of Separation and Record of Service (NGB Form 22)',
-            'Retirement Points Statement (NGB Form 23)',
-            'Proof of honorable service',
-            'Annual retirement points',
-            'Closing Disclosure',
-            'HUD-1 Settlement Statement',
-            'Statement from Loan Servicer',
-            'Alta Statement',
-            'Other',
-          ],
-        },
         files: {
           $ref: '#/definitions/files',
         },
