@@ -434,6 +434,7 @@ const schema = {
     'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
+    'isEssentialAcaCoverage'
   ],
 };
 
