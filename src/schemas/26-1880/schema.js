@@ -14,9 +14,7 @@ const schema = {
           $ref: '#/definitions/fullName',
         },
         dateOfBirth: {
-          type: 'string',
-          title: 'Date of birth',
-          pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+          $ref: '#/definitions/date',
         },
       },
       required: ['dateOfBirth'],
@@ -91,7 +89,7 @@ const schema = {
                 ],
               },
               dateRange: {
-                $ref: '#/definitions/serviceDateRange',
+                $ref: '#/definitions/dateRange',
               },
             },
             required: ['serviceBranch', 'dateRange'],
@@ -130,17 +128,15 @@ const schema = {
           minItems: 1,
           items: {
             type: 'object',
-            title: 'Existing VA loan',
             properties: {
               dateRange: {
-                $ref: '#/definitions/loanDateRange',
+                $ref: '#/definitions/dateRange',
               },
               propertyAddress: {
                 $ref: '#/definitions/loanAddress',
               },
               vaLoanNumber: {
                 type: 'number',
-                title: 'VA loan number',
               },
               propertyOwned: {
                 type: 'boolean',

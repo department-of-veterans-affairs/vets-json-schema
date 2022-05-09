@@ -1,69 +1,15 @@
 import { countries, states } from '../../common/constants';
+import definitions from '../../common/definitions';
 
 // filter out military states
 const militaryStates = ['AA', 'AE', 'AP'];
 const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
 
-const dateRange = (from = 'from', to = 'to') => {
-  return {
-    type: 'object',
-    properties: {
-      [from]: {
-        $ref: '#/definitions/date',
-      },
-      [to]: {
-        $ref: '#/definitions/date',
-      },
-    },
-    required: [from],
-  };
-};
-
-const definitions = {
-  date: {
-    pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
-    type: 'string',
-  },
-  files: {
-    type: 'array',
-    items: {
-      type: 'object',
-      properties: {
-        name: {
-          type: 'string',
-        },
-        size: {
-          type: 'integer',
-        },
-        confirmationCode: {
-          type: 'string',
-        },
-      },
-    },
-  },
-  fullName: {
-    type: 'object',
-    properties: {
-      first: {
-        type: 'string',
-        minLength: 1,
-        maxLength: 30,
-      },
-      middle: {
-        type: 'string',
-      },
-      last: {
-        type: 'string',
-        minLength: 1,
-        maxLength: 30,
-      },
-      suffix: {
-        type: 'string',
-        enum: ['Jr.', 'Sr.', 'II', 'III', 'IV'],
-      },
-    },
-    required: ['first', 'last'],
-  },
+const defs = {
+  date: definitions.date,
+  dateRange: { ...definitions.dateRange, required: ['from'] },
+  files: definitions.files,
+  fullName: definitions.fullName,
   profileAddress: {
     type: 'object',
     properties: {
@@ -149,8 +95,6 @@ const definitions = {
     maxLength: 256,
     format: 'email',
   },
-  serviceDateRange: dateRange(),
-  loanDateRange: dateRange('startDate', 'paidOffDate'),
 };
 
-export default definitions;
+export default defs;
