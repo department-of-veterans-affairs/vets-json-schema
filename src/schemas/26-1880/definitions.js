@@ -1,15 +1,15 @@
 import { countries, states } from '../../common/constants';
-import definitions from '../../common/definitions';
+import commonDefinitions from '../../common/definitions';
 
 // filter out military states
 const militaryStates = ['AA', 'AE', 'AP'];
 const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
 
-const defs = {
-  date: definitions.date,
-  dateRange: { ...definitions.dateRange, required: ['from'] },
-  files: definitions.files,
-  fullName: definitions.fullName,
+const definitions = {
+  date: commonDefinitions.date,
+  dateRange: { ...commonDefinitions.dateRange, required: ['from'] },
+  files: commonDefinitions.files,
+  fullName: commonDefinitions.fullName,
   profileAddress: {
     type: 'object',
     properties: {
@@ -97,4 +97,4 @@ const defs = {
   },
 };
 
-export default defs;
+export default definitions;
