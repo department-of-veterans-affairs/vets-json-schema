@@ -363,7 +363,7 @@ const data = {
       "Associate's degree",
       'Bachelor’s degree',
       'Master’s degree',
-      'Doctoral degre',
+      'Doctoral degree',
       'Other',
     ],
     invalid: [null, 123, 'foo', {}],
