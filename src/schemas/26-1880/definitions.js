@@ -35,11 +35,6 @@ const definitions = {
         minLength: 1,
         maxLength: 100,
       },
-      street3: {
-        type: 'string',
-        minLength: 1,
-        maxLength: 100,
-      },
       city: {
         type: 'string',
         minLength: 1,
@@ -52,6 +47,7 @@ const definitions = {
       },
       postalCode: {
         type: 'string',
+        pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
       },
     },
   },
