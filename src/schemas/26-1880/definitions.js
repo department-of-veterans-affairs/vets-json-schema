@@ -52,6 +52,7 @@ const definitions = {
       },
       postalCode: {
         type: 'string',
+        pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
       },
     },
   },
