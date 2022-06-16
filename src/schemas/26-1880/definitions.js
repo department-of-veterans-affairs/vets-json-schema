@@ -35,11 +35,6 @@ const definitions = {
         minLength: 1,
         maxLength: 100,
       },
-      street3: {
-        type: 'string',
-        minLength: 1,
-        maxLength: 100,
-      },
       city: {
         type: 'string',
         minLength: 1,
