@@ -5,11 +5,11 @@ const schema = cloneDeep(require('../NOD-create-request-body_v1/schema.js').defa
 const definitions = {
   root: {
     type: 'object',
-    properties: { data: { $ref: '#/definitions/nodData' } },
+    properties: { data: { $ref: '#/definitions/data' } },
     required: ['data'],
     additionalProperties: false,
   },
-  nodData: {
+  data: {
     type: 'object',
     properties: {
       id: { $ref: '#/definitions/uuid' },
@@ -20,7 +20,7 @@ const definitions = {
           status: { $ref: '#/definitions/nodStatus' },
           updatedAt: { $ref: '#/definitions/timeStamp' },
           createdAt: { $ref: '#/definitions/timeStamp' },
-          formData: { $ref: '#/definitions/nodCreateRoot' },
+          formData: { $ref: '#/definitions/nodCreate' },
         },
         required: ['status', 'updatedAt', 'createdAt', 'formData'],
         additionalProperties: false,

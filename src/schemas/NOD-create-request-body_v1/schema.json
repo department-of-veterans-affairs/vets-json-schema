@@ -6,26 +6,10 @@
     "address": {
       "type": "object",
       "properties": {
-        "addressLine1": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 60
-        },
-        "addressLine2": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "addressLine3": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 10
-        },
-        "city": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 60
-        },
+        "addressLine1": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "addressLine2": { "type": "string", "minLength": 1, "maxLength": 30 },
+        "addressLine3": { "type": "string", "minLength": 1, "maxLength": 10 },
+        "city": { "type": "string", "minLength": 1, "maxLength": 60 },
         "stateCode": {
           "type": "string",
           "enum": [
@@ -93,12 +77,7 @@
             "WY"
           ]
         },
-        "countryCodeISO2": {
-          "type": "string",
-          "pattern": "^[A-Z]{2}$",
-          "minLength": 2,
-          "maxLength": 2
-        },
+        "countryCodeISO2": { "type": "string", "pattern": "^[A-Z]{2}$", "minLength": 2, "maxLength": 2 },
         "zipCode5": {
           "type": "string",
           "description": "5-digit zipcode. Use \"00000\" if address is outside the United States",
@@ -106,47 +85,18 @@
           "minLength": 5,
           "maxLength": 5
         },
-        "internationalPostalCode": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 16
-        }
+        "internationalPostalCode": { "type": "string", "minLength": 1, "maxLength": 16 }
       },
       "required": ["addressLine1", "city", "countryCodeISO2", "zipCode5"]
     },
-    "date": {
-      "type": "string",
-      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-      "maxLength": 10,
-      "minLength": 10
-    },
+    "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "maxLength": 10, "minLength": 10 },
     "phone": {
       "type": "object",
       "properties": {
-        "countryCode": {
-          "type": "string",
-          "pattern": "^[0-9]+$",
-          "minLength": 1,
-          "maxLength": 3
-        },
-        "areaCode": {
-          "type": "string",
-          "pattern": "^[0-9]{1,4}$",
-          "minLength": 1,
-          "maxLength": 4
-        },
-        "phoneNumber": {
-          "type": "string",
-          "pattern": "^[0-9]{1,14}$",
-          "minLength": 1,
-          "maxLength": 14
-        },
-        "phoneNumberExt": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9]{1,10}$",
-          "minLength": 1,
-          "maxLength": 10
-        }
+        "countryCode": { "type": "string", "pattern": "^[0-9]+$", "minLength": 1, "maxLength": 3 },
+        "areaCode": { "type": "string", "pattern": "^[0-9]{1,4}$", "minLength": 1, "maxLength": 4 },
+        "phoneNumber": { "type": "string", "pattern": "^[0-9]{1,14}$", "minLength": 1, "maxLength": 14 },
+        "phoneNumberExt": { "type": "string", "pattern": "^[a-zA-Z0-9]{1,10}$", "minLength": 1, "maxLength": 10 }
       },
       "required": ["areaCode", "phoneNumber"]
     },
@@ -904,62 +854,35 @@
         "data": {
           "type": "object",
           "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["noticeOfDisagreement"]
-            },
+            "type": { "type": "string", "enum": ["noticeOfDisagreement"] },
             "attributes": {
               "type": "object",
               "properties": {
                 "veteran": {
                   "type": "object",
                   "properties": {
-                    "homeless": {
-                      "type": "boolean"
-                    },
-                    "address": {
-                      "$ref": "#/definitions/address"
-                    },
-                    "phone": {
-                      "$ref": "https://dev-api.va.gov/internal/docs/appeals-decision-reviews/v2/openapi.json#/definitions/phone"
-                    },
-                    "email": {
-                      "type": "string",
-                      "format": "email",
-                      "minLength": 6,
-                      "maxLength": 255
-                    },
+                    "homeless": { "type": "boolean" },
+                    "address": { "$ref": "#/definitions/address" },
+                    "phone": { "allOf": [{ "$ref": "#/definitions/phone" }, {}] },
+                    "email": { "type": "string", "format": "email", "minLength": 6, "maxLength": 255 },
                     "timezone": {
-                      "description": "Veteran's timezone. Used for adding the current date to the signature according to the veteran's local time. If not specified, the current UTC date will be used for the signature (which may be ahead or behind the local date).",
-                      "$ref": "https://dev-api.va.gov/internal/docs/appeals-decision-reviews/v2/openapi.json#/definitions/timezone"
+                      "allOf": [
+                        {
+                          "description": "Veteran's timezone. Used for adding the current date to the signature according to the veteran's local time. If not specified, the current UTC date will be used for the signature (which may be ahead or behind the local date)."
+                        },
+                        { "$ref": "#/definitions/timezone" }
+                      ]
                     }
                   },
                   "required": ["homeless", "phone", "email"],
-                  "if": {
-                    "properties": {
-                      "homeless": {
-                        "const": false
-                      }
-                    }
-                  },
-                  "then": {
-                    "required": ["address"]
-                  }
+                  "if": { "properties": { "homeless": { "const": false } } },
+                  "then": { "required": ["address"] }
                 },
                 "representative": {
                   "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 120
-                    }
-                  }
+                  "properties": { "name": { "type": "string", "minLength": 1, "maxLength": 120 } }
                 },
-                "boardReviewOption": {
-                  "type": "string",
-                  "enum": ["direct_review", "evidence_submission", "hearing"]
-                },
+                "boardReviewOption": { "type": "string", "enum": ["direct_review", "evidence_submission", "hearing"] },
                 "hearingTypePreference": {
                   "type": "string",
                   "enum": ["virtual_hearing", "video_conference", "central_office"]
@@ -980,16 +903,8 @@
                 }
               },
               "required": ["boardReviewOption"],
-              "if": {
-                "properties": {
-                  "requestingExtension": {
-                    "const": true
-                  }
-                }
-              },
-              "then": {
-                "required": ["extensionReason"]
-              }
+              "if": { "properties": { "requestingExtension": { "const": true } } },
+              "then": { "required": ["extensionReason"] }
             }
           },
           "required": ["type", "attributes"]
@@ -999,38 +914,16 @@
           "items": {
             "type": "object",
             "properties": {
-              "type": {
-                "type": "string",
-                "enum": ["contestableIssue"]
-              },
+              "type": { "type": "string", "enum": ["contestableIssue"] },
               "attributes": {
                 "type": "object",
                 "properties": {
-                  "issue": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 180
-                  },
-                  "decisionDate": {
-                    "$ref": "#/definitions/date"
-                  },
-                  "decisionIssueId": {
-                    "type": "integer"
-                  },
-                  "ratingIssueReferenceId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255
-                  },
-                  "ratingDecisionReferenceId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255
-                  },
-                  "disagreementArea": {
-                    "type": "string",
-                    "maxLength": 90
-                  }
+                  "issue": { "type": "string", "minLength": 1, "maxLength": 180 },
+                  "decisionDate": { "$ref": "#/definitions/date" },
+                  "decisionIssueId": { "type": "integer" },
+                  "ratingIssueReferenceId": { "type": "string", "minLength": 1, "maxLength": 255 },
+                  "ratingDecisionReferenceId": { "type": "string", "minLength": 1, "maxLength": 255 },
+                  "disagreementArea": { "type": "string", "maxLength": 90 }
                 },
                 "required": ["issue", "decisionDate"]
               }
