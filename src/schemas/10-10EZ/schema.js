@@ -222,6 +222,10 @@ const schema = {
       type: 'string',
       enum: constants.sigiGenders.map(option => option.value),
     },
+    countryOfBirth: {
+      type: 'string',
+      enum: countries,
+    },
     cityOfBirth: {
       type: 'string',
       minLength: 2,
