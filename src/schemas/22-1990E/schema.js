@@ -6,7 +6,7 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR FAMILY MEMBER TO USE TRANSFERRED BENEFITS (22-1990E)',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   definitions: _.pick(
     definitions,
     'privacyAgreementAccepted',
