@@ -4,10 +4,6 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "year": {
-      "type": "integer",
-      "minimum": 1900
-    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -248,10 +244,6 @@
         "last"
       ]
     },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
-    },
     "bankAccount": {
       "type": "object",
       "properties": {
@@ -289,6 +281,14 @@
       "enum": [
         true
       ]
+    },
+    "internationalPhone": {
+      "type": "string",
+      "pattern": "^\\d{10,15}$"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900
     }
   },
   "properties": {
@@ -350,10 +350,10 @@
       "type": "boolean"
     },
     "mobilePhoneNumber": {
-      "$ref": "#/definitions/usaPhone"
+      "$ref": "#/definitions/internationalPhone"
     },
     "phoneNumber": {
-      "$ref": "#/definitions/usaPhone"
+      "$ref": "#/definitions/internationalPhone"
     },
     "email": {
       "type": "string",
@@ -383,9 +383,9 @@
     }
   },
   "required": [
+    "bankAccount",
     "dateOfBirth",
-    "userFullName",
     "email",
-    "bankAccount"
+    "userFullName"
   ]
 }
