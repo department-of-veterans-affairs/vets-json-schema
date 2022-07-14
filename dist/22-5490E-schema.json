@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
+  "title": "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490E)",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
