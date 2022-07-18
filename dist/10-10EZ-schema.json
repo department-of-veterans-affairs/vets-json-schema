@@ -1730,7 +1730,8 @@
     },
     "medicareClaimNumber": {
       "type": "string",
-      "minLength": 11
+      "minLength": 11,
+      "maxLength": 11
     },
     "lastServiceBranch": {
       "type": "string",
