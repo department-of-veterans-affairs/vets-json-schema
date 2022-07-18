@@ -1174,12 +1174,9 @@
         "submitting",
         "submitted",
         "processing",
-        "error",
-        "uploaded",
-        "received",
         "success",
-        "vbms",
-        "expired"
+        "complete",
+        "error"
       ]
     }
   }

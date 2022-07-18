@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash';
 
-const schema = cloneDeep(require('../HLR-create-request-body_v1/schema.js').default);
+const schema = cloneDeep(require('../HLR-create-request-body_v1/schema').default);
 
 const definitions = {
   root: {
@@ -39,18 +39,7 @@ const definitions = {
   },
   hlrStatus: {
     type: 'string',
-    enum: [
-      'pending',
-      'submitting',
-      'submitted',
-      'processing',
-      'error',
-      'uploaded',
-      'received',
-      'success',
-      'vbms',
-      'expired',
-    ],
+    enum: ['pending', 'submitting', 'submitted', 'processing', 'success', 'complete', 'error'],
   },
 };
 
