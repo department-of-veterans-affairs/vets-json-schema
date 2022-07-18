@@ -1,1 +1,1 @@
-export default require('../NOD-show-response-200_v1/schema.js').default;
+export default require('../NOD-show-response-200_v1/schema').default;
