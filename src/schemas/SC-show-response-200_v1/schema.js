@@ -1,0 +1,49 @@
+import { cloneDeep } from 'lodash';
+
+const schema = cloneDeep(require('../SC-create-request-body_v1/schema').default);
+
+const definitions = {
+  root: {
+    type: 'object',
+    properties: { data: { $ref: '#/definitions/data' } },
+    required: ['data'],
+    additionalProperties: false,
+  },
+  data: {
+    type: 'object',
+    properties: {
+      id: { $ref: '#/definitions/uuid' },
+      type: { type: 'string', enum: ['supplementalClaim'] },
+      attributes: {
+        type: 'object',
+        properties: {
+          status: { $ref: '#/definitions/scStatus' },
+          updatedAt: { $ref: '#/definitions/timeStamp' },
+          createdAt: { $ref: '#/definitions/timeStamp' },
+          formData: { $ref: '#/definitions/scCreate' },
+        },
+        required: ['status', 'updatedAt', 'createdAt', 'formData'],
+        additionalProperties: false,
+      },
+    },
+    required: ['id', 'type', 'attributes'],
+    additionalProperties: false,
+  },
+  uuid: {
+    type: 'string',
+    pattern: '^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$',
+  },
+  timeStamp: {
+    type: 'string',
+    pattern: '\\d{4}(-\\d{2}){2}T\\d{2}(:\\d{2}){2}.\\d{3}Z',
+  },
+  scStatus: {
+    type: 'string',
+    enum: ['pending', 'submitting', 'submitted', 'success', 'processing', 'error', 'complete'],
+  },
+};
+
+schema.definitions = { ...schema.definitions, ...definitions };
+schema.$ref = '#/definitions/root';
+
+export default schema;
