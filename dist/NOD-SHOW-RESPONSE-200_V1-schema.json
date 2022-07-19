@@ -1167,10 +1167,10 @@
         "pending",
         "submitting",
         "submitted",
-        "success",
         "processing",
-        "error",
-        "caseflow"
+        "success",
+        "complete",
+        "error"
       ]
     }
   }

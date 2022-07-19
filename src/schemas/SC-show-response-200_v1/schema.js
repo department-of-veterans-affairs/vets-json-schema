@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash';
 
-const schema = cloneDeep(require('../HLR-create-request-body_v1/schema').default);
+const schema = cloneDeep(require('../SC-create-request-body_v1/schema').default);
 
 const definitions = {
   root: {
@@ -13,14 +13,14 @@ const definitions = {
     type: 'object',
     properties: {
       id: { $ref: '#/definitions/uuid' },
-      type: { type: 'string', enum: ['higherLevelReview'] },
+      type: { type: 'string', enum: ['supplementalClaim'] },
       attributes: {
         type: 'object',
         properties: {
-          status: { $ref: '#/definitions/hlrStatus' },
+          status: { $ref: '#/definitions/scStatus' },
           updatedAt: { $ref: '#/definitions/timeStamp' },
           createdAt: { $ref: '#/definitions/timeStamp' },
-          formData: { $ref: '#/definitions/hlrCreate' },
+          formData: { $ref: '#/definitions/scCreate' },
         },
         required: ['status', 'updatedAt', 'createdAt', 'formData'],
         additionalProperties: false,
@@ -37,9 +37,9 @@ const definitions = {
     type: 'string',
     pattern: '\\d{4}(-\\d{2}){2}T\\d{2}(:\\d{2}){2}.\\d{3}Z',
   },
-  hlrStatus: {
+  scStatus: {
     type: 'string',
-    enum: ['pending', 'submitting', 'submitted', 'processing', 'success', 'complete', 'error'],
+    enum: ['pending', 'submitting', 'submitted', 'success', 'processing', 'error', 'complete'],
   },
 };
 
