@@ -1,12 +1,12 @@
 import jsonfile from 'jsonfile';
 import fs from 'fs';
+import path from 'path';
 import definitions from './common/definitions';
 import constants from './common/constants';
 import vaMedicalFacilities from './common/va-medical-facilities';
 import caregiverProgramFacilities from './common/caregiver-program-facilities';
 import form1010cgCertifications from './common/form-10-10cg-certifications';
-import path from 'path';
-import { dist_examples as distExamples } from './examples.js';
+import { dist_examples as distExamples } from './examples';
 
 const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities, form1010cgCertifications };
 
