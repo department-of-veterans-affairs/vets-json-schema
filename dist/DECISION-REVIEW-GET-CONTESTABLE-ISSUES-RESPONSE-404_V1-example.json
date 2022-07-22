@@ -1,11 +1,9 @@
 {
   "errors": [
     {
-      "status": "404",
-      "title": "Veteran not found",
-      "detail": "A veteran with that SSN was not found in our systems."
+      "status": 404,
+      "code": "veteran_not_found",
+      "title": "Veteran Not Found"
     }
-  ],
-  "code": 404,
-  "source": "Appeals Caseflow"
+  ]
 }
