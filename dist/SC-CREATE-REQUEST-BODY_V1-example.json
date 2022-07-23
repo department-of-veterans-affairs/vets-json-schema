@@ -20,7 +20,9 @@
       },
       "socOptIn": false,
       "evidenceSubmission": {
-        "evidenceType": ["upload"]
+        "evidenceType": [
+          "upload"
+        ]
       }
     }
   },
