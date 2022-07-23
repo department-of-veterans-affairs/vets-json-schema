@@ -1,0 +1,47 @@
+{
+  "data": {
+    "id": "00000000-1111-2222-3333-444444444444",
+    "type": "supplementalClaim",
+    "attributes": {
+      "status": "pending",
+      "updatedAt": "2020-01-02T03:04:05.067Z",
+      "createdAt": "2020-01-02T03:04:05.067Z",
+      "formData": {
+        "data": {
+          "type": "supplementalClaim",
+          "attributes": {
+            "benefitType": "fiduciary",
+            "claimantType": "veteran",
+            "veteran": {
+              "address": {
+                "addressLine1": "123 Main St",
+                "city": "New York",
+                "countryCodeISO2": "US",
+                "zipCode5": "30012"
+              },
+              "phone": {
+                "areaCode": "555",
+                "phoneNumber": "8001111"
+              },
+              "email": "josie@example.com",
+              "timezone": "America/Chicago"
+            },
+            "socOptIn": false,
+            "evidenceSubmission": {
+              "evidenceType": ["upload"]
+            }
+          }
+        },
+        "included": [
+          {
+            "type": "contestableIssue",
+            "attributes": {
+              "issue": "right shoulder",
+              "decisionDate": "1900-01-06"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
