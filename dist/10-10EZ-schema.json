@@ -1729,9 +1729,7 @@
       "$ref": "#/definitions/date"
     },
     "medicareClaimNumber": {
-      "type": "string",
-      "minLength": 11,
-      "maxLength": 11
+      "type": "string"
     },
     "lastServiceBranch": {
       "type": "string",

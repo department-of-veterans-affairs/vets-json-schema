@@ -381,8 +381,6 @@ const schema = {
     },
     medicareClaimNumber: {
       type: 'string',
-      minLength: 11,
-      maxLength: 11,
     },
     lastServiceBranch: {
       type: 'string',
