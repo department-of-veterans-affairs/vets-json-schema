@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "string",
+  "description": "If the contested issue is a Disability Compensation issue, acknowledgement of form 5103 is required - see form5103Acknowledged.",
+  "enum": [
+    "compensation",
+    "pensionSurvivorsBenefits",
+    "fiduciary",
+    "lifeInsurance",
+    "veteransHealthAdministration",
+    "veteranReadinessAndEmployment",
+    "loanGuaranty",
+    "education",
+    "nationalCemeteryAdministration"
+  ]
+}
