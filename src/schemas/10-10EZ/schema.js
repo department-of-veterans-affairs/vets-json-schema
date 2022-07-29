@@ -2,7 +2,9 @@ import _ from 'lodash';
 import constants from '../../common/constants';
 import schemaHelpers from '../../common/schema-helpers';
 import definitions from '../../common/definitions';
+import { states50AndDC } from '../../common/address';
 
+const stateOfBirth = _.map(states50AndDC, state => state.value).concat(['Other']);
 const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
 // eslint-disable-next-line import/no-named-as-default-member
 const countries = constants.countries.map(object => object.value);
@@ -229,7 +231,7 @@ const schema = {
     },
     stateOfBirth: {
       type: 'string',
-      enum: states.concat(['Other']),
+      enum: stateOfBirth,
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
