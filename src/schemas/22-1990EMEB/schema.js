@@ -3,7 +3,7 @@ import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490E)",
+  title: 'APPLICATION FOR FAMILY MEMBER TO USE TRANSFERRED BENEFITS (22-1990E)',
   type: 'object',
   additionalProperties: false,
   definitions: _.merge(
@@ -33,25 +33,31 @@ const schema = {
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
-    selectedVeteran: {
+    parentGuardianSponsor: {
       type: 'string',
     },
-    relationshipToVeteran: {
+    selectedSponsors: {
+      type: 'array',
+      // minItems: 1,
+      items: {
+        type: 'string',
+      },
+    },
+    relationshipToServiceMember: {
       type: 'string',
       enum: [
         'Spouse',
         'Child',
       ],
     },
-    veteranFullName: {
+    sponsorFullName: {
       $ref: '#/definitions/fullName',
     },
-    benefitSelection: {
+    sponsorDateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    firstSponsor: {
       type: 'string',
-      enum: [
-        'Fry Scholarship (Chapter 33)',
-        "Survivors’ and Dependents’ Educational Assistance (DEA, Chapter 35)",
-      ],
     },
     highSchoolDiploma: {
       type: 'string',
@@ -62,27 +68,6 @@ const schema = {
     },
     highSchoolDiplomaDate: {
       $ref: '#/definitions/date',
-    },
-    marriageDate: {
-      $ref: '#/definitions/date',
-    },
-    marriageInformation: {
-      type: 'string',
-      enum: [
-        'Married',
-        'Divorced (or a divorce is in progress)',
-        'Marriage was annulled (or annulment is in progress)',
-        'Widowed',
-      ],
-    },
-    remarriage: {
-      type: 'boolean',
-    },
-    remarriageDate: {
-      $ref: '#/definitions/date',
-    },
-    outstandingFelony: {
-      type: 'boolean',
     },
     mobilePhoneNumber: {
       $ref: '#/definitions/internationalPhone',
