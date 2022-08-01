@@ -1728,6 +1728,9 @@
     "medicarePartAEffectiveDate": {
       "$ref": "#/definitions/date"
     },
+    "medicareClaimNumber": {
+      "type": "string"
+    },
     "lastServiceBranch": {
       "type": "string",
       "enum": [
