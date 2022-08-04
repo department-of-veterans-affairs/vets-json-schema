@@ -381,6 +381,10 @@ const schema = {
     medicarePartAEffectiveDate: {
       $ref: '#/definitions/date',
     },
+    medicareClaimNumber: {
+      type: 'string',
+      maxLength: 30,
+    },
     lastServiceBranch: {
       type: 'string',
       enum: constants.branchesServed.map(option => option.value),
@@ -436,7 +440,7 @@ const schema = {
     'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
-    'isEssentialAcaCoverage'
+    'isEssentialAcaCoverage',
   ],
 };
 

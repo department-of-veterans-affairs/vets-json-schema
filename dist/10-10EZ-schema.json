@@ -1673,6 +1673,10 @@
     "medicarePartAEffectiveDate": {
       "$ref": "#/definitions/date"
     },
+    "medicareClaimNumber": {
+      "type": "string",
+      "maxLength": 30
+    },
     "lastServiceBranch": {
       "type": "string",
       "enum": [
