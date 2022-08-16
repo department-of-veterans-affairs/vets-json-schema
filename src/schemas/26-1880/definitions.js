@@ -82,6 +82,11 @@ const definitions = {
       },
     },
   },
+  loanNumber: {
+    type: 'number',
+    minValue: '0',
+    pattern: '^\\d+$',
+  },
   usaPhone: {
     type: 'string',
     pattern: '^\\d{10}$',
