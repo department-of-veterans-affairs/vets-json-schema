@@ -84,7 +84,7 @@ const definitions = {
   },
   loanNumber: {
     type: 'string',
-    pattern: '^\\d[-\\d]+$',
+    pattern: '^\\d[- \\d]+$',
   },
   usaPhone: {
     type: 'string',
