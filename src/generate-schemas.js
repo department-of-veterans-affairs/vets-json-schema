@@ -11,7 +11,6 @@ import { dist_examples as distExamples } from './examples.js';
 const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities, form1010cgCertifications };
 
 fs.readdirSync('src/schemas').forEach(schema => {
-  console.log('schema = ', schema);
   if (schema !== '.DS_Store') {
     jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-schema.json`, require(`./schemas/${schema}/schema`).default, {
       spaces: 2,
