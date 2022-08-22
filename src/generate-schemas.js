@@ -11,16 +11,20 @@ import { dist_examples as distExamples } from './examples.js';
 const files = { definitions, constants, vaMedicalFacilities, caregiverProgramFacilities, form1010cgCertifications };
 
 fs.readdirSync('src/schemas').forEach(schema => {
-  jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-schema.json`, require(`./schemas/${schema}/schema`).default, {
-    spaces: 2,
-  });
+  if (schema !== '.DS_Store') {
+    jsonfile.writeFileSync(`dist/${schema.toUpperCase()}-schema.json`, require(`./schemas/${schema}/schema`).default, {
+      spaces: 2,
+    });
+  }
 });
 
 fs.readdirSync('src/schemas').forEach(schema => {
-  const examples = distExamples(path.resolve(__dirname, '..'), schema);
-  Object.keys(examples).forEach(key => {
-    jsonfile.writeFileSync(`dist/${key}`, examples[key], { spaces: 2 });
-  });
+  if (schema !== '.DS_Store') {
+    const examples = distExamples(path.resolve(__dirname, '..'), schema);
+    Object.keys(examples).forEach(key => {
+      jsonfile.writeFileSync(`dist/${key}`, examples[key], { spaces: 2 });
+    });
+  }
 });
 
 // eslint-disable-next-line guard-for-in,no-restricted-syntax
