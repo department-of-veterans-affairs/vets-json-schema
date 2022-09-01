@@ -82,6 +82,10 @@ const definitions = {
       },
     },
   },
+  loanNumber: {
+    type: 'string',
+    pattern: '^\\d[- \\d]*$',
+  },
   usaPhone: {
     type: 'string',
     pattern: '^\\d{10}$',

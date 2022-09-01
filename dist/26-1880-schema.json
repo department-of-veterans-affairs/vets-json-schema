@@ -844,6 +844,10 @@
         }
       }
     },
+    "loanNumber": {
+      "type": "string",
+      "pattern": "^\\d[- \\d]*$"
+    },
     "usaPhone": {
       "type": "string",
       "pattern": "^\\d{10}$"
@@ -1002,7 +1006,7 @@
                 "$ref": "#/definitions/loanAddress"
               },
               "vaLoanNumber": {
-                "type": "number"
+                "$ref": "#/definitions/loanNumber"
               },
               "propertyOwned": {
                 "type": "boolean"

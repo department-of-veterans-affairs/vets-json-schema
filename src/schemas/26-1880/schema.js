@@ -136,7 +136,7 @@ const schema = {
                 $ref: '#/definitions/loanAddress',
               },
               vaLoanNumber: {
-                type: 'number',
+                $ref: '#/definitions/loanNumber',
               },
               propertyOwned: {
                 type: 'boolean',
