@@ -79,23 +79,6 @@ const schema = {
     preferredContactMethod: {
       $ref: '#/definitions/preferredContactMethod',
     },
-    secondaryContact: {
-      type: 'object',
-      properties: {
-        fullName: {
-          type: 'string',
-        },
-        sameAddress: {
-          type: 'boolean',
-        },
-        address: {
-          $ref: '#/definitions/address',
-        },
-        phone: {
-          $ref: '#/definitions/usaPhone',
-        },
-      },
-    },
     bankAccount: {
       $ref: '#/definitions/bankAccount',
     },
