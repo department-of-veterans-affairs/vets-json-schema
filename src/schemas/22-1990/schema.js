@@ -70,10 +70,10 @@ const schema = {
       type: 'string',
       format: 'email',
     },
-    homePhone: {
+    mobilePhone: {
       $ref: '#/definitions/usaPhone',
     },
-    mobilePhone: {
+    homePhone: {
       $ref: '#/definitions/usaPhone',
     },
     preferredContactMethod: {
