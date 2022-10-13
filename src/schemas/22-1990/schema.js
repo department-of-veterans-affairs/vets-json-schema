@@ -28,7 +28,6 @@ const schema = {
       'educationProgram',
       'preferredContactMethod',
       'privacyAgreementAccepted',
-      'gender',
       'postHighSchoolTrainings',
       'nonMilitaryJobs',
     ]),
@@ -53,9 +52,6 @@ const schema = {
     },
     veteranFullName: {
       $ref: '#/definitions/fullName',
-    },
-    gender: {
-      $ref: '#/definitions/gender',
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
