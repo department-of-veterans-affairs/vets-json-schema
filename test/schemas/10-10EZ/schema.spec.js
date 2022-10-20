@@ -61,12 +61,8 @@ describe('healthcare-application json schema', () => {
       expect(ssnValidation('111223333')).to.be.true;
     });
 
-    it('validates a single properly delemited string of numbers', () => {
-      expect(ssnValidation('111-22-3333')).to.be.true;
-    });
-
     it('does not validate non-numeric values', () => {
-      expect(ssnValidation('aa-22-3333')).to.be.false;
+      expect(ssnValidation('aaa223333')).to.be.false;
     });
   });
 
