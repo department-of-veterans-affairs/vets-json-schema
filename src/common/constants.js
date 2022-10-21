@@ -60,9 +60,9 @@ const genders = [
 ];
 
 const sigiGenders = [
+  { label: 'Non-binary', value: 'NB' },
   { label: 'Man', value: 'M' },
   { label: 'Woman', value: 'F' },
-  { label: 'Nonbinary', value: 'NB' },
   { label: 'Transgender man', value: 'TM' },
   { label: 'Transgender woman', value: 'TF' },
   { label: 'A gender not listed here', value: 'O' },
