@@ -145,7 +145,7 @@ const data = {
       ],
     ],
     invalid: [
-      [{ serviceBranch: 'test', dateRange: fixtures.dateRange }],
+      [{ serviceBranch: 123456, dateRange: fixtures.dateRange }],
       [{ serviceBranch: 'Air Force' }],
       [{ serviceBranch: 'Air Force', dateRange: { from: '2015-01-01' } }],
       [{ dateRange: {} }],
