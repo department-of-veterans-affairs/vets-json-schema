@@ -295,6 +295,22 @@ const schema = {
             properties: {
               serviceBranch: {
                 type: 'string',
+                enum: [
+                  'Air Force',
+                  'Air Force Reserve',
+                  'Air National Guard',
+                  'Army',
+                  'Army National Guard',
+                  'Army Reserve',
+                  'Coast Guard',
+                  'Coast Guard Reserve',
+                  'Marine Corps',
+                  'Marine Corps Reserve',
+                  'NOAA',
+                  'Navy',
+                  'Navy Reserve',
+                  'Public Health Service',
+                ],
               },
               dateRange: {
                 $ref: '#/definitions/dateRangeAllRequired',
