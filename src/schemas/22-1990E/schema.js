@@ -51,10 +51,10 @@ const schema = {
     relativeAddress: {
       $ref: '#/definitions/address',
     },
-    homePhone: {
+    mobilePhone: {
       $ref: '#/definitions/usaPhone',
     },
-    mobilePhone: {
+    homePhone: {
       $ref: '#/definitions/usaPhone',
     },
     email: {
