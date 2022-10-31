@@ -4,9 +4,7 @@ import schemaHelpers from '../../common/schema-helpers';
 import definitions from '../../common/definitions';
 import { states50AndDC } from '../../common/address';
 
-const stateOfBirth = _.map(states50AndDC, state => state.value).concat(['Other']);
-const states = _.uniq(_.flatten(_.values(constants.states)).map(object => object.value));
-// eslint-disable-next-line import/no-named-as-default-member
+const stateOfBirth = [...states50AndDC.map(state => state.value), 'Other'];
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
 const countryStateProperties = _.map(constants.states, (value, key) => ({
@@ -132,6 +130,7 @@ const schema = {
         },
         middle: {
           type: 'string',
+          maxLength: 30,
         },
         last: {
           type: 'string',
@@ -186,18 +185,7 @@ const schema = {
         },
       ],
     },
-    ssn: {
-      oneOf: [
-        {
-          type: 'string',
-          pattern: '^[0-9]{9}$',
-        },
-        {
-          type: 'string',
-          pattern: '^[0-9]{3}-[0-9]{2}-[0-9]{4}$',
-        },
-      ],
-    },
+    ssn: definitions.ssn,
   },
   type: 'object',
   properties: {

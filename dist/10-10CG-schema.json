@@ -33,7 +33,8 @@
           "maxLength": 30
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "last": {
           "type": "string",
@@ -59,11 +60,12 @@
     },
     "phone": {
       "type": "string",
-      "minLength": 10
+      "minLength": 10,
+      "maxLength": 40
     },
     "email": {
       "type": "string",
-      "maxLength": 256,
+      "maxLength": 80,
       "format": "email"
     },
     "address": {
@@ -89,7 +91,7 @@
         "city": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 51
+          "maxLength": 40
         },
         "state": {
           "type": "string",

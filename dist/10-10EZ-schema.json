@@ -277,7 +277,8 @@
           "pattern": "^.*\\S.*"
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "last": {
           "type": "string",
@@ -346,16 +347,8 @@
       ]
     },
     "ssn": {
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^[0-9]{9}$"
-        },
-        {
-          "type": "string",
-          "pattern": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$"
-        }
-      ]
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     },
     "maritalStatus": {
       "type": "string",
@@ -409,9 +402,9 @@
     "sigiGenders": {
       "type": "string",
       "enum": [
+        "NB",
         "M",
         "F",
-        "NB",
         "TM",
         "TF",
         "O",

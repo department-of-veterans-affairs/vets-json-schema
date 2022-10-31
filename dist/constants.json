@@ -2234,16 +2234,16 @@
   ],
   "sigiGenders": [
     {
+      "label": "Non-binary",
+      "value": "NB"
+    },
+    {
       "label": "Man",
       "value": "M"
     },
     {
       "label": "Woman",
       "value": "F"
-    },
-    {
-      "label": "Nonbinary",
-      "value": "NB"
     },
     {
       "label": "Transgender man",
