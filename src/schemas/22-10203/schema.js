@@ -71,15 +71,15 @@ const schema = {
     email: {
       $ref: '#/definitions/email',
     },
-    homePhone: {
+    mobilePhone: {
       $ref: '#/definitions/usaPhone',
     },
-    mobilePhone: {
+    homePhone: {
       $ref: '#/definitions/usaPhone',
     },
     preferredContactMethod: {
       type: 'string',
-      enum: ['mail', 'email', 'homePhone', 'mobilePhone'],
+      enum: ['mail', 'email', 'mobilePhone', 'homePhone'],
     },
     bankAccount: {
       $ref: '#/definitions/bankAccount',
