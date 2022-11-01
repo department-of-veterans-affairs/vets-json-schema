@@ -2,16 +2,6 @@ import _ from 'lodash/fp';
 import { documentTypes526, pciuCountries, pciuStates } from '../../common/constants';
 import definitions from '../../common/definitions';
 
-const serviceBranches = [
-  'Air Force',
-  'Army',
-  'Coast Guard',
-  'Marine Corps',
-  'National Oceanic and Atmospheric Administration',
-  'Navy',
-  'Public Health Service',
-];
-
 const disabilitiesBaseDef = {
   type: 'array',
   maxItems: 100,
@@ -354,7 +344,6 @@ const schema = {
     },
     militaryRetiredPayBranch: {
       type: 'string',
-      enum: serviceBranches,
     },
     waiveRetirementPay: {
       type: 'boolean',
@@ -367,7 +356,6 @@ const schema = {
     },
     separationPayBranch: {
       type: 'string',
-      enum: serviceBranches,
     },
     hasTrainingPay: {
       type: 'boolean',
