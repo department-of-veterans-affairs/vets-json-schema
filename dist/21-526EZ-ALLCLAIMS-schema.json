@@ -785,23 +785,7 @@
             ],
             "properties": {
               "serviceBranch": {
-                "type": "string",
-                "enum": [
-                  "Air Force",
-                  "Air Force Reserve",
-                  "Air National Guard",
-                  "Army",
-                  "Army National Guard",
-                  "Army Reserve",
-                  "Coast Guard",
-                  "Coast Guard Reserve",
-                  "Marine Corps",
-                  "Marine Corps Reserve",
-                  "NOAA",
-                  "Navy",
-                  "Navy Reserve",
-                  "Public Health Service"
-                ]
+                "type": "string"
               },
               "dateRange": {
                 "$ref": "#/definitions/dateRangeAllRequired"
@@ -863,16 +847,7 @@
       }
     },
     "militaryRetiredPayBranch": {
-      "type": "string",
-      "enum": [
-        "Air Force",
-        "Army",
-        "Coast Guard",
-        "Marine Corps",
-        "National Oceanic and Atmospheric Administration",
-        "Navy",
-        "Public Health Service"
-      ]
+      "type": "string"
     },
     "waiveRetirementPay": {
       "type": "boolean"
@@ -884,16 +859,7 @@
       "type": "string"
     },
     "separationPayBranch": {
-      "type": "string",
-      "enum": [
-        "Air Force",
-        "Army",
-        "Coast Guard",
-        "Marine Corps",
-        "National Oceanic and Atmospheric Administration",
-        "Navy",
-        "Public Health Service"
-      ]
+      "type": "string"
     },
     "hasTrainingPay": {
       "type": "boolean"

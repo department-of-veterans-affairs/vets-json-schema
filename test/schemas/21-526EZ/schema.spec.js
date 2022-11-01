@@ -194,7 +194,7 @@ const data = {
       'Navy',
       'Public Health Service',
     ],
-    invalid: ['foo', 1234, null],
+    invalid: [1234, null],
   },
   specialIssues: {
     valid: [['ALS', 'HEPC', 'POW'], ['PTSD/1', 'PTSD/2', 'PTSD/3', 'PTSD/4'], ['MST']],
