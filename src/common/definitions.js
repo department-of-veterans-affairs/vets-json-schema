@@ -314,7 +314,7 @@ const educationType = {
 
 const preferredContactMethod = {
   type: 'string',
-  enum: ['mail', 'email', 'phone', 'mobile'],
+  enum: ['mail', 'email', 'mobile', 'phone'],
 };
 
 const privacyAgreementAccepted = {

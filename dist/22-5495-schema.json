@@ -300,8 +300,8 @@
       "enum": [
         "mail",
         "email",
-        "phone",
-        "mobile"
+        "mobile",
+        "phone"
       ]
     },
     "bankAccount": {
