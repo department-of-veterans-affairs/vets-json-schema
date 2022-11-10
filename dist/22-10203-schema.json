@@ -644,10 +644,10 @@
     "email": {
       "$ref": "#/definitions/email"
     },
-    "homePhone": {
+    "mobilePhone": {
       "$ref": "#/definitions/usaPhone"
     },
-    "mobilePhone": {
+    "homePhone": {
       "$ref": "#/definitions/usaPhone"
     },
     "preferredContactMethod": {
@@ -655,8 +655,8 @@
       "enum": [
         "mail",
         "email",
-        "homePhone",
-        "mobilePhone"
+        "mobilePhone",
+        "homePhone"
       ]
     },
     "bankAccount": {
