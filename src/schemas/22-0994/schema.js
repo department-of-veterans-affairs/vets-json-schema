@@ -73,10 +73,10 @@ const schema = {
     emailAddress: {
       $ref: '#/definitions/email',
     },
-    dayTimePhone: {
+    mobilePhone: {
       $ref: '#/definitions/phone',
     },
-    nightTimePhone: {
+    homePhone: {
       $ref: '#/definitions/phone',
     },
     appliedForVaEducationBenefits: {
@@ -203,7 +203,7 @@ const schema = {
     'dateOfBirth',
     'appliedForVaEducationBenefits',
     'activeDuty',
-    'dayTimePhone',
+    'mobilePhone',
     'emailAddress',
   ],
 };

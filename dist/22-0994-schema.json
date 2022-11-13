@@ -328,10 +328,10 @@
     "emailAddress": {
       "$ref": "#/definitions/email"
     },
-    "dayTimePhone": {
+    "mobilePhone": {
       "$ref": "#/definitions/phone"
     },
-    "nightTimePhone": {
+    "homePhone": {
       "$ref": "#/definitions/phone"
     },
     "appliedForVaEducationBenefits": {
@@ -607,7 +607,7 @@
     "dateOfBirth",
     "appliedForVaEducationBenefits",
     "activeDuty",
-    "dayTimePhone",
+    "mobilePhone",
     "emailAddress"
   ]
 }
