@@ -1,1 +1,1 @@
-export default require('../../schemas/SC-create-request-body_v1/example.json');
+export default require('../../schemas/SC-create-request-body-with-4142_v1/example.json');
