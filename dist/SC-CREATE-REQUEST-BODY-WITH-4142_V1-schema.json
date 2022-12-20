@@ -1210,7 +1210,11 @@
           "uniqueItems": true
         },
         "form4142": {
-          "$ref": "#/definitions/form4142"
+          "type": "object",
+          "required": [],
+          "properties": {
+            "$ref": "#/definitions/form4142"
+          }
         }
       },
       "required": [
