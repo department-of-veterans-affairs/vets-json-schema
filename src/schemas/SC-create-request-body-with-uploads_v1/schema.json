@@ -1147,7 +1147,35 @@
           "properties": {
             "$ref": "#/definitions/form4142"
           }
-        }
+        },
+        "additionalDocument": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "name": {
+                  "type": "string"
+              },
+              "confirmationCode": {
+                  "type": "string"
+              },
+              "attachmentId": {
+                  "type": "string"
+              },
+              "size": {
+                  "type": "integer"
+              },
+              "isEncrypted": {
+                  "type": "boolean"
+              }
+          },
+          "required": [
+              "attachmentId",
+              "confirmationCode",
+              "isEncrypted",
+              "name",
+              "size"
+          ]
+        }          
       },
       "required": ["data", "included"]
     }

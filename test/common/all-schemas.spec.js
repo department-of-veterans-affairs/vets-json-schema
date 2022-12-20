@@ -37,6 +37,7 @@ describe('all schema tests', () => {
         'NOD-SHOW-RESPONSE-200_V1',
         'SC-CREATE-REQUEST-BODY_V1',
         'SC-CREATE-REQUEST-BODY-WITH-4142_V1',
+        'SC-CREATE-REQUEST-BODY-WITH-UPLOADS_V1',
         'SC-CREATE-RESPONSE-200_V1',
         'SC-SHOW-RESPONSE-200_V1',
         'definitions',
