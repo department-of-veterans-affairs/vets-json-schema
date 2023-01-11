@@ -1,0 +1,9 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run: "curl -H 'Authorization: bearer $DANGER_GITHUB_API_TOKEN' https://api.github.com/user"
