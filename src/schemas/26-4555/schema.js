@@ -10,99 +10,55 @@ const schema = {
   title: 'Apply for Specially Adapted Housing Grant (26-4555)',
   type: 'object',
   additionalProperties: false,
-  definitions: pick(definitions, ['date', 'email', 'fullName', 'phone', 'profileAddress', 'ssn', 'vaFileNumber']),
+  definitions: pick(definitions, ['address', 'date', 'email', 'fullName', 'phone', 'ssn', 'vaFileNumber']),
   properties: {
-    // "Step 1"
-    personalChapter: {
+    veteran: {
       type: 'object',
-      // additionalProperties: false,
+      additionalProperties: false,
       properties: {
-        personalPage1: {
-          type: 'object',
-          properties: {
-            fullName: {
-              $ref: '#/definitions/fullName',
-            },
-            birthDate: {
-              $ref: '#/definitions/date',
-            },
-          },
+        fullName: {
+          $ref: '#/definitions/fullName',
         },
-        personalPage2: {
-          type: 'object',
-          properties: {
-            ssn: { $ref: '#/definitions/ssn' },
-            vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
-          },
+        birthDate: {
+          $ref: '#/definitions/date',
         },
+        ssn: { $ref: '#/definitions/ssn' },
+        vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
+        address: { $ref: '#/definitions/address' },
+        homePhone: { $ref: '#/definitions/phone' },
+        mobilePhone: { $ref: '#/definitions/phone' },
+        email: { $ref: '#/definitions/email' },
       },
     },
-    // "Step 2"
-    contactChapter: {
+    previousSahApplication: {
       type: 'object',
-      contactPage1: {
-        type: 'object',
-        properties: {
-          address: { $ref: '#/definitions/profileAddress' },
-        },
-      },
-      contactPage2: {
-        type: 'object',
-        properties: {
-          homePhone: { $ref: '#/definitions/phone' },
-          mobilePhone: { $ref: '#/definitions/phone' },
-          email: { $ref: '#/definitions/email' },
-        },
+      additionalProperties: false,
+      properties: {
+        hasPreviousSahApplication: { type: 'boolean ' },
+        // next 2 props are on a separate, conditional form-page
+        previousSahApplicationDate: { $ref: '#/definitions/date ' },
+        previousSahApplicationAddress: { $ref: '#/definitions/address' },
       },
     },
-    // "Step 3"
-    previousApplicationsChapter: {
+    previousHiApplication: {
       type: 'object',
-      previousSahApplicationPage1: {
-        type: 'object',
-        properties: {
-          hasPreviousSahApplication: { type: 'boolean ' },
-        },
-      },
-      previousSahApplicationPage2: {
-        type: 'object',
-        properties: {
-          previousSahApplicationDate: { $ref: '#/definitions/date ' },
-          previousSahApplicationAddress: { $ref: '#/definitions/address' },
-        },
-      },
-      previousHiApplicationPage1: {
-        type: 'object',
-        properties: {
-          hasPreviousHiApplication: { type: 'boolean' },
-        },
-      },
-      previousHiApplicationPage2: {
-        type: 'object',
-        properties: {
-          previousHiApplicationDate: { $ref: '#/definitions/date ' },
-          previousHiApplicationAddress: { $ref: '#/definitions/profileAddress' },
-        },
+      additionalProperties: false,
+      properties: {
+        hasPreviousHiApplication: { type: 'boolean' },
+        // next 2 props are on a separate, conditional form-page
+        previousHiApplicationDate: { $ref: '#/definitions/date ' },
+        previousHiApplicationAddress: { $ref: '#/definitions/address' },
       },
     },
-    // Step 4
-    livingSituationChapter: {
+    livingSituation: {
       type: 'object',
-      livingSituationPage1: {
-        type: 'object',
-        properties: {
-          isInCareFacility: { type: 'boolean' },
-        },
-      },
-      livingSituationPage2: {
-        type: 'object',
-        properties: {
-          careFacilityName: { type: 'string' },
-          careFacilityAddress: { $ref: '#/definitions/profileAddress' },
-        },
-      },
-      livingSituationPage3: {
-        type: 'object',
+      additionalProperties: false,
+      properties: {
+        isInCareFacility: { type: 'boolean' },
+        // next 2 props are on a separate, conditional form-page
+        careFacilityName: { type: 'string' },
+        careFacilityAddress: { $ref: '#/definitions/address' },
+        // next prop is on an conditional form-page [always shows]
         otherMedicalInformation: { type: 'string' },
       },
     },
