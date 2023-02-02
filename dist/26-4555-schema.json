@@ -267,7 +267,9 @@
     }
   },
   "properties": {
-    "formNumber": "26-4555",
+    "formNumber": {
+      "type": "string"
+    },
     "veteran": {
       "type": "object",
       "additionalProperties": false,

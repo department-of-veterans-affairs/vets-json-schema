@@ -12,7 +12,9 @@ const schema = {
   additionalProperties: false,
   definitions: pick(definitions, ['address', 'date', 'email', 'fullName', 'phone', 'ssn', 'vaFileNumber']),
   properties: {
-    formNumber: '26-4555',
+    formNumber: {
+      type: 'string',
+    },
     veteran: {
       type: 'object',
       additionalProperties: false,
