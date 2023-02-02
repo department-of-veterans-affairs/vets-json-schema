@@ -10,12 +10,13 @@ const schema = {
   title: 'Apply for Specially Adapted Housing Grant (26-4555)',
   type: 'object',
   additionalProperties: false,
-  definitions: pick(definitions, ['address', 'date', 'email', 'fullName', 'phone', 'ssn', 'vaFileNumber']),
+  definitions: pick(definitions, ['date', 'email', 'fullName', 'phone', 'ssn', 'usAddress', 'vaFileNumber']),
   properties: {
     veteran: {
       type: 'object',
       additionalProperties: false,
       properties: {
+        required: ['fullName', 'ssn', 'address', 'homePhone'],
         fullName: {
           $ref: '#/definitions/fullName',
         },
@@ -24,7 +25,7 @@ const schema = {
         },
         ssn: { $ref: '#/definitions/ssn' },
         vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
-        address: { $ref: '#/definitions/address' },
+        address: { $ref: '#/definitions/usAddress' },
         homePhone: { $ref: '#/definitions/phone' },
         mobilePhone: { $ref: '#/definitions/phone' },
         email: { $ref: '#/definitions/email' },
@@ -33,31 +34,34 @@ const schema = {
     previousSahApplication: {
       type: 'object',
       additionalProperties: false,
+      required: ['hasPreviousSahApplication'],
       properties: {
         hasPreviousSahApplication: { type: 'boolean ' },
         // next 2 props are on a separate, conditional form-page
         previousSahApplicationDate: { $ref: '#/definitions/date ' },
-        previousSahApplicationAddress: { $ref: '#/definitions/address' },
+        previousSahApplicationAddress: { $ref: '#/definitions/usAddress' },
       },
     },
     previousHiApplication: {
       type: 'object',
       additionalProperties: false,
+      required: ['hasPreviousHiApplication'],
       properties: {
         hasPreviousHiApplication: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
         previousHiApplicationDate: { $ref: '#/definitions/date ' },
-        previousHiApplicationAddress: { $ref: '#/definitions/address' },
+        previousHiApplicationAddress: { $ref: '#/definitions/usAddress' },
       },
     },
     livingSituation: {
       type: 'object',
       additionalProperties: false,
+      required: ['isInCareFacility'],
       properties: {
         isInCareFacility: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
         careFacilityName: { type: 'string' },
-        careFacilityAddress: { $ref: '#/definitions/address' },
+        careFacilityAddress: { $ref: '#/definitions/usAddress' },
         // next prop is on an conditional form-page [always shows]
         otherMedicalInformation: { type: 'string' },
       },
