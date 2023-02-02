@@ -267,6 +267,7 @@
     }
   },
   "properties": {
+    "formNumber": "26-4555",
     "veteran": {
       "type": "object",
       "additionalProperties": false,
@@ -280,7 +281,7 @@
         "fullName": {
           "$ref": "#/definitions/fullName"
         },
-        "birthDate": {
+        "dateOfBirth": {
           "$ref": "#/definitions/date"
         },
         "ssn": {
@@ -354,11 +355,11 @@
         },
         "careFacilityAddress": {
           "$ref": "#/definitions/address"
-        },
-        "otherMedicalInformation": {
-          "type": "string"
         }
       }
+    },
+    "remarks": {
+      "type": "string"
     }
   }
 }

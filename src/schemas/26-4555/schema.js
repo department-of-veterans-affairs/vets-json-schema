@@ -12,6 +12,7 @@ const schema = {
   additionalProperties: false,
   definitions: pick(definitions, ['address', 'date', 'email', 'fullName', 'phone', 'ssn', 'vaFileNumber']),
   properties: {
+    formNumber: '26-4555',
     veteran: {
       type: 'object',
       additionalProperties: false,
@@ -20,7 +21,7 @@ const schema = {
         fullName: {
           $ref: '#/definitions/fullName',
         },
-        birthDate: {
+        dateOfBirth: {
           $ref: '#/definitions/date',
         },
         ssn: { $ref: '#/definitions/ssn' },
@@ -38,6 +39,7 @@ const schema = {
       properties: {
         hasPreviousSahApplication: { type: 'boolean ' },
         // next 2 props are on a separate, conditional form-page
+        // split from 1 single field on the PDF-form
         previousSahApplicationDate: { $ref: '#/definitions/date ' },
         previousSahApplicationAddress: { $ref: '#/definitions/address' },
       },
@@ -49,6 +51,7 @@ const schema = {
       properties: {
         hasPreviousHiApplication: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
+        // split from 1 single field on the PDF-form
         previousHiApplicationDate: { $ref: '#/definitions/date ' },
         previousHiApplicationAddress: { $ref: '#/definitions/address' },
       },
@@ -60,11 +63,13 @@ const schema = {
       properties: {
         isInCareFacility: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
+        // split from 1 single field on the PDF-form
         careFacilityName: { type: 'string' },
         careFacilityAddress: { $ref: '#/definitions/address' },
-        // next prop is on an conditional form-page [always shows]
-        otherMedicalInformation: { type: 'string' },
       },
+    },
+    remarks: {
+      type: 'string',
     },
   },
 };
