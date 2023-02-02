@@ -10,7 +10,7 @@ const schema = {
   title: 'Apply for Specially Adapted Housing Grant (26-4555)',
   type: 'object',
   additionalProperties: false,
-  definitions: pick(definitions, ['date', 'email', 'fullName', 'phone', 'ssn', 'usAddress', 'vaFileNumber']),
+  definitions: pick(definitions, ['address', 'date', 'email', 'fullName', 'phone', 'ssn', 'vaFileNumber']),
   properties: {
     veteran: {
       type: 'object',
@@ -25,7 +25,7 @@ const schema = {
         },
         ssn: { $ref: '#/definitions/ssn' },
         vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
-        address: { $ref: '#/definitions/usAddress' },
+        address: { $ref: '#/definitions/address' },
         homePhone: { $ref: '#/definitions/phone' },
         mobilePhone: { $ref: '#/definitions/phone' },
         email: { $ref: '#/definitions/email' },
@@ -39,7 +39,7 @@ const schema = {
         hasPreviousSahApplication: { type: 'boolean ' },
         // next 2 props are on a separate, conditional form-page
         previousSahApplicationDate: { $ref: '#/definitions/date ' },
-        previousSahApplicationAddress: { $ref: '#/definitions/usAddress' },
+        previousSahApplicationAddress: { $ref: '#/definitions/address' },
       },
     },
     previousHiApplication: {
@@ -50,7 +50,7 @@ const schema = {
         hasPreviousHiApplication: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
         previousHiApplicationDate: { $ref: '#/definitions/date ' },
-        previousHiApplicationAddress: { $ref: '#/definitions/usAddress' },
+        previousHiApplicationAddress: { $ref: '#/definitions/address' },
       },
     },
     livingSituation: {
@@ -61,7 +61,7 @@ const schema = {
         isInCareFacility: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
         careFacilityName: { type: 'string' },
-        careFacilityAddress: { $ref: '#/definitions/usAddress' },
+        careFacilityAddress: { $ref: '#/definitions/address' },
         // next prop is on an conditional form-page [always shows]
         otherMedicalInformation: { type: 'string' },
       },
