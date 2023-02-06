@@ -15,8 +15,8 @@ const schema = {
     veteran: {
       type: 'object',
       additionalProperties: false,
+      required: ['fullName', 'ssn', 'address', 'homePhone'],
       properties: {
-        required: ['fullName', 'ssn', 'address', 'homePhone'],
         fullName: {
           $ref: '#/definitions/fullName',
         },
