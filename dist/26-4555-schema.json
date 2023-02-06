@@ -311,10 +311,10 @@
       ],
       "properties": {
         "hasPreviousSahApplication": {
-          "type": "boolean "
+          "type": "boolean"
         },
         "previousSahApplicationDate": {
-          "$ref": "#/definitions/date "
+          "$ref": "#/definitions/date"
         },
         "previousSahApplicationAddress": {
           "$ref": "#/definitions/address"
@@ -332,7 +332,7 @@
           "type": "boolean"
         },
         "previousHiApplicationDate": {
-          "$ref": "#/definitions/date "
+          "$ref": "#/definitions/date"
         },
         "previousHiApplicationAddress": {
           "$ref": "#/definitions/address"

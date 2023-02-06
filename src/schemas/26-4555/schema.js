@@ -36,10 +36,10 @@ const schema = {
       additionalProperties: false,
       required: ['hasPreviousSahApplication'],
       properties: {
-        hasPreviousSahApplication: { type: 'boolean ' },
+        hasPreviousSahApplication: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
         // split from 1 single field on the PDF-form
-        previousSahApplicationDate: { $ref: '#/definitions/date ' },
+        previousSahApplicationDate: { $ref: '#/definitions/date' },
         previousSahApplicationAddress: { $ref: '#/definitions/address' },
       },
     },
@@ -51,7 +51,7 @@ const schema = {
         hasPreviousHiApplication: { type: 'boolean' },
         // next 2 props are on a separate, conditional form-page
         // split from 1 single field on the PDF-form
-        previousHiApplicationDate: { $ref: '#/definitions/date ' },
+        previousHiApplicationDate: { $ref: '#/definitions/date' },
         previousHiApplicationAddress: { $ref: '#/definitions/address' },
       },
     },
