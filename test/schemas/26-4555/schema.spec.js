@@ -27,12 +27,12 @@ const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('26-4555 Adapted Housing json-schema', () => {
   [
-    ['date', ['birthDate']],
+    ['date', ['dateOfBirth']],
     ['email'],
     ['fullName', ['fullName']],
     ['phone', ['homePhone']],
     ['ssn'],
-    ['usAddress', ['address']],
+    ['address', ['address']],
     ['vaFileNumber'],
   ].forEach(test => {
     sharedTests.runTest(...test);
@@ -43,7 +43,7 @@ describe('26-4555 Adapted Housing json-schema', () => {
     invalid: [{ first: undefined, middle: undefined, last: undefined }],
   });
 
-  schemaTestHelper.testValidAndInvalid('birthDate', {
+  schemaTestHelper.testValidAndInvalid('dateOfBirth', {
     valid: [fixtures.date],
     invalid: ['abc', '-1-1-1', '12345', 'Jan 1, 2023'],
   });
