@@ -33,34 +33,8 @@ describe('26-4555 Adapted Housing json-schema', () => {
     ['phone', ['homePhone']],
     ['ssn'],
     ['address', ['address']],
-    ['vaFileNumber'],
   ].forEach(test => {
     sharedTests.runTest(...test);
-  });
-
-  schemaTestHelper.testValidAndInvalid('fullName', {
-    valid: [{ first: fixtures.fullName.first, middle: undefined, last: fixtures.fullName.last }],
-    invalid: [{ first: undefined, middle: undefined, last: undefined }],
-  });
-
-  schemaTestHelper.testValidAndInvalid('dateOfBirth', {
-    valid: [fixtures.date],
-    invalid: ['abc', '-1-1-1', '12345', 'Jan 1, 2023'],
-  });
-
-  schemaTestHelper.testValidAndInvalid('ssn', {
-    valid: [fixtures.ssn],
-    invalid: ['12345678', '1234567890', undefined],
-  });
-
-  schemaTestHelper.testValidAndInvalid('address', {
-    valid: [usAddressFixture],
-    invalid: [fixtures.address, undefined],
-  });
-
-  schemaTestHelper.testValidAndInvalid('homePhone', {
-    valid: [fixtures.phone],
-    invalid: ['123456789', undefined],
   });
 
   schemaTestHelper.testValidAndInvalid('hasPreviousSahApplication', {
