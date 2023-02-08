@@ -17,9 +17,6 @@ const schemaDefaults = {
   ssn: fixtures.ssn,
   address: usAddressFixture,
   homePhone: fixtures.phone,
-  hasPreviousSahApplication: false,
-  hasPreviousHiApplication: false,
-  isInCareFacility: false,
 };
 
 const schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
