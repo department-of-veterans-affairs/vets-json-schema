@@ -20,12 +20,23 @@ const schemaDefaults = {
     ssn: fixtures.ssn,
     address: usAddressFixture,
     homePhone: fixtures.phone,
-  }
+  },
 };
 
-console.log(schema.properties.veteran);
-
-const schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf', 'required', 'properties.veteran.required', 'properties.previousSahApplication.required', 'properties.previousHiApplication.required', 'properties.livingSituation.required'), schemaDefaults);
+// need to remove any required props from schema first,
+// in order for tests to work.
+const schemaTestHelper = new SchemaTestHelper(
+  _.omit(
+    schema,
+    'anyOf',
+    'required',
+    'properties.veteran.required',
+    'properties.previousSahApplication.required',
+    'properties.previousHiApplication.required',
+    'properties.livingSituation.required',
+  ),
+  schemaDefaults,
+);
 const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('26-4555 Adapted Housing json-schema', () => {
