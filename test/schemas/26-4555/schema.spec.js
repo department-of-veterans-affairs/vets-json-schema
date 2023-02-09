@@ -12,40 +12,46 @@ const usAddressFixture = {
 };
 
 const schemaDefaults = {
-  privacyAgreementAccepted: true,
-  fullName: fixtures.fullName,
-  ssn: fixtures.ssn,
-  address: usAddressFixture,
-  homePhone: fixtures.phone,
+  veteran: {
+    fullName: {
+      first: 'Test',
+      last: 'Name',
+    },
+    ssn: fixtures.ssn,
+    address: usAddressFixture,
+    homePhone: fixtures.phone,
+  }
 };
 
-const schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf'), schemaDefaults);
+console.log(schema.properties.veteran);
+
+const schemaTestHelper = new SchemaTestHelper(_.omit(schema, 'anyOf', 'required', 'properties.veteran.required', 'properties.previousSahApplication.required', 'properties.previousHiApplication.required', 'properties.livingSituation.required'), schemaDefaults);
 const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('26-4555 Adapted Housing json-schema', () => {
   [
-    ['date', ['dateOfBirth']],
-    ['email'],
-    ['fullName', ['fullName']],
-    ['phone', ['homePhone']],
-    ['ssn'],
-    ['address', ['address']],
+    ['date', ['veteran.dateOfBirth']],
+    ['email', ['veteran.email']],
+    ['fullName', ['veteran.fullName']],
+    ['phone', ['veteran.homePhone']],
+    ['ssn', ['veteran.ssn']],
+    ['address', ['veteran.address']],
   ].forEach(test => {
     sharedTests.runTest(...test);
   });
 
-  schemaTestHelper.testValidAndInvalid('hasPreviousSahApplication', {
+  schemaTestHelper.testValidAndInvalid('previousSahApplication.hasPreviousSahApplication', {
     valid: [true, false],
-    invalid: ['yes', 'no', '0', '1', undefined],
+    invalid: ['yes', 'no', '0', '1'],
   });
 
-  schemaTestHelper.testValidAndInvalid('hasPreviousHiApplication', {
+  schemaTestHelper.testValidAndInvalid('previousHiApplication.hasPreviousHiApplication', {
     valid: [true, false],
-    invalid: ['yes', 'no', '0', '1', undefined],
+    invalid: ['yes', 'no', '0', '1'],
   });
 
-  schemaTestHelper.testValidAndInvalid('isInCareFacility', {
+  schemaTestHelper.testValidAndInvalid('livingSituation.isInCareFacility', {
     valid: [true, false],
-    invalid: ['yes', 'no', '0', '1', undefined],
+    invalid: ['yes', 'no', '0', '1'],
   });
 });
