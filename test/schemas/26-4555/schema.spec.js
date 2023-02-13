@@ -23,6 +23,30 @@ const schemaDefaults = {
   },
 };
 
+const testData = {
+  address: {
+    valid: [
+      {
+        country: 'USA',
+        street: '123 at home dr',
+        street2: 'apt 1',
+        city: 'a city',
+        state: 'AL',
+        postalCode: '12345',
+      },
+    ],
+    invalid: [
+      {
+        country: 'ABC',
+        street: true,
+        city: null,
+        state: false,
+        postalCode: 12345,
+      },
+    ],
+  },
+};
+
 // need to remove any required props from schema first,
 // in order for tests to work.
 const schemaTestHelper = new SchemaTestHelper(
@@ -50,6 +74,8 @@ describe('26-4555 Adapted Housing json-schema', () => {
   ].forEach(test => {
     sharedTests.runTest(...test);
   });
+
+  schemaTestHelper.testValidAndInvalid('veteran.address', testData.address);
 
   schemaTestHelper.testValidAndInvalid('previousSahApplication.hasPreviousSahApplication', {
     valid: [true, false],

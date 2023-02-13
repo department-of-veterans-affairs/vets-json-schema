@@ -10,7 +10,16 @@ const schema = {
   title: 'Apply for Specially Adapted Housing Grant (26-4555)',
   type: 'object',
   additionalProperties: false,
-  definitions: pick(definitions, ['address', 'date', 'email', 'fullName', 'phone', 'ssn', 'vaFileNumber']),
+  definitions: pick(definitions, [
+    'address',
+    'date',
+    'email',
+    'fullName',
+    'phone',
+    'profileAddress',
+    'ssn',
+    'vaFileNumber',
+  ]),
   properties: {
     veteran: {
       type: 'object',
@@ -25,7 +34,7 @@ const schema = {
         },
         ssn: { $ref: '#/definitions/ssn' },
         vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
-        address: { $ref: '#/definitions/address' },
+        address: { $ref: '#/definitions/profileAddress' },
         homePhone: { $ref: '#/definitions/phone' },
         mobilePhone: { $ref: '#/definitions/phone' },
         email: { $ref: '#/definitions/email' },
