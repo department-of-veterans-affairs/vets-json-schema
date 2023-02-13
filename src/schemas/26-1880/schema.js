@@ -110,16 +110,6 @@ const schema = {
         },
       },
     },
-    loanIntent: {
-      type: 'object',
-      properties: {
-        intent: {
-          type: 'string',
-          enum: ['ONETIMERESTORATION', 'REFI', 'IRRRL', 'INQUIRY'],
-          // enumNames are jsx, so we will handle those in vets-website
-        },
-      },
-    },
     loanHistory: {
       type: 'object',
       properties: {
@@ -141,9 +131,8 @@ const schema = {
               propertyOwned: {
                 type: 'boolean',
               },
-              willRefinance: {
-                type: 'boolean',
-              },
+              // `intent` labels are jsx, so they are handled in vets-website.
+              // See `src/applications/lgy/coe/form/constants.js`.
             },
           },
         },
