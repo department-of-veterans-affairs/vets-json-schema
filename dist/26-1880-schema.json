@@ -976,20 +976,6 @@
         }
       }
     },
-    "loanIntent": {
-      "type": "object",
-      "properties": {
-        "intent": {
-          "type": "string",
-          "enum": [
-            "ONETIMERESTORATION",
-            "REFI",
-            "IRRRL",
-            "INQUIRY"
-          ]
-        }
-      }
-    },
     "loanHistory": {
       "type": "object",
       "properties": {
@@ -1009,9 +995,6 @@
                 "$ref": "#/definitions/loanNumber"
               },
               "propertyOwned": {
-                "type": "boolean"
-              },
-              "willRefinance": {
                 "type": "boolean"
               }
             }
