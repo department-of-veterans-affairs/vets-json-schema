@@ -998,11 +998,23 @@
                         "type": "string",
                         "enum": [
                           "upload",
-                          "retrieval"
+                          "retrieval",
+                          "none"
                         ]
                       },
                       "minItems": 1,
-                      "uniqueItems": true
+                      "uniqueItems": true,
+                      "if": {
+                        "contains": {
+                          "const": "none"
+                        }
+                      },
+                      "then": {
+                        "maxItems": 1
+                      },
+                      "else": {
+                        "maxItems": 2
+                      }
                     },
                     "retrieveFrom": {
                       "type": "array",
@@ -1065,7 +1077,9 @@
                   "if": {
                     "properties": {
                       "evidenceType": {
-                        "const": "retrieval"
+                        "contains": {
+                          "const": "retrieval"
+                        }
                       }
                     }
                   },
