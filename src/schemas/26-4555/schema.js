@@ -19,6 +19,7 @@ const schema = {
     'profileAddress',
     'ssn',
     'vaFileNumber',
+    'privacyAgreementAccepted',
   ]),
   properties: {
     veteran: {
@@ -76,6 +77,7 @@ const schema = {
         careFacilityAddress: { $ref: '#/definitions/address' },
       },
     },
+    required: ['privacyAgreementAccepted'],
     remarks: {
       type: 'string',
     },

@@ -765,6 +765,12 @@
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
     }
   },
   "properties": {
@@ -858,6 +864,9 @@
         }
       }
     },
+    "required": [
+      "privacyAgreementAccepted"
+    ],
     "remarks": {
       "type": "string"
     }
