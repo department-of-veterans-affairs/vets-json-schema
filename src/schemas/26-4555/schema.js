@@ -77,11 +77,14 @@ const schema = {
         careFacilityAddress: { $ref: '#/definitions/address' },
       },
     },
-    required: ['privacyAgreementAccepted'],
     remarks: {
       type: 'string',
     },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted',
+    },
   },
+  required: ['privacyAgreementAccepted'],
 };
 
 export default schema;

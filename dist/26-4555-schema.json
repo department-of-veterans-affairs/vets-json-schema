@@ -864,11 +864,14 @@
         }
       }
     },
-    "required": [
-      "privacyAgreementAccepted"
-    ],
     "remarks": {
       "type": "string"
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted"
+  ]
 }
