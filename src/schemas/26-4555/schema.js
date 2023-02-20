@@ -19,6 +19,7 @@ const schema = {
     'profileAddress',
     'ssn',
     'vaFileNumber',
+    'privacyAgreementAccepted',
   ]),
   properties: {
     veteran: {
@@ -79,7 +80,11 @@ const schema = {
     remarks: {
       type: 'string',
     },
+    privacyAgreementAccepted: {
+      $ref: '#/definitions/privacyAgreementAccepted',
+    },
   },
+  required: ['privacyAgreementAccepted'],
 };
 
 export default schema;

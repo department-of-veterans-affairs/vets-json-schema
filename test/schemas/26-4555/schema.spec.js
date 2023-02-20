@@ -21,6 +21,7 @@ const schemaDefaults = {
     address: usAddressFixture,
     homePhone: fixtures.phone,
   },
+  privacyAgreementAccepted: true,
 };
 
 const testData = {
