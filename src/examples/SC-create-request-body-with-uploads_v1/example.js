@@ -1,0 +1,1 @@
+export default require('../../schemas/SC-create-request-body-with-uploads_v1/example.json');
