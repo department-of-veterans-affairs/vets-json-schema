@@ -1153,9 +1153,6 @@
           "minItems": 1,
           "maxItems": 100,
           "uniqueItems": true
-        },
-        "form4142": {
-          "$ref": "#/definitions/form4142"
         }
       },
       "required": ["data", "included"]
