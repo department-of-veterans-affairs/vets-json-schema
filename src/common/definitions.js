@@ -164,14 +164,14 @@ const profileAddress = {
     isMilitary: {
       type: 'boolean',
     },
+    'view:militaryBaseDescription': {
+      type: 'object',
+      properties: {},
+    },
     country: {
       type: 'string',
       enum: constants.countries.map(country => country.value),
       enumNames: countries.map(country => country.label),
-    },
-    'view:militaryBaseDescription': {
-      type: 'object',
-      properties: {},
     },
     street: {
       type: 'string',

@@ -381,6 +381,10 @@
       "isMilitary": {
         "type": "boolean"
       },
+      "view:militaryBaseDescription": {
+        "type": "object",
+        "properties": {}
+      },
       "country": {
         "type": "string",
         "enum": [
@@ -843,10 +847,6 @@
           "Zambia",
           "Zimbabwe"
         ]
-      },
-      "view:militaryBaseDescription": {
-        "type": "object",
-        "properties": {}
       },
       "street": {
         "type": "string",
