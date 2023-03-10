@@ -48,6 +48,9 @@ const schema = {
     spouseInfo: {
       type: 'object',
       properties: {
+        married: {
+          type: 'boolean',
+        },
         divorcePending: {
           type: 'boolean',
         },
@@ -137,6 +140,7 @@ const schema = {
   ['date', 'veteranDateOfDeath'],
   ['date', 'educationStartDate'],
   ['relationship'],
+  ['date', 'spouseInfo.marriageDate'],
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
