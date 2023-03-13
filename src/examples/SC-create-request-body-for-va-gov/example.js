@@ -1,0 +1,1 @@
+export default require('../../schemas/SC-create-request-body-for-va-gov/example.json');

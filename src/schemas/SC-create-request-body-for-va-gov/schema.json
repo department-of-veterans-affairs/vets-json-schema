@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "JSON Schema for VA Form 20-0995",
+  "description": "JSON Schema for VA Form 20-0995 submission to va.gov vets-api endpoint.",
   "$ref": "#/definitions/scCreate",
   "definitions": {
     "address": {
@@ -976,10 +976,21 @@
                       "type": "array",
                       "items": {
                         "type": "string",
-                        "enum": ["upload", "retrieval"]
+                        "enum": ["upload", "retrieval", "none"]
                       },
                       "minItems": 1,
-                      "uniqueItems": true
+                      "uniqueItems": true,
+                      "if": {
+                        "contains": {
+                          "const": "none"
+                        }
+                      },
+                      "then": {
+                        "maxItems": 1
+                      },
+                      "else": {
+                        "maxItems": 2
+                      }
                     },
                     "retrieveFrom": {
                       "type": "array",
@@ -1029,7 +1040,9 @@
                   "if": {
                     "properties": {
                       "evidenceType": {
-                        "const": "retrieval"
+                        "contains": {
+                          "const": "retrieval"
+                        }
                       }
                     }
                   },
@@ -1142,40 +1155,40 @@
           "uniqueItems": true
         },
         "form4142": {
-          "type": "object",
-          "required": [],
-          "properties": {
-            "$ref": "#/definitions/form4142"
-          }
+          "$ref": "#/definitions/form4142"
         },
-        "additionalDocument": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-              "name": {
-                  "type": "string"
-              },
-              "confirmationCode": {
-                  "type": "string"
-              },
-              "attachmentId": {
-                  "type": "string"
-              },
-              "size": {
-                  "type": "integer"
-              },
-              "isEncrypted": {
-                  "type": "boolean"
-              }
-          },
-          "required": [
-              "attachmentId",
-              "confirmationCode",
-              "isEncrypted",
-              "name",
-              "size"
-          ]
-        }          
+        "additionalDocuments": {
+          "description": "The information related to the uploaded documents, for vets-api to enqueue for upload upon submission.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "confirmationCode": {
+                    "type": "string"
+                },
+                "attachmentId": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "integer"
+                },
+                "isEncrypted": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "attachmentId",
+                "confirmationCode",
+                "isEncrypted",
+                "name",
+                "size"
+            ]
+          }
+        }
       },
       "required": ["data", "included"]
     }

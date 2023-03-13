@@ -297,6 +297,11 @@
       "type": "string",
       "pattern": "^\\d{8,9}$"
     },
+    "militaryServiceNumber": {
+      "type": "string",
+      "maxLength": 10,
+      "pattern": "^\\d{4,10}$"
+    },
     "date": {
       "type": "string",
       "format": "date"
@@ -544,8 +549,7 @@
               ]
             },
             "militaryServiceNumber": {
-              "type": "string",
-              "maxLength": 9
+              "$ref": "#/definitions/militaryServiceNumber"
             },
             "militaryStatus": {
               "type": "string",
