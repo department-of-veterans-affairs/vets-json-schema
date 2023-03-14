@@ -520,17 +520,14 @@
     "spouseInfo": {
       "type": "object",
       "properties": {
-        "married": {
-          "type": "boolean"
+        "marriageDate": {
+          "$ref": "#/definitions/date"
         },
         "divorcePending": {
           "type": "boolean"
         },
         "remarried": {
           "type": "boolean"
-        },
-        "marriageDate": {
-          "$ref": "#/definitions/date"
         },
         "remarriageDate": {
           "$ref": "#/definitions/date"
