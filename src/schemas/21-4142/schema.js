@@ -36,7 +36,7 @@ const schema = {
           $ref: '#/definitions/vaFileNumber',
         },
         veteranServiceNumber: {
-          type: '#/definitions/veteranServiceNumber',
+          $ref: '#/definitions/veteranServiceNumber',
         },
         address: { $ref: '#/definitions/profileAddress' },
         homePhone: {

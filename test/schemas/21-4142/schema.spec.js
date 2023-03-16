@@ -55,7 +55,13 @@ const veteranData = {
 // need to remove any required props from schema first,
 // in order for sharedTests.runTest to work.
 const schemaTestHelper = new SchemaTestHelper(
-  _.omit(schema, 'required', 'properties.veteran.required', 'properties.patientIdentification.required'),
+  _.omit(
+    schema,
+    'required',
+    'properties.veteran.required',
+    'properties.veteran.anyOf',
+    'properties.patientIdentification.required',
+  ),
   schemaDefaults,
 );
 const sharedTests = new SharedTests(schemaTestHelper);
@@ -81,6 +87,7 @@ describe('21-4142 Adapted Housing json-schema', () => {
         patientFullName: fixtures.fullName,
         patientSsn: '123456789',
         patientVaFileNumber: 'c123456789',
+        veteranServiceNumber: '123456789',
       },
       {
         isRequestingOwnMedicalRecords: true,
@@ -92,6 +99,7 @@ describe('21-4142 Adapted Housing json-schema', () => {
         patientFullName: 23456,
         patientSsn: 1234,
         patientVaFileNumber: 23423,
+        veteranServiceNumber: '123asdf9',
       },
     ],
   });
