@@ -545,7 +545,8 @@
             },
             "militaryServiceNumber": {
               "type": "string",
-              "maxLength": 9
+              "maxLength": 10,
+              "pattern": "^[A-Za-z0-9]{4,10}$"
             },
             "militaryStatus": {
               "type": "string",
