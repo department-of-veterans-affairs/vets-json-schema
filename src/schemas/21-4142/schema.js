@@ -17,6 +17,7 @@ const schema = {
     'profileAddress',
     'ssn',
     'vaFileNumber',
+    'veteranServiceNumber',
   ),
   properties: {
     veteran: {
@@ -34,6 +35,9 @@ const schema = {
         vaFileNumber: {
           $ref: '#/definitions/vaFileNumber',
         },
+        veteranServiceNumber: {
+          $ref: '#/definitions/veteranServiceNumber',
+        },
         address: { $ref: '#/definitions/profileAddress' },
         homePhone: {
           $ref: '#/definitions/phone',
@@ -46,6 +50,17 @@ const schema = {
         },
       },
       required: ['fullName', 'address', 'homePhone'],
+      anyOf: [
+        {
+          required: ['ssn'],
+        },
+        {
+          required: ['vaFileNumber'],
+        },
+        {
+          required: ['veteranServiceNumber'],
+        },
+      ],
     },
     patientIdentification: {
       type: 'object',
