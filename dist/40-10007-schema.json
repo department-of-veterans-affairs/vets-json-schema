@@ -549,7 +549,8 @@
               ]
             },
             "militaryServiceNumber": {
-              "$ref": "#/definitions/militaryServiceNumber"
+              "type": "string",
+              "maxLength": 9
             },
             "militaryStatus": {
               "type": "string",
