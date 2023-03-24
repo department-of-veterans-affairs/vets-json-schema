@@ -48,6 +48,9 @@ const schema = {
     spouseInfo: {
       type: 'object',
       properties: {
+        marriageDate: {
+          $ref: '#/definitions/date',
+        },
         divorcePending: {
           type: 'boolean',
         },
