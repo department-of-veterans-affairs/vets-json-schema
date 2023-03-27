@@ -270,7 +270,7 @@ const schema = {
               type: 'string',
               enum: ['Single', 'Separated', 'Married', 'Divorced', 'Widowed'],
             },
-            militaryServiceNumber: { type: 'string', maxLength: 10, pattern: '^\\d{4,10}$' },
+            militaryServiceNumber: { type: 'string', maxLength: 10, pattern: '^[A-Za-z0-9]{4,10}$' },
             militaryStatus: {
               type: 'string',
               minLength: 1,
