@@ -731,6 +731,22 @@
         "powOrMia"
       ]
     },
+    "view:minorHighSchoolQuestions": {
+      "type": "object",
+      "properties": {
+        "minorHighSchoolQuestion": {
+          "type": "boolean"
+        },
+        "highSchoolGedGradDate": {
+          "type": "object",
+          "$ref": "#/definitions/date"
+        },
+        "highSchoolGedExpectedGradDate": {
+          "type": "object",
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
@@ -796,6 +812,9 @@
     },
     "preferredContactMethod": {
       "$ref": "#/definitions/preferredContactMethod"
+    },
+    "GuardianInformation": {
+      "$ref": "#/definitions/GuardianInformation"
     }
   },
   "required": [
