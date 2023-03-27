@@ -12,7 +12,7 @@ const schema = {
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, ['dateRange', 'educationType']),
+  definitions: _.pick(definitions, ['dateRange','address', 'educationType',]),
   properties: {
     email: {
       type: 'string',
@@ -134,6 +134,39 @@ const schema = {
         },
       },
     },
+    'view:minorQuestions': {
+      type: 'object',
+      properties: {
+        guardianFirstName: {
+          type: 'string',
+        },
+        guardianMiddleName: {
+          type: 'string',
+        },
+        guardianLastName: {
+          type: 'string',
+        },
+        guardianAddress: {
+          $ref: '#/definitions/address'
+        },
+        guardianMobilePhone: {
+          type: 'object',
+          $ref: '#/definitions/phone',
+        },
+        guardianHomePhone: {
+          type: 'object',
+          $ref: '#/definitions/phone',
+        },
+        email: {
+          type: 'string',
+          format: 'email',
+        },
+        'view:confirmEmail': {
+          type: 'string',
+          format: 'email',
+        },
+      },
+    },
   },
   required: ['privacyAgreementAccepted', 'relativeFullName'],
 };
@@ -166,7 +199,6 @@ const schema = {
   ['nonMilitaryJobs'],
   ['educationProgram'],
   ['preferredContactMethod'],
-  ['GuardianInformation'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
