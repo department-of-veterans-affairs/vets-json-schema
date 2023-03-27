@@ -118,6 +118,22 @@ const schema = {
       type: 'string',
       enum: ['diedOnDuty', 'diedFromDisabilityOrOnReserve', 'powOrMia'],
     },
+    'view:minorHighSchoolQuestions': {
+      type: 'object',
+      properties: {
+        minorHighSchoolQuestion: {
+          type: 'boolean',
+        },
+        highSchoolGedGradDate: {
+          type: 'object',
+          $ref: '#/definitions/date',
+        },
+        highSchoolGedExpectedGradDate: {
+          type: 'object',
+          $ref: '#/definitions/date',
+        },
+      },
+    },
   },
   required: ['privacyAgreementAccepted', 'relativeFullName'],
 };
@@ -150,6 +166,7 @@ const schema = {
   ['nonMilitaryJobs'],
   ['educationProgram'],
   ['preferredContactMethod'],
+  ['GuardianInformation'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
