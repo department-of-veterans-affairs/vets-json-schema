@@ -118,7 +118,7 @@ const schema = {
       type: 'string',
       enum: ['diedOnDuty', 'diedFromDisabilityOrOnReserve', 'powOrMia'],
     },
-    'view:minorHighSchoolQuestions': {
+    minorHighSchoolQuestions: {
       type: 'object',
       properties: {
         minorHighSchoolQuestion: {
@@ -134,7 +134,7 @@ const schema = {
         },
       },
     },
-    'view:minorQuestions': {
+    minorQuestions: {
       type: 'object',
       properties: {
         guardianFirstName: {
