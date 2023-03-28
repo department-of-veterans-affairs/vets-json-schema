@@ -125,11 +125,9 @@ const schema = {
           type: 'boolean',
         },
         highSchoolGedGradDate: {
-          type: 'object',
           $ref: '#/definitions/date',
         },
         highSchoolGedExpectedGradDate: {
-          type: 'object',
           $ref: '#/definitions/date',
         },
       },
@@ -150,18 +148,12 @@ const schema = {
           $ref: '#/definitions/address'
         },
         guardianMobilePhone: {
-          type: 'object',
           $ref: '#/definitions/phone',
         },
         guardianHomePhone: {
-          type: 'object',
           $ref: '#/definitions/phone',
         },
         email: {
-          type: 'string',
-          format: 'email',
-        },
-        'view:confirmEmail': {
           type: 'string',
           format: 'email',
         },
