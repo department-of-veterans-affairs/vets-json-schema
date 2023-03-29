@@ -462,15 +462,6 @@
         "child"
       ]
     },
-    "relationshipAndChildType": {
-      "type": "string",
-      "enum": [
-        "spouse",
-        "adopted",
-        "biological",
-        "step"
-      ]
-    },
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
@@ -568,9 +559,6 @@
     },
     "relationship": {
       "$ref": "#/definitions/relationship"
-    },
-    "relationshipAndChildType": {
-      "$ref": "#/definitions/relationshipAndChildType"
     },
     "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"

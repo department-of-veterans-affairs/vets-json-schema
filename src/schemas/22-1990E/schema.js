@@ -111,7 +111,7 @@ const schema = {
   required: ['privacyAgreementAccepted', 'relativeFullName'],
 };
 
-[['relationship'], ['relationshipAndChildType'], ['vaFileNumber']].forEach(args => {
+[['relationship'], ['vaFileNumber']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

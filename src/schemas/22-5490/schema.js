@@ -141,6 +141,7 @@ const schema = {
   ['date', 'veteranDateOfDeath'],
   ['date', 'educationStartDate'],
   ['relationship'],
+  ['relationshipAndChildType'],
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
