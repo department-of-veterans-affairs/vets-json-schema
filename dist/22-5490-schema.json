@@ -340,6 +340,15 @@
         "child"
       ]
     },
+    "relationshipAndChildType": {
+      "type": "string",
+      "enum": [
+        "spouse",
+        "adopted",
+        "biological",
+        "step"
+      ]
+    },
     "postHighSchoolTrainings": {
       "type": "array",
       "items": {
@@ -781,6 +790,9 @@
     },
     "relationship": {
       "$ref": "#/definitions/relationship"
+    },
+    "relationshipAndChildType": {
+      "$ref": "#/definitions/relationshipAndChildType"
     },
     "benefitsRelinquishedDate": {
       "$ref": "#/definitions/date"

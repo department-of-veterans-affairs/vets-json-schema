@@ -416,6 +416,16 @@ const relationship = {
   enum: ['spouse', 'child'],
 };
 
+const childType = {
+  type: 'string',
+  enum: ['adopted', 'biological', 'step'],
+};
+
+const relationshipAndChildType = {
+  type: 'string',
+  enum: ['spouse', 'adopted', 'biological', 'step'],
+};
+
 const relationshipAndChildName = {
   type: 'object',
   properties: {
@@ -700,6 +710,7 @@ export default {
   vaFileNumber,
   veteranServiceNumber,
   relationship,
+  childType,
   toursOfDuty,
   educationProgram,
   currentlyActiveDuty,
@@ -707,6 +718,7 @@ export default {
   maritalStatus,
   netWorthAccount,
   relationshipAndChildName,
+  relationshipAndChildType,
   marriages,
   files,
   requiredServiceHistory,
