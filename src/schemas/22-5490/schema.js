@@ -145,7 +145,6 @@ const schema = {
           type: 'string',
         },
         guardianAddress: {
-          // type: 'object',
           $ref: '#/definitions/address'
         },
         guardianMobilePhone: {
@@ -154,7 +153,7 @@ const schema = {
         guardianHomePhone: {
           $ref: '#/definitions/phone',
         },
-        email: {
+        guardianEmail: {
           type: 'string',
           format: 'email',
         },
@@ -192,7 +191,6 @@ const schema = {
   ['nonMilitaryJobs'],
   ['educationProgram'],
   ['preferredContactMethod'],
-  // ['address','minorQuestions.guardianAddress']
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

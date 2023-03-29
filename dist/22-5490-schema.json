@@ -766,7 +766,7 @@
         "guardianHomePhone": {
           "$ref": "#/definitions/phone"
         },
-        "email": {
+        "guardianEmail": {
           "type": "string",
           "format": "email"
         }
