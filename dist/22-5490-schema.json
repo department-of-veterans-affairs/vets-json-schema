@@ -15,72 +15,6 @@
         }
       }
     },
-    "educationType": {
-      "type": "string",
-      "enum": [
-        "college",
-        "correspondence",
-        "apprenticeship",
-        "flightTraining",
-        "testReimbursement",
-        "licensingReimbursement",
-        "tuitionTopUp",
-        "farmCoop"
-      ]
-    },
-    "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
-    },
-    "ssn": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
-    },
-    "gender": {
-      "type": "string",
-      "enum": [
-        "F",
-        "M"
-      ]
-    },
-    "date": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
-    "fullName": {
-      "type": "object",
-      "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "middle": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
-        }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
-    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -288,6 +222,72 @@
           "maxLength": 51
         }
       }
+    },
+    "educationType": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "tuitionTopUp",
+        "farmCoop"
+      ]
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "phone": {
       "type": "string",
@@ -730,6 +730,47 @@
         "diedFromDisabilityOrOnReserve",
         "powOrMia"
       ]
+    },
+    "minorHighSchoolQuestions": {
+      "type": "object",
+      "properties": {
+        "minorHighSchoolQuestion": {
+          "type": "boolean"
+        },
+        "highSchoolGedGradDate": {
+          "$ref": "#/definitions/date"
+        },
+        "highSchoolGedExpectedGradDate": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "minorQuestions": {
+      "type": "object",
+      "properties": {
+        "guardianFirstName": {
+          "type": "string"
+        },
+        "guardianMiddleName": {
+          "type": "string"
+        },
+        "guardianLastName": {
+          "type": "string"
+        },
+        "guardianAddress": {
+          "$ref": "#/definitions/address"
+        },
+        "guardianMobilePhone": {
+          "$ref": "#/definitions/phone"
+        },
+        "guardianHomePhone": {
+          "$ref": "#/definitions/phone"
+        },
+        "guardianEmail": {
+          "type": "string",
+          "format": "email"
+        }
+      }
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"

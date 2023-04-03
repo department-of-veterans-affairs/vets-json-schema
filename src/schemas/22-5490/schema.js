@@ -12,7 +12,7 @@ const schema = {
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, ['dateRange', 'educationType']),
+  definitions: _.pick(definitions, ['dateRange','address', 'educationType',]),
   properties: {
     email: {
       type: 'string',
@@ -117,6 +117,47 @@ const schema = {
     sponsorStatus: {
       type: 'string',
       enum: ['diedOnDuty', 'diedFromDisabilityOrOnReserve', 'powOrMia'],
+    },
+    minorHighSchoolQuestions: {
+      type: 'object',
+      properties: {
+        minorHighSchoolQuestion: {
+          type: 'boolean',
+        },
+        highSchoolGedGradDate: {
+          $ref: '#/definitions/date',
+        },
+        highSchoolGedExpectedGradDate: {
+          $ref: '#/definitions/date',
+        },
+      },
+    },
+    minorQuestions: {
+      type: 'object',
+      properties: {
+        guardianFirstName: {
+          type: 'string',
+        },
+        guardianMiddleName: {
+          type: 'string',
+        },
+        guardianLastName: {
+          type: 'string',
+        },
+        guardianAddress: {
+          $ref: '#/definitions/address'
+        },
+        guardianMobilePhone: {
+          $ref: '#/definitions/phone',
+        },
+        guardianHomePhone: {
+          $ref: '#/definitions/phone',
+        },
+        guardianEmail: {
+          type: 'string',
+          format: 'email',
+        },
+      },
     },
   },
   required: ['privacyAgreementAccepted', 'relativeFullName'],
