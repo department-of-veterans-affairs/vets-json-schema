@@ -24,6 +24,9 @@ const schemaDefaults = {
   patientIdentification: {
     isRequestingOwnMedicalRecords: false,
   },
+  preparerIdentification: {
+    relationshipToVeteran: "I am the service member/Veteran"
+  },
   acknowledgeToReleaseInformation: true,
   privacyAgreementAccepted: true,
 };
@@ -61,12 +64,13 @@ const schemaTestHelper = new SchemaTestHelper(
     'properties.veteran.required',
     'properties.veteran.anyOf',
     'properties.patientIdentification.required',
+    'properties.preparerIdentification.required',
   ),
   schemaDefaults,
 );
 const sharedTests = new SharedTests(schemaTestHelper);
 
-describe('21-4142 Adapted Housing json-schema', () => {
+describe('21-4142 Authorization to Disclose Information json-schema', () => {
   [
     ['date', ['veteran.dateOfBirth']],
     ['email', ['veteran.email']],
@@ -124,6 +128,34 @@ describe('21-4142 Adapted Housing json-schema', () => {
           conditionsTreated: ['Test', 'Test 2'],
         },
       ],
+    ],
+  });
+
+  schemaTestHelper.testValidAndInvalid('preparerIdentification', {
+    valid: [
+      {
+        relationshipToVeteran: "I am the service member/Veteran",
+      },
+      {
+        relationshipToVeteran: "Spouse",
+        preparerFullName: "Veteran Spouse",
+        preparerAddress: usAddressFixture
+      },
+      {
+        relationshipToVeteran: "Third-party",
+        preparerFullName: "Third Party",
+        preparerTitle: "full title",
+        preparerOrganization: "name of org",
+        courtAppointmentInfo: "this date, this time, docket #",
+        preparerAddress: usAddressFixture
+      },
+    ],
+    invalid: [
+      {
+        relationshipToVeteran: true,
+        preparerFullName: 23456,
+        preparerAddress: usAddressFixture
+      },
     ],
   });
 
