@@ -120,12 +120,37 @@ const schema = {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
     },
+    preparerIdentification: {
+      type: 'object',
+      properties: {
+        relationshipToVeteran: {
+          type: 'string',
+        },
+        preparerFullName: {
+          $ref: '#/definitions/fullName',
+        },
+        preparerTitle: {
+          type: 'string',
+        },
+        preparerOrganization: {
+          type: 'string',
+        },
+        courtAppointmentInfo: {
+          type: 'string',
+        },
+        preparerAddress: {
+          $ref: '#/definitions/address',
+        },
+      },
+      required: ['relationshipToVeteran'],
+    },
   },
   required: [
     'veteran',
     'patientIdentification',
     'acknowledgeToReleaseInformation',
     'providerFacility',
+    'preparerIdentification',
     'privacyAgreementAccepted',
   ],
 };
