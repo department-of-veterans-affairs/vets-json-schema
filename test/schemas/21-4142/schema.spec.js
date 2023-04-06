@@ -138,12 +138,12 @@ describe('21-4142 Authorization to Disclose Information json-schema', () => {
       },
       {
         relationshipToVeteran: "Spouse",
-        preparerFullName: "Veteran Spouse",
+        preparerFullName: fixtures.fullName,
         preparerAddress: usAddressFixture
       },
       {
         relationshipToVeteran: "Third-party",
-        preparerFullName: "Third Party",
+        preparerFullName: fixtures.fullName,
         preparerTitle: "full title",
         preparerOrganization: "name of org",
         courtAppointmentInfo: "this date, this time, docket #",

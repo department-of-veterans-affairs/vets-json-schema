@@ -130,13 +130,13 @@ const schema = {
           $ref: '#/definitions/fullName',
         },
         preparerTitle: {
-          $ref: 'string',
+          type: 'string',
         },
         preparerOrganization: {
-          $ref: 'string',
+          type: 'string',
         },
         courtAppointmentInfo: {
-          $ref: 'string',
+          type: 'string',
         },
         preparerAddress: {
           $ref: '#/definitions/address',
