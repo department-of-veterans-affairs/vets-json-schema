@@ -1,11 +1,14 @@
 require 'multi_json'
 require 'script_utils'
+require 'ice_nine'
 
 module VetsJsonSchema
   base_dir = "#{__dir__}/../"
 
-  CONSTANTS = MultiJson.load(
-    File.read("#{base_dir}dist/constants.json")
+  CONSTANTS = IceNine.deep_freeze(
+    MultiJson.load(
+      File.read("#{base_dir}dist/constants.json")
+    )
   )
 
   SCHEMAS = lambda do
@@ -16,7 +19,7 @@ module VetsJsonSchema
       return_val[schema] = MultiJson.load(File.read("#{base_dir}dist/#{schema}-schema.json"))
     end
 
-    return_val
+     IceNine.deep_freeze(return_val)
   end.()
 
   # Provides an example of valid form data conforming to given schema
@@ -28,6 +31,6 @@ module VetsJsonSchema
       return_val[schema] = MultiJson.load(File.read("#{base_dir}dist/#{schema}-example.json"))
     end
 
-    return_val
+    IceNine.deep_freeze(return_val)
   end.()
 end
