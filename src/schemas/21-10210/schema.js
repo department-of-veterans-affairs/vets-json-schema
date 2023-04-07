@@ -22,16 +22,16 @@ const schema = {
     'privacyAgreementAccepted',
   ]),
   properties: {
-    claimInformation: {
+    statementInformation: {
       type: 'object',
       additionalProperties: false,
-      required: ['claimOwner', 'claimantType'],
+      required: ['claimOwner', 'authorType'],
       properties: {
         claimOwner: {
           type: 'string',
-          enum: ['mine', 'someone-else'],
+          enum: ['self', 'someone-else'],
         },
-        claimantType: {
+        authorType: {
           type: 'string',
           enum: ['veteran', 'non-veteran'],
         },

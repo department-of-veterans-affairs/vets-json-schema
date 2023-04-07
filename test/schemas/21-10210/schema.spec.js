@@ -12,9 +12,9 @@ const usAddressFixture = {
 };
 
 const schemaDefaults = {
-  claimInformation: {
-    claimOwner: 'mine',
-    claimantType: 'veteran',
+  statementInformation: {
+    claimOwner: 'self',
+    authorType: 'veteran',
   },
   nonVeteran: {
     fullName: {
@@ -41,37 +41,37 @@ const schemaDefaults = {
 };
 
 const testData = {
-  claimInformation: {
+  statementInformation: {
     valid: [
       {
-        claimOwner: 'mine',
-        claimantType: 'veteran',
+        claimOwner: 'self',
+        authorType: 'veteran',
       },
       {
-        claimOwner: 'mine',
-        claimantType: 'non-veteran',
-      },
-      {
-        claimOwner: 'someone-else',
-        claimantType: 'non-veteran',
+        claimOwner: 'self',
+        authorType: 'non-veteran',
       },
       {
         claimOwner: 'someone-else',
-        claimantType: 'veteran',
+        authorType: 'non-veteran',
+      },
+      {
+        claimOwner: 'someone-else',
+        authorType: 'veteran',
       },
     ],
     invalid: [
       {
         claimOwner: 'my-own',
-        claimantType: '1st-party',
+        authorType: 'vet',
       },
       {
         claimOwner: '',
-        claimantType: '',
+        authorType: '',
       },
       {
         claimOwner: 1,
-        claimantType: true,
+        authorType: true,
       },
     ],
   },
@@ -134,5 +134,5 @@ describe('21-10210 Lay/Witness Statement json-schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('veteran.address', testData.address);
-  schemaTestHelper.testValidAndInvalid('claimInformation', testData.claimInformation);
+  schemaTestHelper.testValidAndInvalid('statementInformation', testData.statementInformation);
 });

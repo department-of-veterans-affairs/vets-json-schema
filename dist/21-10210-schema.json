@@ -774,22 +774,22 @@
     }
   },
   "properties": {
-    "claimInformation": {
+    "statementInformation": {
       "type": "object",
       "additionalProperties": false,
       "required": [
         "claimOwner",
-        "claimantType"
+        "authorType"
       ],
       "properties": {
         "claimOwner": {
           "type": "string",
           "enum": [
-            "mine",
+            "self",
             "someone-else"
           ]
         },
-        "claimantType": {
+        "authorType": {
           "type": "string",
           "enum": [
             "veteran",
