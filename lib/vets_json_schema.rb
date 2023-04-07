@@ -19,7 +19,7 @@ module VetsJsonSchema
       return_val[schema] = MultiJson.load(File.read("#{base_dir}dist/#{schema}-schema.json"))
     end
 
-     IceNine.deep_freeze(return_val)
+    IceNine.deep_freeze(return_val)
   end.()
 
   # Provides an example of valid form data conforming to given schema
