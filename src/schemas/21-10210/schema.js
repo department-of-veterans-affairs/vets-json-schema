@@ -25,11 +25,11 @@ const schema = {
     statementInformation: {
       type: 'object',
       additionalProperties: false,
-      required: ['claimOwner', 'claimantType'],
+      required: ['claimOwnership', 'claimantType'],
       properties: {
-        claimOwner: {
+        claimOwnership: {
           type: 'string',
-          enum: ['self', 'someone-else'],
+          enum: ['self', 'third-party'],
         },
         claimantType: {
           type: 'string',

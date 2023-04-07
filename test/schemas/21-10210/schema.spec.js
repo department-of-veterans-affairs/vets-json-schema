@@ -13,7 +13,7 @@ const usAddressFixture = {
 
 const schemaDefaults = {
   statementInformation: {
-    claimOwner: 'self',
+    claimOwnership: 'self',
     claimantType: 'veteran',
   },
   nonVeteran: {
@@ -44,33 +44,33 @@ const testData = {
   statementInformation: {
     valid: [
       {
-        claimOwner: 'self',
+        claimOwnership: 'self',
         claimantType: 'veteran',
       },
       {
-        claimOwner: 'self',
+        claimOwnership: 'self',
         claimantType: 'non-veteran',
       },
       {
-        claimOwner: 'someone-else',
+        claimOwnership: 'third-party',
         claimantType: 'non-veteran',
       },
       {
-        claimOwner: 'someone-else',
+        claimOwnership: 'third-party',
         claimantType: 'veteran',
       },
     ],
     invalid: [
       {
-        claimOwner: 'my-own',
+        claimOwnership: 'my-own',
         claimantType: 'vet',
       },
       {
-        claimOwner: '',
+        claimOwnership: '',
         claimantType: '',
       },
       {
-        claimOwner: 1,
+        claimOwnership: 1,
         claimantType: true,
       },
     ],

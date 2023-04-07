@@ -778,15 +778,15 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "claimOwner",
+        "claimOwnership",
         "claimantType"
       ],
       "properties": {
-        "claimOwner": {
+        "claimOwnership": {
           "type": "string",
           "enum": [
             "self",
-            "someone-else"
+            "third-party"
           ]
         },
         "claimantType": {
