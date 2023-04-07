@@ -25,13 +25,13 @@ const schema = {
     statementInformation: {
       type: 'object',
       additionalProperties: false,
-      required: ['claimOwner', 'authorType'],
+      required: ['claimOwner', 'claimantType'],
       properties: {
         claimOwner: {
           type: 'string',
           enum: ['self', 'someone-else'],
         },
-        authorType: {
+        claimantType: {
           type: 'string',
           enum: ['veteran', 'non-veteran'],
         },

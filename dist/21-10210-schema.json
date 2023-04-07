@@ -779,7 +779,7 @@
       "additionalProperties": false,
       "required": [
         "claimOwner",
-        "authorType"
+        "claimantType"
       ],
       "properties": {
         "claimOwner": {
@@ -789,7 +789,7 @@
             "someone-else"
           ]
         },
-        "authorType": {
+        "claimantType": {
           "type": "string",
           "enum": [
             "veteran",
