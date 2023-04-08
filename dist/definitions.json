@@ -1268,6 +1268,15 @@
       }
     }
   },
+  "relationshipAndChildType": {
+    "type": "string",
+    "enum": [
+      "spouse",
+      "adopted",
+      "biological",
+      "step"
+    ]
+  },
   "marriages": {
     "type": "array",
     "items": {

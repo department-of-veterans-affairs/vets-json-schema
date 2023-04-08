@@ -416,6 +416,11 @@ const relationship = {
   enum: ['spouse', 'child'],
 };
 
+const relationshipAndChildType = {
+  type: 'string',
+  enum: ['spouse', 'adopted', 'biological', 'step'],
+};
+
 const relationshipAndChildName = {
   type: 'object',
   properties: {
@@ -707,6 +712,7 @@ export default {
   maritalStatus,
   netWorthAccount,
   relationshipAndChildName,
+  relationshipAndChildType,
   marriages,
   files,
   requiredServiceHistory,
