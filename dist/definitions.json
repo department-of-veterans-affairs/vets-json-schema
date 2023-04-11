@@ -1168,6 +1168,14 @@
       "child"
     ]
   },
+  "childType": {
+    "type": "string",
+    "enum": [
+      "adopted",
+      "biological",
+      "step"
+    ]
+  },
   "toursOfDuty": {
     "type": "array",
     "items": {
@@ -1267,6 +1275,15 @@
         "$ref": "#/definitions/fullName"
       }
     }
+  },
+  "relationshipAndChildType": {
+    "type": "string",
+    "enum": [
+      "spouse",
+      "adopted",
+      "biological",
+      "step"
+    ]
   },
   "marriages": {
     "type": "array",
