@@ -18,7 +18,7 @@ const schema = {
     'phone',
     'profileAddress',
     'ssn',
-    'vaFileNumber',
+    'centralMailVaFile',
     'privacyAgreementAccepted',
   ]),
   properties: {
@@ -34,7 +34,7 @@ const schema = {
           $ref: '#/definitions/date',
         },
         ssn: { $ref: '#/definitions/ssn' },
-        vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
+        vaFileNumber: { $ref: '#/definitions/centralMailVaFile' },
         address: { $ref: '#/definitions/profileAddress' },
         homePhone: { $ref: '#/definitions/phone' },
         mobilePhone: { $ref: '#/definitions/phone' },

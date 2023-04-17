@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
+import constants from '../../common/constants';
 
 const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('farmCoop');
@@ -12,7 +13,7 @@ const schema = {
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, ['dateRange', 'educationType']),
+  definitions: _.pick(definitions, ['dateRange','address', 'educationType',]),
   properties: {
     email: {
       type: 'string',
@@ -48,6 +49,9 @@ const schema = {
     spouseInfo: {
       type: 'object',
       properties: {
+        marriageDate: {
+          $ref: '#/definitions/date',
+        },
         divorcePending: {
           type: 'boolean',
         },
@@ -115,6 +119,47 @@ const schema = {
       type: 'string',
       enum: ['diedOnDuty', 'diedFromDisabilityOrOnReserve', 'powOrMia'],
     },
+    minorHighSchoolQuestions: {
+      type: 'object',
+      properties: {
+        minorHighSchoolQuestion: {
+          type: 'boolean',
+        },
+        highSchoolGedGradDate: {
+          $ref: '#/definitions/date',
+        },
+        highSchoolGedExpectedGradDate: {
+          $ref: '#/definitions/date',
+        },
+      },
+    },
+    minorQuestions: {
+      type: 'object',
+      properties: {
+        guardianFirstName: {
+          type: 'string',
+        },
+        guardianMiddleName: {
+          type: 'string',
+        },
+        guardianLastName: {
+          type: 'string',
+        },
+        guardianAddress: {
+          $ref: '#/definitions/address'
+        },
+        guardianMobilePhone: {
+          $ref: '#/definitions/phone',
+        },
+        guardianHomePhone: {
+          $ref: '#/definitions/phone',
+        },
+        guardianEmail: {
+          type: 'string',
+          format: 'email',
+        },
+      },
+    },
   },
   required: ['privacyAgreementAccepted', 'relativeFullName'],
 };
@@ -137,6 +182,7 @@ const schema = {
   ['date', 'veteranDateOfDeath'],
   ['date', 'educationStartDate'],
   ['relationship'],
+  ['relationshipAndChildType'],
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
