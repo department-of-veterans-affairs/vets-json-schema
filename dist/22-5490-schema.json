@@ -333,13 +333,6 @@
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
     },
-    "relationship": {
-      "type": "string",
-      "enum": [
-        "spouse",
-        "child"
-      ]
-    },
     "relationshipAndChildType": {
       "type": "string",
       "enum": [
@@ -828,9 +821,6 @@
     },
     "educationStartDate": {
       "$ref": "#/definitions/date"
-    },
-    "relationship": {
-      "$ref": "#/definitions/relationship"
     },
     "relationshipAndChildType": {
       "$ref": "#/definitions/relationshipAndChildType"

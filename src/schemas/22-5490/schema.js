@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import constants from '../../common/constants';
 
 const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('farmCoop');
@@ -13,7 +12,7 @@ const schema = {
   title: "DEPENDENTS' APPLICATION FOR VA EDUCATION BENEFITS (22-5490)",
   type: 'object',
   additionalProperties: false,
-  definitions: _.pick(definitions, ['dateRange','address', 'educationType',]),
+  definitions: _.pick(definitions, ['dateRange', 'address', 'educationType']),
   properties: {
     email: {
       type: 'string',
@@ -146,7 +145,7 @@ const schema = {
           type: 'string',
         },
         guardianAddress: {
-          $ref: '#/definitions/address'
+          $ref: '#/definitions/address',
         },
         guardianMobilePhone: {
           $ref: '#/definitions/phone',
@@ -181,7 +180,6 @@ const schema = {
   ['date', 'veteranDateOfBirth'],
   ['date', 'veteranDateOfDeath'],
   ['date', 'educationStartDate'],
-  ['relationship'],
   ['relationshipAndChildType'],
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
