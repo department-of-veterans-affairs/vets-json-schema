@@ -92,15 +92,6 @@ const schema = {
         },
       },
     },
-    highSchool: {
-      type: 'object',
-      properties: _.merge(_.omit(definitions.postHighSchoolTrainings.items.properties, 'major'), {
-        status: {
-          type: 'string',
-          enum: ['graduated', 'discontinued', 'graduationExpected', 'ged', 'neverAttended'],
-        },
-      }),
-    },
     toursOfDuty: modifiedToursOfDuty,
     civilianBenefitsAssistance: {
       type: 'boolean',
@@ -173,23 +164,18 @@ const schema = {
   ['phone', 'homePhone'],
   ['phone', 'mobilePhone'],
   ['bankAccount'],
-  ['secondaryContact'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['vaFileNumber'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'veteranDateOfDeath'],
-  ['date', 'educationStartDate'],
   ['relationshipAndChildType'],
   ['date', 'spouseInfo.remarriageDate'],
   ['date', 'benefitsRelinquishedDate'],
   ['fullName', 'previousBenefits.veteranFullName'],
   ['vaFileNumber', 'previousBenefits.vaFileNumber'],
   ['ssn', 'previousBenefits.veteranSocialSecurityNumber'],
-  ['date', 'highSchool.highSchoolOrGedCompletionDate'],
-  ['postHighSchoolTrainings'],
   ['nonMilitaryJobs'],
-  ['educationProgram'],
   ['preferredContactMethod'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
