@@ -267,9 +267,6 @@ const schema = {
     hasDemographicNoAnswer: {
       type: 'boolean',
     },
-    sigiIsAmericanIndian: {
-      type: 'boolean',
-    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
