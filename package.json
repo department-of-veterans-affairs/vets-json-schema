@@ -1,6 +1,10 @@
 {
   "name": "vets-json-schema",
+<<<<<<< HEAD
   "version": "20.26.9",
+=======
+  "version": "21.26.8",
+>>>>>>> master
   "repository": {
     "type": "git",
     "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
@@ -51,5 +55,8 @@
     "**/diff": "^3.5.0",
     "**/growl": "1.10.2",
     "**/minimist": "^1.2.3"
+  },
+  "dependencies": {
+    "minimist": "^1.2.3"
   }
 }
