@@ -29,10 +29,6 @@ describe('dependents benefits schema', () => {
     'phone',
     'email',
     'bankAccount',
-    'secondaryContact',
-    'educationProgram',
-    'relationship',
-    'postHighSchoolTrainings',
     'nonMilitaryJobs',
     'preferredContactMethod'
   ].forEach((test) => {
@@ -45,25 +41,9 @@ describe('dependents benefits schema', () => {
 
   sharedTests.runTest('vaFileNumber', ['vaFileNumber', 'previousBenefits.vaFileNumber']);
 
-  sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath', 'educationStartDate', 'benefitsRelinquishedDate', 'highSchool.highSchoolOrGedCompletionDate']);
+  sharedTests.runTest('date', ['relativeDateOfBirth', 'veteranDateOfBirth', 'veteranDateOfDeath',]);
 
-  sharedTests.runTest('address', ['relativeAddress', 'educationProgram.address']);
-
-  schemaTestHelper.testValidAndInvalid('educationProgram.educationType', {
-    valid: ['farmCoop'],
-    invalid: ['cooperativeTraining']
-  });
-
-  schemaTestHelper.testValidAndInvalid('educationProgram', {
-    valid: [{
-      name: 'school name',
-      address: fixtures.address,
-      educationType: 'college'
-    }],
-    invalid: [{
-      name: 1
-    }]
-  });
+  sharedTests.runTest('address', ['relativeAddress',]);
 
   schemaTestHelper.testValidAndInvalid('spouseInfo', {
     valid: [{
@@ -119,23 +99,5 @@ describe('dependents benefits schema', () => {
     invalid: [[{
       dateRange: 'foo'
     }]]
-  });
-
-  schemaTestHelper.testValidAndInvalid('highSchool.status', {
-    valid: ['graduated', 'ged'],
-    invalid: ['foo']
-  });
-
-  schemaTestHelper.testValidAndInvalid('highSchool', {
-    valid: [{
-      name: 'ps1',
-      dateRange: fixtures.dateRange,
-      city: 'new york',
-      hoursType: 'semester',
-      state: 'NY'
-    }],
-    invalid: [{
-      name: 1
-    }]
   });
 });
