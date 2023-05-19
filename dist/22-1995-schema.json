@@ -395,7 +395,8 @@
     "benefit": {
       "type": "string",
       "enum": [
-        "chapter33",
+        "chapter33Post911",
+        "chapter33FryScholarship",
         "chapter30",
         "chapter1606",
         "transferOfEntitlement",
