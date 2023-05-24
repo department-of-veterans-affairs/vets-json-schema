@@ -39,7 +39,7 @@ describe('change of program json schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('benefit', {
-    valid: ['chapter33'],
+    valid: ['chapter33FryScholarship'],
     invalid: ['foo']
   });
 
