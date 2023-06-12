@@ -71,7 +71,6 @@ const vaTreatmentCenterAddressDef = (addressSchema => {
   const { type, properties } = addressSchema;
   return {
     type,
-    required: ['country'],
     properties: _.pick(['country', 'city', 'state'], properties),
   };
 })(baseAddressDef);
@@ -455,11 +454,10 @@ const schema = {
     },
     vaTreatmentFacilities: {
       type: 'array',
-      minItems: 1,
+      minItems: 0,
       maxItems: 100,
       items: {
         type: 'object',
-        required: ['treatmentCenterName', 'treatedDisabilityNames'],
         properties: {
           treatmentCenterName: {
             type: 'string',
@@ -474,7 +472,7 @@ const schema = {
           },
           treatedDisabilityNames: {
             type: 'array',
-            minItems: 1,
+            minItems: 0,
             maxItems: 100,
             items: {
               type: 'string',

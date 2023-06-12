@@ -496,9 +496,6 @@
     },
     "vaTreatmentCenterAddress": {
       "type": "object",
-      "required": [
-        "country"
-      ],
       "properties": {
         "country": {
           "$ref": "#/definitions/country"
@@ -987,14 +984,10 @@
     },
     "vaTreatmentFacilities": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "maxItems": 100,
       "items": {
         "type": "object",
-        "required": [
-          "treatmentCenterName",
-          "treatedDisabilityNames"
-        ],
         "properties": {
           "treatmentCenterName": {
             "type": "string",
@@ -1009,7 +1002,7 @@
           },
           "treatedDisabilityNames": {
             "type": "array",
-            "minItems": 1,
+            "minItems": 0,
             "maxItems": 100,
             "items": {
               "type": "string"
