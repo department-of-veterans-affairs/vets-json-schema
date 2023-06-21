@@ -11,11 +11,27 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["CAN"]
+              "enum": [
+                "CAN"
+              ]
             },
             "state": {
               "type": "string",
-              "enum": ["AB", "BC", "MB", "NB", "NF", "NT", "NV", "NU", "ON", "PE", "QC", "SK", "YT"],
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ],
               "maxLength": 3
             },
             "postalCode": {
@@ -28,7 +44,9 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["MEX"]
+              "enum": [
+                "MEX"
+              ]
             },
             "state": {
               "type": "string",
@@ -78,7 +96,9 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["USA"]
+              "enum": [
+                "USA"
+              ]
             },
             "state": {
               "type": "string",
@@ -159,7 +179,11 @@
             "country": {
               "not": {
                 "type": "string",
-                "enum": ["CAN", "MEX", "USA"]
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
               }
             },
             "state": {
@@ -190,7 +214,12 @@
           "maxLength": 20
         }
       },
-      "required": ["street", "city", "state", "postalCode"]
+      "required": [
+        "street",
+        "city",
+        "state",
+        "postalCode"
+      ]
     },
     "dateRange": {
       "type": "object",
@@ -239,11 +268,20 @@
         },
         "suffix": {
           "type": "string",
-          "enum": ["Jr.", "Sr.", "II", "III", "IV"],
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ],
           "maxLength": 3
         }
       },
-      "required": ["first", "last"]
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "phone": {
       "type": "string",
@@ -293,7 +331,12 @@
   "properties": {
     "application": {
       "type": "object",
-      "required": ["applicant", "claimant", "hasCurrentlyBuried", "veteran"],
+      "required": [
+        "applicant",
+        "claimant",
+        "hasCurrentlyBuried",
+        "veteran"
+      ],
       "properties": {
         "applicant": {
           "type": "object",
@@ -315,7 +358,10 @@
             },
             "applicantRelationshipToClaimant": {
               "type": "string",
-              "enum": ["Self", "Authorized Agent/Rep"]
+              "enum": [
+                "Self",
+                "Authorized Agent/Rep"
+              ]
             },
             "completingReason": {
               "type": "string",
@@ -331,7 +377,13 @@
         },
         "claimant": {
           "type": "object",
-          "required": ["address", "dateOfBirth", "name", "relationshipToVet", "ssn"],
+          "required": [
+            "address",
+            "dateOfBirth",
+            "name",
+            "relationshipToVet",
+            "ssn"
+          ],
           "properties": {
             "address": {
               "$ref": "#/definitions/address"
@@ -367,7 +419,13 @@
                 },
                 "suffix": {
                   "type": "string",
-                  "enum": ["Jr.", "Sr.", "II", "III", "IV"],
+                  "enum": [
+                    "Jr.",
+                    "Sr.",
+                    "II",
+                    "III",
+                    "IV"
+                  ],
                   "maxLength": 3
                 },
                 "maiden": {
@@ -375,14 +433,22 @@
                   "maxLength": 15
                 }
               },
-              "required": ["first", "last"]
+              "required": [
+                "first",
+                "last"
+              ]
             },
             "phoneNumber": {
               "$ref": "#/definitions/phone"
             },
             "relationshipToVet": {
               "type": "string",
-              "enum": ["1", "2", "3", "4"]
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ]
             },
             "ssn": {
               "$ref": "#/definitions/ssn"
@@ -424,7 +490,13 @@
                 },
                 "suffix": {
                   "type": "string",
-                  "enum": ["Jr.", "Sr.", "II", "III", "IV"],
+                  "enum": [
+                    "Jr.",
+                    "Sr.",
+                    "II",
+                    "III",
+                    "IV"
+                  ],
                   "maxLength": 3
                 },
                 "maiden": {
@@ -432,7 +504,10 @@
                   "maxLength": 15
                 }
               },
-              "required": ["first", "last"]
+              "required": [
+                "first",
+                "last"
+              ]
             },
             "dateOfBirth": {
               "$ref": "#/definitions/date"
@@ -442,18 +517,31 @@
             },
             "gender": {
               "type": "string",
-              "enum": ["Female", "Male"]
+              "enum": [
+                "Female",
+                "Male"
+              ]
             },
             "race": {
               "$ref": "#/definitions/race"
             },
             "isDeceased": {
               "type": "string",
-              "enum": ["yes", "no", "unsure"]
+              "enum": [
+                "yes",
+                "no",
+                "unsure"
+              ]
             },
             "maritalStatus": {
               "type": "string",
-              "enum": ["Single", "Separated", "Married", "Divorced", "Widowed"]
+              "enum": [
+                "Single",
+                "Separated",
+                "Married",
+                "Divorced",
+                "Widowed"
+              ]
             },
             "militaryServiceNumber": {
               "type": "string",
@@ -464,7 +552,17 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 1,
-              "enum": ["A", "I", "D", "S", "R", "E", "O", "V", "X"]
+              "enum": [
+                "A",
+                "I",
+                "D",
+                "S",
+                "R",
+                "E",
+                "O",
+                "V",
+                "X"
+              ]
             },
             "placeOfBirth": {
               "type": "string",
@@ -544,7 +642,15 @@
                   },
                   "dischargeType": {
                     "type": "string",
-                    "enum": ["1", "2", "3", "4", "5", "6", "7"]
+                    "enum": [
+                      "1",
+                      "2",
+                      "3",
+                      "4",
+                      "5",
+                      "6",
+                      "7"
+                    ]
                   },
                   "highestRank": {
                     "type": "string",
@@ -667,7 +773,9 @@
                     ]
                   }
                 },
-                "required": ["serviceBranch"]
+                "required": [
+                  "serviceBranch"
+                ]
               },
               "minItems": 1
             },
@@ -681,13 +789,19 @@
         },
         "hasCurrentlyBuried": {
           "type": "string",
-          "enum": ["1", "2", "3"]
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ]
         },
         "currentlyBuriedPersons": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["name"],
+            "required": [
+              "name"
+            ],
             "properties": {
               "name": {
                 "$ref": "#/definitions/fullName"
@@ -716,11 +830,27 @@
               },
               "attachmentId": {
                 "type": "string",
-                "enum": ["1", "2", "3", "5", "6"],
-                "enumNames": ["Discharge", "Marriage related", "Dependent related", "Letter", "Other"]
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "5",
+                  "6"
+                ],
+                "enumNames": [
+                  "Discharge",
+                  "Marriage related",
+                  "Dependent related",
+                  "Letter",
+                  "Other"
+                ]
               }
             },
-            "required": ["attachmentId", "confirmationCode", "name"]
+            "required": [
+              "attachmentId",
+              "confirmationCode",
+              "name"
+            ]
           }
         }
       }
