@@ -286,8 +286,8 @@
     "phone": {
       "type": "string",
       "minLength": 10,
-      "maxLength": 15,
-      "pattern": "^[0-9()-]{10,15}$"
+      "maxLength": 20,
+      "pattern": "^[0-9]{10,15}$"
     },
     "ssn": {
       "type": "string",
