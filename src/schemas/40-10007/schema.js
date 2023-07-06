@@ -141,7 +141,7 @@ definitions.fullName.properties.suffix.maxLength = 3;
 
 definitions.phone.minLength = 10;
 definitions.phone.maxLength = 20;
-definitions.phone.pattern = '^[0-9]{10,15}$';
+definitions.phone.pattern = '^(?:\\D*\\d){10,15}\\D*$';
 
 definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
