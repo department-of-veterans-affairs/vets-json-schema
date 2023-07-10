@@ -1,7 +1,7 @@
 # New schema
 _Please describe the new schema that is being added and include links to any relevant issues to help future developers understand the schema and related code._
 
-_Please ensure you have incremented the version in `package.json`._
+_Please ensure you have incremented the version in_ `package.json`.
 
 - https://github.com/department-of-veterans-affairs/va.gov-team/issues/
 
