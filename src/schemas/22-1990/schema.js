@@ -178,6 +178,47 @@ const schema = {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
     },
+    minorHighSchoolQuestions: {
+      type: 'object',
+      properties: {
+        minorHighSchoolQuestion: {
+          type: 'boolean',
+        },
+        highSchoolGedGradDate: {
+          $ref: '#/definitions/date',
+        },
+        highSchoolGedExpectedGradDate: {
+          $ref: '#/definitions/date',
+        },
+      },
+    },
+    minorQuestions: {
+      type: 'object',
+      properties: {
+        guardianFirstName: {
+          type: 'string',
+        },
+        guardianMiddleName: {
+          type: 'string',
+        },
+        guardianLastName: {
+          type: 'string',
+        },
+        guardianAddress: {
+          $ref: '#/definitions/address',
+        },
+        guardianMobilePhone: {
+          $ref: '#/definitions/usaPhone',
+        },
+        guardianHomePhone: {
+          $ref: '#/definitions/usaPhone',
+        },
+        guardianEmail: {
+          type: 'string',
+          format: 'email',
+        },
+      },
+    },
   },
   required: ['privacyAgreementAccepted', 'veteranFullName'],
 };
