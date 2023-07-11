@@ -79,6 +79,10 @@ describe('healthcare-application json schema', () => {
     it("doesn't allow names with only spaces", () => {
       expect(fullNameValidation({ first: '   ', last: '  ' })).to.be.false;
     });
+
+    it('doesnt allow names with too many characters', () => {
+      expect(fullNameValidation({ first: '3b9a8d1a6773d352e25aad6ed8', last: 'zz' })).to.be.false;
+    });
   });
 
   describe('address', () => {
