@@ -213,7 +213,37 @@
       "type": "object",
       "properties": {
         "fullName": {
-          "$ref": "#/definitions/fullName"
+          "type": "object",
+          "properties": {
+            "first": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "middle": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "last": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 35
+            },
+            "suffix": {
+              "type": "string",
+              "enum": [
+                "Jr.",
+                "Sr.",
+                "II",
+                "III",
+                "IV"
+              ]
+            }
+          },
+          "required": [
+            "first",
+            "last"
+          ]
         },
         "dependentRelation": {
           "enum": [
@@ -384,7 +414,37 @@
       }
     },
     "veteranFullName": {
-      "$ref": "#/definitions/fullName"
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 25
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "mothersMaidenName": {
       "type": "string"
@@ -1586,7 +1646,37 @@
       "type": "boolean"
     },
     "spouseFullName": {
-      "$ref": "#/definitions/fullName"
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 25
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "spouseSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
