@@ -225,6 +225,9 @@ const schema = {
                       birthDate: {
                         $ref: '#/definitions/date',
                       },
+                      biologicalStepchild: {
+                        $ref: '#/definitions/genericTrueFalse'
+                      }
                     },
                   },
                   'view:childStatusInformation': {

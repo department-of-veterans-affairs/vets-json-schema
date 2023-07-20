@@ -1449,6 +1449,9 @@
                       },
                       "birthDate": {
                         "$ref": "#/definitions/date"
+                      },
+                      "biologicalStepchild": {
+                        "$ref": "#/definitions/genericTrueFalse"
                       }
                     }
                   },
