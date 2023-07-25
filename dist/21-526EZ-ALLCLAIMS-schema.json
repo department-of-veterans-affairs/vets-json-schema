@@ -500,13 +500,13 @@
         "country": {
           "$ref": "#/definitions/country"
         },
+        "state": {
+          "$ref": "#/definitions/state"
+        },
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
-        },
-        "state": {
-          "$ref": "#/definitions/state"
+          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)*$"
         }
       }
     },

@@ -69,9 +69,17 @@ const baseAddressDef = {
 
 const vaTreatmentCenterAddressDef = (addressSchema => {
   const { type, properties } = addressSchema;
+
   return {
     type,
-    properties: _.pick(['country', 'city', 'state'], properties),
+    properties: {
+      ..._.pick(['country', 'state'], properties),
+      city: {
+        type: 'string',
+        maxLength: 30,
+        pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)*$",
+      },
+    },
   };
 })(baseAddressDef);
 
