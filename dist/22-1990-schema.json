@@ -320,20 +320,6 @@
         "tuitionTopUp"
       ]
     },
-    "educationProgram": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/address"
-        },
-        "educationType": {
-          "$ref": "#/definitions/educationType"
-        }
-      }
-    },
     "preferredContactMethod": {
       "type": "string",
       "enum": [
@@ -355,107 +341,6 @@
         "F",
         "M"
       ]
-    },
-    "postHighSchoolTrainings": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string",
-            "enum": [
-              "AL",
-              "AK",
-              "AS",
-              "AZ",
-              "AR",
-              "AA",
-              "AE",
-              "AP",
-              "CA",
-              "CO",
-              "CT",
-              "DE",
-              "DC",
-              "FM",
-              "FL",
-              "GA",
-              "GU",
-              "HI",
-              "ID",
-              "IL",
-              "IN",
-              "IA",
-              "KS",
-              "KY",
-              "LA",
-              "ME",
-              "MH",
-              "MD",
-              "MA",
-              "MI",
-              "MN",
-              "MS",
-              "MO",
-              "MT",
-              "NE",
-              "NV",
-              "NH",
-              "NJ",
-              "NM",
-              "NY",
-              "NC",
-              "ND",
-              "MP",
-              "OH",
-              "OK",
-              "OR",
-              "PW",
-              "PA",
-              "PR",
-              "RI",
-              "SC",
-              "SD",
-              "TN",
-              "TX",
-              "UT",
-              "VT",
-              "VI",
-              "VA",
-              "WA",
-              "WV",
-              "WI",
-              "WY"
-            ]
-          },
-          "dateRange": {
-            "$ref": "#/definitions/dateRange"
-          },
-          "hours": {
-            "type": "number"
-          },
-          "hoursType": {
-            "type": "string",
-            "enum": [
-              "semester",
-              "quarter",
-              "clock"
-            ]
-          },
-          "degreeReceived": {
-            "type": "string"
-          },
-          "major": {
-            "type": "string"
-          }
-        }
-      }
     },
     "nonMilitaryJobs": {
       "type": "array",
@@ -530,9 +415,6 @@
     "chapter1606": {
       "type": "boolean"
     },
-    "chapter32": {
-      "type": "boolean"
-    },
     "benefitsRelinquished": {
       "type": "string",
       "enum": [
@@ -570,43 +452,11 @@
     "preferredContactMethod": {
       "$ref": "#/definitions/preferredContactMethod"
     },
-    "secondaryContact": {
-      "type": "object",
-      "properties": {
-        "fullName": {
-          "type": "string"
-        },
-        "sameAddress": {
-          "type": "boolean"
-        },
-        "address": {
-          "$ref": "#/definitions/address"
-        },
-        "phone": {
-          "$ref": "#/definitions/usaPhone"
-        }
-      }
-    },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
     },
-    "educationStartDate": {
-      "$ref": "#/definitions/date"
-    },
-    "educationObjective": {
-      "type": "string"
-    },
     "educationType": {
       "$ref": "#/definitions/educationType"
-    },
-    "educationProgram": {
-      "$ref": "#/definitions/educationProgram"
-    },
-    "highSchoolOrGedCompletionDate": {
-      "$ref": "#/definitions/date"
-    },
-    "faaFlightCertificatesInformation": {
-      "type": "string"
     },
     "serviceAcademyGraduationYear": {
       "$ref": "#/definitions/year"
@@ -636,9 +486,6 @@
     "seniorRotcScholarshipProgram": {
       "type": "boolean"
     },
-    "civilianBenefitsAssistance": {
-      "type": "boolean"
-    },
     "additionalContributions": {
       "type": "boolean"
     },
@@ -653,9 +500,6 @@
     },
     "serviceBefore1977": {
       "$ref": "#/definitions/serviceBefore1977"
-    },
-    "postHighSchoolTrainings": {
-      "$ref": "#/definitions/postHighSchoolTrainings"
     },
     "nonMilitaryJobs": {
       "$ref": "#/definitions/nonMilitaryJobs"
