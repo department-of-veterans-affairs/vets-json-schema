@@ -2,7 +2,7 @@ import _ from 'lodash';
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const benefits = ['chapter33', 'chapter30', 'chapter1606',];
+const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -25,9 +25,11 @@ const schema = {
       'date',
       'dateRange',
       'educationType',
+      'educationProgram',
       'preferredContactMethod',
       'privacyAgreementAccepted',
       'gender',
+      'postHighSchoolTrainings',
       'nonMilitaryJobs',
     ]),
   ),
@@ -42,9 +44,12 @@ const schema = {
     chapter1606: {
       type: 'boolean',
     },
+    chapter32: {
+      type: 'boolean',
+    },
     benefitsRelinquished: {
       type: 'string',
-      enum: ['unknown', ..._.without(benefits, 'chapter33'), 'chapter1607'],
+      enum: ['unknown', ..._.without(benefits, 'chapter33', 'chapter32'), 'chapter1607'],
     },
     veteranFullName: {
       $ref: '#/definitions/fullName',
@@ -74,11 +79,43 @@ const schema = {
     preferredContactMethod: {
       $ref: '#/definitions/preferredContactMethod',
     },
+    secondaryContact: {
+      type: 'object',
+      properties: {
+        fullName: {
+          type: 'string',
+        },
+        sameAddress: {
+          type: 'boolean',
+        },
+        address: {
+          $ref: '#/definitions/address',
+        },
+        phone: {
+          $ref: '#/definitions/usaPhone',
+        },
+      },
+    },
     bankAccount: {
       $ref: '#/definitions/bankAccount',
     },
+    educationStartDate: {
+      $ref: '#/definitions/date',
+    },
+    educationObjective: {
+      type: 'string',
+    },
     educationType: {
       $ref: '#/definitions/educationType',
+    },
+    educationProgram: {
+      $ref: '#/definitions/educationProgram',
+    },
+    highSchoolOrGedCompletionDate: {
+      $ref: '#/definitions/date',
+    },
+    faaFlightCertificatesInformation: {
+      type: 'string',
     },
     serviceAcademyGraduationYear: {
       $ref: '#/definitions/year',
@@ -108,6 +145,9 @@ const schema = {
     seniorRotcScholarshipProgram: {
       type: 'boolean',
     },
+    civilianBenefitsAssistance: {
+      type: 'boolean',
+    },
     additionalContributions: {
       type: 'boolean',
     },
@@ -122,6 +162,9 @@ const schema = {
     },
     serviceBefore1977: {
       $ref: '#/definitions/serviceBefore1977',
+    },
+    postHighSchoolTrainings: {
+      $ref: '#/definitions/postHighSchoolTrainings',
     },
     nonMilitaryJobs: {
       $ref: '#/definitions/nonMilitaryJobs',
