@@ -35,11 +35,6 @@ countryStateProperties.push({
   },
 });
 
-let hcaFullName = _.cloneDeep(definitions.fullName);
-hcaFullName.properties.first.maxLength = 25;
-hcaFullName.properties.last.maxLength = 35;
-hcaFullName.properties.middle.maxLength = 30;
-
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR HEALTH BENEFITS (10-10EZ)',
@@ -78,7 +73,7 @@ const schema = {
     dependent: {
       type: 'object',
       properties: {
-        fullName: hcaFullName,
+        fullName: definitions.hcaFullName,
         dependentRelation: {
           enum: constants.dependentRelationships,
           type: 'string',
@@ -197,7 +192,7 @@ const schema = {
       attachments.items.properties.dd214 = { type: 'boolean' };
       return attachments;
     })(),
-    veteranFullName: hcaFullName,
+    veteranFullName: definitions.hcaFullName,
     //  Revisit how to validate that this is either empty or a string between 2 and 35 characters
     mothersMaidenName: {
       type: 'string',
@@ -289,7 +284,7 @@ const schema = {
     discloseFinancialInformation: {
       type: 'boolean',
     },
-    spouseFullName: hcaFullName,
+    spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
     },

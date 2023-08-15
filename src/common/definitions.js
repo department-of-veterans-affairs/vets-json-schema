@@ -27,6 +27,11 @@ const fullName = {
   required: ['first', 'last'],
 };
 
+let hcaFullName = _.cloneDeep(fullName);
+hcaFullName.properties.first.maxLength = 25;
+hcaFullName.properties.last.maxLength = 35;
+hcaFullName.properties.middle.maxLength = 30;
+
 const fullNameNoSuffix = {
   type: 'object',
   additionalProperties: false,
@@ -722,5 +727,6 @@ export default {
   year,
   form4142,
   email,
+  hcaFullName,
   uuid,
 };
