@@ -235,10 +235,12 @@ const hcaDependents = {
       },
       socialSecurityNumber: ssn,
       becameDependent: {
-        $ref: '#/definitions/date',
+        format: 'date',
+        type: 'string',
       },
       dateOfBirth: {
-        $ref: '#/definitions/date',
+        format: 'date',
+        type: 'string',
       },
       disabledBefore18: {
         type: 'boolean',
