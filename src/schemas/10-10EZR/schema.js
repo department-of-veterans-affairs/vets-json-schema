@@ -20,9 +20,6 @@ const schema = {
     dateOfMarriage: {
       $ref: '#/definitions/date',
     },
-    sameAddress: {
-      type: 'boolean',
-    },
     cohabitedLastYear: {
       type: 'boolean',
     },
