@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import constants from '../../common/constants';
 import definitions from '../../common/definitions';
 
 const schema = {
