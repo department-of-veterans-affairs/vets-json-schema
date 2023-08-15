@@ -1,1 +1,189 @@
-undefined
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "APPLICATION FOR HEALTH BENEFITS (10-10EZ)",
+  "definitions": {
+    "dependent": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "object",
+          "properties": {
+            "first": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "middle": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "last": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 35
+            },
+            "suffix": {
+              "type": "string",
+              "enum": [
+                "Jr.",
+                "Sr.",
+                "II",
+                "III",
+                "IV"
+              ]
+            }
+          },
+          "required": [
+            "first",
+            "last"
+          ]
+        },
+        "dependentRelation": {
+          "enum": [
+            "Daughter",
+            "Son",
+            "Stepson",
+            "Stepdaughter",
+            "Father",
+            "Mother",
+            "Spouse",
+            "Other"
+          ],
+          "type": "string"
+        },
+        "socialSecurityNumber": {
+          "$ref": "#/definitions/ssn"
+        },
+        "becameDependent": {
+          "$ref": "#/definitions/date"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "disabledBefore18": {
+          "type": "boolean"
+        },
+        "attendedSchoolLastYear": {
+          "type": "boolean"
+        },
+        "dependentEducationExpenses": {
+          "$ref": "#/definitions/monetaryValue"
+        },
+        "cohabitedLastYear": {
+          "type": "boolean"
+        },
+        "receivedSupportLastYear": {
+          "type": "boolean"
+        },
+        "grossIncome": {
+          "$ref": "#/definitions/monetaryValue"
+        },
+        "netIncome": {
+          "$ref": "#/definitions/monetaryValue"
+        },
+        "otherIncome": {
+          "$ref": "#/definitions/monetaryValue"
+        }
+      }
+    },
+    "monetaryValue": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
+    }
+  },
+  "type": "object",
+  "properties": {
+    "spouseFullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 25
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "spouseSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "spouseDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "dateOfMarriage": {
+      "$ref": "#/definitions/date"
+    },
+    "sameAddress": {
+      "type": "boolean"
+    },
+    "cohabitedLastYear": {
+      "type": "boolean"
+    },
+    "provideSupportLastYear": {
+      "type": "boolean"
+    },
+    "spouseAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "spousePhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "dependents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/dependent"
+      }
+    },
+    "veteranGrossIncome": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "veteranNetIncome": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "veteranOtherIncome": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "spouseGrossIncome": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "spouseNetIncome": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "spouseOtherIncome": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "deductibleMedicalExpenses": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "deductibleFuneralExpenses": {
+      "$ref": "#/definitions/monetaryValue"
+    },
+    "deductibleEducationExpenses": {
+      "$ref": "#/definitions/monetaryValue"
+    }
+  },
+  "required": []
+}
