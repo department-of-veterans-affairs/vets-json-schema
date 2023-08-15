@@ -29,9 +29,6 @@ const schema = {
     spouseAddress: {
       $ref: '#/definitions/address',
     },
-    spousePhone: {
-      $ref: '#/definitions/phone',
-    },
     dependents: definitions.hcaDependents,
     veteranGrossIncome: {
       $ref: '#/definitions/monetaryValue',
