@@ -223,37 +223,40 @@ const hcaMonetaryValue = {
   maximum: 9999999.99,
 };
 
-const hcaDependent = {
-  type: 'object',
-  properties: {
-    fullName: hcaFullName,
-    dependentRelation: {
-      enum: constants.dependentRelationships,
-      type: 'string',
+const hcaDependents = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      fullName: hcaFullName,
+      dependentRelation: {
+        enum: constants.dependentRelationships,
+        type: 'string',
+      },
+      socialSecurityNumber: ssn,
+      becameDependent: {
+        $ref: '#/definitions/date',
+      },
+      dateOfBirth: {
+        $ref: '#/definitions/date',
+      },
+      disabledBefore18: {
+        type: 'boolean',
+      },
+      attendedSchoolLastYear: {
+        type: 'boolean',
+      },
+      dependentEducationExpenses: hcaMonetaryValue,
+      cohabitedLastYear: {
+        type: 'boolean',
+      },
+      receivedSupportLastYear: {
+        type: 'boolean',
+      },
+      grossIncome: hcaMonetaryValue,
+      netIncome: hcaMonetaryValue,
+      otherIncome: hcaMonetaryValue,
     },
-    socialSecurityNumber: ssn,
-    becameDependent: {
-      $ref: '#/definitions/date',
-    },
-    dateOfBirth: {
-      $ref: '#/definitions/date',
-    },
-    disabledBefore18: {
-      type: 'boolean',
-    },
-    attendedSchoolLastYear: {
-      type: 'boolean',
-    },
-    dependentEducationExpenses: hcaMonetaryValue,
-    cohabitedLastYear: {
-      type: 'boolean',
-    },
-    receivedSupportLastYear: {
-      type: 'boolean',
-    },
-    grossIncome: hcaMonetaryValue,
-    netIncome: hcaMonetaryValue,
-    otherIncome: hcaMonetaryValue,
   },
 };
 
@@ -770,5 +773,5 @@ export default {
   hcaFullName,
   uuid,
   hcaMonetaryValue,
-  hcaDependent,
+  hcaDependents,
 };

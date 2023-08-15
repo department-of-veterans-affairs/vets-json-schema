@@ -6,7 +6,6 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'HEALTH BENEFITS UPDATE FORM (10-10EZR)',
   definitions: {
-    dependent: definitions.hcaDependent,
     monetaryValue: definitions.hcaMonetaryValue,
   },
   type: 'object',
@@ -36,12 +35,7 @@ const schema = {
     spousePhone: {
       $ref: '#/definitions/phone',
     },
-    dependents: {
-      type: 'array',
-      items: {
-        $ref: '#/definitions/dependent',
-      },
-    },
+    dependents: definitions.hcaDependents,
     veteranGrossIncome: {
       $ref: '#/definitions/monetaryValue',
     },

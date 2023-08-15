@@ -70,7 +70,6 @@ const schema = {
       },
       required: ['street', 'city', 'country'],
     },
-    dependent: definitions.hcaDependent,
     date: {
       format: 'date',
       type: 'string',
@@ -263,12 +262,7 @@ const schema = {
     spousePhone: {
       $ref: '#/definitions/phone',
     },
-    dependents: {
-      type: 'array',
-      items: {
-        $ref: '#/definitions/dependent',
-      },
-    },
+    dependents: definitions.hcaDependents,
     veteranGrossIncome: {
       $ref: '#/definitions/monetaryValue',
     },
