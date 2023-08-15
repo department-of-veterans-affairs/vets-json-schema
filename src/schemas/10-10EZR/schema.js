@@ -4,7 +4,7 @@ import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'APPLICATION FOR HEALTH BENEFITS (10-10EZ)',
+  title: 'HEALTH BENEFITS UPDATE FORM (10-10EZR)',
   definitions: {
     dependent: {
       type: 'object',
