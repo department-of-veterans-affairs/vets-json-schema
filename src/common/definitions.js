@@ -32,6 +32,50 @@ hcaFullName.properties.first.maxLength = 25;
 hcaFullName.properties.last.maxLength = 35;
 hcaFullName.properties.middle.maxLength = 30;
 
+const hcaDependent = {
+  type: 'object',
+  properties: {
+    fullName: hcaFullName,
+    dependentRelation: {
+      enum: constants.dependentRelationships,
+      type: 'string',
+    },
+    socialSecurityNumber: {
+      $ref: '#/definitions/ssn',
+    },
+    becameDependent: {
+      $ref: '#/definitions/date',
+    },
+    dateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    disabledBefore18: {
+      type: 'boolean',
+    },
+    attendedSchoolLastYear: {
+      type: 'boolean',
+    },
+    dependentEducationExpenses: {
+      $ref: '#/definitions/monetaryValue',
+    },
+    cohabitedLastYear: {
+      type: 'boolean',
+    },
+    receivedSupportLastYear: {
+      type: 'boolean',
+    },
+    grossIncome: {
+      $ref: '#/definitions/monetaryValue',
+    },
+    netIncome: {
+      $ref: '#/definitions/monetaryValue',
+    },
+    otherIncome: {
+      $ref: '#/definitions/monetaryValue',
+    },
+  },
+};
+
 const fullNameNoSuffix = {
   type: 'object',
   additionalProperties: false,
@@ -729,4 +773,5 @@ export default {
   email,
   hcaFullName,
   uuid,
+  hcaDependent,
 };
