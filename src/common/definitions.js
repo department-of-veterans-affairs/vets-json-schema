@@ -217,6 +217,12 @@ const ssn = {
   pattern: '^[0-9]{9}$',
 };
 
+const hcaMonetaryValue = {
+  type: 'number',
+  minimum: 0,
+  maximum: 9999999.99,
+};
+
 const hcaDependent = {
   type: 'object',
   properties: {
@@ -238,24 +244,16 @@ const hcaDependent = {
     attendedSchoolLastYear: {
       type: 'boolean',
     },
-    dependentEducationExpenses: {
-      $ref: '#/definitions/monetaryValue',
-    },
+    dependentEducationExpenses: hcaMonetaryValue,
     cohabitedLastYear: {
       type: 'boolean',
     },
     receivedSupportLastYear: {
       type: 'boolean',
     },
-    grossIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    netIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    otherIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
+    grossIncome: hcaMonetaryValue,
+    netIncome: hcaMonetaryValue,
+    otherIncome: hcaMonetaryValue,
   },
 };
 
@@ -771,5 +769,6 @@ export default {
   email,
   hcaFullName,
   uuid,
+  hcaMonetaryValue,
   hcaDependent,
 };

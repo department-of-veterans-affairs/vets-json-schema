@@ -1690,6 +1690,11 @@
     "type": "string",
     "format": "uuid"
   },
+  "hcaMonetaryValue": {
+    "type": "number",
+    "minimum": 0,
+    "maximum": 9999999.99
+  },
   "hcaDependent": {
     "type": "object",
     "properties": {
@@ -1740,7 +1745,8 @@
         "type": "string"
       },
       "socialSecurityNumber": {
-        "$ref": "#/definitions/ssn"
+        "type": "string",
+        "pattern": "^[0-9]{9}$"
       },
       "becameDependent": {
         "$ref": "#/definitions/date"
@@ -1755,7 +1761,9 @@
         "type": "boolean"
       },
       "dependentEducationExpenses": {
-        "$ref": "#/definitions/monetaryValue"
+        "type": "number",
+        "minimum": 0,
+        "maximum": 9999999.99
       },
       "cohabitedLastYear": {
         "type": "boolean"
@@ -1764,13 +1772,19 @@
         "type": "boolean"
       },
       "grossIncome": {
-        "$ref": "#/definitions/monetaryValue"
+        "type": "number",
+        "minimum": 0,
+        "maximum": 9999999.99
       },
       "netIncome": {
-        "$ref": "#/definitions/monetaryValue"
+        "type": "number",
+        "minimum": 0,
+        "maximum": 9999999.99
       },
       "otherIncome": {
-        "$ref": "#/definitions/monetaryValue"
+        "type": "number",
+        "minimum": 0,
+        "maximum": 9999999.99
       }
     }
   }

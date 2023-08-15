@@ -101,11 +101,7 @@ const schema = {
       },
       required: ['first', 'last'],
     },
-    monetaryValue: {
-      type: 'number',
-      minimum: 0,
-      maximum: 9999999.99,
-    },
+    monetaryValue: definitions.hcaMonetaryValue,
     phone: {
       type: 'string',
       pattern: '^[0-9]{10}$',

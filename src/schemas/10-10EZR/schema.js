@@ -7,11 +7,7 @@ const schema = {
   title: 'HEALTH BENEFITS UPDATE FORM (10-10EZR)',
   definitions: {
     dependent: definitions.hcaDependent,
-    monetaryValue: {
-      type: 'number',
-      minimum: 0,
-      maximum: 9999999.99,
-    },
+    monetaryValue: definitions.hcaMonetaryValue,
   },
   type: 'object',
   properties: {
