@@ -1674,10 +1674,12 @@
             "pattern": "^[0-9]{9}$"
           },
           "becameDependent": {
-            "$ref": "#/definitions/date"
+            "format": "date",
+            "type": "string"
           },
           "dateOfBirth": {
-            "$ref": "#/definitions/date"
+            "format": "date",
+            "type": "string"
           },
           "disabledBefore18": {
             "type": "boolean"
