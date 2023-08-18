@@ -276,6 +276,11 @@ const phone = {
   minLength: 10,
 };
 
+const hcaPhone = {
+  type: 'string',
+  pattern: '^[0-9]{10}$',
+};
+
 const ssn = {
   type: 'string',
   pattern: '^[0-9]{9}$',
@@ -847,4 +852,5 @@ export default {
   hcaDependents,
   hcaAddress,
   sigiGenders,
+  hcaPhone,
 };

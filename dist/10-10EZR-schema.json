@@ -10,6 +10,14 @@
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
+    },
+    "date": {
+      "format": "date",
+      "type": "string"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^[0-9]{10}$"
     }
   },
   "type": "object",
@@ -71,6 +79,15 @@
         "O",
         "NA"
       ]
+    },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "homePhone": {
+      "$ref": "#/definitions/phone"
+    },
+    "mobilePhone": {
+      "$ref": "#/definitions/phone"
     },
     "spouseFullName": {
       "type": "object",

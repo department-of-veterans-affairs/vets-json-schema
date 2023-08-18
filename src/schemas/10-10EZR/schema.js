@@ -12,6 +12,7 @@ const schema = {
       format: 'date',
       type: 'string',
     },
+    phone: definitions.hcaPhone,
   },
   type: 'object',
   properties: {
@@ -24,6 +25,12 @@ const schema = {
     sigiGenders: definitions.sigiGenders,
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
+    },
+    homePhone: {
+      $ref: '#/definitions/phone',
+    },
+    mobilePhone: {
+      $ref: '#/definitions/phone',
     },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {

@@ -42,10 +42,7 @@ const schema = {
       required: ['first', 'last'],
     },
     monetaryValue: definitions.hcaMonetaryValue,
-    phone: {
-      type: 'string',
-      pattern: '^[0-9]{10}$',
-    },
+    phone: definitions.hcaPhone,
     provider: {
       type: 'object',
       properties: {
