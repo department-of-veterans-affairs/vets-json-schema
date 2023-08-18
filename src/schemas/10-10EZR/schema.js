@@ -6,10 +6,14 @@ const schema = {
   title: 'HEALTH BENEFITS UPDATE FORM (10-10EZR)',
   definitions: {
     monetaryValue: definitions.hcaMonetaryValue,
+    ssn: definitions.ssn,
   },
   type: 'object',
   properties: {
     veteranFullName: definitions.hcaFullName,
+    veteranSocialSecurityNumber: {
+      $ref: '#/definitions/ssn',
+    },
     preferredName: { type: 'string' },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
