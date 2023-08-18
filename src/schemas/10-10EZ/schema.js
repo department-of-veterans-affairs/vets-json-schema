@@ -5,71 +5,12 @@ import definitions from '../../common/definitions';
 import { states50AndDC } from '../../common/address';
 
 const stateOfBirth = [...states50AndDC.map(state => state.value), 'Other'];
-const countries = constants.countries.map(object => object.value);
-const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
-const countryStateProperties = _.map(constants.states, (value, key) => ({
-  properties: {
-    country: {
-      type: 'string',
-      enum: [key],
-    },
-    state: {
-      type: 'string',
-      enum: value.map(x => x.value),
-    },
-  },
-}));
-countryStateProperties.push({
-  properties: {
-    country: {
-      not: {
-        type: 'string',
-        enum: countriesWithAnyState,
-      },
-    },
-    provinceCode: {
-      type: 'string',
-      maxLength: 51,
-      ...definitions.rejectOnlyWhitespace,
-    },
-  },
-});
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR HEALTH BENEFITS (10-10EZ)',
   definitions: {
-    address: {
-      type: 'object',
-      oneOf: countryStateProperties,
-      properties: {
-        street: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 30,
-          ...definitions.rejectOnlyWhitespace,
-        },
-        street2: {
-          type: 'string',
-          maxLength: 30,
-        },
-        street3: {
-          type: 'string',
-          maxLength: 30,
-        },
-        city: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 51,
-          ...definitions.rejectOnlyWhitespace,
-        },
-        postalCode: {
-          type: 'string',
-          maxLength: 51,
-        },
-      },
-      required: ['street', 'city', 'country'],
-    },
+    address: definitions.hcaAddress,
     date: {
       format: 'date',
       type: 'string',

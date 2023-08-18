@@ -62,6 +62,70 @@ const usaPostalCode = {
   pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
 };
 
+const hcaAddress = (() => {
+  const countries = constants.countries.map(object => object.value);
+  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+  const countryStateProperties = _.map(constants.states, (value, key) => ({
+    properties: {
+      country: {
+        type: 'string',
+        enum: [key],
+      },
+      state: {
+        type: 'string',
+        enum: value.map(x => x.value),
+      },
+    },
+  }));
+  countryStateProperties.push({
+    properties: {
+      country: {
+        not: {
+          type: 'string',
+          enum: countriesWithAnyState,
+        },
+      },
+      provinceCode: {
+        type: 'string',
+        maxLength: 51,
+        ...rejectOnlyWhitespace,
+      },
+    },
+  });
+
+  return {
+    type: 'object',
+    oneOf: countryStateProperties,
+    properties: {
+      street: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 30,
+        ...rejectOnlyWhitespace,
+      },
+      street2: {
+        type: 'string',
+        maxLength: 30,
+      },
+      street3: {
+        type: 'string',
+        maxLength: 30,
+      },
+      city: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 51,
+        ...rejectOnlyWhitespace,
+      },
+      postalCode: {
+        type: 'string',
+        maxLength: 51,
+      },
+    },
+    required: ['street', 'city', 'country'],
+  }
+})();
+
 const address = (() => {
   // eslint-disable-next-line import/no-named-as-default-member
   const countries = constants.countries.map(object => object.value);
@@ -776,4 +840,5 @@ export default {
   uuid,
   hcaMonetaryValue,
   hcaDependents,
+  hcaAddress,
 };
