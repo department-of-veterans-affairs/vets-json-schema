@@ -41,6 +41,9 @@ const schema = {
     },
     email: definitions.email,
     maritalStatus: definitions.maritalStatus,
+    isCoveredByHealthInsurance: {
+      type: 'boolean',
+    },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
