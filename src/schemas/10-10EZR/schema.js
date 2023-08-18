@@ -8,6 +8,10 @@ const schema = {
   definitions: {
     monetaryValue: definitions.hcaMonetaryValue,
     ssn: definitions.ssn,
+    date: {
+      format: 'date',
+      type: 'string',
+    },
   },
   type: 'object',
   properties: {
@@ -18,6 +22,9 @@ const schema = {
     preferredName: { type: 'string' },
     gender: definitions.gender,
     sigiGenders: definitions.sigiGenders,
+    veteranDateOfBirth: {
+      $ref: '#/definitions/date',
+    },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
