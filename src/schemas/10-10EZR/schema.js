@@ -9,6 +9,8 @@ const schema = {
   },
   type: 'object',
   properties: {
+    veteranFullName: definitions.hcaFullName,
+    preferredName: { type: 'string' },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
