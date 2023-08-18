@@ -40,6 +40,7 @@ const schema = {
       $ref: '#/definitions/address',
     },
     email: definitions.email,
+    maritalStatus: definitions.maritalStatus,
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',

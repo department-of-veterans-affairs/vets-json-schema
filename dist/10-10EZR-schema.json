@@ -307,6 +307,16 @@
       "maxLength": 256,
       "format": "email"
     },
+    "maritalStatus": {
+      "type": "string",
+      "enum": [
+        "Married",
+        "Never Married",
+        "Separated",
+        "Widowed",
+        "Divorced"
+      ]
+    },
     "spouseFullName": {
       "type": "object",
       "properties": {
