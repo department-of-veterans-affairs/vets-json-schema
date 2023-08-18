@@ -15,6 +15,10 @@ const schema = {
       $ref: '#/definitions/ssn',
     },
     preferredName: { type: 'string' },
+    gender: {
+      type: 'string',
+      enum: constants.genders.map(option => option.value),
+    },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
