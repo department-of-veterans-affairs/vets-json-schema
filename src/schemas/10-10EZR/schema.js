@@ -39,6 +39,7 @@ const schema = {
     veteranHomeAddress: {
       $ref: '#/definitions/address',
     },
+    email: definitions.email,
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
