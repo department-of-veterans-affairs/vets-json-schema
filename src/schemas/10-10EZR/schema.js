@@ -13,6 +13,7 @@ const schema = {
       type: 'string',
     },
     phone: definitions.hcaPhone,
+    address: definitions.hcaAddress,
   },
   type: 'object',
   properties: {
@@ -31,6 +32,12 @@ const schema = {
     },
     mobilePhone: {
       $ref: '#/definitions/phone',
+    },
+    veteranAddress: {
+      $ref: '#/definitions/address',
+    },
+    veteranHomeAddress: {
+      $ref: '#/definitions/address',
     },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
