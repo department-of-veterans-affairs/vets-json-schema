@@ -441,6 +441,11 @@ const gender = {
   enum: ['F', 'M'],
 };
 
+const sigiGenders = {
+  type: 'string',
+  enum: constants.sigiGenders.map(option => option.value),
+};
+
 const postHighSchoolTrainings = {
   type: 'array',
   items: {
@@ -841,4 +846,5 @@ export default {
   hcaMonetaryValue,
   hcaDependents,
   hcaAddress,
+  sigiGenders,
 };

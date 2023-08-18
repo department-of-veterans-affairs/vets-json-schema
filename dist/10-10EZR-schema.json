@@ -6,10 +6,72 @@
       "type": "number",
       "minimum": 0,
       "maximum": 9999999.99
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     }
   },
   "type": "object",
   "properties": {
+    "veteranFullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 25
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "preferredName": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
+    },
+    "sigiGenders": {
+      "type": "string",
+      "enum": [
+        "NB",
+        "M",
+        "F",
+        "TM",
+        "TF",
+        "O",
+        "NA"
+      ]
+    },
     "spouseFullName": {
       "type": "object",
       "properties": {

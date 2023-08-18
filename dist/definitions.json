@@ -1999,5 +1999,17 @@
       "city",
       "country"
     ]
+  },
+  "sigiGenders": {
+    "type": "string",
+    "enum": [
+      "NB",
+      "M",
+      "F",
+      "TM",
+      "TF",
+      "O",
+      "NA"
+    ]
   }
 }

@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import definitions from '../../common/definitions';
+import constants from '../../common/constants';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -15,10 +16,8 @@ const schema = {
       $ref: '#/definitions/ssn',
     },
     preferredName: { type: 'string' },
-    gender: {
-      type: 'string',
-      enum: constants.genders.map(option => option.value),
-    },
+    gender: definitions.gender,
+    sigiGenders: definitions.sigiGenders,
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
