@@ -3,6 +3,10 @@ import { definitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
 import testData from '../support/test-data';
 
+function stringGenerate(length) {
+  return new Array(length + 1).join('a');
+}
+
 describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
     const schemaTestHelper = new SchemaTestHelper({
@@ -16,6 +20,30 @@ describe('schema definitions', () => {
 
     schemaTestHelper.testValidAndInvalid(definitionName, fields);
   };
+
+  testValidAndInvalidDefinitions('insuranceProvider', {
+    valid: [
+      {
+        insuranceName: stringGenerate(100),
+        insurancePolicyHolderName: stringGenerate(50),
+        insurancePolicyNumber: stringGenerate(30),
+        insuranceGroupCode: stringGenerate(30),
+      },
+      { insurancePolicyNumber: '123' },
+      { insuranceGroupCode: '123' },
+    ],
+    invalid: [
+      {
+        insuranceName: stringGenerate(101),
+        insurancePolicyHolderName: stringGenerate(51),
+        insurancePolicyNumber: stringGenerate(31),
+        insuranceGroupCode: stringGenerate(31),
+      },
+      {},
+      { insuranceGroupCode: ' ' },
+      { insurancePolicyNumber: ' ' },
+    ],
+  });
 
   testValidAndInvalidDefinitions('fullName', {
     valid: [
