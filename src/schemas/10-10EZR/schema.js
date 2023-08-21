@@ -13,6 +13,7 @@ const schema = {
       type: 'string',
     },
     phone: definitions.hcaPhone,
+    provider: definitions.insuranceProvider,
     address: definitions.hcaAddress,
   },
   type: 'object',
@@ -90,6 +91,12 @@ const schema = {
     },
     deductibleEducationExpenses: {
       $ref: '#/definitions/monetaryValue',
+    },
+    providers: {
+      type: 'array',
+      items: {
+        $ref: '#/definitions/provider',
+      },
     },
   },
   required: [
