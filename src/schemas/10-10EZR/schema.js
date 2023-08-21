@@ -101,6 +101,9 @@ const schema = {
     isMedicaidEligible: {
       type: 'boolean',
     },
+    isEnrolledMedicarePartA: {
+      type: 'boolean',
+    },
   },
   required: [
   ],
