@@ -43,37 +43,7 @@ const schema = {
     },
     monetaryValue: definitions.hcaMonetaryValue,
     phone: definitions.hcaPhone,
-    provider: {
-      type: 'object',
-      properties: {
-        insuranceName: {
-          type: 'string',
-          maxLength: 100,
-        },
-        insurancePolicyHolderName: {
-          type: 'string',
-          maxLength: 50,
-        },
-        insurancePolicyNumber: {
-          type: 'string',
-          maxLength: 30,
-          ...definitions.rejectOnlyWhitespace,
-        },
-        insuranceGroupCode: {
-          type: 'string',
-          maxLength: 30,
-          ...definitions.rejectOnlyWhitespace,
-        },
-      },
-      anyOf: [
-        {
-          required: ['insurancePolicyNumber'],
-        },
-        {
-          required: ['insuranceGroupCode'],
-        },
-      ],
-    },
+    provider: definitions.insuranceProvider,
     ssn: definitions.ssn,
   },
   type: 'object',
