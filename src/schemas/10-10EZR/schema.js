@@ -104,6 +104,13 @@ const schema = {
     isEnrolledMedicarePartA: {
       type: 'boolean',
     },
+    medicarePartAEffectiveDate: {
+      $ref: '#/definitions/date',
+    },
+    medicareClaimNumber: {
+      type: 'string',
+      maxLength: 30,
+    },
   },
   required: [
   ],
