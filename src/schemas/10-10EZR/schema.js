@@ -98,6 +98,9 @@ const schema = {
         $ref: '#/definitions/provider',
       },
     },
+    isMedicaidEligible: {
+      type: 'boolean',
+    },
   },
   required: [
   ],
