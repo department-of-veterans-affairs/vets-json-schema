@@ -24,9 +24,6 @@ function definitionValidator(field) {
   };
 }
 
-function stringGenerate(length) {
-  return new Array(length + 1).join('a');
-}
 
 describe('1010ezr json schema', () => {
   describe('phone', () => {
