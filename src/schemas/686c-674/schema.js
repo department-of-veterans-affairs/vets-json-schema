@@ -226,8 +226,8 @@ const schema = {
                         $ref: '#/definitions/date',
                       },
                       biologicalStepchild: {
-                        $ref: '#/definitions/genericTrueFalse'
-                      }
+                        $ref: '#/definitions/genericTrueFalse',
+                      },
                     },
                   },
                   'view:childStatusInformation': {
