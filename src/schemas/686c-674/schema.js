@@ -213,6 +213,9 @@ const schema = {
                       stepchild: {
                         $ref: '#/definitions/genericTrueFalse',
                       },
+                      biologicalStepchild: {
+                        $ref: '#/definitions/genericTrueFalse',
+                      },
                       dateBecameDependent: {
                         $ref: '#/definitions/date',
                       },
