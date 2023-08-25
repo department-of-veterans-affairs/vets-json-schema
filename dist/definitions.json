@@ -1231,6 +1231,13 @@
       "stop"
     ]
   },
+  "bankAccountChangeUpdate": {
+    "type": "string",
+    "enum": [
+      "noChange",
+      "startUpdate"
+    ]
+  },
   "maritalStatus": {
     "type": "string",
     "enum": [
