@@ -1235,7 +1235,8 @@
     "type": "string",
     "enum": [
       "noChange",
-      "startUpdate"
+      "startUpdate",
+      "none"
     ]
   },
   "maritalStatus": {

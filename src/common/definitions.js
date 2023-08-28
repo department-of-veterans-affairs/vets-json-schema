@@ -506,7 +506,7 @@ const bankAccountChange = {
 
 const bankAccountChangeUpdate = {
   type: 'string',
-  enum: ['noChange', 'startUpdate'],
+  enum: ['noChange', 'startUpdate', 'none'],
 };
 
 const maritalStatus = {
