@@ -355,6 +355,14 @@
         "startUpdate",
         "stop"
       ]
+    },
+    "bankAccountChangeUpdate": {
+      "type": "string",
+      "enum": [
+        "noChange",
+        "startUpdate",
+        "none"
+      ]
     }
   },
   "anyOf": [
@@ -473,6 +481,9 @@
     },
     "bankAccountChange": {
       "$ref": "#/definitions/bankAccountChange"
+    },
+    "bankAccountChangeUpdate": {
+      "$ref": "#/definitions/bankAccountChangeUpdate"
     }
   },
   "required": [
