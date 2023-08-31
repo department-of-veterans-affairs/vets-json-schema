@@ -302,14 +302,8 @@ const data = {
     ],
   },
   vaTreatmentCenterAddress: {
-    valid: [{ country: 'USA' }, { country: 'Spain', city: 'abc' }, { country: 'Spain', city: 'xyz', state: 'AL' }],
-    invalid: [
-      {},
-      { country: 'XYZ' },
-      { country: 'Spain', state: 'AB' },
-      { state: 'AL' },
-      { country: 'USA', city: 1234 },
-    ],
+    valid: [{}, { country: 'USA' }, { country: 'Spain', city: 'abc' }, { country: 'Spain', city: 'xyz', state: 'AL' }],
+    invalid: [{ country: 'XYZ' }, { country: 'Spain', state: 'AB' }, { country: 'USA', city: 1234 }],
   },
   homelessOrAtRisk: {
     valid: ['no', 'homeless', 'atRisk'],
@@ -335,8 +329,22 @@ const data = {
           vaTreatmentCenterAddress: { country: 'USA' },
         },
       ],
+      [][{}],
     ],
-    invalid: [[], [{}], [{ treatmentCenterName: 1234 }], [{ treatmentCenterName: 'foo', treatedDisabilityNames: [] }]],
+    invalid: [
+      {
+        treatmentCenterName: makeString(100, 'abc123'),
+        treatedDisabilityNames: ['xyz'],
+        treatmentDateRange: fixtures.dateRange,
+        vaTreatmentCenterAddress: { country: 'nowhere' },
+      },
+      {
+        treatmentCenterName: makeString(100, 'abc123'),
+        treatedDisabilityNames: ['xyz'],
+        treatmentDateRange: fixtures.dateRange,
+        vaTreatmentCenterAddress: { state: 'nope' },
+      },
+    ],
   },
   bankAccountType: {
     valid: ['Checking', 'Savings'],
