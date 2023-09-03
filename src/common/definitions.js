@@ -160,8 +160,8 @@ const hcaAddress = (() => {
 
 const address = (() => {
   // eslint-disable-next-line import/no-named-as-default-member
-  const countries = constants.countries.map(object => object.value);
-  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+  const countriesConstant = constants.countries.map(object => object.value);
+  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countriesConstant, x));
   const countryStateProperties = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
@@ -660,6 +660,11 @@ const bankAccountChange = {
   enum: ['noChange', 'startUpdate', 'stop'],
 };
 
+const bankAccountChangeUpdate = {
+  type: 'string',
+  enum: ['noChange', 'startUpdate', 'none'],
+};
+
 const maritalStatus = {
   type: 'string',
   enum: constants.maritalStatuses,
@@ -865,6 +870,7 @@ export default {
   educationProgram,
   currentlyActiveDuty,
   bankAccountChange,
+  bankAccountChangeUpdate,
   maritalStatus,
   netWorthAccount,
   relationshipAndChildName,

@@ -57,7 +57,14 @@ const schema = {
     },
     benefit: {
       type: 'string',
-      enum: ['chapter33Post911', 'chapter33FryScholarship', 'chapter30', 'chapter1606', 'transferOfEntitlement', 'chapter32'],
+      enum: [
+        'chapter33Post911',
+        'chapter33FryScholarship',
+        'chapter30',
+        'chapter1606',
+        'transferOfEntitlement',
+        'chapter32',
+      ],
     },
     educationType: {
       $ref: '#/definitions/educationType',
@@ -128,7 +135,7 @@ const schema = {
   required: ['privacyAgreementAccepted', 'veteranFullName'],
 };
 
-[['vaFileNumber'], ['bankAccountChange']].forEach(args => {
+[['vaFileNumber'], ['bankAccountChange'], ['bankAccountChangeUpdate']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
