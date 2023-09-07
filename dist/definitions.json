@@ -993,6 +993,17 @@
       "tuitionTopUp"
     ]
   },
+  "educationTypeUpdate": {
+    "type": "string",
+    "enum": [
+      "college",
+      "correspondence",
+      "apprenticeship",
+      "flightTraining",
+      "testReimbursement",
+      "licensingReimbursement"
+    ]
+  },
   "preferredContactMethod": {
     "type": "string",
     "enum": [
@@ -1206,6 +1217,9 @@
       },
       "educationType": {
         "$ref": "#/definitions/educationType"
+      },
+      "educationTypeUpdate": {
+        "$ref": "#/definitions/educationTypeUpdate"
       }
     }
   },

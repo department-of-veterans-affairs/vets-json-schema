@@ -329,6 +329,17 @@
         "cooperativeTraining"
       ]
     },
+    "educationTypeUpdate": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement"
+      ]
+    },
     "preferredContactMethod": {
       "type": "string",
       "enum": [

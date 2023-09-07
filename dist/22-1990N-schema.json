@@ -321,6 +321,9 @@
         },
         "educationType": {
           "$ref": "#/definitions/educationType"
+        },
+        "educationTypeUpdate": {
+          "$ref": "#/definitions/educationTypeUpdate"
         }
       }
     },
