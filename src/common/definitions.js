@@ -493,9 +493,6 @@ const educationProgram = {
     educationType: {
       $ref: '#/definitions/educationType',
     },
-    educationTypeUpdate: {
-      $ref: '#/definitions/educationTypeUpdate',
-    },
   },
 };
 
