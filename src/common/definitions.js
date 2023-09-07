@@ -312,6 +312,18 @@ const educationType = {
   ],
 };
 
+const educationTypeUpdate = {
+  type: 'string',
+  enum: [
+    'college',
+    'correspondence',
+    'apprenticeship',
+    'flightTraining',
+    'testReimbursement',
+    'licensingReimbursement',
+  ],
+};
+
 const preferredContactMethod = {
   type: 'string',
   enum: ['mail', 'email', 'mobile', 'phone'],
@@ -480,6 +492,9 @@ const educationProgram = {
     },
     educationType: {
       $ref: '#/definitions/educationType',
+    },
+    educationTypeUpdate: {
+      $ref: '#/definitions/educationTypeUpdate',
     },
   },
 };
@@ -701,6 +716,7 @@ export default {
   rejectOnlyWhitespace,
   dischargeType,
   educationType,
+  educationTypeUpdate,
   preferredContactMethod,
   privacyAgreementAccepted,
   gender,
