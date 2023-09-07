@@ -321,6 +321,7 @@ const educationTypeUpdate = {
     'flightTraining',
     'testReimbursement',
     'licensingReimbursement',
+    'prepCourseForLoC',
   ],
 };
 

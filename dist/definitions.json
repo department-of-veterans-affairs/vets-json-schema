@@ -1001,7 +1001,8 @@
       "apprenticeship",
       "flightTraining",
       "testReimbursement",
-      "licensingReimbursement"
+      "licensingReimbursement",
+      "prepCourseForLoC"
     ]
   },
   "preferredContactMethod": {
