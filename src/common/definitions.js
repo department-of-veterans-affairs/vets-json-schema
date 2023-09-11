@@ -312,6 +312,19 @@ const educationType = {
   ],
 };
 
+const educationTypeUpdate = {
+  type: 'string',
+  enum: [
+    'college',
+    'correspondence',
+    'apprenticeship',
+    'flightTraining',
+    'testReimbursement',
+    'licensingReimbursement',
+    'prepCourseForLoC',
+  ],
+};
+
 const preferredContactMethod = {
   type: 'string',
   enum: ['mail', 'email', 'mobile', 'phone'],
@@ -701,6 +714,7 @@ export default {
   rejectOnlyWhitespace,
   dischargeType,
   educationType,
+  educationTypeUpdate,
   preferredContactMethod,
   privacyAgreementAccepted,
   gender,

@@ -21,6 +21,7 @@ const schema = {
     'date',
     'dateRange',
     'educationType',
+    'educationTypeUpdate',
     'preferredContactMethod',
     'privacyAgreementAccepted',
   ]),
