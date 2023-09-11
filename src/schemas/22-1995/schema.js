@@ -70,6 +70,9 @@ const schema = {
     educationType: {
       $ref: '#/definitions/educationType',
     },
+    educationTypeUpdate: {
+      $ref: '#/definitions/educationTypeUpdate',
+    },
     educationObjective: {
       type: 'string',
     },
