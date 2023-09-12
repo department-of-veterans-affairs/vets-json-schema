@@ -67,6 +67,10 @@ const schema = {
         'chapter32',
       ],
     },
+    benefitUpdate: {
+      type: 'string',
+      enum: ['chapter33Post911', 'chapter33FryScholarship', 'chapter30', 'chapter1606', 'transferOfEntitlement'],
+    },
     educationType: {
       $ref: '#/definitions/educationType',
     },
