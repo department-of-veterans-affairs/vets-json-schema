@@ -329,6 +329,18 @@
         "cooperativeTraining"
       ]
     },
+    "educationTypeUpdate": {
+      "type": "string",
+      "enum": [
+        "college",
+        "correspondence",
+        "apprenticeship",
+        "flightTraining",
+        "testReimbursement",
+        "licensingReimbursement",
+        "prepCourseForLoC"
+      ]
+    },
     "preferredContactMethod": {
       "type": "string",
       "enum": [
@@ -411,8 +423,21 @@
         "chapter32"
       ]
     },
+    "benefitUpdate": {
+      "type": "string",
+      "enum": [
+        "chapter33Post911",
+        "chapter33FryScholarship",
+        "chapter30",
+        "chapter1606",
+        "transferOfEntitlement"
+      ]
+    },
     "educationType": {
       "$ref": "#/definitions/educationType"
+    },
+    "educationTypeUpdate": {
+      "$ref": "#/definitions/educationTypeUpdate"
     },
     "educationObjective": {
       "type": "string"

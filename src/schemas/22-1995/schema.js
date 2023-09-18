@@ -21,6 +21,7 @@ const schema = {
     'date',
     'dateRange',
     'educationType',
+    'educationTypeUpdate',
     'preferredContactMethod',
     'privacyAgreementAccepted',
   ]),
@@ -66,8 +67,15 @@ const schema = {
         'chapter32',
       ],
     },
+    benefitUpdate: {
+      type: 'string',
+      enum: ['chapter33Post911', 'chapter33FryScholarship', 'chapter30', 'chapter1606', 'transferOfEntitlement'],
+    },
     educationType: {
       $ref: '#/definitions/educationType',
+    },
+    educationTypeUpdate: {
+      $ref: '#/definitions/educationTypeUpdate',
     },
     educationObjective: {
       type: 'string',
