@@ -1,0 +1,74 @@
+{
+  "manifest": {
+    "name": "vets-json-schema",
+    "version": "20.27.23",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/department-of-veterans-affairs/vets-json-schema.git"
+    },
+    "scripts": {
+      "build": "node src/start build",
+      "postinstall": "node ./script/check-node-version.js",
+      "test": "mocha 'test/**/*.spec.js'",
+      "test:all-schemas": "mocha 'test/common/all-schemas.spec.js'",
+      "watch": "node src/start watch",
+      "lint": "eslint src -c .eslintrc --ext js",
+      "lint:fix": "eslint src -c .eslintrc --fix --ext js",
+      "lint:changed": "LIST=`git diff-index --name-only HEAD | grep \"\\.js[x]\\{0,1\\}$\"`; if [ \"$LIST\" ]; then eslint --fix --quiet $LIST; fi"
+    },
+    "main": "dist/schemas.js",
+    "files": [
+      "dist"
+    ],
+    "devDependencies": {
+      "@babel/core": "^7.18.10",
+      "@babel/preset-env": "^7.18.10",
+      "@babel/register": "^7.18.9",
+      "ajv": "^4.5.0",
+      "chai": "^3.5.0",
+      "chalk": "^4.1.2",
+      "danger": "^10.9.0",
+      "eslint": "^6.8.0",
+      "eslint-config-airbnb": "^18.2.0",
+      "eslint-config-prettier": "^6.12.0",
+      "eslint-plugin-chai-expect": "^2.2.0",
+      "eslint-plugin-fp": "^2.3.0",
+      "eslint-plugin-import": "^2.26.0",
+      "eslint-plugin-mocha": "^6.3.0",
+      "eslint-plugin-prettier": "^3.4.1",
+      "jsonfile": "^2.3.1",
+      "lodash": "^4.17.21",
+      "mocha": "^3.0.2",
+      "node-watch": "^0.4.0",
+      "prettier": "^1.19.1",
+      "semver": "^7.5.2"
+    },
+    "engines": {
+      "node": ">=14.15.0"
+    },
+    "homepage": "https://github.com/department-of-veterans-affairs/vets-json-schema#readme",
+    "resolutions": {
+      "**/debug": "^3.1.0",
+      "**/diff": "^3.5.0",
+      "**/growl": "1.10.2",
+      "**/minimist": "^1.2.3"
+    },
+    "dependencies": {
+      "minimist": "^1.2.3"
+    },
+    "_registry": "npm",
+    "_loc": "/Users/chapleywatson/Library/Caches/Yarn/v6/npm-vets-json-schema-20.27.23-42d202db-8359-442e-808a-8d5d9de62501-1695843941907/node_modules/vets-json-schema/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# vets-json-schema [![Build Status](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema.svg?branch=master)](https://travis-ci.org/department-of-veterans-affairs/vets-json-schema)\n\n## Purpose\n\nForms on VA.gov use JSON schema to define a common contract for data validation between the front and back ends. This is where those schemas are kept.\n\n## Development\n\n### Workflow\n\n1. Clone the repo\n1. Make a branch for your changes\n1. Make the changes needed for your form\n1. Update the version number in `package.json`\n1. Submit a PR\n1. Once that PR is merged\n   1. Create a PR in `vets-website` to update the `vets-json-schema` dependency\n      - This can be done with `yarn update:schema`\n   1. If adding or removing a form, update [forms tests](https://github.com/department-of-veterans-affairs/vets-website/blob/master/src/platform/forms/tests/forms.unit.spec.js) in `vets-website`\n   1. Create a PR in `vets-api` to update the dependency\n\n### Environment\n\nnode v8.10.0\n\n### I want to...\n\n| I want to...                                   | Then you should...                                                                                                                                                                      |\n| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| clone the repo                                 | `git clone https://github.com/department-of-veterans-affairs/vets-json-schema.git` followed by `cd vets-json-schema`, `yarn install`. Run `yarn install` any time `package.json` changes. |\n| build the json schemas and examples            | `yarn run build`                                                                                                                                                                         |\n| watch for changes and rebuild when they happen | `yarn run watch`                                                                                                                                                                         |\n| run tests on the built schemas                 | `yarn run test`                                                                                                                                                                          |\n| create a new schema                            | https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/platform/engineering/frontend/vets-website/creating-form-schema.md                                            |\n\n### Updating Version\n\n- Update the \"version\" property in `package.json` with the new version. Please follow [Semantic Versioning](https://semver.org/#summary) practices.\n  - If implementing a major version update, add a link in your vets-json-schema PR that references the vets-api, or vets-website, PR that addresses the breaking changes.\n  - Breaking changes include:\n    - Removing a property from a schema\n    - Adding a property to a schema that has `additionalProperties` set to false\n    - Making a property required that was not previously required on that schema\n    - Changing the `type` on a schema's property\n    - Removing values in the `enum` key of a schema's property\n    - ect.\n- Run `yarn update`.\n- Commit the changes to `package.json` and `yarn.lock`\n- After changes to `vets-json-schema` have been merged into master:\n  - update `vets-website` to point to the latest `vets-json-schema` version by running `yarn update:schema` and making a PR\n  - update `vets-api` by running `bundle update vets_json_schema` and making a PR. _Caution: verify that you changes are only related to vets_json_schema version. If you see sidekiq changes, follow [these instructions](https://github.com/department-of-veterans-affairs/va.gov-team-sensitive/blob/master/platform/engineering/sidekiq-enterprise-setup.md)_\n",
+    "description": "## Purpose"
+  },
+  "artifacts": [],
+  "remote": {
+    "type": "copy",
+    "registry": "npm",
+    "hash": "42d202db-8359-442e-808a-8d5d9de62501-1695843941907",
+    "reference": "/Users/chapleywatson/.nvm/versions/node/v14.15.0/lib/node_modules/vets-json-schema"
+  },
+  "registry": "npm",
+  "hash": "42d202db-8359-442e-808a-8d5d9de62501-1695843941907"
+}

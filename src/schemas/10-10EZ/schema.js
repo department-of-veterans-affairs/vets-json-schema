@@ -7,7 +7,45 @@ import { states50AndDC } from '../../common/address';
 const stateOfBirth = [...states50AndDC.map(state => state.value), 'Other'];
 const countries = constants.countries.map(object => object.value);
 const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
-const countryStateProperties = _.map(constants.states, (value, key) => ({
+
+// override MEX state values from common/address.js
+const clonedStates = _.cloneDeep(constants.states);
+clonedStates.MEX = [
+  { label: 'Aguascalientes', value: 'AGS.' },
+  { label: 'Baja California Norte', value: 'B.C.' },
+  { label: 'Baja California Sur', value: 'B.C.S.' },
+  { label: 'Campeche', value: 'CAM.' },
+  { label: 'Chiapas', value: 'CHIS.' },
+  { label: 'Chihuahua', value: 'CHIH.' },
+  { label: 'Coahuila', value: 'COAH.' },
+  { label: 'Colima', value: 'COL.' },
+  { label: 'Distrito Federal', value: 'D.F.' },
+  { label: 'Durango', value: 'DGO.' },
+  { label: 'Guanajuato', value: 'GTO.' },
+  { label: 'Guerrero', value: 'GRO.' },
+  { label: 'Hidalgo', value: 'HGO.' },
+  { label: 'Jalisco', value: 'JAL.' },
+  { label: 'México', value: 'MEX.' },
+  { label: 'Michoacán', value: 'MICH.' },
+  { label: 'Morelos', value: 'MOR.' },
+  { label: 'Nayarit', value: 'NAY.' },
+  { label: 'Nuevo León', value: 'N.L.' },
+  { label: 'Oaxaca', value: 'OAX.' },
+  { label: 'Puebla', value: 'PUE.' },
+  { label: 'Querétaro', value: 'QRO.' },
+  { label: 'Quintana Roo', value: 'Q.ROO.' },
+  { label: 'San Luis Potosí', value: 'S.L.P.' },
+  { label: 'Sinaloa', value: 'SIN.' },
+  { label: 'Sonora', value: 'SON.' },
+  { label: 'Tabasco', value: 'TAB.' },
+  { label: 'Tamaulipas', value: 'TAMPS.' },
+  { label: 'Tlaxcala', value: 'TLAX.' },
+  { label: 'Veracruz', value: 'VER.' },
+  { label: 'Yucatán', value: 'YUC.' },
+  { label: 'Zacatecas', value: 'ZAC.' },
+];
+
+const countryStateProperties = _.map(clonedStates, (value, key) => ({
   properties: {
     country: {
       type: 'string',
@@ -35,7 +73,7 @@ countryStateProperties.push({
   },
 });
 
-let hcaFullName = _.cloneDeep(definitions.fullName);
+const hcaFullName = _.cloneDeep(definitions.fullName);
 hcaFullName.properties.first.maxLength = 25;
 hcaFullName.properties.last.maxLength = 35;
 hcaFullName.properties.middle.maxLength = 30;
