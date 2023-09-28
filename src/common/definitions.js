@@ -848,6 +848,21 @@ const uuid = {
   format: 'uuid',
 };
 
+const hcaVaMedicalFacility = {
+  type: 'string',
+  enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
+};
+
+const hcaLastServiceBranch = {
+  type: 'string',
+  enum: constants.branchesServed.map(option => option.value),
+};
+
+const hcaDischargeType = {
+  type: 'string',
+  enum: constants.dischargeTypes.map(option => option.value),
+};
+
 export default {
   usaPhone,
   fullName,
@@ -906,4 +921,7 @@ export default {
   sigiGenders,
   hcaPhone,
   insuranceProvider,
+  hcaLastServiceBranch,
+  hcaVaMedicalFacility,
+  hcaDischargeType,
 };

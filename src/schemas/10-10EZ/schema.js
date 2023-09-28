@@ -78,10 +78,7 @@ const schema = {
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
     },
-    maritalStatus: {
-      type: 'string',
-      enum: constants.maritalStatuses,
-    },
+    maritalStatus: definitions.maritalStatus,
     vaCompensationType: {
       type: 'string',
       enum: ['lowDisability', 'highDisability', 'none'],
@@ -93,10 +90,7 @@ const schema = {
     isEssentialAcaCoverage: {
       type: 'boolean',
     },
-    vaMedicalFacility: {
-      type: 'string',
-      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
-    },
+    vaMedicalFacility: definitions.hcaVaMedicalFacility,
     wantsInitialVaContact: {
       type: 'boolean',
     },
@@ -127,12 +121,7 @@ const schema = {
     veteranHomeAddress: {
       $ref: '#/definitions/address',
     },
-    email: {
-      type: 'string',
-      // regex from client/validations.js' isValidEmail, with some extra escaping
-      pattern:
-        '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
-    },
+    email: definitions.email,
     homePhone: {
       $ref: '#/definitions/phone',
     },
@@ -149,6 +138,7 @@ const schema = {
     spouseDateOfBirth: {
       $ref: '#/definitions/date',
     },
+    spouseSigiGenders: definitions.sigiGenders,
     dateOfMarriage: {
       $ref: '#/definitions/date',
     },
@@ -217,20 +207,14 @@ const schema = {
       type: 'string',
       maxLength: 30,
     },
-    lastServiceBranch: {
-      type: 'string',
-      enum: constants.branchesServed.map(option => option.value),
-    },
+    lastServiceBranch: definitions.hcaLastServiceBranch,
     lastEntryDate: {
       $ref: '#/definitions/date',
     },
     lastDischargeDate: {
       $ref: '#/definitions/date',
     },
-    dischargeType: {
-      type: 'string',
-      enum: constants.dischargeTypes.map(option => option.value),
-    },
+    dischargeType: definitions.hcaDischargeType,
     purpleHeartRecipient: {
       type: 'boolean',
     },
@@ -273,6 +257,11 @@ const schema = {
     'veteranAddress',
     'isMedicaidEligible',
     'isEssentialAcaCoverage',
+    'vaMedicalFacility',
+    'lastServiceBranch',
+    'lastEntryDate',
+    'lastDischargeDate',
+    'dischargeType',
   ],
 };
 

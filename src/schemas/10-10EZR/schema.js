@@ -23,7 +23,10 @@ const schema = {
       $ref: '#/definitions/ssn',
     },
     preferredName: { type: 'string' },
-    gender: definitions.gender,
+    gender: {
+      type: 'string',
+      enum: constants.genders.map(option => option.value),
+    },
     sigiGenders: definitions.sigiGenders,
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
@@ -42,9 +45,43 @@ const schema = {
     },
     email: definitions.email,
     maritalStatus: definitions.maritalStatus,
+    isEssentialAcaCoverage: {
+      type: 'boolean',
+    },
+    vaMedicalFacility: definitions.hcaVaMedicalFacility,
+    isSpanishHispanicLatino: {
+      type: 'boolean',
+    },
     isCoveredByHealthInsurance: {
       type: 'boolean',
     },
+    providers: {
+      type: 'array',
+      items: {
+        $ref: '#/definitions/provider',
+      },
+    },
+    isMedicaidEligible: {
+      type: 'boolean',
+    },
+    isEnrolledMedicarePartA: {
+      type: 'boolean',
+    },
+    medicarePartAEffectiveDate: {
+      $ref: '#/definitions/date',
+    },
+    medicareClaimNumber: {
+      type: 'string',
+      maxLength: 30,
+    },
+    lastServiceBranch: definitions.hcaLastServiceBranch,
+    lastEntryDate: {
+      $ref: '#/definitions/date',
+    },
+    lastDischargeDate: {
+      $ref: '#/definitions/date',
+    },
+    dischargeType: definitions.hcaDischargeType,
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
@@ -52,6 +89,7 @@ const schema = {
     spouseDateOfBirth: {
       $ref: '#/definitions/date',
     },
+    spouseSigiGenders: definitions.sigiGenders,
     dateOfMarriage: {
       $ref: '#/definitions/date',
     },
@@ -63,6 +101,9 @@ const schema = {
     },
     spouseAddress: {
       $ref: '#/definitions/address',
+    },
+    spousePhone: {
+      $ref: '#/definitions/phone',
     },
     dependents: definitions.hcaDependents,
     veteranGrossIncome: {
@@ -92,27 +133,26 @@ const schema = {
     deductibleEducationExpenses: {
       $ref: '#/definitions/monetaryValue',
     },
-    providers: {
-      type: 'array',
-      items: {
-        $ref: '#/definitions/provider',
-      },
-    },
-    isMedicaidEligible: {
+    privacyAgreementAccepted: {
       type: 'boolean',
-    },
-    isEnrolledMedicarePartA: {
-      type: 'boolean',
-    },
-    medicarePartAEffectiveDate: {
-      $ref: '#/definitions/date',
-    },
-    medicareClaimNumber: {
-      type: 'string',
-      maxLength: 30,
+      enum: [true],
     },
   },
   required: [
+    'privacyAgreementAccepted',
+    'veteranFullName',
+    'veteranSocialSecurityNumber',
+    'veteranDateOfBirth',
+    'gender',
+    'isSpanishHispanicLatino',
+    'veteranAddress',
+    'isMedicaidEligible',
+    'isEssentialAcaCoverage',
+    'vaMedicalFacility',
+    'lastServiceBranch',
+    'lastEntryDate',
+    'lastDischargeDate',
+    'dischargeType',
   ],
 };
 
