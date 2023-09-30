@@ -858,9 +858,13 @@ const hcaLastServiceBranch = {
   enum: constants.branchesServed.map(option => option.value),
 };
 
-const hcaDischargeType = {
+const hcaEmail = {
   type: 'string',
-  enum: constants.dischargeTypes.map(option => option.value),
+  maxLength: 256,
+  format: 'email',
+  // regex from client/validations.js' isValidEmail, with some extra escaping
+  pattern:
+    '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
 };
 
 export default {
@@ -923,5 +927,5 @@ export default {
   insuranceProvider,
   hcaLastServiceBranch,
   hcaVaMedicalFacility,
-  hcaDischargeType,
+  hcaEmail,
 };

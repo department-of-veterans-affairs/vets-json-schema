@@ -43,7 +43,7 @@ const schema = {
     veteranHomeAddress: {
       $ref: '#/definitions/address',
     },
-    email: definitions.email,
+    email: definitions.hcaEmail,
     maritalStatus: definitions.maritalStatus,
     isEssentialAcaCoverage: {
       type: 'boolean',
@@ -81,7 +81,7 @@ const schema = {
     lastDischargeDate: {
       $ref: '#/definitions/date',
     },
-    dischargeType: definitions.hcaDischargeType,
+    dischargeType: definitions.dischargeType,
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: {
       $ref: '#/definitions/ssn',

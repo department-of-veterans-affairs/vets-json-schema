@@ -71,14 +71,19 @@ describe('1010ezr json schema', () => {
     valid: [
       {
         first: 'a0ad6a23fa748a2768fcf6041',
-        last: 'dfdf'
-      }
+        last: 'dfdf',
+      },
     ],
     invalid: [
       {
         first: 'a0ad6a23fa748a2768fcf6041d',
-        last: 'dfdf'
-      }
-    ]
+        last: 'dfdf',
+      },
+    ],
+  });
+
+  schemaTestHelper.testValidAndInvalid('email', {
+    valid: ['a@a.com', 'a@a.net', 'a+2@a.com', 'Foo@foo.com', 'foo.bar@foo.org'],
+    invalid: ['@', 'foo', 'foo.com', 'a@a', 'a@a.', '@a.com'],
   });
 });

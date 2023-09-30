@@ -105,16 +105,16 @@ describe('healthcare-application json schema', () => {
   schemaTestHelper.testValidAndInvalid('veteranFullName', {
     valid: [
       {
-        first: 'a0ad6a23fa748a2768fcf6041',
-        last: 'dfdf'
-      }
+        first: 'a0ad6a23fa748a2768fcf604',
+        last: 'dfdf',
+      },
     ],
     invalid: [
       {
         first: 'a0ad6a23fa748a2768fcf6041d',
-        last: 'dfdf'
-      }
-    ]
+        last: 'dfdf',
+      },
+    ],
   });
 
   schemaTestHelper.testValidAndInvalid('email', {

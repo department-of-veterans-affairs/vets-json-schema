@@ -326,4 +326,125 @@ describe('schema definitions', () => {
   ].forEach(definition => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
   });
+
+  testValidAndInvalidDefinitions('hcaFullName', {
+    valid: [
+      {
+        first: stringGenerate(25),
+        middle: stringGenerate(30),
+        last: stringGenerate(35),
+      },
+    ],
+    invalid: [
+      {
+        first: stringGenerate(26),
+        middle: stringGenerate(31),
+        last: stringGenerate(36),
+      },
+    ],
+  });
+
+  testValidAndInvalidDefinitions('hcaMonetaryValue', {
+    valid: [2500.83],
+    invalid: [10000000],
+  });
+
+  testValidAndInvalidDefinitions('hcaDependents', {
+    valid: [
+      [
+        {
+          fullName: {
+            first: stringGenerate(25),
+            middle: stringGenerate(30),
+            last: stringGenerate(35),
+          },
+          dependentRelation: 'Stepdaughter',
+          socialSecurityNumber: '123456789',
+          becameDependent: '2018-01-10',
+          dateOfBirth: '2018-01-10',
+          disabledBefore18: false,
+          attendedSchoolLastYear: true,
+          dependentEducationExpenses: 1000.21,
+          cohabitedLastYear: true,
+          receivedSupportLastYear: true,
+          grossIncome: 0,
+          netIncome: 0,
+          otherIncome: 0,
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          fullName: {
+            first: stringGenerate(26),
+            middle: stringGenerate(30),
+            last: stringGenerate(35),
+          },
+          dependentRelation: 'Stepfather',
+          socialSecurityNumber: '1234567891',
+          becameDependent: '10/10/2010',
+          dateOfBirth: '10/10/2010',
+          disabledBefore18: false,
+          attendedSchoolLastYear: true,
+          dependentEducationExpenses: 1000.21,
+          cohabitedLastYear: true,
+          receivedSupportLastYear: true,
+          grossIncome: 0,
+          netIncome: 0,
+          otherIncome: 0,
+        },
+      ],
+    ],
+  });
+
+  testValidAndInvalidDefinitions('hcaAddress', {
+    valid: [
+      {
+        country: 'USA',
+        state: 'AK',
+        street: stringGenerate(23),
+        street2: stringGenerate(13),
+        street3: stringGenerate(5),
+        city: stringGenerate(43),
+        postalCode: stringGenerate(5),
+      },
+    ],
+    invalid: [
+      {
+        country: 'NZ',
+        provinceCode: stringGenerate(52),
+        street: stringGenerate(31),
+        street2: stringGenerate(31),
+        street3: stringGenerate(31),
+        city: stringGenerate(52),
+        postalCode: stringGenerate(52),
+      },
+    ],
+  });
+
+  testValidAndInvalidDefinitions('sigiGenders', {
+    valid: ['M'],
+    invalid: ['Female'],
+  });
+
+  testValidAndInvalidDefinitions('hcaPhone', {
+    valid: ['2389439434'],
+    invalid: ['238A439434'],
+  });
+
+  testValidAndInvalidDefinitions('hcaLastServiceBranch', {
+    valid: ['navy'],
+    invalid: ['marines'],
+  });
+
+  testValidAndInvalidDefinitions('hcaVaMedicalFacility', {
+    valid: ['405HA'],
+    invalid: ['832EW'],
+  });
+
+  testValidAndInvalidDefinitions('hcaEmail', {
+    valid: ['a@a.com', 'a@a.net', 'a+2@a.com', 'Foo@foo.com', 'foo.bar@foo.org'],
+    invalid: ['@', 'foo', 'foo.com', 'a@a', 'a@a.', '@a.com'],
+  });
 });

@@ -15,32 +15,7 @@ const schema = {
       format: 'date',
       type: 'string',
     },
-    fullName: {
-      type: 'object',
-      properties: {
-        first: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 30,
-          ...definitions.rejectOnlyWhitespace,
-        },
-        middle: {
-          type: 'string',
-          maxLength: 30,
-        },
-        last: {
-          type: 'string',
-          minLength: 2,
-          maxLength: 30,
-          ...definitions.rejectOnlyWhitespace,
-        },
-        suffix: {
-          type: 'string',
-          enum: constants.suffixes,
-        },
-      },
-      required: ['first', 'last'],
-    },
+    fullName: definitions.hcaFullName,
     monetaryValue: definitions.hcaMonetaryValue,
     phone: definitions.hcaPhone,
     provider: definitions.insuranceProvider,
@@ -121,7 +96,7 @@ const schema = {
     veteranHomeAddress: {
       $ref: '#/definitions/address',
     },
-    email: definitions.email,
+    email: definitions.hcaEmail,
     homePhone: {
       $ref: '#/definitions/phone',
     },
@@ -214,7 +189,7 @@ const schema = {
     lastDischargeDate: {
       $ref: '#/definitions/date',
     },
-    dischargeType: definitions.hcaDischargeType,
+    dischargeType: definitions.dischargeType,
     purpleHeartRecipient: {
       type: 'boolean',
     },
