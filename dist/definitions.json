@@ -1679,7 +1679,8 @@
       "first": {
         "type": "string",
         "minLength": 1,
-        "maxLength": 25
+        "maxLength": 25,
+        "pattern": "^.*\\S.*"
       },
       "middle": {
         "type": "string",
@@ -1687,8 +1688,9 @@
       },
       "last": {
         "type": "string",
-        "minLength": 1,
-        "maxLength": 35
+        "minLength": 2,
+        "maxLength": 35,
+        "pattern": "^.*\\S.*"
       },
       "suffix": {
         "type": "string",
