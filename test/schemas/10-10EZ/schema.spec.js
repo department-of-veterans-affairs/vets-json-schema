@@ -4,6 +4,7 @@ import { expect } from 'chai';
 import { it } from 'mocha';
 import schemas from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
+import definitions from '../../../src/common/definitions';
 
 const applicationSchema = schemas['10-10EZ'];
 
@@ -15,7 +16,7 @@ function definitionValidator(field) {
     $schema: 'http://json-schema.org/draft-04/schema#',
     type: 'object',
     properties: {
-      field: applicationSchema.definitions[field],
+      field: definitions[field],
     },
   };
 
@@ -34,7 +35,7 @@ function stringGenerate(length) {
 // getting what's expected all around.
 describe('healthcare-application json schema', () => {
   describe('phone', () => {
-    const phoneValidation = definitionValidator('phone');
+    const phoneValidation = definitionValidator('hcaPhone');
     it('validates a 10 digit number as a string', () => {
       expect(phoneValidation('1234567890')).to.be.true;
     });
@@ -68,7 +69,7 @@ describe('healthcare-application json schema', () => {
   });
 
   describe('fullName', () => {
-    const fullNameValidation = definitionValidator('fullName');
+    const fullNameValidation = definitionValidator('hcaFullName');
     it('allows 2 letter last names', () => {
       expect(fullNameValidation({ first: 'foo', last: 'ba' })).to.be.true;
     });
@@ -83,7 +84,7 @@ describe('healthcare-application json schema', () => {
   });
 
   describe('address', () => {
-    const addressValidation = definitionValidator('address');
+    const addressValidation = definitionValidator('hcaAddress');
     it("doesn't allow street, cities, or provinces with only spaces", () => {
       expect(addressValidation({ street: '   ', city: '    ', country: '     ', provinceCode: '     ' })).to.be.false;
     });

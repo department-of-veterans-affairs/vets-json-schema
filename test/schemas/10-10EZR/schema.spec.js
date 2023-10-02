@@ -1,8 +1,10 @@
 import ajv from 'ajv';
 import { omit } from 'lodash';
 import { expect } from 'chai';
+import { it } from 'mocha';
 import schemas from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
+import definitions from '../../../src/common/definitions';
 
 const applicationSchema = schemas['10-10EZR'];
 
@@ -14,7 +16,7 @@ function definitionValidator(field) {
     $schema: 'http://json-schema.org/draft-04/schema#',
     type: 'object',
     properties: {
-      field: applicationSchema.definitions[field],
+      field: definitions[field],
     },
   };
 
@@ -27,7 +29,7 @@ function definitionValidator(field) {
 
 describe('1010ezr json schema', () => {
   describe('phone', () => {
-    const phoneValidation = definitionValidator('phone');
+    const phoneValidation = definitionValidator('hcaPhone');
     it('validates a 10 digit number as a string', () => {
       expect(phoneValidation('1234567890')).to.be.true;
     });
@@ -61,7 +63,7 @@ describe('1010ezr json schema', () => {
   });
 
   describe('address', () => {
-    const addressValidation = definitionValidator('address');
+    const addressValidation = definitionValidator('hcaAddress');
     it("doesn't allow street, cities, or provinces with only spaces", () => {
       expect(addressValidation({ street: '   ', city: '    ', country: '     ', provinceCode: '     ' })).to.be.false;
     });
