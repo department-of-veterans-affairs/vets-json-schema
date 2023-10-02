@@ -1,6 +1,7 @@
 import ajv from 'ajv';
 import { omit } from 'lodash';
 import { expect } from 'chai';
+import { it } from 'mocha';
 import schemas from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
 

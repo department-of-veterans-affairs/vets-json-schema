@@ -29,9 +29,11 @@ const fullName = {
 
 let hcaFullName = _.cloneDeep(fullName);
 hcaFullName.properties.first.maxLength = 25;
-hcaFullName.properties.last.maxLength = 35;
+hcaFullName.properties.first.pattern = '^.*\\S.*';
 hcaFullName.properties.middle.maxLength = 30;
 hcaFullName.properties.last.minLength = 2;
+hcaFullName.properties.last.maxLength = 35;
+hcaFullName.properties.last.pattern = '^.*\\S.*';
 
 const fullNameNoSuffix = {
   type: 'object',

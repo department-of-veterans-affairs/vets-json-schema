@@ -6,22 +6,15 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'HEALTH BENEFITS UPDATE FORM (10-10EZR)',
   definitions: {
-    monetaryValue: definitions.hcaMonetaryValue,
-    ssn: definitions.ssn,
     date: {
       format: 'date',
       type: 'string',
     },
-    phone: definitions.hcaPhone,
-    provider: definitions.insuranceProvider,
-    address: definitions.hcaAddress,
   },
   type: 'object',
   properties: {
     veteranFullName: definitions.hcaFullName,
-    veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn',
-    },
+    veteranSocialSecurityNumber: definitions.ssn,
     preferredName: { type: 'string' },
     gender: {
       type: 'string',
@@ -31,18 +24,10 @@ const schema = {
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
     },
-    homePhone: {
-      $ref: '#/definitions/phone',
-    },
-    mobilePhone: {
-      $ref: '#/definitions/phone',
-    },
-    veteranAddress: {
-      $ref: '#/definitions/address',
-    },
-    veteranHomeAddress: {
-      $ref: '#/definitions/address',
-    },
+    homePhone: definitions.hcaPhone,
+    mobilePhone: definitions.hcaPhone,
+    veteranAddress: definitions.hcaAddress,
+    veteranHomeAddress: definitions.hcaAddress,
     email: definitions.hcaEmail,
     maritalStatus: definitions.maritalStatus,
     isEssentialAcaCoverage: {
@@ -57,9 +42,7 @@ const schema = {
     },
     providers: {
       type: 'array',
-      items: {
-        $ref: '#/definitions/provider',
-      },
+      items: definitions.insuranceProvider,
     },
     isMedicaidEligible: {
       type: 'boolean',
@@ -83,9 +66,7 @@ const schema = {
     },
     dischargeType: definitions.dischargeType,
     spouseFullName: definitions.hcaFullName,
-    spouseSocialSecurityNumber: {
-      $ref: '#/definitions/ssn',
-    },
+    spouseSocialSecurityNumber: definitions.ssn,
     spouseDateOfBirth: {
       $ref: '#/definitions/date',
     },
@@ -99,40 +80,18 @@ const schema = {
     provideSupportLastYear: {
       type: 'boolean',
     },
-    spouseAddress: {
-      $ref: '#/definitions/address',
-    },
-    spousePhone: {
-      $ref: '#/definitions/phone',
-    },
+    spouseAddress: definitions.hcaAddress,
+    spousePhone: definitions.hcaPhone,
     dependents: definitions.hcaDependents,
-    veteranGrossIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    veteranNetIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    veteranOtherIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    spouseGrossIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    spouseNetIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    spouseOtherIncome: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    deductibleMedicalExpenses: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    deductibleFuneralExpenses: {
-      $ref: '#/definitions/monetaryValue',
-    },
-    deductibleEducationExpenses: {
-      $ref: '#/definitions/monetaryValue',
-    },
+    veteranGrossIncome: definitions.hcaMonetaryValue,
+    veteranNetIncome: definitions.hcaMonetaryValue,
+    veteranOtherIncome: definitions.hcaMonetaryValue,
+    spouseGrossIncome: definitions.hcaMonetaryValue,
+    spouseNetIncome: definitions.hcaMonetaryValue,
+    spouseOtherIncome: definitions.hcaMonetaryValue,
+    deductibleMedicalExpenses: definitions.hcaMonetaryValue,
+    deductibleFuneralExpenses: definitions.hcaMonetaryValue,
+    deductibleEducationExpenses: definitions.hcaMonetaryValue,
     privacyAgreementAccepted: {
       type: 'boolean',
       enum: [true],
