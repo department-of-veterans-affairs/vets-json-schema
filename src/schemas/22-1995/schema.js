@@ -101,20 +101,6 @@ const schema = {
     serviceBefore1977: {
       $ref: '#/definitions/serviceBefore1977',
     },
-    toursOfDuty: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          serviceBranch: {
-            type: 'string',
-          },
-          dateRange: {
-            $ref: '#/definitions/dateRange',
-          },
-        },
-      },
-    },
     civilianBenefitsAssistance: {
       type: 'boolean',
     },
@@ -143,7 +129,13 @@ const schema = {
   required: ['privacyAgreementAccepted', 'veteranFullName'],
 };
 
-[['vaFileNumber'], ['bankAccountChange'], ['bankAccountChangeUpdate']].forEach(args => {
+[
+  ['vaFileNumber'],
+  ['bankAccountChange'],
+  ['bankAccountChangeUpdate'],
+  ['toursOfDuty'],
+  ['currentlyActiveDuty'],
+].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 
