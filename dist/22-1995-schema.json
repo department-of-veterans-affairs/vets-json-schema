@@ -375,6 +375,47 @@
         "startUpdate",
         "none"
       ]
+    },
+    "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "serviceBranch": {
+            "type": "string"
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "applyPeriodToSelected": {
+            "type": "boolean"
+          },
+          "benefitsToApplyTo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dateRange",
+          "serviceBranch"
+        ]
+      }
+    },
+    "currentlyActiveDuty": {
+      "type": "object",
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "onTerminalLeave": {
+          "type": "boolean"
+        },
+        "nonVaAssistance": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "anyOf": [
@@ -463,20 +504,6 @@
     "serviceBefore1977": {
       "$ref": "#/definitions/serviceBefore1977"
     },
-    "toursOfDuty": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "serviceBranch": {
-            "type": "string"
-          },
-          "dateRange": {
-            "$ref": "#/definitions/dateRange"
-          }
-        }
-      }
-    },
     "civilianBenefitsAssistance": {
       "type": "boolean"
     },
@@ -509,6 +536,12 @@
     },
     "bankAccountChangeUpdate": {
       "$ref": "#/definitions/bankAccountChangeUpdate"
+    },
+    "toursOfDuty": {
+      "$ref": "#/definitions/toursOfDuty"
+    },
+    "currentlyActiveDuty": {
+      "$ref": "#/definitions/currentlyActiveDuty"
     }
   },
   "required": [
