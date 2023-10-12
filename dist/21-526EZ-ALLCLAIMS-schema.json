@@ -920,7 +920,6 @@
     "phoneAndEmail": {
       "type": "object",
       "required": [
-        "primaryPhone",
         "emailAddress"
       ],
       "properties": {
