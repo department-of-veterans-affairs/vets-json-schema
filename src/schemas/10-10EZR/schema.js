@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import definitions from '../../common/definitions';
 import constants from '../../common/constants';
 
