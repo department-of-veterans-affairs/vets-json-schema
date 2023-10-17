@@ -90,7 +90,7 @@ describe('schema definitions', () => {
 
   testValidAndInvalidDefinitions('ssn', {
     valid: ['123456789'],
-    invalid: ['123-45-6789', '12345678'],
+    invalid: ['123-45-6789', '12345678', 'aaa223333'],
   });
 
   testValidAndInvalidDefinitions('school', {
@@ -334,6 +334,11 @@ describe('schema definitions', () => {
         middle: stringGenerate(30),
         last: stringGenerate(35),
       },
+      // Two-letter last names are valid
+      {
+        first: stringGenerate(25),
+        last: stringGenerate(2),
+      },
     ],
     invalid: [
       {
@@ -341,11 +346,22 @@ describe('schema definitions', () => {
         middle: stringGenerate(31),
         last: stringGenerate(36),
       },
+      // One-letter last names are invalid
+      {
+        first: stringGenerate(25),
+        last: stringGenerate(1),
+      },
+      // Only spaces are invalid
+      {
+        first: '  ',
+        middle: stringGenerate(30),
+        last: '  ',
+      },
     ],
   });
 
   testValidAndInvalidDefinitions('hcaMonetaryValue', {
-    valid: [2500.83],
+    valid: [2500.83, 90843],
     invalid: [10000000],
   });
 
@@ -420,6 +436,13 @@ describe('schema definitions', () => {
         city: stringGenerate(52),
         postalCode: stringGenerate(52),
       },
+      // doesn't allow street, cities, or provinces with only spaces
+      {
+        street: '   ',
+        city: '    ',
+        country: '     ',
+        provinceCode: '     ',
+      },
     ],
   });
 
@@ -429,8 +452,8 @@ describe('schema definitions', () => {
   });
 
   testValidAndInvalidDefinitions('hcaPhone', {
-    valid: ['2389439434'],
-    invalid: ['238A439434'],
+    valid: ['1234567890'],
+    invalid: ['238A439434', 'abcdefghij', '123-456-7890', 1234567890, ''],
   });
 
   testValidAndInvalidDefinitions('hcaEmail', {

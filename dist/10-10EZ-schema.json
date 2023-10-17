@@ -443,6 +443,9 @@
         "No"
       ]
     },
+    "isEssentialAcaCoverage": {
+      "type": "boolean"
+    },
     "vaMedicalFacility": {
       "type": "string",
       "enum": [
@@ -1520,8 +1523,6 @@
     },
     "email": {
       "type": "string",
-      "pattern": "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$",
-      "maxLength": 256,
       "format": "email"
     },
     "homePhone": {
@@ -1541,9 +1542,6 @@
     },
     "spouseDateOfBirth": {
       "$ref": "#/definitions/date"
-    },
-    "spouseSigiGenders": {
-      "$ref": "#/definitions/sigiGenders"
     },
     "dateOfMarriage": {
       "$ref": "#/definitions/date"
@@ -1750,6 +1748,7 @@
     "isSpanishHispanicLatino",
     "veteranAddress",
     "isMedicaidEligible",
+    "isEssentialAcaCoverage",
     "vaMedicalFacility",
     "lastServiceBranch",
     "lastEntryDate",

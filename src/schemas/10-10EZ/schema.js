@@ -95,7 +95,6 @@ const schema = {
     spouseDateOfBirth: {
       $ref: '#/definitions/date',
     },
-    spouseSigiGenders: definitions.sigiGenders,
     dateOfMarriage: {
       $ref: '#/definitions/date',
     },
