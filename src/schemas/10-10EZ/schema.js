@@ -54,10 +54,10 @@ const schema = {
       type: 'string',
       enum: ['Yes', 'No'],
     },
-    isEssentialAcaCoverage: {
-      type: 'boolean',
+    vaMedicalFacility: {
+      type: 'string',
+      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
     },
-    vaMedicalFacility: definitions.hcaVaMedicalFacility,
     wantsInitialVaContact: {
       type: 'boolean',
     },
@@ -140,7 +140,10 @@ const schema = {
       type: 'string',
       maxLength: 30,
     },
-    lastServiceBranch: definitions.hcaLastServiceBranch,
+    lastServiceBranch: {
+      type: 'string',
+      enum: constants.branchesServed.map(option => option.value),
+    },
     lastEntryDate: {
       $ref: '#/definitions/date',
     },
@@ -189,7 +192,6 @@ const schema = {
     'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
-    'isEssentialAcaCoverage',
     'vaMedicalFacility',
     'lastServiceBranch',
     'lastEntryDate',

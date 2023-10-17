@@ -14,7 +14,6 @@ const schema = {
   properties: {
     veteranFullName: definitions.hcaFullName,
     veteranSocialSecurityNumber: definitions.ssn,
-    preferredName: { type: 'string' },
     gender: {
       type: 'string',
       enum: constants.genders.map(option => option.value),
@@ -29,16 +28,6 @@ const schema = {
     veteranHomeAddress: definitions.hcaAddress,
     email: definitions.hcaEmail,
     maritalStatus: definitions.maritalStatus,
-    isEssentialAcaCoverage: {
-      type: 'boolean',
-    },
-    vaMedicalFacility: definitions.hcaVaMedicalFacility,
-    isSpanishHispanicLatino: {
-      type: 'boolean',
-    },
-    isCoveredByHealthInsurance: {
-      type: 'boolean',
-    },
     providers: {
       type: 'array',
       items: definitions.insuranceProvider,
@@ -56,27 +45,15 @@ const schema = {
       type: 'string',
       maxLength: 30,
     },
-    lastServiceBranch: definitions.hcaLastServiceBranch,
-    lastEntryDate: {
-      $ref: '#/definitions/date',
-    },
-    lastDischargeDate: {
-      $ref: '#/definitions/date',
-    },
-    dischargeType: definitions.dischargeType,
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: definitions.ssn,
     spouseDateOfBirth: {
       $ref: '#/definitions/date',
     },
-    spouseSigiGenders: definitions.sigiGenders,
     dateOfMarriage: {
       $ref: '#/definitions/date',
     },
     cohabitedLastYear: {
-      type: 'boolean',
-    },
-    provideSupportLastYear: {
       type: 'boolean',
     },
     spouseAddress: definitions.hcaAddress,
@@ -102,15 +79,8 @@ const schema = {
     'veteranSocialSecurityNumber',
     'veteranDateOfBirth',
     'gender',
-    'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
-    'isEssentialAcaCoverage',
-    'vaMedicalFacility',
-    'lastServiceBranch',
-    'lastEntryDate',
-    'lastDischargeDate',
-    'dischargeType',
   ],
 };
 

@@ -443,9 +443,6 @@
         "No"
       ]
     },
-    "isEssentialAcaCoverage": {
-      "type": "boolean"
-    },
     "vaMedicalFacility": {
       "type": "string",
       "enum": [
@@ -1753,7 +1750,6 @@
     "isSpanishHispanicLatino",
     "veteranAddress",
     "isMedicaidEligible",
-    "isEssentialAcaCoverage",
     "vaMedicalFacility",
     "lastServiceBranch",
     "lastEntryDate",

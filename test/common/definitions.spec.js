@@ -433,16 +433,6 @@ describe('schema definitions', () => {
     invalid: ['238A439434'],
   });
 
-  testValidAndInvalidDefinitions('hcaLastServiceBranch', {
-    valid: ['navy'],
-    invalid: ['marines'],
-  });
-
-  testValidAndInvalidDefinitions('hcaVaMedicalFacility', {
-    valid: ['405HA'],
-    invalid: ['832EW'],
-  });
-
   testValidAndInvalidDefinitions('hcaEmail', {
     valid: ['a@a.com', 'a@a.net', 'a+2@a.com', 'Foo@foo.com', 'foo.bar@foo.org'],
     invalid: ['@', 'foo', 'foo.com', 'a@a', 'a@a.', '@a.com'],

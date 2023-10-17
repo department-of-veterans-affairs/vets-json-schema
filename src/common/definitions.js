@@ -851,16 +851,6 @@ const uuid = {
   format: 'uuid',
 };
 
-const hcaVaMedicalFacility = {
-  type: 'string',
-  enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
-};
-
-const hcaLastServiceBranch = {
-  type: 'string',
-  enum: constants.branchesServed.map(option => option.value),
-};
-
 const hcaEmail = {
   type: 'string',
   maxLength: 256,
@@ -928,7 +918,5 @@ export default {
   sigiGenders,
   hcaPhone,
   insuranceProvider,
-  hcaLastServiceBranch,
-  hcaVaMedicalFacility,
   hcaEmail,
 };
