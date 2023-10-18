@@ -2,383 +2,9 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "APPLICATION FOR HEALTH BENEFITS (10-10EZ)",
   "definitions": {
-    "address": {
-      "type": "object",
-      "oneOf": [
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "CAN"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "AB",
-                "BC",
-                "MB",
-                "NB",
-                "NF",
-                "NT",
-                "NV",
-                "NU",
-                "ON",
-                "PE",
-                "QC",
-                "SK",
-                "YT"
-              ]
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "MEX"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "aguascalientes",
-                "baja-california-norte",
-                "baja-california-sur",
-                "campeche",
-                "chiapas",
-                "chihuahua",
-                "coahuila",
-                "colima",
-                "distrito-federal",
-                "durango",
-                "guanajuato",
-                "guerrero",
-                "hidalgo",
-                "jalisco",
-                "mexico",
-                "michoacan",
-                "morelos",
-                "nayarit",
-                "nuevo-leon",
-                "oaxaca",
-                "puebla",
-                "queretaro",
-                "quintana-roo",
-                "san-luis-potosi",
-                "sinaloa",
-                "sonora",
-                "tabasco",
-                "tamaulipas",
-                "tlaxcala",
-                "veracruz",
-                "yucatan",
-                "zacatecas"
-              ]
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "type": "string",
-              "enum": [
-                "USA"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [
-                "AL",
-                "AK",
-                "AS",
-                "AZ",
-                "AR",
-                "AA",
-                "AE",
-                "AP",
-                "CA",
-                "CO",
-                "CT",
-                "DE",
-                "DC",
-                "FM",
-                "FL",
-                "GA",
-                "GU",
-                "HI",
-                "ID",
-                "IL",
-                "IN",
-                "IA",
-                "KS",
-                "KY",
-                "LA",
-                "ME",
-                "MH",
-                "MD",
-                "MA",
-                "MI",
-                "MN",
-                "MS",
-                "MO",
-                "MT",
-                "NE",
-                "NV",
-                "NH",
-                "NJ",
-                "NM",
-                "NY",
-                "NC",
-                "ND",
-                "MP",
-                "OH",
-                "OK",
-                "OR",
-                "PW",
-                "PA",
-                "PR",
-                "RI",
-                "SC",
-                "SD",
-                "TN",
-                "TX",
-                "UT",
-                "VT",
-                "VI",
-                "VA",
-                "WA",
-                "WV",
-                "WI",
-                "WY"
-              ]
-            }
-          }
-        },
-        {
-          "properties": {
-            "country": {
-              "not": {
-                "type": "string",
-                "enum": [
-                  "CAN",
-                  "MEX",
-                  "USA"
-                ]
-              }
-            },
-            "provinceCode": {
-              "type": "string",
-              "maxLength": 51,
-              "pattern": "^.*\\S.*"
-            }
-          }
-        }
-      ],
-      "properties": {
-        "street": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^.*\\S.*"
-        },
-        "street2": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "street3": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "city": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 51,
-          "pattern": "^.*\\S.*"
-        },
-        "postalCode": {
-          "type": "string",
-          "maxLength": 51
-        }
-      },
-      "required": [
-        "street",
-        "city",
-        "country"
-      ]
-    },
-    "dependent": {
-      "type": "object",
-      "properties": {
-        "fullName": {
-          "type": "object",
-          "properties": {
-            "first": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 25
-            },
-            "middle": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "last": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 35
-            },
-            "suffix": {
-              "type": "string",
-              "enum": [
-                "Jr.",
-                "Sr.",
-                "II",
-                "III",
-                "IV"
-              ]
-            }
-          },
-          "required": [
-            "first",
-            "last"
-          ]
-        },
-        "dependentRelation": {
-          "enum": [
-            "Daughter",
-            "Son",
-            "Stepson",
-            "Stepdaughter",
-            "Father",
-            "Mother",
-            "Spouse",
-            "Other"
-          ],
-          "type": "string"
-        },
-        "socialSecurityNumber": {
-          "$ref": "#/definitions/ssn"
-        },
-        "becameDependent": {
-          "$ref": "#/definitions/date"
-        },
-        "dateOfBirth": {
-          "$ref": "#/definitions/date"
-        },
-        "disabledBefore18": {
-          "type": "boolean"
-        },
-        "attendedSchoolLastYear": {
-          "type": "boolean"
-        },
-        "dependentEducationExpenses": {
-          "$ref": "#/definitions/monetaryValue"
-        },
-        "cohabitedLastYear": {
-          "type": "boolean"
-        },
-        "receivedSupportLastYear": {
-          "type": "boolean"
-        },
-        "grossIncome": {
-          "$ref": "#/definitions/monetaryValue"
-        },
-        "netIncome": {
-          "$ref": "#/definitions/monetaryValue"
-        },
-        "otherIncome": {
-          "$ref": "#/definitions/monetaryValue"
-        }
-      }
-    },
     "date": {
       "format": "date",
       "type": "string"
-    },
-    "fullName": {
-      "type": "object",
-      "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^.*\\S.*"
-        },
-        "middle": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "last": {
-          "type": "string",
-          "minLength": 2,
-          "maxLength": 30,
-          "pattern": "^.*\\S.*"
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
-        }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
-    },
-    "monetaryValue": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 9999999.99
-    },
-    "phone": {
-      "type": "string",
-      "pattern": "^[0-9]{10}$"
-    },
-    "provider": {
-      "type": "object",
-      "properties": {
-        "insuranceName": {
-          "type": "string",
-          "maxLength": 100
-        },
-        "insurancePolicyHolderName": {
-          "type": "string",
-          "maxLength": 50
-        },
-        "insurancePolicyNumber": {
-          "type": "string",
-          "maxLength": 30,
-          "pattern": "^.*\\S.*"
-        },
-        "insuranceGroupCode": {
-          "type": "string",
-          "maxLength": 30,
-          "pattern": "^.*\\S.*"
-        }
-      },
-      "anyOf": [
-        {
-          "required": [
-            "insurancePolicyNumber"
-          ]
-        },
-        {
-          "required": [
-            "insuranceGroupCode"
-          ]
-        }
-      ]
-    },
-    "ssn": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
     },
     "maritalStatus": {
       "type": "string",
@@ -419,7 +45,8 @@
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 25
+          "maxLength": 25,
+          "pattern": "^.*\\S.*"
         },
         "middle": {
           "type": "string",
@@ -427,8 +54,9 @@
         },
         "last": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 35
+          "minLength": 2,
+          "maxLength": 35,
+          "pattern": "^.*\\S.*"
         },
         "suffix": {
           "type": "string",
@@ -450,7 +78,8 @@
       "type": "string"
     },
     "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     },
     "gender": {
       "type": "string",
@@ -1627,20 +1256,430 @@
       "type": "boolean"
     },
     "veteranAddress": {
-      "$ref": "#/definitions/address"
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "CAN"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "MEX"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "aguascalientes",
+                "baja-california-norte",
+                "baja-california-sur",
+                "campeche",
+                "chiapas",
+                "chihuahua",
+                "coahuila",
+                "colima",
+                "distrito-federal",
+                "durango",
+                "guanajuato",
+                "guerrero",
+                "hidalgo",
+                "jalisco",
+                "mexico",
+                "michoacan",
+                "morelos",
+                "nayarit",
+                "nuevo-leon",
+                "oaxaca",
+                "puebla",
+                "queretaro",
+                "quintana-roo",
+                "san-luis-potosi",
+                "sinaloa",
+                "sonora",
+                "tabasco",
+                "tamaulipas",
+                "tlaxcala",
+                "veracruz",
+                "yucatan",
+                "zacatecas"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "USA"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AL",
+                "AK",
+                "AS",
+                "AZ",
+                "AR",
+                "AA",
+                "AE",
+                "AP",
+                "CA",
+                "CO",
+                "CT",
+                "DE",
+                "DC",
+                "FM",
+                "FL",
+                "GA",
+                "GU",
+                "HI",
+                "ID",
+                "IL",
+                "IN",
+                "IA",
+                "KS",
+                "KY",
+                "LA",
+                "ME",
+                "MH",
+                "MD",
+                "MA",
+                "MI",
+                "MN",
+                "MS",
+                "MO",
+                "MT",
+                "NE",
+                "NV",
+                "NH",
+                "NJ",
+                "NM",
+                "NY",
+                "NC",
+                "ND",
+                "MP",
+                "OH",
+                "OK",
+                "OR",
+                "PW",
+                "PA",
+                "PR",
+                "RI",
+                "SC",
+                "SD",
+                "TN",
+                "TX",
+                "UT",
+                "VT",
+                "VI",
+                "VA",
+                "WA",
+                "WV",
+                "WI",
+                "WY"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "not": {
+                "type": "string",
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
+              }
+            },
+            "provinceCode": {
+              "type": "string",
+              "maxLength": 51,
+              "pattern": "^.*\\S.*"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^.*\\S.*"
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "street3": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 51
+        }
+      },
+      "required": [
+        "street",
+        "city",
+        "country"
+      ]
     },
     "veteranHomeAddress": {
-      "$ref": "#/definitions/address"
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "CAN"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "MEX"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "aguascalientes",
+                "baja-california-norte",
+                "baja-california-sur",
+                "campeche",
+                "chiapas",
+                "chihuahua",
+                "coahuila",
+                "colima",
+                "distrito-federal",
+                "durango",
+                "guanajuato",
+                "guerrero",
+                "hidalgo",
+                "jalisco",
+                "mexico",
+                "michoacan",
+                "morelos",
+                "nayarit",
+                "nuevo-leon",
+                "oaxaca",
+                "puebla",
+                "queretaro",
+                "quintana-roo",
+                "san-luis-potosi",
+                "sinaloa",
+                "sonora",
+                "tabasco",
+                "tamaulipas",
+                "tlaxcala",
+                "veracruz",
+                "yucatan",
+                "zacatecas"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "USA"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AL",
+                "AK",
+                "AS",
+                "AZ",
+                "AR",
+                "AA",
+                "AE",
+                "AP",
+                "CA",
+                "CO",
+                "CT",
+                "DE",
+                "DC",
+                "FM",
+                "FL",
+                "GA",
+                "GU",
+                "HI",
+                "ID",
+                "IL",
+                "IN",
+                "IA",
+                "KS",
+                "KY",
+                "LA",
+                "ME",
+                "MH",
+                "MD",
+                "MA",
+                "MI",
+                "MN",
+                "MS",
+                "MO",
+                "MT",
+                "NE",
+                "NV",
+                "NH",
+                "NJ",
+                "NM",
+                "NY",
+                "NC",
+                "ND",
+                "MP",
+                "OH",
+                "OK",
+                "OR",
+                "PW",
+                "PA",
+                "PR",
+                "RI",
+                "SC",
+                "SD",
+                "TN",
+                "TX",
+                "UT",
+                "VT",
+                "VI",
+                "VA",
+                "WA",
+                "WV",
+                "WI",
+                "WY"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "not": {
+                "type": "string",
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
+              }
+            },
+            "provinceCode": {
+              "type": "string",
+              "maxLength": 51,
+              "pattern": "^.*\\S.*"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^.*\\S.*"
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "street3": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 51
+        }
+      },
+      "required": [
+        "street",
+        "city",
+        "country"
+      ]
     },
     "email": {
       "type": "string",
       "pattern": "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"
     },
     "homePhone": {
-      "$ref": "#/definitions/phone"
+      "type": "string",
+      "pattern": "^[0-9]{10}$"
     },
     "mobilePhone": {
-      "$ref": "#/definitions/phone"
+      "type": "string",
+      "pattern": "^[0-9]{10}$"
     },
     "discloseFinancialInformation": {
       "type": "boolean"
@@ -1651,7 +1690,8 @@
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 25
+          "maxLength": 25,
+          "pattern": "^.*\\S.*"
         },
         "middle": {
           "type": "string",
@@ -1659,8 +1699,9 @@
         },
         "last": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 35
+          "minLength": 2,
+          "maxLength": 35,
+          "pattern": "^.*\\S.*"
         },
         "suffix": {
           "type": "string",
@@ -1679,7 +1720,8 @@
       ]
     },
     "spouseSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
     },
     "spouseDateOfBirth": {
       "$ref": "#/definitions/date"
@@ -1697,43 +1739,360 @@
       "type": "boolean"
     },
     "spouseAddress": {
-      "$ref": "#/definitions/address"
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "CAN"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "MEX"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "aguascalientes",
+                "baja-california-norte",
+                "baja-california-sur",
+                "campeche",
+                "chiapas",
+                "chihuahua",
+                "coahuila",
+                "colima",
+                "distrito-federal",
+                "durango",
+                "guanajuato",
+                "guerrero",
+                "hidalgo",
+                "jalisco",
+                "mexico",
+                "michoacan",
+                "morelos",
+                "nayarit",
+                "nuevo-leon",
+                "oaxaca",
+                "puebla",
+                "queretaro",
+                "quintana-roo",
+                "san-luis-potosi",
+                "sinaloa",
+                "sonora",
+                "tabasco",
+                "tamaulipas",
+                "tlaxcala",
+                "veracruz",
+                "yucatan",
+                "zacatecas"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "USA"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AL",
+                "AK",
+                "AS",
+                "AZ",
+                "AR",
+                "AA",
+                "AE",
+                "AP",
+                "CA",
+                "CO",
+                "CT",
+                "DE",
+                "DC",
+                "FM",
+                "FL",
+                "GA",
+                "GU",
+                "HI",
+                "ID",
+                "IL",
+                "IN",
+                "IA",
+                "KS",
+                "KY",
+                "LA",
+                "ME",
+                "MH",
+                "MD",
+                "MA",
+                "MI",
+                "MN",
+                "MS",
+                "MO",
+                "MT",
+                "NE",
+                "NV",
+                "NH",
+                "NJ",
+                "NM",
+                "NY",
+                "NC",
+                "ND",
+                "MP",
+                "OH",
+                "OK",
+                "OR",
+                "PW",
+                "PA",
+                "PR",
+                "RI",
+                "SC",
+                "SD",
+                "TN",
+                "TX",
+                "UT",
+                "VT",
+                "VI",
+                "VA",
+                "WA",
+                "WV",
+                "WI",
+                "WY"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "not": {
+                "type": "string",
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
+              }
+            },
+            "provinceCode": {
+              "type": "string",
+              "maxLength": 51,
+              "pattern": "^.*\\S.*"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^.*\\S.*"
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "street3": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 51
+        }
+      },
+      "required": [
+        "street",
+        "city",
+        "country"
+      ]
     },
     "spousePhone": {
-      "$ref": "#/definitions/phone"
+      "type": "string",
+      "pattern": "^[0-9]{10}$"
     },
     "dependents": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/dependent"
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 25,
+                "pattern": "^.*\\S.*"
+              },
+              "middle": {
+                "type": "string",
+                "maxLength": 30
+              },
+              "last": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 35,
+                "pattern": "^.*\\S.*"
+              },
+              "suffix": {
+                "type": "string",
+                "enum": [
+                  "Jr.",
+                  "Sr.",
+                  "II",
+                  "III",
+                  "IV"
+                ]
+              }
+            },
+            "required": [
+              "first",
+              "last"
+            ]
+          },
+          "dependentRelation": {
+            "enum": [
+              "Daughter",
+              "Son",
+              "Stepson",
+              "Stepdaughter",
+              "Father",
+              "Mother",
+              "Spouse",
+              "Other"
+            ],
+            "type": "string"
+          },
+          "socialSecurityNumber": {
+            "type": "string",
+            "pattern": "^[0-9]{9}$"
+          },
+          "becameDependent": {
+            "format": "date",
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "format": "date",
+            "type": "string"
+          },
+          "disabledBefore18": {
+            "type": "boolean"
+          },
+          "attendedSchoolLastYear": {
+            "type": "boolean"
+          },
+          "dependentEducationExpenses": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 9999999.99
+          },
+          "cohabitedLastYear": {
+            "type": "boolean"
+          },
+          "receivedSupportLastYear": {
+            "type": "boolean"
+          },
+          "grossIncome": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 9999999.99
+          },
+          "netIncome": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 9999999.99
+          },
+          "otherIncome": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 9999999.99
+          }
+        }
       }
     },
     "veteranGrossIncome": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "veteranNetIncome": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "veteranOtherIncome": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "spouseGrossIncome": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "spouseNetIncome": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "spouseOtherIncome": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "deductibleMedicalExpenses": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "deductibleFuneralExpenses": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "deductibleEducationExpenses": {
-      "$ref": "#/definitions/monetaryValue"
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
     },
     "isCoveredByHealthInsurance": {
       "type": "boolean"
@@ -1741,7 +2100,39 @@
     "providers": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/provider"
+        "type": "object",
+        "properties": {
+          "insuranceName": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "insurancePolicyHolderName": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "insurancePolicyNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "pattern": "^.*\\S.*"
+          },
+          "insuranceGroupCode": {
+            "type": "string",
+            "maxLength": 30,
+            "pattern": "^.*\\S.*"
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "insurancePolicyNumber"
+            ]
+          },
+          {
+            "required": [
+              "insuranceGroupCode"
+            ]
+          }
+        ]
       }
     },
     "isMedicaidEligible": {
@@ -1836,6 +2227,7 @@
     "isSpanishHispanicLatino",
     "veteranAddress",
     "isMedicaidEligible",
-    "isEssentialAcaCoverage"
+    "isEssentialAcaCoverage",
+    "vaMedicalFacility"
   ]
 }
