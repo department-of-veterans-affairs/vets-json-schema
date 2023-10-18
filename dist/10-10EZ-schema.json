@@ -1749,10 +1749,6 @@
     "veteranAddress",
     "isMedicaidEligible",
     "isEssentialAcaCoverage",
-    "vaMedicalFacility",
-    "lastServiceBranch",
-    "lastEntryDate",
-    "lastDischargeDate",
-    "dischargeType"
+    "vaMedicalFacility"
   ]
 }

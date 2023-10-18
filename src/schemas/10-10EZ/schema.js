@@ -54,6 +54,9 @@ const schema = {
       type: 'string',
       enum: ['Yes', 'No'],
     },
+    isEssentialAcaCoverage: {
+      type: 'boolean',
+    },
     vaMedicalFacility: {
       type: 'string',
       enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
@@ -191,11 +194,8 @@ const schema = {
     'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
+    'isEssentialAcaCoverage',
     'vaMedicalFacility',
-    'lastServiceBranch',
-    'lastEntryDate',
-    'lastDischargeDate',
-    'dischargeType',
   ],
 };
 
