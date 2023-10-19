@@ -403,6 +403,7 @@ const schema = {
     ),
     phoneAndEmail: {
       type: 'object',
+      required: [],
       properties: {
         primaryPhone: {
           $ref: '#/definitions/phone',
