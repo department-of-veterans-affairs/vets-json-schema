@@ -605,6 +605,9 @@
     "cohabitedLastYear": {
       "type": "boolean"
     },
+    "provideSupportLastYear": {
+      "type": "boolean"
+    },
     "spouseAddress": {
       "type": "object",
       "oneOf": [

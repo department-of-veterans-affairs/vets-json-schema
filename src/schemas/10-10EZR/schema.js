@@ -56,6 +56,9 @@ const schema = {
     cohabitedLastYear: {
       type: 'boolean',
     },
+    provideSupportLastYear: {
+      type: 'boolean',
+    },
     spouseAddress: definitions.hcaAddress,
     spousePhone: definitions.hcaPhone,
     dependents: definitions.hcaDependents,
