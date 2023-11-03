@@ -27,7 +27,7 @@ const fullName = {
   required: ['first', 'last'],
 };
 
-let hcaFullName = _.cloneDeep(fullName);
+const hcaFullName = _.cloneDeep(fullName);
 hcaFullName.properties.first.maxLength = 25;
 hcaFullName.properties.first.pattern = '^.*\\S.*';
 hcaFullName.properties.middle.maxLength = 30;
@@ -98,8 +98,8 @@ const usaPostalCode = {
 };
 
 const hcaAddress = (() => {
-  const countries = constants.countries.map(object => object.value);
-  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+  const countryMap = constants.countries.map(object => object.value);
+  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countryMap, x));
   const countryStateProperties = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
@@ -158,7 +158,7 @@ const hcaAddress = (() => {
       },
     },
     required: ['street', 'city', 'country'],
-  }
+  };
 })();
 
 const address = (() => {
@@ -364,6 +364,25 @@ const hcaDependents = {
       otherIncome: hcaMonetaryValue,
     },
   },
+};
+
+const nextOfKin = {
+  type: 'object',
+  properties: {
+    fullName,
+    relationship: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 50,
+    },
+    hcaPhone,
+    hcaAddress,
+  },
+};
+
+const emergencyContact = {
+  fullName,
+  hcaPhone,
 };
 
 // Historically a veteran's service number has been between 5 and 8 digits,
@@ -898,6 +917,8 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   relationshipAndChildType,
+  nextOfKin,
+  emergencyContact,
   marriages,
   files,
   requiredServiceHistory,
