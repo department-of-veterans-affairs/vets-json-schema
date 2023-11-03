@@ -149,7 +149,7 @@ const hcaAddress = (() => {
       city: {
         type: 'string',
         minLength: 1,
-        maxLength: 51,
+        maxLength: 30,
         ...rejectOnlyWhitespace,
       },
       postalCode: {
@@ -158,7 +158,7 @@ const hcaAddress = (() => {
       },
     },
     required: ['street', 'city', 'country'],
-  }
+  };
 })();
 
 const address = (() => {
