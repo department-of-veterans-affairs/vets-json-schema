@@ -975,7 +975,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "hcaFullName": {
+          "fullName": {
             "type": "object",
             "properties": {
               "first": {
@@ -993,6 +993,16 @@
                 "minLength": 2,
                 "maxLength": 35,
                 "pattern": "^.*\\S.*"
+              },
+              "suffix": {
+                "type": "string",
+                "enum": [
+                  "Jr.",
+                  "Sr.",
+                  "II",
+                  "III",
+                  "IV"
+                ]
               }
             },
             "required": [
@@ -1000,11 +1010,15 @@
               "last"
             ]
           },
-          "hcaPhone": {
+          "primaryPhone": {
             "type": "string",
             "pattern": "^[0-9]{10}$"
           },
-          "hcaAddress": {
+          "alternatePhone": {
+            "type": "string",
+            "pattern": "^[0-9]{10}$"
+          },
+          "address": {
             "type": "object",
             "oneOf": [
               {
@@ -1197,7 +1211,7 @@
               "city": {
                 "type": "string",
                 "minLength": 1,
-                "maxLength": 51,
+                "maxLength": 30,
                 "pattern": "^.*\\S.*"
               },
               "postalCode": {
@@ -1242,9 +1256,9 @@
           }
         },
         "required": [
-          "hcaFullName",
-          "hcaPhone",
-          "hcaAddress",
+          "fullName",
+          "primaryPhone",
+          "address",
           "relationship",
           "contactType"
         ]
