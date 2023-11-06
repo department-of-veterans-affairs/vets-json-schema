@@ -75,6 +75,7 @@ const schema = {
       type: 'boolean',
       enum: [true],
     },
+    associations: definitions.associations,
   },
   required: [
     'privacyAgreementAccepted',

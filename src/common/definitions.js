@@ -27,7 +27,7 @@ const fullName = {
   required: ['first', 'last'],
 };
 
-let hcaFullName = _.cloneDeep(fullName);
+const hcaFullName = _.cloneDeep(fullName);
 hcaFullName.properties.first.maxLength = 25;
 hcaFullName.properties.first.pattern = '^.*\\S.*';
 hcaFullName.properties.middle.maxLength = 30;
@@ -98,8 +98,8 @@ const usaPostalCode = {
 };
 
 const hcaAddress = (() => {
-  const countries = constants.countries.map(object => object.value);
-  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countries, x));
+  const countryMap = constants.countries.map(object => object.value);
+  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countryMap, x));
   const countryStateProperties = _.map(constants.states, (value, key) => ({
     properties: {
       country: {
@@ -364,6 +364,55 @@ const hcaDependents = {
       otherIncome: hcaMonetaryValue,
     },
   },
+};
+
+const associationRelationships = {
+  type: 'string',
+  enum: [
+    'BROTHER',
+    'SISTER',
+    'SON',
+    'STEPCHILD',
+    'UNRELATED FRIEND',
+    'WARD',
+    'WIFE',
+    'CHILD-IN-LAW',
+    'DAUGHTER',
+    'EXTENDED FAMILY MEMBER',
+    'FATHER',
+    'GRANDCHILD',
+    'HUSBAND',
+    'MOTHER',
+    'NIECE/NEPHEW',
+  ],
+};
+
+const associationTypes = {
+  type: 'string',
+  enum: ['Primary Next of Kin', 'Other Next of Kin', 'Emergency Contact', 'Other emergency contact'],
+};
+
+const associationFullName = (() => {
+  const obj = _.cloneDeep(hcaFullName);
+  delete obj.properties.suffix;
+  return obj;
+})();
+
+const association = {
+  type: 'object',
+  properties: {
+    hcaFullName: associationFullName,
+    hcaPhone,
+    hcaAddress,
+    relationship: associationRelationships,
+    contactType: associationTypes,
+  },
+  required: ['hcaFullName', 'hcaPhone', 'hcaAddress', 'relationship', 'contactType'],
+};
+
+const associations = {
+  type: 'array',
+  items: association,
 };
 
 // Historically a veteran's service number has been between 5 and 8 digits,
@@ -898,6 +947,7 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   relationshipAndChildType,
+  associations,
   marriages,
   files,
   requiredServiceHistory,
