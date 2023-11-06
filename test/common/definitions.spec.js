@@ -422,7 +422,7 @@ describe('schema definitions', () => {
         street: stringGenerate(23),
         street2: stringGenerate(13),
         street3: stringGenerate(5),
-        city: stringGenerate(43),
+        city: stringGenerate(27),
         postalCode: stringGenerate(5),
       },
     ],
@@ -433,7 +433,7 @@ describe('schema definitions', () => {
         street: stringGenerate(31),
         street2: stringGenerate(31),
         street3: stringGenerate(31),
-        city: stringGenerate(52),
+        city: stringGenerate(31),
         postalCode: stringGenerate(52),
       },
       // doesn't allow street, cities, or provinces with only spaces

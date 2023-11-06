@@ -1448,7 +1448,7 @@
         "city": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 51,
+          "maxLength": 30,
           "pattern": "^.*\\S.*"
         },
         "postalCode": {
@@ -1655,7 +1655,7 @@
         "city": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 51,
+          "maxLength": 30,
           "pattern": "^.*\\S.*"
         },
         "postalCode": {
@@ -1931,7 +1931,7 @@
         "city": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 51,
+          "maxLength": 30,
           "pattern": "^.*\\S.*"
         },
         "postalCode": {
