@@ -104,6 +104,10 @@ const schema = {
   type: 'object',
   definitions: {
     phone: definitions.usaPhone,
+    nonRequiredPhone: {
+      type: 'string',
+      pattern: '^(\\d{0}|\\d{10})$',
+    },
     date: definitions.date,
     fullName: definitions.fullName,
     email: {
@@ -406,8 +410,7 @@ const schema = {
       required: ['emailAddress'],
       properties: {
         primaryPhone: {
-          type: 'string',
-          pattern: '^(\\d{0}|\\d{10})$',
+          $ref: '#/definitions/nonRequiredPhone',
         },
         emailAddress: {
           $ref: '#/definitions/email',
