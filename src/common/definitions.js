@@ -366,23 +366,53 @@ const hcaDependents = {
   },
 };
 
-const nextOfKin = {
-  type: 'object',
-  properties: {
-    fullName,
-    relationship: {
-      type: 'string',
-      minLength: 1,
-      maxLength: 50,
-    },
-    hcaPhone,
-    hcaAddress,
-  },
+const associationRelationships = {
+  type: 'string',
+  enum: [
+    'BROTHER',
+    'SISTER',
+    'SON',
+    'STEPCHILD',
+    'UNRELATED FRIEND',
+    'WARD',
+    'WIFE',
+    'CHILD-IN-LAW',
+    'DAUGHTER',
+    'EXTENDED FAMILY MEMBER',
+    'FATHER',
+    'GRANDCHILD',
+    'HUSBAND',
+    'MOTHER',
+    'NIECE/NEPHEW',
+  ],
 };
 
-const emergencyContact = {
-  fullName,
-  hcaPhone,
+const associationTypes = {
+  type: 'string',
+  enum: ['Primary Next of Kin', 'Other Next of Kin', 'Emergency Contact', 'Other emergency contact'],
+};
+
+const associationFullName = (() => {
+  const obj = _.cloneDeep(hcaFullName);
+  delete obj.properties.suffix;
+  return obj;
+})();
+
+const association = {
+  type: 'object',
+  properties: {
+    hcaFullName: associationFullName,
+    hcaPhone,
+    hcaAddress,
+    relationship: associationRelationships,
+    contactType: associationTypes,
+  },
+  required: ['hcaFullName', 'hcaPhone', 'hcaAddress', 'relationship', 'contactType'],
+};
+
+const associations = {
+  type: 'array',
+  items: association,
 };
 
 // Historically a veteran's service number has been between 5 and 8 digits,
@@ -917,8 +947,7 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   relationshipAndChildType,
-  nextOfKin,
-  emergencyContact,
+  associations,
   marriages,
   files,
   requiredServiceHistory,
