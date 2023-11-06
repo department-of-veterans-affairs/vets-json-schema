@@ -406,7 +406,8 @@ const schema = {
       required: ['emailAddress'],
       properties: {
         primaryPhone: {
-          $ref: '#/definitions/phone',
+          type: 'string',
+          pattern: '^(\\d{0}|\\d{10})$',
         },
         emailAddress: {
           $ref: '#/definitions/email',
