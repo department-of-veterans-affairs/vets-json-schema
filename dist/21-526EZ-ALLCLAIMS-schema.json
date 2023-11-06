@@ -7,6 +7,10 @@
       "type": "string",
       "pattern": "^\\d{10}$"
     },
+    "nonRequiredPhone": {
+      "type": "string",
+      "pattern": "^(\\d{0}|\\d{10})$"
+    },
     "date": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
@@ -924,8 +928,7 @@
       ],
       "properties": {
         "primaryPhone": {
-          "type": "string",
-          "pattern": "^(\\d{0}|\\d{10})$"
+          "$ref": "#/definitions/nonRequiredPhone"
         },
         "emailAddress": {
           "$ref": "#/definitions/email"
