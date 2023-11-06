@@ -392,22 +392,17 @@ const associationTypes = {
   enum: ['Primary Next of Kin', 'Other Next of Kin', 'Emergency Contact', 'Other emergency contact'],
 };
 
-const associationFullName = (() => {
-  const obj = _.cloneDeep(hcaFullName);
-  delete obj.properties.suffix;
-  return obj;
-})();
-
 const association = {
   type: 'object',
   properties: {
-    hcaFullName: associationFullName,
-    hcaPhone,
-    hcaAddress,
+    fullName: hcaFullName,
+    primaryPhone: hcaPhone,
+    alternatePhone: hcaPhone,
+    address: hcaAddress,
     relationship: associationRelationships,
     contactType: associationTypes,
   },
-  required: ['hcaFullName', 'hcaPhone', 'hcaAddress', 'relationship', 'contactType'],
+  required: ['fullName', 'primaryPhone', 'address', 'relationship', 'contactType'],
 };
 
 const associations = {
