@@ -57,9 +57,13 @@ const data = {
     }
     return { valid, invalid };
   },
+  nonRequiredPhone: {
+    valid: ['5555555555', '1234567890', ''],
+    invalid: ['1234', '555-555-5555', '555 555 5555'],
+  },
   phone: {
     valid: ['5555555555', '1234567890'],
-    invalid: ['1234', '555-555-5555', '555 555 5555'],
+    invalid: ['1234', '555-555-5555', '555 555 5555', ''],
   },
   country: {
     valid: ['USA', 'Spain', 'Japan'],
@@ -563,6 +567,7 @@ describe('21-526-ALLCLAIMS schema', () => {
   });
 
   testValidAndInvalidDefinitions('phone');
+  testValidAndInvalidDefinitions('nonRequiredPhone');
   testValidAndInvalidDefinitions('date', testData.date.data);
   testValidAndInvalidDefinitions('fullName', testData.fullName.data);
   testValidAndInvalidDefinitions('email');
