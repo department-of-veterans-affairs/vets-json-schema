@@ -2040,41 +2040,6 @@
     "type": "string",
     "pattern": "^[0-9]{10}$"
   },
-  "insuranceProvider": {
-    "type": "object",
-    "properties": {
-      "insuranceName": {
-        "type": "string",
-        "maxLength": 100
-      },
-      "insurancePolicyHolderName": {
-        "type": "string",
-        "maxLength": 50
-      },
-      "insurancePolicyNumber": {
-        "type": "string",
-        "maxLength": 30,
-        "pattern": "^.*\\S.*"
-      },
-      "insuranceGroupCode": {
-        "type": "string",
-        "maxLength": 30,
-        "pattern": "^.*\\S.*"
-      }
-    },
-    "anyOf": [
-      {
-        "required": [
-          "insurancePolicyNumber"
-        ]
-      },
-      {
-        "required": [
-          "insuranceGroupCode"
-        ]
-      }
-    ]
-  },
   "hcaEmail": {
     "type": "string",
     "pattern": "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"

@@ -60,38 +60,6 @@ const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
 };
 
-const insuranceProvider = {
-  type: 'object',
-  properties: {
-    insuranceName: {
-      type: 'string',
-      maxLength: 100,
-    },
-    insurancePolicyHolderName: {
-      type: 'string',
-      maxLength: 50,
-    },
-    insurancePolicyNumber: {
-      type: 'string',
-      maxLength: 30,
-      ...rejectOnlyWhitespace,
-    },
-    insuranceGroupCode: {
-      type: 'string',
-      maxLength: 30,
-      ...rejectOnlyWhitespace,
-    },
-  },
-  anyOf: [
-    {
-      required: ['insurancePolicyNumber'],
-    },
-    {
-      required: ['insuranceGroupCode'],
-    },
-  ],
-};
-
 const usaPostalCode = {
   type: 'string',
   pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
@@ -914,6 +882,5 @@ export default {
   hcaAddress,
   sigiGenders,
   hcaPhone,
-  insuranceProvider,
   hcaEmail,
 };
