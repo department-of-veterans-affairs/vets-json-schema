@@ -9,7 +9,26 @@ const schema = {
       format: 'date',
       type: 'string',
     },
-    provider: {
+  },
+  type: 'object',
+  properties: {
+    veteranFullName: definitions.hcaFullName,
+    veteranSocialSecurityNumber: definitions.ssn,
+    gender: {
+      type: 'string',
+      enum: constants.genders.map(option => option.value),
+    },
+    sigiGenders: definitions.sigiGenders,
+    veteranDateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    homePhone: definitions.hcaPhone,
+    mobilePhone: definitions.hcaPhone,
+    veteranAddress: definitions.hcaAddress,
+    veteranHomeAddress: definitions.hcaAddress,
+    email: definitions.hcaEmail,
+    maritalStatus: definitions.maritalStatus,
+    providers: {
       type: 'array',
       items: {
         type: 'object',
@@ -45,31 +64,6 @@ const schema = {
             required: ['insuranceGroupCode'],
           },
         ],
-      },
-    },
-  },
-  type: 'object',
-  properties: {
-    veteranFullName: definitions.hcaFullName,
-    veteranSocialSecurityNumber: definitions.ssn,
-    gender: {
-      type: 'string',
-      enum: constants.genders.map(option => option.value),
-    },
-    sigiGenders: definitions.sigiGenders,
-    veteranDateOfBirth: {
-      $ref: '#/definitions/date',
-    },
-    homePhone: definitions.hcaPhone,
-    mobilePhone: definitions.hcaPhone,
-    veteranAddress: definitions.hcaAddress,
-    veteranHomeAddress: definitions.hcaAddress,
-    email: definitions.hcaEmail,
-    maritalStatus: definitions.maritalStatus,
-    providers: {
-      type: 'array',
-      items: {
-        $ref: '#/definitions/provider',
       },
     },
     isMedicaidEligible: {

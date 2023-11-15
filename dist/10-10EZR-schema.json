@@ -5,48 +5,6 @@
     "date": {
       "format": "date",
       "type": "string"
-    },
-    "provider": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "insuranceName": {
-            "type": "string",
-            "maxLength": 100
-          },
-          "insurancePolicyHolderName": {
-            "type": "string",
-            "maxLength": 50
-          }
-        },
-        "anyOf": [
-          {
-            "properties": {
-              "insurancePolicyNumber": {
-                "type": "string",
-                "maxLength": 30,
-                "pattern": "^.*\\S.*"
-              }
-            },
-            "required": [
-              "insurancePolicyNumber"
-            ]
-          },
-          {
-            "properties": {
-              "insuranceGroupCode": {
-                "type": "string",
-                "maxLength": 30,
-                "pattern": "^.*\\S.*"
-              }
-            },
-            "required": [
-              "insuranceGroupCode"
-            ]
-          }
-        ]
-      }
     }
   },
   "type": "object",
@@ -551,7 +509,43 @@
     "providers": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/provider"
+        "type": "object",
+        "properties": {
+          "insuranceName": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "insurancePolicyHolderName": {
+            "type": "string",
+            "maxLength": 50
+          }
+        },
+        "anyOf": [
+          {
+            "properties": {
+              "insurancePolicyNumber": {
+                "type": "string",
+                "maxLength": 30,
+                "pattern": "^.*\\S.*"
+              }
+            },
+            "required": [
+              "insurancePolicyNumber"
+            ]
+          },
+          {
+            "properties": {
+              "insuranceGroupCode": {
+                "type": "string",
+                "maxLength": 30,
+                "pattern": "^.*\\S.*"
+              }
+            },
+            "required": [
+              "insuranceGroupCode"
+            ]
+          }
+        ]
       }
     },
     "isMedicaidEligible": {
