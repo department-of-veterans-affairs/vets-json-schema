@@ -11,18 +11,18 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         },
         "middle": {
           "type": "string",
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$",
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$",
           "maxLength": 20
         },
         "last": {
           "type": "string",
           "minLength": 1,
           "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         }
       },
       "required": [
@@ -75,7 +75,7 @@
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         },
         "countryDropdown": {
           "type": "string",
@@ -260,7 +260,7 @@
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         },
         "countryDropdown": {
           "type": "string",
@@ -548,7 +548,7 @@
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         },
         "countryDropdown": {
           "type": "string",
@@ -805,7 +805,7 @@
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         },
         "countryDropdown": {
           "type": "string",
@@ -818,7 +818,7 @@
           "type": "string",
           "maxLength": 50,
           "minLength": 1,
-          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         }
       },
       "additionalProperties": false
@@ -850,7 +850,7 @@
               "type": "string",
               "maxLength": 30,
               "minLength": 1,
-              "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+              "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
             },
             "state": {
               "type": "string",
@@ -982,7 +982,7 @@
               "type": "string",
               "maxLength": 50,
               "minLength": 1,
-              "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+              "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
             }
           },
           "additionalProperties": false
