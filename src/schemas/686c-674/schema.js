@@ -12,10 +12,18 @@ const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
 // filter out military states
 const militaryStates = ['AA', 'AE', 'AP'];
 const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
+const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
 
 let definitions = cloneDeep(commonDefinitions);
 definitions = pick(definitions, 'fullName', 'phone', 'date', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
-definitions.fullName.properties.middle.maxLength = 30;
+
+definitions.fullName.properties.first.pattern = textRegex;
+definitions.fullName.properties.last.pattern = textRegex;
+definitions.fullName.properties.middle.pattern = textRegex;
+definitions.fullName.properties.first.maxLength = 30;
+definitions.fullName.properties.last.maxLength = 30;
+definitions.fullName.properties.middle.maxLength = 20;
+delete definitions.fullName.properties.suffix;
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
