@@ -9,26 +9,19 @@
         "first": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         },
         "middle": {
           "type": "string",
-          "maxLength": 30
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$",
+          "maxLength": 20
         },
         "last": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
         }
       },
       "required": [
