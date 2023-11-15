@@ -12,7 +12,7 @@ const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
 // filter out military states
 const militaryStates = ['AA', 'AE', 'AP'];
 const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
-const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
+const textRegex = '^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$';
 
 let definitions = cloneDeep(commonDefinitions);
 definitions = pick(definitions, 'fullName', 'phone', 'date', 'email', 'files', 'privacyAgreementAccepted', 'ssn');

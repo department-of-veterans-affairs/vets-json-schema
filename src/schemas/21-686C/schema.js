@@ -15,7 +15,7 @@ const states = constStates.USA.concat([
   { value: 'UM', label: 'United States Minor Outlying Islands' },
 ]).sort((stateA, stateB) => stateA.label.localeCompare(stateB.label));
 
-const textRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
+const textRegex = '^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$';
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 
 let definitions = _.cloneDeep(originalDefinitions);
