@@ -37,10 +37,14 @@ describe('10-10EZR json schema', () => {
       [
         // No 'insurancePolicyNumber' or 'insuranceGroupCode' present
         insuranceProvider(nameMaxLength, policyHolderNameMaxLength, null, null),
+        // Only spaces for 'insuranceName'
+        insuranceProvider('  ', policyHolderNameMaxLength, policyNumberMaxLength, groupCodeMaxLength),
+        // Only spaces for 'insurancePolicyHolderName'
+        insuranceProvider(nameMaxLength, '   ', policyNumberMaxLength, groupCodeMaxLength),
         // Only spaces for 'insurancePolicyNumber'
         insuranceProvider(nameMaxLength, policyHolderNameMaxLength, '   ', groupCodeMaxLength),
         // Only spaces for 'insuranceGroupCode'
-        insuranceProvider(nameMaxLength, policyHolderNameMaxLength, policyNumberMaxLength, ' '),
+        insuranceProvider(nameMaxLength, policyHolderNameMaxLength, policyNumberMaxLength, '     '),
         // Max length for 'insuranceName' exceeded
         insuranceProvider(nameMaxLength + 1, policyHolderNameMaxLength, policyNumberMaxLength, null),
         // Max length for 'insurancePolicyHolderName' exceeded
