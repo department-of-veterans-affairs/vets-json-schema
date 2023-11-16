@@ -2,10 +2,9 @@ import _ from 'lodash';
 import { expect } from 'chai';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
-import fixtures from '../../support/fixtures';
 import SharedTests from '../../support/shared-tests';
 
-const schema = schemas['VYE-Address-Change'];
+const schema = schemas['VYE-ADDRESS-CHANGE'];
 const schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.anyOf;
