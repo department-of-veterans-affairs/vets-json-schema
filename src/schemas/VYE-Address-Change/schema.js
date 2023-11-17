@@ -5,7 +5,6 @@ import constants from '../../common/constants';
 
 const { states: constStates, states50AndDC, pciuCountries } = constants;
 
-// lists of countries and states are from EVSS ReferenceDataService
 // if any of these countries are selected, addressType should be 'INTERNATIONAL'
 const nonUSACountries = pciuCountries.filter(country => country !== 'USA');
 const countryUSA = pciuCountries.find(country => country === 'USA'); // if selected, addressType should be 'DOMESTIC'
