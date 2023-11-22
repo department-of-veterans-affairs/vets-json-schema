@@ -3,6 +3,10 @@ import { definitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
 import testData from '../support/test-data';
 
+function stringGenerate(length) {
+  return new Array(length + 1).join('a');
+}
+
 describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
     const schemaTestHelper = new SchemaTestHelper({
@@ -16,6 +20,30 @@ describe('schema definitions', () => {
 
     schemaTestHelper.testValidAndInvalid(definitionName, fields);
   };
+
+  testValidAndInvalidDefinitions('insuranceProvider', {
+    valid: [
+      {
+        insuranceName: stringGenerate(100),
+        insurancePolicyHolderName: stringGenerate(50),
+        insurancePolicyNumber: stringGenerate(30),
+        insuranceGroupCode: stringGenerate(30),
+      },
+      { insurancePolicyNumber: '123' },
+      { insuranceGroupCode: '123' },
+    ],
+    invalid: [
+      {
+        insuranceName: stringGenerate(101),
+        insurancePolicyHolderName: stringGenerate(51),
+        insurancePolicyNumber: stringGenerate(31),
+        insuranceGroupCode: stringGenerate(31),
+      },
+      {},
+      { insuranceGroupCode: ' ' },
+      { insurancePolicyNumber: ' ' },
+    ],
+  });
 
   testValidAndInvalidDefinitions('fullName', {
     valid: [
@@ -62,7 +90,7 @@ describe('schema definitions', () => {
 
   testValidAndInvalidDefinitions('ssn', {
     valid: ['123456789'],
-    invalid: ['123-45-6789', '12345678'],
+    invalid: ['123-45-6789', '12345678', 'aaa223333'],
   });
 
   testValidAndInvalidDefinitions('school', {
@@ -297,5 +325,139 @@ describe('schema definitions', () => {
     'email',
   ].forEach(definition => {
     testValidAndInvalidDefinitions(definition, testData[definition].data);
+  });
+
+  testValidAndInvalidDefinitions('hcaFullName', {
+    valid: [
+      {
+        first: stringGenerate(25),
+        middle: stringGenerate(30),
+        last: stringGenerate(35),
+      },
+      // Two-letter last names are valid
+      {
+        first: stringGenerate(25),
+        last: stringGenerate(2),
+      },
+    ],
+    invalid: [
+      {
+        first: stringGenerate(26),
+        middle: stringGenerate(31),
+        last: stringGenerate(36),
+      },
+      // One-letter last names are invalid
+      {
+        first: stringGenerate(25),
+        last: stringGenerate(1),
+      },
+      // Only spaces are invalid
+      {
+        first: '  ',
+        middle: stringGenerate(30),
+        last: '  ',
+      },
+    ],
+  });
+
+  testValidAndInvalidDefinitions('hcaMonetaryValue', {
+    valid: [2500.83, 90843],
+    invalid: [10000000],
+  });
+
+  testValidAndInvalidDefinitions('hcaDependents', {
+    valid: [
+      [
+        {
+          fullName: {
+            first: stringGenerate(25),
+            middle: stringGenerate(30),
+            last: stringGenerate(35),
+          },
+          dependentRelation: 'Stepdaughter',
+          socialSecurityNumber: '123456789',
+          becameDependent: '2018-01-10',
+          dateOfBirth: '2018-01-10',
+          disabledBefore18: false,
+          attendedSchoolLastYear: true,
+          dependentEducationExpenses: 1000.21,
+          cohabitedLastYear: true,
+          receivedSupportLastYear: true,
+          grossIncome: 0,
+          netIncome: 0,
+          otherIncome: 0,
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          fullName: {
+            first: stringGenerate(26),
+            middle: stringGenerate(30),
+            last: stringGenerate(35),
+          },
+          dependentRelation: 'Stepfather',
+          socialSecurityNumber: '1234567891',
+          becameDependent: '10/10/2010',
+          dateOfBirth: '10/10/2010',
+          disabledBefore18: false,
+          attendedSchoolLastYear: true,
+          dependentEducationExpenses: 1000.21,
+          cohabitedLastYear: true,
+          receivedSupportLastYear: true,
+          grossIncome: 0,
+          netIncome: 0,
+          otherIncome: 0,
+        },
+      ],
+    ],
+  });
+
+  testValidAndInvalidDefinitions('hcaAddress', {
+    valid: [
+      {
+        country: 'USA',
+        state: 'AK',
+        street: stringGenerate(23),
+        street2: stringGenerate(13),
+        street3: stringGenerate(5),
+        city: stringGenerate(27),
+        postalCode: stringGenerate(5),
+      },
+    ],
+    invalid: [
+      {
+        country: 'NZ',
+        provinceCode: stringGenerate(52),
+        street: stringGenerate(31),
+        street2: stringGenerate(31),
+        street3: stringGenerate(31),
+        city: stringGenerate(31),
+        postalCode: stringGenerate(52),
+      },
+      // doesn't allow street, cities, or provinces with only spaces
+      {
+        street: '   ',
+        city: '    ',
+        country: '     ',
+        provinceCode: '     ',
+      },
+    ],
+  });
+
+  testValidAndInvalidDefinitions('sigiGenders', {
+    valid: ['M'],
+    invalid: ['Female'],
+  });
+
+  testValidAndInvalidDefinitions('hcaPhone', {
+    valid: ['1234567890'],
+    invalid: ['238A439434', 'abcdefghij', '123-456-7890', 1234567890, ''],
+  });
+
+  testValidAndInvalidDefinitions('hcaEmail', {
+    valid: ['a@a.com', 'a@a.net', 'a+2@a.com', 'Foo@foo.com', 'foo.bar@foo.org'],
+    invalid: ['@', 'foo', 'foo.com', 'a@a', 'a@a.', '@a.com'],
   });
 });

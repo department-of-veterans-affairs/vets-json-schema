@@ -27,6 +27,14 @@ const fullName = {
   required: ['first', 'last'],
 };
 
+const hcaFullName = _.cloneDeep(fullName);
+hcaFullName.properties.first.maxLength = 25;
+hcaFullName.properties.first.pattern = '^.*\\S.*';
+hcaFullName.properties.middle.maxLength = 30;
+hcaFullName.properties.last.minLength = 2;
+hcaFullName.properties.last.maxLength = 35;
+hcaFullName.properties.last.pattern = '^.*\\S.*';
+
 const fullNameNoSuffix = {
   type: 'object',
   additionalProperties: false,
@@ -52,10 +60,106 @@ const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
 };
 
+const insuranceProvider = {
+  type: 'object',
+  properties: {
+    insuranceName: {
+      type: 'string',
+      maxLength: 100,
+    },
+    insurancePolicyHolderName: {
+      type: 'string',
+      maxLength: 50,
+    },
+    insurancePolicyNumber: {
+      type: 'string',
+      maxLength: 30,
+      ...rejectOnlyWhitespace,
+    },
+    insuranceGroupCode: {
+      type: 'string',
+      maxLength: 30,
+      ...rejectOnlyWhitespace,
+    },
+  },
+  anyOf: [
+    {
+      required: ['insurancePolicyNumber'],
+    },
+    {
+      required: ['insuranceGroupCode'],
+    },
+  ],
+};
+
 const usaPostalCode = {
   type: 'string',
   pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
 };
+
+const hcaAddress = (() => {
+  const countryMap = constants.countries.map(object => object.value);
+  const countriesWithAnyState = Object.keys(constants.states).filter(x => _.includes(countryMap, x));
+  const countryStateProperties = _.map(constants.states, (value, key) => ({
+    properties: {
+      country: {
+        type: 'string',
+        enum: [key],
+      },
+      state: {
+        type: 'string',
+        enum: value.map(x => x.value),
+      },
+    },
+  }));
+  countryStateProperties.push({
+    properties: {
+      country: {
+        not: {
+          type: 'string',
+          enum: countriesWithAnyState,
+        },
+      },
+      provinceCode: {
+        type: 'string',
+        maxLength: 51,
+        ...rejectOnlyWhitespace,
+      },
+    },
+  });
+
+  return {
+    type: 'object',
+    oneOf: countryStateProperties,
+    properties: {
+      street: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 30,
+        ...rejectOnlyWhitespace,
+      },
+      street2: {
+        type: 'string',
+        maxLength: 30,
+      },
+      street3: {
+        type: 'string',
+        maxLength: 30,
+      },
+      city: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 30,
+        ...rejectOnlyWhitespace,
+      },
+      postalCode: {
+        type: 'string',
+        maxLength: 51,
+      },
+    },
+    required: ['street', 'city', 'country'],
+  };
+})();
 
 const address = (() => {
   // eslint-disable-next-line import/no-named-as-default-member
@@ -207,9 +311,103 @@ const phone = {
   minLength: 10,
 };
 
+const hcaPhone = {
+  type: 'string',
+  pattern: '^[0-9]{10}$',
+};
+
 const ssn = {
   type: 'string',
   pattern: '^[0-9]{9}$',
+};
+
+const hcaMonetaryValue = {
+  type: 'number',
+  minimum: 0,
+  maximum: 9999999.99,
+};
+
+const hcaDependents = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      fullName: hcaFullName,
+      dependentRelation: {
+        enum: constants.dependentRelationships,
+        type: 'string',
+      },
+      socialSecurityNumber: ssn,
+      becameDependent: {
+        format: 'date',
+        type: 'string',
+      },
+      dateOfBirth: {
+        format: 'date',
+        type: 'string',
+      },
+      disabledBefore18: {
+        type: 'boolean',
+      },
+      attendedSchoolLastYear: {
+        type: 'boolean',
+      },
+      dependentEducationExpenses: hcaMonetaryValue,
+      cohabitedLastYear: {
+        type: 'boolean',
+      },
+      receivedSupportLastYear: {
+        type: 'boolean',
+      },
+      grossIncome: hcaMonetaryValue,
+      netIncome: hcaMonetaryValue,
+      otherIncome: hcaMonetaryValue,
+    },
+  },
+};
+
+const associationRelationships = {
+  type: 'string',
+  enum: [
+    'BROTHER',
+    'SISTER',
+    'SON',
+    'STEPCHILD',
+    'UNRELATED FRIEND',
+    'WARD',
+    'WIFE',
+    'CHILD-IN-LAW',
+    'DAUGHTER',
+    'EXTENDED FAMILY MEMBER',
+    'FATHER',
+    'GRANDCHILD',
+    'HUSBAND',
+    'MOTHER',
+    'NIECE/NEPHEW',
+  ],
+};
+
+const associationTypes = {
+  type: 'string',
+  enum: ['Primary Next of Kin', 'Other Next of Kin', 'Emergency Contact', 'Other emergency contact'],
+};
+
+const association = {
+  type: 'object',
+  properties: {
+    fullName: hcaFullName,
+    primaryPhone: hcaPhone,
+    alternatePhone: hcaPhone,
+    address: hcaAddress,
+    relationship: associationRelationships,
+    contactType: associationTypes,
+  },
+  required: ['fullName', 'primaryPhone', 'address', 'relationship', 'contactType'],
+};
+
+const associations = {
+  type: 'array',
+  items: association,
 };
 
 // Historically a veteran's service number has been between 5 and 8 digits,
@@ -338,6 +536,11 @@ const privacyAgreementAccepted = {
 const gender = {
   type: 'string',
   enum: ['F', 'M'],
+};
+
+const sigiGenders = {
+  type: 'string',
+  enum: constants.sigiGenders.map(option => option.value),
 };
 
 const postHighSchoolTrainings = {
@@ -692,6 +895,12 @@ const uuid = {
   format: 'uuid',
 };
 
+const hcaEmail = {
+  type: 'string',
+  pattern:
+    '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
+};
+
 export default {
   usaPhone,
   fullName,
@@ -733,6 +942,7 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   relationshipAndChildType,
+  associations,
   marriages,
   files,
   requiredServiceHistory,
@@ -742,5 +952,13 @@ export default {
   year,
   form4142,
   email,
+  hcaFullName,
   uuid,
+  hcaMonetaryValue,
+  hcaDependents,
+  hcaAddress,
+  sigiGenders,
+  hcaPhone,
+  insuranceProvider,
+  hcaEmail,
 };
