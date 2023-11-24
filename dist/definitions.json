@@ -263,12 +263,22 @@
       "street": {
         "type": "string",
         "minLength": 1,
-        "maxLength": 50
+        "maxLength": 20
       },
       "street2": {
         "type": "string",
         "minLength": 1,
-        "maxLength": 50
+        "maxLength": 20
+      },
+      "street3": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20
+      },
+      "street4": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20
       },
       "city": {
         "type": "string",
