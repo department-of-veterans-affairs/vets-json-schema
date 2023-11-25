@@ -29,14 +29,14 @@
     }
   },
   "properties": {
-    "bankAccount": {
-      "$ref": "#/definitions/bankAccount"
-    },
     "checkDigit": {
       "type": "string"
     },
     "bankName": {
       "type": "string"
+    },
+    "bankAccount": {
+      "$ref": "#/definitions/bankAccount"
     },
     "bankPhone": {
       "$ref": "#/definitions/usaPhone"

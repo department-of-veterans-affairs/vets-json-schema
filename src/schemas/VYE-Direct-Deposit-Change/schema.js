@@ -1,29 +1,28 @@
-import _ from 'lodash';
-import definitions from '../../common/definitions';
-
+import schemaHelpers from '../../common/schema-helpers';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'VERIFY YOUR ENROLLMENT CHANGE OF DIRECT DEPOSIT',
   type: 'object',
   additionalProperties: false,
-  definitions:_.merge(
-    _.pick(definitions,['bankAccount','usaPhone'])
-  ),
+  definitions:{},
   properties: {
-    bankAccount: {
-      $ref: '#/definitions/bankAccount',
-    },
+
     checkDigit: {
       type: 'string',
     },
     bankName:{
       type:'string'
     },
-    bankPhone:{
-      $ref: '#/definitions/usaPhone',
-    },
   },
   required: ['bankName', 'bankAccount', 'bankPhone',],
 };
+
+[
+  ['bankAccount'],
+  ['usaPhone', 'bankPhone'],
+].forEach(args => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
+
 export default schema;
