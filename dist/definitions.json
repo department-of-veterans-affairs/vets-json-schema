@@ -1302,7 +1302,7 @@
       "step"
     ]
   },
-  "associations": {
+  "hcaVeteranContacts": {
     "type": "array",
     "items": {
       "type": "object",

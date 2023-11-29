@@ -75,7 +75,7 @@ const schema = {
       type: 'boolean',
       enum: [true],
     },
-    associations: definitions.associations,
+    veteranContacts: definitions.hcaVeteranContacts,
   },
   required: [
     'privacyAgreementAccepted',
