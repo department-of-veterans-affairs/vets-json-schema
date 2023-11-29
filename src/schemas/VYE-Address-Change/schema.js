@@ -25,11 +25,6 @@ const schema = {
           "minLength": 1,
           "maxLength": 20
         },
-        "street4": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 20
-        },
         "city": {
           "type": "string",
           "minLength": 1,
