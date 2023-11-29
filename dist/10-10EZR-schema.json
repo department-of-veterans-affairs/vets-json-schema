@@ -970,7 +970,7 @@
         true
       ]
     },
-    "associations": {
+    "veteranContacts": {
       "type": "array",
       "items": {
         "type": "object",

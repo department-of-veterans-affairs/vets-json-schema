@@ -366,7 +366,7 @@ const hcaDependents = {
   },
 };
 
-const associationRelationships = {
+const hcaVeteranContactRelationships = {
   type: 'string',
   enum: [
     'BROTHER',
@@ -387,27 +387,27 @@ const associationRelationships = {
   ],
 };
 
-const associationTypes = {
+const hcaVeteranContactTypes = {
   type: 'string',
   enum: ['Primary Next of Kin', 'Other Next of Kin', 'Emergency Contact', 'Other emergency contact'],
 };
 
-const association = {
+const hcaVeteranContact = {
   type: 'object',
   properties: {
     fullName: hcaFullName,
     primaryPhone: hcaPhone,
     alternatePhone: hcaPhone,
     address: hcaAddress,
-    relationship: associationRelationships,
-    contactType: associationTypes,
+    relationship: hcaVeteranContactRelationships,
+    contactType: hcaVeteranContactTypes,
   },
   required: ['fullName', 'primaryPhone', 'address', 'relationship', 'contactType'],
 };
 
-const associations = {
+const hcaVeteranContacts = {
   type: 'array',
-  items: association,
+  items: hcaVeteranContact,
 };
 
 // Historically a veteran's service number has been between 5 and 8 digits,
@@ -942,7 +942,7 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   relationshipAndChildType,
-  associations,
+  hcaVeteranContacts,
   marriages,
   files,
   requiredServiceHistory,
