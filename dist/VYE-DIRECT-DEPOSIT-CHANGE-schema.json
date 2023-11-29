@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VERIFY YOUR ENROLLMENT CHANGE OF DIRECT DEPOSIT",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "bankAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    }
+  },
+  "properties": {
+    "checkDigit": {
+      "type": "string"
+    },
+    "bankName": {
+      "type": "string"
+    },
+    "bankAccount": {
+      "$ref": "#/definitions/bankAccount"
+    },
+    "bankPhone": {
+      "$ref": "#/definitions/usaPhone"
+    }
+  },
+  "required": [
+    "bankName",
+    "bankAccount",
+    "bankPhone"
+  ]
+}
