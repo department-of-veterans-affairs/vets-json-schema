@@ -67,7 +67,40 @@ const schema = {
       properties: {
         location: {
           type: 'string',
-          enum: ['vaMedicalCenter', 'stateVeteransHome', 'nursingHome', 'other'],
+          enum: ['atHome', 'nursingHomePaid', 'nursingHomeUnpaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
+        },
+        nursingHomePaid: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
+        },
+        vaMedicalCenter: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
+        },
+        stateVeteransHome: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
         },
         other: {
           type: 'string',
@@ -142,10 +175,12 @@ const schema = {
   ['usaPhone', 'claimantPhone'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
+  ['ssn', 'claimantSocialSecurityNumber'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['centralMailVaFile', 'vaFileNumber'],
   ['date', 'burialDate'],
   ['date', 'deathDate'],
+  ['date', 'claimantDateOfBirth'],
   ['date', 'veteranDateOfBirth'],
   ['files', 'deathCertificate'],
   ['files', 'transportationReceipts'],

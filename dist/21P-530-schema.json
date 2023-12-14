@@ -344,11 +344,46 @@
         "location": {
           "type": "string",
           "enum": [
+            "atHome",
+            "nursingHomePaid",
+            "nursingHomeUnpaid",
             "vaMedicalCenter",
             "stateVeteransHome",
-            "nursingHome",
             "other"
           ]
+        },
+        "nursingHomePaid": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
+        },
+        "vaMedicalCenter": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
+        },
+        "stateVeteransHome": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
         },
         "other": {
           "type": "string"
@@ -459,6 +494,9 @@
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
+    "claimantSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
@@ -469,6 +507,9 @@
       "$ref": "#/definitions/date"
     },
     "deathDate": {
+      "$ref": "#/definitions/date"
+    },
+    "claimantDateOfBirth": {
       "$ref": "#/definitions/date"
     },
     "veteranDateOfBirth": {
