@@ -324,6 +324,7 @@
             "child",
             "parent",
             "executor",
+            "funeralDirector",
             "other"
           ]
         },

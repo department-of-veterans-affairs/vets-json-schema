@@ -51,7 +51,7 @@ const schema = {
       properties: {
         type: {
           type: 'string',
-          enum: ['spouse', 'child', 'parent', 'executor', 'other'],
+          enum: ['spouse', 'child', 'parent', 'executor', 'funeralDirector', 'other'],
         },
         other: {
           type: 'string',
