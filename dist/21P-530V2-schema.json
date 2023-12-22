@@ -517,6 +517,9 @@
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
     },
+    "militarySeparationDocuments": {
+      "$ref": "#/definitions/files"
+    },
     "deathCertificate": {
       "$ref": "#/definitions/files"
     },

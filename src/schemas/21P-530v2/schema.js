@@ -190,6 +190,7 @@ const schema = {
   ['date', 'deathDate'],
   ['date', 'claimantDateOfBirth'],
   ['date', 'veteranDateOfBirth'],
+  ['files', 'militarySeparationDocuments'],
   ['files', 'deathCertificate'],
   ['files', 'transportationReceipts'],
 ].forEach(args => {
