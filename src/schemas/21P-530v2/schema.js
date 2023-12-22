@@ -67,7 +67,15 @@ const schema = {
       properties: {
         location: {
           type: 'string',
-          enum: ['atHome', 'nursingHomePaid', 'nursingHomeUnpaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
+          enum: [
+            'atHome',
+            'nursingHomePaid',
+            'nursingHomeUnpaid',
+            'vaMedicalCenter',
+            'stateVeteransHome',
+            'otherFamilyOrFriend',
+            'other',
+          ],
         },
         nursingHomePaid: {
           type: 'object',

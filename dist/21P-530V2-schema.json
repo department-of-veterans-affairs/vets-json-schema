@@ -350,6 +350,7 @@
             "nursingHomeUnpaid",
             "vaMedicalCenter",
             "stateVeteransHome",
+            "otherFamilyOrFriend",
             "other"
           ]
         },
