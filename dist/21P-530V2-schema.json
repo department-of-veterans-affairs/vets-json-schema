@@ -325,14 +325,8 @@
             "parent",
             "executor",
             "funeralDirector",
-            "other"
+            "otherFamilyOrFriend"
           ]
-        },
-        "other": {
-          "type": "string"
-        },
-        "isEntity": {
-          "type": "boolean"
         }
       }
     },
@@ -350,7 +344,6 @@
             "nursingHomeUnpaid",
             "vaMedicalCenter",
             "stateVeteransHome",
-            "otherFamilyOrFriend",
             "other"
           ]
         },

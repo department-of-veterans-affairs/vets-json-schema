@@ -51,13 +51,7 @@ const schema = {
       properties: {
         type: {
           type: 'string',
-          enum: ['spouse', 'child', 'parent', 'executor', 'funeralDirector', 'other'],
-        },
-        other: {
-          type: 'string',
-        },
-        isEntity: {
-          type: 'boolean',
+          enum: ['spouse', 'child', 'parent', 'executor', 'funeralDirector', 'otherFamilyOrFriend'],
         },
       },
     },
@@ -67,15 +61,7 @@ const schema = {
       properties: {
         location: {
           type: 'string',
-          enum: [
-            'atHome',
-            'nursingHomePaid',
-            'nursingHomeUnpaid',
-            'vaMedicalCenter',
-            'stateVeteransHome',
-            'otherFamilyOrFriend',
-            'other',
-          ],
+          enum: ['atHome', 'nursingHomePaid', 'nursingHomeUnpaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
         },
         nursingHomePaid: {
           type: 'object',
