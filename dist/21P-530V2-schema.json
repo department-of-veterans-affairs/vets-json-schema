@@ -468,12 +468,6 @@
     "placeOfBirth": {
       "type": "string"
     },
-    "officialPosition": {
-      "type": "string"
-    },
-    "firmName": {
-      "type": "string"
-    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },

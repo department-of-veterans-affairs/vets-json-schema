@@ -153,12 +153,6 @@ const schema = {
     placeOfBirth: {
       type: 'string',
     },
-    officialPosition: {
-      type: 'string',
-    },
-    firmName: {
-      type: 'string',
-    },
   },
   required: ['privacyAgreementAccepted', 'claimantAddress', 'veteranFullName'],
 };
