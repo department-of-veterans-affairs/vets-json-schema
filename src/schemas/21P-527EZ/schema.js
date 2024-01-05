@@ -36,7 +36,7 @@ const schema = {
         properties: {
           typeOfIncome: {
             type: 'string',
-            enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'RETIREMENT', 'PENSION', 'OTHER']
+            enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'RETIREMENT', 'PENSION', 'OTHER'],
           },
           receiver: {
             type: 'string',
@@ -104,7 +104,6 @@ const schema = {
     vaClaimsHistory: {
       type: 'boolean',
     },
-    phone: schemaHelpers.getDefinition('usaPhone'),
     internationalPhone: {
       type: 'string',
     },
@@ -135,7 +134,6 @@ const schema = {
       type: 'boolean',
     },
     powStatus: { type: 'boolean' },
-    powDateRange: schemaHelpers.getDefinition('dateRange'),
     isOver65: { type: 'boolean' },
     socialSecurityDisability: { type: 'boolean' },
     medicalCondition: { type: 'boolean' },
@@ -213,23 +211,11 @@ const schema = {
         },
       },
     },
-    marriages: {
-      type: 'number',
-    },
     marriageHistory: {
       $ref: '#/definitions/marriages',
     },
-    spouseDateOfBirth: {
-      $ref: '#/definitions/date',
-    },
-    spouseSocialSecurityNumber: {
-      $ref: '#/definitions/ssn',
-    },
     spouseIsVeteran: {
       type: 'boolean',
-    },
-    spouseVaFileNumber: {
-      $ref: '#/definitions/centralMailVaFile',
     },
     liveWithSpouse: {
       type: 'boolean',
@@ -240,18 +226,12 @@ const schema = {
     reasonForNotLivingWithSpouse: {
       type: 'string',
     },
-    spouseAddress: {
-      $ref: '#/definitions/address',
-    },
     currentSpouseMonthlySupport: {
       type: 'number',
     },
     currentSpouseMaritalHistory: {
       type: 'string',
       enum: ['Yes', 'No', 'I’m not sure'],
-    },
-    spouseMarriages: {
-      $ref: '#/definitions/marriages',
     },
     dependents: {
       type: 'array',
@@ -340,8 +320,7 @@ const schema = {
   ['ssn', 'veteranSocialSecurityNumber'],
   ['centralMailVaFile', 'vaFileNumber'],
   ['centralMailAddress', 'veteranAddress'],
-  ['usaPhone', 'dayPhone'],
-  ['usaPhone', 'nightPhone'],
+  ['usaPhone', 'phone'],
   ['usaPhone', 'mobilePhone'],
   ['maritalStatus'],
   ['dateRange', 'powDateRange'],
@@ -352,14 +331,6 @@ const schema = {
   ['address', 'spouseAddress'],
   ['marriages'],
   ['marriages', 'spouseMarriages'],
-  ['netWorth'],
-  ['monthlyIncome'],
-  ['expectedIncome'],
-  ['otherExpenses'],
-  ['netWorth', 'spouseNetWorth'],
-  ['monthlyIncome', 'spouseMonthlyIncome'],
-  ['expectedIncome', 'spouseExpectedIncome'],
-  ['otherExpenses', 'spouseOtherExpenses'],
   ['bankAccount'],
   ['files'],
 ].forEach(args => {

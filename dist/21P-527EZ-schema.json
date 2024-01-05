@@ -712,9 +712,6 @@
     "vaClaimsHistory": {
       "type": "boolean"
     },
-    "phone": {
-      "$ref": "#/definitions/usaPhone"
-    },
     "internationalPhone": {
       "type": "string"
     },
@@ -770,9 +767,6 @@
     },
     "powStatus": {
       "type": "boolean"
-    },
-    "powDateRange": {
-      "$ref": "#/definitions/dateRange"
     },
     "isOver65": {
       "type": "boolean"
@@ -879,23 +873,11 @@
         }
       }
     },
-    "marriages": {
-      "$ref": "#/definitions/marriages"
-    },
     "marriageHistory": {
       "$ref": "#/definitions/marriages"
     },
-    "spouseDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "spouseSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
     "spouseIsVeteran": {
       "type": "boolean"
-    },
-    "spouseVaFileNumber": {
-      "$ref": "#/definitions/centralMailVaFile"
     },
     "liveWithSpouse": {
       "type": "boolean"
@@ -905,9 +887,6 @@
     },
     "reasonForNotLivingWithSpouse": {
       "type": "string"
-    },
-    "spouseAddress": {
-      "$ref": "#/definitions/address"
     },
     "currentSpouseMonthlySupport": {
       "type": "number"
@@ -919,9 +898,6 @@
         "No",
         "I’m not sure"
       ]
-    },
-    "spouseMarriages": {
-      "$ref": "#/definitions/marriages"
     },
     "dependents": {
       "type": "array",
@@ -1029,10 +1005,7 @@
     "veteranAddress": {
       "$ref": "#/definitions/centralMailAddress"
     },
-    "dayPhone": {
-      "$ref": "#/definitions/usaPhone"
-    },
-    "nightPhone": {
+    "phone": {
       "$ref": "#/definitions/usaPhone"
     },
     "mobilePhone": {
@@ -1041,32 +1014,29 @@
     "maritalStatus": {
       "$ref": "#/definitions/maritalStatus"
     },
+    "powDateRange": {
+      "$ref": "#/definitions/dateRange"
+    },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
     },
-    "netWorth": {
-      "$ref": "#/definitions/netWorth"
+    "spouseDateOfBirth": {
+      "$ref": "#/definitions/date"
     },
-    "monthlyIncome": {
-      "$ref": "#/definitions/monthlyIncome"
+    "spouseSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     },
-    "expectedIncome": {
-      "$ref": "#/definitions/expectedIncome"
+    "spouseVaFileNumber": {
+      "$ref": "#/definitions/centralMailVaFile"
     },
-    "otherExpenses": {
-      "$ref": "#/definitions/otherExpenses"
+    "spouseAddress": {
+      "$ref": "#/definitions/address"
     },
-    "spouseNetWorth": {
-      "$ref": "#/definitions/netWorth"
+    "marriages": {
+      "$ref": "#/definitions/marriages"
     },
-    "spouseMonthlyIncome": {
-      "$ref": "#/definitions/monthlyIncome"
-    },
-    "spouseExpectedIncome": {
-      "$ref": "#/definitions/expectedIncome"
-    },
-    "spouseOtherExpenses": {
-      "$ref": "#/definitions/otherExpenses"
+    "spouseMarriages": {
+      "$ref": "#/definitions/marriages"
     },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
