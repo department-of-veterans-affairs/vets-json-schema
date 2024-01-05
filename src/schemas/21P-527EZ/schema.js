@@ -28,76 +28,70 @@ const schema = {
       pattern: '^\\d{4}-\\d{2}-\\d{2}$',
       type: 'string',
     },
-    netWorth: {
-      type: 'object',
-      required: ['bank', 'interestBank', 'ira', 'stocks', 'realProperty'],
-      properties: {
-        bank: financialNumber,
-        interestBank: financialNumber,
-        ira: financialNumber,
-        stocks: financialNumber,
-        realProperty: financialNumber,
-        additionalSources: { $ref: '#/definitions/additionalSources' },
-      },
-    },
-    additionalSources: {
+    incomeSources: {
       type: 'array',
       items: {
         type: 'object',
-        required: ['name'],
+        required: ['typeOfIncome', 'receiver', 'payer', 'amount'],
         properties: {
-          name: {
+          typeOfIncome: {
+            type: 'string',
+            enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'RETIREMENT', 'PENSION', 'OTHER']
+          },
+          receiver: {
             type: 'string',
           },
-          amount: {
-            type: 'number',
+          payer: {
+            type: 'string',
           },
+          amount: financialNumber,
         },
       },
     },
-    monthlyIncome: {
-      type: 'object',
-      required: ['socialSecurity', 'civilService', 'railroad', 'blackLung', 'serviceRetirement', 'ssi'],
-      properties: {
-        socialSecurity: financialNumber,
-        civilService: financialNumber,
-        railroad: financialNumber,
-        blackLung: financialNumber,
-        serviceRetirement: financialNumber,
-        ssi: financialNumber,
-        additionalSources: { $ref: '#/definitions/additionalSources' },
-      },
-    },
-    expectedIncome: {
-      type: 'object',
-      required: ['salary', 'interest'],
-      properties: {
-        salary: financialNumber,
-        interest: financialNumber,
-        additionalSources: {
-          $ref: '#/definitions/additionalSources',
-        },
-      },
-    },
-    otherExpenses: {
+    careExpenses: {
       type: 'array',
-      minItems: 1,
       items: {
         type: 'object',
-        required: ['amount', 'purpose', 'paidTo', 'date'],
+        required: ['recipients', 'childName', 'provider', 'careType', 'paymentFrequency', 'paymentAmount'],
         properties: {
-          amount: {
-            type: 'number',
-          },
-          purpose: {
+          recipients: {
             type: 'string',
           },
-          paidTo: {
+          childName: { type: 'string' },
+          provider: { type: 'string' },
+          careType: { type: 'string', enum: ['CARE_FACILITY', 'IN_HOME_CARE_PROVIDER'] },
+          ratePerHour: { type: 'number' },
+          hoursPerWeek: { type: 'number' },
+          careDateRange: schemaHelpers.getDefinition('dateRange'),
+          noCareEndDate: { type: 'boolean' },
+          paymentFrequency: {
             type: 'string',
           },
-          date: {
-            $ref: '#/definitions/date',
-          },
+          paymentAmount: { type: 'number' },
+        },
+      },
+    },
+    medicalExpenses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: [
+          'recipients',
+          'childName',
+          'provider',
+          'purpose',
+          'paymentDate',
+          'paymentFrequency',
+          'paymentAmount',
+        ],
+        properties: {
+          recipients: { type: 'string' },
+          childName: { type: 'string' },
+          provider: { type: 'string' },
+          purpose: { type: 'string' },
+          paymentDate: { $ref: '#/definitions/date' },
+          paymentFrequency: { type: 'string' },
+          paymentAmount: { type: 'number' },
         },
       },
     },
@@ -107,123 +101,157 @@ const schema = {
       type: 'string',
       format: 'email',
     },
-    altEmail: {
-      type: 'string',
-      format: 'email',
-    },
-    spouseIsVeteran: {
+    vaClaimsHistory: {
       type: 'boolean',
     },
-    liveWithSpouse: {
-      type: 'boolean',
-    },
-    reasonForNotLivingWithSpouse: {
+    phone: schemaHelpers.getDefinition('usaPhone'),
+    internationalPhone: {
       type: 'string',
     },
-    monthlySpousePayment: {
-      type: 'number',
-    },
-    // 12a-c, but multiple items
-    servicePeriods: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          serviceBranch: {
-            type: 'string',
-          },
-          activeServiceDateRange: schemaHelpers.getDefinition('dateRange'),
-        },
+    serviceBranch: {
+      type: 'object',
+      properties: {
+        ARMY: { type: 'boolean' },
+        NAVY: { type: 'boolean' },
+        AIR_FORCE: { type: 'boolean' },
+        COAST_GUARD: { type: 'boolean' },
+        MARINE_CORPS: { type: 'boolean' },
+        SPACE_FORCE: { type: 'boolean' },
+        USPHS: { type: 'boolean' },
+        NOAA: { type: 'boolean' },
       },
     },
+    activeServiceDateRange: schemaHelpers.getDefinition('dateRange'),
+    serviceNumber: { type: 'string' },
+    serveUnderOtherNames: { type: 'boolean' },
     previousNames: {
       type: 'array',
       items: schemaHelpers.getDefinition('fullName'),
     },
-    combatSince911: {
-      type: 'boolean',
-    },
-    // 32. I DO NOT want my claim considered for rapid processing under the FDC Program because I plan to submit further evidence in support of my claim.
-    noRapidProcessing: {
-      type: 'boolean',
-    },
-    // 29. I CERTIFY THAT I DO NOT HAVE AN ACCOUNT WITH A FINANCIAL INSTITUTION OR CERTIFIED PAYMENT AGENT
-    noBankAccount: {
-      type: 'boolean',
-    },
-    // 13A. ARE YOU CURRENTLY ACTIVATED TO FEDERAL ACTIVE DUTY UNDER THE AUTHORITY OF TITLE 10, U.S.C. (National Guard)?
-    nationalGuardActivation: {
-      type: 'boolean',
-    },
-    vamcTreatmentCenters: {
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['location'],
-        properties: {
-          location: {
-            type: 'string',
-          },
-        },
-      },
-    },
-    nationalGuard: {
-      type: 'object',
-      properties: {
-        name: { type: 'string' },
-        address: schemaHelpers.getDefinition('address'),
-        phone: schemaHelpers.getDefinition('usaPhone'),
-        date: schemaHelpers.getDefinition('date'),
-      },
-    },
-    // 16A-C. DID YOU RECEIVE ANY TYPE OF SEPARATION/SEVERANCE RETIRED PAY?
-    severancePay: {
-      type: 'object',
-      properties: {
-        amount: { type: 'number' },
-        type: {
-          type: 'string',
-          enum: ['Longevity', 'Separation', 'Severance', 'PDRL', 'TDRL'],
-        },
-      },
-    },
     placeOfSeparation: {
       type: 'string',
     },
-    disabilities: {
+    noRapidProcessing: {
+      type: 'boolean',
+    },
+    powStatus: { type: 'boolean' },
+    powDateRange: schemaHelpers.getDefinition('dateRange'),
+    isOver65: { type: 'boolean' },
+    socialSecurityDisability: { type: 'boolean' },
+    medicalCondition: { type: 'boolean' },
+    nursingHome: { type: 'boolean' },
+    medicaidCoverage: { type: 'boolean' },
+    medicaidStatus: { type: 'boolean' },
+    specialMonthlyPension: { type: 'boolean' },
+    vaTreatmentHistory: { type: 'boolean' },
+    vaMedicalCenters: {
       type: 'array',
       items: {
         type: 'object',
+        required: ['medicalCenter'],
         properties: {
-          name: {
+          medicalCenter: {
             type: 'string',
           },
-          disabilityStartDate: schemaHelpers.getDefinition('date'),
         },
       },
     },
-    jobs: {
+    federalTreatmentHistory: {
+      type: 'boolean',
+    },
+    federalMedicalCenters: {
       type: 'array',
       items: {
         type: 'object',
+        required: ['medicalCenter'],
         properties: {
-          employer: {
+          medicalCenter: {
             type: 'string',
-          },
-          address: schemaHelpers.getDefinition('address'),
-          jobTitle: {
-            type: 'string',
-          },
-          dateRange: schemaHelpers.getDefinition('dateRange'),
-          daysMissed: {
-            // making this a string so people can answer in words if they don't know the exact number of days
-            type: 'string',
-          },
-          annualEarnings: {
-            type: 'number',
           },
         },
       },
+    },
+    currentEmployment: {
+      type: 'boolean',
+    },
+    currentEmployers: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['jobType', 'jobHoursWeek', 'jobTitle'],
+        properties: {
+          jobType: {
+            type: 'string',
+          },
+          jobHoursWeek: {
+            type: 'number',
+          },
+          jobTitle: {
+            type: 'string',
+          },
+        },
+      },
+    },
+    previousEmployers: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['jobType', 'jobHoursWeek', 'jobTitle'],
+        properties: {
+          jobDate: {
+            $ref: '#/definitions/date',
+          },
+          jobType: {
+            type: 'string',
+          },
+          jobHoursWeek: {
+            type: 'number',
+          },
+          jobTitle: {
+            type: 'string',
+          },
+        },
+      },
+    },
+    marriages: {
+      type: 'number',
+    },
+    marriageHistory: {
+      $ref: '#/definitions/marriages',
+    },
+    spouseDateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    spouseSocialSecurityNumber: {
+      $ref: '#/definitions/ssn',
+    },
+    spouseIsVeteran: {
+      type: 'boolean',
+    },
+    spouseVaFileNumber: {
+      $ref: '#/definitions/centralMailVaFile',
+    },
+    liveWithSpouse: {
+      type: 'boolean',
+    },
+    reasonForCurrentSeparation: {
+      type: 'string',
+    },
+    reasonForNotLivingWithSpouse: {
+      type: 'string',
+    },
+    spouseAddress: {
+      $ref: '#/definitions/address',
+    },
+    currentSpouseMonthlySupport: {
+      type: 'number',
+    },
+    currentSpouseMaritalHistory: {
+      type: 'string',
+      enum: ['Yes', 'No', 'I’m not sure'],
+    },
+    spouseMarriages: {
+      $ref: '#/definitions/marriages',
     },
     dependents: {
       type: 'array',
@@ -240,10 +268,6 @@ const schema = {
           monthlyPayment: {
             type: 'number',
           },
-          monthlyIncome: { $ref: '#/definitions/monthlyIncome' },
-          expectedIncome: { $ref: '#/definitions/expectedIncome' },
-          netWorth: { $ref: '#/definitions/netWorth' },
-          otherExpenses: { $ref: '#/definitions/otherExpenses' },
           childPlaceOfBirth: {
             type: 'string',
           },
@@ -267,6 +291,45 @@ const schema = {
         },
       },
     },
+    totalNetWorth: {
+      type: 'boolean',
+    },
+    netWorthEstimation: {
+      type: 'number',
+    },
+    transferredAssets: {
+      type: 'boolean',
+    },
+    homeOwnership: {
+      type: 'boolean',
+    },
+    homeAcreageMoreThanTwo: {
+      type: 'boolean',
+    },
+    homeAcreageValue: {
+      type: 'number',
+    },
+    landMarketable: {
+      type: 'boolean',
+    },
+    receivesIncome: {
+      type: 'boolean',
+    },
+    incomeSources: {
+      $ref: '#/definitions/incomeSources',
+    },
+    hasCareExpenses: {
+      type: 'boolean',
+    },
+    careExpenses: {
+      $ref: '#/definitions/careExpenses',
+    },
+    hasMedicalExpenses: {
+      type: 'boolean',
+    },
+    medicalExpenses: {
+      $ref: '#/definitions/medicalExpenses',
+    },
   },
   required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress'],
 };
@@ -281,7 +344,6 @@ const schema = {
   ['usaPhone', 'nightPhone'],
   ['usaPhone', 'mobilePhone'],
   ['maritalStatus'],
-  ['gender'],
   ['dateRange', 'powDateRange'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],

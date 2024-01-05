@@ -5,17 +5,17 @@
   "additionalProperties": false,
   "anyOf": [
     {
-      "required": ["vaFileNumber"]
+      "required": [
+        "vaFileNumber"
+      ]
     },
     {
-      "required": ["veteranSocialSecurityNumber"]
+      "required": [
+        "veteranSocialSecurityNumber"
+      ]
     }
   ],
   "definitions": {
-    "currency": {
-      "type": "number",
-      "default": 0
-    },
     "dateRange": {
       "type": "object",
       "properties": {
@@ -32,7 +32,10 @@
       "properties": {
         "accountType": {
           "type": "string",
-          "enum": ["checking", "savings"]
+          "enum": [
+            "checking",
+            "savings"
+          ]
         },
         "routingNumber": {
           "type": "string",
@@ -54,11 +57,22 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["typeOfIncome", "receiver", "payer", "amount"],
+        "required": [
+          "typeOfIncome",
+          "receiver",
+          "payer",
+          "amount"
+        ],
         "properties": {
           "typeOfIncome": {
             "type": "string",
-            "enum": ["SOCIAL_SECURITY", "INTEREST_DIVIDEND", "RETIREMENT", "PENSION", "OTHER"]
+            "enum": [
+              "SOCIAL_SECURITY",
+              "INTEREST_DIVIDEND",
+              "RETIREMENT",
+              "PENSION",
+              "OTHER"
+            ]
           },
           "receiver": {
             "type": "string"
@@ -67,7 +81,8 @@
             "type": "string"
           },
           "amount": {
-            "$ref": "#/definitions/currency"
+            "type": "number",
+            "default": 0
           }
         }
       }
@@ -76,24 +91,49 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["recipients", "childName", "provider", "careType", "paymentFrequency", "paymentAmount"],
+        "required": [
+          "recipients",
+          "childName",
+          "provider",
+          "careType",
+          "paymentFrequency",
+          "paymentAmount"
+        ],
         "properties": {
           "recipients": {
             "type": "string"
           },
-          "childName": { "type": "string" },
-          "provider": { "type": "string" },
-          "careType": { "type": "string", "enum": ["CARE_FACILITY", "IN_HOME_CARE_PROVIDER"] },
-          "ratePerHour": { "type": "number" },
-          "hoursPerWeek": { "type": "number" },
+          "childName": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "careType": {
+            "type": "string",
+            "enum": [
+              "CARE_FACILITY",
+              "IN_HOME_CARE_PROVIDER"
+            ]
+          },
+          "ratePerHour": {
+            "type": "number"
+          },
+          "hoursPerWeek": {
+            "type": "number"
+          },
           "careDateRange": {
             "$ref": "#/definitions/dateRange"
           },
-          "noCareEndDate": { "type": "boolean" },
+          "noCareEndDate": {
+            "type": "boolean"
+          },
           "paymentFrequency": {
             "type": "string"
           },
-          "paymentAmount": { "type": "number" }
+          "paymentAmount": {
+            "type": "number"
+          }
         }
       }
     },
@@ -114,22 +154,32 @@
           "recipients": {
             "type": "string"
           },
-          "childName": { "type": "string" },
-          "provider": { "type": "string" },
-          "purpose": { "type": "string" },
+          "childName": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
           "paymentDate": {
             "$ref": "#/definitions/date"
           },
           "paymentFrequency": {
             "type": "string"
           },
-          "paymentAmount": { "type": "number" }
+          "paymentAmount": {
+            "type": "number"
+          }
         }
       }
     },
     "privacyAgreementAccepted": {
       "type": "boolean",
-      "enum": [true]
+      "enum": [
+        true
+      ]
     },
     "fullName": {
       "type": "object",
@@ -149,10 +199,19 @@
         },
         "suffix": {
           "type": "string",
-          "enum": ["Jr.", "Sr.", "II", "III", "IV"]
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
         }
       },
-      "required": ["first", "last"]
+      "required": [
+        "first",
+        "last"
+      ]
     },
     "ssn": {
       "type": "string",
@@ -169,11 +228,27 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["CAN"]
+              "enum": [
+                "CAN"
+              ]
             },
             "state": {
               "type": "string",
-              "enum": ["AB", "BC", "MB", "NB", "NF", "NT", "NV", "NU", "ON", "PE", "QC", "SK", "YT"]
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
             },
             "postalCode": {
               "type": "string",
@@ -185,7 +260,9 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["MEX"]
+              "enum": [
+                "MEX"
+              ]
             },
             "state": {
               "type": "string",
@@ -234,7 +311,9 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["USA"]
+              "enum": [
+                "USA"
+              ]
             },
             "state": {
               "type": "string",
@@ -314,7 +393,11 @@
             "country": {
               "not": {
                 "type": "string",
-                "enum": ["CAN", "MEX", "USA"]
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
               }
             },
             "state": {
@@ -345,7 +428,9 @@
           "maxLength": 51
         }
       },
-      "required": ["postalCode"]
+      "required": [
+        "postalCode"
+      ]
     },
     "usaPhone": {
       "type": "string",
@@ -353,7 +438,13 @@
     },
     "maritalStatus": {
       "type": "string",
-      "enum": ["Married", "Never Married", "Separated", "Widowed", "Divorced"]
+      "enum": [
+        "Married",
+        "Never Married",
+        "Separated",
+        "Widowed",
+        "Divorced"
+      ]
     },
     "address": {
       "type": "object",
@@ -362,11 +453,27 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["CAN"]
+              "enum": [
+                "CAN"
+              ]
             },
             "state": {
               "type": "string",
-              "enum": ["AB", "BC", "MB", "NB", "NF", "NT", "NV", "NU", "ON", "PE", "QC", "SK", "YT"]
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NF",
+                "NT",
+                "NV",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
             },
             "postalCode": {
               "type": "string",
@@ -378,7 +485,9 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["MEX"]
+              "enum": [
+                "MEX"
+              ]
             },
             "state": {
               "type": "string",
@@ -427,7 +536,9 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": ["USA"]
+              "enum": [
+                "USA"
+              ]
             },
             "state": {
               "type": "string",
@@ -507,7 +618,11 @@
             "country": {
               "not": {
                 "type": "string",
-                "enum": ["CAN", "MEX", "USA"]
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
               }
             },
             "state": {
@@ -587,46 +702,50 @@
           }
         }
       }
-    },
-    "yesNo": {
-      "type": "boolean"
     }
   },
   "properties": {
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
-    },
-    "vaClaimsHistory": {
-      "$ref": "#/definitions/yesNo"
-    },
-    "vaFileNumber": {
-      "$ref": "#/definitions/centralMailVaFile"
-    },
-    "veteranDateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "veteranAddress": {
-      "$ref": "#/definitions/centralMailAddress"
-    },
     "email": {
       "type": "string",
       "format": "email"
     },
-    "phone": {
-      "$ref": "#/definitions/usaPhone"
+    "vaClaimsHistory": {
+      "type": "boolean"
     },
-    "mobilePhone": {
+    "phone": {
       "$ref": "#/definitions/usaPhone"
     },
     "internationalPhone": {
       "type": "string"
     },
     "serviceBranch": {
-      "type": "string",
-      "enum": ["Army", "Navy", "Air Force", "Coast Guard", "Marine Corps", "Space Force", "USPHS", "NOAA"]
+      "type": "object",
+      "properties": {
+        "ARMY": {
+          "type": "boolean"
+        },
+        "NAVY": {
+          "type": "boolean"
+        },
+        "AIR_FORCE": {
+          "type": "boolean"
+        },
+        "COAST_GUARD": {
+          "type": "boolean"
+        },
+        "MARINE_CORPS": {
+          "type": "boolean"
+        },
+        "SPACE_FORCE": {
+          "type": "boolean"
+        },
+        "USPHS": {
+          "type": "boolean"
+        },
+        "NOAA": {
+          "type": "boolean"
+        }
+      }
     },
     "activeServiceDateRange": {
       "$ref": "#/definitions/dateRange"
@@ -635,7 +754,7 @@
       "type": "string"
     },
     "serveUnderOtherNames": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "previousNames": {
       "type": "array",
@@ -646,41 +765,46 @@
     "placeOfSeparation": {
       "type": "string"
     },
+    "noRapidProcessing": {
+      "type": "boolean"
+    },
     "powStatus": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
     },
     "isOver65": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "socialSecurityDisability": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "medicalCondition": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "nursingHome": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "medicaidCoverage": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "medicaidStatus": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "specialMonthlyPension": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "vaTreatmentHistory": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "vaMedicalCenters": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["medicalCenter"],
+        "required": [
+          "medicalCenter"
+        ],
         "properties": {
           "medicalCenter": {
             "type": "string"
@@ -689,13 +813,15 @@
       }
     },
     "federalTreatmentHistory": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "federalMedicalCenters": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["medicalCenter"],
+        "required": [
+          "medicalCenter"
+        ],
         "properties": {
           "medicalCenter": {
             "type": "string"
@@ -704,18 +830,22 @@
       }
     },
     "currentEmployment": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "currentEmployers": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["jobType", "jobHoursWeek", "jobTitle"],
+        "required": [
+          "jobType",
+          "jobHoursWeek",
+          "jobTitle"
+        ],
         "properties": {
           "jobType": {
             "type": "string"
           },
-          "jobHOursWeek": {
+          "jobHoursWeek": {
             "type": "number"
           },
           "jobTitle": {
@@ -728,7 +858,11 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["jobType", "jobHoursWeek", "jobTitle"],
+        "required": [
+          "jobType",
+          "jobHoursWeek",
+          "jobTitle"
+        ],
         "properties": {
           "jobDate": {
             "$ref": "#/definitions/date"
@@ -736,7 +870,7 @@
           "jobType": {
             "type": "string"
           },
-          "jobHOursWeek": {
+          "jobHoursWeek": {
             "type": "number"
           },
           "jobTitle": {
@@ -745,11 +879,8 @@
         }
       }
     },
-    "maritalStatus": {
-      "$ref": "#/definitions/maritalStatus"
-    },
     "marriages": {
-      "type": "number"
+      "$ref": "#/definitions/marriages"
     },
     "marriageHistory": {
       "$ref": "#/definitions/marriages"
@@ -783,7 +914,11 @@
     },
     "currentSpouseMaritalHistory": {
       "type": "string",
-      "enum": ["Yes", "No", "I’m not sure"]
+      "enum": [
+        "Yes",
+        "No",
+        "I’m not sure"
+      ]
     },
     "spouseMarriages": {
       "$ref": "#/definitions/marriages"
@@ -811,7 +946,6 @@
           "monthlyPayment": {
             "type": "number"
           },
-
           "childPlaceOfBirth": {
             "type": "string"
           },
@@ -820,7 +954,11 @@
           },
           "childRelationship": {
             "type": "string",
-            "enum": ["biological", "adopted", "stepchild"]
+            "enum": [
+              "biological",
+              "adopted",
+              "stepchild"
+            ]
           },
           "attendingCollege": {
             "type": "boolean"
@@ -838,40 +976,40 @@
       }
     },
     "totalNetWorth": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "netWorthEstimation": {
       "type": "number"
     },
     "transferredAssets": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "homeOwnership": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "homeAcreageMoreThanTwo": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "homeAcreageValue": {
       "type": "number"
     },
     "landMarketable": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "receivesIncome": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "incomeSources": {
       "$ref": "#/definitions/incomeSources"
     },
     "hasCareExpenses": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "careExpenses": {
       "$ref": "#/definitions/careExpenses"
     },
     "hasMedicalExpenses": {
-      "$ref": "#/definitions/yesNo"
+      "type": "boolean"
     },
     "medicalExpenses": {
       "$ref": "#/definitions/medicalExpenses"
@@ -879,15 +1017,67 @@
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/centralMailVaFile"
+    },
+    "veteranAddress": {
+      "$ref": "#/definitions/centralMailAddress"
+    },
+    "dayPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "nightPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "mobilePhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "maritalStatus": {
+      "$ref": "#/definitions/maritalStatus"
+    },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "netWorth": {
+      "$ref": "#/definitions/netWorth"
+    },
+    "monthlyIncome": {
+      "$ref": "#/definitions/monthlyIncome"
+    },
+    "expectedIncome": {
+      "$ref": "#/definitions/expectedIncome"
+    },
+    "otherExpenses": {
+      "$ref": "#/definitions/otherExpenses"
+    },
+    "spouseNetWorth": {
+      "$ref": "#/definitions/netWorth"
+    },
+    "spouseMonthlyIncome": {
+      "$ref": "#/definitions/monthlyIncome"
+    },
+    "spouseExpectedIncome": {
+      "$ref": "#/definitions/expectedIncome"
+    },
+    "spouseOtherExpenses": {
+      "$ref": "#/definitions/otherExpenses"
+    },
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
     },
     "files": {
       "$ref": "#/definitions/files"
-    },
-    "noRapidProcessing": {
-      "type": "boolean"
     }
   },
-  "required": ["privacyAgreementAccepted", "veteranFullName", "veteranAddress"]
+  "required": [
+    "privacyAgreementAccepted",
+    "veteranFullName",
+    "veteranAddress"
+  ]
 }
