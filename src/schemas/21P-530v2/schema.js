@@ -12,16 +12,7 @@ delete modifiedToursOfDuty.items.required;
 _.merge(modifiedToursOfDuty, {
   items: {
     properties: {
-      rank: {
-        type: 'string',
-      },
       serviceNumber: {
-        type: 'string',
-      },
-      placeOfEntry: {
-        type: 'string',
-      },
-      placeOfSeparation: {
         type: 'string',
       },
     },
