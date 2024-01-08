@@ -395,9 +395,6 @@
           },
           "serviceBranch": {
             "type": "string"
-          },
-          "serviceNumber": {
-            "type": "string"
           }
         }
       }
@@ -407,6 +404,9 @@
       "items": {
         "$ref": "#/definitions/fullName"
       }
+    },
+    "serviceNumber": {
+      "type": "string"
     },
     "claimantEmail": {
       "type": "string",

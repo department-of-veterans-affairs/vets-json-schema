@@ -9,15 +9,15 @@ delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
 delete modifiedToursOfDuty.items.properties.serviceStatus;
 delete modifiedToursOfDuty.items.required;
 
-_.merge(modifiedToursOfDuty, {
-  items: {
-    properties: {
-      serviceNumber: {
-        type: 'string',
-      },
-    },
-  },
-});
+// _.merge(modifiedToursOfDuty, {
+//   items: {
+//     properties: {
+//       serviceNumber: {
+//         type: 'string',
+//       },
+//     },
+//   },
+// });
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -96,6 +96,9 @@ const schema = {
     previousNames: {
       type: 'array',
       items: schemaHelpers.getDefinition('fullName'),
+    },
+    serviceNumber: {
+      type: 'string',
     },
     claimantEmail: {
       type: 'string',
