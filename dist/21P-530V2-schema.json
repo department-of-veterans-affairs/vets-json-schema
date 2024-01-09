@@ -6,6 +6,10 @@
   "definitions": {
     "dateRange": {
       "type": "object",
+      "required": [
+        "from",
+        "to"
+      ],
       "properties": {
         "from": {
           "$ref": "#/definitions/date"
@@ -387,16 +391,37 @@
     },
     "toursOfDuty": {
       "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
       "items": {
         "type": "object",
         "properties": {
+          "serviceBranch": {
+            "type": "string",
+            "enum": [
+              "Air Force",
+              "Air Force Reserve",
+              "Air National Guard",
+              "Army",
+              "Army National Guard",
+              "Army Reserve",
+              "Coast Guard",
+              "Coast Guard Reserve",
+              "Marine Corps",
+              "Marine Corps Reserve",
+              "Navy",
+              "Navy Reserve",
+              "Other"
+            ]
+          },
           "dateRange": {
             "$ref": "#/definitions/dateRange"
-          },
-          "serviceBranch": {
-            "type": "string"
           }
-        }
+        },
+        "required": [
+          "serviceBranch",
+          "dateRange"
+        ]
       }
     },
     "previousNames": {

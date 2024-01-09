@@ -3,11 +3,11 @@ import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
 const definitions = _.cloneDeep(originalDefinitions);
-const modifiedToursOfDuty = definitions.toursOfDuty;
-delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
-delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
-delete modifiedToursOfDuty.items.properties.serviceStatus;
-delete modifiedToursOfDuty.items.required;
+// const modifiedToursOfDuty = definitions.toursOfDuty;
+// delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
+// delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
+// delete modifiedToursOfDuty.items.properties.serviceStatus;
+// delete modifiedToursOfDuty.items.required;
 
 // _.merge(modifiedToursOfDuty, {
 //   items: {
@@ -19,13 +19,59 @@ delete modifiedToursOfDuty.items.required;
 //   },
 // });
 
+const customDateRange = {
+  type: 'object',
+  required: ['from', 'to'],
+  properties: {
+    from: {
+      $ref: '#/definitions/date',
+    },
+    to: {
+      $ref: '#/definitions/date',
+    },
+  },
+};
+
+const modifiedToursOfDuty = {
+  type: 'array',
+  minItems: 1,
+  maxItems: 100,
+  items: {
+    type: 'object',
+    properties: {
+      serviceBranch: {
+        type: 'string',
+        enum: [
+          'Air Force',
+          'Air Force Reserve',
+          'Air National Guard',
+          'Army',
+          'Army National Guard',
+          'Army Reserve',
+          'Coast Guard',
+          'Coast Guard Reserve',
+          'Marine Corps',
+          'Marine Corps Reserve',
+          'Navy',
+          'Navy Reserve',
+          'Other',
+        ],
+      },
+      dateRange: {
+        $ref: '#/definitions/dateRange',
+      },
+    },
+    required: ['serviceBranch', 'dateRange'],
+  },
+};
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR BURIAL BENEFITS',
   type: 'object',
   additionalProperties: false,
   definitions: {
-    dateRange: definitions.dateRange,
+    dateRange: customDateRange,
   },
   anyOf: [
     {
