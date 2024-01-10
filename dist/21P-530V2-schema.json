@@ -6,10 +6,6 @@
   "definitions": {
     "dateRange": {
       "type": "object",
-      "required": [
-        "from",
-        "to"
-      ],
       "properties": {
         "from": {
           "$ref": "#/definitions/date"
@@ -416,18 +412,59 @@
           },
           "dateRange": {
             "$ref": "#/definitions/dateRange"
+          },
+          "placeOfEntry": {
+            "type": "string"
+          },
+          "placeOfSeparation": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
           }
-        },
-        "required": [
-          "serviceBranch",
-          "dateRange"
-        ]
+        }
       }
     },
     "previousNames": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/fullName"
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "middle": {
+            "type": "string"
+          },
+          "last": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "suffix": {
+            "type": "string",
+            "enum": [
+              "Jr.",
+              "Sr.",
+              "II",
+              "III",
+              "IV"
+            ]
+          },
+          "relatedServiceBranch": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "first",
+          "last",
+          "relatedServiceBranch"
+        ]
       }
     },
     "serviceNumber": {

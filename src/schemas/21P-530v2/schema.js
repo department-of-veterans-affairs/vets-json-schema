@@ -1,36 +1,18 @@
 import _ from 'lodash';
-import originalDefinitions from '../../common/definitions';
+import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const definitions = _.cloneDeep(originalDefinitions);
-// const modifiedToursOfDuty = definitions.toursOfDuty;
-// delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
-// delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
-// delete modifiedToursOfDuty.items.properties.serviceStatus;
-// delete modifiedToursOfDuty.items.required;
+const newDefinitions = _.cloneDeep(definitions);
+const modifiedPreviousNames = newDefinitions.fullName;
+delete modifiedPreviousNames.required;
 
-// _.merge(modifiedToursOfDuty, {
-//   items: {
-//     properties: {
-//       serviceNumber: {
-//         type: 'string',
-//       },
-//     },
-//   },
-// });
-
-const customDateRange = {
-  type: 'object',
-  required: ['from', 'to'],
+_.merge(modifiedPreviousNames, {
   properties: {
-    from: {
-      $ref: '#/definitions/date',
-    },
-    to: {
-      $ref: '#/definitions/date',
+    relatedServiceBranch: {
+      type: 'string',
     },
   },
-};
+});
 
 const modifiedToursOfDuty = {
   type: 'array',
@@ -60,8 +42,19 @@ const modifiedToursOfDuty = {
       dateRange: {
         $ref: '#/definitions/dateRange',
       },
+      placeOfEntry: {
+        type: 'string',
+      },
+      placeOfSeparation: {
+        type: 'string',
+      },
+      rank: {
+        type: 'string',
+      },
+      unit: {
+        type: 'string',
+      },
     },
-    required: ['serviceBranch', 'dateRange'],
   },
 };
 
@@ -71,7 +64,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    dateRange: customDateRange,
+    dateRange: newDefinitions.dateRange,
   },
   anyOf: [
     {
@@ -141,7 +134,10 @@ const schema = {
     toursOfDuty: modifiedToursOfDuty,
     previousNames: {
       type: 'array',
-      items: schemaHelpers.getDefinition('fullName'),
+      items: {
+        ...modifiedPreviousNames,
+        required: ['first', 'last', 'relatedServiceBranch'],
+      },
     },
     serviceNumber: {
       type: 'string',
