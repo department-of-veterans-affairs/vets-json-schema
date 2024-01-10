@@ -74,7 +74,13 @@
               "OTHER"
             ]
           },
+          "otherTypeExplanation": {
+            "type": "string"
+          },
           "receiver": {
+            "type": "string"
+          },
+          "childName": {
             "type": "string"
           },
           "payer": {
@@ -93,7 +99,6 @@
         "type": "object",
         "required": [
           "recipients",
-          "childName",
           "provider",
           "careType",
           "paymentFrequency",
@@ -101,7 +106,12 @@
         ],
         "properties": {
           "recipients": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "VETERAN",
+              "SPOUSE",
+              "CHILD"
+            ]
           },
           "childName": {
             "type": "string"
@@ -143,7 +153,6 @@
         "type": "object",
         "required": [
           "recipients",
-          "childName",
           "provider",
           "purpose",
           "paymentDate",
@@ -152,7 +161,12 @@
         ],
         "properties": {
           "recipients": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "VETERAN",
+              "SPOUSE",
+              "CHILD"
+            ]
           },
           "childName": {
             "type": "string"

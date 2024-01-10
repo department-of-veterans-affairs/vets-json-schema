@@ -38,7 +38,13 @@ const schema = {
             type: 'string',
             enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'RETIREMENT', 'PENSION', 'OTHER'],
           },
+          otherTypeExplanation: {
+            type: 'string',
+          },
           receiver: {
+            type: 'string',
+          },
+          childName: {
             type: 'string',
           },
           payer: {
@@ -52,10 +58,11 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['recipients', 'childName', 'provider', 'careType', 'paymentFrequency', 'paymentAmount'],
+        required: ['recipients', 'provider', 'careType', 'paymentFrequency', 'paymentAmount'],
         properties: {
           recipients: {
             type: 'string',
+            enum: ['VETERAN', 'SPOUSE', 'CHILD'],
           },
           childName: { type: 'string' },
           provider: { type: 'string' },
@@ -75,17 +82,12 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: [
-          'recipients',
-          'childName',
-          'provider',
-          'purpose',
-          'paymentDate',
-          'paymentFrequency',
-          'paymentAmount',
-        ],
+        required: ['recipients', 'provider', 'purpose', 'paymentDate', 'paymentFrequency', 'paymentAmount'],
         properties: {
-          recipients: { type: 'string' },
+          recipients: {
+            type: 'string',
+            enum: ['VETERAN', 'SPOUSE', 'CHILD'],
+          },
           childName: { type: 'string' },
           provider: { type: 'string' },
           purpose: { type: 'string' },
