@@ -310,6 +310,12 @@ const schema = {
     medicalExpenses: {
       $ref: '#/definitions/medicalExpenses',
     },
+    statementOfTruthCertified: {
+      type: 'boolean',
+    },
+    statementOfTruthSignature: {
+      type: 'string',
+    },
   },
   required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress'],
 };

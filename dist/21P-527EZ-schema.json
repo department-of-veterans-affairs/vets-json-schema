@@ -1013,6 +1013,12 @@
     "medicalExpenses": {
       "$ref": "#/definitions/medicalExpenses"
     },
+    "statementOfTruthCertified": {
+      "type": "boolean"
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
+    },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
