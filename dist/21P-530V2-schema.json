@@ -455,15 +455,11 @@
               "III",
               "IV"
             ]
-          },
-          "relatedServiceBranch": {
-            "type": "string"
           }
         },
         "required": [
           "first",
-          "last",
-          "relatedServiceBranch"
+          "last"
         ]
       }
     },

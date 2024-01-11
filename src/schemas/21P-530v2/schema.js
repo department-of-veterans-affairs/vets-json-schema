@@ -6,13 +6,30 @@ const newDefinitions = _.cloneDeep(definitions);
 const modifiedPreviousNames = newDefinitions.fullName;
 delete modifiedPreviousNames.required;
 
-_.merge(modifiedPreviousNames, {
-  properties: {
-    relatedServiceBranch: {
-      type: 'string',
-    },
-  },
-});
+const serviceBranchDefinitions = {
+  type: 'string',
+  enum: [
+    'Air Force',
+    'Air Force Reserve',
+    'Air National Guard',
+    'Army',
+    'Army National Guard',
+    'Army Reserve',
+    'Coast Guard',
+    'Coast Guard Reserve',
+    'Marine Corps',
+    'Marine Corps Reserve',
+    'Navy',
+    'Navy Reserve',
+    'Other',
+  ],
+};
+
+// _.merge(modifiedPreviousNames, {
+//   properties: {
+//     relatedServiceBranch: serviceBranchDefinitions,
+//   },
+// });
 
 const modifiedToursOfDuty = {
   type: 'array',
@@ -21,24 +38,7 @@ const modifiedToursOfDuty = {
   items: {
     type: 'object',
     properties: {
-      serviceBranch: {
-        type: 'string',
-        enum: [
-          'Air Force',
-          'Air Force Reserve',
-          'Air National Guard',
-          'Army',
-          'Army National Guard',
-          'Army Reserve',
-          'Coast Guard',
-          'Coast Guard Reserve',
-          'Marine Corps',
-          'Marine Corps Reserve',
-          'Navy',
-          'Navy Reserve',
-          'Other',
-        ],
-      },
+      serviceBranch: serviceBranchDefinitions,
       dateRange: {
         $ref: '#/definitions/dateRange',
       },
@@ -136,7 +136,7 @@ const schema = {
       type: 'array',
       items: {
         ...modifiedPreviousNames,
-        required: ['first', 'last', 'relatedServiceBranch'],
+        required: ['first', 'last'],
       },
     },
     serviceNumber: {
