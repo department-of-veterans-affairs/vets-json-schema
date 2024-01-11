@@ -139,7 +139,11 @@
             "type": "boolean"
           },
           "paymentFrequency": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "ONCE_MONTH",
+              "ONCE_YEAR"
+            ]
           },
           "paymentAmount": {
             "type": "number"
@@ -181,7 +185,12 @@
             "$ref": "#/definitions/date"
           },
           "paymentFrequency": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "ONCE_MONTH",
+              "ONCE_YEAR",
+              "ONE_TIME"
+            ]
           },
           "paymentAmount": {
             "type": "number"
