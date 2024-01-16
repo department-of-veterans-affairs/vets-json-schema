@@ -21,7 +21,7 @@ describe('21-527 schema', () => {
   });
 
   it('should have the right required fields', () => {
-    expect(schema.required).to.deep.equal(['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress']);
+    expect(schema.required).to.deep.equal(['veteranFullName', 'veteranAddress']);
   });
 
   sharedTests.runTest('usaPhone', ['phone', 'mobilePhone']);
