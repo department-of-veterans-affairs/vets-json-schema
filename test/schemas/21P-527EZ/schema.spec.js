@@ -24,7 +24,7 @@ describe('21-527 schema', () => {
     expect(schema.required).to.deep.equal(['veteranFullName', 'veteranAddress']);
   });
 
-  sharedTests.runTest('usaPhone', ['phone', 'mobilePhone']);
+  sharedTests.runTest('usaPhone', ['phone', 'dayPhone', 'nightPhone', 'mobilePhone']);
 
   sharedTests.runTest('email', ['email']);
 
