@@ -198,12 +198,6 @@
         }
       }
     },
-    "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
-    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -741,28 +735,28 @@
     "serviceBranch": {
       "type": "object",
       "properties": {
-        "ARMY": {
+        "army": {
           "type": "boolean"
         },
-        "NAVY": {
+        "navy": {
           "type": "boolean"
         },
-        "AIR_FORCE": {
+        "airForce": {
           "type": "boolean"
         },
-        "COAST_GUARD": {
+        "coastGuard": {
           "type": "boolean"
         },
-        "MARINE_CORPS": {
+        "marineCorps": {
           "type": "boolean"
         },
-        "SPACE_FORCE": {
+        "spaceForce": {
           "type": "boolean"
         },
-        "USPHS": {
+        "usphs": {
           "type": "boolean"
         },
-        "NOAA": {
+        "noaa": {
           "type": "boolean"
         }
       }
@@ -908,6 +902,9 @@
     "reasonForCurrentSeparation": {
       "type": "string"
     },
+    "otherExplanation": {
+      "type": "string"
+    },
     "reasonForNotLivingWithSpouse": {
       "type": "string"
     },
@@ -965,9 +962,6 @@
           "disabled": {
             "type": "boolean"
           },
-          "married": {
-            "type": "boolean"
-          },
           "previouslyMarried": {
             "type": "boolean"
           }
@@ -1018,9 +1012,6 @@
     },
     "statementOfTruthSignature": {
       "type": "string"
-    },
-    "privacyAgreementAccepted": {
-      "$ref": "#/definitions/privacyAgreementAccepted"
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
@@ -1075,7 +1066,6 @@
     }
   },
   "required": [
-    "privacyAgreementAccepted",
     "veteranFullName",
     "veteranAddress"
   ]

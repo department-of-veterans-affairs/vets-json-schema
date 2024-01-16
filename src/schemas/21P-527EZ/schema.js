@@ -110,14 +110,14 @@ const schema = {
     serviceBranch: {
       type: 'object',
       properties: {
-        ARMY: { type: 'boolean' },
-        NAVY: { type: 'boolean' },
-        AIR_FORCE: { type: 'boolean' },
-        COAST_GUARD: { type: 'boolean' },
-        MARINE_CORPS: { type: 'boolean' },
-        SPACE_FORCE: { type: 'boolean' },
-        USPHS: { type: 'boolean' },
-        NOAA: { type: 'boolean' },
+        army: { type: 'boolean' },
+        navy: { type: 'boolean' },
+        airForce: { type: 'boolean' },
+        coastGuard: { type: 'boolean' },
+        marineCorps: { type: 'boolean' },
+        spaceForce: { type: 'boolean' },
+        usphs: { type: 'boolean' },
+        noaa: { type: 'boolean' },
       },
     },
     activeServiceDateRange: schemaHelpers.getDefinition('dateRange'),
@@ -223,6 +223,9 @@ const schema = {
     reasonForCurrentSeparation: {
       type: 'string',
     },
+    otherExplanation: {
+      type: 'string',
+    },
     reasonForNotLivingWithSpouse: {
       type: 'string',
     },
@@ -260,9 +263,6 @@ const schema = {
             type: 'boolean',
           },
           disabled: {
-            type: 'boolean',
-          },
-          married: {
             type: 'boolean',
           },
           previouslyMarried: {
@@ -317,11 +317,10 @@ const schema = {
       type: 'string',
     },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress'],
+  required: ['veteranFullName', 'veteranAddress'],
 };
 
 [
-  ['privacyAgreementAccepted'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['centralMailVaFile', 'vaFileNumber'],
