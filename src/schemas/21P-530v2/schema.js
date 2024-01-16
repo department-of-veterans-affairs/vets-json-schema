@@ -138,7 +138,7 @@ const schema = {
       type: 'array',
       items: {
         ...modifiedPreviousNames,
-        required: ['first', 'last'],
+        required: ['first', 'last', 'relatedServiceBranch'],
       },
     },
     serviceNumber: {
