@@ -25,11 +25,13 @@ const serviceBranchDefinitions = {
   ],
 };
 
-// _.merge(modifiedPreviousNames, {
-//   properties: {
-//     relatedServiceBranch: serviceBranchDefinitions,
-//   },
-// });
+_.merge(modifiedPreviousNames, {
+  properties: {
+    relatedServiceBranch: {
+      type: 'string',
+    },
+  },
+});
 
 const modifiedToursOfDuty = {
   type: 'array',
