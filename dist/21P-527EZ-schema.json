@@ -463,6 +463,13 @@
         "Divorced"
       ]
     },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
+    },
     "address": {
       "type": "object",
       "oneOf": [
@@ -1025,6 +1032,12 @@
     "veteranAddress": {
       "$ref": "#/definitions/centralMailAddress"
     },
+    "dayPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "nightPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
     "phone": {
       "$ref": "#/definitions/usaPhone"
     },
@@ -1033,6 +1046,9 @@
     },
     "maritalStatus": {
       "$ref": "#/definitions/maritalStatus"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
     },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
