@@ -133,6 +133,19 @@ const schema = {
         },
       },
     },
+    finalRestingPlace: {
+      type: 'object',
+      required: ['location'],
+      properties: {
+        location: {
+          type: 'string',
+          enum: ['cemetary', 'mausoleum', 'privateResidence', 'other'],
+          other: {
+            type: 'string',
+          },
+        },
+      },
+    },
     toursOfDuty: modifiedToursOfDuty,
     previousNames: {
       type: 'array',
@@ -166,6 +179,9 @@ const schema = {
     },
     burialCost: {
       type: 'number',
+    },
+    burialExpenseResponsibility: {
+      type: 'boolean',
     },
     allowanceStatementOfTruth: {
       type: 'boolean',
