@@ -162,10 +162,13 @@ const schema = {
     },
     burialAllowanceRequested: {
       type: 'string',
-      enum: ['service', 'nonService', 'vaMC'],
+      enum: ['service', 'nonService'],
     },
     burialCost: {
       type: 'number',
+    },
+    allowanceStatementOfTruth: {
+      type: 'boolean',
     },
     previouslyReceivedAllowance: {
       type: 'boolean',
