@@ -482,8 +482,7 @@
         },
         "required": [
           "first",
-          "last",
-          "relatedServiceBranch"
+          "last"
         ]
       }
     },
