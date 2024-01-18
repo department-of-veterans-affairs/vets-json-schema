@@ -317,7 +317,7 @@ const schema = {
       type: 'string',
     },
   },
-  required: ['veteranFullName', 'veteranAddress'],
+  required: ['veteranFullName', 'veteranAddress', 'statementOfTruthCertified', 'statementOfTruthSignature'],
 };
 
 [

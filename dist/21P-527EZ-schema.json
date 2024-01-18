@@ -1083,6 +1083,8 @@
   },
   "required": [
     "veteranFullName",
-    "veteranAddress"
+    "veteranAddress",
+    "statementOfTruthCertified",
+    "statementOfTruthSignature"
   ]
 }
