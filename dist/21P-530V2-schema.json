@@ -445,7 +445,10 @@
           "unit": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "serviceBranch"
+        ]
       }
     },
     "previousNames": {
@@ -475,9 +478,6 @@
               "III",
               "IV"
             ]
-          },
-          "relatedServiceBranch": {
-            "type": "string"
           }
         },
         "required": [
