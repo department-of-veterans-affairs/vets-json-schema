@@ -125,7 +125,7 @@ const schema = {
     serveUnderOtherNames: { type: 'boolean' },
     previousNames: {
       type: 'array',
-      items: schemaHelpers.getDefinition('fullName'),
+      items: { previousFullName: schemaHelpers.getDefinition('fullName') },
     },
     placeOfSeparation: {
       type: 'string',
