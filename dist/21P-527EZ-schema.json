@@ -902,9 +902,6 @@
         }
       }
     },
-    "marriageHistory": {
-      "$ref": "#/definitions/marriages"
-    },
     "spouseIsVeteran": {
       "type": "boolean"
     },

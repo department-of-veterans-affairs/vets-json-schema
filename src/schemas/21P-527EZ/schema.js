@@ -216,9 +216,6 @@ const schema = {
         },
       },
     },
-    marriageHistory: {
-      $ref: '#/definitions/marriages',
-    },
     spouseIsVeteran: {
       type: 'boolean',
     },
