@@ -21,7 +21,9 @@ describe('21-527 schema', () => {
   });
 
   it('should have the right required fields', () => {
-    expect(schema.required).to.deep.equal(['veteranFullName', 'veteranAddress']);
+    expect(schema.required).to.deep.equal([
+      'veteranFullName', 'veteranAddress', 'statementOfTruthCertified', 'statementOfTruthSignature'
+    ]);
   });
 
   sharedTests.runTest('usaPhone', ['phone', 'dayPhone', 'nightPhone', 'mobilePhone']);
@@ -86,7 +88,7 @@ describe('21-527 schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('previousNames', {
-    valid: [[fixtures.fullName, fixtures.fullName]],
+    valid: [[fixtures.previousFullName, fixtures.previousFullName]],
     invalid: [[false]]
   });
 

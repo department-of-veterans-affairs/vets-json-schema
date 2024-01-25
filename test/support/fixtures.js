@@ -24,5 +24,6 @@ export default {
     name: 'other',
     amount: 123
   },
-  fullName: fullName
+  fullName: fullName,
+  previousFullName: fullName
 };

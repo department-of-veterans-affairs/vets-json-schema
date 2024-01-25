@@ -125,7 +125,12 @@ const schema = {
     serveUnderOtherNames: { type: 'boolean' },
     previousNames: {
       type: 'array',
-      items: schemaHelpers.getDefinition('fullName'),
+      items: {
+        type: 'object',
+        properties: {
+          previousFullName: schemaHelpers.getDefinition('fullName'),
+        },
+      },
     },
     placeOfSeparation: {
       type: 'string',
@@ -210,9 +215,6 @@ const schema = {
           },
         },
       },
-    },
-    marriageHistory: {
-      $ref: '#/definitions/marriages',
     },
     spouseIsVeteran: {
       type: 'boolean',
@@ -317,7 +319,7 @@ const schema = {
       type: 'string',
     },
   },
-  required: ['veteranFullName', 'veteranAddress'],
+  required: ['veteranFullName', 'veteranAddress', 'statementOfTruthCertified', 'statementOfTruthSignature'],
 };
 
 [

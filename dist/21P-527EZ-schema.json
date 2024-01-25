@@ -780,7 +780,12 @@
     "previousNames": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/fullName"
+        "type": "object",
+        "properties": {
+          "previousFullName": {
+            "$ref": "#/definitions/fullName"
+          }
+        }
       }
     },
     "placeOfSeparation": {
@@ -896,9 +901,6 @@
           }
         }
       }
-    },
-    "marriageHistory": {
-      "$ref": "#/definitions/marriages"
     },
     "spouseIsVeteran": {
       "type": "boolean"
@@ -1083,6 +1085,8 @@
   },
   "required": [
     "veteranFullName",
-    "veteranAddress"
+    "veteranAddress",
+    "statementOfTruthCertified",
+    "statementOfTruthSignature"
   ]
 }
