@@ -780,8 +780,11 @@
     "previousNames": {
       "type": "array",
       "items": {
-        "previousFullName": {
-          "$ref": "#/definitions/fullName"
+        "type": "object",
+        "properties": {
+          "previousFullName": {
+            "$ref": "#/definitions/fullName"
+          }
         }
       }
     },

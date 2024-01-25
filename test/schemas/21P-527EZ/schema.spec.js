@@ -88,7 +88,7 @@ describe('21-527 schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('previousNames', {
-    valid: [[fixtures.fullName, fixtures.fullName]],
+    valid: [[fixtures.previousFullName, fixtures.previousFullName]],
     invalid: [[false]]
   });
 
