@@ -224,14 +224,14 @@ const schema = {
             relationshipToVet: {
               type: 'string',
               enum: [
-                'Veteran', // 'I’m the Veteran or service member' or 'Applicant is the Veteran or service member'
-                'Husband', // Husband
-                'Wife', // Wife
-                'Daughter', // Adult dependent daughter'
-                'Son', // Adult dependent son
-                'Stepdaughter', // Adult dependent stepdaughter
-                'Stepson', // Adult dependent stepson
-                'Other', // Other
+                'veteran', // 'I’m the Veteran or service member' or 'Applicant is the Veteran or service member'
+                'husband', // Husband
+                'wife', // Wife
+                'daughter', // Adult dependent daughter'
+                'son', // Adult dependent son
+                'stepdaughter', // Adult dependent stepdaughter
+                'stepson', // Adult dependent stepson
+                'other', // Other
               ],
             },
             ssn: schemaHelpers.getDefinition('ssn'),

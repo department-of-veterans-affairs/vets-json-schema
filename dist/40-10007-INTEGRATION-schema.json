@@ -444,14 +444,14 @@
             "relationshipToVet": {
               "type": "string",
               "enum": [
-                "Veteran",
-                "Husband",
-                "Wife",
-                "Daughter",
-                "Son",
-                "Stepdaughter",
-                "Stepson",
-                "Other"
+                "veteran",
+                "husband",
+                "wife",
+                "daughter",
+                "son",
+                "stepdaughter",
+                "stepson",
+                "other"
               ]
             },
             "ssn": {
