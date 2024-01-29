@@ -36,7 +36,7 @@ const schema = {
         properties: {
           typeOfIncome: {
             type: 'string',
-            enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'RETIREMENT', 'PENSION', 'OTHER'],
+            enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'CIVIL_SERVICE', 'PENSION_RETIREMENT', 'OTHER'],
           },
           otherTypeExplanation: {
             type: 'string',

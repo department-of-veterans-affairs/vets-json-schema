@@ -69,8 +69,8 @@
             "enum": [
               "SOCIAL_SECURITY",
               "INTEREST_DIVIDEND",
-              "RETIREMENT",
-              "PENSION",
+              "CIVIL_SERVICE",
+              "PENSION_RETIREMENT",
               "OTHER"
             ]
           },
