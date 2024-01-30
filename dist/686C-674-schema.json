@@ -1167,7 +1167,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 100,
-          "pattern": "^.*\\S.*"
+          "pattern": "(?!.*;)^.*\\S.*"
         },
         "addressLine2": {
           "type": "string",

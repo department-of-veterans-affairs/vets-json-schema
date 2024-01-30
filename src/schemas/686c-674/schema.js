@@ -94,7 +94,7 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 100,
-          pattern: '^.*\\S.*',
+          pattern: '(?!.*;)^.*\\S.*', // Negative lookahead for semicolon
         },
         addressLine2: {
           type: 'string',
