@@ -5,14 +5,10 @@
   "additionalProperties": false,
   "anyOf": [
     {
-      "required": [
-        "vaFileNumber"
-      ]
+      "required": ["vaFileNumber"]
     },
     {
-      "required": [
-        "veteranSocialSecurityNumber"
-      ]
+      "required": ["veteranSocialSecurityNumber"]
     }
   ],
   "definitions": {
@@ -32,10 +28,7 @@
       "properties": {
         "accountType": {
           "type": "string",
-          "enum": [
-            "checking",
-            "savings"
-          ]
+          "enum": ["checking", "savings"]
         },
         "routingNumber": {
           "type": "string",
@@ -57,22 +50,11 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "typeOfIncome",
-          "receiver",
-          "payer",
-          "amount"
-        ],
+        "required": ["typeOfIncome", "receiver", "payer", "amount"],
         "properties": {
           "typeOfIncome": {
             "type": "string",
-            "enum": [
-              "SOCIAL_SECURITY",
-              "INTEREST_DIVIDEND",
-              "CIVIL_SERVICE",
-              "PENSION_RETIREMENT",
-              "OTHER"
-            ]
+            "enum": ["SOCIAL_SECURITY", "INTEREST_DIVIDEND", "CIVIL_SERVICE", "PENSION_RETIREMENT", "OTHER"]
           },
           "otherTypeExplanation": {
             "type": "string"
@@ -97,21 +79,11 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "recipients",
-          "provider",
-          "careType",
-          "paymentFrequency",
-          "paymentAmount"
-        ],
+        "required": ["recipients", "provider", "careType", "paymentFrequency", "paymentAmount"],
         "properties": {
           "recipients": {
             "type": "string",
-            "enum": [
-              "VETERAN",
-              "SPOUSE",
-              "CHILD"
-            ]
+            "enum": ["VETERAN", "SPOUSE", "DEPENDENT"]
           },
           "childName": {
             "type": "string"
@@ -121,10 +93,7 @@
           },
           "careType": {
             "type": "string",
-            "enum": [
-              "CARE_FACILITY",
-              "IN_HOME_CARE_PROVIDER"
-            ]
+            "enum": ["CARE_FACILITY", "IN_HOME_CARE_PROVIDER"]
           },
           "ratePerHour": {
             "type": "number"
@@ -140,10 +109,7 @@
           },
           "paymentFrequency": {
             "type": "string",
-            "enum": [
-              "ONCE_MONTH",
-              "ONCE_YEAR"
-            ]
+            "enum": ["ONCE_MONTH", "ONCE_YEAR"]
           },
           "paymentAmount": {
             "type": "number"
@@ -155,22 +121,11 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "recipients",
-          "provider",
-          "purpose",
-          "paymentDate",
-          "paymentFrequency",
-          "paymentAmount"
-        ],
+        "required": ["recipients", "provider", "purpose", "paymentDate", "paymentFrequency", "paymentAmount"],
         "properties": {
           "recipients": {
             "type": "string",
-            "enum": [
-              "VETERAN",
-              "SPOUSE",
-              "CHILD"
-            ]
+            "enum": ["VETERAN", "SPOUSE", "DEPENDENT"]
           },
           "childName": {
             "type": "string"
@@ -186,11 +141,7 @@
           },
           "paymentFrequency": {
             "type": "string",
-            "enum": [
-              "ONCE_MONTH",
-              "ONCE_YEAR",
-              "ONE_TIME"
-            ]
+            "enum": ["ONCE_MONTH", "ONCE_YEAR", "ONE_TIME"]
           },
           "paymentAmount": {
             "type": "number"
@@ -216,19 +167,10 @@
         },
         "suffix": {
           "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
+          "enum": ["Jr.", "Sr.", "II", "III", "IV"]
         }
       },
-      "required": [
-        "first",
-        "last"
-      ]
+      "required": ["first", "last"]
     },
     "ssn": {
       "type": "string",
@@ -245,27 +187,11 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": [
-                "CAN"
-              ]
+              "enum": ["CAN"]
             },
             "state": {
               "type": "string",
-              "enum": [
-                "AB",
-                "BC",
-                "MB",
-                "NB",
-                "NF",
-                "NT",
-                "NV",
-                "NU",
-                "ON",
-                "PE",
-                "QC",
-                "SK",
-                "YT"
-              ]
+              "enum": ["AB", "BC", "MB", "NB", "NF", "NT", "NV", "NU", "ON", "PE", "QC", "SK", "YT"]
             },
             "postalCode": {
               "type": "string",
@@ -277,9 +203,7 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": [
-                "MEX"
-              ]
+              "enum": ["MEX"]
             },
             "state": {
               "type": "string",
@@ -328,9 +252,7 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": [
-                "USA"
-              ]
+              "enum": ["USA"]
             },
             "state": {
               "type": "string",
@@ -410,11 +332,7 @@
             "country": {
               "not": {
                 "type": "string",
-                "enum": [
-                  "CAN",
-                  "MEX",
-                  "USA"
-                ]
+                "enum": ["CAN", "MEX", "USA"]
               }
             },
             "state": {
@@ -445,9 +363,7 @@
           "maxLength": 51
         }
       },
-      "required": [
-        "postalCode"
-      ]
+      "required": ["postalCode"]
     },
     "usaPhone": {
       "type": "string",
@@ -455,20 +371,11 @@
     },
     "maritalStatus": {
       "type": "string",
-      "enum": [
-        "Married",
-        "Never Married",
-        "Separated",
-        "Widowed",
-        "Divorced"
-      ]
+      "enum": ["MARRIED", "NEVER_MARRIED", "SEPARATED", "WIDOWED", "DIVORCED"]
     },
     "gender": {
       "type": "string",
-      "enum": [
-        "F",
-        "M"
-      ]
+      "enum": ["F", "M"]
     },
     "address": {
       "type": "object",
@@ -477,27 +384,11 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": [
-                "CAN"
-              ]
+              "enum": ["CAN"]
             },
             "state": {
               "type": "string",
-              "enum": [
-                "AB",
-                "BC",
-                "MB",
-                "NB",
-                "NF",
-                "NT",
-                "NV",
-                "NU",
-                "ON",
-                "PE",
-                "QC",
-                "SK",
-                "YT"
-              ]
+              "enum": ["AB", "BC", "MB", "NB", "NF", "NT", "NV", "NU", "ON", "PE", "QC", "SK", "YT"]
             },
             "postalCode": {
               "type": "string",
@@ -509,9 +400,7 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": [
-                "MEX"
-              ]
+              "enum": ["MEX"]
             },
             "state": {
               "type": "string",
@@ -560,9 +449,7 @@
           "properties": {
             "country": {
               "type": "string",
-              "enum": [
-                "USA"
-              ]
+              "enum": ["USA"]
             },
             "state": {
               "type": "string",
@@ -642,11 +529,7 @@
             "country": {
               "not": {
                 "type": "string",
-                "enum": [
-                  "CAN",
-                  "MEX",
-                  "USA"
-                ]
+                "enum": ["CAN", "MEX", "USA"]
               }
             },
             "state": {
@@ -825,9 +708,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "medicalCenter"
-        ],
+        "required": ["medicalCenter"],
         "properties": {
           "medicalCenter": {
             "type": "string"
@@ -842,9 +723,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "medicalCenter"
-        ],
+        "required": ["medicalCenter"],
         "properties": {
           "medicalCenter": {
             "type": "string"
@@ -859,11 +738,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "jobType",
-          "jobHoursWeek",
-          "jobTitle"
-        ],
+        "required": ["jobType", "jobHoursWeek", "jobTitle"],
         "properties": {
           "jobType": {
             "type": "string"
@@ -881,11 +756,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "jobType",
-          "jobHoursWeek",
-          "jobTitle"
-        ],
+        "required": ["jobType", "jobHoursWeek", "jobTitle"],
         "properties": {
           "jobDate": {
             "$ref": "#/definitions/date"
@@ -922,11 +793,7 @@
     },
     "currentSpouseMaritalHistory": {
       "type": "string",
-      "enum": [
-        "Yes",
-        "No",
-        "I’m not sure"
-      ]
+      "enum": ["YES", "NO", "IDK"]
     },
     "dependents": {
       "type": "array",
@@ -959,11 +826,7 @@
           },
           "childRelationship": {
             "type": "string",
-            "enum": [
-              "biological",
-              "adopted",
-              "stepchild"
-            ]
+            "enum": ["BIOLOGICAL", "ADOPTED", "STEP_CHILD"]
           },
           "attendingCollege": {
             "type": "boolean"
@@ -1083,10 +946,5 @@
       "$ref": "#/definitions/files"
     }
   },
-  "required": [
-    "veteranFullName",
-    "veteranAddress",
-    "statementOfTruthCertified",
-    "statementOfTruthSignature"
-  ]
+  "required": ["veteranFullName", "veteranAddress", "statementOfTruthCertified", "statementOfTruthSignature"]
 }

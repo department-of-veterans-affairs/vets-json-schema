@@ -62,7 +62,7 @@ const schema = {
         properties: {
           recipients: {
             type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'CHILD'],
+            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
           },
           childName: { type: 'string' },
           provider: { type: 'string' },
@@ -84,7 +84,7 @@ const schema = {
         properties: {
           recipients: {
             type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'CHILD'],
+            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
           },
           childName: { type: 'string' },
           provider: { type: 'string' },
@@ -236,7 +236,7 @@ const schema = {
     },
     currentSpouseMaritalHistory: {
       type: 'string',
-      enum: ['Yes', 'No', 'I’m not sure'],
+      enum: ['YES', 'NO', 'IDK'],
     },
     dependents: {
       type: 'array',
@@ -259,7 +259,7 @@ const schema = {
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
           childRelationship: {
             type: 'string',
-            enum: ['biological', 'adopted', 'stepchild'],
+            enum: ['BIOLOGICAL', 'ADOPTED', 'STEP_CHILD'],
           },
           attendingCollege: {
             type: 'boolean',
