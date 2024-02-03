@@ -78,16 +78,16 @@ const schema = {
     },
   ],
   properties: {
-    relationship: {
-      type: 'object',
-      required: ['type'],
-      properties: {
-        type: {
-          type: 'string',
-          enum: ['spouse', 'child', 'parent', 'executor', 'funeralDirector', 'otherFamilyOrFriend'],
-        },
-      },
-    },
+    // relationship: {
+    //   type: 'object',
+    //   required: ['type'],
+    //   properties: {
+    //     type: {
+    //       type: 'string',
+    //       enum: ['spouse', 'child', 'parent', 'executor', 'funeralDirector', 'otherFamilyOrFriend'],
+    //     },
+    //   },
+    // },
     locationOfDeath: {
       type: 'object',
       required: ['location'],
@@ -219,6 +219,7 @@ const schema = {
   ['privacyAgreementAccepted'],
   ['centralMailAddress', 'claimantAddress'],
   ['usaPhone', 'claimantPhone'],
+  ['usaPhone', 'claimantIntPhone'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'claimantSocialSecurityNumber'],

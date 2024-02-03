@@ -311,25 +311,6 @@
     }
   ],
   "properties": {
-    "relationship": {
-      "type": "object",
-      "required": [
-        "type"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": [
-            "spouse",
-            "child",
-            "parent",
-            "executor",
-            "funeralDirector",
-            "otherFamilyOrFriend"
-          ]
-        }
-      }
-    },
     "locationOfDeath": {
       "type": "object",
       "required": [
@@ -552,6 +533,9 @@
       "$ref": "#/definitions/centralMailAddress"
     },
     "claimantPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "claimantIntPhone": {
       "$ref": "#/definitions/usaPhone"
     },
     "claimantFullName": {
