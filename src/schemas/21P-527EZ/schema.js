@@ -28,6 +28,10 @@ const schema = {
       pattern: '^\\d{4}-\\d{2}-\\d{2}$',
       type: 'string',
     },
+    maritalStatus: {
+      type: 'string',
+      enum: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
+    },
     incomeSources: {
       type: 'array',
       items: {
@@ -216,6 +220,9 @@ const schema = {
         },
       },
     },
+    maritalStatus: {
+      $ref: '#/definitions/maritalStatus',
+    },
     spouseIsVeteran: {
       type: 'boolean',
     },
@@ -331,7 +338,6 @@ const schema = {
   ['usaPhone', 'nightPhone'],
   ['usaPhone', 'phone'],
   ['usaPhone', 'mobilePhone'],
-  ['maritalStatus'],
   ['gender'],
   ['dateRange', 'powDateRange'],
   ['date', 'veteranDateOfBirth'],
