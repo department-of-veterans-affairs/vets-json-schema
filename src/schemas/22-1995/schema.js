@@ -37,6 +37,12 @@ const schema = {
     veteranFullName: {
       $ref: '#/definitions/fullName',
     },
+    dateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    applicantGender: {
+      $ref: '#/definitions/gender',
+    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
