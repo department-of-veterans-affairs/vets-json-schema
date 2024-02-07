@@ -397,7 +397,11 @@
       "$ref": "#/definitions/date"
     },
     "applicantGender": {
-      "$ref": "#/definitions/gender"
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
     },
     "veteranAddress": {
       "$ref": "#/definitions/address"

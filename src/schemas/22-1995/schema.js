@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
+import constants from '../../common/constants';
 
 const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('cooperativeTraining');
@@ -41,7 +42,8 @@ const schema = {
       $ref: '#/definitions/date',
     },
     applicantGender: {
-      $ref: '#/definitions/gender',
+      type: 'string',
+      enum: constants.genders.map(option => option.value),
     },
     veteranAddress: {
       $ref: '#/definitions/address',
