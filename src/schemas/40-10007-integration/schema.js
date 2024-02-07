@@ -291,7 +291,8 @@ const schema = {
                 'X', // Other (Or Unknown)
               ],
             },
-            placeOfBirth: { type: 'string', maxLength: 100 },
+            birthCity: { type: 'string', maxLength: 20 },
+            birthState: { type: 'string', maxLength: 3 },
             serviceName: schemaHelpers.getDefinition('fullName'),
             serviceRecords: modifiedToursOfDuty,
             ssn: schemaHelpers.getDefinition('ssn'),
