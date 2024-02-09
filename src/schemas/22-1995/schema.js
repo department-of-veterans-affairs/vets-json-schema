@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import originalDefinitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
-import constants from '../../common/constants';
 
 const definitions = _.cloneDeep(originalDefinitions);
 definitions.educationType.enum.push('cooperativeTraining');
@@ -43,7 +42,7 @@ const schema = {
     },
     applicantGender: {
       type: 'string',
-      enum: constants.genders.map(option => option.value),
+      enum: ['F', 'M'],
     },
     veteranAddress: {
       $ref: '#/definitions/address',
@@ -77,7 +76,22 @@ const schema = {
     },
     benefitUpdate: {
       type: 'string',
-      enum: ['chapter33Post911', 'chapter33FryScholarship', 'chapter30', 'chapter1606', 'transferOfEntitlement'],
+      enum: [
+        'chapter30',
+        'chapter1606',
+        'chapter33Post911',
+        'transferOfEntitlement',
+        'chapter33FryScholarship',
+        'chapter35DEA',
+      ],
+    },
+    changeAnotherBenefit: {
+      type: 'string',
+      enum: ['Y', 'N'],
+    },
+    benefitAppliedFor: {
+      type: 'string',
+      enum: ['1', '2'],
     },
     educationType: {
       $ref: '#/definitions/educationType',

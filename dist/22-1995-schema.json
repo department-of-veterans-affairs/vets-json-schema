@@ -436,11 +436,26 @@
     "benefitUpdate": {
       "type": "string",
       "enum": [
-        "chapter33Post911",
-        "chapter33FryScholarship",
         "chapter30",
         "chapter1606",
-        "transferOfEntitlement"
+        "chapter33Post911",
+        "transferOfEntitlement",
+        "chapter33FryScholarship",
+        "chapter35DEA"
+      ]
+    },
+    "changeAnotherBenefit": {
+      "type": "string",
+      "enum": [
+        "Y",
+        "N"
+      ]
+    },
+    "benefitAppliedFor": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2"
       ]
     },
     "educationType": {
