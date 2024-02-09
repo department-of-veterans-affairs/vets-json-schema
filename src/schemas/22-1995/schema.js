@@ -82,7 +82,7 @@ const schema = {
         'chapter33Post911',
         'transferOfEntitlement',
         'chapter33FryScholarship',
-        'chapter35DEA',
+        'chapter35',
       ],
     },
     changeAnotherBenefit: {
