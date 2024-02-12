@@ -447,8 +447,8 @@
     "changeAnotherBenefit": {
       "type": "string",
       "enum": [
-        "Y",
-        "N"
+        "Yes",
+        "No"
       ]
     },
     "benefitAppliedFor": {

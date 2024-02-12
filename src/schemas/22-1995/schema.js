@@ -87,7 +87,7 @@ const schema = {
     },
     changeAnotherBenefit: {
       type: 'string',
-      enum: ['Y', 'N'],
+      enum: ['Yes', 'No'],
     },
     benefitAppliedFor: {
       type: 'string',
