@@ -77,11 +77,11 @@ const schema = {
     benefitUpdate: {
       type: 'string',
       enum: [
+        'chapter33Post911',
+        'chapter33FryScholarship',
         'chapter30',
         'chapter1606',
-        'chapter33Post911',
         'transferOfEntitlement',
-        'chapter33FryScholarship',
         'chapter35',
       ],
     },
