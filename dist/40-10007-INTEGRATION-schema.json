@@ -523,7 +523,8 @@
               "type": "string",
               "enum": [
                 "Female",
-                "Male"
+                "Male",
+                "na"
               ]
             },
             "race": {
@@ -544,7 +545,8 @@
                 "Separated",
                 "Married",
                 "Divorced",
-                "Widowed"
+                "Widowed",
+                "na"
               ]
             },
             "militaryServiceNumber": {
@@ -569,8 +571,7 @@
               ]
             },
             "placeOfBirth": {
-              "type": "string",
-              "maxLength": 100
+              "$ref": "#/definitions/address"
             },
             "serviceName": {
               "$ref": "#/definitions/fullName"

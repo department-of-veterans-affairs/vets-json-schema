@@ -263,7 +263,7 @@ const schema = {
             dateOfDeath: schemaHelpers.getDefinition('date'),
             gender: {
               type: 'string',
-              enum: ['Female', 'Male'],
+              enum: ['Female', 'Male', 'na'],
             },
             race: schemaHelpers.getDefinition('race'),
             isDeceased: {
@@ -272,7 +272,7 @@ const schema = {
             },
             maritalStatus: {
               type: 'string',
-              enum: ['Single', 'Separated', 'Married', 'Divorced', 'Widowed'],
+              enum: ['Single', 'Separated', 'Married', 'Divorced', 'Widowed', 'na'],
             },
             militaryServiceNumber: { type: 'string', maxLength: 9, pattern: '^[A-Za-z0-9]{4,9}$' },
             militaryStatus: {
@@ -291,8 +291,7 @@ const schema = {
                 'X', // Other (Or Unknown)
               ],
             },
-            birthCity: { type: 'string', maxLength: 20 },
-            birthState: { type: 'string', maxLength: 3 },
+            placeOfBirth: schemaHelpers.getDefinition('address'),
             serviceName: schemaHelpers.getDefinition('fullName'),
             serviceRecords: modifiedToursOfDuty,
             ssn: schemaHelpers.getDefinition('ssn'),
