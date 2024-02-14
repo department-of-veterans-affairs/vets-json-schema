@@ -91,7 +91,14 @@ const schema = {
     },
     benefitAppliedFor: {
       type: 'string',
-      enum: ['1', '2'],
+      enum: [
+        'chapter33Post911',
+        'chapter33FryScholarship',
+        'chapter30',
+        'chapter1606',
+        'transferOfEntitlement',
+        'chapter35',
+      ],
     },
     educationType: {
       $ref: '#/definitions/educationType',
