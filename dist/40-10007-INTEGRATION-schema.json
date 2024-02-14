@@ -301,6 +301,15 @@
       "type": "string",
       "format": "date"
     },
+    "ethnicity": {
+      "type": "string",
+      "enum": [
+        "isSpanishHispanicLatino",
+        "notSpanishHispanicLatino",
+        "unknown",
+        "na"
+      ]
+    },
     "race": {
       "type": "object",
       "properties": {
@@ -313,16 +322,16 @@
         "isBlackOrAfricanAmerican": {
           "type": "boolean"
         },
-        "isSpanishHispanicLatino": {
-          "type": "boolean"
-        },
-        "notSpanishHispanicLatino": {
-          "type": "boolean"
-        },
         "isNativeHawaiianOrOtherPacificIslander": {
           "type": "boolean"
         },
         "isWhite": {
+          "type": "boolean"
+        },
+        "isOther": {
+          "type": "boolean"
+        },
+        "na": {
           "type": "boolean"
         }
       }
@@ -526,6 +535,9 @@
                 "Male",
                 "na"
               ]
+            },
+            "ethnicity": {
+              "$ref": "#/definitions/ethnicity"
             },
             "race": {
               "$ref": "#/definitions/race"

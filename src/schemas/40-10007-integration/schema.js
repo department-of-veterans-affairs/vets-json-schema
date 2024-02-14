@@ -145,6 +145,11 @@ definitions.phone.pattern = '^(?:\\D*\\d){10,15}\\D*$';
 
 definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
+definitions.ethnicity = {
+  type: 'string',
+  enum: ['isSpanishHispanicLatino', 'notSpanishHispanicLatino', 'unknown', 'na'],
+};
+
 definitions.race = {
   type: 'object',
   properties: {
@@ -157,18 +162,18 @@ definitions.race = {
     isBlackOrAfricanAmerican: {
       type: 'boolean',
     },
-    isSpanishHispanicLatino: {
-      type: 'boolean',
-    },
-    notSpanishHispanicLatino: {
-      type: 'boolean',
-    },
     isNativeHawaiianOrOtherPacificIslander: {
       type: 'boolean',
     },
     isWhite: {
       type: 'boolean',
     },
+    isOther: {
+      type: 'boolean',
+    },
+    na: {
+      type: 'boolean',
+    }
   },
 };
 
@@ -265,6 +270,7 @@ const schema = {
               type: 'string',
               enum: ['Female', 'Male', 'na'],
             },
+            ethnicity: schemaHelpers.getDefinition('ethnicity'),
             race: schemaHelpers.getDefinition('race'),
             isDeceased: {
               type: 'string',
