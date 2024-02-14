@@ -297,7 +297,7 @@ const schema = {
                 'X', // Other (Or Unknown)
               ],
             },
-            placeOfBirth: schemaHelpers.getDefinition('address'),
+            placeOfBirth: { type: 'string', maxLength: 100 },
             serviceName: schemaHelpers.getDefinition('fullName'),
             serviceRecords: modifiedToursOfDuty,
             ssn: schemaHelpers.getDefinition('ssn'),

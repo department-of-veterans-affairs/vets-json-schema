@@ -583,7 +583,8 @@
               ]
             },
             "placeOfBirth": {
-              "$ref": "#/definitions/address"
+              "type": "string",
+              "maxLength": 100
             },
             "serviceName": {
               "$ref": "#/definitions/fullName"
