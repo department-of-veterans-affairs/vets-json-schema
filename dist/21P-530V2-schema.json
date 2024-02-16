@@ -379,10 +379,10 @@
             "mausoleum",
             "privateResidence",
             "other"
-          ],
-          "other": {
-            "type": "string"
-          }
+          ]
+        },
+        "other": {
+          "type": "string"
         }
       }
     },
@@ -474,17 +474,8 @@
       "type": "string",
       "format": "email"
     },
-    "burialAllowance": {
+    "unclaimedRemains": {
       "type": "boolean"
-    },
-    "plotAllowance": {
-      "type": "boolean"
-    },
-    "transportation": {
-      "type": "boolean"
-    },
-    "amountIncurred": {
-      "type": "number"
     },
     "burialAllowanceRequested": {
       "type": "string",

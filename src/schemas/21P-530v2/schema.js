@@ -141,9 +141,9 @@ const schema = {
         location: {
           type: 'string',
           enum: ['cemetary', 'mausoleum', 'privateResidence', 'other'],
-          other: {
-            type: 'string',
-          },
+        },
+        other: {
+          type: 'string',
         },
       },
     },
@@ -162,18 +162,21 @@ const schema = {
       type: 'string',
       format: 'email',
     },
-    burialAllowance: {
+    unclaimedRemains: {
       type: 'boolean',
     },
-    plotAllowance: {
-      type: 'boolean',
-    },
-    transportation: {
-      type: 'boolean',
-    },
-    amountIncurred: {
-      type: 'number',
-    },
+    // burialAllowance: {
+    //   type: 'boolean',
+    // },
+    // plotAllowance: {
+    //   type: 'boolean',
+    // },
+    // transportation: {
+    //   type: 'boolean',
+    // },
+    // amountIncurred: {
+    //   type: 'number',
+    // },
     burialAllowanceRequested: {
       type: 'string',
       enum: ['service', 'nonService'],
