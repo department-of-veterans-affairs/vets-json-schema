@@ -145,6 +145,11 @@ definitions.phone.pattern = '^(?:\\D*\\d){10,15}\\D*$';
 
 definitions.ssn.pattern = '^\\d{3}-\\d{2}-\\d{4}$';
 
+definitions.ethnicity = {
+  type: 'string',
+  enum: ['isSpanishHispanicLatino', 'notSpanishHispanicLatino', 'unknown', 'na'],
+};
+
 definitions.race = {
   type: 'object',
   properties: {
@@ -157,18 +162,18 @@ definitions.race = {
     isBlackOrAfricanAmerican: {
       type: 'boolean',
     },
-    isSpanishHispanicLatino: {
-      type: 'boolean',
-    },
-    notSpanishHispanicLatino: {
-      type: 'boolean',
-    },
     isNativeHawaiianOrOtherPacificIslander: {
       type: 'boolean',
     },
     isWhite: {
       type: 'boolean',
     },
+    isOther: {
+      type: 'boolean',
+    },
+    na: {
+      type: 'boolean',
+    }
   },
 };
 
@@ -263,8 +268,9 @@ const schema = {
             dateOfDeath: schemaHelpers.getDefinition('date'),
             gender: {
               type: 'string',
-              enum: ['Female', 'Male'],
+              enum: ['Female', 'Male', 'na'],
             },
+            ethnicity: schemaHelpers.getDefinition('ethnicity'),
             race: schemaHelpers.getDefinition('race'),
             isDeceased: {
               type: 'string',
@@ -272,7 +278,7 @@ const schema = {
             },
             maritalStatus: {
               type: 'string',
-              enum: ['Single', 'Separated', 'Married', 'Divorced', 'Widowed'],
+              enum: ['Single', 'Separated', 'Married', 'Divorced', 'Widowed', 'na'],
             },
             militaryServiceNumber: { type: 'string', maxLength: 9, pattern: '^[A-Za-z0-9]{4,9}$' },
             militaryStatus: {
