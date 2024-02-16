@@ -37,6 +37,13 @@ const schema = {
     veteranFullName: {
       $ref: '#/definitions/fullName',
     },
+    dateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    applicantGender: {
+      type: 'string',
+      enum: ['F', 'M'],
+    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
@@ -69,7 +76,22 @@ const schema = {
     },
     benefitUpdate: {
       type: 'string',
-      enum: ['chapter33Post911', 'chapter33FryScholarship', 'chapter30', 'chapter1606', 'transferOfEntitlement'],
+      enum: [
+        'chapter33Post911',
+        'chapter33FryScholarship',
+        'chapter30',
+        'chapter1606',
+        'transferOfEntitlement',
+        'chapter35',
+      ],
+    },
+    changeAnotherBenefit: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
+    benefitAppliedFor: {
+      type: 'string',
+      enum: ['1', '2'],
     },
     educationType: {
       $ref: '#/definitions/educationType',
