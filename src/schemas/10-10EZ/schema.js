@@ -180,6 +180,67 @@ const schema = {
     campLejeune: {
       type: 'boolean',
     },
+    hasTeraResponse: {
+      type: 'boolean',
+    },
+    didRadiationCleanup: {
+      type: 'boolean',
+    },
+    gulfWarService: {
+      type: 'boolean',
+    },
+    gulfWarStartDate: {
+      $ref: '#/definitions/date',
+    },
+    gulfWarEndDate: {
+      $ref: '#/definitions/date',
+    },
+    didCombatOperations: {
+      type: 'boolean',
+    },
+    exposedToAgentOrange: {
+      type: 'boolean',
+    },
+    agentOrangeStartDate: {
+      $ref: '#/definitions/date',
+    },
+    agentOrangeEndDate: {
+      $ref: '#/definitions/date',
+    },
+    exposedToAirPollutants: {
+      type: 'boolean',
+    },
+    exposedToAsbestos: {
+      type: 'boolean',
+    },
+    exposedToChemicals: {
+      type: 'boolean',
+    },
+    exposedToMustardGas: {
+      type: 'boolean',
+    },
+    exposedToOccupationalHazards: {
+      type: 'boolean',
+    },
+    exposedToShad: {
+      type: 'boolean',
+    },
+    exposedToWarefareAgents: {
+      type: 'boolean',
+    },
+    exposedToOther: {
+      type: 'boolean',
+    },
+    otherToxicExposure: {
+      type: 'string',
+      pattern: '^[a-zA-Z0-9]+$',
+    },
+    toxicExposureStartDate: {
+      $ref: '#/definitions/date',
+    },
+    toxicExposureEndDate: {
+      $ref: '#/definitions/date',
+    },
     privacyAgreementAccepted: {
       type: 'boolean',
       enum: [true],
