@@ -183,9 +183,6 @@ const schema = {
     hasTeraResponse: {
       type: 'boolean',
     },
-    didRadiationCleanup: {
-      type: 'boolean',
-    },
     gulfWarService: {
       type: 'boolean',
     },
@@ -195,7 +192,7 @@ const schema = {
     gulfWarEndDate: {
       $ref: '#/definitions/date',
     },
-    didCombatOperations: {
+    combatOperationService: {
       type: 'boolean',
     },
     exposedToAgentOrange: {
@@ -207,32 +204,39 @@ const schema = {
     agentOrangeEndDate: {
       $ref: '#/definitions/date',
     },
-    exposedToAirPollutants: {
+    exposureToAirPollutants: {
       type: 'boolean',
     },
-    exposedToAsbestos: {
+    exposureToAsbestos: {
       type: 'boolean',
     },
-    exposedToChemicals: {
+    exposureToChemicals: {
       type: 'boolean',
     },
-    exposedToMustardGas: {
+    exposureToContaminatedWater: {
       type: 'boolean',
     },
-    exposedToOccupationalHazards: {
+    exposureToMustardGas: {
       type: 'boolean',
     },
-    exposedToShad: {
+    exposureToOccupationalHazards: {
       type: 'boolean',
     },
-    exposedToWarefareAgents: {
+    exposureToRadiation: {
       type: 'boolean',
     },
-    exposedToOther: {
+    exposureToShad: {
+      type: 'boolean',
+    },
+    exposureToWarfareAgents: {
+      type: 'boolean',
+    },
+    exposureToOther: {
       type: 'boolean',
     },
     otherToxicExposure: {
       type: 'string',
+      maxLength: 100,
       pattern: '^[a-zA-Z0-9]+$',
     },
     toxicExposureStartDate: {
