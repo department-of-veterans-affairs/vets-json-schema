@@ -517,7 +517,7 @@
     "amountGovtContribution": {
       "type": "number"
     },
-    "transportationReceipts": {
+    "transportationExpenses": {
       "type": "boolean"
     },
     "placeOfBirth": {
@@ -566,6 +566,9 @@
       "$ref": "#/definitions/files"
     },
     "deathCertificate": {
+      "$ref": "#/definitions/files"
+    },
+    "transportationReceipts": {
       "$ref": "#/definitions/files"
     }
   },

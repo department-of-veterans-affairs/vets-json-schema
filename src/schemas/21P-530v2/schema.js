@@ -25,14 +25,6 @@ const serviceBranchDefinitions = {
   ],
 };
 
-// _.merge(modifiedPreviousNames, {
-//   properties: {
-//     relatedServiceBranch: {
-//       type: 'string',
-//     },
-//   },
-// });
-
 const modifiedToursOfDuty = {
   type: 'array',
   minItems: 1,
@@ -78,16 +70,6 @@ const schema = {
     },
   ],
   properties: {
-    // relationship: {
-    //   type: 'object',
-    //   required: ['type'],
-    //   properties: {
-    //     type: {
-    //       type: 'string',
-    //       enum: ['spouse', 'child', 'parent', 'executor', 'funeralDirector', 'otherFamilyOrFriend'],
-    //     },
-    //   },
-    // },
     locationOfDeath: {
       type: 'object',
       required: ['location'],
@@ -165,18 +147,6 @@ const schema = {
     unclaimedRemains: {
       type: 'boolean',
     },
-    // burialAllowance: {
-    //   type: 'boolean',
-    // },
-    // plotAllowance: {
-    //   type: 'boolean',
-    // },
-    // transportation: {
-    //   type: 'boolean',
-    // },
-    // amountIncurred: {
-    //   type: 'number',
-    // },
     burialAllowanceRequested: {
       type: 'string',
       enum: ['service', 'nonService'],
@@ -214,7 +184,7 @@ const schema = {
     amountGovtContribution: {
       type: 'number',
     },
-    transportationReceipts: {
+    transportationExpenses: {
       type: 'boolean',
     },
     placeOfBirth: {
@@ -240,7 +210,7 @@ const schema = {
   ['date', 'veteranDateOfBirth'],
   ['files', 'militarySeparationDocuments'],
   ['files', 'deathCertificate'],
-  // ['files', 'transportationReceipts'],
+  ['files', 'transportationReceipts'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
