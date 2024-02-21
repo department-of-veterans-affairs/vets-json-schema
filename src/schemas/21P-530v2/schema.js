@@ -187,6 +187,9 @@ const schema = {
     burialExpenseResponsibility: {
       type: 'boolean',
     },
+    plotExpenseResponsibility: {
+      type: 'boolean',
+    },
     allowanceStatementOfTruth: {
       type: 'boolean',
     },
@@ -211,6 +214,9 @@ const schema = {
     amountGovtContribution: {
       type: 'number',
     },
+    transportationReceipts: {
+      type: 'boolean',
+    },
     placeOfBirth: {
       type: 'string',
     },
@@ -234,7 +240,7 @@ const schema = {
   ['date', 'veteranDateOfBirth'],
   ['files', 'militarySeparationDocuments'],
   ['files', 'deathCertificate'],
-  ['files', 'transportationReceipts'],
+  // ['files', 'transportationReceipts'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

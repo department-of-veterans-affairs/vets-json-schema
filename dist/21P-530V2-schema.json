@@ -490,6 +490,9 @@
     "burialExpenseResponsibility": {
       "type": "boolean"
     },
+    "plotExpenseResponsibility": {
+      "type": "boolean"
+    },
     "allowanceStatementOfTruth": {
       "type": "boolean"
     },
@@ -513,6 +516,9 @@
     },
     "amountGovtContribution": {
       "type": "number"
+    },
+    "transportationReceipts": {
+      "type": "boolean"
     },
     "placeOfBirth": {
       "type": "string"
@@ -560,9 +566,6 @@
       "$ref": "#/definitions/files"
     },
     "deathCertificate": {
-      "$ref": "#/definitions/files"
-    },
-    "transportationReceipts": {
       "$ref": "#/definitions/files"
     }
   },
