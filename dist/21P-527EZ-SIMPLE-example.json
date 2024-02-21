@@ -35,14 +35,12 @@
     }
   ],
   "maritalStatus": "Never Married",
-  "view:hasDependents": false,
   "totalNetWorth": true,
   "hasCareExpenses": false,
   "hasMedicalExpenses": false,
   "transferredAssets": false,
   "homeOwnership": false,
   "receivesIncome": false,
-  "view:noDirectDeposit": true,
   "veteranAddress": {
     "street": "123 8th st",
     "city": "Hadley",
@@ -53,7 +51,6 @@
   },
   "email": "test@example.com",
   "mobilePhone": "5551234567",
-  "view:aidAttendance": true,
   "isOver65": false,
   "noRapidProcessing": true,
   "statementOfTruthCertified": true,

@@ -81,14 +81,12 @@
         "middle": "Middle",
         "last": "Doe"
       },
-      "view:pastMarriage": {
-        "dateOfMarriage": "1989-03-02",
-        "locationOfMarriage": "Dallas",
-        "reasonForSeparation": "Other",
-        "otherExplanation": "Personal reason thats too long to write an explanation for in this form field",
-        "dateOfSeparation": "1990-03-02",
-        "locationOfSeparation": "San Antonio, TX"
-      }
+      "dateOfMarriage": "1989-03-02",
+      "locationOfMarriage": "Dallas",
+      "reasonForSeparation": "Other",
+      "otherExplanation": "Personal reason thats too long to write an explanation for in this form field",
+      "dateOfSeparation": "1990-03-02",
+      "locationOfSeparation": "San Antonio, TX"
     },
     {
       "spouseFullName": {
@@ -96,13 +94,11 @@
         "middle": "Middle",
         "last": "Doe"
       },
-      "view:pastMarriage": {
-        "dateOfMarriage": "1989-03-02",
-        "locationOfMarriage": "Dallas",
-        "reasonForSeparation": "Spouse’s death",
-        "dateOfSeparation": "1990-03-02",
-        "locationOfSeparation": "San Antonio, TX"
-      }
+      "dateOfMarriage": "1989-03-02",
+      "locationOfMarriage": "Dallas",
+      "reasonForSeparation": "Spouse’s death",
+      "dateOfSeparation": "1990-03-02",
+      "locationOfSeparation": "San Antonio, TX"
     },
     {
       "spouseFullName": {
@@ -110,13 +106,11 @@
         "middle": "Middle",
         "last": "Danedanedanedanedanedanedane"
       },
-      "view:pastMarriage": {
-        "dateOfMarriage": "1983-03-02",
-        "locationOfMarriage": "Dallas",
-        "reasonForSeparation": "Divorce",
-        "dateOfSeparation": "1984-03-02",
-        "locationOfSeparation": "San Antonio, TX"
-      }
+      "dateOfMarriage": "1983-03-02",
+      "locationOfMarriage": "Dallas",
+      "reasonForSeparation": "Divorce",
+      "dateOfSeparation": "1984-03-02",
+      "locationOfSeparation": "San Antonio, TX"
     },
     {
       "spouseFullName": {
@@ -124,13 +118,11 @@
         "middle": "Middle",
         "last": "Doe"
       },
-      "view:pastMarriage": {
-        "dateOfMarriage": "1995-02-03",
-        "locationOfMarriage": "North Adams, MA",
-        "reasonForSeparation": "Divorce",
-        "dateOfSeparation": "1996-03-02",
-        "locationOfSeparation": "San Antonio, TX"
-      }
+      "dateOfMarriage": "1995-02-03",
+      "locationOfMarriage": "North Adams, MA",
+      "reasonForSeparation": "Divorce",
+      "dateOfSeparation": "1996-03-02",
+      "locationOfSeparation": "San Antonio, TX"
     },
     {
       "spouseFullName": {
@@ -138,19 +130,16 @@
         "middle": "Middle",
         "last": "Doe"
       },
-      "view:currentMarriage": {
-        "dateOfMarriage": "1994-03-02",
-        "locationOfMarriage": "North Adams, MA",
-        "marriageType": "Some other way",
-        "otherExplanation": "Other reason"
-      }
+      "dateOfMarriage": "1994-03-02",
+      "locationOfMarriage": "North Adams, MA",
+      "marriageType": "Some other way",
+      "otherExplanation": "Other reason"
     }
   ],
   "spouseDateOfBirth": "1960-01-01",
   "spouseSocialSecurityNumber": "333224444",
   "spouseIsVeteran": true,
   "spouseVaFileNumber": "23423444",
-  "view:liveWithSpouse": false,
   "spouseAddress": {
     "street": "123 7th st",
     "street2": "Apt 3",
@@ -193,7 +182,6 @@
       "locationOfSeparation": "Tacoma, WA"
     }
   ],
-  "view:hasDependents": true,
   "dependents": [
     {
       "childInHousehold": false,
@@ -410,7 +398,6 @@
       "amount": 55.27
     }
   ],
-  "view:noDirectDeposit": false,
   "bankAccount": {
     "accountType": "checking",
     "bankName": "Best Bank",
@@ -430,7 +417,6 @@
   "phone": "5551234567",
   "mobilePhone": "5551234567",
   "internationalPhone": "001-555-123-4567-8910",
-  "view:aidAttendance": true,
   "isOver65": false,
   "noRapidProcessing": true,
   "statementOfTruthCertified": true,
