@@ -14,6 +14,12 @@ let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 let sharedTests = new SharedTests(schemaTestHelper);
 
 describe('21-527 schema', () => {
+  [
+    'maritalStatus'
+  ].forEach((test) => {
+    sharedTests.runTest(test);
+  });
+
   it('should have the right required fields', () => {
     expect(schema.required).to.deep.equal([
       'veteranFullName', 'veteranAddress', 'statementOfTruthCertified', 'statementOfTruthSignature'
@@ -53,10 +59,12 @@ describe('21-527 schema', () => {
       childDateOfBirth: fixtures.date,
       childPlaceOfBirth: 'ny, ny',
       childSocialSecurityNumber: fixtures.ssn,
-      childRelationship: 'ADOPTED',
+      childRelationship: 'adopted',
       attendingCollege: true,
       disabled: true,
+      married: true,
       previouslyMarried: true,
+      childFullName: fixtures.fullName,
       childInHousehold: true,
       childAddress: fixtures.address,
       personWhoLivesWithChild: fixtures.fullName,
@@ -119,10 +127,5 @@ describe('21-527 schema', () => {
     invalid: [[{
       medicalCenter: 3
     }]]
-  });
-
-  schemaTestHelper.testValidAndInvalid('maritalStatus', {
-    valid: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
-    invalid: ['foo'],
   });
 });

@@ -53,16 +53,6 @@
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
       "type": "string"
     },
-    "maritalStatus": {
-      "type": "string",
-      "enum": [
-        "MARRIED",
-        "NEVER_MARRIED",
-        "SEPARATED",
-        "WIDOWED",
-        "DIVORCED"
-      ]
-    },
     "incomeSources": {
       "type": "array",
       "items": {
@@ -120,7 +110,7 @@
             "enum": [
               "VETERAN",
               "SPOUSE",
-              "DEPENDENT"
+              "CHILD"
             ]
           },
           "childName": {
@@ -179,7 +169,7 @@
             "enum": [
               "VETERAN",
               "SPOUSE",
-              "DEPENDENT"
+              "CHILD"
             ]
           },
           "childName": {
@@ -462,6 +452,16 @@
     "usaPhone": {
       "type": "string",
       "pattern": "^\\d{10}$"
+    },
+    "maritalStatus": {
+      "type": "string",
+      "enum": [
+        "Married",
+        "Never Married",
+        "Separated",
+        "Widowed",
+        "Divorced"
+      ]
     },
     "gender": {
       "type": "string",
@@ -902,9 +902,6 @@
         }
       }
     },
-    "maritalStatus": {
-      "$ref": "#/definitions/maritalStatus"
-    },
     "spouseIsVeteran": {
       "type": "boolean"
     },
@@ -926,9 +923,9 @@
     "currentSpouseMaritalHistory": {
       "type": "string",
       "enum": [
-        "YES",
-        "NO",
-        "IDK"
+        "Yes",
+        "No",
+        "I’m not sure"
       ]
     },
     "dependents": {
@@ -963,9 +960,9 @@
           "childRelationship": {
             "type": "string",
             "enum": [
-              "BIOLOGICAL",
-              "ADOPTED",
-              "STEP_CHILD"
+              "biological",
+              "adopted",
+              "stepchild"
             ]
           },
           "attendingCollege": {
@@ -1048,6 +1045,9 @@
     },
     "mobilePhone": {
       "$ref": "#/definitions/usaPhone"
+    },
+    "maritalStatus": {
+      "$ref": "#/definitions/maritalStatus"
     },
     "gender": {
       "$ref": "#/definitions/gender"

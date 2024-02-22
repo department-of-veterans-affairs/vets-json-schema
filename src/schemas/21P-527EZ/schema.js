@@ -28,10 +28,6 @@ const schema = {
       pattern: '^\\d{4}-\\d{2}-\\d{2}$',
       type: 'string',
     },
-    maritalStatus: {
-      type: 'string',
-      enum: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
-    },
     incomeSources: {
       type: 'array',
       items: {
@@ -66,7 +62,7 @@ const schema = {
         properties: {
           recipients: {
             type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
+            enum: ['VETERAN', 'SPOUSE', 'CHILD'],
           },
           childName: { type: 'string' },
           provider: { type: 'string' },
@@ -88,7 +84,7 @@ const schema = {
         properties: {
           recipients: {
             type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
+            enum: ['VETERAN', 'SPOUSE', 'CHILD'],
           },
           childName: { type: 'string' },
           provider: { type: 'string' },
@@ -220,9 +216,6 @@ const schema = {
         },
       },
     },
-    maritalStatus: {
-      $ref: '#/definitions/maritalStatus',
-    },
     spouseIsVeteran: {
       type: 'boolean',
     },
@@ -243,7 +236,7 @@ const schema = {
     },
     currentSpouseMaritalHistory: {
       type: 'string',
-      enum: ['YES', 'NO', 'IDK'],
+      enum: ['Yes', 'No', 'I’m not sure'],
     },
     dependents: {
       type: 'array',
@@ -266,7 +259,7 @@ const schema = {
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
           childRelationship: {
             type: 'string',
-            enum: ['BIOLOGICAL', 'ADOPTED', 'STEP_CHILD'],
+            enum: ['biological', 'adopted', 'stepchild'],
           },
           attendingCollege: {
             type: 'boolean',
@@ -338,6 +331,7 @@ const schema = {
   ['usaPhone', 'nightPhone'],
   ['usaPhone', 'phone'],
   ['usaPhone', 'mobilePhone'],
+  ['maritalStatus'],
   ['gender'],
   ['dateRange', 'powDateRange'],
   ['date', 'veteranDateOfBirth'],
