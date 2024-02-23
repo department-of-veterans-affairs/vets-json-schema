@@ -468,6 +468,55 @@
     "educationTypeUpdate": {
       "$ref": "#/definitions/educationTypeUpdate"
     },
+    "sponsorStatus": {
+      "type": "string",
+      "enum": [
+        "diedOnDuty",
+        "diedFromDisabilityOrOnReserve",
+        "powOrMia"
+      ]
+    },
+    "minorHighSchoolQuestions": {
+      "type": "object",
+      "properties": {
+        "minorHighSchoolQuestion": {
+          "type": "boolean"
+        },
+        "highSchoolGedGradDate": {
+          "$ref": "#/definitions/date"
+        },
+        "highSchoolGedExpectedGradDate": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "minorQuestions": {
+      "type": "object",
+      "properties": {
+        "guardianFirstName": {
+          "type": "string"
+        },
+        "guardianMiddleName": {
+          "type": "string"
+        },
+        "guardianLastName": {
+          "type": "string"
+        },
+        "guardianAddress": {
+          "$ref": "#/definitions/address"
+        },
+        "guardianMobilePhone": {
+          "$ref": "#/definitions/phone"
+        },
+        "guardianHomePhone": {
+          "$ref": "#/definitions/phone"
+        },
+        "guardianEmail": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
     "educationObjective": {
       "type": "string"
     },
