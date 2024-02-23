@@ -2214,14 +2214,19 @@
     "hasTeraResponse": {
       "type": "boolean"
     },
+    "radiationCleanupEfforts": {
+      "type": "boolean"
+    },
     "gulfWarService": {
       "type": "boolean"
     },
     "gulfWarStartDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "gulfWarEndDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "combatOperationService": {
       "type": "boolean"
@@ -2230,10 +2235,12 @@
       "type": "boolean"
     },
     "agentOrangeStartDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "agentOrangeEndDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "exposureToAirPollutants": {
       "type": "boolean"
@@ -2271,10 +2278,12 @@
       "pattern": "^[a-zA-Z0-9]+$"
     },
     "toxicExposureStartDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "toxicExposureEndDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "privacyAgreementAccepted": {
       "type": "boolean",
