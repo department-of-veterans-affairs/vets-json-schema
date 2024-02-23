@@ -183,27 +183,22 @@ const schema = {
     hasTeraResponse: {
       type: 'boolean',
     },
+    radiationCleanupEfforts: {
+      type: 'boolean',
+    },
     gulfWarService: {
       type: 'boolean',
     },
-    gulfWarStartDate: {
-      $ref: '#/definitions/date',
-    },
-    gulfWarEndDate: {
-      $ref: '#/definitions/date',
-    },
+    gulfWarStartDate: definitions.date,
+    gulfWarEndDate: definitions.date,
     combatOperationService: {
       type: 'boolean',
     },
     exposedToAgentOrange: {
       type: 'boolean',
     },
-    agentOrangeStartDate: {
-      $ref: '#/definitions/date',
-    },
-    agentOrangeEndDate: {
-      $ref: '#/definitions/date',
-    },
+    agentOrangeStartDate: definitions.date,
+    agentOrangeEndDate: definitions.date,
     exposureToAirPollutants: {
       type: 'boolean',
     },
@@ -239,12 +234,8 @@ const schema = {
       maxLength: 100,
       pattern: '^[a-zA-Z0-9]+$',
     },
-    toxicExposureStartDate: {
-      $ref: '#/definitions/date',
-    },
-    toxicExposureEndDate: {
-      $ref: '#/definitions/date',
-    },
+    toxicExposureStartDate: definitions.date,
+    toxicExposureEndDate: definitions.date,
     privacyAgreementAccepted: {
       type: 'boolean',
       enum: [true],
