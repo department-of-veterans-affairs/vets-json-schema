@@ -24,6 +24,7 @@ const schema = {
     'educationTypeUpdate',
     'preferredContactMethod',
     'privacyAgreementAccepted',
+    'phone',
   ]),
   anyOf: [
     {
