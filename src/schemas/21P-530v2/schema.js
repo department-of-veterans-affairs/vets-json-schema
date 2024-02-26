@@ -1,22 +1,40 @@
 import _ from 'lodash';
-import originalDefinitions from '../../common/definitions';
+import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const definitions = _.cloneDeep(originalDefinitions);
-const modifiedToursOfDuty = definitions.toursOfDuty;
-delete modifiedToursOfDuty.items.properties.benefitsToApplyTo;
-delete modifiedToursOfDuty.items.properties.applyPeriodToSelected;
-delete modifiedToursOfDuty.items.properties.serviceStatus;
-delete modifiedToursOfDuty.items.required;
+const newDefinitions = _.cloneDeep(definitions);
+const modifiedPreviousNames = newDefinitions.fullName;
+delete modifiedPreviousNames.required;
 
-_.merge(modifiedToursOfDuty, {
+const serviceBranchDefinitions = {
+  type: 'string',
+  enum: [
+    'Air Force',
+    'Air Force Reserve',
+    'Air National Guard',
+    'Army',
+    'Army National Guard',
+    'Army Reserve',
+    'Coast Guard',
+    'Coast Guard Reserve',
+    'Marine Corps',
+    'Marine Corps Reserve',
+    'Navy',
+    'Navy Reserve',
+    'Other',
+  ],
+};
+
+const modifiedToursOfDuty = {
+  type: 'array',
+  minItems: 1,
+  maxItems: 100,
   items: {
+    type: 'object',
     properties: {
-      rank: {
-        type: 'string',
-      },
-      serviceNumber: {
-        type: 'string',
+      serviceBranch: serviceBranchDefinitions,
+      dateRange: {
+        $ref: '#/definitions/dateRange',
       },
       placeOfEntry: {
         type: 'string',
@@ -24,9 +42,16 @@ _.merge(modifiedToursOfDuty, {
       placeOfSeparation: {
         type: 'string',
       },
+      rank: {
+        type: 'string',
+      },
+      unit: {
+        type: 'string',
+      },
     },
+    required: ['serviceBranch'],
   },
-});
+};
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -34,7 +59,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: {
-    dateRange: definitions.dateRange,
+    dateRange: newDefinitions.dateRange,
   },
   anyOf: [
     {
@@ -45,37 +70,13 @@ const schema = {
     },
   ],
   properties: {
-    relationship: {
-      type: 'object',
-      required: ['type'],
-      properties: {
-        type: {
-          type: 'string',
-          enum: ['spouse', 'child', 'parent', 'executor', 'funeralDirector', 'other'],
-        },
-        other: {
-          type: 'string',
-        },
-        isEntity: {
-          type: 'boolean',
-        },
-      },
-    },
     locationOfDeath: {
       type: 'object',
       required: ['location'],
       properties: {
         location: {
           type: 'string',
-          enum: [
-            'atHome',
-            'nursingHomePaid',
-            'nursingHomeUnpaid',
-            'vaMedicalCenter',
-            'stateVeteransHome',
-            'otherFamilyOrFriend',
-            'other',
-          ],
+          enum: ['atHome', 'nursingHomePaid', 'nursingHomeUnpaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
         },
         nursingHomePaid: {
           type: 'object',
@@ -115,33 +116,52 @@ const schema = {
         },
       },
     },
+    finalRestingPlace: {
+      type: 'object',
+      required: ['location'],
+      properties: {
+        location: {
+          type: 'string',
+          enum: ['cemetary', 'mausoleum', 'privateResidence', 'other'],
+        },
+        other: {
+          type: 'string',
+        },
+      },
+    },
     toursOfDuty: modifiedToursOfDuty,
     previousNames: {
       type: 'array',
-      items: schemaHelpers.getDefinition('fullName'),
+      items: {
+        ...modifiedPreviousNames,
+        required: ['first', 'last'],
+      },
+    },
+    serviceNumber: {
+      type: 'string',
     },
     claimantEmail: {
       type: 'string',
       format: 'email',
     },
-    burialAllowance: {
+    unclaimedRemains: {
       type: 'boolean',
-    },
-    plotAllowance: {
-      type: 'boolean',
-    },
-    transportation: {
-      type: 'boolean',
-    },
-    amountIncurred: {
-      type: 'number',
     },
     burialAllowanceRequested: {
       type: 'string',
-      enum: ['service', 'nonService', 'vaMC'],
+      enum: ['service', 'nonService'],
     },
     burialCost: {
       type: 'number',
+    },
+    burialExpenseResponsibility: {
+      type: 'boolean',
+    },
+    plotExpenseResponsibility: {
+      type: 'boolean',
+    },
+    allowanceStatementOfTruth: {
+      type: 'boolean',
     },
     previouslyReceivedAllowance: {
       type: 'boolean',
@@ -164,13 +184,10 @@ const schema = {
     amountGovtContribution: {
       type: 'number',
     },
+    transportationExpenses: {
+      type: 'boolean',
+    },
     placeOfBirth: {
-      type: 'string',
-    },
-    officialPosition: {
-      type: 'string',
-    },
-    firmName: {
       type: 'string',
     },
   },
@@ -181,6 +198,7 @@ const schema = {
   ['privacyAgreementAccepted'],
   ['centralMailAddress', 'claimantAddress'],
   ['usaPhone', 'claimantPhone'],
+  ['usaPhone', 'claimantIntPhone'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'claimantSocialSecurityNumber'],
