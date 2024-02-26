@@ -69,7 +69,7 @@
       },
       "dateOfMarriage": "1989-03-02",
       "locationOfMarriage": "Dallas",
-      "reasonForSeparation": "Other",
+      "reasonForSeparation": "OTHER",
       "otherExplanation": "Other reason",
       "dateOfSeparation": "1990-03-02",
       "locationOfSeparation": "San Antonio, TX"
@@ -82,7 +82,7 @@
       },
       "dateOfMarriage": "1989-03-02",
       "locationOfMarriage": "Dallas",
-      "reasonForSeparation": "Spouse’s death",
+      "reasonForSeparation": "DEATH",
       "dateOfSeparation": "1990-03-02",
       "locationOfSeparation": "San Antonio, TX"
     },
