@@ -223,6 +223,9 @@ const schema = {
                   type: 'string',
                   maxLength: 15,
                 },
+                suffix: {
+                  enum: ['Jr.', 'Sr.', 'II', 'III', 'IV', 'V'],
+                }
               },
             }),
             phoneNumber: schemaHelpers.getDefinition('phone'),
