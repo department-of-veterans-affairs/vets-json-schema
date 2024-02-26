@@ -83,7 +83,7 @@
       },
       "dateOfMarriage": "1989-03-02",
       "locationOfMarriage": "Dallas",
-      "reasonForSeparation": "Other",
+      "reasonForSeparation": "OTHER",
       "otherExplanation": "Personal reason thats too long to write an explanation for in this form field",
       "dateOfSeparation": "1990-03-02",
       "locationOfSeparation": "San Antonio, TX"
@@ -96,7 +96,7 @@
       },
       "dateOfMarriage": "1989-03-02",
       "locationOfMarriage": "Dallas",
-      "reasonForSeparation": "Spouse’s death",
+      "reasonForSeparation": "DEATH",
       "dateOfSeparation": "1990-03-02",
       "locationOfSeparation": "San Antonio, TX"
     },
@@ -108,7 +108,7 @@
       },
       "dateOfMarriage": "1983-03-02",
       "locationOfMarriage": "Dallas",
-      "reasonForSeparation": "Divorce",
+      "reasonForSeparation": "DIVORCE",
       "dateOfSeparation": "1984-03-02",
       "locationOfSeparation": "San Antonio, TX"
     },
@@ -120,7 +120,7 @@
       },
       "dateOfMarriage": "1995-02-03",
       "locationOfMarriage": "North Adams, MA",
-      "reasonForSeparation": "Divorce",
+      "reasonForSeparation": "DIVORCE",
       "dateOfSeparation": "1996-03-02",
       "locationOfSeparation": "San Antonio, TX"
     },
@@ -132,7 +132,7 @@
       },
       "dateOfMarriage": "1994-03-02",
       "locationOfMarriage": "North Adams, MA",
-      "marriageType": "Some other way",
+      "marriageType": "OTHER",
       "otherExplanation": "Other reason"
     }
   ],
