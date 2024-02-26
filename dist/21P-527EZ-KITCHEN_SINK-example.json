@@ -67,11 +67,11 @@
         "middle": "Middle",
         "last": "Doe"
       },
-      "dateOfMarriage": "1989-03-02",
-      "locationOfMarriage": "Dallas",
       "reasonForSeparation": "OTHER",
       "otherExplanation": "Other reason",
+      "dateOfMarriage": "1989-03-02",
       "dateOfSeparation": "1990-03-02",
+      "locationOfMarriage": "Dallas",
       "locationOfSeparation": "San Antonio, TX"
     },
     {
@@ -80,10 +80,10 @@
         "middle": "Middle",
         "last": "Doe"
       },
-      "dateOfMarriage": "1989-03-02",
-      "locationOfMarriage": "Dallas",
       "reasonForSeparation": "DEATH",
+      "dateOfMarriage": "1989-03-02",
       "dateOfSeparation": "1990-03-02",
+      "locationOfMarriage": "Dallas",
       "locationOfSeparation": "San Antonio, TX"
     },
     {
@@ -165,11 +165,11 @@
       "previouslyMarried": true,
       "married": true,
       "fullName": {
-        "first": "Bobby",
-        "middle": "Middle",
+        "first": "Emily",
+        "middle": "Anne",
         "last": "Doe"
       },
-      "childDateOfBirth": "1997-03-02"
+      "childDateOfBirth": "2000-03-03"
     },
     {
       "childInHousehold": true,
@@ -177,15 +177,16 @@
       "childSocialSecurityNumber": "333224444",
       "childRelationship": "ADOPTED",
       "previouslyMarried": false,
+      "attendingCollege": true,
       "fullName": {
-        "first": "Emily",
-        "middle": "Middle",
+        "first": "Bobby",
+        "middle": "Nolan",
         "last": "Doe"
       },
-      "childDateOfBirth": "1993-03-02"
+      "childDateOfBirth": "2005-09-22"
     },
     {
-      "childInHousehold": false,
+      "childInHousehold": true,
       "childAddress": {
         "street": "123 8th st",
         "city": "Hadley",
@@ -193,22 +194,18 @@
         "state": "ME",
         "postalCode": "01050"
       },
-      "personWhoLivesWithChild": {
-        "first": "Joe",
-        "middle": "Middle",
-        "last": "Smith"
-      },
       "monthlyPayment": 2300,
       "childPlaceOfBirth": "Troy, MT",
       "childSocialSecurityNumber": "333224444",
       "childRelationship": "BIOLOGICAL",
       "previouslyMarried": false,
+      "disabled": true,
       "fullName": {
         "first": "Jack",
-        "middle": "Middle",
+        "middle": "Sawyer",
         "last": "Doe"
       },
-      "childDateOfBirth": "1992-04-01"
+      "childDateOfBirth": "2010-04-01"
     }
   ],
   "totalNetWorth": false,
