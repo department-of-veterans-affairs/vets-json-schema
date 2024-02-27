@@ -74,6 +74,10 @@ const schema = {
     addressSchema: {
       type: 'object',
       properties: {
+        'view:editMailingAddressSubheader': {
+          type: 'object',
+          properties: {},
+        },
         'view:livesOnMilitaryBase': {
           $ref: '#/definitions/genericTrueFalse',
         },
