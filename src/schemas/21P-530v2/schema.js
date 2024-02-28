@@ -122,7 +122,7 @@ const schema = {
       properties: {
         location: {
           type: 'string',
-          enum: ['cemetary', 'mausoleum', 'privateResidence', 'other'],
+          enum: ['cemetery', 'mausoleum', 'privateResidence', 'other'],
         },
         other: {
           type: 'string',
@@ -180,9 +180,6 @@ const schema = {
     },
     govtContributions: {
       type: 'boolean',
-    },
-    amountGovtContribution: {
-      type: 'number',
     },
     transportationExpenses: {
       type: 'boolean',
