@@ -4,47 +4,57 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "bankAccount": {
-      "type": "object",
-      "properties": {
-        "accountType": {
-          "type": "string",
-          "enum": [
-            "checking",
-            "savings"
-          ]
-        },
-        "routingNumber": {
-          "type": "string",
-          "pattern": "^\\d{9}$"
-        },
-        "accountNumber": {
-          "type": "string"
-        }
-      }
-    },
     "usaPhone": {
       "type": "string",
       "pattern": "^\\d{10}$"
     }
   },
   "properties": {
-    "checkDigit": {
-      "type": "string"
+    "fullName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "phone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "email": {
+      "type": "string",
+      "pattern": "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"
+    },
+    "acctNo": {
+      "type": "string",
+      "pattern": "^\\d{1,17}$"
+    },
+    "acctType": {
+      "type": "string",
+      "enum": [
+        "checking",
+        "savings"
+      ]
+    },
+    "routingNo": {
+      "type": "string",
+      "pattern": "^\\d{9}$"
     },
     "bankName": {
       "type": "string"
     },
-    "bankAccount": {
-      "$ref": "#/definitions/bankAccount"
-    },
     "bankPhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "usaPhone": {
       "$ref": "#/definitions/usaPhone"
     }
   },
   "required": [
+    "fullName",
+    "phone",
+    "email",
+    "acctNo",
+    "acctType",
+    "routingNo",
     "bankName",
-    "bankAccount",
     "bankPhone"
   ]
 }
