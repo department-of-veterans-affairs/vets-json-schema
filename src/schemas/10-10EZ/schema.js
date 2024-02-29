@@ -232,7 +232,7 @@ const schema = {
     otherToxicExposure: {
       type: 'string',
       maxLength: 100,
-      pattern: '^[a-zA-Z0-9]+$',
+      pattern: '^[a-zA-Z0-9 ]+$',
     },
     toxicExposureStartDate: definitions.date,
     toxicExposureEndDate: definitions.date,

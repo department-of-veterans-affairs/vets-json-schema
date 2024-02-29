@@ -24,6 +24,17 @@ describe('healthcare-application json schema', () => {
     invalid: [1],
   });
 
+  schemaTestHelper.testValidAndInvalid('otherToxicExposure', {
+    valid: [
+      'foo',
+      'foo bar',
+      'Foo123'
+    ],
+    invalid: [
+      '$'
+    ],
+  });
+
   schemaTestHelper.testValidAndInvalid('lastServiceBranch', {
     valid: [
       'air force',
