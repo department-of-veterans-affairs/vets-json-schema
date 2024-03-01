@@ -70,6 +70,10 @@ const schema = {
     },
   ],
   properties: {
+    formV2: {
+      type: 'boolean',
+      const: true,
+    },
     locationOfDeath: {
       type: 'object',
       required: ['location'],
