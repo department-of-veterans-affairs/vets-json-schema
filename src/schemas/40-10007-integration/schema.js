@@ -265,6 +265,9 @@ const schema = {
                   type: 'string',
                   maxLength: 15,
                 },
+                suffix: {
+                  enum: ['Jr.', 'Sr.', 'II', 'III', 'IV', 'V'],
+                }
               },
             }),
             dateOfBirth: schemaHelpers.getDefinition('date'),
