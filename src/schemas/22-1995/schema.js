@@ -62,6 +62,10 @@ const schema = {
       $ref: '#/definitions/preferredContactMethod',
     },
     veteranSocialSecurityNumber: {
+      // legacy name, when chapter35 is selected this actually represents the applicant ssn
+      $ref: '#/definitions/ssn',
+    },
+    sponsorSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
     },
     benefit: {

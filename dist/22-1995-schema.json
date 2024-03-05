@@ -426,6 +426,9 @@
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
+    "sponsorSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
     "benefit": {
       "type": "string",
       "enum": [
