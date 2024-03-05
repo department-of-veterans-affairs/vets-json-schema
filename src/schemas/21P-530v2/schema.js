@@ -57,7 +57,7 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR BURIAL BENEFITS',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   definitions: {
     dateRange: newDefinitions.dateRange,
   },
@@ -70,10 +70,6 @@ const schema = {
     },
   ],
   properties: {
-    formV2: {
-      type: 'boolean',
-      const: true,
-    },
     locationOfDeath: {
       type: 'object',
       required: ['location'],
@@ -187,6 +183,10 @@ const schema = {
     },
     transportationExpenses: {
       type: 'boolean',
+    },
+    formV2: {
+      type: 'boolean',
+      default: true,
     },
     placeOfBirth: {
       type: 'string',

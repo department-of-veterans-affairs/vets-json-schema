@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "APPLICATION FOR BURIAL BENEFITS",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "definitions": {
     "dateRange": {
       "type": "object",
@@ -311,10 +311,6 @@
     }
   ],
   "properties": {
-    "formV2": {
-      "type": "boolean",
-      "const": true
-    },
     "locationOfDeath": {
       "type": "object",
       "required": [
@@ -520,6 +516,10 @@
     },
     "transportationExpenses": {
       "type": "boolean"
+    },
+    "formV2": {
+      "type": "boolean",
+      "default": true
     },
     "placeOfBirth": {
       "type": "string"
