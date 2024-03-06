@@ -68,6 +68,9 @@ const schema = {
     sponsorSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
     },
+    sponsorFullName: {
+      $ref: '#/definitions/fullName',
+    },
     benefit: {
       type: 'string',
       enum: [
