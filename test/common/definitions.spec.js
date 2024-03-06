@@ -40,6 +40,8 @@ describe('schema definitions', () => {
         insuranceGroupCode: stringGenerate(31),
       },
       {},
+      { insurancePolicyNumber: ' ' },
+      { insuranceGroupCode: ' ' },
       { insuranceGroupCode: ' ' },
       { insurancePolicyNumber: ' ' },
     ],

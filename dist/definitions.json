@@ -2339,11 +2339,13 @@
     "properties": {
       "insuranceName": {
         "type": "string",
-        "maxLength": 100
+        "maxLength": 100,
+        "pattern": "^.*\\S.*"
       },
       "insurancePolicyHolderName": {
         "type": "string",
-        "maxLength": 50
+        "maxLength": 50,
+        "pattern": "^.*\\S.*"
       },
       "insurancePolicyNumber": {
         "type": "string",
