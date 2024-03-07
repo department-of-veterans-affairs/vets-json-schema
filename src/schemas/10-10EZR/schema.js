@@ -88,4 +88,6 @@ const schema = {
   ],
 };
 
+schema.properties = { ...schema.properties, ...definitions.teraQuestions };
+
 export default schema;

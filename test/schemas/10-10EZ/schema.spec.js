@@ -1,6 +1,9 @@
 import { omit } from 'lodash';
 import schemas from '../../../dist/schemas';
+import { definitions } from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
+import { expect } from 'chai';
+import { difference } from 'lodash';
 
 const applicationSchema = schemas['10-10EZ'];
 
@@ -24,15 +27,10 @@ describe('healthcare-application json schema', () => {
     invalid: [1],
   });
 
-  schemaTestHelper.testValidAndInvalid('otherToxicExposure', {
-    valid: [
-      'foo',
-      'foo bar',
-      'Foo123'
-    ],
-    invalid: [
-      '$'
-    ],
+  it('has tera fields', () => {
+    expect(
+      difference(Object.keys(definitions.teraQuestions), Object.keys(applicationSchema.properties)).length
+    ).to.equal(0);
   });
 
   schemaTestHelper.testValidAndInvalid('lastServiceBranch', {

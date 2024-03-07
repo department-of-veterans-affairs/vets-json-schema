@@ -180,62 +180,6 @@ const schema = {
     campLejeune: {
       type: 'boolean',
     },
-    hasTeraResponse: {
-      type: 'boolean',
-    },
-    radiationCleanupEfforts: {
-      type: 'boolean',
-    },
-    gulfWarService: {
-      type: 'boolean',
-    },
-    gulfWarStartDate: definitions.date,
-    gulfWarEndDate: definitions.date,
-    combatOperationService: {
-      type: 'boolean',
-    },
-    exposedToAgentOrange: {
-      type: 'boolean',
-    },
-    agentOrangeStartDate: definitions.date,
-    agentOrangeEndDate: definitions.date,
-    exposureToAirPollutants: {
-      type: 'boolean',
-    },
-    exposureToAsbestos: {
-      type: 'boolean',
-    },
-    exposureToChemicals: {
-      type: 'boolean',
-    },
-    exposureToContaminatedWater: {
-      type: 'boolean',
-    },
-    exposureToMustardGas: {
-      type: 'boolean',
-    },
-    exposureToOccupationalHazards: {
-      type: 'boolean',
-    },
-    exposureToRadiation: {
-      type: 'boolean',
-    },
-    exposureToShad: {
-      type: 'boolean',
-    },
-    exposureToWarfareAgents: {
-      type: 'boolean',
-    },
-    exposureToOther: {
-      type: 'boolean',
-    },
-    otherToxicExposure: {
-      type: 'string',
-      maxLength: 100,
-      pattern: '^[a-zA-Z0-9 ]+$',
-    },
-    toxicExposureStartDate: definitions.date,
-    toxicExposureEndDate: definitions.date,
     privacyAgreementAccepted: {
       type: 'boolean',
       enum: [true],
@@ -254,6 +198,8 @@ const schema = {
     'vaMedicalFacility',
   ],
 };
+
+schema.properties = { ...schema.properties, ...definitions.teraQuestions };
 
 [['maritalStatus']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);

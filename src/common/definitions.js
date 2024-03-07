@@ -903,9 +903,69 @@ const hcaEmail = {
     '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
 };
 
+const teraQuestions = {
+  hasTeraResponse: {
+    type: 'boolean',
+  },
+  radiationCleanupEfforts: {
+    type: 'boolean',
+  },
+  gulfWarService: {
+    type: 'boolean',
+  },
+  gulfWarStartDate: date,
+  gulfWarEndDate: date,
+  combatOperationService: {
+    type: 'boolean',
+  },
+  exposedToAgentOrange: {
+    type: 'boolean',
+  },
+  agentOrangeStartDate: date,
+  agentOrangeEndDate: date,
+  exposureToAirPollutants: {
+    type: 'boolean',
+  },
+  exposureToAsbestos: {
+    type: 'boolean',
+  },
+  exposureToChemicals: {
+    type: 'boolean',
+  },
+  exposureToContaminatedWater: {
+    type: 'boolean',
+  },
+  exposureToMustardGas: {
+    type: 'boolean',
+  },
+  exposureToOccupationalHazards: {
+    type: 'boolean',
+  },
+  exposureToRadiation: {
+    type: 'boolean',
+  },
+  exposureToShad: {
+    type: 'boolean',
+  },
+  exposureToWarfareAgents: {
+    type: 'boolean',
+  },
+  exposureToOther: {
+    type: 'boolean',
+  },
+  otherToxicExposure: {
+    type: 'string',
+    maxLength: 100,
+    pattern: '^[a-zA-Z0-9 ]+$',
+  },
+  toxicExposureStartDate: date,
+  toxicExposureEndDate: date,
+};
+
 export default {
   usaPhone,
   fullName,
+  teraQuestions,
   fullNameNoSuffix,
   otherIncome,
   address,

@@ -1,11 +1,19 @@
 import SchemaTestHelper from '../support/schema-test-helper';
-import { definitions } from '../../dist/schemas';
+import { definitions as originalDefinitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
 import testData from '../support/test-data';
+import { cloneDeep } from 'lodash';
 
 function stringGenerate(length) {
   return new Array(length + 1).join('a');
 }
+
+const definitions = cloneDeep(originalDefinitions);
+
+definitions.teraQuestions = {
+  type: 'object',
+  properties: originalDefinitions.teraQuestions
+};
 
 describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
@@ -20,6 +28,17 @@ describe('schema definitions', () => {
 
     schemaTestHelper.testValidAndInvalid(definitionName, fields);
   };
+
+  testValidAndInvalidDefinitions('teraQuestions', {
+    valid: [
+      { otherToxicExposure: 'foo' },
+      { otherToxicExposure: 'foo bar' },
+      { otherToxicExposure: 'Foo123' }
+    ],
+    invalid: [
+      { otherToxicExposure: '$' }
+    ],
+  });
 
   testValidAndInvalidDefinitions('insuranceProvider', {
     valid: [
