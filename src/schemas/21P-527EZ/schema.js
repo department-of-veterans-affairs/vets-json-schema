@@ -72,7 +72,7 @@ const schema = {
           provider: { type: 'string' },
           careType: { type: 'string', enum: ['CARE_FACILITY', 'IN_HOME_CARE_PROVIDER'] },
           ratePerHour: { type: 'number' },
-          hoursPerWeek: { type: 'number' },
+          hoursPerWeek: { type: 'string' },
           careDateRange: schemaHelpers.getDefinition('dateRange'),
           noCareEndDate: { type: 'boolean' },
           paymentFrequency: { type: 'string', enum: ['ONCE_MONTH', 'ONCE_YEAR'] },
@@ -191,7 +191,7 @@ const schema = {
             type: 'string',
           },
           jobHoursWeek: {
-            type: 'number',
+            type: 'string',
           },
           jobTitle: {
             type: 'string',
@@ -212,7 +212,7 @@ const schema = {
             type: 'string',
           },
           jobHoursWeek: {
-            type: 'number',
+            type: 'string',
           },
           jobTitle: {
             type: 'string',

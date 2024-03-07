@@ -66,10 +66,12 @@ const insuranceProvider = {
     insuranceName: {
       type: 'string',
       maxLength: 100,
+      ...rejectOnlyWhitespace,
     },
     insurancePolicyHolderName: {
       type: 'string',
       maxLength: 50,
+      ...rejectOnlyWhitespace,
     },
     insurancePolicyNumber: {
       type: 'string',

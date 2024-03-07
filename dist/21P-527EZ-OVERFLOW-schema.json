@@ -140,7 +140,7 @@
             "type": "number"
           },
           "hoursPerWeek": {
-            "type": "number"
+            "type": "string"
           },
           "careDateRange": {
             "$ref": "#/definitions/dateRange"
@@ -869,7 +869,7 @@
             "type": "string"
           },
           "jobHoursWeek": {
-            "type": "number"
+            "type": "string"
           },
           "jobTitle": {
             "type": "string"
@@ -894,7 +894,7 @@
             "type": "string"
           },
           "jobHoursWeek": {
-            "type": "number"
+            "type": "string"
           },
           "jobTitle": {
             "type": "string"
