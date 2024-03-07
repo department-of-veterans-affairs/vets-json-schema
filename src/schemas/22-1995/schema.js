@@ -38,6 +38,9 @@ const schema = {
     veteranFullName: {
       $ref: '#/definitions/fullName',
     },
+    sponsorFullName: {
+      $ref: '#/definitions/fullName',
+    },
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
@@ -67,9 +70,6 @@ const schema = {
     },
     sponsorSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
-    },
-    sponsorFullName: {
-      $ref: '#/definitions/fullName',
     },
     benefit: {
       type: 'string',
