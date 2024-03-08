@@ -6,6 +6,17 @@
       "format": "date",
       "type": "string"
     },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
     "account": {
       "type": "object",
       "properties": {

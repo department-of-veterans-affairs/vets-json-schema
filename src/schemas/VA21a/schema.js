@@ -8,6 +8,7 @@ const schema = {
       format: 'date',
       type: 'string',
     },
+    dateRange: definitions.dateRange,
     account: {
       type: 'object',
       properties: {
