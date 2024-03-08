@@ -147,10 +147,6 @@ const schema = {
     unclaimedRemains: {
       type: 'boolean',
     },
-    burialAllowanceRequested: {
-      type: 'string',
-      enum: ['service', 'nonService'],
-    },
     burialCost: {
       type: 'number',
     },
