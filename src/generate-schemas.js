@@ -32,4 +32,12 @@ for (const file in files) {
   jsonfile.writeFileSync(`dist/${file}.json`, files[file], { spaces: 2 });
 }
 
+jsonfile.writeFileSync(
+  'dist/version.json',
+  {
+    version: process.env.npm_package_version,
+  },
+  { spaces: 2 },
+);
+
 console.info('json built');
