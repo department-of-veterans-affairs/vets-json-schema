@@ -2104,11 +2104,13 @@
         "properties": {
           "insuranceName": {
             "type": "string",
-            "maxLength": 100
+            "maxLength": 100,
+            "pattern": "^.*\\S.*"
           },
           "insurancePolicyHolderName": {
             "type": "string",
-            "maxLength": 50
+            "maxLength": 50,
+            "pattern": "^.*\\S.*"
           },
           "insurancePolicyNumber": {
             "type": "string",
@@ -2211,6 +2213,12 @@
     "campLejeune": {
       "type": "boolean"
     },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
     "hasTeraResponse": {
       "type": "boolean"
     },
@@ -2284,12 +2292,6 @@
     "toxicExposureEndDate": {
       "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
       "type": "string"
-    },
-    "privacyAgreementAccepted": {
-      "type": "boolean",
-      "enum": [
-        true
-      ]
     }
   },
   "required": [
