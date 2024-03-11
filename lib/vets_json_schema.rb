@@ -33,5 +33,5 @@ module VetsJsonSchema
 
   VERSION = MultiJson.load(
     File.read("#{base_dir}dist/version.json")
-  )&['version']
+  )
 end
