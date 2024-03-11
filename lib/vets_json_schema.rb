@@ -30,8 +30,4 @@ module VetsJsonSchema
 
     return_val
   end.()
-
-  VERSION = MultiJson.load(
-    File.read("#{base_dir}dist/version.json")
-  )
 end
