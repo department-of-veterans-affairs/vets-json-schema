@@ -321,8 +321,8 @@
           "type": "string",
           "enum": [
             "atHome",
-            "nursingHomePaid",
             "nursingHomeUnpaid",
+            "nursingHomePaid",
             "vaMedicalCenter",
             "stateVeteransHome",
             "other"
@@ -426,10 +426,7 @@
           "unit": {
             "type": "string"
           }
-        },
-        "required": [
-          "serviceBranch"
-        ]
+        }
       }
     },
     "previousNames": {
