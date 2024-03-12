@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "APPLICATION FOR BURIAL BENEFITS",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "definitions": {
     "dateRange": {
       "type": "object",
@@ -375,7 +375,7 @@
         "location": {
           "type": "string",
           "enum": [
-            "cemetary",
+            "cemetery",
             "mausoleum",
             "privateResidence",
             "other"
@@ -477,13 +477,6 @@
     "unclaimedRemains": {
       "type": "boolean"
     },
-    "burialAllowanceRequested": {
-      "type": "string",
-      "enum": [
-        "service",
-        "nonService"
-      ]
-    },
     "burialCost": {
       "type": "number"
     },
@@ -514,11 +507,12 @@
     "govtContributions": {
       "type": "boolean"
     },
-    "amountGovtContribution": {
-      "type": "number"
-    },
     "transportationExpenses": {
       "type": "boolean"
+    },
+    "formV2": {
+      "type": "boolean",
+      "default": true
     },
     "placeOfBirth": {
       "type": "string"

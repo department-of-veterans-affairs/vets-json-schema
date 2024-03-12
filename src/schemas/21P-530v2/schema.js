@@ -57,7 +57,7 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR BURIAL BENEFITS',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   definitions: {
     dateRange: newDefinitions.dateRange,
   },
@@ -122,7 +122,7 @@ const schema = {
       properties: {
         location: {
           type: 'string',
-          enum: ['cemetary', 'mausoleum', 'privateResidence', 'other'],
+          enum: ['cemetery', 'mausoleum', 'privateResidence', 'other'],
         },
         other: {
           type: 'string',
@@ -146,10 +146,6 @@ const schema = {
     },
     unclaimedRemains: {
       type: 'boolean',
-    },
-    burialAllowanceRequested: {
-      type: 'string',
-      enum: ['service', 'nonService'],
     },
     burialCost: {
       type: 'number',
@@ -181,11 +177,12 @@ const schema = {
     govtContributions: {
       type: 'boolean',
     },
-    amountGovtContribution: {
-      type: 'number',
-    },
     transportationExpenses: {
       type: 'boolean',
+    },
+    formV2: {
+      type: 'boolean',
+      default: true,
     },
     placeOfBirth: {
       type: 'string',
