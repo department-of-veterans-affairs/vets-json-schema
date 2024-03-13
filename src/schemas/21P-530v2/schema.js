@@ -49,7 +49,6 @@ const modifiedToursOfDuty = {
         type: 'string',
       },
     },
-    required: ['serviceBranch'],
   },
 };
 
@@ -76,7 +75,7 @@ const schema = {
       properties: {
         location: {
           type: 'string',
-          enum: ['atHome', 'nursingHomePaid', 'nursingHomeUnpaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
+          enum: ['atHome', 'nursingHomeUnpaid', 'nursingHomePaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
         },
         nursingHomePaid: {
           type: 'object',
