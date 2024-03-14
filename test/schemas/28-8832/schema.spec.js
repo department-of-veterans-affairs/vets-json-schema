@@ -2,7 +2,7 @@ import SharedTests from '../../support/shared-tests';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
 
-const schema = schemas['27-8832'];
+const schema = schemas['28-8832'];
 const schemaTestHelper = new SchemaTestHelper(schema);
 const sharedTests = new SharedTests(schemaTestHelper);
 
@@ -13,7 +13,7 @@ const testData = {
   },
 };
 
-describe('27-8832 schema', () => {
+describe('28-8832 schema', () => {
   sharedTests.runTest('fullName', ['claimantInformation.fullName', 'veteranInformation.fullName']);
   sharedTests.runTest('ssn', ['claimantInformation.ssn', 'veteranInformation.ssn']);
   sharedTests.runTest('date', ['claimantInformation.dateOfBirth']);
