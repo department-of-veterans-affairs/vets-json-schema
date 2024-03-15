@@ -207,6 +207,7 @@ const schema = {
   ['files', 'militarySeparationDocuments'],
   ['files', 'deathCertificate'],
   ['files', 'transportationReceipts'],
+  ['files', 'additionalEvidence'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });

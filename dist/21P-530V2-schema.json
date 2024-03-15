@@ -561,6 +561,9 @@
     },
     "transportationReceipts": {
       "$ref": "#/definitions/files"
+    },
+    "additionalEvidence": {
+      "$ref": "#/definitions/files"
     }
   },
   "required": [
