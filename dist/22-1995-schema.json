@@ -397,6 +397,9 @@
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
+    "sponsorFullName": {
+      "$ref": "#/definitions/fullName"
+    },
     "dateOfBirth": {
       "$ref": "#/definitions/date"
     },
@@ -424,6 +427,9 @@
       "$ref": "#/definitions/preferredContactMethod"
     },
     "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "sponsorSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
     "benefit": {
