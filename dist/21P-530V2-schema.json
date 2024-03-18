@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "APPLICATION FOR BURIAL BENEFITS",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "definitions": {
     "dateRange": {
       "type": "object",
@@ -321,8 +321,8 @@
           "type": "string",
           "enum": [
             "atHome",
-            "nursingHomePaid",
             "nursingHomeUnpaid",
+            "nursingHomePaid",
             "vaMedicalCenter",
             "stateVeteransHome",
             "other"
@@ -375,7 +375,7 @@
         "location": {
           "type": "string",
           "enum": [
-            "cemetary",
+            "cemetery",
             "mausoleum",
             "privateResidence",
             "other"
@@ -426,10 +426,7 @@
           "unit": {
             "type": "string"
           }
-        },
-        "required": [
-          "serviceBranch"
-        ]
+        }
       }
     },
     "previousNames": {
@@ -477,13 +474,6 @@
     "unclaimedRemains": {
       "type": "boolean"
     },
-    "burialAllowanceRequested": {
-      "type": "string",
-      "enum": [
-        "service",
-        "nonService"
-      ]
-    },
     "burialCost": {
       "type": "number"
     },
@@ -514,11 +504,12 @@
     "govtContributions": {
       "type": "boolean"
     },
-    "amountGovtContribution": {
-      "type": "number"
-    },
     "transportationExpenses": {
       "type": "boolean"
+    },
+    "formV2": {
+      "type": "boolean",
+      "default": true
     },
     "placeOfBirth": {
       "type": "string"
@@ -569,6 +560,9 @@
       "$ref": "#/definitions/files"
     },
     "transportationReceipts": {
+      "$ref": "#/definitions/files"
+    },
+    "additionalEvidence": {
       "$ref": "#/definitions/files"
     }
   },

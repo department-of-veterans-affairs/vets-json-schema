@@ -22,7 +22,7 @@ Forms on VA.gov use JSON schema to define a common contract for data validation 
       1. Create a new branch
       2. Find the latest commit hash for `vets-json-schema#master` ([see all commits](https://github.com/department-of-veterans-affairs/vets-json-schema/commits/master))
       3. Run `yarn remove vets-json-schema`
-      4. Run `yarn add https://github.com/department-of-veterans-affairs/vets-json-schema.it\#<commit-hash>`
+      4. Run `yarn add https://github.com/department-of-veterans-affairs/vets-json-schema.git\#<commit-hash>`
       5. Run `yarn update:schema`
       6. Create a Pull Request
 
@@ -62,3 +62,7 @@ node v8.10.0
 - After changes to `vets-json-schema` have been merged into master:
   - update `vets-website` to point to the latest `vets-json-schema` version by running `yarn update:schema` and making a PR
   - update `vets-api` by running `bundle update vets_json_schema` and making a PR. _Caution: verify that you changes are only related to vets_json_schema version. If you see sidekiq changes, follow [these instructions](https://github.com/department-of-veterans-affairs/va.gov-team-sensitive/blob/master/platform/engineering/sidekiq-enterprise-setup.md)_
+
+## Not a member of the repository and want to be added?
+- If you're on a VA.gov Platform team, contact your Program Manager.
+- If you're on a VFS team, you must complete [Platform Orientation](https://depo-platform-documentation.scrollhelp.site/getting-started/platform-orientation) to be added to this repository. This includes completing your Platform Orientation ticket(s) in GitHub.

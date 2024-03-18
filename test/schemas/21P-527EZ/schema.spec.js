@@ -87,12 +87,12 @@ describe('21-527 schema', () => {
   schemaTestHelper.testValidAndInvalid('currentEmployers', {
     valid: [[{
       jobType: 'analyst',
-      jobHoursWeek: 40,
+      jobHoursWeek: '40',
       jobTitle: 'analyst',
     }]],
     invalid: [[{
       jobType: 1,
-      jobHoursWeek: '40',
+      jobHoursWeek: 40,
       jobTitle: 234,
     }]]
   });
@@ -101,13 +101,13 @@ describe('21-527 schema', () => {
     valid: [[{
       jobDate: '2020-01-01',
       jobType: 'analyst',
-      jobHoursWeek: 40,
+      jobHoursWeek: '40',
       jobTitle: 'analyst',
     }]],
     invalid: [[{
       jobDate: '2020/01/01',
       jobType: 1,
-      jobHoursWeek: '40',
+      jobHoursWeek: 40,
       jobTitle: 234,
     }]]
   });
