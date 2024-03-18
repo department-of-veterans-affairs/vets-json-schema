@@ -2,7 +2,7 @@ import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'EDUCATIONAL/VOCATIONAL COUNSELING APPLICATION (27-8832)',
+  title: 'EDUCATIONAL/VOCATIONAL COUNSELING APPLICATION (28-8832)',
   type: 'object',
   definitions: {
     address: definitions.profileAddress,
