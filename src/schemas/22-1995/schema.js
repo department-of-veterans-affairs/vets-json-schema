@@ -143,6 +143,9 @@ const schema = {
         guardianLastName: {
           type: 'string',
         },
+        guardianSuffix: {
+          enum: ['Jr.', 'Sr.', 'II', 'III', 'IV', 'V'],
+        },
         guardianAddress: {
           $ref: '#/definitions/address',
         },
