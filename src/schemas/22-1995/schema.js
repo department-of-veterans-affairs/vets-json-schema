@@ -24,7 +24,6 @@ const schema = {
     'educationTypeUpdate',
     'preferredContactMethod',
     'privacyAgreementAccepted',
-    'phone',
   ]),
   anyOf: [
     {
@@ -148,10 +147,10 @@ const schema = {
           $ref: '#/definitions/address',
         },
         guardianMobilePhone: {
-          $ref: '#/definitions/phone',
+          $ref: '#/definitions/usaPhone',
         },
         guardianHomePhone: {
-          $ref: '#/definitions/phone',
+          $ref: '#/definitions/usaPhone',
         },
         guardianEmail: {
           type: 'string',

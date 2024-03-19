@@ -356,10 +356,6 @@
         true
       ]
     },
-    "phone": {
-      "type": "string",
-      "minLength": 10
-    },
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
@@ -516,10 +512,10 @@
           "$ref": "#/definitions/address"
         },
         "guardianMobilePhone": {
-          "$ref": "#/definitions/phone"
+          "$ref": "#/definitions/usaPhone"
         },
         "guardianHomePhone": {
-          "$ref": "#/definitions/phone"
+          "$ref": "#/definitions/usaPhone"
         },
         "guardianEmail": {
           "type": "string",
