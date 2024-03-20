@@ -40,6 +40,9 @@ const schema = {
     sponsorFullName: {
       $ref: '#/definitions/fullName',
     },
+    guardianFullName: {
+      $ref: '#/definitions/fullName',
+    },
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
@@ -186,6 +189,20 @@ const schema = {
       $ref: '#/definitions/serviceBefore1977',
     },
     toursOfDuty: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          serviceBranch: {
+            type: 'string',
+          },
+          dateRange: {
+            $ref: '#/definitions/dateRange',
+          },
+        },
+      },
+    },
+    toursOfDutyNewPeriods: {
       type: 'array',
       items: {
         type: 'object',

@@ -333,6 +333,7 @@
       "type": "string",
       "enum": [
         "college",
+        "nonCollegeDegree",
         "correspondence",
         "apprenticeship",
         "flightTraining",
@@ -394,6 +395,9 @@
       "$ref": "#/definitions/fullName"
     },
     "sponsorFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "guardianFullName": {
       "$ref": "#/definitions/fullName"
     },
     "dateOfBirth": {
@@ -558,6 +562,20 @@
       "$ref": "#/definitions/serviceBefore1977"
     },
     "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceBranch": {
+            "type": "string"
+          },
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          }
+        }
+      }
+    },
+    "toursOfDutyNewPeriods": {
       "type": "array",
       "items": {
         "type": "object",
