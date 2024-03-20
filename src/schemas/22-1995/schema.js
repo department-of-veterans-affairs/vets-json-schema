@@ -24,7 +24,6 @@ const schema = {
     'educationTypeUpdate',
     'preferredContactMethod',
     'privacyAgreementAccepted',
-    'phone',
   ]),
   anyOf: [
     {
@@ -39,6 +38,9 @@ const schema = {
       $ref: '#/definitions/fullName',
     },
     sponsorFullName: {
+      $ref: '#/definitions/fullName',
+    },
+    guardianFullName: {
       $ref: '#/definitions/fullName',
     },
     dateOfBirth: {
@@ -144,14 +146,17 @@ const schema = {
         guardianLastName: {
           type: 'string',
         },
+        guardianSuffix: {
+          enum: ['Jr.', 'Sr.', 'II', 'III', 'IV', 'V'],
+        },
         guardianAddress: {
           $ref: '#/definitions/address',
         },
         guardianMobilePhone: {
-          $ref: '#/definitions/phone',
+          $ref: '#/definitions/usaPhone',
         },
         guardianHomePhone: {
-          $ref: '#/definitions/phone',
+          $ref: '#/definitions/usaPhone',
         },
         guardianEmail: {
           type: 'string',
@@ -184,6 +189,20 @@ const schema = {
       $ref: '#/definitions/serviceBefore1977',
     },
     toursOfDuty: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          serviceBranch: {
+            type: 'string',
+          },
+          dateRange: {
+            $ref: '#/definitions/dateRange',
+          },
+        },
+      },
+    },
+    toursOfDutyNewPeriods: {
       type: 'array',
       items: {
         type: 'object',

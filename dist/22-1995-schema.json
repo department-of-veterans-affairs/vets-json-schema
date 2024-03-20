@@ -333,6 +333,7 @@
       "type": "string",
       "enum": [
         "college",
+        "nonCollegeDegree",
         "correspondence",
         "apprenticeship",
         "flightTraining",
@@ -355,10 +356,6 @@
       "enum": [
         true
       ]
-    },
-    "phone": {
-      "type": "string",
-      "minLength": 10
     },
     "vaFileNumber": {
       "type": "string",
@@ -398,6 +395,9 @@
       "$ref": "#/definitions/fullName"
     },
     "sponsorFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "guardianFullName": {
       "$ref": "#/definitions/fullName"
     },
     "dateOfBirth": {
@@ -512,14 +512,24 @@
         "guardianLastName": {
           "type": "string"
         },
+        "guardianSuffix": {
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        },
         "guardianAddress": {
           "$ref": "#/definitions/address"
         },
         "guardianMobilePhone": {
-          "$ref": "#/definitions/phone"
+          "$ref": "#/definitions/usaPhone"
         },
         "guardianHomePhone": {
-          "$ref": "#/definitions/phone"
+          "$ref": "#/definitions/usaPhone"
         },
         "guardianEmail": {
           "type": "string",
@@ -552,6 +562,20 @@
       "$ref": "#/definitions/serviceBefore1977"
     },
     "toursOfDuty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceBranch": {
+            "type": "string"
+          },
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          }
+        }
+      }
+    },
+    "toursOfDutyNewPeriods": {
       "type": "array",
       "items": {
         "type": "object",
