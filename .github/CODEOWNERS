@@ -2,3 +2,4 @@
 # the repo. Unless a later match takes precedence,
 
 *       @department-of-veterans-affairs/backend-review-group @department-of-veterans-affairs/platform-release-tools 
+src/schemas/21P-527EZ* @department-of-veterans-affairs/pensions @department-of-veterans-affairs/backend-review-group
