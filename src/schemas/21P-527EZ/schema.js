@@ -338,7 +338,6 @@ const schema = {
   ['usaPhone', 'nightPhone'],
   ['usaPhone', 'phone'],
   ['usaPhone', 'mobilePhone'],
-  ['gender'],
   ['dateRange', 'powDateRange'],
   ['date', 'veteranDateOfBirth'],
   ['date', 'spouseDateOfBirth'],
