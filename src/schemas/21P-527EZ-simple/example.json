@@ -43,7 +43,7 @@
     "transferredAssets": false,
     "homeOwnership": false,
     "receivesIncome": false,
-    "view:noDirectDeposit": true,
+    "view:usingDirectDeposit": false,
     "veteranAddress": {
       "street": "123 8th st",
       "city": "Hadley",
