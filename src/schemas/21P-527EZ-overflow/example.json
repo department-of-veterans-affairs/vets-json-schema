@@ -430,7 +430,7 @@
         "amount": 55.27
       }
     ],
-    "view:noDirectDeposit": false,
+    "view:usingDirectDeposit": true,
     "bankAccount": {
       "accountType": "checking",
       "bankName": "Best Bank",
