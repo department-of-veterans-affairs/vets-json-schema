@@ -328,6 +328,17 @@
             "other"
           ]
         },
+        "nursingHomeUnpaid": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
+        },
         "nursingHomePaid": {
           "type": "object",
           "properties": {
