@@ -52,7 +52,7 @@ const schema = {
     },
     applicantServed: {
       type: 'string',
-      enum: ['YES', 'NO'],
+      enum: ['Yes', 'No'],
     },
     veteranAddress: {
       $ref: '#/definitions/address',

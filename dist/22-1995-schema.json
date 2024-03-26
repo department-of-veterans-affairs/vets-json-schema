@@ -413,8 +413,8 @@
     "applicantServed": {
       "type": "string",
       "enum": [
-        "YES",
-        "NO"
+        "Yes",
+        "No"
       ]
     },
     "veteranAddress": {
