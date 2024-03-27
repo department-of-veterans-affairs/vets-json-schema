@@ -54,6 +54,9 @@ const schema = {
       type: 'string',
       enum: ['Yes', 'No'],
     },
+    currentlyActiveDuty: {
+      type: 'boolean',
+    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
