@@ -54,9 +54,6 @@ const schema = {
       type: 'string',
       enum: ['Yes', 'No'],
     },
-    currentlyActiveDuty: {
-      type: 'boolean',
-    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
@@ -251,7 +248,7 @@ const schema = {
   required: ['privacyAgreementAccepted', 'veteranFullName'],
 };
 
-[['vaFileNumber'], ['bankAccountChange'], ['bankAccountChangeUpdate']].forEach(args => {
+[['vaFileNumber'], ['bankAccountChange'], ['bankAccountChangeUpdate'], ['currentlyActiveDuty']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

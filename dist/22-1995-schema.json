@@ -376,6 +376,20 @@
         "startUpdate",
         "none"
       ]
+    },
+    "currentlyActiveDuty": {
+      "type": "object",
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "onTerminalLeave": {
+          "type": "boolean"
+        },
+        "nonVaAssistance": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "anyOf": [
@@ -416,9 +430,6 @@
         "Yes",
         "No"
       ]
-    },
-    "currentlyActiveDuty": {
-      "type": "boolean"
     },
     "veteranAddress": {
       "$ref": "#/definitions/address"
@@ -631,6 +642,9 @@
     },
     "bankAccountChangeUpdate": {
       "$ref": "#/definitions/bankAccountChangeUpdate"
+    },
+    "currentlyActiveDuty": {
+      "$ref": "#/definitions/currentlyActiveDuty"
     }
   },
   "required": [
