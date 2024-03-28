@@ -77,6 +77,17 @@ const schema = {
           type: 'string',
           enum: ['atHome', 'nursingHomeUnpaid', 'nursingHomePaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
         },
+        nursingHomeUnpaid: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
+        },
         nursingHomePaid: {
           type: 'object',
           properties: {
@@ -139,10 +150,6 @@ const schema = {
     serviceNumber: {
       type: 'string',
     },
-    claimantEmail: {
-      type: 'string',
-      format: 'email',
-    },
     unclaimedRemains: {
       type: 'boolean',
     },
@@ -193,8 +200,6 @@ const schema = {
 [
   ['privacyAgreementAccepted'],
   ['centralMailAddress', 'claimantAddress'],
-  ['usaPhone', 'claimantPhone'],
-  ['usaPhone', 'claimantIntPhone'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'claimantSocialSecurityNumber'],

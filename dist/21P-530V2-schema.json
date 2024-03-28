@@ -232,10 +232,6 @@
         "postalCode"
       ]
     },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
-    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -327,6 +323,17 @@
             "stateVeteransHome",
             "other"
           ]
+        },
+        "nursingHomeUnpaid": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
         },
         "nursingHomePaid": {
           "type": "object",
@@ -467,10 +474,6 @@
     "serviceNumber": {
       "type": "string"
     },
-    "claimantEmail": {
-      "type": "string",
-      "format": "email"
-    },
     "unclaimedRemains": {
       "type": "boolean"
     },
@@ -519,12 +522,6 @@
     },
     "claimantAddress": {
       "$ref": "#/definitions/centralMailAddress"
-    },
-    "claimantPhone": {
-      "$ref": "#/definitions/usaPhone"
-    },
-    "claimantIntPhone": {
-      "$ref": "#/definitions/usaPhone"
     },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
