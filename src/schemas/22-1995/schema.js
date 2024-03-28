@@ -50,6 +50,10 @@ const schema = {
       type: 'string',
       enum: ['F', 'M'],
     },
+    applicantServed: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },

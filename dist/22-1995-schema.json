@@ -410,6 +410,13 @@
         "M"
       ]
     },
+    "applicantServed": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
     "veteranAddress": {
       "$ref": "#/definitions/address"
     },
