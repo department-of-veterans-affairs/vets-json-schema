@@ -248,7 +248,7 @@ const schema = {
   required: ['privacyAgreementAccepted', 'veteranFullName'],
 };
 
-[['vaFileNumber'], ['bankAccountChange'], ['bankAccountChangeUpdate'], ['currentlyActiveDuty']].forEach(args => {
+[['vaFileNumber'], ['bankAccountChange'], ['bankAccountChangeUpdate']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 

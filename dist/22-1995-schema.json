@@ -376,20 +376,6 @@
         "startUpdate",
         "none"
       ]
-    },
-    "currentlyActiveDuty": {
-      "type": "object",
-      "properties": {
-        "yes": {
-          "type": "boolean"
-        },
-        "onTerminalLeave": {
-          "type": "boolean"
-        },
-        "nonVaAssistance": {
-          "type": "boolean"
-        }
-      }
     }
   },
   "anyOf": [
@@ -642,9 +628,6 @@
     },
     "bankAccountChangeUpdate": {
       "$ref": "#/definitions/bankAccountChangeUpdate"
-    },
-    "currentlyActiveDuty": {
-      "$ref": "#/definitions/currentlyActiveDuty"
     }
   },
   "required": [
