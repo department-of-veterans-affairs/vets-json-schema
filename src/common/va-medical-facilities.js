@@ -3332,7 +3332,7 @@ module.exports = {
     },
     {
       value: '652GH',
-      label: 'Hunter Holmes McGuire 2 VA Mobile Clinic',
+      label: 'Richmond 2 VA Mobile Clinic',
     },
     {
       value: '652GG',
@@ -3352,7 +3352,7 @@ module.exports = {
     },
     {
       value: '652',
-      label: 'Hunter Holmes McGuire Hospital',
+      label: 'Richmond VA Medical Center',
     },
     {
       value: '658',

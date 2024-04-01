@@ -1042,9 +1042,6 @@
     "mobilePhone": {
       "$ref": "#/definitions/usaPhone"
     },
-    "gender": {
-      "$ref": "#/definitions/gender"
-    },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
     },
