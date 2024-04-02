@@ -49,6 +49,61 @@
         }
       }
     },
+    "noSuffixMarriages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateOfMarriage": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfMarriage": {
+            "type": "string"
+          },
+          "otherExplanation": {
+            "type": "string"
+          },
+          "marriageType": {
+            "type": "string"
+          },
+          "spouseFullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "dateOfSeparation": {
+            "$ref": "#/definitions/date"
+          },
+          "locationOfSeparation": {
+            "type": "string"
+          },
+          "reasonForSeparation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "fullNameNoSuffix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      }
+    },
     "date": {
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
       "type": "string"
@@ -854,17 +909,13 @@
         "type": "object",
         "required": [
           "jobType",
-          "jobHoursWeek",
-          "jobTitle"
+          "jobHoursWeek"
         ],
         "properties": {
           "jobType": {
             "type": "string"
           },
           "jobHoursWeek": {
-            "type": "string"
-          },
-          "jobTitle": {
             "type": "string"
           }
         }
@@ -930,7 +981,7 @@
         "type": "object",
         "properties": {
           "fullName": {
-            "$ref": "#/definitions/fullName"
+            "$ref": "#/definitions/fullNameNoSuffix"
           },
           "childDateOfBirth": {
             "$ref": "#/definitions/date"
@@ -1061,7 +1112,7 @@
       "$ref": "#/definitions/address"
     },
     "marriages": {
-      "$ref": "#/definitions/marriages"
+      "$ref": "#/definitions/noSuffixMarriages"
     },
     "spouseMarriages": {
       "$ref": "#/definitions/marriages"
