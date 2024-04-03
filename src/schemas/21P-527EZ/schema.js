@@ -5,6 +5,9 @@ import schemaHelpers from '../../common/schema-helpers';
 const definitions = _.cloneDeep(originalDefinitions);
 definitions.bankAccount.properties.bankName = { type: 'string' };
 
+definitions.noSuffixMarriages = _.cloneDeep(definitions.marriages);
+definitions.noSuffixMarriages.items.properties.spouseFullName = schemaHelpers.getDefinition('fullNameNoSuffix');
+
 const financialNumber = {
   type: 'number',
   default: 0,
@@ -23,7 +26,7 @@ const schema = {
       required: ['veteranSocialSecurityNumber'],
     },
   ],
-  definitions: _.merge(_.pick(definitions, 'dateRange', 'bankAccount'), {
+  definitions: _.merge(_.pick(definitions, 'dateRange', 'bankAccount', 'noSuffixMarriages', 'fullNameNoSuffix'), {
     date: {
       pattern: '^\\d{4}-\\d{2}-\\d{2}$',
       type: 'string',
@@ -185,15 +188,12 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['jobType', 'jobHoursWeek', 'jobTitle'],
+        required: ['jobType', 'jobHoursWeek'],
         properties: {
           jobType: {
             type: 'string',
           },
           jobHoursWeek: {
-            type: 'string',
-          },
-          jobTitle: {
             type: 'string',
           },
         },
@@ -250,7 +250,7 @@ const schema = {
       items: {
         type: 'object',
         properties: {
-          fullName: schemaHelpers.getDefinition('fullName'),
+          fullName: schemaHelpers.getDefinition('fullNameNoSuffix'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
           childInHousehold: {
             type: 'boolean',
@@ -344,7 +344,7 @@ const schema = {
   ['ssn', 'spouseSocialSecurityNumber'],
   ['centralMailVaFile', 'spouseVaFileNumber'],
   ['address', 'spouseAddress'],
-  ['marriages'],
+  ['noSuffixMarriages', 'marriages'],
   ['marriages', 'spouseMarriages'],
   ['bankAccount'],
   ['files'],
