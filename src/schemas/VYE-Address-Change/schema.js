@@ -71,7 +71,7 @@ const schema = {
       maxLength: 5,
   },
   },
-  required: ['veteranName','address1', 'city', 'state', 'zipCode'],
+  required: ['veteranName','address1', 'city'],
 };
 
 [].forEach(args => {
