@@ -1049,7 +1049,7 @@ const schema = {
     toxicExposureConditions: {
       type: 'object',
       patternProperties: {
-        type: 'object',
+        type: 'string',
         '^[a-zA-Z0-9]{1,255}$': {
           type: 'boolean',
         },
@@ -1059,7 +1059,7 @@ const schema = {
     gulfWar1990: {
       type: 'object',
       patternProperties: {
-        type: 'object',
+        type: 'string',
         '^[a-zA-Z0-9]{1,1000}$': {
           type: 'boolean',
         },
@@ -1069,7 +1069,7 @@ const schema = {
     gulfWar1990Locations: {
       type: 'object',
       patternProperties: {
-        type: 'object',
+        type: 'string',
         '^[a-zA-Z0-9]{1,1000}$': {
           type: 'object',
         },
