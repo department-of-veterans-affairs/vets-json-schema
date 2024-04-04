@@ -245,6 +245,24 @@ const schema = {
         unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' },
       },
     },
+    toxicExposureConditionsSelector: {
+      type: 'object',
+      patternProperties: {
+        '^[a-zA-Z0-9]{1,255}$': {
+          type: 'boolean',
+        },
+      },
+      additionalProperties: false,
+    },
+    gulfWar1990Selector: {
+      type: 'object',
+      patternProperties: {
+        '^[a-zA-Z0-9]{1,1000}$': {
+          type: 'boolean',
+        },
+      },
+      additionalProperties: false,
+    },
   },
   properties: {
     alternateNames: {
@@ -1047,34 +1065,13 @@ const schema = {
       },
     },
     toxicExposureConditions: {
-      type: 'object',
-      patternProperties: {
-        type: 'string',
-        '^[a-zA-Z0-9]{1,255}$': {
-          type: 'boolean',
-        },
-      },
-      additionalProperties: false,
+      $ref: '#/definitions/toxicExposureConditionsSelector',
     },
     gulfWar1990: {
-      type: 'object',
-      patternProperties: {
-        type: 'string',
-        '^[a-zA-Z0-9]{1,1000}$': {
-          type: 'boolean',
-        },
-      },
-      additionalProperties: false,
+      $ref: '#/definitions/gulfWar1990Selector',
     },
     gulfWar1990Locations: {
-      type: 'object',
-      patternProperties: {
-        type: 'string',
-        '^[a-zA-Z0-9]{1,1000}$': {
-          type: 'object',
-        },
-      },
-      additionalProperties: false,
+      $ref: '#/definitions/gulfWar1990Selector',
     },
   },
   required: ['isVaEmployee', 'standardClaim'],
