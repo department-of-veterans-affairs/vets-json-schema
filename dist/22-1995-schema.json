@@ -373,8 +373,7 @@
       "type": "string",
       "enum": [
         "noChange",
-        "startUpdate",
-        "none"
+        "startUpdate"
       ]
     }
   },
