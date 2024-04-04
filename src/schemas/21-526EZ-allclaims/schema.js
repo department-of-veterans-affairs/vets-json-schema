@@ -1046,6 +1046,33 @@ const schema = {
         },
       },
     },
+    toxicExposureConditions: {
+      type: 'object',
+      patternProperties: {
+        '^[a-zA-Z0-9]{1,255}$': {
+          type: 'boolean',
+        },
+      },
+      additionalProperties: false,
+    },
+    gulfWar1990: {
+      type: 'object',
+      patternProperties: {
+        '^[a-zA-Z0-9]{1,1000}$': {
+          type: 'boolean',
+        },
+      },
+      additionalProperties: false,
+    },
+    gulfWar1990Locations: {
+      type: 'object',
+      patternProperties: {
+        '^[a-zA-Z0-9]{1,1000}$': {
+          type: 'object',
+        },
+      },
+      additionalProperties: false,
+    },
   },
   required: ['isVaEmployee', 'standardClaim'],
 };
