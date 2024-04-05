@@ -11,8 +11,7 @@ const STATES = constants.states.USA.reduce(
   {},
 );
 
-export const blockURLsRegEx =
-  '^((?!http|www\\.|\\.co|\\.net|\\.gov|\\.edu|\\.org).)*$';
+export const blockURLsRegEx = '^((?!http|www\\.|\\.co|\\.net|\\.gov|\\.edu|\\.org).)*$';
 
 const STREET_LINE_MAX_LENGTH = 20;
 
@@ -21,57 +20,56 @@ const schema = {
   title: 'VERIFY YOUR ENROLLMENT CHANGE OF ADDRESS',
   type: 'object',
   additionalProperties: false,
-  definitions:{},
+  definitions: {},
   properties: {
-
-  veteranName: {
+    veteranName: {
       type: 'string',
       minLength: 1,
       maxLength: 100,
     },
-  address1: {
+    address1: {
       type: 'string',
       minLength: 1,
       maxLength: STREET_LINE_MAX_LENGTH,
       pattern: blockURLsRegEx,
-  },
-  address2: {
+    },
+    address2: {
       type: 'string',
       minLength: 1,
       maxLength: STREET_LINE_MAX_LENGTH,
       pattern: blockURLsRegEx,
-  },
-  address3: {
+    },
+    address3: {
       type: 'string',
       minLength: 1,
       maxLength: STREET_LINE_MAX_LENGTH,
       pattern: blockURLsRegEx,
-  },
-  address4: {
+    },
+    address4: {
       type: 'string',
       minLength: 1,
       maxLength: STREET_LINE_MAX_LENGTH,
       pattern: blockURLsRegEx,
-  },
-  city: {
+    },
+    city: {
       type: 'string',
       pattern: blockURLsRegEx,
       minLength: 1,
       maxLength: 51,
-  },
-  state: {
+    },
+    state: {
       type: 'string',
       enum: Object.keys(STATES),
       enumNames: Object.values(STATES),
-  },
-  zipCode: {
+    },
+    zipCode: {
       type: 'string',
       pattern: '^\\d{5}$',
       minLength: 5,
       maxLength: 5,
+    },
   },
-  },
-  required: ['veteranName','address1', 'city'],
+  required: ['veteranName', 'address1', 'city'],
 };
 
 [].forEach(args => {
