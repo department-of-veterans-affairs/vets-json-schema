@@ -247,11 +247,9 @@ const schema = {
     },
     toxicExposureConditionsSelector: {
       type: 'object',
-      additionalProperties: false,
     },
     gulfWar1990Selector: {
       type: 'object',
-      additionalProperties: false,
     },
   },
   properties: {
@@ -1056,16 +1054,18 @@ const schema = {
     },
     toxicExposureConditions: {
       $ref: '#/definitions/toxicExposureConditionsSelector',
+      additionalProperties: false,
     },
     gulfWar1990: {
       $ref: '#/definitions/gulfWar1990Selector',
+      additionalProperties: false,
     },
     gulfWar1990Locations: {
       $ref: '#/definitions/gulfWar1990Selector',
+      additionalProperties: false,
     },
   },
   required: ['isVaEmployee', 'standardClaim'],
-  additionalProperties: false,
 };
 
 export default schema;
