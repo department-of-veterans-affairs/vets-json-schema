@@ -256,10 +256,10 @@ const schema = {
       },
     },
     gulfWar1990Selector: {
-      type: 'string',
+      type: 'object',
       additionalProperties: false,
       patternProperties: {
-        type: 'object',
+        type: 'string',
         '^[a-zA-Z0-9]{1,1000}$': {
           type: 'boolean',
         },
