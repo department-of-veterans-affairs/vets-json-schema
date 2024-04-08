@@ -740,6 +740,12 @@
           "$ref": "#/definitions/unitAssignedDates"
         }
       }
+    },
+    "toxicExposureConditionsSelector": {
+      "type": "object"
+    },
+    "gulfWar1990Selector": {
+      "type": "object"
     }
   },
   "properties": {
@@ -1746,10 +1752,18 @@
           }
         }
       }
+    },
+    "toxicExposureConditions": {
+      "$ref": "#/definitions/toxicExposureConditionsSelector"
+    },
+    "gulfWar1990": {
+      "$ref": "#/definitions/gulfWar1990Selector"
+    },
+    "gulfWar1990Locations": {
+      "$ref": "#/definitions/gulfWar1990Selector"
     }
   },
   "required": [
-    "isVaEmployee",
     "standardClaim"
   ]
 }

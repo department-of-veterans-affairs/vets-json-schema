@@ -563,7 +563,7 @@ const testValidAndInvalidDefinitions = (definitionName, fields) => {
 
 describe('21-526-ALLCLAIMS schema', () => {
   it('should have the right required fields', () => {
-    expect(schema.required).to.deep.equal(['isVaEmployee', 'standardClaim']);
+    expect(schema.required).to.deep.equal(['standardClaim']);
   });
 
   testValidAndInvalidDefinitions('phone');
