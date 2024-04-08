@@ -1062,7 +1062,7 @@ const schema = {
       $ref: '#/definitions/gulfWar1990Selector',
     },
   },
-  required: ['standardClaim'],
+  required: ['isVaEmployee', 'standardClaim'],
 };
 
 export default schema;
