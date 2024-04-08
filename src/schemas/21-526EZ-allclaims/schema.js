@@ -245,12 +245,6 @@ const schema = {
         unitAssignedDates: { $ref: '#/definitions/unitAssignedDates' },
       },
     },
-    toxicExposureConditionsSelector: {
-      type: 'object',
-    },
-    gulfWar1990Selector: {
-      type: 'object',
-    },
   },
   properties: {
     alternateNames: {
@@ -1053,13 +1047,13 @@ const schema = {
       },
     },
     toxicExposureConditions: {
-      $ref: '#/definitions/toxicExposureConditionsSelector',
+      type: 'object',
     },
     gulfWar1990: {
-      $ref: '#/definitions/gulfWar1990Selector',
+      type: 'object',
     },
     gulfWar1990Locations: {
-      $ref: '#/definitions/gulfWar1990Selector',
+      type: 'object',
     },
   },
   required: ['isVaEmployee', 'standardClaim'],
