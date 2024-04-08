@@ -249,6 +249,7 @@ const schema = {
       type: 'object',
       additionalProperties: false,
       patternProperties: {
+        type: 'object',
         '^[a-zA-Z0-9]{1,255}$': {
           type: 'boolean',
         },
@@ -258,6 +259,7 @@ const schema = {
       type: 'object',
       additionalProperties: false,
       patternProperties: {
+        type: 'object',
         '^[a-zA-Z0-9]{1,1000}$': {
           type: 'boolean',
         },
