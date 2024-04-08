@@ -249,14 +249,14 @@ const schema = {
       type: 'object',
       additionalProperties: false,
       patternProperties: {
-        type: 'object',
+        type: 'string',
         '^[a-zA-Z0-9]{1,255}$': {
           type: 'boolean',
         },
       },
     },
     gulfWar1990Selector: {
-      type: 'object',
+      type: 'string',
       additionalProperties: false,
       patternProperties: {
         type: 'object',
