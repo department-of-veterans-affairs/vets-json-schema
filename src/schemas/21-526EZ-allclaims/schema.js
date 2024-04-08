@@ -247,10 +247,20 @@ const schema = {
     },
     toxicExposureConditionsSelector: {
       type: 'object',
+      patternProperties: {
+        '^[a-zA-Z0-9]{1,255}$': {
+          type: 'boolean',
+        },
+      },
       additionalProperties: false,
     },
     gulfWar1990Selector: {
       type: 'object',
+      patternProperties: {
+        '^[a-zA-Z0-9]{1,1000}$': {
+          type: 'boolean',
+        },
+      },
       additionalProperties: false,
     },
   },
