@@ -74,7 +74,7 @@ const object_error = (root_obj, path_to_obj_being_inspected) => {
     is_definitions_path(path) ||
     is_a_properties_object(path) ||
     object_has_at_least_one_of_the_following_properties(
-      ['$ref', 'enum', 'const', 'allOf', 'anyOf', 'oneOf', 'not'],
+      ['type', '$ref', 'enum', 'const', 'allOf', 'anyOf', 'oneOf', 'not'],
       obj,
     )
   )
@@ -89,7 +89,7 @@ const object_error = (root_obj, path_to_obj_being_inspected) => {
 
     const obj_one_level_up = get(root_obj, path.slice(0, -1));
 
-    return object_has_at_least_one_of_the_following_properties(['$ref', 'enum', 'const'], obj_one_level_up)
+    return object_has_at_least_one_of_the_following_properties(['type', '$ref', 'enum', 'const'], obj_one_level_up)
       ? null
       : 'a "not" needs a type/$ref/const/enum inside the not object or at the same level as the not';
   }
