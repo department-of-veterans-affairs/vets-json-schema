@@ -50,6 +50,10 @@ const schema = {
       type: 'string',
       enum: ['F', 'M'],
     },
+    applicantServed: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
@@ -189,20 +193,6 @@ const schema = {
       $ref: '#/definitions/serviceBefore1977',
     },
     toursOfDuty: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          serviceBranch: {
-            type: 'string',
-          },
-          dateRange: {
-            $ref: '#/definitions/dateRange',
-          },
-        },
-      },
-    },
-    toursOfDutyNewPeriods: {
       type: 'array',
       items: {
         type: 'object',
