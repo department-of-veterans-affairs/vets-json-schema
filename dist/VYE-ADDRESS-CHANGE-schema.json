@@ -181,8 +181,6 @@
   "required": [
     "veteranName",
     "address1",
-    "city",
-    "state",
-    "zipCode"
+    "city"
   ]
 }
