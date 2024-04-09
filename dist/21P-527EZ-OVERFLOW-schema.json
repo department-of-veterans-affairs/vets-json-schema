@@ -266,9 +266,9 @@
                 "BC",
                 "MB",
                 "NB",
-                "NF",
+                "NL",
                 "NT",
-                "NV",
+                "NS",
                 "NU",
                 "ON",
                 "PE",
@@ -481,9 +481,9 @@
                 "BC",
                 "MB",
                 "NB",
-                "NF",
+                "NL",
                 "NT",
-                "NV",
+                "NS",
                 "NU",
                 "ON",
                 "PE",
@@ -1041,9 +1041,6 @@
     },
     "mobilePhone": {
       "$ref": "#/definitions/usaPhone"
-    },
-    "gender": {
-      "$ref": "#/definitions/gender"
     },
     "powDateRange": {
       "$ref": "#/definitions/dateRange"
