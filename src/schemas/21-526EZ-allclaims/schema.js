@@ -1047,15 +1047,17 @@ const schema = {
       },
     },
     toxicExposure: {
-      toxicExposureConditions: {
-        type: 'object',
-        additionalProperties: false,
-      },
-      gulfWar1990: {
-        type: 'object',
-      },
-      gulfWar1990Locations: {
-        type: 'object',
+      additionalProperties: false,
+      properties: {
+        toxicExposureConditions: {
+          type: 'object',
+        },
+        gulfWar1990: {
+          type: 'object',
+        },
+        gulfWar1990Locations: {
+          type: 'object',
+        },
       },
     },
   },
