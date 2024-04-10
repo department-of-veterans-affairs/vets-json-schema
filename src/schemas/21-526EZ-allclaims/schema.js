@@ -1047,6 +1047,7 @@ const schema = {
       },
     },
     toxicExposure: {
+      type: 'object',
       additionalProperties: false,
       properties: {
         toxicExposureConditions: {
