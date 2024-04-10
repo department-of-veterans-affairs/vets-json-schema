@@ -1046,14 +1046,17 @@ const schema = {
         },
       },
     },
-    toxicExposureConditions: {
-      type: 'object',
-    },
-    gulfWar1990: {
-      type: 'object',
-    },
-    gulfWar1990Locations: {
-      type: 'object',
+    toxicExposure: {
+      toxicExposureConditions: {
+        type: 'object',
+        additionalProperties: false,
+      },
+      gulfWar1990: {
+        type: 'object',
+      },
+      gulfWar1990Locations: {
+        type: 'object',
+      },
     },
   },
   required: ['isVaEmployee', 'standardClaim'],
