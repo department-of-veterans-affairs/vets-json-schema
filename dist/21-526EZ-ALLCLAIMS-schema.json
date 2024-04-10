@@ -1747,14 +1747,20 @@
         }
       }
     },
-    "toxicExposureConditions": {
-      "type": "object"
-    },
-    "gulfWar1990": {
-      "type": "object"
-    },
-    "gulfWar1990Locations": {
-      "type": "object"
+    "toxicExposure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "toxicExposureConditions": {
+          "type": "object"
+        },
+        "gulfWar1990": {
+          "type": "object"
+        },
+        "gulfWar1990Locations": {
+          "type": "object"
+        }
+      }
     }
   },
   "required": [
