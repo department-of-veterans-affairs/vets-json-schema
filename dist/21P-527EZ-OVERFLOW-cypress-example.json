@@ -213,6 +213,7 @@
         "childSocialSecurityNumber": "333224444",
         "childRelationship": "BIOLOGICAL",
         "previouslyMarried": true,
+        "disabled": false,
         "married": true,
         "fullName": {
           "first": "Emily",
@@ -228,6 +229,7 @@
         "childRelationship": "ADOPTED",
         "previouslyMarried": false,
         "attendingCollege": true,
+        "disabled": false,
         "fullName": {
           "first": "Bobby",
           "middle": "Nolan",
