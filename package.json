@@ -12,15 +12,15 @@
     "test": "mocha 'test/**/*.spec.js'",
     "test:all-schemas": "mocha 'test/common/all-schemas.spec.js'",
     "watch": "node src/start watch",
-    "link": "yarn link:vets-api; yarn link:vets-website",
-    "link:vets-api": "cd ../vets-api; bundle config set local.vets_json_schema ../vets-json-schema; bundle config disable_local_branch_check true",
-    "link:vets-website": "yarn link; cd ../vets-website; yarn link vets-json-schema",
+    "local-link": "yarn local-link:vets-api; yarn local-link:vets-website",
+    "local-link:vets-api": "./script/local-link.sh link vets-api",
+    "local-link:vets-website": "./script/local-link.sh link vets-website",
     "lint": "eslint src -c .eslintrc --ext js",
     "lint:fix": "eslint src -c .eslintrc --fix --ext js",
     "lint:changed": "LIST=`git diff-index --name-only HEAD | grep \"\\.js[x]\\{0,1\\}$\"`; if [ \"$LIST\" ]; then eslint --fix --quiet $LIST; fi",
-    "unlink": "yarn unlink:vets-api; yarn unlink:vets-website",
-    "unlink:vets-api": "cd ../vets-api; bundle config unset local.vets_json_schema; bundle config unset disable_local_branch_check; git checkout Gemfile.lock; bundle update vets_json_schema",
-    "unlink:vets-website": "cd ../vets-website; yarn unlink vets-json-schema && yarn -W add vets-json-schema; cd ../vets-json-schema; yarn unlink"
+    "local-unlink": "yarn local-unlink:vets-api; yarn local-unlink:vets-website",
+    "local-unlink:vets-api": "./script/local-link.sh unlink vets-api",
+    "local-unlink:vets-website": "./script/local-link.sh unlink vets-website"
   },
   "main": "dist/schemas.js",
   "files": [
