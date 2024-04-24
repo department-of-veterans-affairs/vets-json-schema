@@ -40,14 +40,14 @@ unlink_vets_api() {
     bundle config unset local.vets_json_schema
     bundle config unset disable_local_branch_check
     git checkout Gemfile.lock
-    bundle update vets_json_schema
+    bundle install
     echo "vets-api unlinked."
 }
 
 link_vets_website() {
     echo "Linking vets-website..."
-    cd ../vets-website
     yarn link
+    cd ../vets-website
     yarn link vets-json-schema
     echo "vets-website linked."
 }
@@ -56,7 +56,7 @@ unlink_vets_website() {
     echo "Unlinking vets-website..."
     cd ../vets-website
     yarn unlink vets-json-schema
-    yarn -W add vets-json-schema
+    # yarn -W add vets-json-schema
     cd ../vets-json-schema
     yarn unlink
     echo "vets-website unlinked."
