@@ -56,7 +56,7 @@ unlink_vets_website() {
     echo "Unlinking vets-website..."
     cd ../vets-website
     yarn unlink vets-json-schema
-    # yarn -W add vets-json-schema
+    yarn install
     cd ../vets-json-schema
     yarn unlink
     echo "vets-website unlinked."
