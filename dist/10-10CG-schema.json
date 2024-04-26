@@ -40,6 +40,16 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
         }
       }
     },
@@ -163,6 +173,112 @@
         "postalCode": {
           "type": "string",
           "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
+        },
+        "county": {
+          "type": "string",
+          "maxLength": 60
+        }
+      }
+    },
+    "mailingAddress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "street",
+        "city",
+        "state",
+        "postalCode"
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "street2": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL",
+            "AK",
+            "AS",
+            "AZ",
+            "AR",
+            "AA",
+            "AE",
+            "AP",
+            "CA",
+            "CO",
+            "CT",
+            "DE",
+            "DC",
+            "FM",
+            "FL",
+            "GA",
+            "GU",
+            "HI",
+            "ID",
+            "IL",
+            "IN",
+            "IA",
+            "KS",
+            "KY",
+            "LA",
+            "ME",
+            "MH",
+            "MD",
+            "MA",
+            "MI",
+            "MN",
+            "MS",
+            "MO",
+            "MT",
+            "NE",
+            "NV",
+            "NH",
+            "NJ",
+            "NM",
+            "NY",
+            "NC",
+            "ND",
+            "MP",
+            "OH",
+            "OK",
+            "OR",
+            "PW",
+            "PA",
+            "PR",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VT",
+            "VI",
+            "VA",
+            "WA",
+            "WV",
+            "WI",
+            "WY"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^(\\d{5})(?:[-](\\d{4}))?$"
+        },
+        "county": {
+          "type": "string",
+          "maxLength": 60
         }
       }
     },
@@ -232,28 +348,6 @@
         "plannedClinic": {
           "type": "string"
         },
-        "lastTreatmentFacility": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "name",
-            "type"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "hospital",
-                "clinic"
-              ]
-            }
-          }
-        },
         "signature": {
           "$ref": "#/definitions/signature"
         },
@@ -280,8 +374,7 @@
         "dateOfBirth",
         "address",
         "primaryPhoneNumber",
-        "vetRelationship",
-        "hasHealthInsurance"
+        "vetRelationship"
       ],
       "properties": {
         "fullName": {
@@ -310,9 +403,6 @@
         },
         "vetRelationship": {
           "$ref": "#/definitions/vetRelationship"
-        },
-        "hasHealthInsurance": {
-          "type": "boolean"
         },
         "signature": {
           "$ref": "#/definitions/signature"
