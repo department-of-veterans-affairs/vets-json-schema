@@ -1,7 +1,7 @@
 Gem::Specification.new do |gem|
   gem.name = 'vets_json_schema'
 
-  file = File.read(File.dirname(__FILE__) + '/package.json')
+  file = File.read('package.json')
   gem.version = file.match(/"version": "((\\"|[^"])*)"/)[1]
   gem.summary = 'JSON Schemas for all Vets.gov projects'
   gem.author = 'VA devs'
