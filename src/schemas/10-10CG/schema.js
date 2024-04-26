@@ -135,7 +135,6 @@ const schema = {
     mailingAddress: {
       type: 'object',
       additionalProperties: false,
-      required: ['street', 'city', 'state', 'postalCode'],
       properties: {
         street: {
           type: 'string',
@@ -178,6 +177,7 @@ const schema = {
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
+        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
@@ -196,6 +196,7 @@ const schema = {
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
+        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
@@ -214,6 +215,7 @@ const schema = {
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
+        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
@@ -232,6 +234,7 @@ const schema = {
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
+        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),

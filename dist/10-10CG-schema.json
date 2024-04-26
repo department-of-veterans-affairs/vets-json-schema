@@ -183,12 +183,6 @@
     "mailingAddress": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "street",
-        "city",
-        "state",
-        "postalCode"
-      ],
       "properties": {
         "street": {
           "type": "string",
@@ -336,6 +330,9 @@
         "address": {
           "$ref": "#/definitions/address"
         },
+        "mailingAddress": {
+          "$ref": "#/definitions/mailingAddress"
+        },
         "primaryPhoneNumber": {
           "$ref": "#/definitions/phone"
         },
@@ -391,6 +388,9 @@
         },
         "address": {
           "$ref": "#/definitions/address"
+        },
+        "mailingAddress": {
+          "$ref": "#/definitions/mailingAddress"
         },
         "primaryPhoneNumber": {
           "$ref": "#/definitions/phone"
@@ -454,6 +454,9 @@
         "address": {
           "$ref": "#/definitions/address"
         },
+        "mailingAddress": {
+          "$ref": "#/definitions/mailingAddress"
+        },
         "primaryPhoneNumber": {
           "$ref": "#/definitions/phone"
         },
@@ -515,6 +518,9 @@
         },
         "address": {
           "$ref": "#/definitions/address"
+        },
+        "mailingAddress": {
+          "$ref": "#/definitions/mailingAddress"
         },
         "primaryPhoneNumber": {
           "$ref": "#/definitions/phone"
