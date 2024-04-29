@@ -39,13 +39,13 @@ node v8.10.0
 ### I want to...
 
 | I want to...                                   | Then you should...                                                                                                                                                                        |
-| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | clone the repo                                 | `git clone https://github.com/department-of-veterans-affairs/vets-json-schema.git` followed by `cd vets-json-schema`, `yarn install`. Run `yarn install` any time `package.json` changes. |
 | build the json schemas and examples            | `yarn run build`                                                                                                                                                                          |
 | watch for changes and rebuild when they happen | `yarn run watch`                                                                                                                                                                          |
 | run tests on the built schemas                 | `yarn run test`                                                                                                                                                                           |
 | create a new schema                            | https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/platform/engineering/frontend/vets-website/creating-form-schema.md                                              |
-
+| link library for local development             | `yarn run local-link` or `yarn run local-unlink`                                                                                                                                          |
 ### Updating Version
 
 - Update the "version" property in `package.json` with the new version. Please follow [Semantic Versioning](https://semver.org/#summary) practices.
