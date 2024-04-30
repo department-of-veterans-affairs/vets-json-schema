@@ -328,10 +328,10 @@
         "isWhite": {
           "type": "boolean"
         },
-        "isOther": {
+        "na": {
           "type": "boolean"
         },
-        "na": {
+        "isOther": {
           "type": "boolean"
         }
       }
