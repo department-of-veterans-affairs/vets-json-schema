@@ -201,12 +201,12 @@
         "street": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 20
+          "maxLength": 35
         },
         "street2": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 20
+          "maxLength": 35
         },
         "city": {
           "type": "string",
@@ -485,6 +485,11 @@
             "address": {
               "$ref": "#/definitions/address"
             },
+            "email": {
+              "type": "string",
+              "maxLength": 50,
+              "format": "email"
+            },
             "currentName": {
               "type": "object",
               "properties": {
@@ -523,6 +528,9 @@
                 "first",
                 "last"
               ]
+            },
+            "phoneNumber": {
+              "$ref": "#/definitions/phone"
             },
             "dateOfBirth": {
               "$ref": "#/definitions/date"
