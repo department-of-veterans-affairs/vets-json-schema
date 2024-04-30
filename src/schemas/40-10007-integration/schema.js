@@ -119,8 +119,8 @@ const emailFormat = {
 };
 
 definitions.address.required = ['street', 'city', 'state', 'postalCode'];
-definitions.address.properties.street.maxLength = 20;
-definitions.address.properties.street2.maxLength = 20;
+definitions.address.properties.street.maxLength = 35;
+definitions.address.properties.street2.maxLength = 35;
 definitions.address.properties.city.maxLength = 20;
 definitions.address.oneOf.forEach(obj => {
   // eslint-disable-next-line no-param-reassign
@@ -259,6 +259,7 @@ const schema = {
           ],
           properties: {
             address: schemaHelpers.getDefinition('address'),
+            email: emailFormat,
             currentName: _.merge({}, definitions.fullName, {
               properties: {
                 maiden: {
@@ -270,6 +271,7 @@ const schema = {
                 }
               },
             }),
+            phoneNumber: schemaHelpers.getDefinition('phone'),
             dateOfBirth: schemaHelpers.getDefinition('date'),
             dateOfDeath: schemaHelpers.getDefinition('date'),
             gender: {
