@@ -168,12 +168,12 @@ definitions.race = {
     isWhite: {
       type: 'boolean',
     },
+    na: {
+      type: 'boolean',
+    },
     isOther: {
       type: 'boolean',
     },
-    na: {
-      type: 'boolean',
-    }
   },
 };
 
@@ -225,7 +225,7 @@ const schema = {
                 },
                 suffix: {
                   enum: ['Jr.', 'Sr.', 'II', 'III', 'IV', 'V'],
-                }
+                },
               },
             }),
             phoneNumber: schemaHelpers.getDefinition('phone'),
@@ -268,7 +268,7 @@ const schema = {
                 },
                 suffix: {
                   enum: ['Jr.', 'Sr.', 'II', 'III', 'IV', 'V'],
-                }
+                },
               },
             }),
             phoneNumber: schemaHelpers.getDefinition('phone'),
