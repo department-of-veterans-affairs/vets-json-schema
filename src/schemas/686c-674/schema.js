@@ -169,8 +169,15 @@ const schema = {
             phoneNumber: {
               $ref: '#/definitions/phone',
             },
+            intPhoneNumber: {
+              type: 'string',
+              pattern: '^\\+?[0-9](?:-?[0-9]){6,14}$',
+            },
             emailAddress: {
               $ref: '#/definitions/email',
+            },
+            electronicCorrespondence: {
+              type: 'boolean',
             },
           },
         },
@@ -375,9 +382,10 @@ const schema = {
             },
             type: {
               type: 'string',
-              enum: ['CEREMONIAL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
+              enum: ['CEREMONIAL', 'CIVIL', 'COMMON-LAW', 'TRIBAL', 'PROXY', 'OTHER'],
               enumNames: [
-                'Religious or civil ceremony (minister, justice of the peace, etc.)',
+                'Religious ceremony (minister, justice of the peace, etc.)',
+                'Civil ceremony',
                 'Common-law',
                 'Tribal',
                 'Proxy',

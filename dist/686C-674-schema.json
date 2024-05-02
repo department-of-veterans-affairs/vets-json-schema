@@ -1379,8 +1379,15 @@
             "phoneNumber": {
               "$ref": "#/definitions/phone"
             },
+            "intPhoneNumber": {
+              "type": "string",
+              "pattern": "^\\+?[0-9](?:-?[0-9]){6,14}$"
+            },
             "emailAddress": {
               "$ref": "#/definitions/email"
+            },
+            "electronicCorrespondence": {
+              "type": "boolean"
             }
           }
         }
@@ -1599,13 +1606,15 @@
               "type": "string",
               "enum": [
                 "CEREMONIAL",
+                "CIVIL",
                 "COMMON-LAW",
                 "TRIBAL",
                 "PROXY",
                 "OTHER"
               ],
               "enumNames": [
-                "Religious or civil ceremony (minister, justice of the peace, etc.)",
+                "Religious ceremony (minister, justice of the peace, etc.)",
+                "Civil ceremony",
                 "Common-law",
                 "Tribal",
                 "Proxy",
