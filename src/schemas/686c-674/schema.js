@@ -170,8 +170,7 @@ const schema = {
               $ref: '#/definitions/phone',
             },
             intPhoneNumber: {
-              type: 'string',
-              pattern: '^\\+?[0-9](?:-?[0-9]){6,14}$',
+              $ref: '#/definitions/phone',
             },
             emailAddress: {
               $ref: '#/definitions/email',
