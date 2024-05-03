@@ -157,6 +157,7 @@ const hcaAddress = (() => {
       postalCode: {
         type: 'string',
         maxLength: 51,
+        ...rejectOnlyWhitespace,
       },
     },
     required: ['street', 'city', 'country'],
