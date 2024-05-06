@@ -108,12 +108,16 @@ const schema = {
       type: 'string',
       format: 'email',
     },
-    vaClaimsHistory: {
-      type: 'boolean',
-    },
+    vaClaimsHistory: definitions.yesNoSchema,
     internationalPhone: {
       type: 'string',
     },
+    /*
+    How do we incorporate the following code?
+    ```js
+      checkboxGroupSchema(Object.keys(serviceBranchLabels))
+    ```
+    */
     serviceBranch: {
       type: 'object',
       properties: {
@@ -129,7 +133,7 @@ const schema = {
     },
     activeServiceDateRange: schemaHelpers.getDefinition('dateRange'),
     serviceNumber: { type: 'string' },
-    serveUnderOtherNames: { type: 'boolean' },
+    serveUnderOtherNames: definitions.yesNoSchema,
     previousNames: {
       type: 'array',
       items: {
@@ -145,13 +149,13 @@ const schema = {
     noRapidProcessing: {
       type: 'boolean',
     },
-    powStatus: { type: 'boolean' },
-    isOver65: { type: 'boolean' },
-    socialSecurityDisability: { type: 'boolean' },
-    medicalCondition: { type: 'boolean' },
-    nursingHome: { type: 'boolean' },
-    medicaidCoverage: { type: 'boolean' },
-    medicaidStatus: { type: 'boolean' },
+    powStatus: definitions.yesNoSchema,
+    isOver65: definitions.yesNoSchema,
+    socialSecurityDisability: definitions.yesNoSchema,
+    medicalCondition: definitions.yesNoSchema,
+    nursingHome: definitions.yesNoSchema,
+    medicaidCoverage: definitions.yesNoSchema,
+    medicaidStatus: definitions.yesNoSchema,
     specialMonthlyPension: { type: 'boolean' },
     vaTreatmentHistory: { type: 'boolean' },
     vaMedicalCenters: {
@@ -166,9 +170,7 @@ const schema = {
         },
       },
     },
-    federalTreatmentHistory: {
-      type: 'boolean',
-    },
+    federalTreatmentHistory: definitions.yesNoSchema,
     federalMedicalCenters: {
       type: 'array',
       items: {
@@ -181,9 +183,7 @@ const schema = {
         },
       },
     },
-    currentEmployment: {
-      type: 'boolean',
-    },
+    currentEmployment: definitions.yesNoSchema,
     currentEmployers: {
       type: 'array',
       items: {
@@ -264,19 +264,22 @@ const schema = {
             type: 'string',
           },
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+          /*
+            Where will the childRelationshipOptions live? Do we add the helper functions to this project?
+            ```js
+            radioSchema(
+              Object.keys(childRelationshipOptions),
+            )
+            ```
+           */
           childRelationship: {
             type: 'string',
             enum: ['BIOLOGICAL', 'ADOPTED', 'STEP_CHILD'],
           },
-          attendingCollege: {
-            type: 'boolean',
-          },
-          disabled: {
-            type: 'boolean',
-          },
-          previouslyMarried: {
-            type: 'boolean',
-          },
+          attendingCollege: definitions.yesNoSchema,
+          disabled: definitions.yesNoSchema,
+          previouslyMarried: definitions.yesNoSchema,
+          married: definitions.yesNoSchema,
         },
       },
     },

@@ -963,6 +963,10 @@ const teraQuestions = {
   toxicExposureEndDate: date,
 };
 
+const yesNoSchema = {
+  type: 'boolean',
+};
+
 export default {
   usaPhone,
   fullName,
@@ -1024,4 +1028,5 @@ export default {
   hcaPhone,
   insuranceProvider,
   hcaEmail,
+  yesNoSchema
 };
