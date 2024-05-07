@@ -2090,6 +2090,14 @@
                   "$ref": "#/definitions/date"
                 }
               }
+            },
+            "programInformation": {
+              "type": "object",
+              "properties": {
+                "studentIsEnrolledFullTime": {
+                  "$ref": "#/definitions/genericTrueFalse"
+                }
+              }
             }
           }
         },
@@ -2098,6 +2106,17 @@
           "properties": {
             "studentDidAttendSchoolLastTerm": {
               "$ref": "#/definitions/genericTrueFalse"
+            },
+            "lastTermSchoolInformation": {
+              "type": "object",
+              "properties": {
+                "termBegin": {
+                  "$ref": "#/definitions/date"
+                },
+                "dateTermEnded": {
+                  "$ref": "#/definitions/date"
+                }
+              }
             }
           }
         },
