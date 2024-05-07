@@ -807,31 +807,6 @@ const schema = {
           },
         },
 
-        // studentSchoolAddress: {
-        //   type: 'object',
-        //   properties: {
-        //     schoolInformation: {
-        //       type: 'object',
-        //       properties: {
-        //         name: {
-        //           $ref: '#/definitions/genericTextInput',
-        //         },
-        //         schoolType: {
-        //           type: 'string',
-        //           enum: ['HighSch', 'College', 'HomeSch'],
-        //           enumNames: ['High School', 'Postsecondary', 'Home School'],
-        //         },
-        //         trainingProgram: {
-        //           $ref: '#/definitions/genericTextInput',
-        //         },
-        //         address: {
-        //           $ref: '#/definitions/addressSchema',
-        //         },
-        //       },
-        //     },
-        //   },
-        // },
-
         studentTermDates: {
           type: 'object',
           properties: {
@@ -858,15 +833,6 @@ const schema = {
                 studentIsEnrolledFullTime: {
                   $ref: '#/definitions/genericTrueFalse',
                 },
-                // courseOfStudy: {
-                //   $ref: '#/definitions/genericTextInput',
-                // },
-                // classesPerWeek: {
-                //   type: 'number',
-                // },
-                // hoursPerWeek: {
-                //   type: 'number',
-                // },
               },
             },
           },
@@ -881,24 +847,12 @@ const schema = {
             lastTermSchoolInformation: {
               type: 'object',
               properties: {
-                // name: {
-                //   $ref: '#/definitions/genericTextInput',
-                // },
-                // address: {
-                //   $ref: '#/definitions/addressSchema',
-                // },
                 termBegin: {
                   $ref: '#/definitions/date',
                 },
                 dateTermEnded: {
                   $ref: '#/definitions/date',
                 },
-                // classesPerWeek: {
-                //   type: 'number',
-                // },
-                // hoursPerWeek: {
-                //   type: 'number',
-                // },
               },
             },
           },
@@ -984,6 +938,12 @@ const schema = {
     },
 
     householdIncome: {
+      // classesPerWeek: {
+      //   type: 'number',
+      // },
+      // hoursPerWeek: {
+      //   type: 'number',
+      // },
       type: 'object',
       properties: {
         householdIncome: {
