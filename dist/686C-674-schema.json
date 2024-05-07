@@ -2071,44 +2071,15 @@
             }
           }
         },
-        "studentSchoolAddress": {
-          "type": "object",
-          "properties": {
-            "schoolInformation": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "schoolType": {
-                  "type": "string",
-                  "enum": [
-                    "HighSch",
-                    "College",
-                    "HomeSch"
-                  ],
-                  "enumNames": [
-                    "High School",
-                    "Postsecondary",
-                    "Home School"
-                  ]
-                },
-                "trainingProgram": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "address": {
-                  "$ref": "#/definitions/addressSchema"
-                }
-              }
-            }
-          }
-        },
         "studentTermDates": {
           "type": "object",
           "properties": {
             "currentTermDates": {
               "type": "object",
               "properties": {
+                "isSchoolAccredited": {
+                  "type": "boolean"
+                },
                 "officialSchoolStartDate": {
                   "$ref": "#/definitions/date"
                 },
@@ -2119,23 +2090,6 @@
                   "$ref": "#/definitions/date"
                 }
               }
-            },
-            "programInformation": {
-              "type": "object",
-              "properties": {
-                "studentIsEnrolledFullTime": {
-                  "$ref": "#/definitions/genericTrueFalse"
-                },
-                "courseOfStudy": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "classesPerWeek": {
-                  "type": "number"
-                },
-                "hoursPerWeek": {
-                  "type": "number"
-                }
-              }
             }
           }
         },
@@ -2144,29 +2098,6 @@
           "properties": {
             "studentDidAttendSchoolLastTerm": {
               "$ref": "#/definitions/genericTrueFalse"
-            },
-            "lastTermSchoolInformation": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "$ref": "#/definitions/genericTextInput"
-                },
-                "address": {
-                  "$ref": "#/definitions/addressSchema"
-                },
-                "termBegin": {
-                  "$ref": "#/definitions/date"
-                },
-                "dateTermEnded": {
-                  "$ref": "#/definitions/date"
-                },
-                "classesPerWeek": {
-                  "type": "number"
-                },
-                "hoursPerWeek": {
-                  "type": "number"
-                }
-              }
             }
           }
         },
