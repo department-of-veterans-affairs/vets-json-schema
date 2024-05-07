@@ -31,6 +31,9 @@ const schema = {
       pattern: '^\\d{4}-\\d{2}-\\d{2}$',
       type: 'string',
     },
+    /*
+      radioSchema(Object.keys(maritalStatusOptions))
+    */
     maritalStatus: {
       type: 'string',
       enum: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
@@ -146,9 +149,7 @@ const schema = {
     placeOfSeparation: {
       type: 'string',
     },
-    noRapidProcessing: {
-      type: 'boolean',
-    },
+    noRapidProcessing: definitions.yesNoSchema,
     powStatus: definitions.yesNoSchema,
     isOver65: definitions.yesNoSchema,
     socialSecurityDisability: definitions.yesNoSchema,
@@ -223,14 +224,18 @@ const schema = {
     maritalStatus: {
       $ref: '#/definitions/maritalStatus',
     },
-    spouseIsVeteran: {
-      type: 'boolean',
-    },
+    spouseIsVeteran: definitions.yesNoSchema,
     liveWithSpouse: {
       type: 'boolean',
     },
+    /*
+      radioSchema(
+        Object.keys(reasonForCurrentSeparationOptions),
+      ),
+    */
     reasonForCurrentSeparation: {
       type: 'string',
+      enum: ['MEDICAL_CARE', 'LOCATION', 'RELATIONSHIP', 'OTHER'],
     },
     otherExplanation: {
       type: 'string',
@@ -241,6 +246,9 @@ const schema = {
     currentSpouseMonthlySupport: {
       type: 'number',
     },
+    /*
+     radioSchema(Object.keys(radioOptions))
+    */
     currentSpouseMaritalHistory: {
       type: 'string',
       enum: ['YES', 'NO', 'IDK'],
@@ -252,9 +260,7 @@ const schema = {
         properties: {
           fullName: schemaHelpers.getDefinition('fullNameNoSuffix'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
-          childInHousehold: {
-            type: 'boolean',
-          },
+          childInHousehold: definitions.yesNoSchema,
           childAddress: schemaHelpers.getDefinition('address'),
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
           monthlyPayment: {
@@ -292,33 +298,23 @@ const schema = {
     transferredAssets: {
       type: 'boolean',
     },
-    homeOwnership: {
-      type: 'boolean',
-    },
-    homeAcreageMoreThanTwo: {
-      type: 'boolean',
-    },
+    homeOwnership: definitions.yesNoSchema,
+    homeAcreageMoreThanTwo: definitions.yesNoSchema,
     homeAcreageValue: {
       type: 'number',
     },
-    landMarketable: {
-      type: 'boolean',
-    },
+    landMarketable: definitions.yesNoSchema,
     receivesIncome: {
       type: 'boolean',
     },
     incomeSources: {
       $ref: '#/definitions/incomeSources',
     },
-    hasCareExpenses: {
-      type: 'boolean',
-    },
+    hasCareExpenses: definitions.yesNoSchema,
     careExpenses: {
       $ref: '#/definitions/careExpenses',
     },
-    hasMedicalExpenses: {
-      type: 'boolean',
-    },
+    hasMedicalExpenses: definitions.yesNoSchema,
     medicalExpenses: {
       $ref: '#/definitions/medicalExpenses',
     },

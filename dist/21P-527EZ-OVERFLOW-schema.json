@@ -956,7 +956,13 @@
       "type": "boolean"
     },
     "reasonForCurrentSeparation": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "MEDICAL_CARE",
+        "LOCATION",
+        "RELATIONSHIP",
+        "OTHER"
+      ]
     },
     "otherExplanation": {
       "type": "string"
