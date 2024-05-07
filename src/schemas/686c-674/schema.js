@@ -938,12 +938,6 @@ const schema = {
     },
 
     householdIncome: {
-      // classesPerWeek: {
-      //   type: 'number',
-      // },
-      // hoursPerWeek: {
-      //   type: 'number',
-      // },
       type: 'object',
       properties: {
         householdIncome: {
