@@ -157,8 +157,8 @@ const schema = {
     nursingHome: definitions.yesNoSchema,
     medicaidCoverage: definitions.yesNoSchema,
     medicaidStatus: definitions.yesNoSchema,
-    specialMonthlyPension: { type: 'boolean' },
-    vaTreatmentHistory: { type: 'boolean' },
+    specialMonthlyPension: definitions.yesNoSchema,
+    vaTreatmentHistory: definitions.yesNoSchema,
     vaMedicalCenters: {
       type: 'array',
       items: {
@@ -225,6 +225,7 @@ const schema = {
       $ref: '#/definitions/maritalStatus',
     },
     spouseIsVeteran: definitions.yesNoSchema,
+    // Is this being used anywhere?
     liveWithSpouse: {
       type: 'boolean',
     },
@@ -289,24 +290,18 @@ const schema = {
         },
       },
     },
-    totalNetWorth: {
-      type: 'boolean',
-    },
+    totalNetWorth: definitions.yesNoSchema,
     netWorthEstimation: {
       type: 'number',
     },
-    transferredAssets: {
-      type: 'boolean',
-    },
+    transferredAssets: definitions.yesNoSchema,
     homeOwnership: definitions.yesNoSchema,
     homeAcreageMoreThanTwo: definitions.yesNoSchema,
     homeAcreageValue: {
       type: 'number',
     },
     landMarketable: definitions.yesNoSchema,
-    receivesIncome: {
-      type: 'boolean',
-    },
+    receivesIncome: definitions.yesNoSchema,
     incomeSources: {
       $ref: '#/definitions/incomeSources',
     },
