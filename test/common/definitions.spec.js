@@ -464,6 +464,17 @@ describe('schema definitions', () => {
         country: '     ',
         provinceCode: '     ',
       },
+      // doesn't allow postalCode with only spaces
+      {
+        country: 'USA',
+        state: 'AK',
+        street: stringGenerate(23),
+        street2: stringGenerate(13),
+        street3: stringGenerate(5),
+        city: stringGenerate(27),
+        postalCode: stringGenerate(5),
+        postalCode: '   ',
+      },
     ],
   });
 

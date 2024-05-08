@@ -276,7 +276,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -483,7 +484,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -557,7 +559,8 @@
     },
     "medicareClaimNumber": {
       "type": "string",
-      "maxLength": 30
+      "maxLength": 30,
+      "pattern": "^.*\\S.*"
     },
     "spouseFullName": {
       "type": "object",
@@ -808,7 +811,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -1218,7 +1222,8 @@
               },
               "postalCode": {
                 "type": "string",
-                "maxLength": 51
+                "maxLength": 51,
+                "pattern": "^.*\\S.*"
               }
             },
             "required": [
