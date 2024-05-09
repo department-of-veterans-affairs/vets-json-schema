@@ -61,6 +61,9 @@ const schema = {
             type: 'string',
           },
           amount: financialNumber,
+          dependentName: {
+            type: 'string',
+          },
         },
       },
     },
