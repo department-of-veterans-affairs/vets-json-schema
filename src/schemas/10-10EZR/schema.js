@@ -44,6 +44,7 @@ const schema = {
     medicareClaimNumber: {
       type: 'string',
       maxLength: 30,
+      ...definitions.rejectOnlyWhitespace,
     },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: definitions.ssn,
