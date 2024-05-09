@@ -1453,7 +1453,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -1660,7 +1661,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -1936,7 +1938,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
