@@ -518,12 +518,12 @@ const educationTypeUpdate = {
   enum: [
     'college',
     'nonCollegeDegree',
-    'correspondence',
     'apprenticeship',
     'flightTraining',
     'testReimbursement',
     'licensingReimbursement',
     'prepCourseForLoC',
+    'correspondence',
   ],
 };
 

@@ -334,12 +334,12 @@
       "enum": [
         "college",
         "nonCollegeDegree",
-        "correspondence",
         "apprenticeship",
         "flightTraining",
         "testReimbursement",
         "licensingReimbursement",
-        "prepCourseForLoC"
+        "prepCourseForLoC",
+        "correspondence"
       ]
     },
     "preferredContactMethod": {
