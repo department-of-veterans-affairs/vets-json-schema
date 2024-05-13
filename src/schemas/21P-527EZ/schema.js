@@ -31,6 +31,9 @@ const schema = {
       pattern: '^\\d{4}-\\d{2}-\\d{2}$',
       type: 'string',
     },
+    /*
+      radioSchema(Object.keys(maritalStatusOptions))
+    */
     maritalStatus: {
       type: 'string',
       enum: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
@@ -58,6 +61,9 @@ const schema = {
             type: 'string',
           },
           amount: financialNumber,
+          dependentName: {
+            type: 'string',
+          },
         },
       },
     },
@@ -108,12 +114,16 @@ const schema = {
       type: 'string',
       format: 'email',
     },
-    vaClaimsHistory: {
-      type: 'boolean',
-    },
+    vaClaimsHistory: definitions.yesNoSchema,
     internationalPhone: {
       type: 'string',
     },
+    /*
+    How do we incorporate the following code?
+    ```js
+      checkboxGroupSchema(Object.keys(serviceBranchLabels))
+    ```
+    */
     serviceBranch: {
       type: 'object',
       properties: {
@@ -129,7 +139,7 @@ const schema = {
     },
     activeServiceDateRange: schemaHelpers.getDefinition('dateRange'),
     serviceNumber: { type: 'string' },
-    serveUnderOtherNames: { type: 'boolean' },
+    serveUnderOtherNames: definitions.yesNoSchema,
     previousNames: {
       type: 'array',
       items: {
@@ -142,18 +152,16 @@ const schema = {
     placeOfSeparation: {
       type: 'string',
     },
-    noRapidProcessing: {
-      type: 'boolean',
-    },
-    powStatus: { type: 'boolean' },
-    isOver65: { type: 'boolean' },
-    socialSecurityDisability: { type: 'boolean' },
-    medicalCondition: { type: 'boolean' },
-    nursingHome: { type: 'boolean' },
-    medicaidCoverage: { type: 'boolean' },
-    medicaidStatus: { type: 'boolean' },
-    specialMonthlyPension: { type: 'boolean' },
-    vaTreatmentHistory: { type: 'boolean' },
+    noRapidProcessing: definitions.yesNoSchema,
+    powStatus: definitions.yesNoSchema,
+    isOver65: definitions.yesNoSchema,
+    socialSecurityDisability: definitions.yesNoSchema,
+    medicalCondition: definitions.yesNoSchema,
+    nursingHome: definitions.yesNoSchema,
+    medicaidCoverage: definitions.yesNoSchema,
+    medicaidStatus: definitions.yesNoSchema,
+    specialMonthlyPension: definitions.yesNoSchema,
+    vaTreatmentHistory: definitions.yesNoSchema,
     vaMedicalCenters: {
       type: 'array',
       items: {
@@ -166,9 +174,7 @@ const schema = {
         },
       },
     },
-    federalTreatmentHistory: {
-      type: 'boolean',
-    },
+    federalTreatmentHistory: definitions.yesNoSchema,
     federalMedicalCenters: {
       type: 'array',
       items: {
@@ -181,9 +187,7 @@ const schema = {
         },
       },
     },
-    currentEmployment: {
-      type: 'boolean',
-    },
+    currentEmployment: definitions.yesNoSchema,
     currentEmployers: {
       type: 'array',
       items: {
@@ -223,14 +227,19 @@ const schema = {
     maritalStatus: {
       $ref: '#/definitions/maritalStatus',
     },
-    spouseIsVeteran: {
-      type: 'boolean',
-    },
+    spouseIsVeteran: definitions.yesNoSchema,
+    // Is this being used anywhere?
     liveWithSpouse: {
       type: 'boolean',
     },
+    /*
+      radioSchema(
+        Object.keys(reasonForCurrentSeparationOptions),
+      ),
+    */
     reasonForCurrentSeparation: {
       type: 'string',
+      enum: ['MEDICAL_CARE', 'LOCATION', 'RELATIONSHIP', 'OTHER'],
     },
     otherExplanation: {
       type: 'string',
@@ -241,6 +250,9 @@ const schema = {
     currentSpouseMonthlySupport: {
       type: 'number',
     },
+    /*
+     radioSchema(Object.keys(radioOptions))
+    */
     currentSpouseMaritalHistory: {
       type: 'string',
       enum: ['YES', 'NO', 'IDK'],
@@ -252,9 +264,7 @@ const schema = {
         properties: {
           fullName: schemaHelpers.getDefinition('fullNameNoSuffix'),
           childDateOfBirth: schemaHelpers.getDefinition('date'),
-          childInHousehold: {
-            type: 'boolean',
-          },
+          childInHousehold: definitions.yesNoSchema,
           childAddress: schemaHelpers.getDefinition('address'),
           personWhoLivesWithChild: schemaHelpers.getDefinition('fullName'),
           monthlyPayment: {
@@ -264,58 +274,45 @@ const schema = {
             type: 'string',
           },
           childSocialSecurityNumber: schemaHelpers.getDefinition('ssn'),
+          /*
+            Where will the childRelationshipOptions live? Do we add the helper functions to this project?
+            ```js
+            radioSchema(
+              Object.keys(childRelationshipOptions),
+            )
+            ```
+           */
           childRelationship: {
             type: 'string',
             enum: ['BIOLOGICAL', 'ADOPTED', 'STEP_CHILD'],
           },
-          attendingCollege: {
-            type: 'boolean',
-          },
-          disabled: {
-            type: 'boolean',
-          },
-          previouslyMarried: {
-            type: 'boolean',
-          },
+          attendingCollege: definitions.yesNoSchema,
+          disabled: definitions.yesNoSchema,
+          previouslyMarried: definitions.yesNoSchema,
+          married: definitions.yesNoSchema,
         },
       },
     },
-    totalNetWorth: {
-      type: 'boolean',
-    },
+    totalNetWorth: definitions.yesNoSchema,
     netWorthEstimation: {
       type: 'number',
     },
-    transferredAssets: {
-      type: 'boolean',
-    },
-    homeOwnership: {
-      type: 'boolean',
-    },
-    homeAcreageMoreThanTwo: {
-      type: 'boolean',
-    },
+    transferredAssets: definitions.yesNoSchema,
+    homeOwnership: definitions.yesNoSchema,
+    homeAcreageMoreThanTwo: definitions.yesNoSchema,
     homeAcreageValue: {
       type: 'number',
     },
-    landMarketable: {
-      type: 'boolean',
-    },
-    receivesIncome: {
-      type: 'boolean',
-    },
+    landMarketable: definitions.yesNoSchema,
+    receivesIncome: definitions.yesNoSchema,
     incomeSources: {
       $ref: '#/definitions/incomeSources',
     },
-    hasCareExpenses: {
-      type: 'boolean',
-    },
+    hasCareExpenses: definitions.yesNoSchema,
     careExpenses: {
       $ref: '#/definitions/careExpenses',
     },
-    hasMedicalExpenses: {
-      type: 'boolean',
-    },
+    hasMedicalExpenses: definitions.yesNoSchema,
     medicalExpenses: {
       $ref: '#/definitions/medicalExpenses',
     },

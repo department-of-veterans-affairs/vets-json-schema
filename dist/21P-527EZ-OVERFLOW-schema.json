@@ -154,6 +154,9 @@
           "amount": {
             "type": "number",
             "default": 0
+          },
+          "dependentName": {
+            "type": "string"
           }
         }
       }
@@ -956,7 +959,13 @@
       "type": "boolean"
     },
     "reasonForCurrentSeparation": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "MEDICAL_CARE",
+        "LOCATION",
+        "RELATIONSHIP",
+        "OTHER"
+      ]
     },
     "otherExplanation": {
       "type": "string"
@@ -1019,6 +1028,9 @@
             "type": "boolean"
           },
           "previouslyMarried": {
+            "type": "boolean"
+          },
+          "married": {
             "type": "boolean"
           }
         }
