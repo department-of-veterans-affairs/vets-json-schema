@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "REQUEST TO OPT-OUT OF INFORMATION SHARING WITH EDUCATIONAL INSTITUTIONS (VA FORM 22-0993)",
+    "title": "REQUEST TO APPOINT AN ACCREDITED REPRESENTATIVE OR VSO (FORMS 21-22 AND 21-22A)",
     "type": "object",
     "definitions": {
       "fullName": {
