@@ -1,0 +1,85 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "REQUEST TO APPOINT AN ACCREDITED REPRESENTATIVE OR VSO (FORMS 21-22 AND 21-22A)",
+    "type": "object",
+    "definitions": {
+      "fullName": {
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "middle": {
+            "type": "string"
+          },
+          "last": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "suffix": {
+            "type": "string",
+            "enum": [
+              "Jr.",
+              "Sr.",
+              "II",
+              "III",
+              "IV"
+            ]
+          }
+        },
+        "required": [
+          "first",
+          "last"
+        ]
+      },
+      "ssn": {
+        "type": "string",
+        "pattern": "^[0-9]{9}$"
+      },
+      "vaFileNumber": {
+        "type": "string",
+        "pattern": "^[cC]{0,1}\\d{7,9}$"
+      },
+      "privacyAgreementAccepted": {
+        "type": "boolean",
+        "enum": [
+          true
+        ]
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "claimantFullName": {
+        "$ref": "#/definitions/fullName"
+      },
+      "claimantSocialSecurityNumber": {
+        "$ref": "#/definitions/ssn"
+      },
+      "vaFileNumber": {
+        "$ref": "#/definitions/vaFileNumber"
+      },
+      "privacyAgreementAccepted": {
+        "$ref": "#/definitions/privacyAgreementAccepted"
+      }
+    },
+    "anyOf": [
+      {
+        "required": [
+          "vaFileNumber"
+        ]
+      },
+      {
+        "required": [
+          "claimantSocialSecurityNumber"
+        ]
+      }
+    ],
+    "required": [
+      "privacyAgreementAccepted",
+      "claimantFullName"
+    ]
+  }
+  
