@@ -663,7 +663,7 @@
       "$ref": "#/definitions/incomeReceiptWaivers"
     },
     "statementOfTruthCertified": {
-      "type": "string"
+      "type": "boolean"
     },
     "statementOfTruthSignature": {
       "type": "string"

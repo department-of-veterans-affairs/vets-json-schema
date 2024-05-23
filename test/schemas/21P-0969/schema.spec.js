@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
-import _ from 'lodash';
+import { cloneDeep } from 'lodash';
 import { expect } from 'chai';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
 import SharedTests from '../../support/shared-tests';
 
 const schema = schemas['21P-0969'];
-const schemaWithoutRequired = _.cloneDeep(schema);
+const schemaWithoutRequired = cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.anyOf;
 
