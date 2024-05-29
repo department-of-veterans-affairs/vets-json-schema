@@ -3,17 +3,12 @@
   "description": "Form 2122 Schema",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "veteran",
-    "serviceOrganization"
-  ],
+  "required": ["veteran", "serviceOrganization"],
   "properties": {
     "veteran": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "address"
-      ],
+      "required": ["address"],
       "properties": {
         "address": {
           "type": "object",
@@ -71,26 +66,28 @@
           "$comment": "the phone fields must not exceed 20 chars, when concatenated",
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "areaCode",
-            "phoneNumber"
-          ],
+          "required": ["areaCode", "phoneNumber"],
           "properties": {
-            "countryCode": { 
-              "type": "string", 
-              "pattern": "^[0-9]+$" 
+            "countryCode": {
+              "type": "string",
+              "pattern": "^[0-9]+$"
             },
             "areaCode": {
               "description": "Area code of the phone number.",
-              "type": "string", "pattern": "^[2-9][0-9]{2}$",
+              "type": "string",
+              "pattern": "^[2-9][0-9]{2}$",
               "example": "555"
             },
-            "phoneNumber": { 
+            "phoneNumber": {
               "description": "Phone number.",
-              "type": "string", "pattern": "^[0-9]{1,14}$",
+              "type": "string",
+              "pattern": "^[0-9]{1,14}$",
               "example": "555-5555"
             },
-            "phoneNumberExt": { "type": "string", "pattern": "^[a-zA-Z0-9]{1,10}$" }
+            "phoneNumberExt": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{1,10}$"
+            }
           }
         },
         "email": {
@@ -172,23 +169,25 @@
           "$comment": "the phone fields must not exceed 20 chars, when concatenated",
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "areaCode",
-            "phoneNumber"
-          ],
+          "required": ["areaCode", "phoneNumber"],
           "properties": {
             "countryCode": { "type": "string", "pattern": "^[0-9]+$" },
             "areaCode": {
               "description": "Area code of the phone number.",
-              "type": "string", "pattern": "^[2-9][0-9]{2}$",
+              "type": "string",
+              "pattern": "^[2-9][0-9]{2}$",
               "example": "555"
             },
             "phoneNumber": {
               "description": "Phone number.",
-              "type": "string", "pattern": "^[0-9]{1,14}$",
+              "type": "string",
+              "pattern": "^[0-9]{1,14}$",
               "example": "555-5555"
             },
-            "phoneNumberExt": { "type": "string", "pattern": "^[a-zA-Z0-9]{1,10}$" }
+            "phoneNumberExt": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{1,10}$"
+            }
           }
         },
         "email": {
@@ -209,10 +208,7 @@
       "description": "Details of the Service Organization representing the veteran.",
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "poaCode",
-        "registrationNumber"
-      ],
+      "required": ["poaCode", "registrationNumber"],
       "properties": {
         "poaCode": {
           "description": "The POA code of the organization.",
@@ -252,12 +248,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": [
-          "DRUG_ABUSE",
-          "ALCOHOLISM",
-          "HIV",
-          "SICKLE_CELL"
-        ]
+        "enum": ["DRUG_ABUSE", "ALCOHOLISM", "HIV", "SICKLE_CELL"]
       },
       "example": "DRUG_ABUSE"
     },
