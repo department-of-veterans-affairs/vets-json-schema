@@ -13,13 +13,7 @@
         "address": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "addressLine1",
-            "city",
-            "country",
-            "stateCode",
-            "zipCode"
-          ],
+          "required": ["addressLine1", "city", "country", "stateCode", "zipCode"],
           "properties": {
             "addressLine1": {
               "description": "Street address with number and name.",
@@ -162,7 +156,9 @@
               "pattern": "^[0-9]{4}$",
               "example": "6789"
             },
-            "additionalProperties": { "type": "boolean" }
+            "additionalProperties": {
+              "type": "boolean"
+            }
           }
         },
         "phone": {
@@ -171,7 +167,10 @@
           "additionalProperties": false,
           "required": ["areaCode", "phoneNumber"],
           "properties": {
-            "countryCode": { "type": "string", "pattern": "^[0-9]+$" },
+            "countryCode": {
+              "type": "string",
+              "pattern": "^[0-9]+$"
+            },
             "areaCode": {
               "description": "Area code of the phone number.",
               "type": "string",
