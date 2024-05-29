@@ -167,13 +167,13 @@
               "zipCode": {
                 "description": "Zipcode (First 5 digits) of the address. Required if claimant information provided.",
                 "type": "string",
-                "pattern": "^\\d{5}?$",
+                "pattern": "^[0-9]{5}$",
                 "example": "12345"
               },
               "zipCodeSuffix": {
                 "description": "Zipcode (Last 4 digits) of the address.",
                 "type": "string",
-                "pattern": "^\\d{4}?$",
+                "pattern": "^[0-9]{4}$",
                 "example": "6789"
               }
             }
@@ -278,13 +278,13 @@
               "zipCode": {
                 "description": "Zipcode (First 5 digits) of the address.",
                 "type": "string",
-                "pattern": "^\\d{5}?$",
+                "pattern": "^[0-9]{5}$",
                 "example": "12345"
               },
               "zipCodeSuffix": {
                 "description": "Zipcode (Last 4 digits) of the address.",
                 "type": "string",
-                "pattern": "^\\d{4}?$",
+                "pattern": "^[0-9]{4}$",
                 "example": "6789"
               }
             }
