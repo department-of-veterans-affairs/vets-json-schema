@@ -17,7 +17,6 @@ const example = {
     address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
     primaryPhoneNumber: '8887775544',
     vetRelationship: 'Spouse',
-    hasHealthInsurance: true,
     certifications: [
       'information-is-correct-and-true',
       'at-least-18-years-of-age',

@@ -177,7 +177,6 @@ const schema = {
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
-        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),

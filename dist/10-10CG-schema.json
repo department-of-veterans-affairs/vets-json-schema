@@ -330,9 +330,6 @@
         "address": {
           "$ref": "#/definitions/address"
         },
-        "mailingAddress": {
-          "$ref": "#/definitions/mailingAddress"
-        },
         "primaryPhoneNumber": {
           "$ref": "#/definitions/phone"
         },
