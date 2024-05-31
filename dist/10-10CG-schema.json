@@ -85,7 +85,8 @@
         "street",
         "city",
         "state",
-        "postalCode"
+        "postalCode",
+        "county"
       ],
       "properties": {
         "street": {

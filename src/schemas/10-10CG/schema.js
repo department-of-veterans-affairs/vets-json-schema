@@ -104,7 +104,7 @@ const schema = {
     address: {
       type: 'object',
       additionalProperties: false,
-      required: ['street', 'city', 'state', 'postalCode'],
+      required: ['street', 'city', 'state', 'postalCode', 'county'],
       properties: {
         street: {
           type: 'string',
