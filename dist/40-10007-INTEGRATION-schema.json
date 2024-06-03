@@ -682,8 +682,7 @@
                     ]
                   },
                   "highestRank": {
-                    "type": "string",
-                    "maxLength": 20
+                    "type": "string"
                   },
                   "nationalGuardState": {
                     "type": "string",

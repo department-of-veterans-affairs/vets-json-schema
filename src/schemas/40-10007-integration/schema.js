@@ -94,7 +94,6 @@ _.merge(modifiedToursOfDuty, {
       },
       highestRank: {
         type: 'string',
-        maxLength: 20,
       },
       nationalGuardState: {
         type: 'string',
