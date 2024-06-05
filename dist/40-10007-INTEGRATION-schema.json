@@ -592,7 +592,11 @@
                 "X"
               ]
             },
-            "placeOfBirth": {
+            "cityOfBirth": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "stateOfBirth": {
               "type": "string",
               "maxLength": 100
             },

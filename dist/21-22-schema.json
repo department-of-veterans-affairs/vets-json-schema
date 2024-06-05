@@ -3,17 +3,28 @@
   "description": "Form 2122 Schema",
   "type": "object",
   "additionalProperties": false,
-  "required": ["veteran", "serviceOrganization"],
+  "required": [
+    "veteran",
+    "serviceOrganization"
+  ],
   "properties": {
     "veteran": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["address"],
+      "required": [
+        "address"
+      ],
       "properties": {
         "address": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["addressLine1", "city", "country", "stateCode", "zipCode"],
+          "required": [
+            "addressLine1",
+            "city",
+            "country",
+            "stateCode",
+            "zipCode"
+          ],
           "properties": {
             "addressLine1": {
               "description": "Street address with number and name.",
@@ -60,7 +71,10 @@
           "$comment": "the phone fields must not exceed 20 chars, when concatenated",
           "type": "object",
           "additionalProperties": false,
-          "required": ["areaCode", "phoneNumber"],
+          "required": [
+            "areaCode",
+            "phoneNumber"
+          ],
           "properties": {
             "countryCode": {
               "type": "string",
@@ -165,7 +179,10 @@
           "$comment": "the phone fields must not exceed 20 chars, when concatenated",
           "type": "object",
           "additionalProperties": false,
-          "required": ["areaCode", "phoneNumber"],
+          "required": [
+            "areaCode",
+            "phoneNumber"
+          ],
           "properties": {
             "countryCode": {
               "type": "string",
@@ -207,7 +224,10 @@
       "description": "Details of the Service Organization representing the veteran.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["poaCode", "registrationNumber"],
+      "required": [
+        "poaCode",
+        "registrationNumber"
+      ],
       "properties": {
         "poaCode": {
           "description": "The POA code of the organization.",
@@ -247,7 +267,12 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["DRUG_ABUSE", "ALCOHOLISM", "HIV", "SICKLE_CELL"]
+        "enum": [
+          "DRUG_ABUSE",
+          "ALCOHOLISM",
+          "HIV",
+          "SICKLE_CELL"
+        ]
       },
       "example": "DRUG_ABUSE"
     },

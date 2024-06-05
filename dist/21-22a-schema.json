@@ -3,12 +3,17 @@
   "description": "Form 2122a Schema",
   "type": "object",
   "additionalProperties": false,
-  "required": ["veteran", "representative"],
+  "required": [
+    "veteran",
+    "representative"
+  ],
   "properties": {
     "veteran": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["address"],
+      "required": [
+        "address"
+      ],
       "properties": {
         "serviceNumber": {
           "description": "The Veteran's Service Number",
@@ -18,7 +23,15 @@
         "serviceBranch": {
           "description": "Service Branch for the veteran.",
           "type": "string",
-          "enum": ["AIR_FORCE", "ARMY", "COAST_GUARD", "MARINE_CORPS", "NAVY", "SPACE_FORCE", "OTHER"],
+          "enum": [
+            "AIR_FORCE",
+            "ARMY",
+            "COAST_GUARD",
+            "MARINE_CORPS",
+            "NAVY",
+            "SPACE_FORCE",
+            "OTHER"
+          ],
           "example": "ARMY"
         },
         "serviceBranchOther": {
@@ -30,7 +43,13 @@
         "address": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["addressLine1", "city", "stateCode", "country", "zipCode"],
+          "required": [
+            "addressLine1",
+            "city",
+            "stateCode",
+            "country",
+            "zipCode"
+          ],
           "properties": {
             "addressLine1": {
               "description": "Street address with number and name.",
@@ -77,7 +96,10 @@
           "$comment": "the phone fields must not exceed 20 chars, when concatenated",
           "type": "object",
           "additionalProperties": false,
-          "required": ["areaCode", "phoneNumber"],
+          "required": [
+            "areaCode",
+            "phoneNumber"
+          ],
           "properties": {
             "countryCode": {
               "type": "string",
@@ -168,7 +190,10 @@
           "$comment": "the phone fields must not exceed 20 chars, when concatenated",
           "type": "object",
           "additionalProperties": false,
-          "required": ["areaCode", "phoneNumber"],
+          "required": [
+            "areaCode",
+            "phoneNumber"
+          ],
           "properties": {
             "countryCode": {
               "type": "string",
@@ -210,7 +235,11 @@
       "description": "Details of the individual representative representing the veteran.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["poaCode", "registrationNumber", "type"],
+      "required": [
+        "poaCode",
+        "registrationNumber",
+        "type"
+      ],
       "properties": {
         "poaCode": {
           "description": "The POA code of the representative.",
@@ -225,7 +254,10 @@
         "type": {
           "description": "Type of individual representative",
           "type": "string",
-          "enum": ["ATTORNEY", "AGENT"],
+          "enum": [
+            "ATTORNEY",
+            "AGENT"
+          ],
           "example": "ATTORNEY"
         },
         "address": {
@@ -284,7 +316,12 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["DRUG_ABUSE", "ALCOHOLISM", "HIV", "SICKLE_CELL"]
+        "enum": [
+          "DRUG_ABUSE",
+          "ALCOHOLISM",
+          "HIV",
+          "SICKLE_CELL"
+        ]
       },
       "example": "DRUG ABUSE"
     },
