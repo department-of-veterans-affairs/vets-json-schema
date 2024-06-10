@@ -166,9 +166,6 @@ const schema = {
     applyingUsingOwnBenefits: {
       type: 'boolean',
     },
-    benefitsRelinquishedDate: {
-      $ref: '#/definitions/date',
-    },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
     },
