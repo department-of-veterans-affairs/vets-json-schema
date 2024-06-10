@@ -2,8 +2,6 @@ import _ from 'lodash';
 import definitions from '../../common/definitions';
 import schemaHelpers from '../../common/schema-helpers';
 
-const benefits = ['chapter33', 'chapter30', 'chapter1606', 'chapter32'];
-
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR VA EDUCATION BENEFITS (22-1990)',
@@ -46,10 +44,6 @@ const schema = {
     },
     chapter32: {
       type: 'boolean',
-    },
-    benefitsRelinquished: {
-      type: 'string',
-      enum: ['unknown', ..._.without(benefits, 'chapter33', 'chapter32'), 'chapter1607'],
     },
     veteranFullName: {
       $ref: '#/definitions/fullName',

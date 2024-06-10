@@ -533,15 +533,6 @@
     "chapter32": {
       "type": "boolean"
     },
-    "benefitsRelinquished": {
-      "type": "string",
-      "enum": [
-        "unknown",
-        "chapter30",
-        "chapter1606",
-        "chapter1607"
-      ]
-    },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
     },
