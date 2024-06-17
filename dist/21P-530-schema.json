@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "APPLICATION FOR BURIAL BENEFITS",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "definitions": {
     "dateRange": {
       "type": "object",
@@ -232,10 +232,6 @@
         "postalCode"
       ]
     },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
-    },
     "fullName": {
       "type": "object",
       "properties": {
@@ -311,30 +307,6 @@
     }
   ],
   "properties": {
-    "relationship": {
-      "type": "object",
-      "required": [
-        "type"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": [
-            "spouse",
-            "child",
-            "parent",
-            "executor",
-            "other"
-          ]
-        },
-        "other": {
-          "type": "string"
-        },
-        "isEntity": {
-          "type": "boolean"
-        }
-      }
-    },
     "locationOfDeath": {
       "type": "object",
       "required": [
@@ -344,9 +316,75 @@
         "location": {
           "type": "string",
           "enum": [
+            "atHome",
+            "nursingHomeUnpaid",
+            "nursingHomePaid",
             "vaMedicalCenter",
             "stateVeteransHome",
-            "nursingHome",
+            "other"
+          ]
+        },
+        "nursingHomeUnpaid": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
+        },
+        "nursingHomePaid": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
+        },
+        "vaMedicalCenter": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
+        },
+        "stateVeteransHome": {
+          "type": "object",
+          "properties": {
+            "facilityName": {
+              "type": "string"
+            },
+            "facilityLocation": {
+              "type": "string"
+            }
+          }
+        },
+        "other": {
+          "type": "string"
+        }
+      }
+    },
+    "finalRestingPlace": {
+      "type": "object",
+      "required": [
+        "location"
+      ],
+      "properties": {
+        "location": {
+          "type": "string",
+          "enum": [
+            "cemetery",
+            "mausoleum",
+            "privateResidence",
             "other"
           ]
         },
@@ -357,25 +395,42 @@
     },
     "toursOfDuty": {
       "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
       "items": {
         "type": "object",
         "properties": {
+          "serviceBranch": {
+            "type": "string",
+            "enum": [
+              "Air Force",
+              "Air Force Reserve",
+              "Air National Guard",
+              "Army",
+              "Army National Guard",
+              "Army Reserve",
+              "Coast Guard",
+              "Coast Guard Reserve",
+              "Marine Corps",
+              "Marine Corps Reserve",
+              "Navy",
+              "Navy Reserve",
+              "Other"
+            ]
+          },
           "dateRange": {
             "$ref": "#/definitions/dateRange"
-          },
-          "serviceBranch": {
-            "type": "string"
-          },
-          "rank": {
-            "type": "string"
-          },
-          "serviceNumber": {
-            "type": "string"
           },
           "placeOfEntry": {
             "type": "string"
           },
           "placeOfSeparation": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "unit": {
             "type": "string"
           }
         }
@@ -384,35 +439,55 @@
     "previousNames": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/fullName"
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "middle": {
+            "type": "string"
+          },
+          "last": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "suffix": {
+            "type": "string",
+            "enum": [
+              "Jr.",
+              "Sr.",
+              "II",
+              "III",
+              "IV"
+            ]
+          }
+        },
+        "required": [
+          "first",
+          "last"
+        ]
       }
     },
-    "claimantEmail": {
-      "type": "string",
-      "format": "email"
+    "serviceNumber": {
+      "type": "string"
     },
-    "burialAllowance": {
+    "unclaimedRemains": {
       "type": "boolean"
-    },
-    "plotAllowance": {
-      "type": "boolean"
-    },
-    "transportation": {
-      "type": "boolean"
-    },
-    "amountIncurred": {
-      "type": "number"
-    },
-    "burialAllowanceRequested": {
-      "type": "string",
-      "enum": [
-        "service",
-        "nonService",
-        "vaMC"
-      ]
     },
     "burialCost": {
       "type": "number"
+    },
+    "burialExpenseResponsibility": {
+      "type": "boolean"
+    },
+    "plotExpenseResponsibility": {
+      "type": "boolean"
+    },
+    "allowanceStatementOfTruth": {
+      "type": "boolean"
     },
     "previouslyReceivedAllowance": {
       "type": "boolean"
@@ -432,16 +507,14 @@
     "govtContributions": {
       "type": "boolean"
     },
-    "amountGovtContribution": {
-      "type": "number"
+    "transportationExpenses": {
+      "type": "boolean"
+    },
+    "formV2": {
+      "type": "boolean",
+      "default": true
     },
     "placeOfBirth": {
-      "type": "string"
-    },
-    "officialPosition": {
-      "type": "string"
-    },
-    "firmName": {
       "type": "string"
     },
     "privacyAgreementAccepted": {
@@ -450,14 +523,14 @@
     "claimantAddress": {
       "$ref": "#/definitions/centralMailAddress"
     },
-    "claimantPhone": {
-      "$ref": "#/definitions/usaPhone"
-    },
     "claimantFullName": {
       "$ref": "#/definitions/fullName"
     },
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
+    },
+    "claimantSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     },
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
@@ -471,13 +544,22 @@
     "deathDate": {
       "$ref": "#/definitions/date"
     },
+    "claimantDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
+    },
+    "militarySeparationDocuments": {
+      "$ref": "#/definitions/files"
     },
     "deathCertificate": {
       "$ref": "#/definitions/files"
     },
     "transportationReceipts": {
+      "$ref": "#/definitions/files"
+    },
+    "additionalEvidence": {
       "$ref": "#/definitions/files"
     }
   },
