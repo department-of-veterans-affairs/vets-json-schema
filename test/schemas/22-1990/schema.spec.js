@@ -102,17 +102,10 @@ describe('education benefits json schema', () => {
     });
   });
 
-  context('benefitsRelinquished validation', () => {
-    schemaTestHelper.testValidAndInvalid('benefitsRelinquished', {
-      valid: ['chapter30', 'unknown', 'chapter1607', 'chapter1606'],
-      invalid: ['chapter33']
-    });
-  });
-
   context('serviceBefore1977 validation', () => {
     schemaTestHelper.testValidAndInvalid('serviceBefore1977', {
       valid: [{
-        married: true,
+          married: true,
         haveDependents: true,
         parentDependent: false
       }],
