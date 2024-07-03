@@ -13,30 +13,6 @@ const testData = {
     valid: ['636', '636A6', '740', '603'],
     invalid: [[], {}, 358, true],
   },
-  lastTreatmentFacility: {
-    valid: [
-      { name: 'My Hospital', type: 'hospital' },
-      { name: 'My Clinic', type: 'clinic' },
-      { name: 'random stringsssss', type: 'clinic' },
-      { name: 'random stringsssss', type: 'clinic' },
-    ],
-    invalid: [
-      {},
-      { name: 'Some Hospital Name' },
-      { name: 'Some Clinic Name', type: 'non-enum' },
-      { name: 'Some Hospital Name', type: 'hospital', extraProp: 'not allowed' },
-      {
-        // Hit max char count
-        name: 'A'.repeat(101),
-        type: 'clinic',
-      },
-      {
-        // Hit min char count
-        name: '',
-        type: 'clinic',
-      },
-    ],
-  },
   vetRelationship: {
     valid: [
       'Spouse',
@@ -270,15 +246,12 @@ describe('10-10CG json schema', () => {
       'plannedClinic',
     ]);
 
-    expect(schema.properties.veteran.properties.lastTreatmentFacility.required).to.deep.equal(['name', 'type']);
-
     expect(schema.properties.primaryCaregiver.required).to.deep.equal([
       'fullName',
       'dateOfBirth',
       'address',
       'primaryPhoneNumber',
       'vetRelationship',
-      'hasHealthInsurance',
     ]);
 
     expect(schema.properties.secondaryCaregiverOne.required).to.deep.equal([
@@ -321,12 +294,11 @@ describe('10-10CG json schema', () => {
     const sharedTests = new SharedTests(schemaTestHelper);
 
     // Veteran Info
-    sharedTests.runTest('fullNameNoSuffix', ['veteran.fullName']);
+    sharedTests.runTest('fullName', ['veteran.fullName']);
     sharedTests.runTest('ssn', ['veteran.ssnOrTin']);
     sharedTests.runTest('date', ['veteran.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('veteran.gender', testData.gender);
     schemaTestHelper.testValidAndInvalid('veteran.plannedClinic', testData.plannedClinic);
-    schemaTestHelper.testValidAndInvalid('veteran.lastTreatmentFacility', testData.lastTreatmentFacility);
     sharedTests.runTest('usAddress', ['veteran.address']);
     sharedTests.runTest('phone', ['veteran.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['veteran.alternativePhoneNumber']);
@@ -334,7 +306,7 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('veteran.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('veteran.certifications', testData.certifications.veteran);
     // Primary Caregiver Info
-    sharedTests.runTest('fullNameNoSuffix', ['primaryCaregiver.fullName']);
+    sharedTests.runTest('fullName', ['primaryCaregiver.fullName']);
     sharedTests.runTest('ssn', ['primaryCaregiver.ssnOrTin']);
     sharedTests.runTest('date', ['primaryCaregiver.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.gender', testData.gender);
@@ -342,11 +314,10 @@ describe('10-10CG json schema', () => {
     sharedTests.runTest('phone', ['primaryCaregiver.primaryPhoneNumber']);
     sharedTests.runTest('phone', ['primaryCaregiver.alternativePhoneNumber']);
     sharedTests.runTest('email', ['primaryCaregiver.email']);
-    schemaTestHelper.testValidAndInvalid('primaryCaregiver.hasHealthInsurance', testData.boolean);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('primaryCaregiver.certifications', testData.certifications.primaryCaregiver);
     // Secondary One Caregiver Info
-    sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverOne.fullName']);
+    sharedTests.runTest('fullName', ['secondaryCaregiverOne.fullName']);
     sharedTests.runTest('ssn', ['secondaryCaregiverOne.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryCaregiverOne.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.gender', testData.gender);
@@ -358,7 +329,7 @@ describe('10-10CG json schema', () => {
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.signature', testData.signature);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverOne.certifications', testData.certifications.secondaryCaregiver);
     // Secondary Two Caregiver Info
-    sharedTests.runTest('fullNameNoSuffix', ['secondaryCaregiverTwo.fullName']);
+    sharedTests.runTest('fullName', ['secondaryCaregiverTwo.fullName']);
     sharedTests.runTest('ssn', ['secondaryCaregiverTwo.ssnOrTin']);
     sharedTests.runTest('date', ['secondaryCaregiverTwo.dateOfBirth']);
     schemaTestHelper.testValidAndInvalid('secondaryCaregiverTwo.gender', testData.gender);
@@ -375,42 +346,40 @@ describe('10-10CG json schema', () => {
   describe('conditional validation:', () => {
     const validDataExample = {
       veteran: {
-        fullName: { first: 'John', last: 'Doe' },
+        fullName: { first: 'John', last: 'Doe', suffix: 'Jr.' },
         ssnOrTin: '789787893',
         dateOfBirth: '1978-01-15',
         gender: 'M',
-        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
         primaryPhoneNumber: '8887775544',
         alternativePhoneNumber: '8887775544',
         email: 'veteranEmail@email.com',
         plannedClinic: '636',
-        lastTreatmentFacility: { name: 'My Hospital', type: 'hospital' },
       },
       primaryCaregiver: {
-        fullName: { first: 'Joan', last: 'Doe' },
+        fullName: { first: 'Joan', last: 'Doe', suffix: 'Sr.' },
         dateOfBirth: '1978-07-03',
         gender: 'F',
-        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
         primaryPhoneNumber: '8887775544',
         alternativePhoneNumber: '8887775544',
         email: 'primaryCaregiverEmail@email.com',
         vetRelationship: 'Spouse',
-        hasHealthInsurance: true,
       },
       secondaryCaregiverOne: {
-        fullName: { first: 'Jane', last: 'Smith' },
+        fullName: { first: 'Jane', last: 'Smith', suffix: 'II' },
         dateOfBirth: '1980-01-01',
         gender: 'F',
-        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
         primaryPhoneNumber: '1234567890',
         alternativePhoneNumber: '8887775544',
         vetRelationship: 'Friend/Neighbor',
       },
       secondaryCaregiverTwo: {
-        fullName: { first: 'Michael', last: 'Smith' },
+        fullName: { first: 'Michael', last: 'Smith', suffix: 'III' },
         dateOfBirth: '1980-01-01',
         gender: 'M',
-        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771' },
+        address: { street: '123 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
         primaryPhoneNumber: '1234567890',
         alternativePhoneNumber: '8887775544',
         vetRelationship: 'Friend/Neighbor',

@@ -10,7 +10,8 @@
       "street": "111 2nd St S",
       "city": "Seattle",
       "state": "WA",
-      "postalCode": "33771"
+      "postalCode": "33771",
+      "county": "Washington"
     },
     "primaryPhoneNumber": "8887775544",
     "plannedClinic": "740",
@@ -29,11 +30,11 @@
       "street": "111 2nd St S",
       "city": "Seattle",
       "state": "WA",
-      "postalCode": "33771"
+      "postalCode": "33771",
+      "county": "Washington"
     },
     "primaryPhoneNumber": "8887775544",
     "vetRelationship": "Spouse",
-    "hasHealthInsurance": true,
     "certifications": [
       "information-is-correct-and-true",
       "at-least-18-years-of-age",
@@ -54,7 +55,8 @@
       "street": "111 2nd St S",
       "city": "Seattle",
       "state": "WA",
-      "postalCode": "33771-1234"
+      "postalCode": "33771-1234",
+      "county": "Washington"
     },
     "primaryPhoneNumber": "8887775544",
     "vetRelationship": "Friend/Neighbor",
