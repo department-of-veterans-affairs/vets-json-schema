@@ -13,6 +13,11 @@ const schema = {
       minLength: 1,
       maxLength: 30,
     },
+    middle: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 1,
+    },
     last: {
       type: 'string',
       minLength: 1,
@@ -21,6 +26,11 @@ const schema = {
     suffix: {
       type: 'string',
       enum: ['Jr.', 'Sr.', 'II', 'III', 'IV'],
+    },
+    preferredName: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 30,
     },
   },
   additionalProperties: false,
@@ -35,27 +45,76 @@ const schema = {
       required: ['address'],
     },
   ],
-  required: ['fullName', 'preferredContactMethod', 'topic', 'inquiryType', 'query', 'veteranStatus'],
+  required: ['contactInformation', 'personalInformation', 'preferredContactMethod', 'topic', 'inquiryType', 'query', 'veteranStatus'],
   properties: {
-    fullName: {
+    contactInformation: {
+        type: 'object',
+        properties: {
+          email: {
+            $ref: '#/definitions/email',
+          },
+          phone: {
+            $ref: '#/definitions/phone',
+          },
+          address: {
+            $ref: '#/definitions/address',
+          },
+        },
+    },
+    personalInformation: {
       type: 'object',
       properties: {
+        dateOfBirth: {
+          $ref: '#/definitions/date',
+        },
         first: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 30,
+          $ref: '#/definitions/first',
+        },
+        middle: {
+          $ref: '#/definitions/middle',
         },
         last: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 30,
+          $ref: '#/definitions/last',
         },
         suffix: {
+          $ref: '#/definitions/suffix',
+        },
+        preferredName: {
+          $ref: '#/definitions/preferredName',
+        },    
+        socialSecurityNumber: {
+          $ref: '#/definitions/ssn',
+        },
+        serviceNumber: {
           type: 'string',
-          enum: ['Jr.', 'Sr.', 'II', 'III', 'IV'],
+          pattern: '^\\d{0,12}$',
         },
       },
       required: ['first', 'last'],
+    },
+    avaProfile: {
+      type: 'object',
+      properties: {
+        schoolInfo: {
+          type: 'object',
+          properties: {
+            schoolFacilityCode: {
+              type: 'string',
+              pattern: '^\\d{8}$',
+            },
+            schoolName: {
+              type: 'string',
+              minLength: 1
+            }
+          },
+        },
+        businessPhone: {
+          $ref: '#/definitions/phone',
+        },
+        businessEmail: {
+          $ref: '#/definitions/email',
+        },
+      },
     },
     preferredContactMethod: {
       default: 'email',
@@ -1503,13 +1562,6 @@ const schema = {
     veteranServiceInformation: {
       type: 'object',
       properties: {
-        socialSecurityNumber: {
-          $ref: '#/definitions/ssn',
-        },
-        serviceNumber: {
-          type: 'string',
-          pattern: '^\\d{0,12}$',
-        },
         claimNumber: {
           type: 'string',
           pattern: '^\\d{6,8}$',
@@ -1544,22 +1596,10 @@ const schema = {
             'Other',
           ],
         },
-        dateOfBirth: {
-          $ref: '#/definitions/date',
-        },
         serviceDateRange: {
           $ref: '#/definitions/dateRange',
         },
       },
-    },
-    email: {
-      $ref: '#/definitions/email',
-    },
-    phone: {
-      $ref: '#/definitions/phone',
-    },
-    address: {
-      $ref: '#/definitions/address',
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
