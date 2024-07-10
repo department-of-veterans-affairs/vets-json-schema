@@ -53,6 +53,35 @@ export default {
       ],
     },
   },
+  personalInformation: {
+    fields: ['personalInformation'],
+    data: {
+      valid: [
+        { first: 'john', last: 'doe' },
+        { first: 'john', middle: 'A', last: 'doe' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.', preferredName: 'Joe' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.', preferredName: 'Joe', socialSecurityNumber: '123456799' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.', preferredName: 'Joe', socialSecurityNumber: '123456799', serviceNumber: '012345678911' },
+      ],
+      invalid: [{ first: 'john' }, { last: 'john' }, { middle: 'john' }],
+    },
+  },
+  contactInformation: {
+    fields: ['contactInformation'],
+    data: {
+      valid: [
+        { email: 'name@example.com' },
+        { email: 'name@example.com', phone: '5555555555' },
+        { email: 'name@example.com', phone: '55555555555', address: {
+          country: 'usa',
+          city: 'va',
+          postalCode: '80112'
+        } },
+      ],
+      invalid: [ { email: 'foo'} , { phone: 'foo' }, {address: 'foo'} ]
+    },
+  },
   fullName: {
     fields: ['veteranFullName'],
     data: {

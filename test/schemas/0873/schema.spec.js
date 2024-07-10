@@ -13,9 +13,22 @@ const schemaDefaults = {
   },
   inquiryType: 'Question',
   query: 'How do I apply for caregiver assistance?',
-  fullName: {
+  personalInformation: {
     first: 'bob',
     last: 'smith',
+    preferredName: 'Bobby',
+    middle: 'A',
+    socialSecurityNumber: '123456789',
+    serviceNumber: '123456'
+  },
+  contactInformation: {
+    email: 'bob.smith@example.com',
+    phone: '1234567890',
+    address: {
+      country: 'Anytown',
+      state: 'VA',
+      postalCode: '12345'
+    }
   },
   preferredContactMethod: 'email',
   veteranStatus: {
@@ -28,11 +41,9 @@ const sharedTests = new SharedTests(schemaTestHelper);
 
 describe('IRIS Ask a Question json schema', () => {
   [
-    ['fullName', ['fullName']],
+    ['personalInformation', ['personalInformation']],
     ['preferredContactMethod'],
-    ['email'],
-    ['phone', ['phone']],
-    ['address', ['address']],
+    ['contactInformation', ['contactInformation']]
   ].forEach(test => {
     sharedTests.runTest(...test);
   });
