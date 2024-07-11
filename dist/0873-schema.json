@@ -277,23 +277,6 @@
     }
   },
   "additionalProperties": false,
-  "anyOf": [
-    {
-      "required": [
-        "email"
-      ]
-    },
-    {
-      "required": [
-        "phone"
-      ]
-    },
-    {
-      "required": [
-        "address"
-      ]
-    }
-  ],
   "required": [
     "contactInformation",
     "personalInformation",
@@ -316,7 +299,24 @@
         "address": {
           "$ref": "#/definitions/address"
         }
-      }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "email"
+          ]
+        },
+        {
+          "required": [
+            "phone"
+          ]
+        },
+        {
+          "required": [
+            "address"
+          ]
+        }
+      ]
     },
     "personalInformation": {
       "type": "object",
