@@ -34,17 +34,6 @@ const schema = {
     },
   },
   additionalProperties: false,
-  anyOf: [
-    {
-      required: ['email'],
-    },
-    {
-      required: ['phone'],
-    },
-    {
-      required: ['address'],
-    },
-  ],
   required: ['contactInformation', 'personalInformation', 'preferredContactMethod', 'topic', 'inquiryType', 'query', 'veteranStatus'],
   properties: {
     contactInformation: {
@@ -60,6 +49,17 @@ const schema = {
             $ref: '#/definitions/address',
           },
         },
+        anyOf: [
+          {
+            required: ['email'],
+          },
+          {
+            required: ['phone'],
+          },
+          {
+            required: ['address'],
+          },
+        ],
     },
     personalInformation: {
       type: 'object',
