@@ -958,7 +958,7 @@ const teraQuestions = {
   otherToxicExposure: {
     type: 'string',
     maxLength: 100,
-    pattern: '^[a-zA-Z0-9 ]+$',
+    pattern: '^[a-zA-Z0-9,.?! ]*$',
   },
   toxicExposureStartDate: date,
   toxicExposureEndDate: date,
@@ -1029,5 +1029,5 @@ export default {
   hcaPhone,
   insuranceProvider,
   hcaEmail,
-  yesNoSchema
+  yesNoSchema,
 };

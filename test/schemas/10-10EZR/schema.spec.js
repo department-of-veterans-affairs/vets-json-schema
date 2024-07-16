@@ -1,11 +1,10 @@
-import { omit } from 'lodash';
+import { difference, omit } from 'lodash';
+import { expect } from 'chai';
 import schemas from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
-import { definitions } from '../../../dist/schemas';
-import { expect } from 'chai';
-import { difference } from 'lodash';
 
 const applicationSchema = schemas['10-10EZR'];
+const { definitions } = schemas;
 
 const schemaTestHelper = new SchemaTestHelper(omit(applicationSchema, 'required'));
 
@@ -14,16 +13,14 @@ function stringGenerate(length) {
 }
 
 describe('ezr json schema', () => {
-  it('has tera fields', () => {
-    expect(
-      difference(Object.keys(definitions.teraQuestions), Object.keys(applicationSchema.properties)).length
-    ).to.equal(0);
+  it('should have TERA fields', () => {
+    const teraKeys = Object.keys(definitions.teraQuestions);
+    const schemaKeys = Object.keys(applicationSchema.properties);
+    expect(difference(teraKeys, schemaKeys).length).to.equal(0);
   });
 
   schemaTestHelper.testValidAndInvalid('medicareClaimNumber', {
-    valid: [
-      stringGenerate(30),
-    ],
+    valid: [stringGenerate(30)],
     invalid: [null, '', '     '],
   });
 });

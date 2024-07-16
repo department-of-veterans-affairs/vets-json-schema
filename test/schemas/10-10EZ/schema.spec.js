@@ -1,11 +1,10 @@
-import { omit } from 'lodash';
-import schemas from '../../../dist/schemas';
-import { definitions } from '../../../dist/schemas';
-import SchemaTestHelper from '../../support/schema-test-helper';
+import { difference, omit } from 'lodash';
 import { expect } from 'chai';
-import { difference } from 'lodash';
+import schemas from '../../../dist/schemas';
+import SchemaTestHelper from '../../support/schema-test-helper';
 
 const applicationSchema = schemas['10-10EZ'];
+const { definitions } = schemas;
 
 const schemaTestHelper = new SchemaTestHelper(omit(applicationSchema, 'required'));
 
@@ -27,10 +26,10 @@ describe('healthcare-application json schema', () => {
     invalid: [1],
   });
 
-  it('has tera fields', () => {
-    expect(
-      difference(Object.keys(definitions.teraQuestions), Object.keys(applicationSchema.properties)).length
-    ).to.equal(0);
+  it('should have TERA fields', () => {
+    const teraKeys = Object.keys(definitions.teraQuestions);
+    const schemaKeys = Object.keys(applicationSchema.properties);
+    expect(difference(teraKeys, schemaKeys).length).to.equal(0);
   });
 
   schemaTestHelper.testValidAndInvalid('lastServiceBranch', {

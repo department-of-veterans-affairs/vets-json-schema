@@ -1,8 +1,8 @@
+import { cloneDeep } from 'lodash';
 import SchemaTestHelper from '../support/schema-test-helper';
 import { definitions as originalDefinitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
 import testData from '../support/test-data';
-import { cloneDeep } from 'lodash';
 
 function stringGenerate(length) {
   return new Array(length + 1).join('a');
@@ -12,7 +12,7 @@ const definitions = cloneDeep(originalDefinitions);
 
 definitions.teraQuestions = {
   type: 'object',
-  properties: originalDefinitions.teraQuestions
+  properties: originalDefinitions.teraQuestions,
 };
 
 describe('schema definitions', () => {
@@ -33,11 +33,10 @@ describe('schema definitions', () => {
     valid: [
       { otherToxicExposure: 'foo' },
       { otherToxicExposure: 'foo bar' },
-      { otherToxicExposure: 'Foo123' }
+      { otherToxicExposure: 'Foo123' },
+      { otherToxicExposure: 'Foo123, Bar123' },
     ],
-    invalid: [
-      { otherToxicExposure: '$' }
-    ],
+    invalid: [{ otherToxicExposure: '$' }],
   });
 
   testValidAndInvalidDefinitions('insuranceProvider', {
@@ -472,7 +471,6 @@ describe('schema definitions', () => {
         street2: stringGenerate(13),
         street3: stringGenerate(5),
         city: stringGenerate(27),
-        postalCode: stringGenerate(5),
         postalCode: '   ',
       },
     ],
