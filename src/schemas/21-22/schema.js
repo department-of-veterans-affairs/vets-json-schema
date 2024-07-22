@@ -1,262 +1,208 @@
+import _ from 'lodash';
+import constants from '../../common/constants';
+import schemaHelpers from '../../common/schema-helpers';
+import definitions from '../../common/definitions';
+import { states50AndDC } from '../../common/address';
+
+const stateOfBirth = [...states50AndDC.map(state => state.value), 'Other'];
+
 const schema = {
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'Form 2122 Schema',
-  type: 'object',
-  additionalProperties: false,
-  required: ['veteran', 'serviceOrganization'],
-  properties: {
-    veteran: {
-      type: 'object',
-      additionalProperties: false,
-      required: ['address'],
-      properties: {
-        address: {
-          type: 'object',
-          additionalProperties: false,
-          required: ['addressLine1', 'city', 'country', 'stateCode', 'zipCode'],
-          properties: {
-            addressLine1: {
-              description: 'Street address with number and name.',
-              type: 'string',
-              pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
-              maxLength: 30,
-            },
-            addressLine2: {
-              type: 'string',
-              maxLength: 5,
-            },
-            city: {
-              description: 'City for the address.',
-              type: 'string',
-              example: 'Portland',
-              maxLength: 18,
-            },
-            stateCode: {
-              description: 'State for the address.',
-              type: 'string',
-              pattern: '^[a-z,A-Z]{2}$',
-              example: 'OR',
-            },
-            country: {
-              description: 'Country of the address.',
-              type: 'string',
-              example: 'USA',
-            },
-            zipCode: {
-              description: 'Zipcode (First 5 digits) of the address.',
-              type: 'string',
-              pattern: '^[0-9]{5}$',
-              example: '12345',
-            },
-            zipCodeSuffix: {
-              description: 'Zipcode (Last 4 digits) of the address.',
-              type: 'string',
-              pattern: '^[0-9]{4}$',
-              example: '6789',
-            },
-          },
-        },
-        phone: {
-          $comment: 'the phone fields must not exceed 20 chars, when concatenated',
-          type: 'object',
-          additionalProperties: false,
-          required: ['areaCode', 'phoneNumber'],
-          properties: {
-            countryCode: {
-              type: 'string',
-              pattern: '^[0-9]+$',
-            },
-            areaCode: {
-              description: 'Area code of the phone number.',
-              type: 'string',
-              pattern: '^[2-9][0-9]{2}$',
-              example: '555',
-            },
-            phoneNumber: {
-              description: 'Phone number.',
-              type: 'string',
-              pattern: '^[0-9]{1,14}$',
-              example: '555-5555',
-            },
-            phoneNumberExt: {
-              type: 'string',
-              pattern: '^[a-zA-Z0-9]{1,10}$',
-            },
-          },
-        },
-        email: {
-          description: 'Email address of the veteran.',
-          type: 'string',
-          pattern: '.@.',
-          maxLength: 61,
-          example: 'veteran@example.com',
-        },
-        serviceNumber: {
-          description: 'Service number for the veteran.',
-          type: 'string',
-          pattern: '^[0-9]{9}$',
-          example: '123456789',
-        },
-        insuranceNumber: {
-          type: 'string',
-          maxLength: 60,
-          description: "Veteran's insurance number, if applicable. Include letter prefix.",
-        },
-      },
-    },
-    claimant: {
-      type: 'object',
-      additionalProperties: false,
-      properties: {
-        claimantId: {
-          type: 'string',
-          example: '123456789',
-          description: 'Id of the claimant.',
-        },
-        address: {
-          type: 'object',
-          additionalProperties: false,
-          properties: {
-            addressLine1: {
-              description: 'Street address with number and name. Required if claimant information provided.',
-              type: 'string',
-              pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
-              maxLength: 30,
-            },
-            addressLine2: {
-              type: 'string',
-              maxLength: 5,
-            },
-            city: {
-              description: 'City for the address. Required if claimant information provided.',
-              type: 'string',
-              example: 'Portland',
-              maxLength: 18,
-            },
-            stateCode: {
-              description: 'State for the address. Required if claimant information provided.',
-              type: 'string',
-              pattern: '^[a-z,A-Z]{2}$',
-              example: 'OR',
-            },
-            country: {
-              description: 'Country of the address. Required if claimant information provided.',
-              type: 'string',
-              example: 'USA',
-            },
-            zipCode: {
-              description: 'Zipcode (First 5 digits) of the address. Required if claimant information provided.',
-              type: 'string',
-              pattern: '^[0-9]{5}$',
-              example: '12345',
-            },
-            zipCodeSuffix: {
-              description: 'Zipcode (Last 4 digits) of the address.',
-              type: 'string',
-              pattern: '^[0-9]{4}$',
-              example: '6789',
-            },
-            additionalProperties: {
-              type: 'boolean',
-            },
-          },
-        },
-        phone: {
-          $comment: 'the phone fields must not exceed 20 chars, when concatenated',
-          type: 'object',
-          additionalProperties: false,
-          required: ['areaCode', 'phoneNumber'],
-          properties: {
-            countryCode: {
-              type: 'string',
-              pattern: '^[0-9]+$',
-            },
-            areaCode: {
-              description: 'Area code of the phone number.',
-              type: 'string',
-              pattern: '^[2-9][0-9]{2}$',
-              example: '555',
-            },
-            phoneNumber: {
-              description: 'Phone number.',
-              type: 'string',
-              pattern: '^[0-9]{1,14}$',
-              example: '555-5555',
-            },
-            phoneNumberExt: {
-              type: 'string',
-              pattern: '^[a-zA-Z0-9]{1,10}$',
-            },
-          },
-        },
-        email: {
-          description: 'Email address of the claimant.',
-          type: 'string',
-          pattern: '.@.',
-          maxLength: 61,
-          example: 'claimant@example.com',
-        },
-        relationship: {
-          description: 'Relationship of claimant to the veteran. Required if claimant information provided.',
-          type: 'string',
-          example: 'Spouse',
-        },
-      },
-    },
-    serviceOrganization: {
-      description: 'Details of the Service Organization representing the veteran.',
-      type: 'object',
-      additionalProperties: false,
-      required: ['poaCode', 'registrationNumber'],
-      properties: {
-        poaCode: {
-          description: 'The POA code of the organization.',
-          type: 'string',
-          example: 'A1Q',
-        },
-        registrationNumber: {
-          description: 'Registration Number of representative.',
-          type: 'string',
-          example: '12345',
-        },
-        jobTitle: {
-          description: 'Job title of the representative.',
-          type: 'string',
-          example: 'Veteran Service representative',
-        },
-        email: {
-          description: 'Email address of the service organization or representative.',
-          type: 'string',
-          pattern: '.@.',
-          maxLength: 61,
-          example: 'veteran_representative@example.com',
-        },
-        appointmentDate: {
-          description: 'Date of appointment with Veteran.',
-          type: 'string',
-          pattern: '^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
-        },
-      },
-    },
-    recordConsent: {
-      description: "AUTHORIZATION FOR REPRESENTATIVE'S ACCESS TO RECORDS PROTECTED BY SECTION 7332, TITLE 38, U.S.C.",
-      type: 'boolean',
-    },
-    consentLimits: {
-      description:
-        'Consent in Item 19 for the disclosure of records relating to treatment for drug abuse, alcoholism or alcohol abuse, infection with the human immunodeficiency virus (HIV), or sickle cell anemia is limited as follows.',
-      type: 'array',
-      items: {
-        type: 'string',
-        enum: ['DRUG_ABUSE', 'ALCOHOLISM', 'HIV', 'SICKLE_CELL'],
-      },
-      example: 'DRUG_ABUSE',
-    },
-    consentAddressChange: {
-      description: "AUTHORIZATION FOR REPRESENTATIVE TO ACT ON CLAIMANT'S BEHALF TO CHANGE CLAIMANT'S ADDRESS.",
-      type: 'boolean',
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'APPLICATION FOR HEALTH BENEFITS (10-10EZ)',
+  definitions: {
+    date: {
+      format: 'date',
+      type: 'string',
     },
   },
+  type: 'object',
+  properties: {
+    attachments: (() => {
+      const attachments = _.cloneDeep(definitions.files);
+      attachments.items.properties.dd214 = { type: 'boolean' };
+      return attachments;
+    })(),
+    veteranFullName: definitions.hcaFullName,
+    //  Revisit how to validate that this is either empty or a string between 2 and 35 characters
+    mothersMaidenName: {
+      type: 'string',
+    },
+    veteranSocialSecurityNumber: definitions.ssn,
+    gender: {
+      type: 'string',
+      enum: constants.genders.map(option => option.value),
+    },
+    sigiGenders: definitions.sigiGenders,
+    cityOfBirth: {
+      type: 'string',
+      minLength: 2,
+      maxLength: 20,
+    },
+    stateOfBirth: {
+      type: 'string',
+      enum: stateOfBirth,
+    },
+    veteranDateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    maritalStatus: definitions.maritalStatus,
+    vaCompensationType: {
+      type: 'string',
+      enum: ['lowDisability', 'highDisability', 'none'],
+    },
+    vaPensionType: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
+    isEssentialAcaCoverage: {
+      type: 'boolean',
+    },
+    vaMedicalFacility: {
+      type: 'string',
+      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
+    },
+    wantsInitialVaContact: {
+      type: 'boolean',
+    },
+    isSpanishHispanicLatino: {
+      type: 'boolean',
+    },
+    isAmericanIndianOrAlaskanNative: {
+      type: 'boolean',
+    },
+    isBlackOrAfricanAmerican: {
+      type: 'boolean',
+    },
+    isNativeHawaiianOrOtherPacificIslander: {
+      type: 'boolean',
+    },
+    isAsian: {
+      type: 'boolean',
+    },
+    isWhite: {
+      type: 'boolean',
+    },
+    hasDemographicNoAnswer: {
+      type: 'boolean',
+    },
+    veteranAddress: definitions.hcaAddress,
+    veteranHomeAddress: definitions.hcaAddress,
+    email: definitions.hcaEmail,
+    homePhone: definitions.hcaPhone,
+    mobilePhone: definitions.hcaPhone,
+    discloseFinancialInformation: {
+      type: 'boolean',
+    },
+    spouseFullName: definitions.hcaFullName,
+    spouseSocialSecurityNumber: definitions.ssn,
+    spouseDateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    dateOfMarriage: {
+      $ref: '#/definitions/date',
+    },
+    sameAddress: {
+      type: 'boolean',
+    },
+    cohabitedLastYear: {
+      type: 'boolean',
+    },
+    provideSupportLastYear: {
+      type: 'boolean',
+    },
+    spouseAddress: definitions.hcaAddress,
+    spousePhone: definitions.hcaPhone,
+    dependents: definitions.hcaDependents,
+    veteranGrossIncome: definitions.hcaMonetaryValue,
+    veteranNetIncome: definitions.hcaMonetaryValue,
+    veteranOtherIncome: definitions.hcaMonetaryValue,
+    spouseGrossIncome: definitions.hcaMonetaryValue,
+    spouseNetIncome: definitions.hcaMonetaryValue,
+    spouseOtherIncome: definitions.hcaMonetaryValue,
+    deductibleMedicalExpenses: definitions.hcaMonetaryValue,
+    deductibleFuneralExpenses: definitions.hcaMonetaryValue,
+    deductibleEducationExpenses: definitions.hcaMonetaryValue,
+    isCoveredByHealthInsurance: {
+      type: 'boolean',
+    },
+    providers: {
+      type: 'array',
+      items: definitions.insuranceProvider,
+    },
+    isMedicaidEligible: {
+      type: 'boolean',
+    },
+    isEnrolledMedicarePartA: {
+      type: 'boolean',
+    },
+    medicarePartAEffectiveDate: {
+      $ref: '#/definitions/date',
+    },
+    medicareClaimNumber: {
+      type: 'string',
+      maxLength: 30,
+    },
+    lastServiceBranch: {
+      type: 'string',
+      enum: constants.branchesServed.map(option => option.value),
+    },
+    lastEntryDate: {
+      $ref: '#/definitions/date',
+    },
+    lastDischargeDate: {
+      $ref: '#/definitions/date',
+    },
+    dischargeType: definitions.dischargeType,
+    purpleHeartRecipient: {
+      type: 'boolean',
+    },
+    isFormerPow: {
+      type: 'boolean',
+    },
+    postNov111998Combat: {
+      type: 'boolean',
+    },
+    disabledInLineOfDuty: {
+      type: 'boolean',
+    },
+    swAsiaCombat: {
+      type: 'boolean',
+    },
+    vietnamService: {
+      type: 'boolean',
+    },
+    exposedToRadiation: {
+      type: 'boolean',
+    },
+    radiumTreatments: {
+      type: 'boolean',
+    },
+    campLejeune: {
+      type: 'boolean',
+    },
+    privacyAgreementAccepted: {
+      type: 'boolean',
+      enum: [true],
+    },
+  },
+  required: [
+    'privacyAgreementAccepted',
+    'veteranFullName',
+    'veteranSocialSecurityNumber',
+    'veteranDateOfBirth',
+    'gender',
+    'isSpanishHispanicLatino',
+    'veteranAddress',
+    'isMedicaidEligible',
+    'isEssentialAcaCoverage',
+    'vaMedicalFacility',
+  ],
 };
+
+schema.properties = { ...schema.properties, ...definitions.teraQuestions };
+
+[['maritalStatus']].forEach(args => {
+  schemaHelpers.addDefinitionToSchema(schema, ...args);
+});
 
 export default schema;
