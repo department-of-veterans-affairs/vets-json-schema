@@ -28,6 +28,7 @@
           ]
         },
         "attributes": {
+          "type": "object",
           "properties": {
             "status": {
               "$ref": "#/definitions/hlrStatus"
