@@ -105,7 +105,13 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['recipientRelationship', 'assetType', 'grossMonthlyIncome', 'payer'],
+        required: [
+          'recipientRelationship',
+          'incomeGenerationMethod',
+          'grossMonthlyIncome',
+          'fairMarketValue',
+          'canBeSold',
+        ],
         properties: {
           recipientName: { type: 'string' },
           recipientRelationship: schemaHelpers.getDefinition('relationshipToVeteran'),
