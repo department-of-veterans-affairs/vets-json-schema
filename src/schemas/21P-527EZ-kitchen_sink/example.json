@@ -41,12 +41,14 @@
     "medicaidStatus": true,
     "specialMonthlyPension": false,
     "vaTreatmentHistory": true,
+    "view:isAddingVAMedicalCenters": false,
     "vaMedicalCenters": [
       {
         "medicalCenter": "Dallas VA Medical Center"
       }
     ],
     "federalTreatmentHistory": true,
+    "view:isAddingFederalMedicalCenters": false,
     "federalMedicalCenters": [
       {
         "medicalCenter": "Memphis Health Care"
