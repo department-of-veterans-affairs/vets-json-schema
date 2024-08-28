@@ -25,7 +25,9 @@
     "nursingHome": false,
     "specialMonthlyPension": false,
     "vaTreatmentHistory": false,
+    "view:isAddingVAMedicalCenters": false,
     "federalTreatmentHistory": false,
+    "view:isAddingFederalMedicalCenters": false,
     "currentEmployment": false,
     "previousEmployers": [
       {
