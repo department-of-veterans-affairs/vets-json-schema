@@ -99,6 +99,10 @@ const schema = {
         'chapter35',
       ],
     },
+    rudisillReview: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
     changeAnotherBenefit: {
       type: 'string',
       enum: ['Yes', 'No'],

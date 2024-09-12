@@ -18,6 +18,7 @@
     },
     "serviceNumber": "123456",
     "serveUnderOtherNames": false,
+    "view:isAddingOtherNames": false,
     "placeOfSeparation": "Westbrook, MA",
     "powStatus": false,
     "socialSecurityDisability": true,
@@ -29,6 +30,7 @@
     "federalTreatmentHistory": false,
     "view:isAddingFederalMedicalCenters": false,
     "currentEmployment": false,
+    "view:isAddingPreviousEmployment": false,
     "previousEmployers": [
       {
         "jobDate": "2020-06-15",
@@ -39,6 +41,7 @@
     ],
     "maritalStatus": "NEVER_MARRIED",
     "view:hasDependents": false,
+    "view:isAddingDependents": false,
     "totalNetWorth": true,
     "hasCareExpenses": false,
     "hasMedicalExpenses": false,

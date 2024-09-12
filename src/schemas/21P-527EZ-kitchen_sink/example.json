@@ -20,6 +20,7 @@
     },
     "serviceNumber": "123456",
     "serveUnderOtherNames": true,
+    "view:isAddingOtherNames": false,
     "previousNames": [
       {
         "previousFullName": {
@@ -55,6 +56,7 @@
       }
     ],
     "currentEmployment": true,
+    "view:isAddingCurrentEmployment": false,
     "currentEmployers": [
       {
         "jobType": "Customer service",
@@ -153,6 +155,7 @@
       }
     ],
     "view:hasDependents": true,
+    "view:isAddingDependents": false,
     "dependents": [
       {
         "childInHousehold": false,
