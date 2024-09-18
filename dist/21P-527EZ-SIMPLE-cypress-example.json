@@ -48,6 +48,7 @@
     "transferredAssets": false,
     "homeOwnership": false,
     "receivesIncome": false,
+    "view:isAddingIncomeSources": false,
     "view:usingDirectDeposit": false,
     "veteranAddress": {
       "street": "123 8th st",
