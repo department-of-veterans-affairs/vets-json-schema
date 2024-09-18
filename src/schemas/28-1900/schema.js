@@ -9,7 +9,7 @@ const schema = {
   title: 'DISABLED VETERANS APPLICATION FOR VOCATIONAL REHABILITATION (28-1900)',
   type: 'object',
   additionalProperties: true,
-  definitions: pick(definitions, 'date', 'fullName', 'phone', 'email', 'profileAddress'),
+  definitions: pick(definitions, ['date', 'fullName', 'phone', 'email', 'profileAddress']),
   properties: {
     veteranInformation: {
       type: 'object',
