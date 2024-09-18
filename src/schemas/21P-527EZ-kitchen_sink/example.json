@@ -328,6 +328,7 @@
     "homeAcreageValue": 75000,
     "landMarketable": true,
     "receivesIncome": true,
+    "view:isAddingIncomeSources": false,
     "incomeSources": [
       {
         "typeOfIncome": "SOCIAL_SECURITY",
