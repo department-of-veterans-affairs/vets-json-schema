@@ -82,7 +82,7 @@ const schema = {
   },
   required: ['veteranFullName', 'veteranDesc', 'email', 'country', 'state'],
 };
-[['fullName', 'veteranFullName']].forEach(args => {
+[['fullName', 'veteranFullName', 'country']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 export default schema;
