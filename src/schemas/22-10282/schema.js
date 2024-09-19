@@ -4,6 +4,8 @@ import schemaHelpers from '../../common/schema-helpers';
 import constants from '../../common/constants';
 
 const definitions = _.cloneDeep(originalDefinitions);
+const { salesforceCountries: countries } = constants;
+const nonUSACountries = countries.filter(country => country.value !== 'USA');
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -39,7 +41,8 @@ const schema = {
       $ref: '#/definitions/usaPhone',
     },
     country: {
-      $ref: '#/definitions/country',
+      type: 'string', // TYPE: text (255)
+      enum: nonUSACountries.map(country => country.label),
     },
     state: {
       type: 'string',
@@ -79,7 +82,7 @@ const schema = {
   },
   required: ['veteranFullName', 'veteranDesc', 'email', 'country', 'state'],
 };
-[['veteranFullName'], ['veteranDesc']].forEach(args => {
+[['fullName', 'veteranFullName']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
 });
 export default schema;
