@@ -36,37 +36,14 @@
         "last"
       ]
     },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
     "usaPhone": {
       "type": "string",
       "pattern": "^\\d{10}$"
-    }
-  },
-  "properties": {
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranDesc": {
-      "type": "string",
-      "enum": [
-        "veteran",
-        "veteransSpouse",
-        "veteransChild",
-        "veteransCaregiver",
-        "activeduty",
-        "nationalGuard",
-        "reservist",
-        "individualReadyReserve"
-      ]
-    },
-    "email": {
-      "type": "string",
-      "format": "email"
-    },
-    "homePhone": {
-      "$ref": "#/definitions/usaPhone"
-    },
-    "mobilePhone": {
-      "$ref": "#/definitions/usaPhone"
     },
     "country": {
       "type": "string",
@@ -298,6 +275,7 @@
         "Ukraine",
         "United Arab Emirates",
         "United Kingdom",
+        "United States",
         "Uruguay",
         "Uzbekistan",
         "Vanuatu",
@@ -310,6 +288,37 @@
         "Zambia",
         "Zimbabwe"
       ]
+    }
+  },
+  "properties": {
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranDesc": {
+      "type": "string",
+      "enum": [
+        "veteran",
+        "veteransSpouse",
+        "veteransChild",
+        "veteransCaregiver",
+        "activeduty",
+        "nationalGuard",
+        "reservist",
+        "individualReadyReserve"
+      ]
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "homePhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "mobilePhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "country": {
+      "$ref": "#/definitions/country"
     },
     "state": {
       "type": "string",
