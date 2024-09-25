@@ -288,37 +288,6 @@
         "Zambia",
         "Zimbabwe"
       ]
-    }
-  },
-  "properties": {
-    "veteranFullName": {
-      "$ref": "#/definitions/fullName"
-    },
-    "veteranDesc": {
-      "type": "string",
-      "enum": [
-        "veteran",
-        "veteransSpouse",
-        "veteransChild",
-        "veteransCaregiver",
-        "activeduty",
-        "nationalGuard",
-        "reservist",
-        "individualReadyReserve"
-      ]
-    },
-    "email": {
-      "type": "string",
-      "format": "email"
-    },
-    "homePhone": {
-      "$ref": "#/definitions/usaPhone"
-    },
-    "mobilePhone": {
-      "$ref": "#/definitions/usaPhone"
-    },
-    "country": {
-      "$ref": "#/definitions/country"
     },
     "state": {
       "type": "string",
@@ -393,6 +362,47 @@
         "Yes",
         "No"
       ]
+    }
+  },
+  "properties": {
+    "veteranFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranDesc": {
+      "type": "string",
+      "enum": [
+        "veteran",
+        "veteransSpouse",
+        "veteransChild",
+        "veteransCaregiver",
+        "activeduty",
+        "nationalGuard",
+        "reservist",
+        "individualReadyReserve"
+      ]
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "mobilePhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "homePhone": {
+      "$ref": "#/definitions/usaPhone"
+    },
+    "country": {
+      "$ref": "#/definitions/country"
+    },
+    "state": {
+      "$ref": "#/definitions/state"
+    },
+    "raceAndGender": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
     },
     "ethnicity": {
       "type": "string",
@@ -411,19 +421,83 @@
         "Native Hawaiian or Other Pacific Islander",
         "White",
         "Prefer not to answer"
+      ]
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "Man",
+        "Non-binary",
+        "Transgender man",
+        "Transgender woman",
+        "Woman",
+        "Prefer not to answer",
+        "A gender not listed here"
+      ]
+    },
+    "highestLevelOfEducation": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "A high school diploma or GED",
+            "An associate degree",
+            "A bachelor's degree",
+            "A master's degree",
+            "A doctoral degree like a PhD",
+            "Something else"
+          ]
+        },
+        "otherEducation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "level"
       ],
-      "gender": {
-        "type": "string",
-        "enum": [
-          "Man",
-          "Non-binary",
-          "Transgender man",
-          "Transgender woman",
-          "Woman",
-          "Prefer not to answer",
-          "A gender not listed here"
-        ]
+      "dependencies": {
+        "level": {
+          "oneOf": [
+            {
+              "properties": {
+                "level": {
+                  "enum": [
+                    "Something else"
+                  ]
+                },
+                "otherEducation": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "otherEducation"
+              ]
+            },
+            {
+              "properties": {
+                "level": {
+                  "enum": [
+                    "A high school diploma or GED",
+                    "An associate degree",
+                    "A bachelor's degree",
+                    "A master's degree",
+                    "A doctoral degree like a PhD"
+                  ]
+                }
+              }
+            }
+          ]
+        }
       }
+    },
+    "currentlyEmployed": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
     }
   },
   "required": [

@@ -39,8 +39,6 @@ const lastServiceBranchLabels = {
   other: 'Other',
 };
 
-
-
 export const serviceBranchEnum = () => {
   return Object.values(lastServiceBranchLabels);
 };
@@ -54,16 +52,7 @@ const schema = {
   title: 'COVID VACCINATION EXPANSION',
   type: 'object',
   additionalProperties: false,
-  definitions: pick(
-    definitions,
-    'date',
-    'ssn',
-    'vaFileNumber',
-    'phone',
-    'email',
-    'profileAddress',
-    'dateRange',
-  ),
+  definitions: pick(definitions, 'date', 'ssn', 'vaFileNumber', 'phone', 'email', 'profileAddress', 'dateRange'),
   properties: {
     attestation: {
       type: 'object',

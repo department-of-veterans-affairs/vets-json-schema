@@ -6,12 +6,20 @@ import constants from '../../common/constants';
 const definitions = _.cloneDeep(originalDefinitions);
 const { salesforceCountries: countries } = constants;
 // const nonUSACountries = countries.filter(country => country.value !== 'USA');
-
+// enum: constants.usaStates,
 definitions.country = {
   type: 'string',
   enum: countries.map(country => country.label),
 };
-const pickedDefinitions = _.pick(definitions, ['fullName', 'email', 'usaPhone', 'country']);
+definitions.state = {
+  type: 'string',
+  enum: constants.usaStates,
+};
+definitions.raceAndGender = {
+  type: 'string',
+  enum: ['Yes', 'No'],
+};
+const pickedDefinitions = _.pick(definitions, ['fullName', 'email', 'usaPhone', 'country', 'state', 'raceAndGender']);
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: '22-10282 IBM Skillsbuild Training Program Intake Application',
@@ -39,18 +47,17 @@ const schema = {
       type: 'string',
       format: 'email',
     },
-    homePhone: {
+    mobilePhone: {
       $ref: '#/definitions/usaPhone',
     },
-    mobilePhone: {
+    homePhone: {
       $ref: '#/definitions/usaPhone',
     },
     country: {
       $ref: '#/definitions/country',
     },
     state: {
-      type: 'string',
-      enum: constants.usaStates,
+      $ref: '#/definitions/state',
     },
     raceAndGender: {
       type: 'string',
@@ -70,18 +77,73 @@ const schema = {
         'White',
         'Prefer not to answer',
       ],
-      gender: {
-        type: 'string',
-        enum: [
-          'Man',
-          'Non-binary',
-          'Transgender man',
-          'Transgender woman',
-          'Woman',
-          'Prefer not to answer',
-          'A gender not listed here',
-        ],
+    },
+    gender: {
+      type: 'string',
+      enum: [
+        'Man',
+        'Non-binary',
+        'Transgender man',
+        'Transgender woman',
+        'Woman',
+        'Prefer not to answer',
+        'A gender not listed here',
+      ],
+    },
+    highestLevelOfEducation: {
+      type: 'object',
+      properties: {
+        level: {
+          type: 'string',
+          enum: [
+            'A high school diploma or GED',
+            'An associate degree',
+            "A bachelor's degree",
+            "A master's degree",
+            'A doctoral degree like a PhD',
+            'Something else',
+          ],
+        },
+        otherEducation: {
+          type: 'string',
+        },
       },
+      required: ['level'],
+      dependencies: {
+        level: {
+          oneOf: [
+            {
+              properties: {
+                level: {
+                  enum: ['Something else'],
+                },
+                otherEducation: {
+                  type: 'string',
+                  minLength: 1,
+                },
+              },
+              required: ['otherEducation'],
+            },
+            {
+              properties: {
+                level: {
+                  enum: [
+                    'A high school diploma or GED',
+                    'An associate degree',
+                    "A bachelor's degree",
+                    "A master's degree",
+                    'A doctoral degree like a PhD',
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+    currentlyEmployed: {
+      type: 'string',
+      enum: ['Yes', 'No'],
     },
   },
   required: ['veteranFullName', 'veteranDesc', 'email', 'country', 'state'],
