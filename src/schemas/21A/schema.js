@@ -1,11 +1,12 @@
-import _ from 'lodash';
-import constants from '../../common/constants';
+import pick from 'lodash/pick';
+import { countries } from '../../common/constants';
 import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Apply to become a VA-accredited attorney or claims agent',
   type: 'object',
+  definitions: pick(definitions, 'country', 'date', 'email', 'phone'),
   properties: {
     firstName: {
       type: 'string',
@@ -35,15 +36,16 @@ const schema = {
           type: 'string',
         },
         state: {
-          $ref: '#/definitions/state',
+          type: 'string',
         },
         postalCode: {
           type: 'string',
         },
         country: {
-          $ref: '#/definitions/country',
+          type: 'string',
+          enum: countries.map(x => x.value),
         },
-      }
+      },
     },
     homePhone: {
       $ref: '#/definitions/phone',
@@ -54,8 +56,8 @@ const schema = {
         name: {
           type: 'string',
           enum: ['CELL', 'HOME', 'WORK'],
-        }
-      }
+        },
+      },
     },
     homeEmail: {
       $ref: '#/definitions/email',
@@ -83,15 +85,16 @@ const schema = {
           type: 'string',
         },
         state: {
-          $ref: '#/definitions/state',
+          type: 'string',
         },
         postalCode: {
           type: 'string',
         },
         country: {
-          $ref: '#/definitions/country',
+          type: 'string',
+          enum: countries.map(x => x.value),
         },
-      }
+      },
     },
     birthdate: {
       $ref: '#/definitions/date',
@@ -100,10 +103,11 @@ const schema = {
       type: 'string',
     },
     birthState: {
-      $ref: '#/definitions/state',
+      type: 'string',
     },
     birthCountry: {
-      $ref: '#/definitions/country',
+      type: 'string',
+      enum: countries.map(x => x.value),
     },
     militaryServices: {
       type: 'array',
@@ -115,16 +119,16 @@ const schema = {
             properties: {
               name: {
                 type: 'string',
-              }
-            }
+              },
+            },
           },
           dischargeType: {
             type: 'object',
             properties: {
               name: {
                 type: 'string',
-              }
-            }
+              },
+            },
           },
           dischargeTypeExplanation: {
             type: 'string',
@@ -135,8 +139,8 @@ const schema = {
           dischargeDate: {
             $ref: '#/definitions/date',
           },
-        }
-      }
+        },
+      },
     },
     employment: {
       type: 'array',
@@ -156,15 +160,16 @@ const schema = {
                 type: 'string',
               },
               state: {
-                $ref: '#/definitions/state',
+                type: 'string',
               },
               postalCode: {
                 type: 'string',
               },
               country: {
-                $ref: '#/definitions/country',
+                type: 'string',
+                enum: countries.map(x => x.value),
               },
-            }
+            },
           },
           phoneNumber: {
             $ref: '#/definitions/phone',
@@ -187,8 +192,8 @@ const schema = {
           supervisorEmail: {
             $ref: '#/definitions/email',
           },
-        }
-      }
+        },
+      },
     },
     financialPlaning: {
       type: 'string',
@@ -229,15 +234,16 @@ const schema = {
                 type: 'string',
               },
               state: {
-                $ref: '#/definitions/state',
+                type: 'string',
               },
               postalCode: {
                 type: 'string',
               },
               country: {
-                $ref: '#/definitions/country',
+                type: 'string',
+                enum: countries.map(x => x.value),
               },
-            }
+            },
           },
           startDate: {
             $ref: '#/definitions/date',
@@ -254,13 +260,13 @@ const schema = {
               name: {
                 type: 'string',
               },
-            }
+            },
           },
           major: {
             type: 'string',
           },
-        }
-      }
+        },
+      },
     },
     jurisdictions: {
       type: 'array',
@@ -279,8 +285,8 @@ const schema = {
           admittanceType: {
             type: 'string',
           },
-        }
-      }
+        },
+      },
     },
     agencies: {
       type: 'array',
@@ -299,8 +305,8 @@ const schema = {
           admittanceType: {
             type: 'string',
           },
-        }
-      }
+        },
+      },
     },
     wasImprisoned: {
       type: 'boolean',
@@ -333,15 +339,6 @@ const schema = {
       type: 'string',
     },
     suspendedDocumentation: {
-      type: 'string',
-    },
-    hasWithdrawn: {
-      type: 'boolean',
-    },
-    withdrawnExplanation: {
-      type: 'string',
-    },
-    withdrawnDocumentation: {
       type: 'string',
     },
     hasWithdrawn: {
@@ -458,15 +455,16 @@ const schema = {
                 type: 'string',
               },
               state: {
-                $ref: '#/definitions/state',
+                type: 'string',
               },
               postalCode: {
                 type: 'string',
               },
               country: {
-                $ref: '#/definitions/country',
+                type: 'string',
+                enum: countries.map(x => x.value),
               },
-            }
+            },
           },
           email: {
             $ref: '#/definitions/email',
@@ -479,11 +477,11 @@ const schema = {
             properties: {
               name: {
                 type: 'string',
-              }
-            }
-          }
-        }
-      }
+              },
+            },
+          },
+        },
+      },
     },
     signature: {
       type: 'string',
