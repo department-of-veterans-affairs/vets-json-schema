@@ -59,7 +59,6 @@ const schema = {
     },
     vaMedicalFacility: {
       type: 'string',
-      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
     },
     wantsInitialVaContact: {
       type: 'boolean',
