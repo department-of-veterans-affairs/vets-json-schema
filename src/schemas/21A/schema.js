@@ -6,7 +6,7 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Apply to become a VA-accredited attorney or claims agent',
   type: 'object',
-  definitions: pick(definitions, 'country', 'date', 'email', 'phone'),
+  definitions: pick(definitions, 'country', 'date', 'email', 'files', 'phone'),
   properties: {
     firstName: {
       type: 'string',
@@ -195,20 +195,20 @@ const schema = {
         },
       },
     },
-    financialPlaning: {
-      type: 'string',
+    financialPlanning: {
+      type: 'boolean',
     },
     homeNursingCare: {
-      type: 'string',
+      type: 'boolean',
     },
     medicalServices: {
-      type: 'string',
+      type: 'boolean',
     },
     consultingService: {
-      type: 'string',
+      type: 'boolean',
     },
     advertisingtoVeterans: {
-      type: 'string',
+      type: 'boolean',
     },
     education: {
       type: 'array',
@@ -315,7 +315,7 @@ const schema = {
       type: 'string',
     },
     imprisonedDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     wasMilitaryConviction: {
       type: 'boolean',
@@ -330,7 +330,7 @@ const schema = {
       type: 'string',
     },
     currentlyChargedDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     wasSuspended: {
       type: 'boolean',
@@ -339,7 +339,7 @@ const schema = {
       type: 'string',
     },
     suspendedDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     hasWithdrawn: {
       type: 'boolean',
@@ -348,7 +348,7 @@ const schema = {
       type: 'string',
     },
     withdrawnDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     wasDisciplined: {
       type: 'boolean',
@@ -357,7 +357,7 @@ const schema = {
       type: 'string',
     },
     disciplinedDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     hasResignedRetired: {
       type: 'boolean',
@@ -366,7 +366,7 @@ const schema = {
       type: 'string',
     },
     resignedRetiredDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     wasAgentAttorney: {
       type: 'boolean',
@@ -375,7 +375,7 @@ const schema = {
       type: 'string',
     },
     agentAttorneyDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     wasReprimanded: {
       type: 'boolean',
@@ -384,7 +384,7 @@ const schema = {
       type: 'string',
     },
     reprimandedDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     hasResignedToAvoidReprimand: {
       type: 'boolean',
@@ -393,7 +393,7 @@ const schema = {
       type: 'string',
     },
     resignedToAvoidReprimandDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     hasAppliedForAccreditation: {
       type: 'boolean',
@@ -402,13 +402,13 @@ const schema = {
       type: 'string',
     },
     appliedForAccreditationDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     wasAccreditationTerminated: {
       type: 'boolean',
     },
     accreditationTerminatedDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     accreditationTerminatedExplanation: {
       type: 'string',
@@ -420,7 +420,7 @@ const schema = {
       type: 'string',
     },
     impairmentsDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     hasPhysicalLimitations: {
       type: 'boolean',
@@ -429,7 +429,7 @@ const schema = {
       type: 'string',
     },
     physicalLimitationsDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     characterReferences: {
       type: 'array',
@@ -486,11 +486,8 @@ const schema = {
     signature: {
       type: 'string',
     },
-    gender: {
-      type: 'string',
-    },
     jurisdictionDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     jurisdictionDeclinedToUploadDocuments: {
       type: 'boolean',
@@ -499,7 +496,7 @@ const schema = {
       type: 'string',
     },
     agenciesDocumentation: {
-      type: 'string',
+      $ref: '#/definitions/files',
     },
     agenciesDeclinedToUploadDocuments: {
       type: 'boolean',

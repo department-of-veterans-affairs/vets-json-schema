@@ -12,6 +12,23 @@
       "maxLength": 256,
       "format": "email"
     },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "phone": {
       "type": "string",
       "minLength": 10
@@ -1132,20 +1149,20 @@
         }
       }
     },
-    "financialPlaning": {
-      "type": "string"
+    "financialPlanning": {
+      "type": "boolean"
     },
     "homeNursingCare": {
-      "type": "string"
+      "type": "boolean"
     },
     "medicalServices": {
-      "type": "string"
+      "type": "boolean"
     },
     "consultingService": {
-      "type": "string"
+      "type": "boolean"
     },
     "advertisingtoVeterans": {
-      "type": "string"
+      "type": "boolean"
     },
     "education": {
       "type": "array",
@@ -1481,7 +1498,7 @@
       "type": "string"
     },
     "imprisonedDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "wasMilitaryConviction": {
       "type": "boolean"
@@ -1496,7 +1513,7 @@
       "type": "string"
     },
     "currentlyChargedDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "wasSuspended": {
       "type": "boolean"
@@ -1505,7 +1522,7 @@
       "type": "string"
     },
     "suspendedDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "hasWithdrawn": {
       "type": "boolean"
@@ -1514,7 +1531,7 @@
       "type": "string"
     },
     "withdrawnDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "wasDisciplined": {
       "type": "boolean"
@@ -1523,7 +1540,7 @@
       "type": "string"
     },
     "disciplinedDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "hasResignedRetired": {
       "type": "boolean"
@@ -1532,7 +1549,7 @@
       "type": "string"
     },
     "resignedRetiredDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "wasAgentAttorney": {
       "type": "boolean"
@@ -1541,7 +1558,7 @@
       "type": "string"
     },
     "agentAttorneyDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "wasReprimanded": {
       "type": "boolean"
@@ -1550,7 +1567,7 @@
       "type": "string"
     },
     "reprimandedDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "hasResignedToAvoidReprimand": {
       "type": "boolean"
@@ -1559,7 +1576,7 @@
       "type": "string"
     },
     "resignedToAvoidReprimandDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "hasAppliedForAccreditation": {
       "type": "boolean"
@@ -1568,13 +1585,13 @@
       "type": "string"
     },
     "appliedForAccreditationDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "wasAccreditationTerminated": {
       "type": "boolean"
     },
     "accreditationTerminatedDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "accreditationTerminatedExplanation": {
       "type": "string"
@@ -1586,7 +1603,7 @@
       "type": "string"
     },
     "impairmentsDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "hasPhysicalLimitations": {
       "type": "boolean"
@@ -1595,7 +1612,7 @@
       "type": "string"
     },
     "physicalLimitationsDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "characterReferences": {
       "type": "array",
@@ -1881,11 +1898,8 @@
     "signature": {
       "type": "string"
     },
-    "gender": {
-      "type": "string"
-    },
     "jurisdictionDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "jurisdictionDeclinedToUploadDocuments": {
       "type": "boolean"
@@ -1894,7 +1908,7 @@
       "type": "string"
     },
     "agenciesDocumentation": {
-      "type": "string"
+      "$ref": "#/definitions/files"
     },
     "agenciesDeclinedToUploadDocuments": {
       "type": "boolean"
