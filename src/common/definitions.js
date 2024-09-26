@@ -1011,6 +1011,7 @@ export default {
   nullableDate,
   fullDate,
   nullableFullDate,
+  fullDateRange,
   requiredDate,
   rejectOnlyWhitespace,
   dischargeType,
