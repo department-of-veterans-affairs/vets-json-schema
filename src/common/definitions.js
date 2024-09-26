@@ -484,6 +484,18 @@ const dateRange = {
   },
 };
 
+const fullDateRange = {
+  type: 'object',
+  properties: {
+    startDate: {
+      $ref: '#/definitions/nullableFullDate',
+    },
+    endDate: {
+      $ref: '#/definitions/nullableFullDate',
+    },
+  },
+};
+
 const date = {
   pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
   type: 'string',
@@ -491,6 +503,16 @@ const date = {
 
 const nullableDate = {
   pattern: date.pattern,
+  type: ['string', 'null'],
+};
+
+const fullDate = {
+  pattern: '^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
+  type: 'string',
+};
+
+const nullableFullDate = {
+  pattern: fullDate.pattern,
   type: ['string', 'null'],
 };
 
@@ -987,6 +1009,8 @@ export default {
   dateRange,
   date,
   nullableDate,
+  fullDate,
+  nullableFullDate,
   requiredDate,
   rejectOnlyWhitespace,
   dischargeType,

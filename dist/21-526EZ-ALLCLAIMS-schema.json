@@ -771,6 +771,25 @@
         }
       }
     },
+    "toxicExposure": {
+      "type": "object",
+      "properties": {
+        "gulfWar1990Details": {
+          "type": "object",
+          "properties": {
+            "iraq": {
+              "$ref": "#/definitions/fullDateRange"
+            },
+            "qatar": {
+              "$ref": "#/definitions/fullDateRange"
+            },
+            "kuwait": {
+              "$ref": "#/definitions/fullDateRange"
+            }
+          }
+        }
+      }
+    },
     "serviceInformation": {
       "type": "object",
       "required": [

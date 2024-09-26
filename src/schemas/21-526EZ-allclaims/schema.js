@@ -139,6 +139,7 @@ const schema = {
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
+    fullDateRange: definitions.fullDateRange,
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -274,6 +275,25 @@ const schema = {
           },
         },
       },
+    },
+    toxicExposure: {
+      type: 'object',
+      properties: {
+        gulfWar1990Details: {
+          type: 'object',
+          properties: {
+            iraq: {
+              $ref: '#/definitions/fullDateRange'
+            },
+            qatar: {
+              $ref: '#/definitions/fullDateRange'
+            },
+            kuwait: {
+              $ref: '#/definitions/fullDateRange'
+            },
+          }
+        }
+      }
     },
     serviceInformation: {
       type: 'object',
