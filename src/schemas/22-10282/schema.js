@@ -108,7 +108,6 @@ const schema = {
           type: 'string',
         },
       },
-      required: ['level'],
       dependencies: {
         level: {
           oneOf: [
@@ -122,20 +121,6 @@ const schema = {
                   minLength: 1,
                 },
               },
-              required: ['otherEducation'],
-            },
-            {
-              properties: {
-                level: {
-                  enum: [
-                    'A high school diploma or GED',
-                    'An associate degree',
-                    "A bachelor's degree",
-                    "A master's degree",
-                    'A doctoral degree like a PhD',
-                  ],
-                },
-              },
             },
           ],
         },
@@ -144,6 +129,31 @@ const schema = {
     currentlyEmployed: {
       type: 'string',
       enum: ['Yes', 'No'],
+    },
+    currentAnnualSalary: {
+      type: 'string',
+      enum: [
+        'Less than $20,000',
+        'Between $20,001 and $35,000',
+        'Between $35,001 and $50,000',
+        'Between $50,001 and $75,000',
+        'More than $75,000',
+      ],
+    },
+    isWorkingInTechIndustry: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
+    techIndustryFocusArea: {
+      type: 'string',
+      enum: [
+        'Computer programming',
+        'Data processing',
+        'Computer software',
+        'Information sciences',
+        'Media application',
+        'Something else not listed here',
+      ],
     },
   },
   required: ['veteranFullName', 'veteranDesc', 'email', 'country', 'state'],
