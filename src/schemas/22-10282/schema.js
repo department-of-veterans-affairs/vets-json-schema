@@ -5,8 +5,7 @@ import constants from '../../common/constants';
 
 const definitions = _.cloneDeep(originalDefinitions);
 const { salesforceCountries: countries } = constants;
-// const nonUSACountries = countries.filter(country => country.value !== 'USA');
-// enum: constants.usaStates,
+
 definitions.country = {
   type: 'string',
   enum: countries.map(country => country.label),
@@ -106,23 +105,7 @@ const schema = {
         },
         otherEducation: {
           type: 'string',
-        },
-      },
-      dependencies: {
-        level: {
-          oneOf: [
-            {
-              properties: {
-                level: {
-                  enum: ['Something else'],
-                },
-                otherEducation: {
-                  type: 'string',
-                  minLength: 1,
-                },
-              },
-            },
-          ],
+          minLength: 0,
         },
       },
     },

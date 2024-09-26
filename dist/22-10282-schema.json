@@ -450,26 +450,8 @@
           ]
         },
         "otherEducation": {
-          "type": "string"
-        }
-      },
-      "dependencies": {
-        "level": {
-          "oneOf": [
-            {
-              "properties": {
-                "level": {
-                  "enum": [
-                    "Something else"
-                  ]
-                },
-                "otherEducation": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              }
-            }
-          ]
+          "type": "string",
+          "minLength": 0
         }
       }
     },
