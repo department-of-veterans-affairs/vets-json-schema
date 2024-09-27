@@ -379,6 +379,16 @@ export default {
       ],
     },
   },
+  minimumYearDateRange: {
+    data: {
+      valid: [fixtures.minimumYearDateRange],
+      invalid: [
+        {
+          startDate: 'XXXX-01-02',
+        },
+      ],
+    },
+  },
   postHighSchoolTrainings: {
     data: {
       valid: [

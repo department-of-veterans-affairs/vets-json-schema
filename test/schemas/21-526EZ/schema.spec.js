@@ -125,6 +125,15 @@ const data = {
       { from: 'bar', to: fixtures.dateRange },
     ],
   },
+  minimumYearDateRange: {
+    valid: testData.minimumYearDateRange.data.valid,
+    invalid: [
+      { startDate: 'XXXX-01-02' },
+      { endDate: '79-01-02' },
+      { startDate: fixtures.minimumYearDateRange, endDate: 'XXXX-01-02' },
+      { startDate: '79-01-02', endDate: fixtures.minimumYearDateRange },
+    ],
+  },
   alternateNames: {
     valid: [
       [{ first: 'john', last: 'doe' }],
@@ -582,6 +591,7 @@ describe('21-526-ALLCLAIMS schema', () => {
   testValidAndInvalidDefinitions('vaTreatmentCenterAddress');
   testValidAndInvalidDefinitions('dateRange');
   testValidAndInvalidDefinitions('dateRangeAllRequired');
+  testValidAndInvalidDefinitions('minimumYearDateRange');
   testValidAndInvalidDefinitions('ratedDisabilities');
   testValidAndInvalidDefinitions('newDisabilities');
   testValidAndInvalidDefinitions('unitAssigned', data.string(100));

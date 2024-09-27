@@ -9,6 +9,10 @@ export default {
     from: '2000-01-01',
     to: '2000-01-02'
   },
+  minimumYearDateRange: {
+    startDate: '2000-01-01',
+    endDate: '2000-01-02'
+  },
   address: {
     street: '123 a rd',
     city: 'abc',
