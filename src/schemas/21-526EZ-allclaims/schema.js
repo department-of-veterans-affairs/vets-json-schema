@@ -139,8 +139,8 @@ const schema = {
     vaTreatmentCenterAddress: vaTreatmentCenterAddressDef,
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
-    fullDateRange: definitions.fullDateRange,
-    nullableFullDate: definitions.nullableFullDate,
+    minimumYearDateRange: definitions.minimumYearDateRange,
+    nullableMinimumYearDate: definitions.nullableMinimumYearDate,
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
@@ -283,16 +283,136 @@ const schema = {
         gulfWar1990Details: {
           type: 'object',
           properties: {
-            iraq: {
-              $ref: '#/definitions/fullDateRange'
+            afghanistan: {
+              $ref: '#/definitions/minimumYearDateRange'
             },
-            qatar: {
-              $ref: '#/definitions/fullDateRange'
+            bahrain: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            egypt: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            iraq: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            israel: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            jordan: {
+              $ref: '#/definitions/minimumYearDateRange'
             },
             kuwait: {
-              $ref: '#/definitions/fullDateRange'
+              $ref: '#/definitions/minimumYearDateRange'
             },
+            neutralzone: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            oman: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            qatar: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            saudiarabia: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            somalia: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            syria: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            uae: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            turkey: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            waters: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            airspace: {
+              $ref: '#/definitions/minimumYearDateRange'
+            }
           }
+        },
+        gulfWar2001Details: {
+          type: 'object',
+          properties: {
+            djibouti: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            lebanon: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            uzbekistan: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            yemen: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            airspace: {
+              $ref: '#/definitions/minimumYearDateRange'
+            }
+          }
+        },
+        herbicideDetails: {
+          type: 'object',
+          properties: {
+            cambodia: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            guam: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            koreandemilitarizedzone: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            johnston: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            laos: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            c123: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            thailand: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            vietnam: {
+              $ref: '#/definitions/minimumYearDateRange'
+            }
+          }
+        },
+        otherExposuresDetails: {
+          type: 'object',
+          properties: {
+            asbestos: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            chemical: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            mos: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            mustardgas: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            radiation: {
+              $ref: '#/definitions/minimumYearDateRange'
+            },
+            water: {
+              $ref: '#/definitions/minimumYearDateRange'
+            }
+          }
+        },
+        otherHerbicideLocations: {
+          $ref: '#/definitions/minimumYearDateRange'
+        },
+        specifyOtherExposures: {
+          $ref: '#/definitions/minimumYearDateRange'
         }
       }
     },

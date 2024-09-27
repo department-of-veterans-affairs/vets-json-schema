@@ -484,14 +484,14 @@ const dateRange = {
   },
 };
 
-const fullDateRange = {
+const minimumYearDateRange = {
   type: 'object',
   properties: {
     startDate: {
-      $ref: '#/definitions/nullableFullDate',
+      $ref: '#/definitions/nullableMinimumYearDate',
     },
     endDate: {
-      $ref: '#/definitions/nullableFullDate',
+      $ref: '#/definitions/nullableMinimumYearDate',
     },
   },
 };
@@ -506,13 +506,13 @@ const nullableDate = {
   type: ['string', 'null'],
 };
 
-const fullDate = {
-  pattern: '^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
+const minimumYearDate = {
+  pattern: '^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
   type: 'string',
 };
 
-const nullableFullDate = {
-  pattern: fullDate.pattern,
+const nullableMinimumYearDate = {
+  pattern: minimumYearDate.pattern,
   type: ['string', 'null'],
 };
 
@@ -1009,9 +1009,9 @@ export default {
   dateRange,
   date,
   nullableDate,
-  fullDate,
-  nullableFullDate,
-  fullDateRange,
+  minimumYearDate,
+  nullableMinimumYearDate,
+  minimumYearDateRange,
   requiredDate,
   rejectOnlyWhitespace,
   dischargeType,
