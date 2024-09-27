@@ -74,6 +74,8 @@ const schema = {
         'Black or African American',
         'Native Hawaiian or Other Pacific Islander',
         'White',
+        'Middle Eastern or North African',
+        'Other',
         'Prefer not to answer',
       ],
     },
