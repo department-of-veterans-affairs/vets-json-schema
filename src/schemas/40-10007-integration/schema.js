@@ -77,6 +77,48 @@ _.merge(modifiedToursOfDuty, {
           'WA', // WOMEN'S ARMY AUX CORPS
           'WS', // WOMEN'S ARMY CORPS
           'WR', // WOMEN'S RESERVE OF NAVY,MC,CG
+          'AD', // US ARMY SIGNAL CORPS AERO DIV
+          'AS', // US ARMY AIR SERVICE
+          'AV', // US ARMY SIGNAL CORPS AVN SEC
+          'CW', // US CIV OF AFS WWI
+          'DT', // DIETITIAN WORLD WAR I
+          'FC', // ENGINEER FIELD CLERK WWI
+          'IR', // IRREGULAR FORCES LAOS
+          'NC', // ARMY NURSE CORPS
+          'O1', // CONFEDERATE STATES ARMY
+          'O2', // PROV ARMY CONFEDERATE STATES
+          'O3', // CONFEDERATE STATES NAVY
+          'O4', // PROV NAVY CONFEDERATE STATES
+          'O5', // CONFEDERATE STATES MAR CORPS
+          'O6', // PROV MAR CORPS CONFEDERATE ST
+          'OA', // ARMY CORPS
+          'OB', // ARTILLERY
+          'OC', // BATTALION
+          'OD', // BATTERY
+          'OE', // CAVALRY
+          'OF', // COMMISSARY OF SUBSTANCE
+          'OH', // DIVISION HOSPITAL
+          'OI', // GENERAL HOSPITAL
+          'OJ', // INFANTRY
+          'OK', // REGIMENT
+          'OL', // REGIMENTAL HOSPITAL
+          'ON', // VETERAN RESERVE CORPS
+          'OP', // VOLUNTEERS
+          'OR', // US REVENUE CUTTER SERVICE
+          'OT', // US CLD TROOPS
+          'OU', // CONTINENTAL LINE
+          'OV', // CONTINENTAL NAVY
+          'OW', // CONTINENTAL MARINE
+          'OX', // PROVISIONAL ARMY
+          'OY', // PROVISIONAL NAVY
+          'OZ', // PROVISIONAL MARINE REGT
+          'QC', // QUARTERMSTR CORP FEMALE CLERK
+          'RA', // RECONSTRUCTION AIDE
+          'RR', // RUSSIAN RAILWAY SERVICE
+          'SA', // US SPACE FORCE
+          'SF', // SIGNAL CORPS TEL OPER
+          'SP', // SPECIAL GUERILLA UNIT LAOS
+          'UT', // UTAH TERRITORIAL MILITIA
         ],
       },
       dischargeType: {
