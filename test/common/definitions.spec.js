@@ -490,4 +490,25 @@ describe('schema definitions', () => {
     valid: ['a@a.com', 'a@a.net', 'a+2@a.com', 'Foo@foo.com', 'foo.bar@foo.org'],
     invalid: ['@', 'foo', 'foo.com', 'a@a', 'a@a.', '@a.com'],
   });
+
+  testValidAndInvalidDefinitions('minimumYearDateRange', {
+    valid: [
+      { startDate: '2009-03-22', endDate: '2010-06-22'},
+      { startDate: '2009-03-22'},
+      { endDate: '2010-06-22'},
+      { startDate: '2009-03-XX', endDate: '2010-06-22'},
+      { startDate: '2009-03-22', endDate: '2010-06-XX'},
+      { startDate: '2009-XX-XX', endDate: '2010-06-22'},
+      { startDate: '2009-03-22', endDate: '2010-XX-XX'},
+      { startDate: '2009-XX-XX'},
+      { endDate: '2010-XX-XX'},
+      { startDate: '2009-XX-22', endDate: '2010-XX-22'},
+    ],
+    invalid: [
+      { startDate: 'XXXX-01-02' },
+      { endDate: '79-01-02' },
+      { startDate: '2009-03-22', endDate: 'XXXX-01-02' },
+      { startDate: '79-01-02', endDate: '2009-03-XX' },
+    ]
+  });
 });
