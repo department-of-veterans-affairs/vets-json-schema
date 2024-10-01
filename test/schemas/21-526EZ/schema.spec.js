@@ -178,6 +178,47 @@ const data = {
       { djibouti: { startDate: '79-01-02' } },
       { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
       { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { airspace: '1999-01-02' } },
+      { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { endDate: '1999-01-02' } },
+    ]
+  },
+  herbicideDetails: {
+    valid: [
+      { cambodia: fixtures.minimumYearDateRange },
+      { guam: fixtures.minimumYearDateRange },
+      { koreandemilitarizedzone: fixtures.minimumYearDateRange },
+      { johnston: fixtures.minimumYearDateRange },
+      { laos: fixtures.minimumYearDateRange },
+      { c123: fixtures.minimumYearDateRange },
+      { thailand: fixtures.minimumYearDateRange },
+      { vietnam: fixtures.minimumYearDateRange },
+      { vietnam: fixtures.minimumYearDateRange, laos: fixtures.minimumYearDateRange },
+      { vietnam: fixtures.minimumYearDateRange, laos: fixtures.minimumYearDateRange, koreandemilitarizedzone: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { guam: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { koreandemilitarizedzone: { startDate: '79-01-02' } },
+      { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { airspace: '1999-01-02' } },
+      { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { startDate: '1999-01-02' } },
+    ]
+  },
+  otherExposuresDetails: {
+    valid: [
+      { asbestos: fixtures.minimumYearDateRange },
+      { chemical: fixtures.minimumYearDateRange },
+      { mos: fixtures.minimumYearDateRange },
+      { mustardgas: fixtures.minimumYearDateRange },
+      { radiation: fixtures.minimumYearDateRange },
+      { water: fixtures.minimumYearDateRange },
+      { water: fixtures.minimumYearDateRange, mos: fixtures.minimumYearDateRange },
+      { water: fixtures.minimumYearDateRange, mos: fixtures.minimumYearDateRange, chemical: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { water: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { mustardgas: { startDate: '79-01-02' } },
+      { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, radiation: { airspace: '1999-01-02' } },
+      { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, radiation: { startDate: '1999-01-02' } },
     ]
   },
   alternateNames: {
@@ -670,7 +711,11 @@ describe('21-526-ALLCLAIMS schema', () => {
   testValidAndInvalid('serviceInformation.separationLocation', data.separationLocation);
   testValidAndInvalid('serviceInformation.reservesNationalGuardService', data.reservesNationalGuardService);
   testValidAndInvalid('toxicExposure.gulfWar1990Details', data.gulfWar1990Details);
-
+  testValidAndInvalid('toxicExposure.gulfWar2001Details', data.gulfWar2001Details);
+  testValidAndInvalid('toxicExposure.herbicideDetails', data.herbicideDetails);
+  testValidAndInvalid('toxicExposure.otherExposuresDetails', data.otherExposuresDetails);
+  testValidAndInvalid('toxicExposure.otherHerbicideLocations', testData.minimumYearDateRange.data);
+  testValidAndInvalid('toxicExposure.specifyOtherExposures', testData.minimumYearDateRange.data);
   testValidAndInvalid('confinements');
   testValidAndInvalid('militaryRetiredPayBranch', data.branch);
 
