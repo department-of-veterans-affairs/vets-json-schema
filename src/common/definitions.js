@@ -488,10 +488,10 @@ const minimumYearDateRange = {
   type: 'object',
   properties: {
     startDate: {
-      $ref: '#/definitions/nullableMinimumYearDate',
+      $ref: '#/definitions/minimumYearDate',
     },
     endDate: {
-      $ref: '#/definitions/nullableMinimumYearDate',
+      $ref: '#/definitions/minimumYearDate',
     },
   },
 };
@@ -514,11 +514,6 @@ const nullableDate = {
 const minimumYearDate = {
   pattern: '^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
   type: 'string',
-};
-
-const nullableMinimumYearDate = {
-  pattern: minimumYearDate.pattern,
-  type: ['string', 'null'],
 };
 
 // XXXX-XX-XX not allowed
@@ -1015,7 +1010,6 @@ export default {
   date,
   nullableDate,
   minimumYearDate,
-  nullableMinimumYearDate,
   minimumYearDateRange,
   requiredDate,
   rejectOnlyWhitespace,

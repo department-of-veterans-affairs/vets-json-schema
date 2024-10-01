@@ -140,7 +140,7 @@ const schema = {
     dateRange: definitions.dateRange,
     dateRangeAllRequired: _.set('required', ['from', 'to'], definitions.dateRange),
     minimumYearDateRange: definitions.minimumYearDateRange,
-    nullableMinimumYearDate: definitions.nullableMinimumYearDate,
+    minimumYearDate: definitions.minimumYearDate,
     ratedDisabilities: _.merge(disabilitiesBaseDef, {
       minItems: 1,
       items: {
