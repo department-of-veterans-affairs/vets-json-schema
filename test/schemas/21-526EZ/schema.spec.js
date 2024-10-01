@@ -163,6 +163,23 @@ const data = {
       { qatar: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { startDate: '1999-01-02' } },
     ]
   },
+  gulfWar2001Details: {
+    valid: [
+      { djibouti: fixtures.minimumYearDateRange },
+      { lebanon: fixtures.minimumYearDateRange },
+      { uzbekistan: fixtures.minimumYearDateRange },
+      { yemen: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, uzbekistan: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, uzbekistan: fixtures.minimumYearDateRange, djibouti: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { yemen: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { djibouti: { startDate: '79-01-02' } },
+      { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { airspace: '1999-01-02' } },
+    ]
+  },
   alternateNames: {
     valid: [
       [{ first: 'john', last: 'doe' }],
@@ -573,11 +590,6 @@ const data = {
 };
 
 const schemaWithoutRequired = _.cloneDeep(schema);
-// console.log(schemaWithoutRequired.properties.toxicExposure.properties.gulfWar1990Details.properties.afghanistan.properties);
-// console.log(schemaWithoutRequired.properties.serviceInformation.properties.reservesNationalGuardService.properties.obligationTermOfServiceDateRange.properties)
-console.log(data.reservesNationalGuardService);
-console.log(data.gulfWar1990Details);
-
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.properties.serviceInformation.required;
 
