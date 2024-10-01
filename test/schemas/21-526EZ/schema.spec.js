@@ -134,6 +134,35 @@ const data = {
       { startDate: '79-01-02', endDate: fixtures.minimumYearDateRange },
     ],
   },
+  gulfWar1990Details: {
+    valid: [
+      { afghanistan: fixtures.minimumYearDateRange },
+      { bahrain: fixtures.minimumYearDateRange },
+      { egypt: fixtures.minimumYearDateRange },
+      { iraq: fixtures.minimumYearDateRange },
+      { israel: fixtures.minimumYearDateRange },
+      { jordan: fixtures.minimumYearDateRange },
+      { kuwait: fixtures.minimumYearDateRange },
+      { neutralzone: fixtures.minimumYearDateRange },
+      { oman: fixtures.minimumYearDateRange },
+      { qatar: fixtures.minimumYearDateRange },
+      { saudiarabia: fixtures.minimumYearDateRange },
+      { somalia: fixtures.minimumYearDateRange },
+      { syria: fixtures.minimumYearDateRange },
+      { uae: fixtures.minimumYearDateRange },
+      { turkey: fixtures.minimumYearDateRange },
+      { waters: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, jordan: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, jordan: fixtures.minimumYearDateRange, syria: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { afghanistan: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { turkey: { startDate: '79-01-02' } },
+      { qatar: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { qatar: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { startDate: '1999-01-02' } },
+    ]
+  },
   alternateNames: {
     valid: [
       [{ first: 'john', last: 'doe' }],
@@ -544,6 +573,11 @@ const data = {
 };
 
 const schemaWithoutRequired = _.cloneDeep(schema);
+// console.log(schemaWithoutRequired.properties.toxicExposure.properties.gulfWar1990Details.properties.afghanistan.properties);
+// console.log(schemaWithoutRequired.properties.serviceInformation.properties.reservesNationalGuardService.properties.obligationTermOfServiceDateRange.properties)
+console.log(data.reservesNationalGuardService);
+console.log(data.gulfWar1990Details);
+
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.properties.serviceInformation.required;
 
@@ -623,6 +657,8 @@ describe('21-526-ALLCLAIMS schema', () => {
   testValidAndInvalid('serviceInformation.servicePeriods', data.servicePeriods);
   testValidAndInvalid('serviceInformation.separationLocation', data.separationLocation);
   testValidAndInvalid('serviceInformation.reservesNationalGuardService', data.reservesNationalGuardService);
+  testValidAndInvalid('toxicExposure.gulfWar1990Details', data.gulfWar1990Details);
+
   testValidAndInvalid('confinements');
   testValidAndInvalid('militaryRetiredPayBranch', data.branch);
 
