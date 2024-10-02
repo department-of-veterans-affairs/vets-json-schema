@@ -130,8 +130,8 @@ const data = {
     invalid: [
       { startDate: 'XXXX-01-02' },
       { endDate: '79-01-02' },
-      { startDate: fixtures.minimumYearDateRange, endDate: 'XXXX-01-02' },
-      { startDate: '79-01-02', endDate: fixtures.minimumYearDateRange },
+      { startDate: fixtures.minimumYearDateRange.startDate, endDate: 'XXXX-01-02' },
+      { startDate: '79-01-02', endDate: fixtures.minimumYearDateRange.endDate },
     ],
   },
   gulfWar1990Details: {
@@ -177,7 +177,7 @@ const data = {
       { yemen: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
       { djibouti: { startDate: '79-01-02' } },
       { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
-      { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { airspace: '1999-01-02' } },
+      { lebanon: { startDate: '1999-01-02', endDate: '79-01-02' }, turkey: { startDate: '1999-01-02' } },
       { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { endDate: '1999-01-02' } },
     ]
   },
@@ -198,7 +198,7 @@ const data = {
       { guam: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
       { koreandemilitarizedzone: { startDate: '79-01-02' } },
       { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
-      { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { airspace: '1999-01-02' } },
+      { laos: { startDate: '1999-01-02', endDate: '79-01-02' }, turkey: { endDate: '1999-01-02' } },
       { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { startDate: '1999-01-02' } },
     ]
   },
@@ -217,7 +217,7 @@ const data = {
       { water: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
       { mustardgas: { startDate: '79-01-02' } },
       { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
-      { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, radiation: { airspace: '1999-01-02' } },
+      { asbestos: { startDate: '1999-01-02', endDate: '79-01-02' }, radiation: { endDate: '1999-01-02' } },
       { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, radiation: { startDate: '1999-01-02' } },
     ]
   },
