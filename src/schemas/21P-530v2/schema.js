@@ -199,7 +199,7 @@ const schema = {
 
 [
   ['privacyAgreementAccepted'],
-  ['centralMailAddress', 'claimantAddress'],
+  ['profileAddress', 'claimantAddress'],
   ['fullName', 'claimantFullName'],
   ['fullName', 'veteranFullName'],
   ['ssn', 'claimantSocialSecurityNumber'],
