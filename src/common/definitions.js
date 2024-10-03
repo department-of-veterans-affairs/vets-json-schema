@@ -484,6 +484,18 @@ const dateRange = {
   },
 };
 
+const minimumYearDateRange = {
+  type: 'object',
+  properties: {
+    startDate: {
+      $ref: '#/definitions/minimumYearDate',
+    },
+    endDate: {
+      $ref: '#/definitions/minimumYearDate',
+    },
+  },
+};
+
 const date = {
   pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
   type: 'string',
@@ -492,6 +504,16 @@ const date = {
 const nullableDate = {
   pattern: date.pattern,
   type: ['string', 'null'],
+};
+
+// currently being used primarily by the 526EZ app for toxic exposure dates,
+// which technically require either just YYYY or YYYY-MM. Partial dates are not
+// yet supported in the FE, but dates with X's still occasionally get through.
+// Since the BE knows how to parse XX for the month and day, the below regex
+// still allows XX for them- however, the year MUST be valid and with no X's
+const minimumYearDate = {
+  pattern: '^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+  type: 'string',
 };
 
 // XXXX-XX-XX not allowed
@@ -987,6 +1009,8 @@ export default {
   dateRange,
   date,
   nullableDate,
+  minimumYearDate,
+  minimumYearDateRange,
   requiredDate,
   rejectOnlyWhitespace,
   dischargeType,
