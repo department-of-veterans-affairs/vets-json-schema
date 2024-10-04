@@ -29,7 +29,7 @@ fs.readdirSync('src/schemas').forEach(schema => {
 fs.mkdir(`dist/${version}/`, err => {
   if (err) {
     if (err.code === 'EEXIST') {
-      throw new Error('ERROR: Version folder already exists. Did you update the version number in package.json?');
+      console.log('Version folder already exists. Did you update the version number in package.json?');
     } else {
       throw new Error('Error creating version folder:', err);
     }
