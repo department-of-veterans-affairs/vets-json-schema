@@ -33,4 +33,5 @@ for (const file in files) {
   jsonfile.writeFileSync(`dist/${file}.json`, files[file], { spaces: 2 });
 }
 
+// eslint-disable-next-line no-console
 console.info('json built');

@@ -35,6 +35,7 @@ const storeCurrentVersion = () => {
       }
     });
   } else {
+    // eslint-disable-next-line no-console
     console.log(`Overwriting current stored version: ${version}`);
     addExamplesAndSchemaToCurrentVersion();
   }
