@@ -44,6 +44,7 @@
     "view:isAddingDependents": false,
     "totalNetWorth": true,
     "hasCareExpenses": false,
+    "view:isAddingMedicalExpenses": false,
     "hasMedicalExpenses": false,
     "transferredAssets": false,
     "homeOwnership": false,
