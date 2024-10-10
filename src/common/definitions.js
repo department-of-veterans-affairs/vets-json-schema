@@ -13,6 +13,7 @@ const fullName = {
     },
     middle: {
       type: 'string',
+      maxLength: 30,
     },
     last: {
       type: 'string',
@@ -47,6 +48,7 @@ const fullNameNoSuffix = {
     },
     middle: {
       type: 'string',
+      maxLength: 30,
     },
     last: {
       type: 'string',

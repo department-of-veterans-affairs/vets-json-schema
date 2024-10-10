@@ -95,7 +95,8 @@
           "maxLength": 30
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "last": {
           "type": "string",
@@ -275,7 +276,8 @@
           "maxLength": 30
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "last": {
           "type": "string",
