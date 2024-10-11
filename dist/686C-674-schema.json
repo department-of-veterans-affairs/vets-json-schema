@@ -14,8 +14,8 @@
         },
         "middle": {
           "type": "string",
-          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$",
-          "maxLength": 20
+          "maxLength": 20,
+          "pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$"
         },
         "last": {
           "type": "string",
