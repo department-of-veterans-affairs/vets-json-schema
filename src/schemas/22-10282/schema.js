@@ -82,13 +82,13 @@ const schema = {
     gender: {
       type: 'string',
       enum: [
-        'Man',
-        'Non-binary',
-        'Transgender man',
-        'Transgender woman',
         'Woman',
-        'Prefer not to answer',
+        'Man',
+        'Transgender woman',
+        'Transgender man',
+        'Non-binary',
         'A gender not listed here',
+        'Prefer not to answer',
       ],
     },
     highestLevelOfEducation: {
