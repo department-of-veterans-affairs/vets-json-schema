@@ -2472,5 +2472,40 @@
   },
   "yesNoSchema": {
     "type": "boolean"
+  },
+  "benefitsIntakeFullName": {
+    "type": "object",
+    "properties": {
+      "first": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30,
+        "pattern": ".*[A-Za-z]+.*"
+      },
+      "middle": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "last": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30,
+        "pattern": ".*[A-Za-z]+.*"
+      },
+      "suffix": {
+        "type": "string",
+        "enum": [
+          "Jr.",
+          "Sr.",
+          "II",
+          "III",
+          "IV"
+        ]
+      }
+    },
+    "required": [
+      "first",
+      "last"
+    ]
   }
 }

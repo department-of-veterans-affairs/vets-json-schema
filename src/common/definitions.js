@@ -36,6 +36,10 @@ hcaFullName.properties.last.minLength = 2;
 hcaFullName.properties.last.maxLength = 35;
 hcaFullName.properties.last.pattern = '^.*\\S.*';
 
+const benefitsIntakeFullName = _.cloneDeep(fullName);
+benefitsIntakeFullName.properties.first.pattern = '.*[A-Za-z]+.*';
+benefitsIntakeFullName.properties.last.pattern = '.*[A-Za-z]+.*';
+
 const fullNameNoSuffix = {
   type: 'object',
   additionalProperties: false,
@@ -1056,4 +1060,5 @@ export default {
   insuranceProvider,
   hcaEmail,
   yesNoSchema,
+  benefitsIntakeFullName,
 };

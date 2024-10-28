@@ -26,89 +26,100 @@ const schema = {
       required: ['veteranSocialSecurityNumber'],
     },
   ],
-  definitions: _.merge(_.pick(definitions, 'dateRange', 'bankAccount', 'noSuffixMarriages', 'fullNameNoSuffix'), {
-    date: {
-      pattern: '^\\d{4}-\\d{2}-\\d{2}$',
-      type: 'string',
-    },
-    /*
+  definitions: _.merge(
+    _.pick(
+      definitions,
+      'dateRange',
+      'bankAccount',
+      'noSuffixMarriages',
+      'fullNameNoSuffix',
+      'fullName',
+      'benefitsIntakeFullName',
+    ),
+    {
+      date: {
+        pattern: '^\\d{4}-\\d{2}-\\d{2}$',
+        type: 'string',
+      },
+      /*
       radioSchema(Object.keys(maritalStatusOptions))
     */
-    maritalStatus: {
-      type: 'string',
-      enum: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
-    },
-    incomeSources: {
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['typeOfIncome', 'receiver', 'payer', 'amount'],
-        properties: {
-          typeOfIncome: {
-            type: 'string',
-            enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'CIVIL_SERVICE', 'PENSION_RETIREMENT', 'OTHER'],
+      maritalStatus: {
+        type: 'string',
+        enum: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
+      },
+      incomeSources: {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['typeOfIncome', 'receiver', 'payer', 'amount'],
+          properties: {
+            typeOfIncome: {
+              type: 'string',
+              enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'CIVIL_SERVICE', 'PENSION_RETIREMENT', 'OTHER'],
+            },
+            otherTypeExplanation: {
+              type: 'string',
+            },
+            receiver: {
+              type: 'string',
+            },
+            childName: {
+              type: 'string',
+            },
+            payer: {
+              type: 'string',
+            },
+            amount: financialNumber,
+            dependentName: {
+              type: 'string',
+            },
           },
-          otherTypeExplanation: {
-            type: 'string',
+        },
+      },
+      careExpenses: {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['recipients', 'provider', 'careType', 'paymentFrequency', 'paymentAmount'],
+          properties: {
+            recipients: {
+              type: 'string',
+              enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
+            },
+            childName: { type: 'string' },
+            provider: { type: 'string' },
+            careType: { type: 'string', enum: ['CARE_FACILITY', 'IN_HOME_CARE_PROVIDER'] },
+            ratePerHour: { type: 'number' },
+            hoursPerWeek: { type: 'string' },
+            careDateRange: schemaHelpers.getDefinition('dateRange'),
+            noCareEndDate: { type: 'boolean' },
+            paymentFrequency: { type: 'string', enum: ['ONCE_MONTH', 'ONCE_YEAR'] },
+            paymentAmount: { type: 'number' },
           },
-          receiver: {
-            type: 'string',
-          },
-          childName: {
-            type: 'string',
-          },
-          payer: {
-            type: 'string',
-          },
-          amount: financialNumber,
-          dependentName: {
-            type: 'string',
+        },
+      },
+      medicalExpenses: {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['recipients', 'provider', 'purpose', 'paymentDate', 'paymentFrequency', 'paymentAmount'],
+          properties: {
+            recipients: {
+              type: 'string',
+              enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
+            },
+            childName: { type: 'string' },
+            provider: { type: 'string' },
+            purpose: { type: 'string' },
+            paymentDate: { $ref: '#/definitions/date' },
+            paymentFrequency: { type: 'string', enum: ['ONCE_MONTH', 'ONCE_YEAR', 'ONE_TIME'] },
+            paymentAmount: { type: 'number' },
           },
         },
       },
     },
-    careExpenses: {
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['recipients', 'provider', 'careType', 'paymentFrequency', 'paymentAmount'],
-        properties: {
-          recipients: {
-            type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
-          },
-          childName: { type: 'string' },
-          provider: { type: 'string' },
-          careType: { type: 'string', enum: ['CARE_FACILITY', 'IN_HOME_CARE_PROVIDER'] },
-          ratePerHour: { type: 'number' },
-          hoursPerWeek: { type: 'string' },
-          careDateRange: schemaHelpers.getDefinition('dateRange'),
-          noCareEndDate: { type: 'boolean' },
-          paymentFrequency: { type: 'string', enum: ['ONCE_MONTH', 'ONCE_YEAR'] },
-          paymentAmount: { type: 'number' },
-        },
-      },
-    },
-    medicalExpenses: {
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['recipients', 'provider', 'purpose', 'paymentDate', 'paymentFrequency', 'paymentAmount'],
-        properties: {
-          recipients: {
-            type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT'],
-          },
-          childName: { type: 'string' },
-          provider: { type: 'string' },
-          purpose: { type: 'string' },
-          paymentDate: { $ref: '#/definitions/date' },
-          paymentFrequency: { type: 'string', enum: ['ONCE_MONTH', 'ONCE_YEAR', 'ONE_TIME'] },
-          paymentAmount: { type: 'number' },
-        },
-      },
-    },
-  }),
+  ),
   properties: {
     email: {
       type: 'string',
@@ -327,7 +338,7 @@ const schema = {
 };
 
 [
-  ['fullName', 'veteranFullName'],
+  ['benefitsIntakeFullName', 'veteranFullName'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['centralMailVaFile', 'vaFileNumber'],
   ['profileAddress', 'veteranAddress'],
