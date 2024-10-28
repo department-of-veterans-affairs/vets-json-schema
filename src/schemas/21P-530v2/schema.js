@@ -201,7 +201,7 @@ const schema = {
   ['privacyAgreementAccepted'],
   ['profileAddress', 'claimantAddress'],
   ['fullName', 'claimantFullName'],
-  ['fullName', 'veteranFullName'],
+  ['benefitsIntakeFullName', 'veteranFullName'],
   ['ssn', 'claimantSocialSecurityNumber'],
   ['ssn', 'veteranSocialSecurityNumber'],
   ['centralMailVaFile', 'vaFileNumber'],

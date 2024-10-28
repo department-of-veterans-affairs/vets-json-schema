@@ -509,6 +509,28 @@ describe('schema definitions', () => {
       { endDate: '79-01-02' },
       { startDate: '2009-03-22', endDate: 'XXXX-01-02' },
       { startDate: '79-01-02', endDate: '2009-03-XX' },
-    ]
+    ],
+  });
+  testValidAndInvalidDefinitions('benefitsIntakeFullName', {
+    valid: [
+      {
+        first: 'john',
+        last: 'doe',
+      },
+      {
+        first: '1john1',
+        last: 'd0e',
+      },
+    ],
+    invalid: [
+      {
+        first: '123123123',
+        last: 'doe',
+      },
+      {
+        first: 'john',
+        last: '123123123',
+      },
+    ],
   });
 });
