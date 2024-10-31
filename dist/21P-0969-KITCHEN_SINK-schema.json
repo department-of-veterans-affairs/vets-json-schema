@@ -330,7 +330,7 @@
           "addedFundsDate": {
             "$ref": "#/definitions/date"
           },
-          "addedFundsValue": {
+          "addedFundsAmount": {
             "type": "number",
             "default": 0
           },
@@ -383,7 +383,7 @@
           "addedFundsDate": {
             "$ref": "#/definitions/date"
           },
-          "addedFundsValue": {
+          "addedFundsAmount": {
             "type": "number",
             "default": 0
           },
