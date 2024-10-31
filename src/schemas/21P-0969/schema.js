@@ -74,7 +74,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['recipientRelationship', 'assetType', 'grossMonthlyIncome', 'ownedPortionValue', 'payer'],
+        required: ['recipientRelationship', 'assetType', 'grossMonthlyIncome', 'ownedPortionValue'],
         properties: {
           recipientName: { type: 'string' },
           recipientRelationship: schemaHelpers.getDefinition('relationshipToVeteran'),
@@ -157,7 +157,7 @@ const schema = {
       items: {
         type: 'object',
         required: [
-          'establishmentDate',
+          'establishedDate',
           'marketValueAtEstablishment',
           'trustType',
           'addedFundsAfterEstablishment',

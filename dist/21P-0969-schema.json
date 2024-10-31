@@ -140,8 +140,7 @@
           "recipientRelationship",
           "assetType",
           "grossMonthlyIncome",
-          "ownedPortionValue",
-          "payer"
+          "ownedPortionValue"
         ],
         "properties": {
           "recipientName": {
@@ -299,7 +298,7 @@
       "items": {
         "type": "object",
         "required": [
-          "establishmentDate",
+          "establishedDate",
           "marketValueAtEstablishment",
           "trustType",
           "addedFundsAfterEstablishment",

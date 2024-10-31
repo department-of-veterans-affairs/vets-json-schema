@@ -91,7 +91,6 @@
         "recipientName": "Jane Doe",
         "assetType": "FARM",
         "grossMonthlyIncome": 2500.0,
-        "payer": "Doe Family Farm",
         "ownedPortionValue": 60000.0
       },
       {
@@ -99,7 +98,6 @@
         "recipientName": "Jane Doe",
         "assetType": "BUSINESS",
         "grossMonthlyIncome": 1500.0,
-        "payer": "Doe Family Enterprises",
         "ownedPortionValue": 40000.0
       },
       {
@@ -108,7 +106,6 @@
         "recipientName": "James Doe",
         "assetType": "RENTAL_PROPERTY",
         "grossMonthlyIncome": 3000.0,
-        "payer": "Doe Real Estate",
         "ownedPortionValue": 80000.0
       }
     ],
@@ -189,11 +186,10 @@
     ],
     "annuities": [
       {
-        "recipientRelationship": "VETERAN",
         "establishedDate": "2015-03-01",
         "marketValueAtEstablishment": 150000.0,
         "addedFundsAfterEstablishment": true,
-        "addedFundAmount": 50000.0,
+        "addedFundsAmount": 50000.0,
         "addedFundsDate": "2018-06-15",
         "revocable": false,
         "receivingIncomeFromAnnuity": true,
@@ -202,12 +198,9 @@
         "surrenderValue": 100000.0
       },
       {
-        "recipientRelationship": "SPOUSE",
         "establishedDate": "2010-05-22",
         "marketValueAtEstablishment": 100000.0,
         "addedFundsAfterEstablishment": false,
-        "addedFundsAmount": 0.0,
-        "addedFundsDate": null,
         "revocable": true,
         "receivingIncomeFromAnnuity": false,
         "annualReceivedIncome": 0.0,

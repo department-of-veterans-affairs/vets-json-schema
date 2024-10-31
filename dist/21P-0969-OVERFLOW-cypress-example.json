@@ -56,13 +56,159 @@
         "incomeType": "CIVIL_SERVICE",
         "grossMonthlyIncome": 12345.67,
         "payer": "Personnel Management"
+      }
+    ],
+    "associatedIncomes": [
+      {
+        "recipientRelationship": "CHILD",
+        "recipientName": "Emily Doe",
+        "incomeType": "INTEREST",
+        "grossMonthlyIncome": 300,
+        "payer": "Bank of America",
+        "accountValue": 20000
       },
       {
-        "recipientRelationship": "CUSTODIAN",
-        "recipientName": "Sam Doe",
-        "incomeType": "UNEMPLOYMENT",
+        "recipientRelationship": "SPOUSE",
+        "incomeType": "DIVIDENDS",
+        "grossMonthlyIncome": 500.5,
+        "payer": "Stock Company",
+        "accountValue": 50000
+      },
+      {
+        "recipientRelationship": "OTHER",
+        "otherRecipientRelationshipType": "Aunt",
+        "recipientName": "Martha Doe",
+        "incomeType": "OTHER",
+        "otherIncomeType": "Rental Property",
+        "grossMonthlyIncome": 800.75,
+        "payer": "Real Estate Agency",
+        "accountValue": 120000
+      }
+    ],
+    "ownedAssets": [
+      {
+        "recipientRelationship": "SPOUSE",
+        "recipientName": "Jane Doe",
+        "assetType": "FARM",
+        "grossMonthlyIncome": 2500,
+        "payer": "Doe Family Farm",
+        "ownedPortionValue": 60000
+      },
+      {
+        "recipientRelationship": "CHILD",
+        "recipientName": "Jane Doe",
+        "assetType": "BUSINESS",
+        "grossMonthlyIncome": 1500,
+        "payer": "Doe Family Enterprises",
+        "ownedPortionValue": 40000
+      },
+      {
+        "recipientRelationship": "OTHER",
+        "otherRecipientRelationshipType": "Uncle",
+        "recipientName": "James Doe",
+        "assetType": "RENTAL_PROPERTY",
+        "grossMonthlyIncome": 3000,
+        "payer": "Doe Real Estate",
+        "ownedPortionValue": 80000
+      }
+    ],
+    "royaltiesAndOtherProperties": [
+      {
+        "recipientRelationship": "VETERAN",
+        "incomeGenerationMethod": "INTELLECTUAL_PROPERTY",
         "grossMonthlyIncome": 1000,
-        "payer": "Agency of Unemployment"
+        "fairMarketValue": 50000,
+        "canBeSold": true,
+        "mitigatingCircumstances": "None"
+      },
+      {
+        "recipientRelationship": "SPOUSE",
+        "incomeGenerationMethod": "MINERALS_LUMBER",
+        "grossMonthlyIncome": 1200,
+        "fairMarketValue": 75000,
+        "canBeSold": false,
+        "mitigatingCircumstances": "Legal dispute over property rights"
+      },
+      {
+        "recipientRelationship": "OTHER",
+        "otherRecipientRelationshipType": "Nephew",
+        "recipientName": "Adam Doe",
+        "incomeGenerationMethod": "USE_OF_LAND",
+        "grossMonthlyIncome": 800,
+        "fairMarketValue": 40000,
+        "canBeSold": true,
+        "mitigatingCircumstances": "Leased for long term"
+      }
+    ],
+    "assetTransfers": [
+      {
+        "originalOwnerRelationship": "VETERAN",
+        "otherOriginalOwnerRelationshipType": "",
+        "transferMethod": "SOLD",
+        "otherTransferMethod": "",
+        "assetType": "Real estate property",
+        "newOwnerName": "Alice Johnson",
+        "newOwnerRelationship": "Friend",
+        "saleReportedToIrs": true,
+        "transferDate": "2023-05-15",
+        "assetTransferredUnderFairMarketValue": false,
+        "fairMarketValue": 250000,
+        "saleValue": 240000,
+        "capitalGainValue": 10000
+      },
+      {
+        "originalOwnerRelationship": "SPOUSE",
+        "otherOriginalOwnerRelationshipType": "",
+        "transferMethod": "GIFTED",
+        "otherTransferMethod": "",
+        "assetType": "Vehicle",
+        "newOwnerName": "James Smith",
+        "newOwnerRelationship": "Child",
+        "saleReportedToIrs": false,
+        "transferDate": "2022-11-10",
+        "assetTransferredUnderFairMarketValue": true,
+        "fairMarketValue": 15000,
+        "saleValue": 0,
+        "capitalGainValue": 0
+      },
+      {
+        "originalOwnerRelationship": "CHILD",
+        "otherOriginalOwnerRelationshipType": "Step-child",
+        "transferMethod": "TRADED",
+        "otherTransferMethod": "",
+        "assetType": "Artwork",
+        "newOwnerName": "Michael Green",
+        "newOwnerRelationship": "Cousin",
+        "saleReportedToIrs": true,
+        "transferDate": "2021-09-21",
+        "assetTransferredUnderFairMarketValue": false,
+        "fairMarketValue": 5000,
+        "saleValue": 5000,
+        "capitalGainValue": 2000
+      }
+    ],
+    "annuities": [
+      {
+        "establishedDate": "2015-03-01",
+        "marketValueAtEstablishment": 150000,
+        "addedFundsAfterEstablishment": true,
+        "addedFundsAmount": 50000,
+        "addedFundsDate": "2018-06-15",
+        "revocable": false,
+        "receivingIncomeFromAnnuity": true,
+        "annualReceivedIncome": 6000,
+        "canBeLiquidated": false,
+        "surrenderValue": 100000
+      },
+      {
+        "establishedDate": "2010-05-22",
+        "marketValueAtEstablishment": 100000,
+        "addedFundsAfterEstablishment": false,
+        "revocable": true,
+        "receivingIncomeFromAnnuity": false,
+        "annualReceivedIncome": 0,
+        "canBeLiquidated": true,
+        "surrenderValue": 80000
       }
     ]
   }
