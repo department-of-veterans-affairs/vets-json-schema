@@ -20,33 +20,54 @@ const schema = {
     })(),
     veteranFullName: definitions.hcaFullName,
     veteranSocialSecurityNumber: definitions.ssn,
-    gender: {
-      type: 'string',
-      enum: constants.genders.map(option => option.value),
-    },
+    veteranVaFileNumber: definitions.vaFileNumber,
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
     },
-    maritalStatus: definitions.maritalStatus,
-    veteranAddress: definitions.hcaAddress,
-    veteranHomeAddress: definitions.hcaAddress,
-    email: definitions.hcaEmail,
-    homePhone: definitions.hcaPhone,
-    mobilePhone: definitions.hcaPhone,
+    veteranServiceNumber: definitions.veteranServiceNumber,
+    veteranMailingAddress: definitions.hcaAddress,
+    veteranPhone: definitions.hcaPhone,
+    veteranEmail: definitions.hcaEmail,
 
-    lastServiceBranch: {
-      type: 'string',
-      enum: constants.branchesServed.map(option => option.value),
-    },
-    lastEntryDate: {
+    claimantFullName: definitions.hcaFullName,
+    claimantDateOfBirth: {
       $ref: '#/definitions/date',
     },
-    lastDischargeDate: {
-      $ref: '#/definitions/date',
-    },
-    dischargeType: definitions.dischargeType,
+    claimantRelationship: definitions.relationship,
+    claimantMailingAddress: definitions.hcaAddress,
+    claimantPhone: definitions.hcaPhone,
+    claimantEmail: definitions.hcaEmail,
+
+    // Fields we need but I'm unsure how to add as of yet:
+    // Org name - string
+    // Limitations of consent - Use some kind of enum? - include all option
+    // Address change authorization - boolean
+
+
+    // Does this file need all fields in the PDF, just those we need to 
+    // process the form, or those actually present in the front end form
+    // experience?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   },
-  required: ['veteranFullName', 'veteranSocialSecurityNumber', 'veteranDateOfBirth', 'gender', 'veteranAddress'],
+  required: ['veteranFullName', 'veteranSocialSecurityNumber', 'veteranDateOfBirth', 'veteranMailingAddress', 'veteranPhone'],
 };
 
 export default schema;
