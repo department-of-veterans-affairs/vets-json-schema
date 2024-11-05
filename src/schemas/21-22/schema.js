@@ -5,36 +5,61 @@ import definitions from '../../common/definitions';
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR APPOINTING AN ACCREDITED REPRESENTATIVE',
-  definitions: {
-    date: {
-      format: 'date',
-      type: 'string',
-    },
-  },
   type: 'object',
   properties: {
     // Section I Veteran's Information
-    veteranFullName: definitions.hcaFullName,
-    veteranSocialSecurityNumber: definitions.ssn,
-    veteranVaFileNumber: definitions.vaFileNumber,
-    veteranDateOfBirth: definitions.date,
-    veteranServiceNumber: definitions.veteranServiceNumber,
-    veteranMailingAddress: definitions.hcaAddress,
-    veteranPhone: definitions.hcaPhone,
-    veteranEmail: definitions.hcaEmail,
+    veteran: {
+      type: 'object',
+      properties: {
+        veteranFullName: definitions.hcaFullName,
+        veteranSocialSecurityNumber: definitions.ssn,
+        veteranVaFileNumber: definitions.vaFileNumber,
+        veteranDateOfBirth: definitions.date,
+        veteranServiceNumber: definitions.veteranServiceNumber,
+        veteranMailingAddress: definitions.hcaAddress,
+        veteranPhone: definitions.hcaPhone,
+        veteranEmail: definitions.hcaEmail,
+      },
+      required: [
+        'veteranFullName',
+        'veteranSocialSecurityNumber',
+        'veteranDateOfBirth',
+        'veteranMailingAddress',
+        'veteranPhone'
+      ],
+    },
     // Section II Claimant's Information
-    claimantFullName: definitions.hcaFullName,
-    claimantDateOfBirth: definitions.date,
-    claimantRelationship: definitions.relationship,
-    claimantMailingAddress: definitions.hcaAddress,
-    claimantPhone: definitions.hcaPhone,
-    claimantEmail: definitions.hcaEmail,
+    claimant: {
+      type: 'object',
+      properties: {
+        claimantFullName: definitions.hcaFullName,
+        claimantDateOfBirth: definitions.date,
+        claimantRelationship: definitions.relationship,
+        claimantMailingAddress: definitions.hcaAddress,
+        claimantPhone: definitions.hcaPhone,
+        claimantEmail: definitions.hcaEmail,
+      },
+      // If these are required here but the claimant object isn't required at
+      // the top level, will that match our use case?  Our use case being that
+      // the claimant object isn't required but if it is present, these fields
+      // are required.
+      required: [
+        'claimantFullName',
+        'claimantDateOfBirth',
+        'claimantRelationship',
+        'claimantMailingAddress',
+        'claimantPhone'
+      ],
+    },
     // Section III Service Organization Information
-    serviceOrganizationName: { type: 'string' },
-    serviceOrganizationRepresentativeName: { type: 'string' },
-    serviceOrganizationRepresentativeJobTitle: { type: 'string' },
-    serviceOrganizationEmail: definitions.hcaEmail,
-    dateOfAppointment: definitions.date,
+    representative: {
+      type: 'object',
+      properties: {
+        id: { type: 'string' },
+        organizationId: { type: 'string' },
+
+      },
+    },
     // Section IV Authorization Information
     authorizationAccessProtectedRecords: { type: 'boolean' },
     limitationsOfConsent: { 
