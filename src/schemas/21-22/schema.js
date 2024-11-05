@@ -4,7 +4,7 @@ import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'APPLICATION FOR APPOINTING AN ACCREDITED REPRESENTATIVE',
+  title: "APPOINTMENT OF VETERANS SERVICE ORGANIZATION AS CLAIMANT'S REPRESENTATIVE",
   type: 'object',
   properties: {
     // Section I Veteran's Information
