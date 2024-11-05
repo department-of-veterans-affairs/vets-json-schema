@@ -4,62 +4,84 @@ import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'APPLICATION FOR APPOINTING AN ACCREDITED REPRESENTATIVE',
-  definitions: {
-    date: {
-      format: 'date',
-      type: 'string',
-    },
-  },
+  title: "APPOINTMENT OF INDIVIDUAL AS CLAIMANT'S REPRESENTATIVE",
   type: 'object',
   properties: {
-    attachments: (() => {
-      const attachments = _.cloneDeep(definitions.files);
-      attachments.items.properties.dd214 = { type: 'boolean' };
-      return attachments;
-    })(),
-    veteranFullName: definitions.hcaFullName,
-    veteranSocialSecurityNumber: definitions.ssn,
-    veteranVaFileNumber: definitions.vaFileNumber,
-    veteranDateOfBirth: {
-      $ref: '#/definitions/date',
+    // Section I VETERAN'S IDENTIFICATION INFORMATION
+    veteran: {
+      type: 'object',
+      properties: {
+        name: definitions.hcaFullName,
+        ssn: definitions.ssn,
+        vaFileNumber: definitions.vaFileNumber,
+        dateOfBirth: definitions.date,
+        serviceNumber: definitions.veteranServiceNumber,
+        serviceBranch: {
+          type: 'string',
+          enum: ['ARMY', 'NAVY', 'AIR_FORCE', 'MARINE_CORPS', 'COAST_GUARD', 'SPACE_FORCE', 'NOAA', 'USPHS']
+        },
+        address: definitions.hcaAddress,
+        phone: definitions.hcaPhone,
+        email: definitions.hcaEmail,
+      },
+      required: [
+        'name',
+        'ssn',
+        'dateOfBirth',
+        'address',
+        'phone'
+      ],
     },
-    veteranServiceNumber: definitions.veteranServiceNumber,
-    veteranServiceBranch: {
-      type: 'string',
+    // Section II Claimant's Information
+    claimant: {
+      type: 'object',
+      properties: {
+        name: definitions.hcaFullName,
+        dateOfBirth: definitions.date,
+        relationship: definitions.relationship,
+        address: definitions.hcaAddress,
+        phone: definitions.hcaPhone,
+        email: definitions.hcaEmail,
+      },
+      // If these are required here but the claimant object isn't required at
+      // the top level, will that match our use case?  Our use case being that
+      // the claimant object isn't required but if it is present, these fields
+      // are required.
+      required: [
+        'name',
+        'dateOfBirth',
+        'relationship',
+        'address',
+        'phone'
+      ],
     },
-    veteranMailingAddress: definitions.hcaAddress,
-    veteranPhone: definitions.hcaPhone,
-    veteranEmail: definitions.hcaEmail,
+    // Section III APPOINTED REPRESENTATIVE'S INFORMATION
+    representative: {
+      type: 'object',
+      properties: {
+        id: { type: 'string' },
 
-    claimantFullName: definitions.hcaFullName,
-    claimantDateOfBirth: {
-      $ref: '#/definitions/date',
+      },
+      required: ['id'],
     },
-    claimantRelationship: definitions.relationship,
-    claimantMailingAddress: definitions.hcaAddress,
-    claimantPhone: definitions.hcaPhone,
-    claimantEmail: definitions.hcaEmail,
-
-    representativeFullName: definitions.hcaFullName,
-    // representativeIndividualType
-    representativeMailingAddress: definitions.hcaAddress,
-    representativePhone: definitions.hcaPhone,
-    representativeEmail: definitions.hcaEmail,
-
-    // Fields we need but I'm unsure how to add as of yet:
-    // Org name - string
-    // Limitations of consent - Use some kind of enum? - include all option
-    // Address change authorization - boolean
-
-
-    // Does this file need all fields in the PDF, just those we need to 
-    // process the form, or those actually present in the front end form
-    // experience?
-
-
+    // Section IV Authorization Information
+    recordConsent: { type: 'boolean' },
+    consentAddressChange: { type: 'boolean' },
+    consentLimits: { 
+      type: 'array',
+      items: { 
+        type: 'string',
+        enum: ['ALCOHOLISM', 'DRUG_ABUSE', 'HIV', 'SICKLE_CELL'],
+       }
+    },
   },
-  required: ['veteranFullName', 'veteranSocialSecurityNumber', 'veteranDateOfBirth', 'gender', 'veteranAddress'],
+  required: [
+    'veteran',
+    'representative',
+    'recordConsent',
+    'consentAddressChange',
+    'consentLimits',
+  ],
 };
 
 export default schema;
