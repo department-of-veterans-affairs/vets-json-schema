@@ -49,7 +49,6 @@
     "country": {
       "type": "string",
       "enum": [
-        "United States",
         "Afghanistan",
         "Aland Islands",
         "Albania",
@@ -277,6 +276,7 @@
         "Ukraine",
         "United Arab Emirates",
         "United Kingdom",
+        "United States",
         "Uruguay",
         "Uzbekistan",
         "Vanuatu",
@@ -288,8 +288,7 @@
         "Yemen",
         "Zambia",
         "Zimbabwe"
-      ],
-      "default": "United States"
+      ]
     },
     "state": {
       "type": "string",
