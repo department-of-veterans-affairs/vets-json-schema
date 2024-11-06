@@ -9,10 +9,21 @@ const address = {
     addressLine2: { type: 'string', minLength: 1, maxLength: 5 },
     city: { type: 'string', minLength: 1, maxLength: 18 },
     state_code: { type: 'string', minLength: 2, maxLength: 2 },
-    country: { type: 'string' },
-    zip_code: { type: 'string' },
-    zip_code_suffix: { type: 'string' },
+    country: { type: 'string', minLength: 3, maxLength: 3 },
+    zip_code: { type: 'string', "pattern": "^\\d{5}$" },
+    zip_code_suffix: { type: 'string', "pattern": "^\\d{4}$" },
   },
+  required: ['addressLine1', 'city', 'state_code', 'country', 'zip_code'],
+};
+
+const name = {
+  type: 'object',
+  properties: {
+    first: { type: 'string', minLength: 1, maxLength: 12 },
+    middle: { type: 'string', minLength: 1, maxLength: 1 },
+    last: { type: 'string', minLength: 1, maxLength: 18 },
+  },
+  required: ['first', 'last'],
 };
 
 const schema = {
@@ -24,7 +35,7 @@ const schema = {
     veteran: {
       type: 'object',
       properties: {
-        name: definitions.hcaFullName,
+        name: name,
         ssn: definitions.ssn,
         vaFileNumber: definitions.vaFileNumber,
         dateOfBirth: definitions.date,
@@ -33,7 +44,7 @@ const schema = {
           type: 'string',
           enum: ['ARMY', 'NAVY', 'AIR_FORCE', 'MARINE_CORPS', 'COAST_GUARD', 'SPACE_FORCE', 'NOAA', 'USPHS']
         },
-        address: definitions.hcaAddress,
+        address: address,
         phone: definitions.hcaPhone,
         email: definitions.hcaEmail,
       },
@@ -49,10 +60,10 @@ const schema = {
     claimant: {
       type: 'object',
       properties: {
-        name: definitions.hcaFullName,
+        name: name,
         dateOfBirth: definitions.date,
         relationship: definitions.relationship,
-        address: definitions.hcaAddress,
+        address: address,
         phone: definitions.hcaPhone,
         email: definitions.hcaEmail,
       },
