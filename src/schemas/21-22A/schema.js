@@ -108,4 +108,4 @@ const schema = {
   ],
 };
 
-export default schema;
+export default {schema, address, name};

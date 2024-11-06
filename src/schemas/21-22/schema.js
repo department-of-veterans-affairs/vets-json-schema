@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import constants from '../../common/constants';
 import definitions from '../../common/definitions';
+import { address, name } from '../21-22A/schema';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -11,12 +12,12 @@ const schema = {
     veteran: {
       type: 'object',
       properties: {
-        name: definitions.hcaFullName,
+        name: name,
         ssn: definitions.ssn,
         vaFileNumber: definitions.vaFileNumber,
         dateOfBirth: definitions.date,
         serviceNumber: definitions.veteranServiceNumber,
-        address: definitions.hcaAddress,
+        address: address,
         phone: definitions.hcaPhone,
         email: definitions.hcaEmail,
       },
@@ -32,10 +33,10 @@ const schema = {
     claimant: {
       type: 'object',
       properties: {
-        name: definitions.hcaFullName,
+        name: name,
         dateOfBirth: definitions.date,
         relationship: definitions.relationship,
-        address: definitions.hcaAddress,
+        address: address,
         phone: definitions.hcaPhone,
         email: definitions.hcaEmail,
       },
