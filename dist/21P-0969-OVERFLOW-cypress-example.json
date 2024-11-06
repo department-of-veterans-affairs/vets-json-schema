@@ -187,6 +187,44 @@
         "capitalGainValue": 2000
       }
     ],
+    "trusts": [
+      {
+        "establishedDate": "2020-03-15",
+        "marketValueAtEstablishment": 100000,
+        "trustType": "REVOCABLE",
+        "addedFundsAfterEstablishment": true,
+        "addedFundsDate": "2021-05-10",
+        "addedFundsAmount": 5000,
+        "receivingIncomeFromTrust": true,
+        "annualReceivedIncome": 12000,
+        "trustUsedForMedicalExpenses": false,
+        "trustEstablishedForVeteransChild": false,
+        "haveAuthorityOrControlOfTrust": true
+      },
+      {
+        "establishedDate": "2018-09-25",
+        "marketValueAtEstablishment": 50000,
+        "trustType": "IRREVOCABLE",
+        "addedFundsAfterEstablishment": false,
+        "receivingIncomeFromTrust": false,
+        "trustUsedForMedicalExpenses": true,
+        "monthlyMedicalReimbursementAmount": 300,
+        "trustEstablishedForVeteransChild": true,
+        "haveAuthorityOrControlOfTrust": false
+      },
+      {
+        "establishedDate": "2022-01-01",
+        "marketValueAtEstablishment": 75000,
+        "trustType": "BURIAL",
+        "addedFundsAfterEstablishment": true,
+        "addedFundsDate": "2023-06-20",
+        "addedFundsAmount": 2000,
+        "receivingIncomeFromTrust": false,
+        "trustUsedForMedicalExpenses": false,
+        "trustEstablishedForVeteransChild": false,
+        "haveAuthorityOrControlOfTrust": true
+      }
+    ],
     "annuities": [
       {
         "establishedDate": "2015-03-01",
