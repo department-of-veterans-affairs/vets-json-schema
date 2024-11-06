@@ -2,7 +2,7 @@ import _ from 'lodash';
 import constants from '../../common/constants';
 import definitions from '../../common/definitions';
 
-const address = {
+export const address = {
   type: 'object',
   properties: {
     addressLine1: { type: 'string', minLength: 1, maxLength: 30 },
@@ -16,7 +16,7 @@ const address = {
   required: ['addressLine1', 'city', 'state_code', 'country', 'zip_code'],
 };
 
-const name = {
+export const name = {
   type: 'object',
   properties: {
     first: { type: 'string', minLength: 1, maxLength: 12 },
@@ -108,4 +108,4 @@ const schema = {
   ],
 };
 
-export default {schema, address, name};
+export default schema;
