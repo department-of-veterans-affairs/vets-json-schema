@@ -2,6 +2,19 @@ import _ from 'lodash';
 import constants from '../../common/constants';
 import definitions from '../../common/definitions';
 
+const address = {
+  type: 'object',
+  properties: {
+    addressLine1: { type: 'string', minLength: 1, maxLength: 30 },
+    addressLine2: { type: 'string', minLength: 1, maxLength: 5 },
+    city: { type: 'string', minLength: 1, maxLength: 18 },
+    state_code: { type: 'string', minLength: 2, maxLength: 2 },
+    country: { type: 'string' },
+    zip_code: { type: 'string' },
+    zip_code_suffix: { type: 'string' },
+  },
+};
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: "APPOINTMENT OF INDIVIDUAL AS CLAIMANT'S REPRESENTATIVE",
@@ -67,12 +80,12 @@ const schema = {
     // Section IV Authorization Information
     recordConsent: { type: 'boolean' },
     consentAddressChange: { type: 'boolean' },
-    consentLimits: { 
+    consentLimits: {
       type: 'array',
-      items: { 
+      items: {
         type: 'string',
         enum: ['ALCOHOLISM', 'DRUG_ABUSE', 'HIV', 'SICKLE_CELL'],
-       }
+      }
     },
   },
   required: [
