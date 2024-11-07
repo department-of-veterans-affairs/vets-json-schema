@@ -360,7 +360,7 @@ const schema = {
         refundIssues: {
           type: 'boolean',
           default: false,
-        },  
+        },
         other: {
           type: 'boolean',
           default: false,
