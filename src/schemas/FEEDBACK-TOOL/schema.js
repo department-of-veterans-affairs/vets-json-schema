@@ -317,15 +317,11 @@ const schema = {
       type: 'object', // FE validation requires at least one selected
       properties: {
         // TODO: obtain updated options based on sample request
+        other: {
+          type: 'boolean',
+          default: false,
+        },
         recruiting: {
-          type: 'boolean',
-          default: false,
-        },
-        accreditation: {
-          type: 'boolean',
-          default: false,
-        },
-        financialIssues: {
           type: 'boolean',
           default: false,
         },
@@ -333,23 +329,7 @@ const schema = {
           type: 'boolean',
           default: false,
         },
-        jobOpportunities: {
-          type: 'boolean',
-          default: false,
-        },
-        changeInDegree: {
-          type: 'boolean',
-          default: false,
-        },
         quality: {
-          type: 'boolean',
-          default: false,
-        },
-        gradePolicy: {
-          type: 'boolean',
-          default: false,
-        },
-        transcriptRelease: {
           type: 'boolean',
           default: false,
         },
@@ -357,14 +337,34 @@ const schema = {
           type: 'boolean',
           default: false,
         },
+        accreditation: {
+          type: 'boolean',
+          default: false,
+        },
+        jobOpportunities: {
+          type: 'boolean',
+          default: false,
+        },
+        gradePolicy: {
+          type: 'boolean',
+          default: false,
+        },
         refundIssues: {
           type: 'boolean',
           default: false,
         },
-        other: {
+        financialIssues: {
           type: 'boolean',
           default: false,
-        }
+        },
+        changeInDegree: {
+          type: 'boolean',
+          default: false,
+        },
+        transcriptRelease: {
+          type: 'boolean',
+          default: false,
+        },
       },
     },
     issueDescription: {
