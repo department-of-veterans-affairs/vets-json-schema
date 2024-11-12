@@ -8,7 +8,8 @@ const { salesforceCountries: countries } = constants;
 
 definitions.country = {
   type: 'string',
-  enum: countries.map(country => country.label),
+  enum: ['United States', ...countries.filter(country => country.value !== 'USA').map(country => country.label)],
+  default: 'United States'
 };
 definitions.state = {
   type: 'string',
