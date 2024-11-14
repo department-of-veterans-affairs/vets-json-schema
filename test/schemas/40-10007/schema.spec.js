@@ -29,7 +29,7 @@ describe('preneeds schema', () => {
   });
 
   schemaTestHelper.testValidAndInvalid('application.claimant.ssn', {
-    valid: ['000-12-3456'],
+    valid: ['000123456'],
     invalid: ['bad'],
   });
 
