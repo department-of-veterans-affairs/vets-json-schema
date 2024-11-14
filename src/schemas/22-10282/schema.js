@@ -7,7 +7,8 @@ const { salesforceCountries: countries } = constants;
 
 definitions.country = {
   type: 'string',
-  enum: countries.map(country => country.label),
+  enum: ['United States', ...salesforceCountries.filter(country => country.value !== 'USA').map(country => country.label)],
+  default: 'United States'
 };
 definitions.state = {
   type: 'string',
@@ -16,7 +17,9 @@ definitions.state = {
 definitions.raceAndGender = {
   type: 'boolean',
 };
+
 const pickedDefinitions = _.pick(definitions, ['fullName', 'email', 'usaPhone', 'country', 'state', 'raceAndGender']);
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: '22-10282 IBM Skillsbuild Training Program Intake Application',
