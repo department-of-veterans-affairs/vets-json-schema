@@ -30,7 +30,7 @@
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
     "@babel/register": "^7.18.9",
-    "ajv": "^4.5.0",
+    "ajv": "^6.12.3",
     "chai": "^3.5.0",
     "chalk": "^4.1.2",
     "danger": "^10.9.0",
@@ -47,7 +47,7 @@
     "mocha": "^3.0.2",
     "node-watch": "^0.4.0",
     "prettier": "^1.19.1",
-    "semver": "^7.5.2"
+    "semver": "^7.6.3"
   },
   "engines": {
     "node": ">=14.15.0"
