@@ -895,23 +895,7 @@
     "issue": {
       "type": "object",
       "properties": {
-        "other": {
-          "type": "boolean",
-          "default": false
-        },
         "recruiting": {
-          "type": "boolean",
-          "default": false
-        },
-        "studentLoans": {
-          "type": "boolean",
-          "default": false
-        },
-        "quality": {
-          "type": "boolean",
-          "default": false
-        },
-        "creditTransfer": {
           "type": "boolean",
           "default": false
         },
@@ -919,19 +903,15 @@
           "type": "boolean",
           "default": false
         },
-        "jobOpportunities": {
-          "type": "boolean",
-          "default": false
-        },
-        "gradePolicy": {
-          "type": "boolean",
-          "default": false
-        },
-        "refundIssues": {
-          "type": "boolean",
-          "default": false
-        },
         "financialIssues": {
+          "type": "boolean",
+          "default": false
+        },
+        "studentLoans": {
+          "type": "boolean",
+          "default": false
+        },
+        "jobOpportunities": {
           "type": "boolean",
           "default": false
         },
@@ -939,7 +919,27 @@
           "type": "boolean",
           "default": false
         },
+        "quality": {
+          "type": "boolean",
+          "default": false
+        },
+        "gradePolicy": {
+          "type": "boolean",
+          "default": false
+        },
         "transcriptRelease": {
+          "type": "boolean",
+          "default": false
+        },
+        "creditTransfer": {
+          "type": "boolean",
+          "default": false
+        },
+        "refundIssues": {
+          "type": "boolean",
+          "default": false
+        },
+        "other": {
           "type": "boolean",
           "default": false
         }
