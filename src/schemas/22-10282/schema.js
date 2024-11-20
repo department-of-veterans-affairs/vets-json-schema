@@ -1,24 +1,24 @@
 import _ from 'lodash';
-import originalDefinitions from '../../common/definitions';
+import definitions from '../../common/definitions';
 import constants from '../../common/constants';
 
-const definitions = _.cloneDeep(originalDefinitions);
+const origDefinitions = _.cloneDeep(definitions);
 const { salesforceCountries: countries } = constants;
 
-definitions.country = {
+origDefinitions.country = {
   type: 'string',
-  enum: ['United States', ...salesforceCountries.filter(country => country.value !== 'USA').map(country => country.label)],
+  enum: ['United States', ...countries.filter(country => country.value !== 'USA').map(country => country.label)],
   default: 'United States'
 };
-definitions.state = {
+origDefinitions.state = {
   type: 'string',
   enum: constants.usaStates,
 };
-definitions.raceAndGender = {
+origDefinitions.raceAndGender = {
   type: 'boolean',
 };
 
-const pickedDefinitions = _.pick(definitions, ['fullName', 'email', 'usaPhone', 'country', 'state', 'raceAndGender']);
+const pickedDefinitions = _.pick(origDefinitions, ['fullNameNoSuffix', 'email', 'usaPhone', 'country', 'state', 'raceAndGender']);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -28,7 +28,7 @@ const schema = {
   definitions: pickedDefinitions,
   properties: {
     veteranFullName: {
-      $ref: '#/definitions/fullName',
+      $ref: '#/definitions/fullNameNoSuffix',
     },
     veteranDesc: {
       type: 'string',
@@ -97,13 +97,13 @@ const schema = {
     gender: {
       type: 'string',
       enum: [
-        'M',
-        'NB',
-        'TM',
-        'TW',
-        'W',
-        'NA',
-        '0',
+        "W",
+        "M",
+        "TW",
+        "TM",
+        "NB",
+        "0",
+        "NA"
       ],
     },
     highestLevelOfEducation: {
@@ -123,6 +123,7 @@ const schema = {
         otherEducation: {
           type: 'string',
           minLength: 0,
+          maxLength: 30,
         },
       },
     },
@@ -155,6 +156,8 @@ const schema = {
     },
   },
   required: ['veteranFullName', 'veteranDesc', 'contactInfo', 'country'],
+  if: { properties: { country: { const: "United States" } } },
+  then: { required: [ "state" ] },
 };
 
 export default schema;

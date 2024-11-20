@@ -4,8 +4,13 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
-    "fullName": {
+    "fullNameNoSuffix": {
       "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
       "properties": {
         "first": {
           "type": "string",
@@ -20,22 +25,8 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 30
-        },
-        "suffix": {
-          "type": "string",
-          "enum": [
-            "Jr.",
-            "Sr.",
-            "II",
-            "III",
-            "IV"
-          ]
         }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
+      }
     },
     "email": {
       "type": "string",
@@ -364,7 +355,7 @@
   },
   "properties": {
     "veteranFullName": {
-      "$ref": "#/definitions/fullName"
+      "$ref": "#/definitions/fullNameNoSuffix"
     },
     "veteranDesc": {
       "type": "string",
@@ -439,13 +430,13 @@
     "gender": {
       "type": "string",
       "enum": [
-        "M",
-        "NB",
-        "TM",
-        "TW",
         "W",
-        "NA",
-        "0"
+        "M",
+        "TW",
+        "TM",
+        "NB",
+        "0",
+        "NA"
       ]
     },
     "highestLevelOfEducation": {
@@ -464,7 +455,8 @@
         },
         "otherEducation": {
           "type": "string",
-          "minLength": 0
+          "minLength": 0,
+          "maxLength": 30
         }
       }
     },
@@ -501,5 +493,17 @@
     "veteranDesc",
     "contactInfo",
     "country"
-  ]
+  ],
+  "if": {
+    "properties": {
+      "country": {
+        "const": "United States"
+      }
+    }
+  },
+  "then": {
+    "required": [
+      "state"
+    ]
+  }
 }
