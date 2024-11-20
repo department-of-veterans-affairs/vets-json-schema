@@ -155,9 +155,7 @@ const schema = {
       ],
     },
   },
-  required: ['veteranFullName', 'veteranDesc', 'contactInfo', 'country'],
-  if: { properties: { country: { const: "United States" } } },
-  then: { required: [ "state" ] },
+  required: ['veteranFullName', 'veteranDesc', 'contactInfo', 'country']
 };
 
 export default schema;

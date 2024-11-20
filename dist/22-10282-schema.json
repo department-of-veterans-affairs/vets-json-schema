@@ -493,17 +493,5 @@
     "veteranDesc",
     "contactInfo",
     "country"
-  ],
-  "if": {
-    "properties": {
-      "country": {
-        "const": "United States"
-      }
-    }
-  },
-  "then": {
-    "required": [
-      "state"
-    ]
-  }
+  ]
 }
