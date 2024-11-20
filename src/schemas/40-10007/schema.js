@@ -185,7 +185,7 @@ definitions.phone.minLength = 10;
 definitions.phone.maxLength = 20;
 definitions.phone.pattern = '^(?:\\D*\\d){10,15}\\D*$';
 
-definitions.ssn.pattern = '^\\d{3}\\d{2}\\d{4}$';
+definitions.ssn.pattern = '^\\d{3}-?\\d{2}-?\\d{4}$';
 
 definitions.race = {
   type: 'object',
