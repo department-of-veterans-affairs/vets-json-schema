@@ -186,10 +186,6 @@ const schema = {
     transportationExpenses: {
       type: 'boolean',
     },
-    formV2: {
-      type: 'boolean',
-      default: true,
-    },
     placeOfBirth: {
       type: 'string',
     },
