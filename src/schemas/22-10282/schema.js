@@ -1,25 +1,25 @@
 import _ from 'lodash';
-import originalDefinitions from '../../common/definitions';
-import schemaHelpers from '../../common/schema-helpers';
+import definitions from '../../common/definitions';
 import constants from '../../common/constants';
 
-const definitions = _.cloneDeep(originalDefinitions);
+const origDefinitions = _.cloneDeep(definitions);
 const { salesforceCountries: countries } = constants;
 
-definitions.country = {
+origDefinitions.country = {
   type: 'string',
   enum: ['United States', ...countries.filter(country => country.value !== 'USA').map(country => country.label)],
   default: 'United States'
 };
-definitions.state = {
+origDefinitions.state = {
   type: 'string',
   enum: constants.usaStates,
 };
-definitions.raceAndGender = {
-  type: 'string',
-  enum: ['Yes', 'No'],
+origDefinitions.raceAndGender = {
+  type: 'boolean',
 };
-const pickedDefinitions = _.pick(definitions, ['fullName', 'email', 'usaPhone', 'country', 'state', 'raceAndGender']);
+
+const pickedDefinitions = _.pick(origDefinitions, ['fullNameNoSuffix', 'email', 'usaPhone', 'country', 'state', 'raceAndGender']);
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: '22-10282 IBM Skillsbuild Training Program Intake Application',
@@ -28,7 +28,7 @@ const schema = {
   definitions: pickedDefinitions,
   properties: {
     veteranFullName: {
-      $ref: '#/definitions/fullName',
+      $ref: '#/definitions/fullNameNoSuffix',
     },
     veteranDesc: {
       type: 'string',
@@ -43,15 +43,20 @@ const schema = {
         'individualReadyReserve',
       ],
     },
-    email: {
-      type: 'string',
-      format: 'email',
-    },
-    mobilePhone: {
-      $ref: '#/definitions/usaPhone',
-    },
-    homePhone: {
-      $ref: '#/definitions/usaPhone',
+    contactInfo: {
+      type: 'object',
+      required: ['email'],
+      properties: {
+        email: {
+          $ref: '#/definitions/email',
+        },
+        mobilePhone: {
+          $ref: '#/definitions/usaPhone',
+        },
+        homePhone: {
+          $ref: '#/definitions/usaPhone',
+        },
+      }
     },
     country: {
       $ref: '#/definitions/country',
@@ -60,36 +65,45 @@ const schema = {
       $ref: '#/definitions/state',
     },
     raceAndGender: {
-      type: 'string',
-      enum: ['Yes', 'No'],
+      $ref: '#/definitions/raceAndGender',
     },
     ethnicity: {
       type: 'string',
-      enum: ['Hispanic or Latino', 'Not Hispanic or Latino', 'Prefer not to answer'],
+      enum: ['HL', 'NHL', 'NA'],
     },
-    orginRace: {
-      type: 'string',
-      enum: [
-        'American Indian or Alaskan Native',
-        'Asian',
-        'Black or African American',
-        'Native Hawaiian or Other Pacific Islander',
-        'White',
-        'Middle Eastern or North African',
-        'Other',
-        'Prefer not to answer',
-      ],
+    originRace: {
+      type: 'object',
+      properties: {
+        isAmericanIndianOrAlaskanNative: {
+          type: 'boolean',
+        },
+        isAsian: {
+          type: 'boolean',
+        },
+        isBlackOrAfricanAmerican: {
+          type: 'boolean',
+        },
+        isNativeHawaiianOrOtherPacificIslander: {
+          type: 'boolean',
+        },
+        isWhite: {
+          type: 'boolean',
+        },
+        noAnswer: {
+          type: 'boolean'
+        }
+      },
     },
     gender: {
       type: 'string',
       enum: [
-        'Woman',
-        'Man',
-        'Transgender woman',
-        'Transgender man',
-        'Non-binary',
-        'A gender not listed here',
-        'Prefer not to answer',
+        "W",
+        "M",
+        "TW",
+        "TM",
+        "NB",
+        "0",
+        "NA"
       ],
     },
     highestLevelOfEducation: {
@@ -98,53 +112,51 @@ const schema = {
         level: {
           type: 'string',
           enum: [
-            'A high school diploma or GED',
-            'An associate degree',
-            "A bachelor's degree",
-            "A master's degree",
-            'A doctoral degree like a PhD',
-            'Something else',
+            'HS',
+            'AD',
+            'BD',
+            'MD',
+            'DD',
+            'NA'
           ],
         },
         otherEducation: {
           type: 'string',
           minLength: 0,
+          maxLength: 30,
         },
       },
     },
     currentlyEmployed: {
-      type: 'string',
-      enum: ['Yes', 'No'],
+      type: 'boolean',
     },
     currentAnnualSalary: {
       type: 'string',
       enum: [
-        'Less than $20,000',
-        'Between $20,001 and $35,000',
-        'Between $35,001 and $50,000',
-        'Between $50,001 and $75,000',
-        'More than $75,000',
+        'lessThanTwenty',
+        'twentyToThirtyFive',
+        'thirtyFiveToFifty',
+        'fiftyToSeventyFive',
+        'moreThanSeventyFive',
       ],
     },
     isWorkingInTechIndustry: {
-      type: 'string',
-      enum: ['Yes', 'No'],
+      type: 'boolean',
     },
     techIndustryFocusArea: {
       type: 'string',
       enum: [
-        'Computer programming',
-        'Data processing',
-        'Computer software',
-        'Information sciences',
-        'Media application',
-        'Something else not listed here',
+        'CP',
+        'CS',
+        'DP',
+        'IS',
+        'MA',
+        'NA'
       ],
     },
   },
-  required: ['veteranFullName', 'veteranDesc', 'email', 'country', 'state'],
+  required: ['veteranFullName', 'veteranDesc', 'contactInfo', 'country']
 };
-[['fullName', 'veteranFullName']].forEach(args => {
-  schemaHelpers.addDefinitionToSchema(schema, ...args);
-});
+
 export default schema;
+
