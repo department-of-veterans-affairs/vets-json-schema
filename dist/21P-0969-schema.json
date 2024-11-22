@@ -42,6 +42,25 @@
         "OTHER"
       ]
     },
+    "addedFunds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fundsAddedDate",
+          "amountAdded"
+        ],
+        "properties": {
+          "fundsAddedDate": {
+            "$ref": "#/definitions/date"
+          },
+          "amountAdded": {
+            "type": "number",
+            "default": 0
+          }
+        }
+      }
+    },
     "unassociatedIncomes": {
       "type": "array",
       "items": {
@@ -140,7 +159,7 @@
           "recipientRelationship",
           "assetType",
           "grossMonthlyIncome",
-          "ownedPortionValue"
+          "payer"
         ],
         "properties": {
           "recipientName": {
@@ -166,6 +185,9 @@
           "grossMonthlyIncome": {
             "type": "number",
             "default": 0
+          },
+          "payer": {
+            "type": "string"
           },
           "ownedPortionValue": {
             "type": "number",
@@ -232,12 +254,14 @@
           "originalOwnerRelationship",
           "transferMethod",
           "assetType",
+          "payer",
           "newOwnerName",
           "newOwnerRelationship",
           "saleReportedToIrs",
           "transferDate",
           "assetTransferredUnderFairMarketValue",
           "fairMarketValue",
+          "saleValue",
           "capitalGainValue"
         ],
         "properties": {
@@ -298,7 +322,7 @@
       "items": {
         "type": "object",
         "required": [
-          "establishedDate",
+          "establishmentDate",
           "marketValueAtEstablishment",
           "trustType",
           "addedFundsAfterEstablishment",
@@ -326,12 +350,8 @@
           "addedFundsAfterEstablishment": {
             "type": "boolean"
           },
-          "addedFundsDate": {
-            "$ref": "#/definitions/date"
-          },
-          "addedFundsAmount": {
-            "type": "number",
-            "default": 0
+          "addedFunds": {
+            "$ref": "#/definitions/addedFunds"
           },
           "receivingIncomeFromTrust": {
             "type": "boolean"
@@ -379,12 +399,8 @@
           "addedFundsAfterEstablishment": {
             "type": "boolean"
           },
-          "addedFundsDate": {
-            "$ref": "#/definitions/date"
-          },
-          "addedFundsAmount": {
-            "type": "number",
-            "default": 0
+          "addedFunds": {
+            "$ref": "#/definitions/addedFunds"
           },
           "revocable": {
             "type": "boolean"
@@ -588,32 +604,62 @@
     "dateReceivedByVa": {
       "type": "boolean"
     },
+    "hasUnassociatedIncomes": {
+      "type": "boolean"
+    },
     "unassociatedIncomes": {
       "$ref": "#/definitions/unassociatedIncomes"
+    },
+    "hasAssociatedIncomes": {
+      "type": "boolean"
     },
     "associatedIncomes": {
       "$ref": "#/definitions/associatedIncomes"
     },
+    "hasOwnedAssets": {
+      "type": "boolean"
+    },
     "ownedAssets": {
       "$ref": "#/definitions/ownedAssets"
+    },
+    "hasRoyaltiesAndOtherProperties": {
+      "type": "boolean"
     },
     "royaltiesAndOtherProperties": {
       "$ref": "#/definitions/royaltiesAndOtherProperties"
     },
+    "hasAssetTransfers": {
+      "type": "boolean"
+    },
     "assetTransfers": {
       "$ref": "#/definitions/assetTransfers"
+    },
+    "hasTrusts": {
+      "type": "boolean"
     },
     "trusts": {
       "$ref": "#/definitions/trusts"
     },
+    "hasAnnuities": {
+      "type": "boolean"
+    },
     "annuities": {
       "$ref": "#/definitions/annuities"
+    },
+    "hasUnreportedAssets": {
+      "type": "boolean"
     },
     "unreportedAssets": {
       "$ref": "#/definitions/unreportedAssets"
     },
+    "hasDiscontinuedIncomes": {
+      "type": "boolean"
+    },
     "discontinuedIncomes": {
       "$ref": "#/definitions/discontinuedIncomes"
+    },
+    "hasIncomeReceiptWaivers": {
+      "type": "boolean"
     },
     "incomeReceiptWaivers": {
       "$ref": "#/definitions/incomeReceiptWaivers"
