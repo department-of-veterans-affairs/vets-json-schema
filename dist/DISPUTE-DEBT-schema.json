@@ -3,7 +3,8 @@
   "title": "DISPUTE DEBT",
   "type": "object",
   "properties": {
-    "conntactInformation": {
+    "contactInformation": {
+      "type": "object",
       "email": {
         "type": "string",
         "maxLength": 256,

@@ -5,7 +5,8 @@ const schema = {
   title: 'DISPUTE DEBT',
   type: 'object',
   properties: {
-    conntactInformation: {
+    contactInformation: {
+      type: 'object',
       email: definitions.email,
       phoneNumber: definitions.phoneNumber,
       address: definitions.profileAddress,
