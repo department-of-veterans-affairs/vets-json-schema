@@ -12,8 +12,9 @@ const schema = {
       address: definitions.profileAddress,
     },
     debtInformation: {
-      type: 'object',
-      properties: {
+      type: 'array',
+      items: {
+        type: 'object',
         debt: {
           type: 'string',
         },
