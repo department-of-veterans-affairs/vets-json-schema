@@ -333,6 +333,9 @@ const schema = {
     statementOfTruthSignature: {
       type: 'string',
     },
+    signatureDate: {
+      type: 'string',
+    },
   },
   required: ['veteranFullName', 'veteranAddress', 'statementOfTruthCertified', 'statementOfTruthSignature'],
 };
