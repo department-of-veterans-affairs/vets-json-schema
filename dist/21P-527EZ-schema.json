@@ -1200,6 +1200,9 @@
     "statementOfTruthSignature": {
       "type": "string"
     },
+    "signatureDate": {
+      "type": "string"
+    },
     "veteranFullName": {
       "$ref": "#/definitions/benefitsIntakeFullName"
     },
