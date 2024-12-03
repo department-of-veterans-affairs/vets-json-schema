@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "22-10215 Statement of Assurance of Compliance with 95 Percent Enrollment Ratios (22-10215)",
+  "title": "Report 85/15 Rule enrollment ratios",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
