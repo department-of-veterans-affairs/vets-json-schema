@@ -30,6 +30,38 @@ const schema = {
         },
       },
     },
+    programs: {
+      type: 'array',
+      required: ['programName', 'studentsEnrolled', 'supportedStudents'],
+      properties: {
+        programName: {
+          type: 'string',
+        },
+        studentsEnrolled: {
+          type: 'integer',
+        },
+        supportedStudents: {
+          type: 'integer',
+        },
+        fte: {
+          type: 'object',
+          properties: {
+            supported: {
+              type: 'integer',
+            },
+            nonSupported: {
+              type: 'integer',
+            },
+            totalFTE: {
+              type: 'integer',
+            },
+            supportedPercentageFTE: {
+              type: 'number',
+            },
+          },
+        },
+      },
+    },
   },
 };
 
