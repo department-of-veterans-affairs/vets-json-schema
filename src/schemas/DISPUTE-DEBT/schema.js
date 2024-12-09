@@ -7,9 +7,11 @@ const schema = {
   properties: {
     contactInformation: {
       type: 'object',
-      email: definitions.email,
-      phoneNumber: definitions.phoneNumber,
-      address: definitions.profileAddress,
+      properties: {
+        email: definitions.email,
+        phoneNumber: definitions.phoneNumber,
+        address: definitions.profileAddress,
+      },
     },
     debtInformation: {
       type: 'array',
