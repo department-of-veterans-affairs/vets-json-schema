@@ -17,14 +17,16 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        debt: {
-          type: 'string',
-        },
-        disputeReason: {
-          type: 'string',
-        },
-        supportStatement: {
-          type: 'string',
+        properties: {
+          debt: {
+            type: 'string',
+          },
+          disputeReason: {
+            type: 'string',
+          },
+          supportStatement: {
+            type: 'string',
+          },
         },
       },
     },
