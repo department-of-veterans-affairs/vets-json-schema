@@ -23,9 +23,6 @@ const schema = {
         termStartDate: {
           $ref: '#/definitions/date',
         },
-        dateOfCalculations: {
-          $ref: '#/definitions/date',
-        },
       },
     },
     studentRatioCalcChapter: {
@@ -33,9 +30,12 @@ const schema = {
       required: ['beneficiaryStudent', 'numOfStudent', 'dateOfCalculation'],
       properties: {
         beneficiaryStudent: {
-          type: 'number',
+          type: 'integer',
         },
         numOfStudent: {
+          type: 'integer',
+        },
+        VaBeneficiaryStudentsPercentage: {
           type: 'number',
         },
         dateOfCalculation: {
