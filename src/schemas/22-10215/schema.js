@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import definitions from '../../common/definitions';
-
 const origDefinitions = _.cloneDeep(definitions);
-
 const pickedDefinitions = _.pick(origDefinitions, ['date']);
 
 const schema = {
@@ -11,6 +9,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
+  required: ['institutionDetails', 'programs'],
   properties: {
     institutionDetails: {
       type: 'object',
@@ -32,31 +31,34 @@ const schema = {
     },
     programs: {
       type: 'array',
-      required: ['programName', 'studentsEnrolled', 'supportedStudents'],
-      properties: {
-        programName: {
-          type: 'string',
-        },
-        studentsEnrolled: {
-          type: 'integer',
-        },
-        supportedStudents: {
-          type: 'integer',
-        },
-        fte: {
-          type: 'object',
-          properties: {
-            supported: {
-              type: 'integer',
-            },
-            nonSupported: {
-              type: 'integer',
-            },
-            totalFTE: {
-              type: 'integer',
-            },
-            supportedPercentageFTE: {
-              type: 'number',
+      items: {
+        type: 'object',
+        required: ['programName', 'studentsEnrolled', 'supportedStudents'],
+        properties: {
+          programName: {
+            type: 'string',
+          },
+          studentsEnrolled: {
+            type: 'integer',
+          },
+          supportedStudents: {
+            type: 'integer',
+          },
+          fte: {
+            type: 'object',
+            properties: {
+              supported: {
+                type: 'integer',
+              },
+              nonSupported: {
+                type: 'integer',
+              },
+              totalFTE: {
+                type: 'integer',
+              },
+              supportedPercentageFTE: {
+                type: 'number',
+              },
             },
           },
         },
