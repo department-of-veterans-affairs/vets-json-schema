@@ -63,5 +63,48 @@
       "grossMonthlyIncome": 1000,
       "payer": "Agency of Unemployment"
     }
+  ],
+  "associatedIncomes": [
+    {
+      "incomeType": "INTEREST",
+      "grossMonthlyIncome": 12345,
+      "accountValue": 12987,
+      "payer": "Jack Smith",
+      "recipientName": "Jim Brown",
+      "recipientRelationship": "CUSTODIAN"
+    },
+    {
+      "incomeType": "DIVIDENDS",
+      "grossMonthlyIncome": 23987,
+      "accountValue": 9900,
+      "payer": "Harold Washington",
+      "recipientName": "Brandon Jones",
+      "recipientRelationship": "OTHER",
+      "otherRecipientRelationshipType": "Friend"
+    },
+    {
+      "incomeType": "OTHER",
+      "otherIncomeType": "Bonds",
+      "grossMonthlyIncome": 123,
+      "accountValue": 100,
+      "payer": "US Government",
+      "recipientRelationship": "SPOUSE"
+    },
+    {
+      "incomeType": "DIVIDENDS",
+      "grossMonthlyIncome": 987654,
+      "accountValue": 111,
+      "payer": "Municipality Bank",
+      "recipientName": "Willow Washington",
+      "recipientRelationship": "PARENT"
+    },
+    {
+      "incomeType": "INTEREST",
+      "grossMonthlyIncome": 222,
+      "accountValue": 222,
+      "payer": "Bank",
+      "recipientName": "Rand Lincoln",
+      "recipientRelationship": "CHILD"
+    }
   ]
 }
