@@ -57,6 +57,25 @@
           "grossMonthlyIncome": 12345.67,
           "payer": "Personnel Management"
       }
-    ]
+    ],
+    "associatedIncomes": [
+      {
+        "incomeType": "INTEREST",
+        "grossMonthlyIncome": 12345,
+        "accountValue": 12987,
+        "payer": "Jack Smith",
+        "recipientName": "Jim Brown",
+        "recipientRelationship": "CUSTODIAN"
+      },
+      {
+        "incomeType": "DIVIDENDS",
+        "grossMonthlyIncome": 23987,
+        "accountValue": 9900,
+        "payer": "Harold Washington",
+        "recipientName": "Brandon Jones",
+        "recipientRelationship": "OTHER",
+        "otherRecipientRelationshipType": "Friend"
+        }
+      ]
   }
 }
