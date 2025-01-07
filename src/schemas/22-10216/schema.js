@@ -1,4 +1,4 @@
-import _, { max } from 'lodash';
+import _ from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
