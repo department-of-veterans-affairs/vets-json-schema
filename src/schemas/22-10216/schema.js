@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { max } from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
@@ -21,6 +21,7 @@ const schema = {
         },
         facilityCode: {
           type: 'string',
+          pattern: '^[a-zA-Z0-9]{8}$',
         },
         termStartDate: {
           $ref: '#/definitions/date',
