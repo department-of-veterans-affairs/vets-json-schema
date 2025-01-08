@@ -21,6 +21,7 @@ const schema = {
         },
         facilityCode: {
           type: 'string',
+          pattern: '^[a-zA-Z0-9]{8}$',
         },
         termStartDate: {
           $ref: '#/definitions/date',
