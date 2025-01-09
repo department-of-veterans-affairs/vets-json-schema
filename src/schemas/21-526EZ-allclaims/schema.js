@@ -1,5 +1,5 @@
 import _ from 'lodash/fp';
-import { documentTypes526, pciuCountries, pciuStates } from '../../common/constants';
+import { documentTypes526, formProfileCountries, formProfileStates } from '../../common/constants';
 import definitions from '../../common/definitions';
 
 const disabilitiesBaseDef = {
@@ -126,13 +126,13 @@ const schema = {
     // Pulling out country and state to avoid the long list duplication
     country: {
       type: 'string',
-      enum: pciuCountries,
+      enum: formProfileCountries,
       default: 'USA',
     },
     state: {
       type: 'string',
-      enum: pciuStates.map(state => state.value),
-      enumNames: pciuStates.map(state => state.label),
+      enum: formProfileStates.map(state => state.value),
+      enumNames: formProfileStates.map(state => state.label),
     },
     address: baseAddressDef,
     addressNoRequiredFields: _.omit('required', baseAddressDef),

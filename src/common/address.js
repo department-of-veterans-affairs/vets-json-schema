@@ -2758,7 +2758,7 @@ const salesforceStates = {
   ],
 };
 
-const pciuCountries = [
+const formProfileCountries = [
   'Afghanistan',
   'Albania',
   'Algeria',
@@ -2973,14 +2973,14 @@ const pciuCountries = [
   'Zimbabwe',
 ];
 
-// This list represents the states currently available in the `states` PCIU
+// This list represents the states currently available in the `states` FormProfile
 // endpoint and not available in the current `states` constant.
-const statesOnlyInPCIU = [
+const statesOnlyInProfile = [
   { label: 'Philippine Islands', value: 'PI' },
   { label: 'U.S. Minor Outlying Islands', value: 'UM' },
 ];
 
-const pciuStates = states.USA.concat(statesOnlyInPCIU).sort((stateA, stateB) => {
+const formProfileStates = states.USA.concat(statesOnlyInProfile).sort((stateA, stateB) => {
   if (stateA.label === stateB.label) return 0;
   return stateA.label > stateB.label ? 1 : -1;
 });
@@ -2991,8 +2991,8 @@ module.exports = {
   countries,
   militaryCities,
   militaryStates,
-  pciuCountries,
-  pciuStates,
+  formProfileCountries,
+  formProfileStates,
   salesforceCountries,
   salesforceStates,
   states,
