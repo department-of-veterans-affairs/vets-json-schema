@@ -88,18 +88,6 @@
         "M"
       ]
     },
-    "sigiGenders": {
-      "type": "string",
-      "enum": [
-        "NB",
-        "M",
-        "F",
-        "TM",
-        "TF",
-        "O",
-        "NA"
-      ]
-    },
     "cityOfBirth": {
       "type": "string",
       "minLength": 2,
