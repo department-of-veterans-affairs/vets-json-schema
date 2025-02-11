@@ -32,7 +32,6 @@ const schema = {
       type: 'string',
       enum: constants.genders.map(option => option.value),
     },
-    sigiGenders: definitions.sigiGenders,
     cityOfBirth: {
       type: 'string',
       minLength: 2,
