@@ -9,7 +9,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
-  required: ['institutionDetails', 'programs'],
+  required: ['certifyingOfficial', 'institutionDetails', 'programs', 'statementOfTruthSignature'],
   properties: {
     institutionDetails: {
       type: 'object',
@@ -26,6 +26,21 @@ const schema = {
         },
         dateOfCalculations: {
           $ref: '#/definitions/date',
+        },
+      },
+    },
+    certifyingOfficial: {
+      type: 'object',
+      required: ['first', 'last', 'title'],
+      properties: {
+        first: {
+          type: 'string',
+        },
+        last: {
+          type: 'string',
+        },
+        title: {
+          type: 'string',
         },
       },
     },
@@ -63,6 +78,9 @@ const schema = {
           },
         },
       },
+    },
+    statementOfTruthSignature: {
+      type: "string"
     },
   },
 };
