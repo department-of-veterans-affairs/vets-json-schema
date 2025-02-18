@@ -82,6 +82,7 @@ const schema = {
     },
     providerFacility: {
       type: 'array',
+      maxItems: 5,
       items: {
         type: 'object',
         additionalProperties: false,
@@ -93,23 +94,26 @@ const schema = {
             type: 'string',
           },
           treatmentDateRange: {
-            type: 'object',
-            properties: {
-              from: {
-                $ref: '#/definitions/date',
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                from: {
+                  $ref: '#/definitions/date',
+                },
+                to: {
+                  $ref: '#/definitions/date',
+                },
               },
-              to: {
-                $ref: '#/definitions/date',
-              },
+              required: ['from', 'to'],
             },
-            required: ['from', 'to'],
           },
           providerFacilityAddress: {
             $ref: '#/definitions/address',
           },
         },
+        required: ['providerFacilityName', 'treatmentDateRange', 'providerFacilityAddress'],
       },
-      required: ['conditionsTreated', 'providerFacilityName', 'treatmentDateRange', 'providerFacilityAddress'],
     },
     acknowledgeToReleaseInformation: {
       $ref: '#/definitions/privacyAgreementAccepted',
@@ -145,14 +149,7 @@ const schema = {
       required: ['relationshipToVeteran'],
     },
   },
-  required: [
-    'veteran',
-    'patientIdentification',
-    'acknowledgeToReleaseInformation',
-    'providerFacility',
-    'preparerIdentification',
-    'privacyAgreementAccepted',
-  ],
+  required: ['providerFacility', 'privacyAgreementAccepted'],
 };
 
 export default schema;
