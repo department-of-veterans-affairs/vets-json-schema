@@ -82,7 +82,6 @@ const schema = {
     },
     providerFacility: {
       type: 'array',
-      maxItems: 5,
       items: {
         type: 'object',
         additionalProperties: false,
