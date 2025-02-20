@@ -144,6 +144,7 @@ describe('22-10215 Schema', () => {
       'institutionDetails',
       'programs',
       'statementOfTruthSignature',
+      'dateSigned',
     ]);
     expect(schema.properties.institutionDetails.required).to.deep.equal([
       'institutionName',
@@ -158,6 +159,7 @@ describe('22-10215 Schema', () => {
     ]);
   });
 
+  schemaTestHelper.testValidAndInvalid('certifyingOfficial', testData.institutionOfficial);
   schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
   schemaTestHelper.testValidAndInvalid('programs', testData.programs);
 });

@@ -13,7 +13,8 @@
     "certifyingOfficial",
     "institutionDetails",
     "programs",
-    "statementOfTruthSignature"
+    "statementOfTruthSignature",
+    "dateSigned"
   ],
   "properties": {
     "institutionDetails": {
@@ -99,6 +100,9 @@
     },
     "statementOfTruthSignature": {
       "type": "string"
+    },
+    "dateSigned": {
+      "$ref": "#/definitions/date"
     }
   }
 }
