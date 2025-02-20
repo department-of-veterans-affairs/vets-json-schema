@@ -10,8 +10,10 @@
     }
   },
   "required": [
+    "certifyingOfficial",
     "institutionDetails",
-    "programs"
+    "programs",
+    "statementOfTruthSignature"
   ],
   "properties": {
     "institutionDetails": {
@@ -34,6 +36,25 @@
         },
         "dateOfCalculations": {
           "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "certifyingOfficial": {
+      "type": "object",
+      "required": [
+        "first",
+        "last",
+        "title"
+      ],
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
         }
       }
     },
@@ -75,6 +96,9 @@
           }
         }
       }
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
     }
   }
 }
