@@ -14,8 +14,23 @@ const schema = {
   properties: {
     institutionDetails: {
       type: 'object',
-      required: ['institutionName', 'facilityCode', 'termStartDate'],
+      required: ['certifyingOfficial', 'institutionName', 'facilityCode', 'termStartDate', 'statementOfTruthSignature'],
       properties: {
+        certifyingOfficial: {
+          type: 'object',
+          required: ['first', 'last', 'title'],
+          properties: {
+            first: {
+              type: 'string',
+            },
+            last: {
+              type: 'string',
+            },
+            title: {
+              type: 'string',
+            },
+          },
+        },
         institutionName: {
           type: 'string',
         },
@@ -25,6 +40,9 @@ const schema = {
         },
         termStartDate: {
           $ref: '#/definitions/date',
+        },
+        statementOfTruthSignature: {
+          type: 'string',
         },
       },
     },

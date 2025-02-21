@@ -13,11 +13,32 @@
     "institutionDetails": {
       "type": "object",
       "required": [
+        "certifyingOfficial",
         "institutionName",
         "facilityCode",
-        "termStartDate"
+        "termStartDate",
+        "statementOfTruthSignature"
       ],
       "properties": {
+        "certifyingOfficial": {
+          "type": "object",
+          "required": [
+            "first",
+            "last",
+            "title"
+          ],
+          "properties": {
+            "first": {
+              "type": "string"
+            },
+            "last": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          }
+        },
         "institutionName": {
           "type": "string"
         },
@@ -27,6 +48,9 @@
         },
         "termStartDate": {
           "$ref": "#/definitions/date"
+        },
+        "statementOfTruthSignature": {
+          "type": "string"
         }
       }
     },
