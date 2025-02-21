@@ -11,41 +11,36 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
+  required: ['certifyingOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
   properties: {
+    certifyingOfficial: {
+      type: 'object',
+      required: ['first', 'last', 'title'],
+      properties: {
+        first: {
+          type: 'string',
+        },
+        last: {
+          type: 'string',
+        },
+        title: {
+          type: 'string',
+        },
+      },
+    },
     institutionDetails: {
       type: 'object',
-      required: ['certifyingOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
+      required: ['institutionName', 'facilityCode', 'termStartDate'],
       properties: {
-        certifyingOfficial: {
-          type: 'object',
-          required: ['first', 'last', 'title'],
-          properties: {
-            first: {
-              type: 'string',
-            },
-            last: {
-              type: 'string',
-            },
-            title: {
-              type: 'string',
-            },
-          },
+        institutionName: {
+          type: 'string',
         },
-        institutionDetails: {
-          type: 'object',
-          required: ['institutionName', 'facilityCode', 'termStartDate'],
-          properties: {
-            institutionName: {
-              type: 'string',
-            },
-            facilityCode: {
-              type: 'string',
-              pattern: '^[a-zA-Z0-9]{8}$',
-            },
-            termStartDate: {
-              $ref: '#/definitions/date',
-            },
-          },
+        facilityCode: {
+          type: 'string',
+          pattern: '^[a-zA-Z0-9]{8}$',
+        },
+        termStartDate: {
+          $ref: '#/definitions/date',
         },
       },
     },
@@ -75,4 +70,5 @@ const schema = {
     },
   },
 };
+
 export default schema;

@@ -75,11 +75,11 @@ const testData = {
 };
 describe('10216 schema', () => {
   it('should have required fields', () => {
+    expect(schema.properties.certifyingOfficial.required).to.deep.equal(['first', 'last', 'title']);
     expect(schema.properties.institutionDetails.required).to.deep.equal([
-      'certifyingOfficial',
-      'institutionDetails',
-      'statementOfTruthSignature',
-      'dateSigned',
+      'institutionName',
+      'facilityCode',
+      'termStartDate',
     ]);
     expect(schema.properties.studentRatioCalcChapter.required).to.deep.equal([
       'beneficiaryStudent',
