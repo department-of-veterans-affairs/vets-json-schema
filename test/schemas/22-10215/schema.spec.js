@@ -8,6 +8,27 @@ const schemaClone = cloneDeep(schema);
 const schemaTestHelper = new SchemaTestHelper(omit(schemaClone, 'required'));
 
 const testData = {
+  institutionOfficial: {
+    valid: [
+      {
+        first: 'John',
+        last: 'Doe',
+        title: 'President',
+      },
+    ],
+    invalid: [
+      {
+        first: 'John',
+        last: 'Doe',
+        title: null,
+      },
+      {
+        first: 'John',
+        last: '',
+        title: null,
+      },
+    ],
+  },
   institutionDetails: {
     valid: [
       {
@@ -119,8 +140,11 @@ const testData = {
 describe('22-10215 Schema', () => {
   it('should have required fields', () => {
     expect(schema.required).to.deep.equal([
+      'certifyingOfficial',
       'institutionDetails',
       'programs',
+      'statementOfTruthSignature',
+      'dateSigned',
     ]);
     expect(schema.properties.institutionDetails.required).to.deep.equal([
       'institutionName',
@@ -135,6 +159,7 @@ describe('22-10215 Schema', () => {
     ]);
   });
 
+  schemaTestHelper.testValidAndInvalid('certifyingOfficial', testData.institutionOfficial);
   schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
   schemaTestHelper.testValidAndInvalid('programs', testData.programs);
 });
