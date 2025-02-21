@@ -14,10 +14,9 @@
       "type": "object",
       "required": [
         "certifyingOfficial",
-        "institutionName",
-        "facilityCode",
-        "termStartDate",
-        "statementOfTruthSignature"
+        "institutionDetails",
+        "statementOfTruthSignature",
+        "dateSigned"
       ],
       "properties": {
         "certifyingOfficial": {
@@ -39,18 +38,25 @@
             }
           }
         },
-        "institutionName": {
-          "type": "string"
-        },
-        "facilityCode": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9]{8}$"
-        },
-        "termStartDate": {
-          "$ref": "#/definitions/date"
-        },
-        "statementOfTruthSignature": {
-          "type": "string"
+        "institutionDetails": {
+          "type": "object",
+          "required": [
+            "institutionName",
+            "facilityCode",
+            "termStartDate"
+          ],
+          "properties": {
+            "institutionName": {
+              "type": "string"
+            },
+            "facilityCode": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{8}$"
+            },
+            "termStartDate": {
+              "$ref": "#/definitions/date"
+            }
+          }
         }
       }
     },
@@ -75,6 +81,12 @@
           "$ref": "#/definitions/date"
         }
       }
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
+    },
+    "dateSigned": {
+      "$ref": "#/definitions/date"
     }
   }
 }

@@ -14,7 +14,7 @@ const schema = {
   properties: {
     institutionDetails: {
       type: 'object',
-      required: ['certifyingOfficial', 'institutionName', 'facilityCode', 'termStartDate', 'statementOfTruthSignature'],
+      required: ['certifyingOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
       properties: {
         certifyingOfficial: {
           type: 'object',
@@ -31,18 +31,21 @@ const schema = {
             },
           },
         },
-        institutionName: {
-          type: 'string',
-        },
-        facilityCode: {
-          type: 'string',
-          pattern: '^[a-zA-Z0-9]{8}$',
-        },
-        termStartDate: {
-          $ref: '#/definitions/date',
-        },
-        statementOfTruthSignature: {
-          type: 'string',
+        institutionDetails: {
+          type: 'object',
+          required: ['institutionName', 'facilityCode', 'termStartDate'],
+          properties: {
+            institutionName: {
+              type: 'string',
+            },
+            facilityCode: {
+              type: 'string',
+              pattern: '^[a-zA-Z0-9]{8}$',
+            },
+            termStartDate: {
+              $ref: '#/definitions/date',
+            },
+          },
         },
       },
     },
@@ -63,6 +66,12 @@ const schema = {
           $ref: '#/definitions/date',
         },
       },
+    },
+    statementOfTruthSignature: {
+      type: 'string',
+    },
+    dateSigned: {
+      $ref: '#/definitions/date',
     },
   },
 };
