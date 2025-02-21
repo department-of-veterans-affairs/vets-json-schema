@@ -9,6 +9,32 @@ const schemaWithoutRequired = cloneDeep(schema);
 const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
 
 const testData = {
+  institutionOfficial: {
+    valid: [
+      {
+        first: 'John',
+        last: 'Doe',
+        title: 'President',
+      },
+    ],
+    invalid: [
+      {
+        first: 'John',
+        last: 'Doe',
+        title: null,
+      },
+      {
+        first: '',
+        last: 'Doe',
+        title: null,
+      },
+      {
+        first: 'John',
+        last: '',
+        title: 'some title',
+      },
+    ],
+  },
   institutionDetails: {
     valid: [
       {
@@ -49,6 +75,7 @@ const testData = {
 };
 describe('10216 schema', () => {
   it('should have required fields', () => {
+    expect(schema.properties.certifyingOfficial.required).to.deep.equal(['first', 'last', 'title']);
     expect(schema.properties.institutionDetails.required).to.deep.equal([
       'institutionName',
       'facilityCode',

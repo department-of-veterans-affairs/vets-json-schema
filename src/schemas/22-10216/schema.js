@@ -11,7 +11,23 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
+  required: ['certifyingOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
   properties: {
+    certifyingOfficial: {
+      type: 'object',
+      required: ['first', 'last', 'title'],
+      properties: {
+        first: {
+          type: 'string',
+        },
+        last: {
+          type: 'string',
+        },
+        title: {
+          type: 'string',
+        },
+      },
+    },
     institutionDetails: {
       type: 'object',
       required: ['institutionName', 'facilityCode', 'termStartDate'],
@@ -46,6 +62,13 @@ const schema = {
         },
       },
     },
+    statementOfTruthSignature: {
+      type: 'string',
+    },
+    dateSigned: {
+      $ref: '#/definitions/date',
+    },
   },
 };
+
 export default schema;
