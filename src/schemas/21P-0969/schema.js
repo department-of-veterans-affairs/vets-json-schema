@@ -85,7 +85,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['recipientRelationship', 'assetType', 'grossMonthlyIncome', 'payer'],
+        required: ['recipientRelationship', 'assetType', 'grossMonthlyIncome'],
         properties: {
           recipientName: { type: 'string' },
           recipientRelationship: schemaHelpers.getDefinition('relationshipToVeteran'),
@@ -94,9 +94,7 @@ const schema = {
             type: 'string',
             enum: ['FARM', 'BUSINESS', 'RENTAL_PROPERTY'],
           },
-          otherIncomeType: { type: 'string' },
           grossMonthlyIncome: financialNumber,
-          payer: { type: 'string' },
           ownedPortionValue: financialNumber,
         },
       },

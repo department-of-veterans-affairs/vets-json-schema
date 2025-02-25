@@ -158,8 +158,7 @@
         "required": [
           "recipientRelationship",
           "assetType",
-          "grossMonthlyIncome",
-          "payer"
+          "grossMonthlyIncome"
         ],
         "properties": {
           "recipientName": {
@@ -179,15 +178,9 @@
               "RENTAL_PROPERTY"
             ]
           },
-          "otherIncomeType": {
-            "type": "string"
-          },
           "grossMonthlyIncome": {
             "type": "number",
             "default": 0
-          },
-          "payer": {
-            "type": "string"
           },
           "ownedPortionValue": {
             "type": "number",
