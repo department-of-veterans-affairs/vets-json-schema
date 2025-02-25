@@ -125,6 +125,50 @@ const schema = {
           type: 'string',
         },
       },
+      nursingHomeUnpaid: {
+        type: 'object',
+        properties: {
+          facilityName: {
+            type: 'string',
+          },
+          facilityLocation: {
+            type: 'string',
+          },
+        },
+      },
+      nursingHomePaid: {
+        type: 'object',
+        properties: {
+          facilityName: {
+            type: 'string',
+          },
+          facilityLocation: {
+            type: 'string',
+          },
+        },
+      },
+      vaMedicalCenter: {
+        type: 'object',
+        properties: {
+          facilityName: {
+            type: 'string',
+          },
+          facilityLocation: {
+            type: 'string',
+          },
+        },
+      },
+      stateVeteransHome: {
+        type: 'object',
+        properties: {
+          facilityName: {
+            type: 'string',
+          },
+          facilityLocation: {
+            type: 'string',
+          },
+        },
+      },
     },
     finalRestingPlace: {
       type: 'object',
