@@ -9,7 +9,32 @@
       "type": "string"
     }
   },
+  "required": [
+    "certifyingOfficial",
+    "institutionDetails",
+    "statementOfTruthSignature",
+    "dateSigned"
+  ],
   "properties": {
+    "certifyingOfficial": {
+      "type": "object",
+      "required": [
+        "first",
+        "last",
+        "title"
+      ],
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
     "institutionDetails": {
       "type": "object",
       "required": [
@@ -51,6 +76,12 @@
           "$ref": "#/definitions/date"
         }
       }
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
+    },
+    "dateSigned": {
+      "$ref": "#/definitions/date"
     }
   }
 }
