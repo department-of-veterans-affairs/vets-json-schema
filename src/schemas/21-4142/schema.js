@@ -82,7 +82,6 @@ const schema = {
     },
     providerFacility: {
       type: 'array',
-      maxItems: 5,
       items: {
         type: 'object',
         additionalProperties: false,
@@ -94,19 +93,16 @@ const schema = {
             type: 'string',
           },
           treatmentDateRange: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                from: {
-                  $ref: '#/definitions/date',
-                },
-                to: {
-                  $ref: '#/definitions/date',
-                },
+            type: 'object',
+            properties: {
+              from: {
+                $ref: '#/definitions/date',
               },
-              required: ['from', 'to'],
+              to: {
+                $ref: '#/definitions/date',
+              },
             },
+            required: ['from', 'to'],
           },
           providerFacilityAddress: {
             $ref: '#/definitions/address',
