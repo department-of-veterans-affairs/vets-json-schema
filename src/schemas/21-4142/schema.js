@@ -93,16 +93,19 @@ const schema = {
             type: 'string',
           },
           treatmentDateRange: {
-            type: 'object',
-            properties: {
-              from: {
-                $ref: '#/definitions/date',
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                from: {
+                  $ref: '#/definitions/date',
+                },
+                to: {
+                  $ref: '#/definitions/date',
+                },
               },
-              to: {
-                $ref: '#/definitions/date',
-              },
+              required: ['from', 'to'],
             },
-            required: ['from', 'to'],
           },
           providerFacilityAddress: {
             $ref: '#/definitions/address',

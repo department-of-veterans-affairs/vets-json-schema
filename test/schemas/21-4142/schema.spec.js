@@ -114,7 +114,7 @@ describe('21-4142 Authorization to Disclose Information json-schema', () => {
         {
           providerFacilityName: 'Test',
           providerFacilityAddress: usAddressFixture,
-          treatmentDateRange: fixtures.dateRange,
+          treatmentDateRange: [fixtures.dateRange],
           conditionsTreated: 'Test',
         },
       ],
