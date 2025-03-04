@@ -19,6 +19,18 @@ const schema = {
         },
       },
     },
+    yourName: {
+      type: 'object',
+      required: ['first', 'last'],
+      properties: {
+        first: {
+          type: 'string',
+        },
+        last: {
+          type: 'string',
+        },
+      },
+    },
     roleDesc: {
       certifyingOfficial: 'Certifying Official',
       owner: 'Owner',
