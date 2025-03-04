@@ -19,6 +19,11 @@ const schema = {
         },
       },
     },
+    roleDesc: {
+      certifyingOfficial: 'Certifying Official',
+      owner: 'Owner',
+      Officer: 'Officer',
+    },
   },
 };
 
