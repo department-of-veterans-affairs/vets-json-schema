@@ -34,7 +34,8 @@ const schema = {
     roleDesc: {
       certifyingOfficial: 'Certifying Official',
       owner: 'Owner',
-      Officer: 'Officer',
+      officer: 'Officer',
+      other: 'Other',
     },
   },
 };
