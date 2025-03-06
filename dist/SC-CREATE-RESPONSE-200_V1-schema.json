@@ -820,7 +820,9 @@
                     {
                       "$ref": "#/definitions/phone"
                     },
-                    {}
+                    {
+                      "$comment": "the phone fields must not exceed 20 chars, when concatenated"
+                    }
                   ]
                 },
                 "mstUpcomingEventDisclosure": {
@@ -859,7 +861,9 @@
                         {
                           "$ref": "#/definitions/phone"
                         },
-                        {}
+                        {
+                          "$comment": "the phone fields must not exceed 20 chars, when concatenated"
+                        }
                       ]
                     },
                     "email": {
@@ -897,7 +901,9 @@
                         {
                           "$ref": "#/definitions/phone"
                         },
-                        {}
+                        {
+                          "$comment": "the phone fields must not exceed 20 chars, when concatenated"
+                        }
                       ]
                     },
                     "email": {
