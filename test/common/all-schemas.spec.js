@@ -52,6 +52,9 @@ describe('all schema tests', () => {
     // skip "checkObjectTypes" for dist files that contains "-example" (used for example data) AND does not contain "schema"
     if (k.indexOf('-example') > -1 && k.indexOf('schema') === -1) continue;
 
+    // skip versions folder
+    if (k === 'versions') continue;
+
     it(`${k} - schema properties should have types (or $ref/const/enum)`, () => check_object_recursively(schemas, [k]));
   }
 });
