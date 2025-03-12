@@ -26,10 +26,11 @@
     "nursingHome": false,
     "specialMonthlyPension": false,
     "vaTreatmentHistory": false,
-    "view:isAddingVAMedicalCenters": false,
+    "view:isAddingVaMedicalCenters": false,
     "federalTreatmentHistory": false,
     "view:isAddingFederalMedicalCenters": false,
     "currentEmployment": false,
+    "view:isAddingCurrentEmployment": false,
     "view:isAddingPreviousEmployment": false,
     "previousEmployers": [
       {
@@ -43,6 +44,7 @@
     "view:hasDependents": false,
     "view:isAddingDependents": false,
     "totalNetWorth": true,
+    "view:isAddingCareExpenses": false,
     "hasCareExpenses": false,
     "view:isAddingMedicalExpenses": false,
     "hasMedicalExpenses": false,
