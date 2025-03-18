@@ -42,7 +42,7 @@
     "medicaidStatus": true,
     "specialMonthlyPension": false,
     "vaTreatmentHistory": true,
-    "view:isAddingVAMedicalCenters": false,
+    "view:isAddingVaMedicalCenters": false,
     "vaMedicalCenters": [
       {
         "medicalCenter": "Dallas VA Medical Center"
@@ -226,6 +226,7 @@
     "totalNetWorth": false,
     "netWorthEstimation": 1550,
     "hasCareExpenses": true,
+    "view:isAddingCareExpenses": false,
     "careExpenses": [
       {
         "recipients": "VETERAN",
