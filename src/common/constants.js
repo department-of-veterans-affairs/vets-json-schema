@@ -221,7 +221,7 @@ const documentTypes526 = [
     value: 'L222',
     label: 'VA Form 21-0779 - Request for Nursing Home Information in Connection with Claim for Aid & Attendance',
   },
-  { value: 'L228', label: 'VA Form 21-0781 - Statement in Support of Claim for PTSD' },
+  { value: 'L228', label: 'VA Form 21-0781 - Statement in Support of Claimed Mental Health Disorder(s) Due to an In-Service Traumatic Event(s)' },
   { value: 'L229', label: 'VA Form 21-0781a - Statement in Support of Claim for PTSD Secondary to Personal Assault' },
   {
     value: 'L102',
