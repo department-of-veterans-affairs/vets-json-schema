@@ -69,6 +69,63 @@ const schema = {
     },
   ],
   properties: {
+    locationOfDeath: {
+      type: 'object',
+      required: ['location'],
+      properties: {
+        location: {
+          type: 'string',
+          enum: ['atHome', 'nursingHomeUnpaid', 'nursingHomePaid', 'vaMedicalCenter', 'stateVeteransHome', 'other'],
+        },
+        nursingHomeUnpaid: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
+        },
+        nursingHomePaid: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
+        },
+        vaMedicalCenter: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
+        },
+        stateVeteransHome: {
+          type: 'object',
+          properties: {
+            facilityName: {
+              type: 'string',
+            },
+            facilityLocation: {
+              type: 'string',
+            },
+          },
+        },
+        other: {
+          type: 'string',
+        },
+      },
+    },
     finalRestingPlace: {
       type: 'object',
       required: ['location'],
