@@ -247,7 +247,6 @@
           "originalOwnerRelationship",
           "transferMethod",
           "assetType",
-          "payer",
           "newOwnerName",
           "newOwnerRelationship",
           "saleReportedToIrs",
@@ -281,7 +280,7 @@
             "type": "string"
           },
           "newOwnerName": {
-            "type": "string"
+            "$ref": "#/definitions/fullName"
           },
           "newOwnerRelationship": {
             "type": "string"
