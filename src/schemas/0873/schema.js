@@ -45,6 +45,9 @@ const schema = {
           phone: {
             $ref: '#/definitions/phone',
           },
+          workPhone: {
+            $ref: '#/definitions/phone',
+          },
           address: {
             $ref: '#/definitions/address',
           },
