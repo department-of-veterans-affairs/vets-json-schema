@@ -212,6 +212,32 @@
         "assetType": "Bike",
         "originalOwnerRelationship": "PARENT"
       }
+    ],
+    "trusts": [
+      {
+        "addedFundsAfterEstablishment": false,
+        "haveAuthorityOrControlOfTrust": false,
+        "trustEstablishedForVeteransChild": false,
+        "trustUsedForMedicalExpenses": false,
+        "receivingIncomeFromTrust": false,
+        "trustType": "IRREVOCABLE",
+        "establishedDate": "1982-02-02",
+        "marketValueAtEstablishment": 500000
+      },
+      {
+        "addedFundsDate": "1985-02-01",
+        "addedFundsAmount": 200.12,
+        "addedFundsAfterEstablishment": true,
+        "haveAuthorityOrControlOfTrust": true,
+        "trustEstablishedForVeteransChild": true,
+        "trustUsedForMedicalExpenses": true,
+        "monthlyMedicalReimbursementAmount": 123456.78,
+        "receivingIncomeFromTrust": true,
+        "annualReceivedIncome": 80000,
+        "trustType": "BURIAL",
+        "establishedDate": "1982-02-02",
+        "marketValueAtEstablishment": 9000000
+      }
     ]
   }
 }

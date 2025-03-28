@@ -168,7 +168,7 @@ const schema = {
       items: {
         type: 'object',
         required: [
-          'establishmentDate',
+          'establishedDate',
           'marketValueAtEstablishment',
           'trustType',
           'addedFundsAfterEstablishment',
