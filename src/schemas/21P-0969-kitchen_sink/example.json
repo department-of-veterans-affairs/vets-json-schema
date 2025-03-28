@@ -23,39 +23,39 @@
     "statementOfTruthSignature": "John Edmund Doe",
     "unassociatedIncomes": [
       {
-          "recipientRelationship": "CHILD",
-          "recipientName": "Jane Doe",
-          "incomeType": "WAGES",
-          "grossMonthlyIncome": 99999.99,
-          "payer": "Generic Company, LLC"
+        "recipientRelationship": "CHILD",
+        "recipientName": "Jane Doe",
+        "incomeType": "WAGES",
+        "grossMonthlyIncome": 99999.99,
+        "payer": "Generic Company, LLC"
       },
       {
-          "recipientRelationship": "OTHER",
-          "otherRecipientRelationshipType": "Cousin",
-          "recipientName": "Sam Jenkins",
-          "incomeType": "OTHER",
-          "otherIncomeType": "Stocks",
-          "grossMonthlyIncome": 99,
-          "payer": "Investment Company"
+        "recipientRelationship": "OTHER",
+        "otherRecipientRelationshipType": "Cousin",
+        "recipientName": "Sam Jenkins",
+        "incomeType": "OTHER",
+        "otherIncomeType": "Stocks",
+        "grossMonthlyIncome": 99,
+        "payer": "Investment Company"
       },
       {
-          "recipientRelationship": "VETERAN",
-          "incomeType": "SOCIAL_SECURITY",
-          "grossMonthlyIncome": 102.33,
-          "payer": "Social Security Administration"
+        "recipientRelationship": "VETERAN",
+        "incomeType": "SOCIAL_SECURITY",
+        "grossMonthlyIncome": 102.33,
+        "payer": "Social Security Administration"
       },
       {
-          "recipientRelationship": "SPOUSE",
-          "incomeType": "RETIREMENT_PENSION",
-          "grossMonthlyIncome": 1099.99,
-          "payer": "Pension Benefit Management"
+        "recipientRelationship": "SPOUSE",
+        "incomeType": "RETIREMENT_PENSION",
+        "grossMonthlyIncome": 1099.99,
+        "payer": "Pension Benefit Management"
       },
       {
-          "recipientRelationship": "PARENT",
-          "recipientName": "Edmund Doe",
-          "incomeType": "CIVIL_SERVICE",
-          "grossMonthlyIncome": 12345.67,
-          "payer": "Personnel Management"
+        "recipientRelationship": "PARENT",
+        "recipientName": "Edmund Doe",
+        "incomeType": "CIVIL_SERVICE",
+        "grossMonthlyIncome": 12345.67,
+        "payer": "Personnel Management"
       }
     ],
     "associatedIncomes": [
@@ -75,32 +75,32 @@
         "recipientName": "Brandon Jones",
         "recipientRelationship": "OTHER",
         "otherRecipientRelationshipType": "Friend"
-        }
-      ],
-      "ownedAssets": [
-        {
-          "assetType": "FARM",
-          "grossMonthlyIncome": 5555.55,
-          "ownedPortionValue": 5555555.55,
-          "recipientName": "Jim Brown",
-          "recipientRelationship": "CUSTODIAN"
-        },
-        {
-          "assetType": "BUSINESS",
-          "grossMonthlyIncome": 999.99,
-          "ownedPortionValue": 10000.00,
-          "recipientName": "Brandon Jones",
-          "recipientRelationship": "OTHER",
-          "otherRecipientRelationshipType": "Friend"
-        },
-        {
-          "assetType": "RENTAL_PROPERTY",
-          "grossMonthlyIncome": 123.45,
-          "ownedPortionValue": 12345.67,
-          "recipientName": "Edmund Doe",
-          "recipientRelationship": "PARENT"
-        }
-      ],
+      }
+    ],
+    "ownedAssets": [
+      {
+        "assetType": "FARM",
+        "grossMonthlyIncome": 5555.55,
+        "ownedPortionValue": 5555555.55,
+        "recipientName": "Jim Brown",
+        "recipientRelationship": "CUSTODIAN"
+      },
+      {
+        "assetType": "BUSINESS",
+        "grossMonthlyIncome": 999.99,
+        "ownedPortionValue": 10000.00,
+        "recipientName": "Brandon Jones",
+        "recipientRelationship": "OTHER",
+        "otherRecipientRelationshipType": "Friend"
+      },
+      {
+        "assetType": "RENTAL_PROPERTY",
+        "grossMonthlyIncome": 123.45,
+        "ownedPortionValue": 12345.67,
+        "recipientName": "Edmund Doe",
+        "recipientRelationship": "PARENT"
+      }
+    ],
     "assetTransfers": [
       {
         "fairMarketValue": 1000000.00,
@@ -154,6 +154,22 @@
         "transferMethod": "TRADED",
         "assetType": "Bike",
         "originalOwnerRelationship": "PARENT"
+      }
+    ],
+    "trusts": [
+      {
+        "addedFundsDate": "1985-02-01",
+        "addedFundsAmount": 199.99,
+        "addedFundsAfterEstablishment": true,
+        "haveAuthorityOrControlOfTrust": true,
+        "trustEstablishedForVeteransChild": true,
+        "trustUsedForMedicalExpenses": true,
+        "monthlyMedicalReimbursementAmount": 12345.67,
+        "receivingIncomeFromTrust": true,
+        "annualReceivedIncome": 200.00,
+        "trustType": "REVOCABLE",
+        "establishedDate": "1982-02-02",
+        "marketValueAtEstablishment": 9000000.00
       }
     ]
   }
