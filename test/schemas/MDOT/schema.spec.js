@@ -59,7 +59,6 @@ describe('mdot schema', () => {
   it('should have the correct required properties', () => {
     expect(schema.required).to.deep.equal([
       'fullName',
-      'permanentAddress',
       'gender',
       'vetEmail',
       'dateOfBirth',
