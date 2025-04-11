@@ -410,6 +410,9 @@ const hcaVeteranContact = {
     address: hcaAddress,
     relationship: hcaVeteranContactRelationships,
     contactType: hcaVeteranContactTypes,
+    deleteIndicator: {
+      type: 'boolean',
+    },
   },
   required: ['fullName', 'primaryPhone', 'address', 'relationship', 'contactType'],
 };

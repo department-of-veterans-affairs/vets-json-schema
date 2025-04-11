@@ -1674,6 +1674,9 @@
             "Emergency Contact",
             "Other emergency contact"
           ]
+        },
+        "deleteIndicator": {
+          "type": "boolean"
         }
       },
       "required": [
