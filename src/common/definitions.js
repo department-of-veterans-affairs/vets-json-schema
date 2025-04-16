@@ -412,6 +412,7 @@ const hcaVeteranContact = {
     contactType: hcaVeteranContactTypes,
     deleteIndicator: {
       type: 'boolean',
+      default: false,
     },
   },
   required: ['fullName', 'primaryPhone', 'address', 'relationship', 'contactType'],
