@@ -319,7 +319,7 @@ const schema = {
             dateOfDeath: schemaHelpers.getDefinition('date'),
             gender: {
               type: 'string',
-              enum: ['Female', 'Male', 'na'],
+              enum: ['Female', 'Male'],
             },
             ethnicity: schemaHelpers.getDefinition('ethnicity'),
             race: schemaHelpers.getDefinition('race'),
