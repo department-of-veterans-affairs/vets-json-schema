@@ -542,8 +542,7 @@
               "type": "string",
               "enum": [
                 "Female",
-                "Male",
-                "na"
+                "Male"
               ]
             },
             "ethnicity": {
