@@ -14,37 +14,6 @@ const schema = {
       format: 'date',
       type: 'string',
     },
-    provider: {
-      type: 'object',
-      properties: {
-        insuranceName: {
-          type: 'string',
-          maxLength: 100,
-        },
-        insurancePolicyHolderName: {
-          type: 'string',
-          maxLength: 50,
-        },
-        insurancePolicyNumber: {
-          type: 'string',
-          maxLength: 30,
-          ...definitions.rejectOnlyWhitespace,
-        },
-        insuranceGroupCode: {
-          type: 'string',
-          maxLength: 30,
-          ...definitions.rejectOnlyWhitespace,
-        },
-      },
-      anyOf: [
-        {
-          required: ['insurancePolicyNumber'],
-        },
-        {
-          required: ['insuranceGroupCode'],
-        },
-      ],
-    },
   },
   type: 'object',
   properties: {
@@ -158,9 +127,7 @@ const schema = {
     },
     providers: {
       type: 'array',
-      items: {
-        $ref: '#/definitions/provider',
-      },
+      items: definitions.insuranceProvider,
     },
     isMedicaidEligible: {
       type: 'boolean',

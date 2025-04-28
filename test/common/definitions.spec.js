@@ -35,6 +35,30 @@ describe('schema definitions', () => {
     ],
   });
 
+  testValidAndInvalidDefinitions('insuranceProvider', {
+    valid: [
+      {
+        insuranceName: stringGenerate(100),
+        insurancePolicyHolderName: stringGenerate(50),
+        insurancePolicyNumber: stringGenerate(30),
+        insuranceGroupCode: stringGenerate(30),
+      },
+      { insurancePolicyNumber: '123' },
+      { insuranceGroupCode: '123' },
+    ],
+    invalid: [
+      {
+        insuranceName: stringGenerate(101),
+        insurancePolicyHolderName: stringGenerate(51),
+        insurancePolicyNumber: stringGenerate(31),
+        insuranceGroupCode: stringGenerate(31),
+      },
+      {},
+      { insuranceGroupCode: ' ' },
+      { insurancePolicyNumber: ' ' },
+    ],
+  });
+
   testValidAndInvalidDefinitions('address', {
     valid: [
       fixtures.address,

@@ -1,31 +1,10 @@
-import ajv from 'ajv';
 import { omit } from 'lodash';
-import { it } from 'mocha';
-import { expect } from 'chai';
 import schemas from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
-
-/* eslint-disable no-unused-expressions */
 
 const applicationSchema = schemas['10-10EZ'];
 
 const schemaTestHelper = new SchemaTestHelper(omit(applicationSchema, 'required'));
-const jsonValidator = ajv({ allErrors: true, errorDataPath: 'property', removeAdditional: true, useDefaults: true });
-
-function definitionValidator(field) {
-  const tinySchema = {
-    $schema: 'http://json-schema.org/draft-04/schema#',
-    type: 'object',
-    properties: {
-      field: applicationSchema.definitions[field],
-    },
-  };
-
-  return function validator(value) {
-    const fn = jsonValidator.compile(tinySchema);
-    return fn({ field: value });
-  };
-}
 
 function stringGenerate(length) {
   return new Array(length + 1).join('a');
@@ -66,46 +45,5 @@ describe('healthcare-application json schema', () => {
       'f.scouts old',
     ],
     invalid: [null, 3, 'random-string'],
-  });
-
-  describe('provider', () => {
-    const providerValidation = definitionValidator('provider');
-
-    [
-      ['insuranceName', 100],
-      ['insurancePolicyHolderName', 50],
-      ['insurancePolicyNumber', 30],
-      ['insuranceGroupCode', 30],
-    ].forEach(providerFieldData => {
-      const providerField = providerFieldData[0];
-      const providerFieldMaxLength = providerFieldData[1];
-      const policyNumber = {
-        insurancePolicyNumber: '123',
-      };
-      const groupCode = {
-        insuranceGroupCode: '123',
-      };
-
-      it(`allows ${providerField} with less than ${providerFieldMaxLength} chars`, () => {
-        expect(providerValidation({ ...policyNumber, [providerField]: stringGenerate(providerFieldMaxLength) })).to.be
-          .true;
-      });
-
-      it(`doesnt allow ${providerField} with more than ${providerFieldMaxLength} chars`, () => {
-        expect(providerValidation({ ...groupCode, [providerField]: stringGenerate(providerFieldMaxLength + 1) })).to.be
-          .be.false;
-      });
-    });
-
-    it('requires policy number or group code', () => {
-      expect(providerValidation({ insurancePolicyNumber: '123' })).to.be.true;
-      expect(providerValidation({ insuranceGroupCode: '123' })).to.be.true;
-      expect(providerValidation({})).to.be.false;
-    });
-
-    it('doesnt allow only spaces for insurancePolicyNumber or insuranceGroupCode', () => {
-      expect(providerValidation({ insuranceGroupCode: ' ' })).to.be.false;
-      expect(providerValidation({ insurancePolicyNumber: ' ' })).to.be.false;
-    });
   });
 });
