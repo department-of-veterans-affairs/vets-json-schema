@@ -36,6 +36,7 @@ const schema = {
           insuranceName: {
             type: 'string',
             maxLength: 100,
+            pattern: '^.*\\S.*',
           },
           insurancePolicyHolderName: {
             type: 'string',
