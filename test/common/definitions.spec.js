@@ -21,20 +21,6 @@ describe('schema definitions', () => {
     schemaTestHelper.testValidAndInvalid(definitionName, fields);
   };
 
-  testValidAndInvalidDefinitions('fullName', {
-    valid: [
-      {
-        first: 'john',
-        last: 'doe',
-      },
-    ],
-    invalid: [
-      {
-        first: 'john',
-      },
-    ],
-  });
-
   testValidAndInvalidDefinitions('insuranceProvider', {
     valid: [
       {
@@ -56,6 +42,20 @@ describe('schema definitions', () => {
       {},
       { insuranceGroupCode: ' ' },
       { insurancePolicyNumber: ' ' },
+    ],
+  });
+
+  testValidAndInvalidDefinitions('fullName', {
+    valid: [
+      {
+        first: 'john',
+        last: 'doe',
+      },
+    ],
+    invalid: [
+      {
+        first: 'john',
+      },
     ],
   });
 
