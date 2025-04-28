@@ -30,7 +30,43 @@ const schema = {
     maritalStatus: definitions.maritalStatus,
     providers: {
       type: 'array',
-      items: definitions.insuranceProvider,
+      items: {
+        type: 'object',
+        properties: {
+          insuranceName: {
+            type: 'string',
+            maxLength: 100,
+            pattern: '^.*\\S.*',
+          },
+          insurancePolicyHolderName: {
+            type: 'string',
+            maxLength: 50,
+            pattern: '^.*\\S.*',
+          },
+        },
+        anyOf: [
+          {
+            properties: {
+              insurancePolicyNumber: {
+                type: 'string',
+                maxLength: 30,
+                ...definitions.rejectOnlyWhitespace,
+              },
+            },
+            required: ['insurancePolicyNumber'],
+          },
+          {
+            properties: {
+              insuranceGroupCode: {
+                type: 'string',
+                maxLength: 30,
+                ...definitions.rejectOnlyWhitespace,
+              },
+            },
+            required: ['insuranceGroupCode'],
+          },
+        ],
+      },
     },
     isMedicaidEligible: {
       type: 'boolean',
