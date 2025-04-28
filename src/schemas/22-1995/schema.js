@@ -37,6 +37,23 @@ const schema = {
     veteranFullName: {
       $ref: '#/definitions/fullName',
     },
+    sponsorFullName: {
+      $ref: '#/definitions/fullName',
+    },
+    guardianFullName: {
+      $ref: '#/definitions/fullName',
+    },
+    dateOfBirth: {
+      $ref: '#/definitions/date',
+    },
+    applicantGender: {
+      type: 'string',
+      enum: ['F', 'M'],
+    },
+    applicantServed: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
     veteranAddress: {
       $ref: '#/definitions/address',
     },
@@ -54,6 +71,10 @@ const schema = {
       $ref: '#/definitions/preferredContactMethod',
     },
     veteranSocialSecurityNumber: {
+      // legacy name, when chapter35 is selected this actually represents the applicant ssn
+      $ref: '#/definitions/ssn',
+    },
+    sponsorSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
     },
     benefit: {
@@ -69,13 +90,87 @@ const schema = {
     },
     benefitUpdate: {
       type: 'string',
-      enum: ['chapter33Post911', 'chapter33FryScholarship', 'chapter30', 'chapter1606', 'transferOfEntitlement'],
+      enum: [
+        'chapter33Post911',
+        'chapter33FryScholarship',
+        'chapter30',
+        'chapter1606',
+        'transferOfEntitlement',
+        'chapter35',
+      ],
+    },
+    rudisillReview: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
+    changeAnotherBenefit: {
+      type: 'string',
+      enum: ['Yes', 'No'],
+    },
+    benefitAppliedFor: {
+      type: 'string',
+      enum: [
+        'chapter33Post911',
+        'chapter33FryScholarship',
+        'chapter30',
+        'chapter1606',
+        'transferOfEntitlement',
+        'chapter35',
+      ],
     },
     educationType: {
       $ref: '#/definitions/educationType',
     },
     educationTypeUpdate: {
       $ref: '#/definitions/educationTypeUpdate',
+    },
+    sponsorStatus: {
+      type: 'string',
+      enum: ['diedOnDuty', 'diedFromDisabilityOrOnReserve', 'powOrMia'],
+    },
+    minorHighSchoolQuestions: {
+      type: 'object',
+      properties: {
+        minorHighSchoolQuestion: {
+          type: 'boolean',
+        },
+        highSchoolGedGradDate: {
+          $ref: '#/definitions/date',
+        },
+        highSchoolGedExpectedGradDate: {
+          $ref: '#/definitions/date',
+        },
+      },
+    },
+    minorQuestions: {
+      type: 'object',
+      properties: {
+        guardianFirstName: {
+          type: 'string',
+        },
+        guardianMiddleName: {
+          type: 'string',
+        },
+        guardianLastName: {
+          type: 'string',
+        },
+        guardianSuffix: {
+          enum: ['Jr.', 'Sr.', 'II', 'III', 'IV', 'V'],
+        },
+        guardianAddress: {
+          $ref: '#/definitions/address',
+        },
+        guardianMobilePhone: {
+          $ref: '#/definitions/usaPhone',
+        },
+        guardianHomePhone: {
+          $ref: '#/definitions/usaPhone',
+        },
+        guardianEmail: {
+          type: 'string',
+          format: 'email',
+        },
+      },
     },
     educationObjective: {
       type: 'string',

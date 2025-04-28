@@ -13,7 +13,8 @@
           "maxLength": 30
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "last": {
           "type": "string",
@@ -54,9 +55,9 @@
                 "BC",
                 "MB",
                 "NB",
-                "NF",
+                "NL",
                 "NT",
-                "NV",
+                "NS",
                 "NU",
                 "ON",
                 "PE",
@@ -333,12 +334,13 @@
       "type": "string",
       "enum": [
         "college",
-        "correspondence",
+        "nonCollegeDegree",
         "apprenticeship",
         "flightTraining",
         "testReimbursement",
         "licensingReimbursement",
-        "prepCourseForLoC"
+        "prepCourseForLoC",
+        "correspondence"
       ]
     },
     "preferredContactMethod": {
@@ -372,8 +374,7 @@
       "type": "string",
       "enum": [
         "noChange",
-        "startUpdate",
-        "none"
+        "startUpdate"
       ]
     }
   },
@@ -392,6 +393,29 @@
   "properties": {
     "veteranFullName": {
       "$ref": "#/definitions/fullName"
+    },
+    "sponsorFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "guardianFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "dateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "applicantGender": {
+      "type": "string",
+      "enum": [
+        "F",
+        "M"
+      ]
+    },
+    "applicantServed": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
     },
     "veteranAddress": {
       "$ref": "#/definitions/address"
@@ -412,6 +436,9 @@
     "veteranSocialSecurityNumber": {
       "$ref": "#/definitions/ssn"
     },
+    "sponsorSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
     "benefit": {
       "type": "string",
       "enum": [
@@ -430,7 +457,33 @@
         "chapter33FryScholarship",
         "chapter30",
         "chapter1606",
-        "transferOfEntitlement"
+        "transferOfEntitlement",
+        "chapter35"
+      ]
+    },
+    "rudisillReview": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "changeAnotherBenefit": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "benefitAppliedFor": {
+      "type": "string",
+      "enum": [
+        "chapter33Post911",
+        "chapter33FryScholarship",
+        "chapter30",
+        "chapter1606",
+        "transferOfEntitlement",
+        "chapter35"
       ]
     },
     "educationType": {
@@ -438,6 +491,65 @@
     },
     "educationTypeUpdate": {
       "$ref": "#/definitions/educationTypeUpdate"
+    },
+    "sponsorStatus": {
+      "type": "string",
+      "enum": [
+        "diedOnDuty",
+        "diedFromDisabilityOrOnReserve",
+        "powOrMia"
+      ]
+    },
+    "minorHighSchoolQuestions": {
+      "type": "object",
+      "properties": {
+        "minorHighSchoolQuestion": {
+          "type": "boolean"
+        },
+        "highSchoolGedGradDate": {
+          "$ref": "#/definitions/date"
+        },
+        "highSchoolGedExpectedGradDate": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "minorQuestions": {
+      "type": "object",
+      "properties": {
+        "guardianFirstName": {
+          "type": "string"
+        },
+        "guardianMiddleName": {
+          "type": "string"
+        },
+        "guardianLastName": {
+          "type": "string"
+        },
+        "guardianSuffix": {
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        },
+        "guardianAddress": {
+          "$ref": "#/definitions/address"
+        },
+        "guardianMobilePhone": {
+          "$ref": "#/definitions/usaPhone"
+        },
+        "guardianHomePhone": {
+          "$ref": "#/definitions/usaPhone"
+        },
+        "guardianEmail": {
+          "type": "string",
+          "format": "email"
+        }
+      }
     },
     "educationObjective": {
       "type": "string"

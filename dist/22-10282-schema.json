@@ -1,0 +1,497 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "22-10282 IBM Skillsbuild Training Program Intake Application",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "fullNameNoSuffix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      }
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "country": {
+      "type": "string",
+      "enum": [
+        "United States",
+        "Afghanistan",
+        "Aland Islands",
+        "Albania",
+        "Algeria",
+        "Andorra",
+        "Angola",
+        "Anguilla",
+        "Antarctica",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Aruba",
+        "Australia",
+        "Austria",
+        "Azerbaijan",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Benin",
+        "Bermuda",
+        "Bhutan",
+        "Bolivia, Plurinational State of",
+        "Bonaire, Sint Eustatius and Saba",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Bouvet Island",
+        "Brazil",
+        "British Indian Ocean Territory",
+        "Brunei Darussalam",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Cambodia",
+        "Cameroon",
+        "Canada",
+        "Cape Verde",
+        "Cayman Islands",
+        "Central African Republic",
+        "Chad",
+        "Chile",
+        "China",
+        "Chinese Taipei",
+        "Christmas Island",
+        "Cocos (Keeling) Islands",
+        "Colombia",
+        "Comoros",
+        "Congo",
+        "Congo, the Democratic Republic of the",
+        "Cook Islands",
+        "Costa Rica",
+        "Cote d'Ivoire",
+        "Croatia",
+        "Cuba",
+        "Curaçao",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Eritrea",
+        "Estonia",
+        "Ethiopia",
+        "Falkland Islands (Malvinas)",
+        "Faroe Islands",
+        "Fiji",
+        "Finland",
+        "France",
+        "French Guiana",
+        "French Polynesia",
+        "French Southern Territories",
+        "Gabon",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guadeloupe",
+        "Guatemala",
+        "Guernsey",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Heard Island and McDonald Islands",
+        "Holy See (Vatican City State)",
+        "Honduras",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran, Islamic Republic of",
+        "Iraq",
+        "Ireland",
+        "Isle of Man",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jersey",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Korea, Democratic People's Republic of",
+        "Korea, Republic of",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Lao People's Democratic Republic",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libyan Arab Jamahiriya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macao",
+        "Macedonia, the former Yugoslav Republic of",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mali",
+        "Malta",
+        "Martinique",
+        "Mauritania",
+        "Mauritius",
+        "Mayotte",
+        "Mexico",
+        "Moldova, Republic of",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Montserrat",
+        "Morocco",
+        "Mozambique",
+        "Myanmar",
+        "Namibia",
+        "Nauru",
+        "Nepal",
+        "Netherlands",
+        "New Caledonia",
+        "New Zealand",
+        "Nicaragua",
+        "Niger",
+        "Nigeria",
+        "Niue",
+        "Norfolk Island",
+        "Norway",
+        "Oman",
+        "Pakistan",
+        "Palestinian Territory, Occupied",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines",
+        "Pitcairn",
+        "Poland",
+        "Portugal",
+        "Qatar",
+        "Reunion",
+        "Romania",
+        "Russian Federation",
+        "Rwanda",
+        "Saint Barthélemy",
+        "Saint Helena, Ascension and Tristan da Cunha",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Saint Martin (French part)",
+        "Saint Pierre and Miquelon",
+        "Saint Vincent and the Grenadines",
+        "Samoa",
+        "San Marino",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Sint Maarten (Dutch part)",
+        "Slovakia",
+        "Slovenia",
+        "Solomon Islands",
+        "Somalia",
+        "South Africa",
+        "South Georgia and the South Sandwich Islands",
+        "South Sudan",
+        "Spain",
+        "Sri Lanka",
+        "Sudan",
+        "Suriname",
+        "Svalbard and Jan Mayen",
+        "Swaziland",
+        "Sweden",
+        "Switzerland",
+        "Syrian Arab Republic",
+        "Tajikistan",
+        "Tanzania, United Republic of",
+        "Thailand",
+        "Timor-Leste",
+        "Togo",
+        "Tokelau",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Turkey",
+        "Turkmenistan",
+        "Turks and Caicos Islands",
+        "Tuvalu",
+        "Uganda",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Venezuela, Bolivarian Republic of",
+        "Viet Nam",
+        "Virgin Islands, British",
+        "Wallis and Futuna",
+        "Western Sahara",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe"
+      ],
+      "default": "United States"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "AL",
+        "AK",
+        "AS",
+        "AZ",
+        "AR",
+        "AA",
+        "AE",
+        "AP",
+        "CA",
+        "CO",
+        "CT",
+        "DE",
+        "DC",
+        "FM",
+        "FL",
+        "GA",
+        "GU",
+        "HI",
+        "ID",
+        "IL",
+        "IN",
+        "IA",
+        "KS",
+        "KY",
+        "LA",
+        "ME",
+        "MH",
+        "MD",
+        "MA",
+        "MI",
+        "MN",
+        "MS",
+        "MO",
+        "MT",
+        "NE",
+        "NV",
+        "NH",
+        "NJ",
+        "NM",
+        "NY",
+        "NC",
+        "ND",
+        "MP",
+        "OH",
+        "OK",
+        "OR",
+        "PW",
+        "PA",
+        "PR",
+        "RI",
+        "SC",
+        "SD",
+        "TN",
+        "TX",
+        "UT",
+        "VT",
+        "VI",
+        "VA",
+        "WA",
+        "WV",
+        "WI",
+        "WY"
+      ]
+    },
+    "raceAndGender": {
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "veteranFullName": {
+      "$ref": "#/definitions/fullNameNoSuffix"
+    },
+    "veteranDesc": {
+      "type": "string",
+      "enum": [
+        "veteran",
+        "veteransSpouse",
+        "veteransChild",
+        "veteransCaregiver",
+        "activeduty",
+        "nationalGuard",
+        "reservist",
+        "individualReadyReserve"
+      ]
+    },
+    "contactInfo": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "mobilePhone": {
+          "$ref": "#/definitions/usaPhone"
+        },
+        "homePhone": {
+          "$ref": "#/definitions/usaPhone"
+        }
+      }
+    },
+    "country": {
+      "$ref": "#/definitions/country"
+    },
+    "state": {
+      "$ref": "#/definitions/state"
+    },
+    "raceAndGender": {
+      "$ref": "#/definitions/raceAndGender"
+    },
+    "ethnicity": {
+      "type": "string",
+      "enum": [
+        "HL",
+        "NHL",
+        "NA"
+      ]
+    },
+    "originRace": {
+      "type": "object",
+      "properties": {
+        "isAmericanIndianOrAlaskanNative": {
+          "type": "boolean"
+        },
+        "isAsian": {
+          "type": "boolean"
+        },
+        "isBlackOrAfricanAmerican": {
+          "type": "boolean"
+        },
+        "isNativeHawaiianOrOtherPacificIslander": {
+          "type": "boolean"
+        },
+        "isWhite": {
+          "type": "boolean"
+        },
+        "noAnswer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "W",
+        "M",
+        "TW",
+        "TM",
+        "NB",
+        "0",
+        "NA"
+      ]
+    },
+    "highestLevelOfEducation": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "HS",
+            "AD",
+            "BD",
+            "MD",
+            "DD",
+            "NA"
+          ]
+        },
+        "otherEducation": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 30
+        }
+      }
+    },
+    "currentlyEmployed": {
+      "type": "boolean"
+    },
+    "currentAnnualSalary": {
+      "type": "string",
+      "enum": [
+        "lessThanTwenty",
+        "twentyToThirtyFive",
+        "thirtyFiveToFifty",
+        "fiftyToSeventyFive",
+        "moreThanSeventyFive"
+      ]
+    },
+    "isWorkingInTechIndustry": {
+      "type": "boolean"
+    },
+    "techIndustryFocusArea": {
+      "type": "string",
+      "enum": [
+        "CP",
+        "CS",
+        "DP",
+        "IS",
+        "MA",
+        "NA"
+      ]
+    }
+  },
+  "required": [
+    "veteranFullName",
+    "veteranDesc",
+    "contactInfo",
+    "country"
+  ]
+}

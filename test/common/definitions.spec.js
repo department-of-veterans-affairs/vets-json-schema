@@ -1,11 +1,19 @@
+import { cloneDeep } from 'lodash';
 import SchemaTestHelper from '../support/schema-test-helper';
-import { definitions } from '../../dist/schemas';
+import { definitions as originalDefinitions } from '../../dist/schemas';
 import fixtures from '../support/fixtures';
 import testData from '../support/test-data';
 
 function stringGenerate(length) {
   return new Array(length + 1).join('a');
 }
+
+const definitions = cloneDeep(originalDefinitions);
+
+definitions.teraQuestions = {
+  type: 'object',
+  properties: originalDefinitions.teraQuestions,
+};
 
 describe('schema definitions', () => {
   const testValidAndInvalidDefinitions = (definitionName, fields) => {
@@ -20,6 +28,16 @@ describe('schema definitions', () => {
 
     schemaTestHelper.testValidAndInvalid(definitionName, fields);
   };
+
+  testValidAndInvalidDefinitions('teraQuestions', {
+    valid: [
+      { otherToxicExposure: 'foo' },
+      { otherToxicExposure: 'foo bar' },
+      { otherToxicExposure: 'Foo123' },
+      { otherToxicExposure: 'Foo123, Bar123' },
+    ],
+    invalid: [{ otherToxicExposure: '$' }],
+  });
 
   testValidAndInvalidDefinitions('insuranceProvider', {
     valid: [
@@ -40,6 +58,8 @@ describe('schema definitions', () => {
         insuranceGroupCode: stringGenerate(31),
       },
       {},
+      { insuranceName: ' ' },
+      { insurancePolicyHolderName: ' ' },
       { insuranceGroupCode: ' ' },
       { insurancePolicyNumber: ' ' },
     ],
@@ -443,6 +463,16 @@ describe('schema definitions', () => {
         country: '     ',
         provinceCode: '     ',
       },
+      // doesn't allow postalCode with only spaces
+      {
+        country: 'USA',
+        state: 'AK',
+        street: stringGenerate(23),
+        street2: stringGenerate(13),
+        street3: stringGenerate(5),
+        city: stringGenerate(27),
+        postalCode: '   ',
+      },
     ],
   });
 
@@ -459,5 +489,48 @@ describe('schema definitions', () => {
   testValidAndInvalidDefinitions('hcaEmail', {
     valid: ['a@a.com', 'a@a.net', 'a+2@a.com', 'Foo@foo.com', 'foo.bar@foo.org'],
     invalid: ['@', 'foo', 'foo.com', 'a@a', 'a@a.', '@a.com'],
+  });
+
+  testValidAndInvalidDefinitions('minimumYearDateRange', {
+    valid: [
+      { startDate: '2009-03-22', endDate: '2010-06-22'},
+      { startDate: '2009-03-22'},
+      { endDate: '2010-06-22'},
+      { startDate: '2009-03-XX', endDate: '2010-06-22'},
+      { startDate: '2009-03-22', endDate: '2010-06-XX'},
+      { startDate: '2009-XX-XX', endDate: '2010-06-22'},
+      { startDate: '2009-03-22', endDate: '2010-XX-XX'},
+      { startDate: '2009-XX-XX'},
+      { endDate: '2010-XX-XX'},
+      { startDate: '2009-XX-22', endDate: '2010-XX-22'},
+    ],
+    invalid: [
+      { startDate: 'XXXX-01-02' },
+      { endDate: '79-01-02' },
+      { startDate: '2009-03-22', endDate: 'XXXX-01-02' },
+      { startDate: '79-01-02', endDate: '2009-03-XX' },
+    ],
+  });
+  testValidAndInvalidDefinitions('benefitsIntakeFullName', {
+    valid: [
+      {
+        first: 'john',
+        last: 'doe',
+      },
+      {
+        first: '1john1',
+        last: 'd0e',
+      },
+    ],
+    invalid: [
+      {
+        first: '123123123',
+        last: 'doe',
+      },
+      {
+        first: 'john',
+        last: '123123123',
+      },
+    ],
   });
 });

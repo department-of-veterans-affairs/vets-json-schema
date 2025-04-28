@@ -40,6 +40,7 @@ const schema = {
           insurancePolicyHolderName: {
             type: 'string',
             maxLength: 50,
+            pattern: '^.*\\S.*',
           },
         },
         anyOf: [
@@ -78,6 +79,7 @@ const schema = {
     medicareClaimNumber: {
       type: 'string',
       maxLength: 30,
+      ...definitions.rejectOnlyWhitespace,
     },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: definitions.ssn,
@@ -109,7 +111,7 @@ const schema = {
       type: 'boolean',
       enum: [true],
     },
-    associations: definitions.associations,
+    veteranContacts: definitions.hcaVeteranContacts,
   },
   required: [
     'privacyAgreementAccepted',
@@ -121,5 +123,7 @@ const schema = {
     'isMedicaidEligible',
   ],
 };
+
+schema.properties = { ...schema.properties, ...definitions.teraQuestions };
 
 export default schema;

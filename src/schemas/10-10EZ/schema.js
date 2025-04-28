@@ -32,7 +32,6 @@ const schema = {
       type: 'string',
       enum: constants.genders.map(option => option.value),
     },
-    sigiGenders: definitions.sigiGenders,
     cityOfBirth: {
       type: 'string',
       minLength: 2,
@@ -59,7 +58,6 @@ const schema = {
     },
     vaMedicalFacility: {
       type: 'string',
-      enum: _.flatten(_.values(constants.vaMedicalFacilities)).map(object => object.value),
     },
     wantsInitialVaContact: {
       type: 'boolean',
@@ -198,6 +196,8 @@ const schema = {
     'vaMedicalFacility',
   ],
 };
+
+schema.properties = { ...schema.properties, ...definitions.teraQuestions };
 
 [['maritalStatus']].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);

@@ -82,6 +82,10 @@ const schema = {
           minLength: 1,
           maxLength: 30,
         },
+        suffix: {
+          type: 'string',
+          enum: constants.suffixes,
+        },
       },
     },
     ssn: definitions.ssn,
@@ -100,7 +104,7 @@ const schema = {
     address: {
       type: 'object',
       additionalProperties: false,
-      required: ['street', 'city', 'state', 'postalCode'],
+      required: ['street', 'city', 'state', 'postalCode', 'county'],
       properties: {
         street: {
           type: 'string',
@@ -121,9 +125,40 @@ const schema = {
           type: 'string',
           enum: constants.usaStates,
         },
-        postalCode: {
+        postalCode: definitions.usaPostalCode,
+        county: {
           type: 'string',
-          pattern: '^(\\d{5})(?:[-](\\d{4}))?$',
+          maxLength: 60,
+        },
+      },
+    },
+    mailingAddress: {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        street: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 50,
+        },
+        street2: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 50,
+        },
+        city: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 40,
+        },
+        state: {
+          type: 'string',
+          enum: constants.usaStates,
+        },
+        postalCode: definitions.usaPostalCode,
+        county: {
+          type: 'string',
+          maxLength: 60,
         },
       },
     },
@@ -146,18 +181,6 @@ const schema = {
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         plannedClinic: { type: 'string' },
-        lastTreatmentFacility: {
-          type: 'object',
-          additionalProperties: false,
-          required: ['name', 'type'],
-          properties: {
-            name: buildDataType('string', { minLength: 1, maxLength: 100 }),
-            type: {
-              type: 'string',
-              enum: ['hospital', 'clinic'],
-            },
-          },
-        },
         signature: buildDefinitionReference('signature'),
         certifications: certificationSchemas.veteran,
       },
@@ -165,18 +188,18 @@ const schema = {
     primaryCaregiver: {
       type: 'object',
       additionalProperties: false,
-      required: ['fullName', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship', 'hasHealthInsurance'],
+      required: ['fullName', 'dateOfBirth', 'address', 'primaryPhoneNumber', 'vetRelationship'],
       properties: {
         fullName: buildDefinitionReference('fullName'),
         ssnOrTin: buildDefinitionReference('ssn'),
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
+        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
         vetRelationship: buildDefinitionReference('vetRelationship'),
-        hasHealthInsurance: buildDataType('boolean'),
         signature: buildDefinitionReference('signature'),
         certifications: certificationSchemas.primaryCaregiver,
       },
@@ -191,6 +214,7 @@ const schema = {
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
+        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),
@@ -209,6 +233,7 @@ const schema = {
         dateOfBirth: buildDefinitionReference('date'),
         gender: buildDefinitionReference('gender'),
         address: buildDefinitionReference('address'),
+        mailingAddress: buildDefinitionReference('mailingAddress'),
         primaryPhoneNumber: buildDefinitionReference('phone'),
         alternativePhoneNumber: buildDefinitionReference('phone'),
         email: buildDefinitionReference('email'),

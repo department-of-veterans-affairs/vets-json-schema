@@ -1,4 +1,4 @@
-import { pciuStates } from '../../common/constants';
+import { formProfileStates } from '../../common/constants';
 import definitions from '../../common/definitions';
 
 const schema = {
@@ -138,8 +138,8 @@ const schema = {
               },
               state: {
                 type: 'string',
-                enum: pciuStates.map(state => state.value),
-                enumNames: pciuStates.map(state => state.label),
+                enum: formProfileStates.map(state => state.value),
+                enumNames: formProfileStates.map(state => state.label),
               },
             },
           },

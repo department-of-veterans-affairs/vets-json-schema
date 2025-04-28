@@ -1,8 +1,10 @@
-import { omit } from 'lodash';
+import { difference, omit } from 'lodash';
+import { expect } from 'chai';
 import schemas from '../../../dist/schemas';
 import SchemaTestHelper from '../../support/schema-test-helper';
 
 const applicationSchema = schemas['10-10EZ'];
+const { definitions } = schemas;
 
 const schemaTestHelper = new SchemaTestHelper(omit(applicationSchema, 'required'));
 
@@ -22,6 +24,12 @@ describe('healthcare-application json schema', () => {
       ],
     ],
     invalid: [1],
+  });
+
+  it('should have TERA fields', () => {
+    const teraKeys = Object.keys(definitions.teraQuestions);
+    const schemaKeys = Object.keys(applicationSchema.properties);
+    expect(difference(teraKeys, schemaKeys).length).to.equal(0);
   });
 
   schemaTestHelper.testValidAndInvalid('lastServiceBranch', {

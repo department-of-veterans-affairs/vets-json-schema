@@ -676,7 +676,7 @@
       },
       {
         "code": "652",
-        "label": "Hunter Holmes McGuire Hospital"
+        "label": "Richmond VA Medical Center"
       },
       {
         "code": "658",
@@ -2179,7 +2179,7 @@
     },
     {
       "value": "L228",
-      "label": "VA Form 21-0781 - Statement in Support of Claim for PTSD"
+      "label": "VA Form 21-0781 - Statement in Support of Claimed Mental Health Disorder(s) Due to an In-Service Traumatic Event(s)"
     },
     {
       "value": "L229",
@@ -2354,7 +2354,7 @@
       "value": 12
     }
   ],
-  "pciuCountries": [
+  "formProfileCountries": [
     "Afghanistan",
     "Albania",
     "Algeria",
@@ -2568,7 +2568,7 @@
     "Zambia",
     "Zimbabwe"
   ],
-  "pciuStates": [
+  "formProfileStates": [
     {
       "label": "Alabama",
       "value": "AL"
@@ -5215,8 +5215,8 @@
         "value": "NB"
       },
       {
-        "label": "Newfoundland",
-        "value": "NF"
+        "label": "Newfoundland and Labrador",
+        "value": "NL"
       },
       {
         "label": "Northwest Territories",
@@ -5224,10 +5224,10 @@
       },
       {
         "label": "Nova Scotia",
-        "value": "NV"
+        "value": "NS"
       },
       {
-        "label": "Nunavut Province",
+        "label": "Nunavut",
         "value": "NU"
       },
       {
@@ -5247,7 +5247,7 @@
         "value": "SK"
       },
       {
-        "label": "Yukon Territory",
+        "label": "Yukon",
         "value": "YT"
       }
     ],
@@ -9243,7 +9243,7 @@
       },
       {
         "value": "652GH",
-        "label": "Hunter Holmes McGuire 2 VA Mobile Clinic"
+        "label": "Richmond 2 VA Mobile Clinic"
       },
       {
         "value": "652GG",
@@ -9263,7 +9263,7 @@
       },
       {
         "value": "652",
-        "label": "Hunter Holmes McGuire Hospital"
+        "label": "Richmond VA Medical Center"
       },
       {
         "value": "658",

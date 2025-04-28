@@ -21,7 +21,8 @@
           "pattern": "^.*\\S.*"
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "last": {
           "type": "string",
@@ -99,9 +100,9 @@
                 "BC",
                 "MB",
                 "NB",
-                "NF",
+                "NL",
                 "NT",
-                "NV",
+                "NS",
                 "NU",
                 "ON",
                 "PE",

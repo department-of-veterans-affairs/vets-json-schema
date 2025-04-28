@@ -13,6 +13,7 @@ const fullName = {
     },
     middle: {
       type: 'string',
+      maxLength: 30,
     },
     last: {
       type: 'string',
@@ -35,6 +36,10 @@ hcaFullName.properties.last.minLength = 2;
 hcaFullName.properties.last.maxLength = 35;
 hcaFullName.properties.last.pattern = '^.*\\S.*';
 
+const benefitsIntakeFullName = _.cloneDeep(fullName);
+benefitsIntakeFullName.properties.first.pattern = '.*[A-Za-z]+.*';
+benefitsIntakeFullName.properties.last.pattern = '.*[A-Za-z]+.*';
+
 const fullNameNoSuffix = {
   type: 'object',
   additionalProperties: false,
@@ -47,6 +52,7 @@ const fullNameNoSuffix = {
     },
     middle: {
       type: 'string',
+      maxLength: 30,
     },
     last: {
       type: 'string',
@@ -66,10 +72,12 @@ const insuranceProvider = {
     insuranceName: {
       type: 'string',
       maxLength: 100,
+      ...rejectOnlyWhitespace,
     },
     insurancePolicyHolderName: {
       type: 'string',
       maxLength: 50,
+      ...rejectOnlyWhitespace,
     },
     insurancePolicyNumber: {
       type: 'string',
@@ -155,6 +163,7 @@ const hcaAddress = (() => {
       postalCode: {
         type: 'string',
         maxLength: 51,
+        ...rejectOnlyWhitespace,
       },
     },
     required: ['street', 'city', 'country'],
@@ -366,7 +375,7 @@ const hcaDependents = {
   },
 };
 
-const associationRelationships = {
+const hcaVeteranContactRelationships = {
   type: 'string',
   enum: [
     'BROTHER',
@@ -387,27 +396,30 @@ const associationRelationships = {
   ],
 };
 
-const associationTypes = {
+const hcaVeteranContactTypes = {
   type: 'string',
   enum: ['Primary Next of Kin', 'Other Next of Kin', 'Emergency Contact', 'Other emergency contact'],
 };
 
-const association = {
+const hcaVeteranContact = {
   type: 'object',
   properties: {
     fullName: hcaFullName,
     primaryPhone: hcaPhone,
     alternatePhone: hcaPhone,
     address: hcaAddress,
-    relationship: associationRelationships,
-    contactType: associationTypes,
+    relationship: hcaVeteranContactRelationships,
+    contactType: hcaVeteranContactTypes,
+    deleteIndicator: {
+      type: 'boolean',
+    },
   },
   required: ['fullName', 'primaryPhone', 'address', 'relationship', 'contactType'],
 };
 
-const associations = {
+const hcaVeteranContacts = {
   type: 'array',
-  items: association,
+  items: hcaVeteranContact,
 };
 
 // Historically a veteran's service number has been between 5 and 8 digits,
@@ -481,6 +493,18 @@ const dateRange = {
   },
 };
 
+const minimumYearDateRange = {
+  type: 'object',
+  properties: {
+    startDate: {
+      $ref: '#/definitions/minimumYearDate',
+    },
+    endDate: {
+      $ref: '#/definitions/minimumYearDate',
+    },
+  },
+};
+
 const date = {
   pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
   type: 'string',
@@ -489,6 +513,16 @@ const date = {
 const nullableDate = {
   pattern: date.pattern,
   type: ['string', 'null'],
+};
+
+// currently being used primarily by the 526EZ app for toxic exposure dates,
+// which technically require either just YYYY or YYYY-MM. Partial dates are not
+// yet supported in the FE, but dates with X's still occasionally get through.
+// Since the BE knows how to parse XX for the month and day, the below regex
+// still allows XX for them- however, the year MUST be valid and with no X's
+const minimumYearDate = {
+  pattern: '^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+  type: 'string',
 };
 
 // XXXX-XX-XX not allowed
@@ -514,12 +548,13 @@ const educationTypeUpdate = {
   type: 'string',
   enum: [
     'college',
-    'correspondence',
+    'nonCollegeDegree',
     'apprenticeship',
     'flightTraining',
     'testReimbursement',
     'licensingReimbursement',
     'prepCourseForLoC',
+    'correspondence',
   ],
 };
 
@@ -722,7 +757,7 @@ const bankAccountChange = {
 
 const bankAccountChangeUpdate = {
   type: 'string',
-  enum: ['noChange', 'startUpdate', 'none'],
+  enum: ['noChange', 'startUpdate'],
 };
 
 const maritalStatus = {
@@ -901,9 +936,73 @@ const hcaEmail = {
     '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
 };
 
+const teraQuestions = {
+  hasTeraResponse: {
+    type: 'boolean',
+  },
+  radiationCleanupEfforts: {
+    type: 'boolean',
+  },
+  gulfWarService: {
+    type: 'boolean',
+  },
+  gulfWarStartDate: date,
+  gulfWarEndDate: date,
+  combatOperationService: {
+    type: 'boolean',
+  },
+  exposedToAgentOrange: {
+    type: 'boolean',
+  },
+  agentOrangeStartDate: date,
+  agentOrangeEndDate: date,
+  exposureToAirPollutants: {
+    type: 'boolean',
+  },
+  exposureToAsbestos: {
+    type: 'boolean',
+  },
+  exposureToChemicals: {
+    type: 'boolean',
+  },
+  exposureToContaminatedWater: {
+    type: 'boolean',
+  },
+  exposureToMustardGas: {
+    type: 'boolean',
+  },
+  exposureToOccupationalHazards: {
+    type: 'boolean',
+  },
+  exposureToRadiation: {
+    type: 'boolean',
+  },
+  exposureToShad: {
+    type: 'boolean',
+  },
+  exposureToWarfareAgents: {
+    type: 'boolean',
+  },
+  exposureToOther: {
+    type: 'boolean',
+  },
+  otherToxicExposure: {
+    type: 'string',
+    maxLength: 100,
+    pattern: '^[a-zA-Z0-9,.?! ]*$',
+  },
+  toxicExposureStartDate: date,
+  toxicExposureEndDate: date,
+};
+
+const yesNoSchema = {
+  type: 'boolean',
+};
+
 export default {
   usaPhone,
   fullName,
+  teraQuestions,
   fullNameNoSuffix,
   otherIncome,
   address,
@@ -919,6 +1018,8 @@ export default {
   dateRange,
   date,
   nullableDate,
+  minimumYearDate,
+  minimumYearDateRange,
   requiredDate,
   rejectOnlyWhitespace,
   dischargeType,
@@ -942,7 +1043,7 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   relationshipAndChildType,
-  associations,
+  hcaVeteranContacts,
   marriages,
   files,
   requiredServiceHistory,
@@ -961,4 +1062,6 @@ export default {
   hcaPhone,
   insuranceProvider,
   hcaEmail,
+  yesNoSchema,
+  benefitsIntakeFullName,
 };

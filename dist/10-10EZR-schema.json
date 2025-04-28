@@ -96,9 +96,9 @@
                 "BC",
                 "MB",
                 "NB",
-                "NF",
+                "NL",
                 "NT",
-                "NV",
+                "NS",
                 "NU",
                 "ON",
                 "PE",
@@ -276,7 +276,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -303,9 +304,9 @@
                 "BC",
                 "MB",
                 "NB",
-                "NF",
+                "NL",
                 "NT",
-                "NV",
+                "NS",
                 "NU",
                 "ON",
                 "PE",
@@ -483,7 +484,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -513,11 +515,13 @@
         "properties": {
           "insuranceName": {
             "type": "string",
-            "maxLength": 100
+            "maxLength": 100,
+            "pattern": "^.*\\S.*"
           },
           "insurancePolicyHolderName": {
             "type": "string",
-            "maxLength": 50
+            "maxLength": 50,
+            "pattern": "^.*\\S.*"
           }
         },
         "anyOf": [
@@ -559,7 +563,8 @@
     },
     "medicareClaimNumber": {
       "type": "string",
-      "maxLength": 30
+      "maxLength": 30,
+      "pattern": "^.*\\S.*"
     },
     "spouseFullName": {
       "type": "object",
@@ -630,9 +635,9 @@
                 "BC",
                 "MB",
                 "NB",
-                "NF",
+                "NL",
                 "NT",
-                "NV",
+                "NS",
                 "NU",
                 "ON",
                 "PE",
@@ -810,7 +815,8 @@
         },
         "postalCode": {
           "type": "string",
-          "maxLength": 51
+          "maxLength": 51,
+          "pattern": "^.*\\S.*"
         }
       },
       "required": [
@@ -974,7 +980,7 @@
         true
       ]
     },
-    "associations": {
+    "veteranContacts": {
       "type": "array",
       "items": {
         "type": "object",
@@ -1040,9 +1046,9 @@
                       "BC",
                       "MB",
                       "NB",
-                      "NF",
+                      "NL",
                       "NT",
-                      "NV",
+                      "NS",
                       "NU",
                       "ON",
                       "PE",
@@ -1220,7 +1226,8 @@
               },
               "postalCode": {
                 "type": "string",
-                "maxLength": 51
+                "maxLength": 51,
+                "pattern": "^.*\\S.*"
               }
             },
             "required": [
@@ -1257,6 +1264,9 @@
               "Emergency Contact",
               "Other emergency contact"
             ]
+          },
+          "deleteIndicator": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -1267,6 +1277,80 @@
           "contactType"
         ]
       }
+    },
+    "hasTeraResponse": {
+      "type": "boolean"
+    },
+    "radiationCleanupEfforts": {
+      "type": "boolean"
+    },
+    "gulfWarService": {
+      "type": "boolean"
+    },
+    "gulfWarStartDate": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "gulfWarEndDate": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "combatOperationService": {
+      "type": "boolean"
+    },
+    "exposedToAgentOrange": {
+      "type": "boolean"
+    },
+    "agentOrangeStartDate": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "agentOrangeEndDate": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "exposureToAirPollutants": {
+      "type": "boolean"
+    },
+    "exposureToAsbestos": {
+      "type": "boolean"
+    },
+    "exposureToChemicals": {
+      "type": "boolean"
+    },
+    "exposureToContaminatedWater": {
+      "type": "boolean"
+    },
+    "exposureToMustardGas": {
+      "type": "boolean"
+    },
+    "exposureToOccupationalHazards": {
+      "type": "boolean"
+    },
+    "exposureToRadiation": {
+      "type": "boolean"
+    },
+    "exposureToShad": {
+      "type": "boolean"
+    },
+    "exposureToWarfareAgents": {
+      "type": "boolean"
+    },
+    "exposureToOther": {
+      "type": "boolean"
+    },
+    "otherToxicExposure": {
+      "type": "string",
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9,.?! ]*$"
+    },
+    "toxicExposureStartDate": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "toxicExposureEndDate": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     }
   },
   "required": [

@@ -1,0 +1,72 @@
+{
+  "data": {
+    "veteranFullName": {
+      "first": "John",
+      "middle": "",
+      "last": "Doe",
+      "suffix": "Sr."
+    },
+    "veteranSocialSecurityNumber": "333224444",
+    "vaClaimsHistory": false,
+    "veteranDateOfBirth": "1960-01-01",
+    "serviceBranch": {
+      "army": true
+    },
+    "activeServiceDateRange": {
+      "from": "2003-03-02",
+      "to": "2007-03-20"
+    },
+    "serviceNumber": "123456",
+    "serveUnderOtherNames": false,
+    "view:isAddingOtherNames": false,
+    "placeOfSeparation": "Westbrook, MA",
+    "powStatus": false,
+    "socialSecurityDisability": true,
+    "medicalCondition": false,
+    "nursingHome": false,
+    "specialMonthlyPension": false,
+    "vaTreatmentHistory": false,
+    "view:isAddingVaMedicalCenters": false,
+    "federalTreatmentHistory": false,
+    "view:isAddingFederalMedicalCenters": false,
+    "currentEmployment": false,
+    "view:isAddingCurrentEmployment": false,
+    "view:isAddingPreviousEmployment": false,
+    "previousEmployers": [
+      {
+        "jobDate": "2020-06-15",
+        "jobType": "Customer service",
+        "jobHoursWeek": "20",
+        "jobTitle": "Manager"
+      }
+    ],
+    "maritalStatus": "NEVER_MARRIED",
+    "view:hasDependents": false,
+    "view:isAddingDependents": false,
+    "totalNetWorth": true,
+    "view:isAddingCareExpenses": false,
+    "hasCareExpenses": false,
+    "view:isAddingMedicalExpenses": false,
+    "hasMedicalExpenses": false,
+    "transferredAssets": false,
+    "homeOwnership": false,
+    "receivesIncome": false,
+    "view:isAddingIncomeSources": false,
+    "view:usingDirectDeposit": false,
+    "veteranAddress": {
+      "street": "123 8th st",
+      "city": "Hadley",
+      "country": "USA",
+      "state": "ME",
+      "postalCode": "01050",
+      "isMilitary": false
+    },
+    "email": "test@example.com",
+    "mobilePhone": "5551234567",
+    "view:aidAttendance": true,
+    "isOver65": false,
+    "noRapidProcessing": true,
+    "statementOfTruthCertified": true,
+    "statementOfTruthSignature": "John Doe"
+  }
+}

@@ -1,0 +1,898 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "APPLICATION FOR BURIAL BENEFITS",
+  "type": "object",
+  "additionalProperties": true,
+  "definitions": {
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "profileAddress": {
+      "type": "object",
+      "properties": {
+        "isMilitary": {
+          "type": "boolean"
+        },
+        "view:militaryBaseDescription": {
+          "type": "object",
+          "properties": {}
+        },
+        "country": {
+          "type": "string",
+          "enum": [
+            "USA",
+            "AFG",
+            "ALB",
+            "DZA",
+            "AND",
+            "AGO",
+            "AIA",
+            "ATA",
+            "ATG",
+            "ARG",
+            "ARM",
+            "ABW",
+            "AUS",
+            "AUT",
+            "AZE",
+            "BHS",
+            "BHR",
+            "BGD",
+            "BRB",
+            "BLR",
+            "BEL",
+            "BLZ",
+            "BEN",
+            "BMU",
+            "BTN",
+            "BOL",
+            "BIH",
+            "BWA",
+            "BVT",
+            "BRA",
+            "IOT",
+            "BRN",
+            "BGR",
+            "BFA",
+            "BDI",
+            "KHM",
+            "CMR",
+            "CAN",
+            "CPV",
+            "CYM",
+            "CAF",
+            "TCD",
+            "CHL",
+            "CHN",
+            "CXR",
+            "CCK",
+            "COL",
+            "COM",
+            "COG",
+            "COD",
+            "COK",
+            "CRI",
+            "CIV",
+            "HRV",
+            "CUB",
+            "CYP",
+            "CZE",
+            "DNK",
+            "DJI",
+            "DMA",
+            "DOM",
+            "ECU",
+            "EGY",
+            "SLV",
+            "GNQ",
+            "ERI",
+            "EST",
+            "ETH",
+            "FLK",
+            "FRO",
+            "FJI",
+            "FIN",
+            "FRA",
+            "GUF",
+            "PYF",
+            "ATF",
+            "GAB",
+            "GMB",
+            "GEO",
+            "DEU",
+            "GHA",
+            "GIB",
+            "GRC",
+            "GRL",
+            "GRD",
+            "GLP",
+            "GTM",
+            "GIN",
+            "GNB",
+            "GUY",
+            "HTI",
+            "HMD",
+            "HND",
+            "HKG",
+            "HUN",
+            "ISL",
+            "IND",
+            "IDN",
+            "IRN",
+            "IRQ",
+            "IRL",
+            "ISR",
+            "ITA",
+            "JAM",
+            "JPN",
+            "JOR",
+            "KAZ",
+            "KEN",
+            "KIR",
+            "PRK",
+            "KOR",
+            "KWT",
+            "KGZ",
+            "LAO",
+            "LVA",
+            "LBN",
+            "LSO",
+            "LBR",
+            "LBY",
+            "LIE",
+            "LTU",
+            "LUX",
+            "MAC",
+            "MKD",
+            "MDG",
+            "MWI",
+            "MYS",
+            "MDV",
+            "MLI",
+            "MLT",
+            "MTQ",
+            "MRT",
+            "MUS",
+            "MYT",
+            "MEX",
+            "FSM",
+            "MDA",
+            "MCO",
+            "MNG",
+            "MSR",
+            "MAR",
+            "MOZ",
+            "MMR",
+            "NAM",
+            "NRU",
+            "NPL",
+            "ANT",
+            "NLD",
+            "NCL",
+            "NZL",
+            "NIC",
+            "NER",
+            "NGA",
+            "NIU",
+            "NFK",
+            "NOR",
+            "OMN",
+            "PAK",
+            "PAN",
+            "PNG",
+            "PRY",
+            "PER",
+            "PHL",
+            "PCN",
+            "POL",
+            "PRT",
+            "QAT",
+            "REU",
+            "ROU",
+            "RUS",
+            "RWA",
+            "SHN",
+            "KNA",
+            "LCA",
+            "SPM",
+            "VCT",
+            "SMR",
+            "STP",
+            "SAU",
+            "SEN",
+            "SCG",
+            "SYC",
+            "SLE",
+            "SGP",
+            "SVK",
+            "SVN",
+            "SLB",
+            "SOM",
+            "ZAF",
+            "SGS",
+            "ESP",
+            "LKA",
+            "SDN",
+            "SUR",
+            "SWZ",
+            "SWE",
+            "CHE",
+            "SYR",
+            "TWN",
+            "TJK",
+            "TZA",
+            "THA",
+            "TLS",
+            "TGO",
+            "TKL",
+            "TON",
+            "TTO",
+            "TUN",
+            "TUR",
+            "TKM",
+            "TCA",
+            "TUV",
+            "UGA",
+            "UKR",
+            "ARE",
+            "GBR",
+            "URY",
+            "UZB",
+            "VUT",
+            "VAT",
+            "VEN",
+            "VNM",
+            "VGB",
+            "WLF",
+            "ESH",
+            "YEM",
+            "ZMB",
+            "ZWE"
+          ],
+          "enumNames": [
+            "United States",
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Anguilla",
+            "Antarctica",
+            "Antigua",
+            "Argentina",
+            "Armenia",
+            "Aruba",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bermuda",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia",
+            "Botswana",
+            "Bouvet Island",
+            "Brazil",
+            "British Indian Ocean Territories",
+            "Brunei Darussalam",
+            "Bulgaria",
+            "Burkina Faso",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cape Verde",
+            "Cayman",
+            "Central African Republic",
+            "Chad",
+            "Chile",
+            "China",
+            "Christmas Island",
+            "Cocos Islands",
+            "Colombia",
+            "Comoros",
+            "Congo",
+            "Democratic Republic of the Congo",
+            "Cook Islands",
+            "Costa Rica",
+            "Ivory Coast",
+            "Croatia",
+            "Cuba",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Ethiopia",
+            "Falkland Islands",
+            "Faroe Islands",
+            "Fiji",
+            "Finland",
+            "France",
+            "French Guiana",
+            "French Polynesia",
+            "French Southern Territories",
+            "Gabon",
+            "Gambia",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Gibraltar",
+            "Greece",
+            "Greenland",
+            "Grenada",
+            "Guadeloupe",
+            "Guatemala",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Heard Island",
+            "Honduras",
+            "Hong Kong",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Ireland",
+            "Israel",
+            "Italy",
+            "Jamaica",
+            "Japan",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "North Korea",
+            "South Korea",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Macao",
+            "Macedonia",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Martinique",
+            "Mauritania",
+            "Mauritius",
+            "Mayotte",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montserrat",
+            "Morocco",
+            "Mozambique",
+            "Myanmar",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands Antilles",
+            "Netherlands",
+            "New Caledonia",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "Niue",
+            "Norfolk",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Pitcairn",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Reunion",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Saint Helena",
+            "Saint Kitts and Nevis",
+            "Saint Lucia",
+            "Saint Pierre and Miquelon",
+            "Saint Vincent and the Grenadines",
+            "San Marino",
+            "Sao Tome and Principe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Georgia and the South Sandwich Islands",
+            "Spain",
+            "Sri Lanka",
+            "Sudan",
+            "Suriname",
+            "Swaziland",
+            "Sweden",
+            "Switzerland",
+            "Syrian Arab Republic",
+            "Taiwan",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Timor-Leste",
+            "Togo",
+            "Tokelau",
+            "Tonga",
+            "Trinidad and Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Turks and Caicos Islands",
+            "Tuvalu",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "United Kingdom",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Vatican",
+            "Venezuela",
+            "Vietnam",
+            "British Virgin Islands",
+            "Wallis and Futuna",
+            "Western Sahara",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe"
+          ]
+        },
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street3": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      }
+    },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "benefitsIntakeFullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": ".*[A-Za-z]+.*"
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": ".*[A-Za-z]+.*"
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "centralMailVaFile": {
+      "type": "string",
+      "pattern": "^\\d{8,9}$"
+    },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    },
+    {
+      "required": [
+        "veteranSocialSecurityNumber"
+      ]
+    }
+  ],
+  "properties": {
+    "locationOfDeath": {
+      "type": "object",
+      "required": [
+        "location"
+      ],
+      "properties": {
+        "location": {
+          "type": "string",
+          "enum": [
+            "atHome",
+            "nursingHomeUnpaid",
+            "nursingHomePaid",
+            "vaMedicalCenter",
+            "stateVeteransHome",
+            "other"
+          ]
+        },
+        "other": {
+          "type": "string"
+        }
+      },
+      "nursingHomeUnpaid": {
+        "type": "object",
+        "properties": {
+          "facilityName": {
+            "type": "string"
+          },
+          "facilityLocation": {
+            "type": "string"
+          }
+        }
+      },
+      "nursingHomePaid": {
+        "type": "object",
+        "properties": {
+          "facilityName": {
+            "type": "string"
+          },
+          "facilityLocation": {
+            "type": "string"
+          }
+        }
+      },
+      "vaMedicalCenter": {
+        "type": "object",
+        "properties": {
+          "facilityName": {
+            "type": "string"
+          },
+          "facilityLocation": {
+            "type": "string"
+          }
+        }
+      },
+      "stateVeteransHome": {
+        "type": "object",
+        "properties": {
+          "facilityName": {
+            "type": "string"
+          },
+          "facilityLocation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "finalRestingPlace": {
+      "type": "object",
+      "required": [
+        "location"
+      ],
+      "properties": {
+        "location": {
+          "type": "string",
+          "enum": [
+            "cemetery",
+            "mausoleum",
+            "privateResidence",
+            "other"
+          ]
+        },
+        "other": {
+          "type": "string"
+        }
+      }
+    },
+    "toursOfDuty": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceBranch": {
+            "type": "string",
+            "enum": [
+              "Air Force",
+              "Air Force Reserve",
+              "Air National Guard",
+              "Army",
+              "Army National Guard",
+              "Army Reserve",
+              "Coast Guard",
+              "Coast Guard Reserve",
+              "Marine Corps",
+              "Marine Corps Reserve",
+              "Navy",
+              "Navy Reserve",
+              "Other"
+            ]
+          },
+          "dateRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "placeOfEntry": {
+            "type": "string"
+          },
+          "placeOfSeparation": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "previousNames": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "middle": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "last": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "suffix": {
+            "type": "string",
+            "enum": [
+              "Jr.",
+              "Sr.",
+              "II",
+              "III",
+              "IV"
+            ]
+          }
+        },
+        "required": [
+          "first",
+          "last"
+        ]
+      }
+    },
+    "serviceNumber": {
+      "type": "string"
+    },
+    "unclaimedRemains": {
+      "type": "boolean"
+    },
+    "burialCost": {
+      "type": "number"
+    },
+    "burialExpenseResponsibility": {
+      "type": "boolean"
+    },
+    "plotExpenseResponsibility": {
+      "type": "boolean"
+    },
+    "allowanceStatementOfTruth": {
+      "type": "boolean"
+    },
+    "previouslyReceivedAllowance": {
+      "type": "boolean"
+    },
+    "benefitsUnclaimedRemains": {
+      "type": "boolean"
+    },
+    "placeOfRemains": {
+      "type": "string"
+    },
+    "federalCemetery": {
+      "type": "boolean"
+    },
+    "stateCemetery": {
+      "type": "boolean"
+    },
+    "govtContributions": {
+      "type": "boolean"
+    },
+    "transportationExpenses": {
+      "type": "boolean"
+    },
+    "formV2": {
+      "type": "boolean",
+      "default": true
+    },
+    "placeOfBirth": {
+      "type": "string"
+    },
+    "privacyAgreementAccepted": {
+      "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "claimantAddress": {
+      "$ref": "#/definitions/profileAddress"
+    },
+    "claimantFullName": {
+      "$ref": "#/definitions/fullName"
+    },
+    "veteranFullName": {
+      "$ref": "#/definitions/benefitsIntakeFullName"
+    },
+    "claimantSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/centralMailVaFile"
+    },
+    "burialDate": {
+      "$ref": "#/definitions/date"
+    },
+    "deathDate": {
+      "$ref": "#/definitions/date"
+    },
+    "claimantDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranDateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "militarySeparationDocuments": {
+      "$ref": "#/definitions/files"
+    },
+    "deathCertificate": {
+      "$ref": "#/definitions/files"
+    },
+    "transportationReceipts": {
+      "$ref": "#/definitions/files"
+    },
+    "additionalEvidence": {
+      "$ref": "#/definitions/files"
+    }
+  },
+  "required": [
+    "privacyAgreementAccepted",
+    "claimantAddress",
+    "veteranFullName"
+  ]
+}

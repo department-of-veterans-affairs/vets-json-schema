@@ -125,6 +125,102 @@ const data = {
       { from: 'bar', to: fixtures.dateRange },
     ],
   },
+  minimumYearDateRange: {
+    valid: testData.minimumYearDateRange.data.valid,
+    invalid: [
+      { startDate: 'XXXX-01-02' },
+      { endDate: '79-01-02' },
+      { startDate: fixtures.minimumYearDateRange.startDate, endDate: 'XXXX-01-02' },
+      { startDate: '79-01-02', endDate: fixtures.minimumYearDateRange.endDate },
+    ],
+  },
+  gulfWar1990Details: {
+    valid: [
+      { afghanistan: fixtures.minimumYearDateRange },
+      { bahrain: fixtures.minimumYearDateRange },
+      { egypt: fixtures.minimumYearDateRange },
+      { iraq: fixtures.minimumYearDateRange },
+      { israel: fixtures.minimumYearDateRange },
+      { jordan: fixtures.minimumYearDateRange },
+      { kuwait: fixtures.minimumYearDateRange },
+      { neutralzone: fixtures.minimumYearDateRange },
+      { oman: fixtures.minimumYearDateRange },
+      { qatar: fixtures.minimumYearDateRange },
+      { saudiarabia: fixtures.minimumYearDateRange },
+      { somalia: fixtures.minimumYearDateRange },
+      { syria: fixtures.minimumYearDateRange },
+      { uae: fixtures.minimumYearDateRange },
+      { turkey: fixtures.minimumYearDateRange },
+      { waters: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, jordan: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, jordan: fixtures.minimumYearDateRange, syria: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { afghanistan: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { turkey: { startDate: '79-01-02' } },
+      { qatar: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { qatar: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { startDate: '1999-01-02' } },
+    ]
+  },
+  gulfWar2001Details: {
+    valid: [
+      { djibouti: fixtures.minimumYearDateRange },
+      { lebanon: fixtures.minimumYearDateRange },
+      { uzbekistan: fixtures.minimumYearDateRange },
+      { yemen: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, uzbekistan: fixtures.minimumYearDateRange },
+      { airspace: fixtures.minimumYearDateRange, uzbekistan: fixtures.minimumYearDateRange, djibouti: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { yemen: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { djibouti: { startDate: '79-01-02' } },
+      { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { lebanon: { startDate: '1999-01-02', endDate: '79-01-02' }, turkey: { startDate: '1999-01-02' } },
+      { lebanon: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { endDate: '1999-01-02' } },
+    ]
+  },
+  herbicideDetails: {
+    valid: [
+      { cambodia: fixtures.minimumYearDateRange },
+      { guam: fixtures.minimumYearDateRange },
+      { koreandemilitarizedzone: fixtures.minimumYearDateRange },
+      { johnston: fixtures.minimumYearDateRange },
+      { laos: fixtures.minimumYearDateRange },
+      { c123: fixtures.minimumYearDateRange },
+      { thailand: fixtures.minimumYearDateRange },
+      { vietnam: fixtures.minimumYearDateRange },
+      { vietnam: fixtures.minimumYearDateRange, laos: fixtures.minimumYearDateRange },
+      { vietnam: fixtures.minimumYearDateRange, laos: fixtures.minimumYearDateRange, koreandemilitarizedzone: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { guam: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { koreandemilitarizedzone: { startDate: '79-01-02' } },
+      { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { laos: { startDate: '1999-01-02', endDate: '79-01-02' }, turkey: { endDate: '1999-01-02' } },
+      { laos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, turkey: { startDate: '1999-01-02' } },
+    ]
+  },
+  otherExposuresDetails: {
+    valid: [
+      { asbestos: fixtures.minimumYearDateRange },
+      { chemical: fixtures.minimumYearDateRange },
+      { mos: fixtures.minimumYearDateRange },
+      { mustardgas: fixtures.minimumYearDateRange },
+      { radiation: fixtures.minimumYearDateRange },
+      { water: fixtures.minimumYearDateRange },
+      { water: fixtures.minimumYearDateRange, mos: fixtures.minimumYearDateRange },
+      { water: fixtures.minimumYearDateRange, mos: fixtures.minimumYearDateRange, chemical: fixtures.minimumYearDateRange },
+    ],
+    invalid: [
+      { water: { startDate: 'XXXX-01-01', endDate: '79-01-02' } },
+      { mustardgas: { startDate: '79-01-02' } },
+      { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' } },
+      { asbestos: { startDate: '1999-01-02', endDate: '79-01-02' }, radiation: { endDate: '1999-01-02' } },
+      { asbestos: { startDate: 'XXXX-01-02', endDate: '1999-01-02' }, radiation: { startDate: '1999-01-02' } },
+    ]
+  },
   alternateNames: {
     valid: [
       [{ first: 'john', last: 'doe' }],
@@ -582,6 +678,7 @@ describe('21-526-ALLCLAIMS schema', () => {
   testValidAndInvalidDefinitions('vaTreatmentCenterAddress');
   testValidAndInvalidDefinitions('dateRange');
   testValidAndInvalidDefinitions('dateRangeAllRequired');
+  testValidAndInvalidDefinitions('minimumYearDateRange');
   testValidAndInvalidDefinitions('ratedDisabilities');
   testValidAndInvalidDefinitions('newDisabilities');
   testValidAndInvalidDefinitions('unitAssigned', data.string(100));
@@ -613,6 +710,12 @@ describe('21-526-ALLCLAIMS schema', () => {
   testValidAndInvalid('serviceInformation.servicePeriods', data.servicePeriods);
   testValidAndInvalid('serviceInformation.separationLocation', data.separationLocation);
   testValidAndInvalid('serviceInformation.reservesNationalGuardService', data.reservesNationalGuardService);
+  testValidAndInvalid('toxicExposure.gulfWar1990Details', data.gulfWar1990Details);
+  testValidAndInvalid('toxicExposure.gulfWar2001Details', data.gulfWar2001Details);
+  testValidAndInvalid('toxicExposure.herbicideDetails', data.herbicideDetails);
+  testValidAndInvalid('toxicExposure.otherExposuresDetails', data.otherExposuresDetails);
+  testValidAndInvalid('toxicExposure.otherHerbicideLocations', testData.minimumYearDateRange.data);
+  testValidAndInvalid('toxicExposure.specifyOtherExposures', testData.minimumYearDateRange.data);
   testValidAndInvalid('confinements');
   testValidAndInvalid('militaryRetiredPayBranch', data.branch);
 

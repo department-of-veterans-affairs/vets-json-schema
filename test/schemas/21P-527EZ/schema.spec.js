@@ -1,33 +1,31 @@
+import _ from 'lodash';
+import { expect } from 'chai';
 import SchemaTestHelper from '../../support/schema-test-helper';
 import schemas from '../../../dist/schemas';
 import fixtures from '../../support/fixtures';
-import _ from 'lodash';
 import SharedTests from '../../support/shared-tests';
-import { expect } from 'chai';
 
 const schema = schemas['21P-527EZ'];
-let schemaWithoutRequired = _.cloneDeep(schema);
+const schemaWithoutRequired = _.cloneDeep(schema);
 delete schemaWithoutRequired.required;
 delete schemaWithoutRequired.anyOf;
 
-let schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
-let sharedTests = new SharedTests(schemaTestHelper);
+const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
+const sharedTests = new SharedTests(schemaTestHelper);
 
-describe('21-527 schema', () => {
-  [
-    'maritalStatus',
-    'gender'
-  ].forEach((test) => {
-    sharedTests.runTest(test);
-  });
-
+describe('21P-527EZ schema', () => {
   it('should have the right required fields', () => {
-    expect(schema.required).to.deep.equal(['privacyAgreementAccepted', 'veteranFullName', 'veteranAddress']);
+    expect(schema.required).to.deep.equal([
+      'veteranFullName',
+      'veteranAddress',
+      'statementOfTruthCertified',
+      'statementOfTruthSignature',
+    ]);
   });
 
-  sharedTests.runTest('usaPhone', ['dayPhone', 'nightPhone', 'mobilePhone', 'nationalGuard.phone']);
+  sharedTests.runTest('usaPhone', ['phone', 'dayPhone', 'nightPhone', 'mobilePhone']);
 
-  sharedTests.runTest('email', ['email', 'altEmail']);
+  sharedTests.runTest('email', ['email']);
 
   sharedTests.runTest('fullName', ['veteranFullName']);
 
@@ -37,197 +35,156 @@ describe('21-527 schema', () => {
 
   sharedTests.runTest('centralMailVaFile', ['vaFileNumber', 'spouseVaFileNumber']);
 
-  sharedTests.runTest('address', ['spouseAddress']);
+  const testData = {
+    address: {
+      valid: [
+        {
+          country: 'USA',
+          street: '123 at home dr',
+          street2: 'apt 1',
+          city: 'a city',
+          state: 'AL',
+          postalCode: '12345',
+        },
+      ],
+      invalid: [
+        {
+          country: 'ABC',
+          street: true,
+          city: null,
+          state: false,
+          postalCode: 12345,
+        },
+      ],
+    },
+  };
+  schemaTestHelper.testValidAndInvalid('veteranAddress', testData.address);
 
-  sharedTests.runTest('centralMailAddress', ['veteranAddress']);
+  schemaTestHelper.testValidAndInvalid('spouseAddress', testData.address);
 
-  sharedTests.runTest('marriages', ['marriages', 'spouseMarriages']);
+  sharedTests.runTest('marriages', ['marriages']);
 
   sharedTests.runTest('files', ['files']);
 
-  ['spouseDateOfBirth', 'veteranDateOfBirth', 'nationalGuard.date'].forEach((field) => {
+  ['spouseDateOfBirth', 'veteranDateOfBirth'].forEach(field => {
     schemaTestHelper.testValidAndInvalid(field, {
       valid: ['1990-01-01'],
-      invalid: ['1/1/1990']
-    })
+      invalid: ['1/1/1990'],
+    });
   });
 
   schemaTestHelper.testValidAndInvalid('dependents', {
-    valid: [[{
-      fullName: fixtures.fullName,
-      childDateOfBirth: fixtures.date,
-      childPlaceOfBirth: 'ny, ny',
-      childSocialSecurityNumber: fixtures.ssn,
-      childRelationship: 'adopted',
-      attendingCollege: true,
-      disabled: true,
-      married: true,
-      previouslyMarried: true,
-      childFullName: fixtures.fullName,
-      childInHousehold: true,
-      childAddress: fixtures.address,
-      personWhoLivesWithChild: fixtures.fullName,
-      monthlyPayment: 1,
-      monthlyIncome: {
-        socialSecurity: 1,
-        railroad: 1,
-        blackLung: 0,
-        serviceRetirement: 0,
-        civilService: 5,
-        ssi: 1,
-        additionalSources: [{
-          name: 'Something',
-          amount: 1
-        }]
-      },
-      netWorth: {
-        bank: 2,
-        ira: 2,
-        stocks: 2,
-        interestBank: 2,
-        realProperty: 123
-      }
-    }]],
-    invalid: [[{
-      fullName: 1,
-      monthlyIncome: {
-        civilService: 'what'
-      },
-      netWorth: {
-        additionalSources: [{
-          name: 1
-        }]
-      }
-    }],
-      [{
-        netWorth: {
-          additionalSources: [{}]
-        }
-      }]]
+    valid: [
+      [
+        {
+          fullName: fixtures.fullName,
+          childDateOfBirth: fixtures.date,
+          childPlaceOfBirth: 'ny, ny',
+          childSocialSecurityNumber: fixtures.ssn,
+          childRelationship: 'ADOPTED',
+          attendingCollege: true,
+          disabled: true,
+          previouslyMarried: true,
+          childInHousehold: true,
+          childAddress: fixtures.address,
+          personWhoLivesWithChild: fixtures.fullName,
+          monthlyPayment: 1,
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          fullName: 1,
+        },
+      ],
+    ],
   });
 
   schemaTestHelper.testValidAndInvalid('bankAccount', {
-    valid: [{
-      accountType: 'checking',
-      routingNumber: '123456789',
-      bankName: 'foo',
-      accountNumber: '1234'
-    }],
-    invalid: [{
-      bankName: 1
-    }]
+    valid: [
+      {
+        accountType: 'checking',
+        routingNumber: '123456789',
+        bankName: 'foo',
+        accountNumber: '1234',
+      },
+    ],
+    invalid: [
+      {
+        bankName: 1,
+      },
+    ],
   });
 
   schemaTestHelper.testValidAndInvalid('previousNames', {
-    valid: [[fixtures.fullName, fixtures.fullName]],
-    invalid: [[false]]
+    valid: [[fixtures.previousFullName, fixtures.previousFullName]],
+    invalid: [[false]],
   });
 
-  schemaTestHelper.testValidAndInvalid('disabilities', {
-    valid: [[{
-      name: 'polio',
-      disabilityStartDate: fixtures.date
-    }]],
-    invalid: [[{
-      name: false
-    }]]
+  schemaTestHelper.testValidAndInvalid('currentEmployers', {
+    valid: [
+      [
+        {
+          jobType: 'analyst',
+          jobHoursWeek: '40',
+          jobTitle: 'analyst',
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          jobType: 1,
+          jobHoursWeek: 40,
+          jobTitle: 234,
+        },
+      ],
+    ],
   });
 
-  schemaTestHelper.testValidAndInvalid('jobs', {
-    valid: [[{
-      employer: 'foo corp',
-      address: fixtures.address,
-      jobTitle: 'analyst',
-      dateRange: fixtures.dateRange,
-      daysMissed: '1 month',
-      annualEarnings: 12
-    }]],
-    invalid: [[{
-      employer: 1
-    }]]
+  schemaTestHelper.testValidAndInvalid('previousEmployers', {
+    valid: [
+      [
+        {
+          jobDate: '2020-01-01',
+          jobType: 'analyst',
+          jobHoursWeek: '40',
+          jobTitle: 'analyst',
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          jobDate: '2020/01/01',
+          jobType: 1,
+          jobHoursWeek: 40,
+          jobTitle: 234,
+        },
+      ],
+    ],
   });
 
-  schemaTestHelper.testValidAndInvalid('servicePeriods', {
-    valid: [[{
-      activeServiceDateRange: fixtures.dateRange,
-      serviceBranch: 'Army'
-    }]],
-    invalid: [[{
-      activeServiceDateRange: fixtures.dateRange,
-      serviceBranch: 3
-    }]]
+  schemaTestHelper.testValidAndInvalid('vaMedicalCenters', {
+    valid: [
+      [
+        {
+          medicalCenter: 'Maryland',
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          medicalCenter: 3,
+        },
+      ],
+    ],
   });
 
-  schemaTestHelper.testValidAndInvalid('vamcTreatmentCenters', {
-    valid: [[{
-      location: 'Maryland'
-    }]],
-    invalid: [[{
-      location: 3
-    }]]
+  schemaTestHelper.testValidAndInvalid('maritalStatus', {
+    valid: ['MARRIED', 'NEVER_MARRIED', 'SEPARATED', 'WIDOWED', 'DIVORCED'],
+    invalid: ['foo'],
   });
-
-  schemaTestHelper.testValidAndInvalid('expectedIncome', {
-    valid: [{
-      salary: 1,
-      interest: 2,
-      additionalSources: [fixtures.otherIncome]
-    }],
-    invalid: [{
-      salary: true
-    }]
-  });
-
-  schemaTestHelper.testValidAndInvalid('monthlyIncome',{
-    valid: [{
-      relationshipAndChildName: fixtures.relationshipAndChildName,
-      socialSecurity: 1,
-      civilService: 1,
-      railroad: 0,
-      serviceRetirement: 0,
-      blackLung: 0,
-      ssi: 1,
-      otherIncome: fixtures.otherIncome
-    }],
-    invalid: [[{
-      ssi: false
-    }]]
-  });
-
-  schemaTestHelper.testValidAndInvalid('nationalGuard',{
-    valid: [{
-      name: 'unit 123',
-      address: fixtures.address,
-      phone: '0123456789',
-      date: fixtures.date
-    }],
-    invalid: [[{
-      name: false
-    }]]
-  });
-
-  schemaTestHelper.testValidAndInvalid('severancePay',{
-    valid: [{
-      amount: 123,
-      type: 'Longevity'
-    }],
-    invalid: [[{
-      amount: false
-    }]]
-  });
-
-  ['otherExpenses', 'spouseOtherExpenses']
-    .forEach(field => {
-      schemaTestHelper.testValidAndInvalid(field, {
-        valid: [[{
-          amount: 1,
-          date: fixtures.date,
-          purpose: 'doctor',
-          paidTo: 'doctor'
-        }]],
-        invalid: [[{
-          amount: false
-        }]]
-      });
-    });
 });

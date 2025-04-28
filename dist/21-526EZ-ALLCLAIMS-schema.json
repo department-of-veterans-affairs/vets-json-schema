@@ -24,7 +24,8 @@
           "maxLength": 30
         },
         "middle": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 30
         },
         "last": {
           "type": "string",
@@ -543,6 +544,21 @@
         "to"
       ]
     },
+    "minimumYearDateRange": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "$ref": "#/definitions/minimumYearDate"
+        },
+        "endDate": {
+          "$ref": "#/definitions/minimumYearDate"
+        }
+      }
+    },
+    "minimumYearDate": {
+      "pattern": "^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
     "ratedDisabilities": {
       "type": "array",
       "maxItems": 100,
@@ -768,6 +784,145 @@
             "maxLength": 30,
             "pattern": "^([-a-zA-Z0-9/']+( ?))+$"
           }
+        }
+      }
+    },
+    "toxicExposure": {
+      "type": "object",
+      "properties": {
+        "gulfWar1990Details": {
+          "type": "object",
+          "properties": {
+            "afghanistan": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "bahrain": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "egypt": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "iraq": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "israel": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "jordan": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "kuwait": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "neutralzone": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "oman": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "qatar": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "saudiarabia": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "somalia": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "syria": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "uae": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "turkey": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "waters": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "airspace": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            }
+          }
+        },
+        "gulfWar2001Details": {
+          "type": "object",
+          "properties": {
+            "djibouti": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "lebanon": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "uzbekistan": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "yemen": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "airspace": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            }
+          }
+        },
+        "herbicideDetails": {
+          "type": "object",
+          "properties": {
+            "cambodia": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "guam": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "koreandemilitarizedzone": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "johnston": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "laos": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "c123": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "thailand": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "vietnam": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            }
+          }
+        },
+        "otherExposuresDetails": {
+          "type": "object",
+          "properties": {
+            "asbestos": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "chemical": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "mos": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "mustardgas": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "radiation": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            },
+            "water": {
+              "$ref": "#/definitions/minimumYearDateRange"
+            }
+          }
+        },
+        "otherHerbicideLocations": {
+          "$ref": "#/definitions/minimumYearDateRange"
+        },
+        "specifyOtherExposures": {
+          "$ref": "#/definitions/minimumYearDateRange"
         }
       }
     },
@@ -1080,7 +1235,7 @@
               "STR - Dental - Photocopy",
               "STR - Medical - Photocopy",
               "VA Form 21-0779 - Request for Nursing Home Information in Connection with Claim for Aid & Attendance",
-              "VA Form 21-0781 - Statement in Support of Claim for PTSD",
+              "VA Form 21-0781 - Statement in Support of Claimed Mental Health Disorder(s) Due to an In-Service Traumatic Event(s)",
               "VA Form 21-0781a - Statement in Support of Claim for PTSD Secondary to Personal Assault",
               "VA Form 21-2680 - Examination for Housebound Status or Permanent Need for Regular Aid & Attendance",
               "VA Form 21-4142 - Authorization To Disclose Information",

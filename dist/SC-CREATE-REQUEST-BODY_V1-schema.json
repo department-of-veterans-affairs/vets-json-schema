@@ -119,12 +119,6 @@
         "zipCode5"
       ]
     },
-    "date": {
-      "type": "string",
-      "pattern": "^[0-9]{4}(-[0-9]{2}){2}$",
-      "minLength": 10,
-      "maxLength": 10
-    },
     "phone": {
       "type": "object",
       "properties": {
@@ -161,8 +155,6 @@
     "timezone": {
       "type": "string",
       "enum": [
-        "Abu Dhabi",
-        "Adelaide",
         "Africa/Abidjan",
         "Africa/Accra",
         "Africa/Addis_Ababa",
@@ -217,8 +209,6 @@
         "Africa/Tripoli",
         "Africa/Tunis",
         "Africa/Windhoek",
-        "Alaska",
-        "Almaty",
         "America/Adak",
         "America/Anchorage",
         "America/Anguilla",
@@ -260,6 +250,7 @@
         "America/Cayman",
         "America/Chicago",
         "America/Chihuahua",
+        "America/Ciudad_Juarez",
         "America/Coral_Harbour",
         "America/Cordoba",
         "America/Costa_Rica",
@@ -340,6 +331,7 @@
         "America/North_Dakota/Beulah",
         "America/North_Dakota/Center",
         "America/North_Dakota/New_Salem",
+        "America/Nuuk",
         "America/Ojinaga",
         "America/Panama",
         "America/Pangnirtung",
@@ -385,8 +377,6 @@
         "America/Winnipeg",
         "America/Yakutat",
         "America/Yellowknife",
-        "American Samoa",
-        "Amsterdam",
         "Antarctica/Casey",
         "Antarctica/Davis",
         "Antarctica/DumontDUrville",
@@ -400,7 +390,6 @@
         "Antarctica/Troll",
         "Antarctica/Vostok",
         "Arctic/Longyearbyen",
-        "Arizona",
         "Asia/Aden",
         "Asia/Almaty",
         "Asia/Amman",
@@ -500,9 +489,6 @@
         "Asia/Yangon",
         "Asia/Yekaterinburg",
         "Asia/Yerevan",
-        "Astana",
-        "Athens",
-        "Atlantic Time (Canada)",
         "Atlantic/Azores",
         "Atlantic/Bermuda",
         "Atlantic/Canary",
@@ -515,7 +501,6 @@
         "Atlantic/South_Georgia",
         "Atlantic/St_Helena",
         "Atlantic/Stanley",
-        "Auckland",
         "Australia/ACT",
         "Australia/Adelaide",
         "Australia/Brisbane",
@@ -539,29 +524,12 @@
         "Australia/Victoria",
         "Australia/West",
         "Australia/Yancowinna",
-        "Azores",
-        "Baghdad",
-        "Baku",
-        "Bangkok",
-        "Beijing",
-        "Belgrade",
-        "Berlin",
-        "Bern",
-        "Bogota",
-        "Brasilia",
-        "Bratislava",
         "Brazil/Acre",
         "Brazil/DeNoronha",
         "Brazil/East",
         "Brazil/West",
-        "Brisbane",
-        "Brussels",
-        "Bucharest",
-        "Budapest",
-        "Buenos Aires",
         "CET",
         "CST6CDT",
-        "Cairo",
         "Canada/Atlantic",
         "Canada/Central",
         "Canada/Eastern",
@@ -570,31 +538,14 @@
         "Canada/Pacific",
         "Canada/Saskatchewan",
         "Canada/Yukon",
-        "Canberra",
-        "Cape Verde Is.",
-        "Caracas",
-        "Casablanca",
-        "Central America",
-        "Central Time (US & Canada)",
-        "Chatham Is.",
-        "Chennai",
-        "Chihuahua",
         "Chile/Continental",
         "Chile/EasterIsland",
-        "Chongqing",
-        "Copenhagen",
         "Cuba",
-        "Darwin",
-        "Dhaka",
-        "Dublin",
         "EET",
         "EST",
         "EST5EDT",
-        "Eastern Time (US & Canada)",
-        "Edinburgh",
         "Egypt",
         "Eire",
-        "Ekaterinburg",
         "Etc/GMT",
         "Etc/GMT+0",
         "Etc/GMT+1",
@@ -654,6 +605,7 @@
         "Europe/Kaliningrad",
         "Europe/Kiev",
         "Europe/Kirov",
+        "Europe/Kyiv",
         "Europe/Lisbon",
         "Europe/Ljubljana",
         "Europe/London",
@@ -694,25 +646,14 @@
         "Europe/Zaporozhye",
         "Europe/Zurich",
         "Factory",
-        "Fiji",
         "GB",
         "GB-Eire",
         "GMT",
         "GMT+0",
         "GMT-0",
         "GMT0",
-        "Georgetown",
-        "Greenland",
         "Greenwich",
-        "Guadalajara",
-        "Guam",
         "HST",
-        "Hanoi",
-        "Harare",
-        "Hawaii",
-        "Helsinki",
-        "Hobart",
-        "Hong Kong",
         "Hongkong",
         "Iceland",
         "Indian/Antananarivo",
@@ -726,69 +667,23 @@
         "Indian/Mauritius",
         "Indian/Mayotte",
         "Indian/Reunion",
-        "Indiana (East)",
-        "International Date Line West",
         "Iran",
-        "Irkutsk",
-        "Islamabad",
         "Israel",
-        "Istanbul",
-        "Jakarta",
         "Jamaica",
         "Japan",
-        "Jerusalem",
-        "Kabul",
-        "Kaliningrad",
-        "Kamchatka",
-        "Karachi",
-        "Kathmandu",
-        "Kolkata",
-        "Krasnoyarsk",
-        "Kuala Lumpur",
-        "Kuwait",
         "Kwajalein",
-        "Kyiv",
-        "La Paz",
         "Libya",
-        "Lima",
-        "Lisbon",
-        "Ljubljana",
-        "London",
         "MET",
         "MST",
         "MST7MDT",
-        "Madrid",
-        "Magadan",
-        "Marshall Is.",
-        "Mazatlan",
-        "Melbourne",
-        "Mexico City",
         "Mexico/BajaNorte",
         "Mexico/BajaSur",
         "Mexico/General",
-        "Mid-Atlantic",
-        "Midway Island",
-        "Minsk",
-        "Monrovia",
-        "Monterrey",
-        "Montevideo",
-        "Moscow",
-        "Mountain Time (US & Canada)",
-        "Mumbai",
-        "Muscat",
         "NZ",
         "NZ-CHAT",
-        "Nairobi",
         "Navajo",
-        "New Caledonia",
-        "New Delhi",
-        "Newfoundland",
-        "Novosibirsk",
-        "Nuku'alofa",
-        "Osaka",
         "PRC",
         "PST8PDT",
-        "Pacific Time (US & Canada)",
         "Pacific/Apia",
         "Pacific/Auckland",
         "Pacific/Bougainville",
@@ -806,6 +701,7 @@
         "Pacific/Guam",
         "Pacific/Honolulu",
         "Pacific/Johnston",
+        "Pacific/Kanton",
         "Pacific/Kiritimati",
         "Pacific/Kosrae",
         "Pacific/Kwajalein",
@@ -832,45 +728,11 @@
         "Pacific/Wake",
         "Pacific/Wallis",
         "Pacific/Yap",
-        "Paris",
-        "Perth",
         "Poland",
-        "Port Moresby",
         "Portugal",
-        "Prague",
-        "Pretoria",
-        "Puerto Rico",
-        "Quito",
         "ROC",
         "ROK",
-        "Rangoon",
-        "Riga",
-        "Riyadh",
-        "Rome",
-        "Samara",
-        "Samoa",
-        "Santiago",
-        "Sapporo",
-        "Sarajevo",
-        "Saskatchewan",
-        "Seoul",
         "Singapore",
-        "Skopje",
-        "Sofia",
-        "Solomon Is.",
-        "Srednekolymsk",
-        "Sri Jayawardenepura",
-        "St. Petersburg",
-        "Stockholm",
-        "Sydney",
-        "Taipei",
-        "Tallinn",
-        "Tashkent",
-        "Tbilisi",
-        "Tehran",
-        "Tijuana",
-        "Tokelau Is.",
-        "Tokyo",
         "Turkey",
         "UCT",
         "US/Alaska",
@@ -884,26 +746,12 @@
         "US/Michigan",
         "US/Mountain",
         "US/Pacific",
-        "US/Pacific-New",
         "US/Samoa",
         "UTC",
-        "Ulaanbaatar",
         "Universal",
-        "Urumqi",
-        "Vienna",
-        "Vilnius",
-        "Vladivostok",
-        "Volgograd",
         "W-SU",
         "WET",
-        "Warsaw",
-        "Wellington",
-        "West Central Africa",
-        "Yakutsk",
-        "Yerevan",
-        "Zagreb",
-        "Zulu",
-        "Zurich"
+        "Zulu"
       ]
     },
     "scCreate": {
@@ -936,6 +784,57 @@
                     "nationalCemeteryAdministration"
                   ]
                 },
+                "homeless": {
+                  "type": "boolean",
+                  "description": "Indicates if the claimant is currently homeless or at risk of becoming homeless."
+                },
+                "homelessLivingSituation": {
+                  "description": "Claimant's current living situation; provide all that apply. For Other: 'A living situation not described by the previous options.'",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "I LIVE OR SLEEP IN A PLACE THAT IS NOT MEANT FOR REGULAR SLEEPING",
+                      "I LIVE IN A SHELTER",
+                      "I AM STAYING WITH A FRIEND OR FAMILY MEMBER, BECAUSE I AM UNABLE TO OWN A HOME RIGHT NOW",
+                      "IN THE NEXT 30 DAYS, I WILL HAVE TO LEAVE A FACILITY, LIKE A HOMELESS SHELTER",
+                      "IN THE NEXT 30 DAYS, I WILL LOSE MY HOME",
+                      "NONE OF THESE SITUATIONS APPLY TO ME",
+                      "OTHER"
+                    ]
+                  }
+                },
+                "homelessLivingSituationOther": {
+                  "description": "Details for homeless living situation other",
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "homelessPointOfContact": {
+                  "description": "The name of a contact that can be used by VA in order to get in touch with a homeless claimant.",
+                  "type": "string",
+                  "maxLength": 150
+                },
+                "homelessPointOfContactPhone": {
+                  "description": "Phone number for the Claimant's point of contact in order to get in touch with a homeless claimant.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/phone"
+                    },
+                    {
+                      "$comment": "the phone fields must not exceed 20 chars, when concatenated"
+                    }
+                  ]
+                },
+                "mstUpcomingEventDisclosure": {
+                  "description": "Allows the Claimant to indicate their consent for VBA to communicate with VHA regarding upcoming events related to the appeals process.",
+                  "type": "string",
+                  "enum": [
+                    "I CONSENT",
+                    "I DO NOT CONSENT",
+                    "I REVOKE PRIOR CONSENT",
+                    "NOT APPLICABLE AND/OR NOT ENROLLED IN VHA HEALTHCARE"
+                  ]
+                },
                 "claimantType": {
                   "type": "string",
                   "enum": [
@@ -962,7 +861,9 @@
                         {
                           "$ref": "#/definitions/phone"
                         },
-                        {}
+                        {
+                          "$comment": "the phone fields must not exceed 20 chars, when concatenated"
+                        }
                       ]
                     },
                     "email": {
@@ -988,12 +889,73 @@
                     "email"
                   ]
                 },
+                "claimant": {
+                  "type": "object",
+                  "description": "If the claimant is a non-Veteran, claimant information is required. Without this information, we will be unable to identify the claimant. If you're a healthcare provider or an employee of a healthcare provider requesting review of a VA payment decision, you must identify the healthcare provider as the claimant and complete all relevant information in the claimant object.",
+                  "properties": {
+                    "address": {
+                      "$ref": "#/definitions/address"
+                    },
+                    "phone": {
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/phone"
+                        },
+                        {
+                          "$comment": "the phone fields must not exceed 20 chars, when concatenated"
+                        }
+                      ]
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "minLength": 6,
+                      "maxLength": 255
+                    },
+                    "timezone": {
+                      "allOf": [
+                        {
+                          "description": "Claimant's timezone. Used for adding the current date to the signature according to the claimant's local time. If not specified, the current UTC date will be used for the signature (which may be ahead or behind the local date)."
+                        },
+                        {
+                          "$ref": "#/definitions/timezone"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "address",
+                    "phone",
+                    "email"
+                  ]
+                },
                 "evidenceSubmission": {
                   "description": "Evidence may be uploaded up to 7 days from the 'created_at' date of the associated Supplemental Claim via 'supplemental_claims/evidence_submissions'.",
                   "type": "object",
                   "properties": {
+                    "treatmentLocations": {
+                      "type": "array",
+                      "description": "Claimant’s treatment locations; provide all that apply. For Other: 'A treatment location not described by the previous options.'",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "PRIVATE HEALTH CARE PROVIDER",
+                          "VA VET CENTER",
+                          "COMMUNITY CARE",
+                          "VA MEDICAL CENTERS (VAMC) AND COMMUNITY-BASED OUTPATIENT CLINICS (CBOC)",
+                          "DEPARTMENT OF DEFENSE (DOD) MILITARY TREATMENT FACILITY(IES) (MTF)",
+                          "OTHER"
+                        ]
+                      },
+                      "treatmentLocationOther": {
+                        "description": "Details for treatment location other",
+                        "type": "string",
+                        "maxLength": 115
+                      }
+                    },
                     "evidenceType": {
                       "type": "array",
+                      "description": "'upload' indicates that the Veteran has supplied additional evidence as uploaded documents. 'retrieval' indicates that the Veteran has supplied contact information for facilities holding evidence relevant to the claim; the 'retrieveFrom' field will contain the facility's contact information. 'none' indicates that the Veteran has not supplied additional evidence.",
                       "items": {
                         "type": "string",
                         "enum": [
@@ -1041,24 +1003,25 @@
                                   "type": "object",
                                   "properties": {
                                     "startDate": {
-                                      "$ref": "#/definitions/date"
+                                      "type": "string",
+                                      "format": "date"
                                     },
                                     "endDate": {
-                                      "$ref": "#/definitions/date"
+                                      "type": "string",
+                                      "format": "date"
                                     }
-                                  },
-                                  "required": [
-                                    "startDate",
-                                    "endDate"
-                                  ]
+                                  }
                                 },
                                 "minItems": 1,
                                 "maxItems": 4
+                              },
+                              "noTreatmentDates": {
+                                "type": "boolean",
+                                "description": "Don't have treatment date"
                               }
                             },
                             "required": [
-                              "locationAndName",
-                              "evidenceDates"
+                              "locationAndName"
                             ]
                           }
                         },
@@ -1189,7 +1152,8 @@
                     "maxLength": 140
                   },
                   "decisionDate": {
-                    "$ref": "#/definitions/date"
+                    "type": "string",
+                    "format": "date"
                   },
                   "decisionIssueId": {
                     "type": "integer"
@@ -1205,7 +1169,8 @@
                     "maxLength": 255
                   },
                   "socDate": {
-                    "$ref": "#/definitions/date"
+                    "type": "string",
+                    "format": "date"
                   }
                 },
                 "required": [

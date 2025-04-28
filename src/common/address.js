@@ -323,15 +323,15 @@ const states = {
     { label: 'British Columbia', value: 'BC' },
     { label: 'Manitoba', value: 'MB' },
     { label: 'New Brunswick', value: 'NB' },
-    { label: 'Newfoundland', value: 'NF' },
+    { label: 'Newfoundland and Labrador', value: 'NL' },
     { label: 'Northwest Territories', value: 'NT' },
-    { label: 'Nova Scotia', value: 'NV' },
-    { label: 'Nunavut Province', value: 'NU' },
+    { label: 'Nova Scotia', value: 'NS' },
+    { label: 'Nunavut', value: 'NU' },
     { label: 'Ontario', value: 'ON' },
     { label: 'Prince Edward Island', value: 'PE' },
     { label: 'Quebec', value: 'QC' },
     { label: 'Saskatchewan', value: 'SK' },
-    { label: 'Yukon Territory', value: 'YT' },
+    { label: 'Yukon', value: 'YT' },
   ],
   MEX: [
     { label: 'Aguascalientes', value: 'aguascalientes' },
@@ -2758,7 +2758,7 @@ const salesforceStates = {
   ],
 };
 
-const pciuCountries = [
+const formProfileCountries = [
   'Afghanistan',
   'Albania',
   'Algeria',
@@ -2973,14 +2973,14 @@ const pciuCountries = [
   'Zimbabwe',
 ];
 
-// This list represents the states currently available in the `states` PCIU
+// This list represents the states currently available in the `states` FormProfile
 // endpoint and not available in the current `states` constant.
-const statesOnlyInPCIU = [
+const statesOnlyInProfile = [
   { label: 'Philippine Islands', value: 'PI' },
   { label: 'U.S. Minor Outlying Islands', value: 'UM' },
 ];
 
-const pciuStates = states.USA.concat(statesOnlyInPCIU).sort((stateA, stateB) => {
+const formProfileStates = states.USA.concat(statesOnlyInProfile).sort((stateA, stateB) => {
   if (stateA.label === stateB.label) return 0;
   return stateA.label > stateB.label ? 1 : -1;
 });
@@ -2991,8 +2991,8 @@ module.exports = {
   countries,
   militaryCities,
   militaryStates,
-  pciuCountries,
-  pciuStates,
+  formProfileCountries,
+  formProfileStates,
   salesforceCountries,
   salesforceStates,
   states,

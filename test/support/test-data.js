@@ -53,6 +53,35 @@ export default {
       ],
     },
   },
+  personalInformation: {
+    fields: ['personalInformation'],
+    data: {
+      valid: [
+        { first: 'john', last: 'doe' },
+        { first: 'john', middle: 'A', last: 'doe' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.', preferredName: 'Joe' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.', preferredName: 'Joe', socialSecurityNumber: '123456799' },
+        { first: 'john', middle: 'A', last: 'doe', suffix: 'Jr.', preferredName: 'Joe', socialSecurityNumber: '123456799', serviceNumber: '012345678911' },
+      ],
+      invalid: [{ first: 'john' }, { last: 'john' }, { middle: 'john' }],
+    },
+  },
+  contactInformation: {
+    fields: ['contactInformation'],
+    data: {
+      valid: [
+        { email: 'name@example.com' },
+        { email: 'name@example.com', phone: '5555555555' },
+        { email: 'name@example.com', phone: '55555555555', address: {
+          country: 'usa',
+          city: 'va',
+          postalCode: '80112'
+        } },
+      ],
+      invalid: [ { email: 'foo'} , { phone: 'foo' }, {address: 'foo'} ]
+    },
+  },
   fullName: {
     fields: ['veteranFullName'],
     data: {
@@ -131,17 +160,45 @@ export default {
     fields: ['veteranAddress'],
     data: {
       valid: [
-        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701' },
-        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701-1234' },
-        { street: '123 5th St. N.', street2: '#501', city: 'St. Petersburg', state: 'FL', postalCode: '33701' },
-        { street: '123 5th St. N.', street2: '#501', city: 'St. Petersburg', state: 'FL', postalCode: '33701-1234' },
-        { street: '123 5th St. N.', street2: '#501', city: 'St. Petersburg', state: 'DC', postalCode: '33701-1234' },
+        { street: '123 5th St. N.', city: 'St. Petersburg', state: 'FL', postalCode: '33701', county: 'Washington' },
+        {
+          street: '123 5th St. N.',
+          city: 'St. Petersburg',
+          state: 'FL',
+          postalCode: '33701-1234',
+          county: 'Washington',
+        },
+        {
+          street: '123 5th St. N.',
+          street2: '#501',
+          city: 'St. Petersburg',
+          state: 'FL',
+          postalCode: '33701',
+          county: 'Washington',
+        },
+        {
+          street: '123 5th St. N.',
+          street2: '#501',
+          city: 'St. Petersburg',
+          state: 'FL',
+          postalCode: '33701-1234',
+          county: 'Washington',
+        },
+        {
+          street: '123 5th St. N.',
+          street2: '#501',
+          city: 'St. Petersburg',
+          state: 'DC',
+          postalCode: '33701-1234',
+          county: 'Washington',
+        },
         {
           street: '123 5th St. N.',
           street2: '#501',
           city: 'City in: American Samoa',
           state: 'AS',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
         {
           street: '123 5th St. N.',
@@ -149,6 +206,7 @@ export default {
           city: 'City in: Armed Forces Americas (AA)',
           state: 'AA',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
         {
           street: '123 5th St. N.',
@@ -156,6 +214,7 @@ export default {
           city: 'City in: Armed Forces Europe (AE)',
           state: 'AE',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
         {
           street: '123 5th St. N.',
@@ -163,6 +222,7 @@ export default {
           city: 'City in: Armed Forces Pacific (AP)',
           state: 'AP',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
         {
           street: '123 5th St. N.',
@@ -170,14 +230,23 @@ export default {
           city: 'City in: Federated States Of Micronesia',
           state: 'FM',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
-        { street: '123 5th St. N.', street2: '#501', city: 'City in: Guam', state: 'GU', postalCode: '33701-1234' },
+        {
+          street: '123 5th St. N.',
+          street2: '#501',
+          city: 'City in: Guam',
+          state: 'GU',
+          postalCode: '33701-1234',
+          county: 'Washington',
+        },
         {
           street: '123 5th St. N.',
           street2: '#501',
           city: 'City in: Marshall Islands',
           state: 'MH',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
         {
           street: '123 5th St. N.',
@@ -185,14 +254,23 @@ export default {
           city: 'City in: Northern Mariana Islands',
           state: 'MP',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
-        { street: '123 5th St. N.', street2: '#501', city: 'City in: Palau', state: 'PW', postalCode: '33701-1234' },
+        {
+          street: '123 5th St. N.',
+          street2: '#501',
+          city: 'City in: Palau',
+          state: 'PW',
+          postalCode: '33701-1234',
+          county: 'Washington',
+        },
         {
           street: '123 5th St. N.',
           street2: '#501',
           city: 'City in: Puerto Rico',
           state: 'PR',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
         {
           street: '123 5th St. N.',
@@ -200,6 +278,7 @@ export default {
           city: 'City in: Virgin Islands',
           state: 'VI',
           postalCode: '33701-1234',
+          county: 'Washington',
         },
       ],
       invalid: [
@@ -296,6 +375,16 @@ export default {
       invalid: [
         {
           from: false,
+        },
+      ],
+    },
+  },
+  minimumYearDateRange: {
+    data: {
+      valid: [fixtures.minimumYearDateRange],
+      invalid: [
+        {
+          startDate: 'XXXX-01-02',
         },
       ],
     },
@@ -599,15 +688,7 @@ export default {
         'abcdefab-1234-4233-Babc-123456789012',
         'abcdefab-1234-4233-Eabc-123456789012', // warning: invalid v4 uuid can pass validation
       ],
-      invalid: [
-        null,
-        false,
-        true,
-        0,
-        '',
-        'random-string',
-        'xbcdefab-1234-4233-9abc-123456789012',
-      ],
+      invalid: [null, false, true, 0, '', 'random-string', 'xbcdefab-1234-4233-9abc-123456789012'],
     },
   },
 };
