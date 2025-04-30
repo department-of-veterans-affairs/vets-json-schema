@@ -1268,7 +1268,6 @@
         "required": [
           "fullName",
           "primaryPhone",
-          "address",
           "relationship",
           "contactType"
         ]

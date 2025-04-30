@@ -414,7 +414,7 @@ const hcaVeteranContact = {
       type: 'boolean',
     },
   },
-  required: ['fullName', 'primaryPhone', 'address', 'relationship', 'contactType'],
+  required: ['fullName', 'primaryPhone', 'relationship', 'contactType'],
 };
 
 const hcaVeteranContacts = {
