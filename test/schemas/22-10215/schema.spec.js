@@ -100,8 +100,8 @@ const testData = {
           supportedStudents: 12,
           fte: {
             supported: 5.5,
-            nonSupported: 6.25,
-            totalFTE: 30,
+            nonSupported: 20,
+            totalFTE: 25.5,
             supportedPercentageFTE: 66.67,
           },
         },
