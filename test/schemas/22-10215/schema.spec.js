@@ -73,66 +73,113 @@ const testData = {
   },
   programs: {
     valid: [
-      [{
-        programName: 'Computer Science',
-        studentsEnrolled: 100,
-        supportedStudents: 80,
-        fte: {
-          supported: 20,
-          nonSupported: 10,
-          totalFTE: 30,
-          supportedPercentageFTE: 66.67,
+      [
+        {
+          programName: 'Computer Science',
+          studentsEnrolled: 100,
+          supportedStudents: 80,
+          fte: {
+            supported: 20,
+            nonSupported: 10,
+            totalFTE: 30,
+            supportedPercentageFTE: 66.67,
+          },
         },
-      }],
-      [{
-        programName: 'Computer Science',
-        studentsEnrolled: 10,
-        supportedStudents: 8,
-      }],
+      ],
+      [
+        {
+          programName: 'Computer Science',
+          studentsEnrolled: 10,
+          supportedStudents: 8,
+        },
+      ],
+      [
+        {
+          programName: 'History',
+          studentsEnrolled: 40,
+          supportedStudents: 12,
+          fte: {
+            supported: 5.5,
+            nonSupported: 6.25,
+            totalFTE: 30,
+            supportedPercentageFTE: 66.67,
+          },
+        },
+      ],
     ],
     invalid: [
-      [{
-        programName: null,
-        studentsEnrolled: 100,
-        supportedStudents: 80,
-        fte: {
-          supported: 9.5,
-          nonSupported: 7,
-          totalFTE: 80,
-          supportedPercentageFTE: 62.5,
+      [
+        {
+          programName: null,
+          studentsEnrolled: 100,
+          supportedStudents: 80,
+          fte: {
+            supported: 9.5,
+            nonSupported: 7,
+            totalFTE: 80,
+            supportedPercentageFTE: 62.5,
+          },
         },
-      }],
-      [{
-        programName: 'Computer Science',
-        studentsEnrolled: '100',
-        supportedStudents: 80,
-        fte: {
-          supported: 9,
-          nonSupported: 7,
+      ],
+      [
+        {
+          programName: 'Computer Science',
+          studentsEnrolled: '100',
+          supportedStudents: 80,
+          fte: {
+            supported: 9,
+            nonSupported: 7,
+          },
         },
-      }],
-      [{
-        programName: 'Computer Science',
-        studentsEnrolled: null,
-        supportedStudents: 80,
-        fte: {
-          supported: 50,
-          nonSupported: 30,
-          totalFTE: 80,
-          supportedPercentageFTE: 62.5,
+      ],
+      [
+        {
+          programName: 'Computer Science',
+          studentsEnrolled: null,
+          supportedStudents: 80,
+          fte: {
+            supported: 50,
+            nonSupported: 30,
+            totalFTE: 80,
+            supportedPercentageFTE: 62.5,
+          },
         },
-      }],
-      [{
-        programName: 'Computer Science',
-        studentsEnrolled: 100,
-        supportedStudents: undefined,
-        fte: {
-          supported: 50,
-          nonSupported: 30,
-          totalFTE: 80,
-          supportedPercentageFTE: 62.5,
+      ],
+      [
+        {
+          programName: 'Computer Science',
+          studentsEnrolled: 100,
+          supportedStudents: undefined,
+          fte: {
+            supported: 50,
+            nonSupported: 30,
+            totalFTE: 80,
+            supportedPercentageFTE: 62.5,
+          },
         },
-      }],
+      ],
+      [
+        {
+          programName: 'Philosophy',
+          studentsEnrolled: 25,
+          supportedStudents: 10,
+          fte: {
+            supported: '5',
+            nonSupported: 3,
+          },
+        },
+      ],
+      [
+        {
+          programName: 'Physics',
+          studentsEnrolled: 25,
+          supportedStudents: 10,
+          fte: {
+            supported: 7,
+            nonSupported: '3',
+          },
+        },
+      ],
     ],
   },
 };
@@ -153,9 +200,9 @@ describe('22-10215 Schema', () => {
       'dateOfCalculations',
     ]);
     expect(schema.properties.programs.items.required).to.deep.equal([
-      'programName', 
-      'studentsEnrolled', 
-      'supportedStudents'
+      'programName',
+      'studentsEnrolled',
+      'supportedStudents',
     ]);
   });
 

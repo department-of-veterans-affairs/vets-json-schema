@@ -63,10 +63,10 @@ const schema = {
             type: 'object',
             properties: {
               supported: {
-                type: 'integer',
+                type: 'number',
               },
               nonSupported: {
-                type: 'integer',
+                type: 'number',
               },
               totalFTE: {
                 type: 'integer',
