@@ -69,7 +69,7 @@ const schema = {
                 type: 'number',
               },
               totalFTE: {
-                type: 'integer',
+                type: 'number',
               },
               supportedPercentageFTE: {
                 type: 'number',
@@ -80,7 +80,7 @@ const schema = {
       },
     },
     statementOfTruthSignature: {
-      type: "string"
+      type: 'string',
     },
     dateSigned: {
       $ref: '#/definitions/date',
