@@ -88,7 +88,7 @@
                 "type": "number"
               },
               "totalFTE": {
-                "type": "integer"
+                "type": "number"
               },
               "supportedPercentageFTE": {
                 "type": "number"
