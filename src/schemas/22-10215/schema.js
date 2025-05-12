@@ -63,13 +63,13 @@ const schema = {
             type: 'object',
             properties: {
               supported: {
-                type: 'integer',
+                type: 'number',
               },
               nonSupported: {
-                type: 'integer',
+                type: 'number',
               },
               totalFTE: {
-                type: 'integer',
+                type: 'number',
               },
               supportedPercentageFTE: {
                 type: 'number',
@@ -80,7 +80,7 @@ const schema = {
       },
     },
     statementOfTruthSignature: {
-      type: "string"
+      type: 'string',
     },
     dateSigned: {
       $ref: '#/definitions/date',
