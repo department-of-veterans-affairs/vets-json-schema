@@ -279,6 +279,10 @@ const schema = {
     },
   }),
   properties: {
+    email: {
+      type: 'string',
+      format: 'email',
+    },
     claimantType: {
       type: 'string',
     },
