@@ -1094,8 +1094,13 @@ const schema = {
           },
           attachmentId: {
             type: 'string',
-            enum: ['L107', 'L023'],
-            enumNames: ['VA 21-4142 Authorization for Release of Information', 'Other'],
+            enum: ['L049', 'L702', 'L107', 'L023'],
+            enumNames: [
+              'Medical Treatment Record - Non-Government Facility',
+              'Disability Benefits Questionnaire (DBQ)',
+              'VA 21-4142 Authorization for Release of Information',
+              'Other'
+            ],
           },
         },
       },
