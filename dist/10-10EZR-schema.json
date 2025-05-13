@@ -522,25 +522,29 @@
             "type": "string",
             "maxLength": 50,
             "pattern": "^.*\\S.*"
-          },
-          "insurancePolicyNumber": {
-            "type": "string",
-            "maxLength": 30,
-            "pattern": "^.*\\S.*"
-          },
-          "insuranceGroupCode": {
-            "type": "string",
-            "maxLength": 30,
-            "pattern": "^.*\\S.*"
           }
         },
         "anyOf": [
           {
+            "properties": {
+              "insurancePolicyNumber": {
+                "type": "string",
+                "maxLength": 30,
+                "pattern": "^.*\\S.*"
+              }
+            },
             "required": [
               "insurancePolicyNumber"
             ]
           },
           {
+            "properties": {
+              "insuranceGroupCode": {
+                "type": "string",
+                "maxLength": 30,
+                "pattern": "^.*\\S.*"
+              }
+            },
             "required": [
               "insuranceGroupCode"
             ]
