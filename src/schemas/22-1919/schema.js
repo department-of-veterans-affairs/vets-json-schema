@@ -11,11 +11,11 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
-  required: ['designatedOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
+  required: ['certifyingOfficial', 'institutionDetails', 'institutionClassification', 'hasConflictOfInterest', 'officialsReceiveBenefits', 'conflictOfInterestDetails', 'statementOfTruthSignature', 'dateSigned'],
   properties: {
-    institutionDetails: {
+    certifyingOfficial: {
       type: 'object',
-      required: ['first', 'last', 'role', 'hasFacilityCode', 'facilityCode'],
+      required: ['first', 'last', 'role'],
       properties: {
         first: {
           type: 'string',
@@ -23,8 +23,80 @@ const schema = {
         last: {
           type: 'string',
         },
-
-    }
+        role: { 
+          // ok to use string? Radio field has multiple options, but only one can beselected.
+          type: 'string',
+          items: {
+            type: 'string',
+            enumNames: ['Certifying Official', 'Owner', 'Officer', 'Other'] // How to handle "other" ?
+          }
+        },
+      },
+    },
+    institutionDetails: {
+      type: 'object',
+      hasVaFacilityCode: {
+        type: 'string',
+        enum: ['yes', 'no'],
+      },
+      facilityCode: {
+        type: 'string',
+        pattern: '^[a-zA-Z0-9]{8}$',
+      },
+      institutionName: {
+        type: 'string',
+      },
+      address: {
+        type: 'object',
+        properties: {
+          street: {
+            type: 'string',
+          },
+          city: {
+            type: 'string',
+          },
+          state: {
+            type: 'string',
+            pattern: '^[A-Z]{2}$',
+          },
+          zip: {
+            type: 'string',
+            pattern: '^\\d{5}(-\\d{4})?$',
+          },
+        },
+      },
+      required: ['facilityCode', 'hasVaFacilityCode'],
+    },
+    institutionClassification: {
+      isProprietary: {
+        type: 'boolean',
+        enum: [true, false],
+      },
+    },
+    hasConflictOfInterest: {
+      type: 'boolean',
+      enum: [true, false],
+    },
+    officialsReceiveBenefits: {
+      type: 'boolean',
+      enum: [true, false],
+    },
+    conflictOfInterestDetails: {
+      type: 'object',
+      required: ['firstName', 'lastName', 'title'],
+      properties: {
+          first: {
+            type: 'string',
+          },
+          last: {
+            type: 'string',
+          },
+          title: {
+            type: 'string',
+          },
+      },
+    },
   },
-}
 };
+
+export default schema;
