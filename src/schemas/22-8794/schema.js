@@ -1,9 +1,10 @@
-import _ from 'lodash';
+import _, { min } from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
 const pickedDefinitions = _.pick(origDefinitions, ['date']);
 
+const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Designation Of Certifying Official(S) (22-8794)',
@@ -18,35 +19,41 @@ const schema = {
       properties: {
         first: {
           type: 'string',
+          minLength: 1,
+          maxLength: 50,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
         },
         middle: {
           type: 'string',
+          maxLength: 50,
         },
         last: {
           type: 'string',
+          minLength: 1,
+          maxLength: 50,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
         },
         title: {
           type: 'string',
+          minLength: 1,
+          maxLength: 50,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
         },
         phone: {
           type: 'string',
           enum: ['usPhone', 'internationalPhone'],
-          description: 'Type of phone number',
         },
         usPhone: {
           type: 'string',
           pattern: '^(||d{10}|||+?[0-9])$',
-          description: 'Phone number',
         },
         internationalPhone: {
           type: 'string',
           pattern: '^(||d{15}|||+?[0-9])$',
-          description: 'Phone number',
         },
         email: {
           type: 'string',
           format: 'email',
-          description: 'Email address',
         },
       },
     },
@@ -87,32 +94,26 @@ const schema = {
         phone: {
           type: 'string',
           enum: ['usPhone', 'internationalPhone'],
-          description: 'Type of phone number',
         },
         usPhone: {
           type: 'string',
           pattern: '^(||d{10}|||+?[0-9])$',
-          description: 'Phone number',
         },
         internationalPhone: {
           type: 'string',
           pattern: '^(||d{15}|||+?[0-9])$',
-          description: 'Phone number',
         },
         email: {
           type: 'string',
           format: 'email',
-          description: 'Email address',
         },
         trainingCompletionDate: {
           type: 'string',
           format: 'date',
-          description: '305 training completion date',
         },
         hasVaEducationBenefits: {
           type: 'string',
           enum: ['yes', 'no'],
-          description: 'Does the certifying official have VA education benefits?',
         },
         trainingExempt: {
           type: 'string',
@@ -141,35 +142,25 @@ const schema = {
               title: {
                 type: 'string',
               },
-              phone: {
-                type: 'string',
-                enum: ['usPhone', 'internationalPhone'],
-                description: 'Type of phone number',
-              },
               usPhone: {
                 type: 'string',
                 pattern: '^(||d{10}|||+?[0-9])$',
-                description: 'Phone number',
               },
               internationalPhone: {
                 type: 'string',
                 pattern: '^(||d{15}|||+?[0-9])$',
-                description: 'Phone number',
               },
               email: {
                 type: 'string',
                 format: 'email',
-                description: 'Email address',
               },
               trainingCompletionDate: {
                 type: 'string',
                 format: 'date',
-                description: '305 training completion date',
               },
               hasVaEducationBenefits: {
                 type: 'string',
                 enum: ['yes', 'no'],
-                description: 'Does the certifying official have VA education benefits?',
               },
               trainingExempt: {
                 type: 'string',
@@ -182,7 +173,6 @@ const schema = {
     hasReadOnlyCertifyingOfficial: {
       type: 'string',
       enum: ['yes', 'no'],
-      description: 'Do you have read-only certifying officials?',
     },
     readOnlyCertifyingOfficial: {
       type: 'array',
@@ -205,7 +195,7 @@ const schema = {
     remarks: {
       type: 'string',
       maxLength: 500,
-      description: 'Remarks',
+      pattern: textAndNumbersRegex,
     },
     statementOfTruthSignature: {
       type: 'string',
