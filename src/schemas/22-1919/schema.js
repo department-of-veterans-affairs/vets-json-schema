@@ -13,10 +13,8 @@ const schema = {
   definitions: pickedDefinitions,
   required: [
     'institutionDetails',
-    'institutionClassification',
+    'proprietaryProfitSchools',
     'hasConflictOfInterest',
-    'officialsReceiveBenefits',
-    'conflictOfInterestDetails',
     'statementOfTruthSignature',
     'dateSigned',
   ],
@@ -85,6 +83,38 @@ const schema = {
           enum: [true, false],
         },
       },
+    },
+    conflictOfInterest: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['hasConflictOfInterest'],
+        properties: {
+          hasConflictOfInterest: definitions.yesNoSchema,
+          certifyingOfficial: {
+            type: 'object',
+            required: ['first', 'last', 'title'],
+            properties: {
+              first: {
+                type: 'string',
+              },
+              last: {
+                type: 'string',
+              },
+              title: {
+                type: 'string',
+              },
+            },
+          },
+        },
+        
+      },
+    },
+    statementOfTruthSignature: {
+      type: 'string',
+    },
+    dateSigned: {
+      $ref: '#/definitions/date',
     },
   },
 };
