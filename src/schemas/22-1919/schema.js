@@ -37,7 +37,7 @@ const schema = {
       type: 'object',
       hasVaFacilityCode: {
         type: 'string',
-        enum: ['yes', 'no'],
+        enum: ['yes', 'not yet'],
       },
       facilityCode: {
         type: 'string',
@@ -67,19 +67,14 @@ const schema = {
       },
       required: ['facilityCode', 'hasVaFacilityCode'],
     },
-    institutionClassification: {
-      isProprietary: {
-        type: 'boolean',
-        enum: [true, false],
-      },
+    isProprietaryInstitution: {
+      $ref: '#/definitions/yesNoSchema'
     },
     hasConflictOfInterest: {
-      type: 'boolean',
-      enum: [true, false],
+      $ref: '#/definitions/yesNoSchema'
     },
     officialsReceiveBenefits: {
-      type: 'boolean',
-      enum: [true, false],
+      $ref: '#/definitions/yesNoSchema'
     },
     conflictOfInterestDetails: {
       type: 'object',
