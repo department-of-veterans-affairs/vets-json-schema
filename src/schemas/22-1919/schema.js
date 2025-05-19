@@ -122,7 +122,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['hasConflictOfInterest'],
+        required: ['hasConflictOfInterest', 'certifyingOfficial', 'fileNumber', 'enrollmentPeriod'],
         properties: {
           hasConflictOfInterest: definitions.yesNoSchema,
           certifyingOfficial: {
@@ -140,6 +140,12 @@ const schema = {
               },
             },
           },
+          fileNumber: {
+            type: 'string',
+            pattern: definitions.ssn || definitions.centralMailVaFile // syntax ok?
+          },
+          enrollmentPeriod: definitions.dateRange 
+
         },
         
       },
