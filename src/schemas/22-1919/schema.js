@@ -2,7 +2,6 @@ import _ from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
-
 const pickedDefinitions = _.pick(origDefinitions, ['date']);
 
 const schema = {
@@ -13,8 +12,6 @@ const schema = {
   definitions: pickedDefinitions,
   required: [
     'institutionDetails',
-    'proprietaryProfitSchools',
-    'conflictOfInterest',
     'statementOfTruthSignature',
     'dateSigned',
   ],
@@ -29,13 +26,13 @@ const schema = {
           properties: {
             first: {
               type: 'string',
-              "minLength": 1,
-              "maxLength": 30,
+              minLength: 1,
+              maxLength: 30,
             },
             last: {
               type: 'string',
-              "minLength": 1,
-              "maxLength": 30,
+              minLength: 1,
+              maxLength: 30,
             },
             role: {
               type: 'object',
@@ -49,7 +46,7 @@ const schema = {
                   minLength: 0,
                   maxLength: 30,
                 }
-              }, 
+              },
             },
           },
         },
@@ -85,53 +82,40 @@ const schema = {
       },
     },
     proprietaryProfitSchools: {
-      type: 'object',
-      required: ['isProprietary'],
-      properties: {
-        isProprietaryProfit: definitions.yesNoSchema, 
-        conflictOfInterest: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              conflictOfInterest: {
-                type: 'object',
-                required: ['hasConflictOfInterest', 'first', 'last', 'title', 'association'],
-                properties: {
-                  hasConflictOfInterest: definitions.yesNoSchema,
-                  first: {
-                    type: 'string',
-                    "minLength": 1,
-                    "maxLength": 30,
-
-                  },
-                  last: {
-                    type: 'string',
-                    "minLength": 1,
-                    "maxLength": 30,  
-                  },
-                  title: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 50
-                  },
-                  association: {
-                    type: string,
-                    items: {
-                      type: 'string', 
-                      enum: ['They are a VA employee who works with, receives services from, or receives compensation from our institution', 
-                        'They are a SAA employee who works with or receives compensation from our institution'
-                      ]
-                    }
-                  } 
-                }
-              }
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['isProprietaryProfit', 'hasConflictOfInterest', 'first', 'last', 'title', 'association'],
+        properties: {
+          isProprietaryProfit: definitions.yesNoSchema,
+          hasConflictOfInterest: definitions.yesNoSchema,
+          first: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 30,
+          },
+          last: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 30,
+          },
+          title: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 50
+          },
+          association: {
+            type: 'array',
+            items: {
+              type: 'string',
+              enum: [
+                'They are a VA employee who works with, receives services from, or receives compensation from our institution',
+                'They are a SAA employee who works with or receives compensation from our institution'
+              ]
             }
           }
         }
-      },
-     
-
+      }
     },
     conflictOfInterest: {
       type: 'array',
@@ -146,13 +130,13 @@ const schema = {
             properties: {
               first: {
                 type: 'string',
-                "minLength": 1,
-                "maxLength": 30,
+                minLength: 1,
+                maxLength: 30,
               },
               last: {
                 type: 'string',
-                "minLength": 1,
-                "maxLength": 30,
+                minLength: 1,
+                maxLength: 30,
               },
               title: {
                 type: 'string',
@@ -166,9 +150,7 @@ const schema = {
             pattern: definitions.ssn || definitions.centralMailVaFile // syntax ok? add custom regex to cover both if unit test fails
           },
           enrollmentPeriod: definitions.dateRange 
-
         },
-        
       },
     },
     statementOfTruthSignature: {
