@@ -1,8 +1,8 @@
-import _, { min } from 'lodash';
+import _ from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
-const pickedDefinitions = _.pick(origDefinitions, ['date']);
+const pickedDefinitions = _.pick(origDefinitions, ['date', 'fullNameNoSuffix', 'usaPhone', 'yesNoSchema', 'email']);
 
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 const schema = {
@@ -10,51 +10,27 @@ const schema = {
   title: 'Designation Of Certifying Official(S) (22-8794)',
   type: 'object',
   additionalProperties: false,
-  definitions: pickedDefinitions,
-  required: ['designatedOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
+  definitions: _.merge(origDefinitions, pickedDefinitions),
+  required: ['designatingOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
   properties: {
-    designatedOfficial: {
+    designatingOfficial: {
       type: 'object',
-      required: ['first', 'last', 'title', 'phone', 'email'],
+      required: ['fullName', 'title', 'emailAddress'],
       properties: {
-        first: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 50,
-          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
-        },
-        middle: {
-          type: 'string',
-          maxLength: 50,
-        },
-        last: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 50,
-          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
-        },
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
         title: {
           type: 'string',
           minLength: 1,
           maxLength: 50,
           pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
         },
-        phone: {
-          type: 'string',
-          enum: ['usPhone', 'internationalPhone'],
+        phoneNumber: {
+          $ref: '#/definitions/usaPhone',
         },
-        usPhone: {
-          type: 'string',
-          pattern: '^(||d{10}|||+?[0-9])$',
+        internationalPhoneNumber: {
+          $ref: '#/definitions/phone',
         },
-        internationalPhone: {
-          type: 'string',
-          pattern: '^(||d{15}|||+?[0-9])$',
-        },
-        email: {
-          type: 'string',
-          format: 'email',
-        },
+        emailAddress: definitions.email,
       },
     },
     institutionDetails: {
@@ -73,50 +49,33 @@ const schema = {
       address: {
         $ref: '#/definitions/addressSchema',
       },
-      required: ['facilityCode', 'hasVaFacilityCode', 'address'],
+      required: ['facilityCode', 'institutionName', 'hasVaFacilityCode', 'address'],
     },
     primaryCertifyingOfficial: {
       type: 'object',
-      required: ['first', 'last', 'title', 'phone', 'email'],
+      required: ['fullName', 'title', 'emailAddress'],
       properties: {
-        first: {
-          type: 'string',
-        },
-        middle: {
-          type: 'string',
-        },
-        last: {
-          type: 'string',
-        },
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
         title: {
           type: 'string',
+          minLength: 1,
+          maxLength: 50,
+          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
         },
-        phone: {
-          type: 'string',
-          enum: ['usPhone', 'internationalPhone'],
+        phoneNumber: {
+          $ref: '#/definitions/usaPhone',
         },
-        usPhone: {
-          type: 'string',
-          pattern: '^(||d{10}|||+?[0-9])$',
+        internationalPhoneNumber: {
+          $ref: '#/definitions/phone',
         },
-        internationalPhone: {
-          type: 'string',
-          pattern: '^(||d{15}|||+?[0-9])$',
-        },
-        email: {
-          type: 'string',
-          format: 'email',
-        },
+        emailAddress: definitions.email,
         trainingCompletionDate: {
           type: 'string',
           format: 'date',
         },
-        hasVaEducationBenefits: {
-          type: 'string',
-          enum: ['yes', 'no'],
-        },
+        hasVaEducationBenefits: definitions.yesNoSchema,
         trainingExempt: {
-          type: 'string',
+          type: 'boolean',
         },
       },
     },
@@ -126,42 +85,29 @@ const schema = {
         type: 'object',
         required: [' hasAdditionalCertifyingOfficials'],
         properties: {
-          additionalCertifyingOfficials: {
+          additionalCertifyingOfficialsDetails: {
             type: 'object',
-            required: ['first', 'last', 'title', 'phone', 'email'],
+            required: ['fullName', 'title', 'phone', 'emailAddress'],
             properties: {
-              first: {
-                type: 'string',
-              },
-              middle: {
-                type: 'string',
-              },
-              last: {
-                type: 'string',
-              },
+              fullName: { $ref: '#/definitions/fullNameNoSuffix' },
               title: {
                 type: 'string',
+                minLength: 1,
+                maxLength: 50,
+                pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
               },
-              usPhone: {
-                type: 'string',
-                pattern: '^(||d{10}|||+?[0-9])$',
+              phoneNumber: {
+                $ref: '#/definitions/usaPhone',
               },
-              internationalPhone: {
-                type: 'string',
-                pattern: '^(||d{15}|||+?[0-9])$',
+              internationalPhoneNumber: {
+                $ref: '#/definitions/phone',
               },
-              email: {
-                type: 'string',
-                format: 'email',
-              },
+              emailAddress: definitions.email,
               trainingCompletionDate: {
                 type: 'string',
                 format: 'date',
               },
-              hasVaEducationBenefits: {
-                type: 'string',
-                enum: ['yes', 'no'],
-              },
+              hasVaEducationBenefits: definitions.yesNoSchema,
               trainingExempt: {
                 type: 'string',
               },
@@ -170,25 +116,14 @@ const schema = {
         },
       },
     },
-    hasReadOnlyCertifyingOfficial: {
-      type: 'string',
-      enum: ['yes', 'no'],
-    },
+    hasReadOnlyCertifyingOfficial: definitions.yesNoSchema,
     readOnlyCertifyingOfficial: {
       type: 'array',
       items: {
         type: 'object',
-        required: ['first', 'last'],
+        required: ['fullName'],
         properties: {
-          first: {
-            type: 'string',
-          },
-          middle: {
-            type: 'string',
-          },
-          last: {
-            type: 'string',
-          },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
         },
       },
     },
