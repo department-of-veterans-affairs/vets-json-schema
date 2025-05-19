@@ -32,23 +32,13 @@ const testData = {
         hasVaFacilityCode: 'yes',
         facilityCode: '12345678',
         institutionName: 'Institution of Test',
-        address: {
-          street: '123 Test St',
-          city: 'Test City',
-          state: 'CA',
-          zipCode: '12345',
-        },
+        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
       },
       {
         hasVaFacilityCode: 'no',
         facilityCode: '',
         institutionName: 'Institution of Test',
-        address: {
-          street: '123 Test St',
-          city: 'Test City',
-          state: 'CA',
-          zipCode: '12345',
-        },
+        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
       },
     ],
     invalid: [
@@ -56,23 +46,11 @@ const testData = {
         hasVaFacilityCode: null,
         facilityCode: '12345678',
         institutionName: 'Institution of Test',
-        address: {
-          street: '123 Test St',
-          city: 'Test City',
-          state: 'CA',
-          zipCode: '12345',
-        },
       },
       {
         hasVaFacilityCode: '',
         facilityCode: '',
         institutionName: '',
-        address: {
-          street: '',
-          city: '',
-          state: '',
-          zipCode: '',
-        },
       },
     ],
   },
@@ -85,7 +63,7 @@ const testData = {
         internationalPhoneNumber: '+442012345678',
         emailAddress: 'john.doe@gmail.com',
         trainingCompletionDate: '2024-11-25',
-        hasVaEducationBenefits: 'yes',
+        hasVaEducationBenefits: true,
         trainingExempt: false,
       },
     ],
@@ -106,26 +84,28 @@ const testData = {
     valid: [
       [
         {
-          additionalCertifyingOfficial: {
+          additionalCertifyingOfficialsDetails: {
             fullName: { first: 'John', last: 'Doe' },
             title: 'President',
-            usPhone: '1234567890',
-            internationalPhone: '+441234567890',
-            email: 'john.doe@gmail.com',
-            hasVaEducationBenefits: 'yes',
+            phoneNumber: '5555555555',
+            internationalPhoneNumber: '+442012345678',
+            emailAddress: 'john.doe@gmail.com',
+            hasVaEducationBenefits: true,
             trainingCompletionDate: '2024-11-25',
             trainingExempt: false,
           },
         },
+      ],
+      [
         {
-          additionalCertifyingOfficial: {
+          additionalCertifyingOfficialsDetails: {
             fullName: { first: 'Jane', last: 'Doe' },
-            title: 'Vice President',
-            usPhone: '0987654321',
-            internationalPhone: '+441234567890',
-            email: 'jane.doe12@gmail.com',
-            hasVaEducationBenefits: 'no',
-            trainingCompletionDate: '2024-11-25',
+            title: 'VicePresident',
+            phoneNumber: '5555555555',
+            internationalPhoneNumber: '+442012345678',
+            emailAddress: 'jane.doe@gmail.com',
+            hasVaEducationBenefits: false,
+            trainingCompletionDate: '2024-10-10',
             trainingExempt: true,
           },
         },
@@ -134,24 +114,24 @@ const testData = {
     invalid: [
       [
         {
-          additionalCertifyingOfficial: {
+          additionalCertifyingOfficialsDetails: {
             fullName: { first: null, last: 'Doe' },
             title: null,
-            usPhone: '1234567890235',
-            internationalPhone: '+4412345678900098',
-            email: 'john.stvegmail.com',
+            phoneNumber: 'null',
+            internationalPhoneNumber: '+4412345678900098',
+            emailAddress: 'john.stvegmail.com',
             hasVaEducationBenefits: null,
             trainingCompletionDate: 'march-28-2024',
             trainingExempt: null,
           },
         },
         {
-          additionalCertifyingOfficial: {
+          additionalCertifyingOfficialsDetails: {
             fullName: { first: 'Jane', last: 'Doe' },
             title: 'Vice President',
-            usPhone: '0987654321345',
-            internationalPhone: '+4412345678900123',
-            email: 'johndoegmail.com',
+            phoneNumber: '0987654321345',
+            internationalPhoneNumber: '+4412345678900123',
+            emailAddress: 'johndoegmail.com',
             hasVaEducationBenefits: null,
             trainingCompletionDate: '2024-feb-25',
             trainingExempt: null,
@@ -161,95 +141,24 @@ const testData = {
     ],
   },
   hasReadOnlyCertifyingOfficial: {
-    valid: [{ hasReadOnlyCertifyingOfficial: 'yes' }, { hasReadOnlyCertifyingOfficial: 'no' }],
-    invalid: [{ hasReadOnlyCertifyingOfficial: null }, { hasReadOnlyCertifyingOfficial: '' }],
+    valid: [true],
+    invalid: [null],
   },
   readOnlyCertifyingOfficial: {
     valid: [[{ fullName: { first: 'John', last: 'Doe' } }, { fullName: { first: 'Jane', last: 'Doe' } }]],
-    invalid: [[{ fullName: { first: null, last: 'Doe' } }, { fullName: { first: 'null', last: 'Doe' } }]],
+    invalid: [[{ fullName: { first: null, last: 'Doe' } }, { fullName: { first: null, last: 'Doe' } }]],
   },
   remarks: {
-    valid: [{ remarks: 'This is a remark' }, { remarks: 'This is another remark' }],
-    invalid: [{ remarks: null }, { remarks: '' }, { remarks: ' ' }],
+    valid: ['This is another remark', 'This is a remark'],
+    invalid: [null, ''],
   },
-
-  //   additionalCertifyingOfficials: {
-  //     valid: [
-  //       [
-  //         {
-  //           additionalCertifyingOfficial: {
-  //             fullName: { first: 'John', last: 'Doe' },
-  //             title: 'President',
-  //             usPhone: '1234567890',
-  //             internationalPhone: '+441234567890',
-  //             email: 'john.doe@gmail.com',
-  //             hasVaEducationBenefits: 'yes',
-  //             trainingCompletionDate: '2024-11-25',
-  //             trainingExempt: false,
-  //           },
-  //         },
-  //         {
-  //           additionalCertifyingOfficial: {
-  //             fullName: { first: 'Jane', last: 'Doe' },
-  //             title: 'Vice President',
-  //             usPhone: '0987654321',
-  //             internationalPhone: '+441234567890',
-  //             email: 'john.steve@gmail.com',
-  //             hasVaEducationBenefits: 'no',
-  //             trainingCompletionDate: '2024-11-25',
-  //             trainingExempt: true,
-  //           },
-  //         },
-  //       ],
-  //     ],
-  //     invalid: [
-  //       [
-  //         {
-  //           additionalCertifyingOfficial: {
-  //             fullName: { first: 'John', last: 'null' },
-  //             title: '',
-  //             usPhone: '1234567890235',
-  //             internationalPhone: '+4412345678900098',
-  //             email: 'john.stevegmail.com',
-  //             hasVaEducationBenefits: '',
-  //             trainingCompletionDate: 'march-28-2024',
-  //             trainingExempt: null,
-  //           },
-  //         },
-  //         {
-  //           additionalCertifyingOfficial: {
-  //             fullName: { first: 'Jane', last: 'Doe' },
-  //             title: 'Vice President',
-  //             usPhone: '0987654321345',
-  //             internationalPhone: '+4412345678900123',
-  //             email: 'johndoegmail.com',
-  //             hasVaEducationBenefits: null,
-  //             trainingCompletionDate: '2024-feb-25',
-  //             trainingExempt: null,
-  //           },
-  //         },
-  //       ],
-  //     ],
-  //   },
-  //   hasReadOnlyCertifyingOfficial: {
-  //     valid: [{ hasReadOnlyCertifyingOfficial: 'yes' }, { hasReadOnlyCertifyingOfficial: 'no' }],
-  //     invalid: [{ hasReadOnlyCertifyingOfficial: null }, { hasReadOnlyCertifyingOfficial: '' }],
-  //   },
-  //   readOnlyCertifyingOfficial: {
-  //     valid: [[{ fullName: { first: 'John', last: 'Doe' } }, { fullName: { first: 'Jane', last: 'Doe' } }]],
-  //     invalid: [[{ fullName: { first: 'John', last: 'null' } }, { fullName: { first: 'null', last: 'Doe' } }]],
-  //   },
-  //   remarks: {
-  //     valid: [{ remarks: 'This is a remark' }, { remarks: 'This is another remark' }],
-  //     invalid: [{ remarks: null }, { remarks: '' }, { remarks: ' ' }],
-  //   },
 };
 describe('22-8794 schema', () => {
   schemaTestHelper.testValidAndInvalid('designatingOfficial', testData.designatingOfficial);
-  //   sharedTests.testValidSchema(testData.institutionDetails, 'institutionDetails');
-  //   sharedTests.testValidSchema(testData.primaryCertifyingOfficial, 'primaryCertifyingOfficial');
-  //   sharedTests.testValidSchema(testData.additionalCertifyingOfficials, 'additionalCertifyingOfficials');
-  //   sharedTests.testValidSchema(testData.hasReadOnlyCertifyingOfficial, 'hasReadOnlyCertifyingOfficial');
-  //   sharedTests.testValidSchema(testData.readOnlyCertifyingOfficial, 'readOnlyCertifyingOfficial');
-  //   sharedTests.testValidSchema(testData.remarks, 'remarks');
+  schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
+  schemaTestHelper.testValidAndInvalid('primaryCertifyingOfficial', testData.primaryCertifyingOfficial);
+  schemaTestHelper.testValidAndInvalid('additionalCertifyingOfficials', testData.additionalCertifyingOfficials);
+  schemaTestHelper.testValidAndInvalid('hasReadOnlyCertifyingOfficial', testData.hasReadOnlyCertifyingOfficial);
+  schemaTestHelper.testValidAndInvalid('readOnlyCertifyingOfficial', testData.readOnlyCertifyingOfficial);
+  schemaTestHelper.testValidAndInvalid('remarks', testData.remarks);
 });

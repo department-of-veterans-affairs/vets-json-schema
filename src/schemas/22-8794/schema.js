@@ -83,11 +83,11 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: [' hasAdditionalCertifyingOfficials'],
+        required: ['additionalCertifyingOfficialsDetails'],
         properties: {
           additionalCertifyingOfficialsDetails: {
             type: 'object',
-            required: ['fullName', 'title', 'phone', 'emailAddress'],
+            required: ['fullName', 'title', 'emailAddress'],
             properties: {
               fullName: { $ref: '#/definitions/fullNameNoSuffix' },
               title: {
@@ -109,7 +109,7 @@ const schema = {
               },
               hasVaEducationBenefits: definitions.yesNoSchema,
               trainingExempt: {
-                type: 'string',
+                type: 'boolean',
               },
             },
           },
