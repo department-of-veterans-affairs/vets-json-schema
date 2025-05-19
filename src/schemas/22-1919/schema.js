@@ -29,22 +29,32 @@ const schema = {
           properties: {
             first: {
               type: 'string',
+              "minLength": 1,
+              "maxLength": 30,
             },
             last: {
               type: 'string',
+              "minLength": 1,
+              "maxLength": 30,
             },
             role: {
-              type: 'string',
-              items: {
-                type: 'string',
-                enum: ['Certifying Official', 'Owner', 'Officer', 'Other'],
-              },
+              type: 'object',
+              properties: {
+                level: {
+                  type: 'string',
+                  enum: ['Certifying Official', 'Owner', 'Officer', 'other'],
+                },
+                other: {
+                  type: 'string',
+                  minLength: 0,
+                  maxLength: 30,
+                }
+              }, 
             },
           },
         },
         aboutYourInstitution: {
-          type: 'string',
-          enum: ['yes', 'no'],
+          type: definitions.yesNoSchema
         },
         facilityCode: {
           type: 'string',
@@ -74,8 +84,9 @@ const schema = {
         },
       },
     },
+    // TODO follow up on preliminary question to dictate required states and sequencing of list and loops in proprietaryProfitSchools and conflictOfInterest
     proprietaryProfitSchools: {
-      type: 'object', // should whole object be a list and loop or only the individual cases after declaring if school is proprietary?
+      type: 'object',
       required: ['isProprietary', 'conflictOfInterest'],
       properties: {
         isProprietaryProfit: definitions.yesNoSchema, 
@@ -91,9 +102,14 @@ const schema = {
                   hasConflictOfInterest: definitions.yesNoSchema,
                   first: {
                     type: 'string',
+                    "minLength": 1,
+                    "maxLength": 30,
+
                   },
                   last: {
                     type: 'string',
+                    "minLength": 1,
+                    "maxLength": 30,  
                   },
                   title: {
                     type: 'string',
@@ -102,8 +118,6 @@ const schema = {
                     type: string,
                     items: {
                       type: 'string', 
-    
-                      // ok for enum items to match UI, or better way for schema?
                       enum: ['They are a VA employee who works with, receives services from, or receives compensation from our institution', 
                         'They are a SAA employee who works with or receives compensation from our institution'
                       ]
@@ -131,9 +145,13 @@ const schema = {
             properties: {
               first: {
                 type: 'string',
+                "minLength": 1,
+                "maxLength": 30,
               },
               last: {
                 type: 'string',
+                "minLength": 1,
+                "maxLength": 30,
               },
               title: {
                 type: 'string',
@@ -142,7 +160,7 @@ const schema = {
           },
           fileNumber: {
             type: 'string',
-            pattern: definitions.ssn || definitions.centralMailVaFile // syntax ok?
+            pattern: definitions.ssn || definitions.centralMailVaFile // syntax ok? custom regex to cover both?
           },
           enrollmentPeriod: definitions.dateRange 
 
@@ -153,9 +171,7 @@ const schema = {
     statementOfTruthSignature: {
       type: 'string',
     },
-    dateSigned: {
-      $ref: '#/definitions/date',
-    },
+    dateSigned: definitions.date
   },
 };
 
