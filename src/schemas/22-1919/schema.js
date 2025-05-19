@@ -84,10 +84,9 @@ const schema = {
         },
       },
     },
-    // TODO follow up on preliminary question to dictate required states and sequencing of list and loops in proprietaryProfitSchools and conflictOfInterest
     proprietaryProfitSchools: {
       type: 'object',
-      required: ['isProprietary', 'conflictOfInterest'],
+      required: ['isProprietary'],
       properties: {
         isProprietaryProfit: definitions.yesNoSchema, 
         conflictOfInterest: {
@@ -113,6 +112,8 @@ const schema = {
                   },
                   title: {
                     type: 'string',
+                    minLength: 1,
+                    maxLength: 50
                   },
                   association: {
                     type: string,
@@ -155,12 +156,14 @@ const schema = {
               },
               title: {
                 type: 'string',
+                minLength: 1,
+                maxLength: 50
               },
             },
           },
           fileNumber: {
             type: 'string',
-            pattern: definitions.ssn || definitions.centralMailVaFile // syntax ok? custom regex to cover both?
+            pattern: definitions.ssn || definitions.centralMailVaFile // syntax ok? add custom regex to cover both if unit test fails
           },
           enrollmentPeriod: definitions.dateRange 
 
