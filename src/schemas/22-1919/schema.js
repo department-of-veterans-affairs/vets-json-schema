@@ -14,7 +14,7 @@ const schema = {
   required: [
     'institutionDetails',
     'proprietaryProfitSchools',
-    'hasConflictOfInterest',
+    'conflictOfInterest',
     'statementOfTruthSignature',
     'dateSigned',
   ],
@@ -75,14 +75,48 @@ const schema = {
       },
     },
     proprietaryProfitSchools: {
-      type: 'object',
+      type: 'object', // should whole object be a list and loop or only the individual cases after declaring if school is proprietary?
+      required: ['isProprietary', 'conflictOfInterest'],
       properties: {
-        isProprietary: definitions.yesNoSchema,
-        isProfit: {
-          type: 'boolean',
-          enum: [true, false],
-        },
+        isProprietaryProfit: definitions.yesNoSchema, 
+        conflictOfInterest: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              conflictOfInterest: {
+                type: 'object',
+                required: ['hasConflictOfInterest', 'first', 'last', 'title', 'association'],
+                properties: {
+                  hasConflictOfInterest: definitions.yesNoSchema,
+                  first: {
+                    type: 'string',
+                  },
+                  last: {
+                    type: 'string',
+                  },
+                  title: {
+                    type: 'string',
+                  },
+                  association: {
+                    type: string,
+                    items: {
+                      type: 'string', 
+    
+                      // ok for enum items to match UI, or better way for schema?
+                      enum: ['They are a VA employee who works with, receives services from, or receives compensation from our institution', 
+                        'They are a SAA employee who works with or receives compensation from our institution'
+                      ]
+                    }
+                  } 
+                }
+              }
+            }
+          }
+        }
       },
+     
+
     },
     conflictOfInterest: {
       type: 'array',
