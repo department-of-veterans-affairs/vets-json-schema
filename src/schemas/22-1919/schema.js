@@ -85,7 +85,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['isProprietaryProfit', 'hasConflictOfInterest', 'first', 'last', 'title', 'association'],
+        required: ['isProprietaryProfit', 'first', 'last', 'title', 'association'],
         properties: {
           isProprietaryProfit: definitions.yesNoSchema,
           hasConflictOfInterest: definitions.yesNoSchema,
@@ -121,7 +121,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['hasConflictOfInterest', 'certifyingOfficial', 'fileNumber', 'enrollmentPeriod'],
+        required: ['certifyingOfficial', 'fileNumber', 'enrollmentPeriod'],
         properties: {
           hasConflictOfInterest: definitions.yesNoSchema,
           certifyingOfficial: {
