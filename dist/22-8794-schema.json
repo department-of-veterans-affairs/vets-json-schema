@@ -2519,6 +2519,7 @@
   "required": [
     "designatingOfficial",
     "institutionDetails",
+    "primaryCertifyingOfficial",
     "statementOfTruthSignature",
     "dateSigned"
   ],
@@ -2556,11 +2557,7 @@
     "institutionDetails": {
       "type": "object",
       "hasVaFacilityCode": {
-        "type": "string",
-        "enum": [
-          "yes",
-          "no"
-        ]
+        "type": "boolean"
       },
       "facilityCode": {
         "type": "string",

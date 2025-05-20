@@ -11,7 +11,13 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: _.merge(origDefinitions, pickedDefinitions),
-  required: ['designatingOfficial', 'institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
+  required: [
+    'designatingOfficial',
+    'institutionDetails',
+    'primaryCertifyingOfficial',
+    'statementOfTruthSignature',
+    'dateSigned',
+  ],
   properties: {
     designatingOfficial: {
       type: 'object',
@@ -35,10 +41,7 @@ const schema = {
     },
     institutionDetails: {
       type: 'object',
-      hasVaFacilityCode: {
-        type: 'string',
-        enum: ['yes', 'no'],
-      },
+      hasVaFacilityCode: definitions.yesNoSchema,
       facilityCode: {
         type: 'string',
         pattern: '^[a-zA-Z0-9]{8}$',
