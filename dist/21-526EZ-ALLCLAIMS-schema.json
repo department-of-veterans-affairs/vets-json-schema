@@ -770,19 +770,19 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 30,
-            "pattern": "^([-a-zA-Z0-9/']+ ?)+$"
+            "pattern": "^([-a-zA-Z0-9/']+(?: [-a-zA-Z0-9/']+)*)$"
           },
           "middle": {
             "type": "string",
             "minLength": 1,
             "maxLength": 30,
-            "pattern": "^([-a-zA-Z0-9/']+ ?)+$"
+            "pattern": "^([-a-zA-Z0-9/']+(?: [-a-zA-Z0-9/']+)*)$"
           },
           "last": {
             "type": "string",
             "minLength": 1,
             "maxLength": 30,
-            "pattern": "^([-a-zA-Z0-9/']+ ?)+$"
+            "pattern": "^([-a-zA-Z0-9/']+(?: [-a-zA-Z0-9/']+)*)$"
           }
         }
       }
