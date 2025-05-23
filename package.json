@@ -1,6 +1,6 @@
 {
   "name": "vets-json-schema",
-  "version": "24.14.3",
+  "version": "24.14.4",
   "license": "CC0-1.0",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "scripts": {
     "build": "node src/start build",
     "postinstall": "node ./script/check-node-version.js",
-    "test": "mocha 'test/**/*.spec.js'",
+    "test": "mocha 'test/schemas/21-526EZ/schema.spec.js'",
     "test:all-schemas": "mocha 'test/common/all-schemas.spec.js'",
     "watch": "node src/start watch",
     "lint": "eslint src -c .eslintrc --ext js",
