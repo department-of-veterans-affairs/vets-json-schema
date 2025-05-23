@@ -40,22 +40,22 @@ const baseAddressDef = {
     addressLine1: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
+      pattern: "^[-a-zA-Z0-9'.,&#]+( [-a-zA-Z0-9'.,&#]+)*$",
     },
     addressLine2: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
+      pattern: "^[-a-zA-Z0-9'.,&#]+( [-a-zA-Z0-9'.,&#]+)*$",
     },
     addressLine3: {
       type: 'string',
       maxLength: 20,
-      pattern: "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$",
+      pattern: "^[-a-zA-Z0-9'.,&#]+( [-a-zA-Z0-9'.,&#]+)*$",
     },
     city: {
       type: 'string',
       maxLength: 30,
-      pattern: "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$",
+      pattern: "^[-a-zA-Z0-9'.#]+( [-a-zA-Z0-9'.#]+)*$",
     },
     state: {
       $ref: '#/definitions/state',
@@ -260,19 +260,19 @@ const schema = {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$",
+            pattern: "^([-a-zA-Z0-9/']+(?: ?[-a-zA-Z0-9/']+)*)$",
           },
           middle: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$",
+            pattern: "^([-a-zA-Z0-9/']+(?: ?[-a-zA-Z0-9/']+)*)$",
           },
           last: {
             type: 'string',
             minLength: 1,
             maxLength: 30,
-            pattern: "^([-a-zA-Z0-9/']+( ?))+$",
+            pattern: "^([-a-zA-Z0-9/']+(?: ?[-a-zA-Z0-9/']+)*)$",
           },
         },
       },
@@ -457,7 +457,7 @@ const schema = {
             unitName: {
               type: 'string',
               maxLength: 256,
-              pattern: "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$",
+              pattern: "^[a-zA-Z0-9\\-'.#]+( [a-zA-Z0-9\\-'.#]+)*$",
             },
             obligationTermOfServiceDateRange: {
               $ref: '#/definitions/dateRangeAllRequired',
@@ -588,7 +588,7 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 100,
-          pattern: "^([-a-zA-Z0-9/']+( ?))*$",
+          pattern: "^([-a-zA-Z0-9/']( ?))*$",
         },
         phoneNumber: {
           $ref: '#/definitions/phone',
