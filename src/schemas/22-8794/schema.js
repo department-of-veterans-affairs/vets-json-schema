@@ -2,7 +2,14 @@ import _ from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
-const pickedDefinitions = _.pick(origDefinitions, ['date', 'fullNameNoSuffix', 'usaPhone', 'yesNoSchema', 'email']);
+const pickedDefinitions = _.pick(origDefinitions, [
+  'date',
+  'fullNameNoSuffix',
+  'usaPhone',
+  'phone',
+  'yesNoSchema',
+  'email',
+]);
 
 const textAndNumbersRegex = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$';
 const schema = {
@@ -10,7 +17,7 @@ const schema = {
   title: 'Designation Of Certifying Official(S) (22-8794)',
   type: 'object',
   additionalProperties: false,
-  definitions: _.merge(origDefinitions, pickedDefinitions),
+  definitions: pickedDefinitions,
   required: [
     'designatingOfficial',
     'institutionDetails',
@@ -28,7 +35,7 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 50,
-          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
+          pattern: '^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$',
         },
         phoneNumber: {
           $ref: '#/definitions/usaPhone',
@@ -97,7 +104,7 @@ const schema = {
                 type: 'string',
                 minLength: 1,
                 maxLength: 50,
-                pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
+                pattern: '^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$',
               },
               phoneNumber: {
                 $ref: '#/definitions/usaPhone',
