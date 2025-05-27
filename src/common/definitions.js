@@ -375,51 +375,61 @@ const hcaDependents = {
   },
 };
 
-const hcaVeteranContactRelationships = {
-  type: 'string',
-  enum: [
-    'BROTHER',
-    'SISTER',
-    'SON',
-    'STEPCHILD',
-    'UNRELATED FRIEND',
-    'WARD',
-    'WIFE',
-    'CHILD-IN-LAW',
-    'DAUGHTER',
-    'EXTENDED FAMILY MEMBER',
-    'FATHER',
-    'GRANDCHILD',
-    'HUSBAND',
-    'MOTHER',
-    'NIECE/NEPHEW',
-  ],
-};
-
-const hcaVeteranContactTypes = {
-  type: 'string',
-  enum: ['Primary Next of Kin', 'Other Next of Kin', 'Emergency Contact', 'Other emergency contact'],
-};
-
-const hcaVeteranContact = {
-  type: 'object',
-  properties: {
-    fullName: hcaFullName,
-    primaryPhone: hcaPhone,
-    alternatePhone: hcaPhone,
-    address: hcaAddress,
-    relationship: hcaVeteranContactRelationships,
-    contactType: hcaVeteranContactTypes,
-    deleteIndicator: {
-      type: 'boolean',
-    },
+const baseHcaVeteranContactProperties = {
+  fullName: hcaFullName,
+  primaryPhone: hcaPhone,
+  alternatePhone: hcaPhone,
+  address: hcaAddress,
+  relationship: {
+    type: 'string',
+    enum: [
+      'BROTHER',
+      'SISTER',
+      'SON',
+      'STEPCHILD',
+      'UNRELATED FRIEND',
+      'WARD',
+      'WIFE',
+      'CHILD-IN-LAW',
+      'DAUGHTER',
+      'EXTENDED FAMILY MEMBER',
+      'FATHER',
+      'GRANDCHILD',
+      'HUSBAND',
+      'MOTHER',
+      'NIECE/NEPHEW',
+    ],
   },
-  required: ['fullName', 'primaryPhone', 'relationship', 'contactType'],
 };
 
-const hcaVeteranContacts = {
+const hcaNextOfKins = {
   type: 'array',
-  items: hcaVeteranContact,
+  items: {
+    type: 'object',
+    properties: {
+      ...baseHcaVeteranContactProperties,
+      contactType: {
+        type: 'string',
+        enum: ['Primary Next of Kin', 'Other Next of Kin'],
+      },
+    },
+    required: ['fullName', 'primaryPhone', 'relationship', 'contactType'],
+  },
+};
+
+const hcaEmergencyContacts = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      ...baseHcaVeteranContactProperties,
+      contactType: {
+        type: 'string',
+        enum: ['Emergency Contact', 'Other emergency contact'],
+      },
+    },
+    required: ['fullName', 'primaryPhone', 'relationship', 'contactType'],
+  },
 };
 
 // Historically a veteran's service number has been between 5 and 8 digits,
@@ -1043,7 +1053,8 @@ export default {
   netWorthAccount,
   relationshipAndChildName,
   relationshipAndChildType,
-  hcaVeteranContacts,
+  hcaNextOfKins,
+  hcaEmergencyContacts,
   marriages,
   files,
   requiredServiceHistory,
