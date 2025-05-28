@@ -76,7 +76,8 @@ const schema = {
       type: 'boolean',
       enum: [true],
     },
-    veteranContacts: definitions.hcaVeteranContacts,
+    nextOfKins: definitions.hcaNextOfKins,
+    emergencyContacts: definitions.hcaEmergencyContacts,
   },
   required: [
     'privacyAgreementAccepted',
