@@ -533,4 +533,84 @@ describe('schema definitions', () => {
       },
     ],
   });
+
+  testValidAndInvalidDefinitions('hcaNextOfKins', {
+    valid: [
+      [
+        {
+          fullName: {
+            first: 'timothy',
+            middle: 'larry',
+            last: 'doe',
+            suffix: 'Jr.',
+          },
+          primaryPhone: '1234567890',
+          alternatePhone: '2234567890',
+          address: {
+            country: 'USA',
+            state: 'AK',
+            street: stringGenerate(23),
+            street2: stringGenerate(13),
+            street3: stringGenerate(5),
+            city: stringGenerate(27),
+            postalCode: stringGenerate(5),
+          },
+          relationship: 'FATHER',
+          contactType: 'Primary Next of Kin',
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          fullName: {
+            first: 'john',
+            middle: 'timothy',
+          },
+          primaryPhone: fixtures.phone,
+          alternatePhone: fixtures.phone,
+        },
+      ],
+    ],
+  });
+
+  testValidAndInvalidDefinitions('hcaEmergencyContacts', {
+    valid: [
+      [
+        {
+          fullName: {
+            first: 'Richard',
+            middle: 'Christopher',
+            last: 'Smith',
+            suffix: 'Jr.',
+          },
+          primaryPhone: '1234567890',
+          alternatePhone: '2234567890',
+          address: {
+            country: 'USA',
+            state: 'AK',
+            street: stringGenerate(23),
+            street2: stringGenerate(13),
+            street3: stringGenerate(5),
+            city: stringGenerate(27),
+            postalCode: stringGenerate(5),
+          },
+          relationship: 'DAUGHTER',
+          contactType: 'Other emergency contact',
+        },
+      ],
+    ],
+    invalid: [
+      [
+        {
+          fullName: {
+            first: 'john',
+            middle: 'timothy',
+          },
+          alternatePhone: fixtures.phone,
+          relationship: 'SPOUSE',
+        },
+      ],
+    ],
+  });
 });
