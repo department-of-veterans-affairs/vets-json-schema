@@ -171,9 +171,6 @@
         "No"
       ]
     },
-    "isEssentialAcaCoverage": {
-      "type": "boolean"
-    },
     "vaMedicalFacility": {
       "type": "string"
     },
@@ -1252,7 +1249,6 @@
     "isSpanishHispanicLatino",
     "veteranAddress",
     "isMedicaidEligible",
-    "isEssentialAcaCoverage",
     "vaMedicalFacility"
   ]
 }

@@ -53,9 +53,6 @@ const schema = {
       type: 'string',
       enum: ['Yes', 'No'],
     },
-    isEssentialAcaCoverage: {
-      type: 'boolean',
-    },
     vaMedicalFacility: {
       type: 'string',
     },
@@ -192,7 +189,6 @@ const schema = {
     'isSpanishHispanicLatino',
     'veteranAddress',
     'isMedicaidEligible',
-    'isEssentialAcaCoverage',
     'vaMedicalFacility',
   ],
 };
