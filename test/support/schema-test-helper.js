@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { it } from 'mocha';
-import Ajv from 'ajv';
+import Ajv from "ajv-draft-04";
+const addFormats = require("ajv-formats");
 
 const objectBuilder = (keys, value) => {
   let object = {};
@@ -27,7 +28,8 @@ class SchemaTestHelper {
   constructor(schema, defaults = {}) {
     this.schema = schema;
     this.defaults = defaults;
-    this.ajv = new Ajv();
+    this.ajv = new Ajv({ strict: false });
+    addFormats(this.ajv);
   }
 
   validateSchema(data) {
@@ -37,14 +39,14 @@ class SchemaTestHelper {
   schemaExpect(valid, data) {
     expect(this.validateSchema(data)).to.equal(valid);
     if (!valid) {
-      expect(this.ajv.errors[0].dataPath).to.contain(`.${Object.keys(data)[0]}`);
+      expect(this.ajv.errors[0].instancePath).to.contain(`/${Object.keys(data)[0]}`);
     }
   }
 
   testValidAndInvalid(parentKey, fields) {
+    
     ['valid', 'invalid'].forEach(fieldType => {
       const valid = fieldType === 'valid';
-
       fields[fieldType].forEach(values => {
         it(`should${valid ? '' : "n't"} allow ${parentKey} with ${JSON.stringify(values)}`, () => {
           this.schemaExpect(valid, objectBuilder(parentKey, values));
@@ -61,7 +63,8 @@ class SchemaTestHelper {
  * @param {boolean} expectation - A boolean to assert the result of the validation against.
  */
 SchemaTestHelper.expect = (schema, data, expectation) => {
-  const ajv = new Ajv();
+  const ajv = new Ajv({ strict: false });
+  addFormats(ajv);
   const [result, errors] = [ajv.validate(schema, data), ajv.errors]
 
   if (expectation === true && errors) {
