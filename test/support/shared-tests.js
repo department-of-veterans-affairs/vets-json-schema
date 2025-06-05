@@ -9,7 +9,7 @@ export default class SharedTests {
   requireSsnOrFile(ssnName = 'veteranSocialSecurityNumber') {
     it('should require ssn or file number', () => {
       expect(this.schemaTestHelper.validateSchema({})).to.equal(false);
-      expect(this.schemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('.vaFileNumber');
+      expect(this.schemaTestHelper.ajv.errors[0].params.missingProperty).to.equal('vaFileNumber');
 
       [
         { [ssnName]: '123456789' },
