@@ -42,7 +42,6 @@ describe('all schema tests', () => {
         'definitions',
         'constants',
         'vaMedicalFacilities',
-        'caregiverProgramFacilities',
         'form1010cgCertifications',
         'version',
       ].includes(k)

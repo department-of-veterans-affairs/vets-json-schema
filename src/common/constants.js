@@ -1,5 +1,4 @@
 import vaMedicalFacilities from './va-medical-facilities';
-import caregiverProgramFacilities from './caregiver-program-facilities';
 
 import {
   addressPou,
@@ -269,7 +268,6 @@ module.exports = {
   addressTypes,
   benefitTypes,
   branchesServed,
-  caregiverProgramFacilities,
   countries,
   days,
   dependentRelationships,

@@ -52,7 +52,7 @@
   "required": [
     "designatingOfficial",
     "institutionDetails",
-    "primaryCertifyingOfficial",
+    "primaryOfficialDetails",
     "statementOfTruthSignature",
     "dateSigned"
   ],
@@ -109,7 +109,7 @@
         "address"
       ]
     },
-    "primaryCertifyingOfficial": {
+    "primaryOfficialDetails": {
       "type": "object",
       "required": [
         "fullName",
@@ -137,15 +137,25 @@
           "maxLength": 256,
           "format": "email"
         },
-        "trainingCompletionDate": {
-          "type": "string",
-          "format": "date"
-        },
-        "hasVaEducationBenefits": {
-          "type": "boolean"
-        },
-        "trainingExempt": {
-          "type": "boolean"
+        "primaryOfficialTraining": {
+          "type": "object",
+          "required": [
+            "trainingDate",
+            "hasVaEducationBenefits",
+            "trainingExempt"
+          ],
+          "properties": {
+            "trainingDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "trainingExempt": {
+              "type": "boolean"
+            },
+            "hasVaEducationBenefits": {
+              "type": "boolean"
+            }
+          }
         }
       }
     },
