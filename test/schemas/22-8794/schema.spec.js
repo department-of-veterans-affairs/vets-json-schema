@@ -54,7 +54,7 @@ const testData = {
       },
     ],
   },
-  primaryCertifyingOfficial: {
+  primaryOfficialDetails: {
     valid: [
       {
         fullName: { first: 'John', last: 'Doe' },
@@ -62,9 +62,11 @@ const testData = {
         phoneNumber: '5555555555',
         internationalPhoneNumber: '+442012345678',
         emailAddress: 'john.doe@gmail.com',
-        trainingCompletionDate: '2024-11-25',
-        hasVaEducationBenefits: true,
-        trainingExempt: false,
+        primaryOfficialTraining: {
+          trainingDate: '2024-11-25',
+          hasVaEducationBenefits: true,
+          trainingExempt: false,
+        },
       },
     ],
     invalid: [
@@ -74,12 +76,15 @@ const testData = {
         phoneNumber: null,
         internationalPhoneNumber: null,
         emailAddress: 'johndoegmail.com',
-        trainingCompletionDate: null,
-        hasVaEducationBenefits: null,
-        trainingExempt: null,
+        primaryOfficialTraining: {
+          trainingDate: 'march-28-2024',
+          hasVaEducationBenefits: null,
+          trainingExempt: null,
+        },
       },
     ],
   },
+  //  the rest of schema tests to update when the UI is done.
   additionalCertifyingOfficials: {
     valid: [
       [
@@ -156,7 +161,7 @@ const testData = {
 describe('22-8794 schema', () => {
   schemaTestHelper.testValidAndInvalid('designatingOfficial', testData.designatingOfficial);
   schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
-  schemaTestHelper.testValidAndInvalid('primaryCertifyingOfficial', testData.primaryCertifyingOfficial);
+  schemaTestHelper.testValidAndInvalid('primaryOfficialDetails', testData.primaryOfficialDetails);
   schemaTestHelper.testValidAndInvalid('additionalCertifyingOfficials', testData.additionalCertifyingOfficials);
   schemaTestHelper.testValidAndInvalid('hasReadOnlyCertifyingOfficial', testData.hasReadOnlyCertifyingOfficial);
   schemaTestHelper.testValidAndInvalid('readOnlyCertifyingOfficial', testData.readOnlyCertifyingOfficial);

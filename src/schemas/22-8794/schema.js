@@ -21,7 +21,7 @@ const schema = {
   required: [
     'designatingOfficial',
     'institutionDetails',
-    'primaryCertifyingOfficial',
+    'primaryOfficialDetails',
     'statementOfTruthSignature',
     'dateSigned',
   ],
@@ -61,7 +61,7 @@ const schema = {
       },
       required: ['facilityCode', 'institutionName', 'hasVaFacilityCode', 'address'],
     },
-    primaryCertifyingOfficial: {
+    primaryOfficialDetails: {
       type: 'object',
       required: ['fullName', 'title', 'emailAddress'],
       properties: {
@@ -79,16 +79,23 @@ const schema = {
           $ref: '#/definitions/phone',
         },
         emailAddress: definitions.email,
-        trainingCompletionDate: {
-          type: 'string',
-          format: 'date',
-        },
-        hasVaEducationBenefits: definitions.yesNoSchema,
-        trainingExempt: {
-          type: 'boolean',
+        primaryOfficialTraining: {
+          type: 'object',
+          required: ['trainingDate', 'hasVaEducationBenefits', 'trainingExempt'],
+          properties: {
+            trainingDate: {
+              type: 'string',
+              format: 'date',
+            },
+            trainingExempt: {
+              type: 'boolean',
+            },
+            hasVaEducationBenefits: definitions.yesNoSchema,
+          },
         },
       },
     },
+    // the rest of schema to update when the UI is done.
     additionalCertifyingOfficials: {
       type: 'array',
       items: {
