@@ -10,11 +10,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
-  required: [
-    'institutionDetails',
-    'statementOfTruthSignature',
-    'dateSigned',
-  ],
+  required: ['institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
   properties: {
     institutionDetails: {
       type: 'object',
@@ -45,13 +41,13 @@ const schema = {
                   type: 'string',
                   minLength: 0,
                   maxLength: 30,
-                }
+                },
               },
             },
           },
         },
         aboutYourInstitution: {
-          type: definitions.yesNoSchema
+          type: definitions.yesNoSchema,
         },
         facilityCode: {
           type: 'string',
@@ -82,49 +78,60 @@ const schema = {
       },
     },
     proprietaryProfitSchools: {
-      type: 'array',
-      items: {
-        type: 'object',
-        required: ['isProprietaryProfit', 'first', 'last', 'title', 'association'],
-        properties: {
-          isProprietaryProfit: definitions.yesNoSchema,
-          hasConflictOfInterest: definitions.yesNoSchema,
-          first: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 30,
+      type: 'object',
+      properties: {
+        proprietaryProfitDetails: {
+          type: object,
+          required: ['isProprietaryProfit'],
+          properties: {
+            isProprietaryProfit: definitions.yesNoSchema,
           },
-          last: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 30,
+        },
+        conflictingIndividuals: {
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['first', 'last', 'title', 'association'],
+            properties: {
+              hasConflictOfInterest: definitions.yesNoSchema,
+              first: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 30,
+              },
+              last: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 30,
+              },
+              title: {
+                type: 'string',
+                minLength: 1,
+                maxLength: 50,
+              },
+              association: {
+                type: 'array',
+                items: {
+                  type: 'string',
+                  enum: [
+                    'They are a VA employee who works with, receives services from, or receives compensation from our institution',
+                    'They are a SAA employee who works with or receives compensation from our institution',
+                  ],
+                },
+              },
+            },
           },
-          title: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 50
-          },
-          association: {
-            type: 'array',
-            items: {
-              type: 'string',
-              enum: [
-                'They are a VA employee who works with, receives services from, or receives compensation from our institution',
-                'They are a SAA employee who works with or receives compensation from our institution'
-              ]
-            }
-          }
-        }
-      }
+        },
+      },
     },
-    conflictOfInterest: {
+    conflictOfInterestWithBenefits: {
       type: 'array',
       items: {
         type: 'object',
-        required: ['certifyingOfficial', 'fileNumber', 'enrollmentPeriod'],
+        required: ['allProprietarySchoolsEmployeeInfo', 'fileNumber', 'enrollmentPeriod'],
         properties: {
           hasConflictOfInterest: definitions.yesNoSchema,
-          certifyingOfficial: {
+          allProprietarySchoolsEmployeeInfo: {
             type: 'object',
             required: ['first', 'last', 'title'],
             properties: {
@@ -141,22 +148,22 @@ const schema = {
               title: {
                 type: 'string',
                 minLength: 1,
-                maxLength: 50
+                maxLength: 50,
               },
             },
           },
           fileNumber: {
             type: 'string',
-            pattern: definitions.ssn || definitions.centralMailVaFile // syntax ok? add custom regex to cover both if unit test fails
+            pattern: definitions.ssn || definitions.centralMailVaFile, // syntax ok? add custom regex to cover both if unit test fails
           },
-          enrollmentPeriod: definitions.dateRange 
+          enrollmentPeriod: definitions.dateRange,
         },
       },
     },
     statementOfTruthSignature: {
       type: 'string',
     },
-    dateSigned: definitions.date
+    dateSigned: definitions.date,
   },
 };
 
