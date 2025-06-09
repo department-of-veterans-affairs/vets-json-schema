@@ -35,7 +35,6 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 50,
-          pattern: '^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$',
         },
         phoneNumber: {
           $ref: '#/definitions/usaPhone',
@@ -70,7 +69,6 @@ const schema = {
           type: 'string',
           minLength: 1,
           maxLength: 50,
-          pattern: '^(?!\\s)(?!.*?\\s{2,})[a-zA-Z0-9]+$',
         },
         phoneNumber: {
           $ref: '#/definitions/usaPhone',
@@ -116,7 +114,6 @@ const schema = {
                 type: 'string',
                 minLength: 1,
                 maxLength: 50,
-                pattern: '^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$',
               },
               phoneNumber: {
                 $ref: '#/definitions/usaPhone',
