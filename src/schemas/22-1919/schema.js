@@ -17,6 +17,7 @@ const schema = {
       required: ['certifyingOfficial', 'aboutYourInstitution', 'facilityCode', 'insitutionName', 'address'],
       properties: {
         certifyingOfficial: {
+          // TODO:should this be at the same level as institutionDetails, or nested here? In store it's at the top level
           type: 'object',
           required: ['first', 'last', 'role'],
           properties: {
@@ -46,6 +47,7 @@ const schema = {
             },
           },
         },
+        // TODO: use clearer name? Or is it sufficient if facitly code is undefined?
         aboutYourInstitution: {
           type: definitions.yesNoSchema,
         },
@@ -87,50 +89,56 @@ const schema = {
             isProprietaryProfit: definitions.yesNoSchema,
           },
         },
-        conflictingIndividuals: {
-          type: 'array',
-          items: {
-            type: 'object',
-            required: ['first', 'last', 'title', 'association'],
-            properties: {
-              hasConflictOfInterest: definitions.yesNoSchema,
-              first: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 30,
-              },
-              last: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 30,
-              },
-              title: {
-                type: 'string',
-                minLength: 1,
-                maxLength: 50,
-              },
-              association: {
-                type: 'array',
-                items: {
-                  type: 'string',
-                  enum: [
-                    'They are a VA employee who works with, receives services from, or receives compensation from our institution',
-                    'They are a SAA employee who works with or receives compensation from our institution',
-                  ],
-                },
-              },
+      },
+    },
+    conflictingIndividuals: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['first', 'last', 'title', 'association'],
+        properties: {
+          hasConflictOfInterest: definitions.yesNoSchema,
+          first: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 30,
+          },
+          last: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 30,
+          },
+          title: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 50,
+          },
+          association: {
+            type: 'array',
+            items: {
+              type: 'string',
+              enum: [
+                // TODO:
+                // Better to use full text or value showed in store?
+
+                // 'They are a VA employee who works with, receives services from, or receives compensation from our institution',
+                'vaEmployee', // value in store
+
+                // 'They are a SAA employee who works with or receives compensation from our institution',
+                'saaEmployee', // value in store
+              ],
             },
           },
         },
       },
     },
-    conflictOfInterestWithBenefits: {
+    allProprietarySchools: {
       type: 'array',
       items: {
         type: 'object',
         required: ['allProprietarySchoolsEmployeeInfo', 'fileNumber', 'enrollmentPeriod'],
         properties: {
-          hasConflictOfInterest: definitions.yesNoSchema,
+          hasConflictOfInterest: definitions.yesNoSchema, // TODO: is this needed, even though it's not in the final submission state?
           allProprietarySchoolsEmployeeInfo: {
             type: 'object',
             required: ['first', 'last', 'title'],
@@ -154,15 +162,24 @@ const schema = {
           },
           fileNumber: {
             type: 'string',
-            pattern: definitions.ssn || definitions.centralMailVaFile, // syntax ok? add custom regex to cover both if unit test fails
+            pattern: definitions.ssn || definitions.centralMailVaFile, // TODO: syntax ok? add custom regex to cover both if unit test fails
           },
           enrollmentPeriod: definitions.dateRange,
         },
       },
     },
+    directDeposit: {
+      type: 'object',
+      required: ['bankAccount'],
+      properties: {
+        declineDirectDeposit: definitions.yesNoSchema, // TODO: is this needed, even though it's not in the final submission state?
+        bankAccount: definitions.bankAccount,
+      },
+    },
     statementOfTruthSignature: {
       type: 'string',
     },
+
     dateSigned: definitions.date,
   },
 };
