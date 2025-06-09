@@ -12,42 +12,40 @@ const schema = {
   definitions: pickedDefinitions,
   required: ['institutionDetails', 'statementOfTruthSignature', 'dateSigned'],
   properties: {
-    institutionDetails: {
+    certifyingOfficial: {
       type: 'object',
-      required: ['certifyingOfficial', 'aboutYourInstitution', 'facilityCode', 'insitutionName', 'address'],
+      required: ['first', 'last', 'role'],
       properties: {
-        certifyingOfficial: {
-          // TODO:should this be at the same level as institutionDetails, or nested here? In store it's at the top level
+        first: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 30,
+        },
+        last: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 30,
+        },
+        role: {
           type: 'object',
-          required: ['first', 'last', 'role'],
           properties: {
-            first: {
+            level: {
               type: 'string',
-              minLength: 1,
-              maxLength: 30,
+              enum: ['Certifying Official', 'Owner', 'Officer', 'other'],
             },
-            last: {
+            other: {
               type: 'string',
-              minLength: 1,
+              minLength: 0,
               maxLength: 30,
-            },
-            role: {
-              type: 'object',
-              properties: {
-                level: {
-                  type: 'string',
-                  enum: ['Certifying Official', 'Owner', 'Officer', 'other'],
-                },
-                other: {
-                  type: 'string',
-                  minLength: 0,
-                  maxLength: 30,
-                },
-              },
             },
           },
         },
-        // TODO: use clearer name? Or is it sufficient if facitly code is undefined?
+      },
+    },
+    institutionDetails: {
+      type: 'object',
+      required: ['aboutYourInstitution', 'facilityCode', 'insitutionName', 'address'],
+      properties: {
         aboutYourInstitution: {
           type: definitions.yesNoSchema,
         },
@@ -79,25 +77,19 @@ const schema = {
         },
       },
     },
-    proprietaryProfitSchools: {
-      type: 'object',
-      properties: {
-        proprietaryProfitDetails: {
-          type: object,
-          required: ['isProprietaryProfit'],
-          properties: {
-            isProprietaryProfit: definitions.yesNoSchema,
-          },
-        },
-      },
+    proprietaryProfitSchoolsOnly: {
+      isProprietaryProfit: definitions.yesNoSchema,
     },
-    conflictingIndividuals: {
+    // Need this property? or enough to judge if conflictingIndividuals array is empty? Align ui config once deciding
+    proprietaryProfitSchoolsOnlyHasConflictOfInterest: {
+      hasConflictingIndividuals: definitions.yesNoSchema,
+    },
+    proprietaryProfitSchoolsOnlyConflictingIndividuals: {
       type: 'array',
       items: {
         type: 'object',
         required: ['first', 'last', 'title', 'association'],
         properties: {
-          hasConflictOfInterest: definitions.yesNoSchema,
           first: {
             type: 'string',
             minLength: 1,
@@ -117,28 +109,22 @@ const schema = {
             type: 'array',
             items: {
               type: 'string',
-              enum: [
-                // TODO:
-                // Better to use full text or value showed in store?
-
-                // 'They are a VA employee who works with, receives services from, or receives compensation from our institution',
-                'vaEmployee', // value in store
-
-                // 'They are a SAA employee who works with or receives compensation from our institution',
-                'saaEmployee', // value in store
-              ],
+              enum: ['vaEmployee', 'saaEmployee'],
             },
           },
         },
       },
     },
-    allProprietarySchools: {
+    // Need this property? or enough to judge if conflictingIndividuals array is empty? Align ui config once deciding
+    allProprietarySchoolsHasConflictOfInterest: {
+      hasConflictOfInterest: definitions.yesNoSchema,
+    },
+    allProprietarySchoolsConflictingIndividuals: {
       type: 'array',
       items: {
         type: 'object',
         required: ['allProprietarySchoolsEmployeeInfo', 'fileNumber', 'enrollmentPeriod'],
         properties: {
-          hasConflictOfInterest: definitions.yesNoSchema, // TODO: is this needed, even though it's not in the final submission state?
           allProprietarySchoolsEmployeeInfo: {
             type: 'object',
             required: ['first', 'last', 'title'],
@@ -168,18 +154,10 @@ const schema = {
         },
       },
     },
-    directDeposit: {
-      type: 'object',
-      required: ['bankAccount'],
-      properties: {
-        declineDirectDeposit: definitions.yesNoSchema, // TODO: is this needed, even though it's not in the final submission state?
-        bankAccount: definitions.bankAccount,
-      },
-    },
     statementOfTruthSignature: {
+      // match 10215
       type: 'string',
     },
-
     dateSigned: definitions.date,
   },
 };
