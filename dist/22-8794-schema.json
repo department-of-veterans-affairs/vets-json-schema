@@ -136,26 +136,33 @@
           "type": "string",
           "maxLength": 256,
           "format": "email"
+        }
+      }
+    },
+    "primaryOfficialTraining": {
+      "type": "object",
+      "required": [
+        "trainingCompletionDate",
+        "trainingExempt"
+      ],
+      "properties": {
+        "trainingCompletionDate": {
+          "type": "string",
+          "format": "date"
         },
-        "primaryOfficialTraining": {
-          "type": "object",
-          "required": [
-            "trainingDate",
-            "hasVaEducationBenefits",
-            "trainingExempt"
-          ],
-          "properties": {
-            "trainingDate": {
-              "type": "string",
-              "format": "date"
-            },
-            "trainingExempt": {
-              "type": "boolean"
-            },
-            "hasVaEducationBenefits": {
-              "type": "boolean"
-            }
-          }
+        "trainingExempt": {
+          "type": "boolean"
+        }
+      }
+    },
+    "primaryOfficialBenefitStatus": {
+      "type": "object",
+      "required": [
+        "hasVaEducationBenefits"
+      ],
+      "properties": {
+        "hasVaEducationBenefits": {
+          "type": "boolean"
         }
       }
     },

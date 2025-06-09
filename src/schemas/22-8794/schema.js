@@ -79,20 +79,26 @@ const schema = {
           $ref: '#/definitions/phone',
         },
         emailAddress: definitions.email,
-        primaryOfficialTraining: {
-          type: 'object',
-          required: ['trainingDate', 'hasVaEducationBenefits', 'trainingExempt'],
-          properties: {
-            trainingDate: {
-              type: 'string',
-              format: 'date',
-            },
-            trainingExempt: {
-              type: 'boolean',
-            },
-            hasVaEducationBenefits: definitions.yesNoSchema,
-          },
+      },
+    },
+    primaryOfficialTraining: {
+      type: 'object',
+      required: ['trainingCompletionDate', 'trainingExempt'],
+      properties: {
+        trainingCompletionDate: {
+          type: 'string',
+          format: 'date',
         },
+        trainingExempt: {
+          type: 'boolean',
+        },
+      },
+    },
+    primaryOfficialBenefitStatus: {
+      type: 'object',
+      required: ['hasVaEducationBenefits'],
+      properties: {
+        hasVaEducationBenefits: definitions.yesNoSchema,
       },
     },
     // the rest of schema to update when the UI is done.

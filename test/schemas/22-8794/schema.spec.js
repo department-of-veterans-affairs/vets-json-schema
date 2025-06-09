@@ -62,11 +62,11 @@ const testData = {
         phoneNumber: '5555555555',
         internationalPhoneNumber: '+442012345678',
         emailAddress: 'john.doe@gmail.com',
-        primaryOfficialTraining: {
-          trainingDate: '2024-11-25',
-          hasVaEducationBenefits: true,
-          trainingExempt: false,
-        },
+        // primaryOfficialTraining: {
+        //   trainingDate: '2024-11-25',
+        //   hasVaEducationBenefits: true,
+        //   trainingExempt: false,
+        // },
       },
     ],
     invalid: [
@@ -76,14 +76,44 @@ const testData = {
         phoneNumber: null,
         internationalPhoneNumber: null,
         emailAddress: 'johndoegmail.com',
-        primaryOfficialTraining: {
-          trainingDate: 'march-28-2024',
-          hasVaEducationBenefits: null,
-          trainingExempt: null,
-        },
+        // primaryOfficialTraining: {
+        //   trainingDate: 'march-28-2024',
+        //   hasVaEducationBenefits: null,
+        //   trainingExempt: null,
+        // },
       },
     ],
   },
+  primaryOfficialTraining: {
+    valid: [
+      {
+        trainingCompletionDate: '2024-11-25',
+        trainingExempt: false,
+      },
+    ],
+    invalid: [
+      {
+        trainingCompletionDate: 'march-28-2024',
+        trainingExempt: null,
+      },
+    ],
+  },
+  primaryOfficialBenefitStatus: {
+    valid: [
+      {
+        hasVaEducationBenefits: true,
+      },
+      {
+        hasVaEducationBenefits: false,
+      },
+    ],
+    invalid: [
+      {
+        hasVaEducationBenefits: null,
+      },
+    ],
+  },
+
   //  the rest of schema tests to update when the UI is done.
   additionalCertifyingOfficials: {
     valid: [
@@ -162,6 +192,8 @@ describe('22-8794 schema', () => {
   schemaTestHelper.testValidAndInvalid('designatingOfficial', testData.designatingOfficial);
   schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
   schemaTestHelper.testValidAndInvalid('primaryOfficialDetails', testData.primaryOfficialDetails);
+  schemaTestHelper.testValidAndInvalid('primaryOfficialTraining', testData.primaryOfficialTraining);
+  schemaTestHelper.testValidAndInvalid('primaryOfficialBenefitStatus', testData.primaryOfficialBenefitStatus);
   schemaTestHelper.testValidAndInvalid('additionalCertifyingOfficials', testData.additionalCertifyingOfficials);
   schemaTestHelper.testValidAndInvalid('hasReadOnlyCertifyingOfficial', testData.hasReadOnlyCertifyingOfficial);
   schemaTestHelper.testValidAndInvalid('readOnlyCertifyingOfficial', testData.readOnlyCertifyingOfficial);
