@@ -100,7 +100,7 @@
         "type": "string"
       },
       "institutionAddress": {
-        "$ref": "#/definitions/addressSchema"
+        "$ref": "#/definitions/profileAddress"
       },
       "required": [
         "facilityCode",

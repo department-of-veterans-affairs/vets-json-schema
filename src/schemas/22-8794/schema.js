@@ -57,7 +57,7 @@ const schema = {
         type: 'string',
       },
       institutionAddress: {
-        $ref: '#/definitions/addressSchema',
+        $ref: '#/definitions/profileAddress',
       },
       required: ['facilityCode', 'institutionName', 'hasVaFacilityCode', 'institutionAddress'],
     },
@@ -101,7 +101,6 @@ const schema = {
         hasVaEducationBenefits: definitions.yesNoSchema,
       },
     },
-    // the rest of schema to update when the UI is done.
     additionalCertifyingOfficials: {
       type: 'array',
       items: {

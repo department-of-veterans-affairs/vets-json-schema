@@ -74,11 +74,6 @@ const testData = {
         phoneNumber: '5555555555',
         internationalPhoneNumber: '+442012345678',
         emailAddress: 'john.doe@gmail.com',
-        // primaryOfficialTraining: {
-        //   trainingDate: '2024-11-25',
-        //   hasVaEducationBenefits: true,
-        //   trainingExempt: false,
-        // },
       },
     ],
     invalid: [
@@ -88,11 +83,6 @@ const testData = {
         phoneNumber: null,
         internationalPhoneNumber: null,
         emailAddress: 'johndoegmail.com',
-        // primaryOfficialTraining: {
-        //   trainingDate: 'march-28-2024',
-        //   hasVaEducationBenefits: null,
-        //   trainingExempt: null,
-        // },
       },
     ],
   },
@@ -125,8 +115,6 @@ const testData = {
       },
     ],
   },
-
-  //  the rest of schema tests to update when the UI is done.
   additionalCertifyingOfficials: {
     valid: [
       [
