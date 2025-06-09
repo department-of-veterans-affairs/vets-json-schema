@@ -56,10 +56,10 @@ const schema = {
       institutionName: {
         type: 'string',
       },
-      address: {
+      institutionAddress: {
         $ref: '#/definitions/addressSchema',
       },
-      required: ['facilityCode', 'institutionName', 'hasVaFacilityCode', 'address'],
+      required: ['facilityCode', 'institutionName', 'hasVaFacilityCode', 'institutionAddress'],
     },
     primaryOfficialDetails: {
       type: 'object',

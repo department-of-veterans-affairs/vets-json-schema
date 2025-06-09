@@ -32,13 +32,25 @@ const testData = {
         hasVaFacilityCode: true,
         facilityCode: '12345678',
         institutionName: 'Institution of Test',
-        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
+        institutionAddress: {
+          street: '111 2nd St S',
+          city: 'Seattle',
+          state: 'WA',
+          postalCode: '33771',
+          county: 'Washington',
+        },
       },
       {
         hasVaFacilityCode: false,
         facilityCode: '',
         institutionName: 'Institution of Test',
-        address: { street: '111 2nd St S', city: 'Seattle', state: 'WA', postalCode: '33771', county: 'Washington' },
+        institutionAddress: {
+          street: '111 2nd St S',
+          city: 'Seattle',
+          state: 'WA',
+          postalCode: '33771',
+          county: 'Washington',
+        },
       },
     ],
     invalid: [

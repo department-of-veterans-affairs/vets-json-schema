@@ -99,14 +99,14 @@
       "institutionName": {
         "type": "string"
       },
-      "address": {
+      "institutionAddress": {
         "$ref": "#/definitions/addressSchema"
       },
       "required": [
         "facilityCode",
         "institutionName",
         "hasVaFacilityCode",
-        "address"
+        "institutionAddress"
       ]
     },
     "primaryOfficialDetails": {
