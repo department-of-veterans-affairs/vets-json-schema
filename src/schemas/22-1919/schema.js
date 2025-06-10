@@ -93,10 +93,7 @@ const schema = {
               },
               individualAssociationType: {
                 type: 'string',
-                enum: [
-                  'They are a VA employee who works with, receives services from, or receives compensation from our institution',
-                  'They are a SAA employee who works with or receives compensation from our institution',
-                ],
+                enum: ['va', 'saa'],
               },
             },
           },
