@@ -1261,10 +1261,11 @@
           }
         },
         "required": [
+          "address",
+          "contactType",
           "fullName",
           "primaryPhone",
-          "relationship",
-          "contactType"
+          "relationship"
         ]
       }
     },
@@ -1553,10 +1554,11 @@
           }
         },
         "required": [
+          "address",
+          "contactType",
           "fullName",
           "primaryPhone",
-          "relationship",
-          "contactType"
+          "relationship"
         ]
       }
     },
