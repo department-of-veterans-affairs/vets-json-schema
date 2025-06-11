@@ -68,8 +68,8 @@ const schema = {
       },
     },
     isProprietaryProfit: definitions.yesNoSchema,
-    potentialConflictOfInterest: definitions.yesNoSchema,
-    proprietaryProfit: {
+    isProfitConflictOfInterest: definitions.yesNoSchema,
+    proprietaryProfitConflicts: {
       type: 'array',
       items: {
         type: 'object',
@@ -103,15 +103,16 @@ const schema = {
         },
       },
     },
-    hasConflictOfInterest: {
+    allProprietaryConflictOfInterest: definitions.yesNoSchema,
+    allProprietaryProfitConflicts: {
       type: 'array',
       items: {
         type: 'object',
-        required: ['certifyingOfficial'],
+        required: ['certifyingOfficial', 'fileNumber', 'enrollmentPeriod'],
         properties: {
           certifyingOfficial: {
             type: 'object',
-            required: ['first', 'last', 'title', 'fileNumber', 'enrollmentPeriod'],
+            required: ['first', 'last', 'title'],
             properties: {
               first: {
                 type: 'string',
