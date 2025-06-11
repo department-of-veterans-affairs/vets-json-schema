@@ -81,14 +81,17 @@ const schema = {
             properties: {
               first: {
                 type: 'string',
+                minLength: 1,
                 maxLength: 30,
               },
               last: {
                 type: 'string',
+                minLength: 1,
                 maxLength: 30,
               },
               title: {
                 type: 'string',
+                minLength: 1,
                 maxLength: 30,
               },
               individualAssociationType: {
@@ -112,22 +115,25 @@ const schema = {
             properties: {
               first: {
                 type: 'string',
+                minLength: 1,
                 maxLength: 30,
               },
               last: {
                 type: 'string',
+                minLength: 1,
                 maxLength: 30,
               },
               title: {
                 type: 'string',
+                minLength: 1,
                 maxLength: 30,
               },
-              fileNumber: {
-                $ref: '#/definitions/vaFileNumber',
-              },
-              enrollmentPeriod: definitions.dateRange,
             },
           },
+          fileNumber: {
+            $ref: '#/definitions/vaFileNumber',
+          },
+          enrollmentPeriod: definitions.dateRange,
         },
       },
     },
