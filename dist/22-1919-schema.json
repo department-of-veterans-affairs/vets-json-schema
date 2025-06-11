@@ -536,10 +536,12 @@
       "properties": {
         "first": {
           "type": "string",
+          "minLength": 1,
           "maxLength": 30
         },
         "last": {
           "type": "string",
+          "minLength": 1,
           "maxLength": 30
         },
         "role": {
@@ -559,6 +561,7 @@
             },
             "other": {
               "type": "string",
+              "minLength": 1,
               "maxLength": 30
             }
           }
@@ -591,10 +594,10 @@
     "isProprietaryProfit": {
       "type": "boolean"
     },
-    "potentialConflictOfInterest": {
+    "isProfitConflictOfInterest": {
       "type": "boolean"
     },
-    "proprietaryProfit": {
+    "proprietaryProfitConflicts": {
       "type": "array",
       "items": {
         "type": "object",
@@ -613,21 +616,24 @@
             "properties": {
               "first": {
                 "type": "string",
+                "minLength": 1,
                 "maxLength": 30
               },
               "last": {
                 "type": "string",
+                "minLength": 1,
                 "maxLength": 30
               },
               "title": {
                 "type": "string",
+                "minLength": 1,
                 "maxLength": 30
               },
               "individualAssociationType": {
                 "type": "string",
                 "enum": [
-                  "They are a VA employee who works with, receives services from, or receives compensation from our institution",
-                  "They are a SAA employee who works with or receives compensation from our institution"
+                  "va",
+                  "saa"
                 ]
               }
             }
@@ -635,12 +641,17 @@
         }
       }
     },
-    "hasConflictOfInterest": {
+    "allProprietaryConflictOfInterest": {
+      "type": "boolean"
+    },
+    "allProprietaryProfitConflicts": {
       "type": "array",
       "items": {
         "type": "object",
         "required": [
-          "certifyingOfficial"
+          "certifyingOfficial",
+          "fileNumber",
+          "enrollmentPeriod"
         ],
         "properties": {
           "certifyingOfficial": {
@@ -648,36 +659,37 @@
             "required": [
               "first",
               "last",
-              "title",
-              "fileNumber",
-              "enrollmentPeriod"
+              "title"
             ],
             "properties": {
               "first": {
                 "type": "string",
+                "minLength": 1,
                 "maxLength": 30
               },
               "last": {
                 "type": "string",
+                "minLength": 1,
                 "maxLength": 30
               },
               "title": {
                 "type": "string",
+                "minLength": 1,
                 "maxLength": 30
+              }
+            }
+          },
+          "fileNumber": {
+            "$ref": "#/definitions/vaFileNumber"
+          },
+          "enrollmentPeriod": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "$ref": "#/definitions/date"
               },
-              "fileNumber": {
-                "$ref": "#/definitions/vaFileNumber"
-              },
-              "enrollmentPeriod": {
-                "type": "object",
-                "properties": {
-                  "from": {
-                    "$ref": "#/definitions/date"
-                  },
-                  "to": {
-                    "$ref": "#/definitions/date"
-                  }
-                }
+              "to": {
+                "$ref": "#/definitions/date"
               }
             }
           }
