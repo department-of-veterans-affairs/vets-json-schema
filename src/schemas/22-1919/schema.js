@@ -28,10 +28,12 @@ const schema = {
       properties: {
         first: {
           type: 'string',
+          minLength: 1,
           maxLength: 30,
         },
         last: {
           type: 'string',
+          minLength: 1,
           maxLength: 30,
         },
         role: {
@@ -44,6 +46,7 @@ const schema = {
             },
             other: {
               type: 'string',
+              minLength: 1,
               maxLength: 30,
             },
           },
