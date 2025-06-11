@@ -58,11 +58,11 @@ const testData = {
     valid: [true],
     invalid: [null],
   },
-  potentialConflictOfInterest: {
+  isProfitConflictOfInterest: {
     valid: [true],
     invalid: [null],
   },
-  proprietaryProfit: {
+  proprietaryProfitConflicts: {
     valid: [
       [
         {
@@ -70,8 +70,7 @@ const testData = {
             first: 'Alice',
             last: 'Smith',
             title: 'Director of Admissions',
-            individualAssociationType:
-              'They are a VA employee who works with, receives services from, or receives compensation from our institution',
+            individualAssociationType: 'va',
           },
         },
         {
@@ -79,8 +78,7 @@ const testData = {
             first: 'Bob',
             last: 'Johnson',
             title: 'Registrar',
-            individualAssociationType:
-              'They are a SAA employee who works with or receives compensation from our institution',
+            individualAssociationType: 'saa',
           },
         },
       ],
@@ -92,7 +90,7 @@ const testData = {
             first: '',
             last: 'Smith',
             title: '',
-            individualAssociationType: 'Not a valid association type',
+            individualAssociationType: 'invalid',
           },
         },
       ],
@@ -107,7 +105,11 @@ const testData = {
       ],
     ],
   },
-  hasConflictOfInterest: {
+  allProprietaryConflictOfInterest: {
+    valid: [true],
+    invalid: [null],
+  },
+  allProprietaryProfitConflicts: {
     valid: [
       [
         {
@@ -115,11 +117,11 @@ const testData = {
             first: 'Jane',
             last: 'Doe',
             title: 'Dean of Students',
-            fileNumber: '123456789',
-            enrollmentPeriod: {
-              from: '2024-01-01',
-              to: '2024-12-31',
-            },
+          },
+          fileNumber: '123456789',
+          enrollmentPeriod: {
+            from: '2024-01-01',
+            to: '2024-12-31',
           },
         },
       ],
@@ -131,11 +133,11 @@ const testData = {
             first: '',
             last: 'Doe',
             title: 'Dean of Students',
-            fileNumber: 'invalid-ssn',
-            enrollmentPeriod: {
-              from: 'bad-date',
-              to: '2024-12-31',
-            },
+          },
+          fileNumber: 'invalid-ssn',
+          enrollmentPeriod: {
+            from: 'bad-date',
+            to: '2024-12-31',
           },
         },
       ],
@@ -144,22 +146,34 @@ const testData = {
           certifyingOfficial: {
             first: 'John',
             last: 'Smith',
-            enrollmentPeriod: {
-              from: '2024-01-01',
-              to: '2024-12-31',
-            },
+          },
+          enrollmentPeriod: {
+            from: '2024-01-01',
+            to: '2024-12-31',
           },
         },
       ],
     ],
   },
+  statementOfTruthSignature: {
+    valid: ['John Doe'],
+    invalid: [null],
+  },
+  dateSigned: {
+    valid: ['2024-01-01'],
+    invalid: ['invalid-date'],
+  },
 };
+
 describe('Schema 22-1919', () => {
   schemaTestHelper.testValidAndInvalid('certifyingOfficial', testData.certifyingOfficial);
   schemaTestHelper.testValidAndInvalid('aboutYourInstitution', testData.aboutYourInstitution);
   schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
   schemaTestHelper.testValidAndInvalid('isProprietaryProfit', testData.isProprietaryProfit);
-  schemaTestHelper.testValidAndInvalid('potentialConflictOfInterest', testData.potentialConflictOfInterest);
-  schemaTestHelper.testValidAndInvalid('proprietaryProfit', testData.proprietaryProfit);
-  schemaTestHelper.testValidAndInvalid('hasConflictOfInterest', testData.hasConflictOfInterest);
+  schemaTestHelper.testValidAndInvalid('isProfitConflictOfInterest', testData.isProfitConflictOfInterest);
+  schemaTestHelper.testValidAndInvalid('proprietaryProfitConflicts', testData.proprietaryProfitConflicts);
+  schemaTestHelper.testValidAndInvalid('allProprietaryConflictOfInterest', testData.allProprietaryConflictOfInterest);
+  schemaTestHelper.testValidAndInvalid('allProprietaryProfitConflicts', testData.allProprietaryProfitConflicts);
+  schemaTestHelper.testValidAndInvalid('statementOfTruthSignature', testData.statementOfTruthSignature);
+  schemaTestHelper.testValidAndInvalid('dateSigned', testData.dateSigned);
 });

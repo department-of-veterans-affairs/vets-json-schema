@@ -519,9 +519,10 @@
     "aboutYourInstitution",
     "institutionDetails",
     "isProprietaryProfit",
-    "potentialConflictOfInterest",
-    "proprietaryProfit",
-    "hasConflictOfInterest",
+    "isProfitConflictOfInterest",
+    "proprietaryProfitConflicts",
+    "allProprietaryConflictOfInterest",
+    "allProprietaryProfitConflicts",
     "statementOfTruthSignature",
     "dateSigned"
   ],
