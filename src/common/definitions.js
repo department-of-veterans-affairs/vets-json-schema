@@ -413,7 +413,7 @@ const hcaNextOfKins = {
         enum: ['Primary Next of Kin', 'Other Next of Kin'],
       },
     },
-    required: ['fullName', 'primaryPhone', 'relationship', 'contactType'],
+    required: ['address', 'contactType', 'fullName', 'primaryPhone', 'relationship'],
   },
 };
 
@@ -428,7 +428,7 @@ const hcaEmergencyContacts = {
         enum: ['Emergency Contact', 'Other emergency contact'],
       },
     },
-    required: ['fullName', 'primaryPhone', 'relationship', 'contactType'],
+    required: ['address', 'contactType', 'fullName', 'primaryPhone', 'relationship'],
   },
 };
 
