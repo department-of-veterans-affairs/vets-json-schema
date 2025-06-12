@@ -606,9 +606,11 @@ describe('schema definitions', () => {
           fullName: {
             first: 'john',
             middle: 'timothy',
+            last: 'smith',
           },
           alternatePhone: fixtures.phone,
-          relationship: 'SPOUSE',
+          relationship: 'DAUGHTER',
+          contactType: 'Emergency Contact',
         },
       ],
     ],
