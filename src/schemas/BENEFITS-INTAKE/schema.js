@@ -73,5 +73,5 @@ export default {
       required: ['ssn', 'dateOfBirth', 'name'],
     },
   },
-  required: ['veteran'],
+  required: ['veteran', 'dependent'],
 };
