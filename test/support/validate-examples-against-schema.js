@@ -1,7 +1,8 @@
 import Path from 'path';
 import { expect } from 'chai';
 import { it } from 'mocha';
-import Ajv from 'ajv';
+import Ajv from "ajv-draft-04";
+const addFormats = require("ajv-formats");
 import examples from '../../src/examples.js';
 
 function validate_examples_against_schema({ schema, examples, schema_name }) {
@@ -19,7 +20,8 @@ function validate_examples_against_schema({ schema, examples, schema_name }) {
 }
 
 function example_is_valid_against_schema({ schema, example, filename, expectation }) {
-  const ajv = new Ajv();
+  const ajv = new Ajv({ strict: false });
+  addFormats(ajv);
   const validated = ajv.validate(schema, example);
 
   const errors = ajv.errors;

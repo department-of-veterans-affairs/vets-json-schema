@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Designation Of Certifying Official(S) (22-8794)",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "fullNameNoSuffix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      }
+    },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10
+    },
+    "yesNoSchema": {
+      "type": "boolean"
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    }
+  },
+  "required": [
+    "designatingOfficial",
+    "institutionDetails",
+    "primaryOfficialDetails",
+    "statementOfTruthSignature",
+    "dateSigned"
+  ],
+  "properties": {
+    "designatingOfficial": {
+      "type": "object",
+      "required": [
+        "fullName",
+        "title",
+        "emailAddress"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullNameNoSuffix"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "phoneNumber": {
+          "$ref": "#/definitions/usaPhone"
+        },
+        "internationalPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "emailAddress": {
+          "type": "string",
+          "maxLength": 256,
+          "format": "email"
+        }
+      }
+    },
+    "institutionDetails": {
+      "type": "object",
+      "hasVaFacilityCode": {
+        "type": "boolean"
+      },
+      "facilityCode": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9]{8}$"
+      },
+      "institutionName": {
+        "type": "string"
+      },
+      "institutionAddress": {
+        "$ref": "#/definitions/profileAddress"
+      },
+      "required": [
+        "facilityCode",
+        "institutionName",
+        "hasVaFacilityCode",
+        "institutionAddress"
+      ]
+    },
+    "primaryOfficialDetails": {
+      "type": "object",
+      "required": [
+        "fullName",
+        "title",
+        "emailAddress"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullNameNoSuffix"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "phoneNumber": {
+          "$ref": "#/definitions/usaPhone"
+        },
+        "internationalPhoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "emailAddress": {
+          "type": "string",
+          "maxLength": 256,
+          "format": "email"
+        }
+      }
+    },
+    "primaryOfficialTraining": {
+      "type": "object",
+      "required": [
+        "trainingCompletionDate",
+        "trainingExempt"
+      ],
+      "properties": {
+        "trainingCompletionDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "trainingExempt": {
+          "type": "boolean"
+        }
+      }
+    },
+    "primaryOfficialBenefitStatus": {
+      "type": "object",
+      "required": [
+        "hasVaEducationBenefits"
+      ],
+      "properties": {
+        "hasVaEducationBenefits": {
+          "type": "boolean"
+        }
+      }
+    },
+    "additionalCertifyingOfficials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "additionalCertifyingOfficialsDetails"
+        ],
+        "properties": {
+          "additionalCertifyingOfficialsDetails": {
+            "type": "object",
+            "required": [
+              "fullName",
+              "title",
+              "emailAddress"
+            ],
+            "properties": {
+              "fullName": {
+                "$ref": "#/definitions/fullNameNoSuffix"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50
+              },
+              "phoneNumber": {
+                "$ref": "#/definitions/usaPhone"
+              },
+              "internationalPhoneNumber": {
+                "$ref": "#/definitions/phone"
+              },
+              "emailAddress": {
+                "type": "string",
+                "maxLength": 256,
+                "format": "email"
+              },
+              "trainingCompletionDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "hasVaEducationBenefits": {
+                "type": "boolean"
+              },
+              "trainingExempt": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "hasReadOnlyCertifyingOfficial": {
+      "type": "boolean"
+    },
+    "readOnlyCertifyingOfficial": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fullName"
+        ],
+        "properties": {
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          }
+        }
+      }
+    },
+    "remarks": {
+      "type": "string",
+      "maxLength": 500,
+      "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
+    },
+    "dateSigned": {
+      "$ref": "#/definitions/date"
+    }
+  }
+}
