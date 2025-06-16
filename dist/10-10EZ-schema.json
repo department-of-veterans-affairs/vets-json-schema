@@ -1252,7 +1252,6 @@
     "isSpanishHispanicLatino",
     "veteranAddress",
     "isMedicaidEligible",
-    "isEssentialAcaCoverage",
     "vaMedicalFacility"
   ]
 }
