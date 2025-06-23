@@ -319,6 +319,7 @@ const schema = {
   ['centralMailVaFile', 'vaFileNumber'],
   ['usaPhone', 'claimantPhone'],
   ['dateRange', 'incomeNetWorthDateRange'],
+  ['email', 'email'],
   ['files'],
 ].forEach(args => {
   schemaHelpers.addDefinitionToSchema(schema, ...args);
