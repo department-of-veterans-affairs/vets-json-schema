@@ -571,6 +571,11 @@
       "type": "string",
       "pattern": "^\\d{10}$"
     },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
     "files": {
       "type": "array",
       "items": {
@@ -682,6 +687,9 @@
     },
     "incomeNetWorthDateRange": {
       "$ref": "#/definitions/dateRange"
+    },
+    "email": {
+      "$ref": "#/definitions/email"
     },
     "files": {
       "$ref": "#/definitions/files"
