@@ -125,6 +125,12 @@ const schema = {
           },
         },
       },
+      homeHospiceCare: {
+        type: 'boolean',
+      },
+      homeHospiceCareAfterDischarge: {
+        type: 'boolean',
+      },
     },
     finalRestingPlace: {
       type: 'object',

@@ -697,6 +697,12 @@
             "type": "string"
           }
         }
+      },
+      "homeHospiceCare": {
+        "type": "boolean"
+      },
+      "homeHospiceCareAfterDischarge": {
+        "type": "boolean"
       }
     },
     "finalRestingPlace": {
