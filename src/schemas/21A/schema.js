@@ -56,7 +56,7 @@ const schema = {
     genderId: { type: 'integer' },
     instructionAcknowledge: { type: 'boolean' },
     employmentStatusId: { type: 'integer' },
-    employmentStatusExplain: { type: 'string' },
+    employmentStatusExplaination: { type: 'string' },
     employment: {
       type: 'array',
       items: {

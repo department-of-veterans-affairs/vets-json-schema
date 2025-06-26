@@ -1408,7 +1408,11 @@
             "maxLength": 100
           }
         },
-        "required": ["employerName", "startDate", "endDate"]
+        "required": [
+          "employerName",
+          "startDate",
+          "endDate"
+        ]
       }
     },
     "education": {
@@ -1708,7 +1712,12 @@
             "type": "boolean"
           }
         },
-        "required": ["name", "startDate", "wasDegreeReceived", "major"]
+        "required": [
+          "name",
+          "startDate",
+          "wasDegreeReceived",
+          "major"
+        ]
       }
     },
     "servedInMilitary": {
@@ -1739,7 +1748,10 @@
             "type": "string"
           }
         },
-        "required": ["serviceBranchId", "entryDate"]
+        "required": [
+          "serviceBranchId",
+          "entryDate"
+        ]
       }
     },
     "characterReferences": {
@@ -2041,7 +2053,10 @@
             "type": "integer"
           }
         },
-        "required": ["firstName", "lastName"]
+        "required": [
+          "firstName",
+          "lastName"
+        ]
       }
     },
     "advertisingtoVeterans": {
@@ -2103,7 +2118,11 @@
             "type": "string"
           }
         },
-        "required": ["name", "admittanceTypeId", "admissionDate"]
+        "required": [
+          "name",
+          "admittanceTypeId",
+          "admissionDate"
+        ]
       }
     },
     "jurisdictionUploadedAllDocuments": {
@@ -2141,7 +2160,11 @@
             "type": "string"
           }
         },
-        "required": ["name", "admittanceTypeId", "admissionDate"]
+        "required": [
+          "name",
+          "admittanceTypeId",
+          "admissionDate"
+        ]
       }
     },
     "agenciesUploadedAllDocuments": {
