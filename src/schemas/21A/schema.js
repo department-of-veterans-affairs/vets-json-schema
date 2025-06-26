@@ -1,510 +1,277 @@
-import pick from 'lodash/pick';
 import { countries } from '../../common/constants';
-import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Apply to become a VA-accredited attorney or claims agent',
   type: 'object',
-  definitions: pick(definitions, 'country', 'date', 'email', 'files', 'phone'),
   properties: {
-    firstName: {
-      type: 'string',
-    },
-    middleName: {
-      type: 'string',
-    },
-    lastName: {
-      type: 'string',
-    },
-    suffix: {
-      type: 'string',
-    },
-    homeAddress: {
-      type: 'object',
-      properties: {
-        addressType: {
-          type: 'boolean',
-        },
-        line1: {
-          type: 'string',
-        },
-        line2: {
-          type: 'string',
-        },
-        city: {
-          type: 'string',
-        },
-        state: {
-          type: 'string',
-        },
-        postalCode: {
-          type: 'string',
-        },
-        country: {
-          type: 'string',
-          enum: countries.map(x => x.value),
-        },
-      },
-    },
-    homePhone: {
-      $ref: '#/definitions/phone',
-    },
-    phoneType: {
-      type: 'object',
-      properties: {
-        name: {
-          type: 'string',
-          enum: ['CELL', 'HOME', 'WORK'],
-        },
-      },
-    },
+    firstName: { type: 'string', maxLength: 100 },
+    middleName: { type: 'string', maxLength: 100 },
+    lastName: { type: 'string', maxLength: 100 },
+    suffix: { type: 'string', maxLength: 20 },
+    homePhone: { type: 'string', maxLength: 20 },
+    homePhoneTypeId: { type: 'integer' },
+    canReceiveTexts: { type: 'boolean' },
     homeEmail: {
-      $ref: '#/definitions/email',
-    },
-    employmentStatus: {
       type: 'string',
-      enum: ['EMPLOYED', 'UNEMPLOYED', 'SELF_EMPLOYED', 'STUDENT', 'RETIRED', 'OTHER'],
+      maxLength: 200,
+      format: 'email',
     },
-    employmentStatusExplanation: {
-      type: 'string',
-    },
-    businessAddress: {
-      type: 'object',
-      properties: {
-        addressType: {
-          type: 'boolean',
-        },
-        line1: {
-          type: 'string',
-        },
-        line2: {
-          type: 'string',
-        },
-        city: {
-          type: 'string',
-        },
-        state: {
-          type: 'string',
-        },
-        postalCode: {
-          type: 'string',
-        },
-        country: {
-          type: 'string',
-          enum: countries.map(x => x.value),
-        },
-      },
-    },
-    birthdate: {
-      $ref: '#/definitions/date',
-    },
-    birthCity: {
-      type: 'string',
-    },
-    birthState: {
-      type: 'string',
-    },
-    birthCountry: {
-      type: 'string',
-      enum: countries.map(x => x.value),
-    },
-    militaryServices: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          serviceBranch: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string',
-              },
-            },
-          },
-          dischargeType: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string',
-              },
-            },
-          },
-          dischargeTypeExplanation: {
-            type: 'string',
-          },
-          entryDate: {
-            $ref: '#/definitions/date',
-          },
-          dischargeDate: {
-            $ref: '#/definitions/date',
-          },
-        },
-      },
-    },
+    birthDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+    birthAddressLine1: { type: 'string', maxLength: 50 },
+    birthAddressLine2: { type: 'string', maxLength: 50 },
+    birthAddressLine3: { type: 'string', maxLength: 50 },
+    birthCity: { type: 'string', maxLength: 100 },
+    birthState: { type: 'string', maxLength: 100 },
+    birthPostalCode: { type: 'string', maxLength: 10 },
+    birthCountry: { type: 'string', enum: countries.map(x => x.value), maxLength: 50 },
+    homeAddressLine1: { type: 'string', maxLength: 100 },
+    homeAddressLine2: { type: 'string', maxLength: 100 },
+    homeAddressLine3: { type: 'string', maxLength: 100 },
+    homeAddressCity: { type: 'string', maxLength: 100 },
+    homeAddressState: { type: 'string', maxLength: 100 },
+    homeAddressPostalCode: { type: 'string', maxLength: 10 },
+    homeAddressCountry: { type: 'string', enum: countries.map(x => x.value), maxLength: 50 },
+    homeAddressIsMilitary: { type: 'boolean' },
+    businessName: { type: 'string' },
+    businessAddressLine1: { type: 'string', maxLength: 100 },
+    businessAddressLine2: { type: 'string', maxLength: 100 },
+    businessAddressLine3: { type: 'string', maxLength: 100 },
+    businessAddressCity: { type: 'string' },
+    businessAddressState: { type: 'string', maxLength: 100 },
+    businessAddressPostalCode: { type: 'string', maxLength: 10 },
+    businessAddressCountry: { type: 'string', enum: countries.map(x => x.value), maxLength: 50 },
+    businessAddressIsMilitary: { type: 'boolean' },
+    otherAddressLine1: { type: 'string', maxLength: 100 },
+    otherAddressLine2: { type: 'string', maxLength: 100 },
+    otherAddressLine3: { type: 'string', maxLength: 100 },
+    otherAddressCity: { type: 'string', maxLength: 100 },
+    otherAddressState: { type: 'string', maxLength: 100 },
+    otherAddressPostalCode: { type: 'string', maxLength: 10 },
+    otherAddressCountry: { type: 'string', enum: countries.map(x => x.value), maxLength: 50 },
+    otherAddressIsMilitary: { type: 'boolean' },
+    primaryMailingAddress: { type: 'string' },
+    applicationStatusId: { type: 'integer' },
+    accreditationTypeId: { type: 'integer' },
+    genderId: { type: 'integer' },
+    instructionAcknowledge: { type: 'boolean' },
+    employmentStatusId: { type: 'integer' },
+    employmentStatusExplain: { type: 'string' },
     employment: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          employerAddress: {
-            type: 'object',
-            properties: {
-              line1: {
-                type: 'string',
-              },
-              line2: {
-                type: 'string',
-              },
-              city: {
-                type: 'string',
-              },
-              state: {
-                type: 'string',
-              },
-              postalCode: {
-                type: 'string',
-              },
-              country: {
-                type: 'string',
-                enum: countries.map(x => x.value),
-              },
-            },
-          },
+          employerName: { type: 'string' },
+          addressLine1: { type: 'string', maxLength: 100 },
+          addressLine2: { type: 'string', maxLength: 100 },
+          addressLine3: { type: 'string', maxLength: 100 },
+          addressCity: { type: 'string', maxLength: 100 },
+          addressState: { type: 'string', maxLength: 100 },
+          addressPostalCode: { type: 'string', maxLength: 10 },
+          addressCountry: { type: 'string', enum: countries.map(x => x.value), maxLength: 50 },
+          addressIsMilitary: { type: 'boolean' },
           phoneNumber: {
-            $ref: '#/definitions/phone',
-          },
-          phoneExtension: {
             type: 'string',
+            maxLength: 20,
+            pattern: '^[0-9\\-\\(\\)\\s]+$',
           },
-          positionTitle: {
-            type: 'string',
-          },
-          startDate: {
-            $ref: '#/definitions/date',
-          },
-          endDate: {
-            $ref: '#/definitions/date',
-          },
-          supervisorName: {
-            type: 'string',
-          },
-          supervisorEmail: {
-            $ref: '#/definitions/email',
-          },
+          phoneExtension: { type: 'string', maxLength: 10 },
+          phoneTypeId: { type: 'integer' },
+          positionTitle: { type: 'string', maxLength: 50 },
+          startDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          endDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          supervisorName: { type: 'string', maxLength: 100 },
+          supervisorEmail: { type: 'string', format: 'email', maxLength: 100 },
         },
+        required: ['employerName', 'startDate', 'endDate'],
       },
-    },
-    financialPlanning: {
-      type: 'boolean',
-    },
-    homeNursingCare: {
-      type: 'boolean',
-    },
-    medicalServices: {
-      type: 'boolean',
-    },
-    consultingService: {
-      type: 'boolean',
-    },
-    advertisingtoVeterans: {
-      type: 'boolean',
     },
     education: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          name: {
-            type: 'string',
-          },
-          institutionAddress: {
-            type: 'object',
-            properties: {
-              addressType: {
-                type: 'boolean',
-              },
-              line1: {
-                type: 'string',
-              },
-              line2: {
-                type: 'string',
-              },
-              city: {
-                type: 'string',
-              },
-              state: {
-                type: 'string',
-              },
-              postalCode: {
-                type: 'string',
-              },
-              country: {
-                type: 'string',
-                enum: countries.map(x => x.value),
-              },
-            },
-          },
-          startDate: {
-            $ref: '#/definitions/date',
-          },
-          endDate: {
-            $ref: '#/definitions/date',
-          },
-          wasDegreeReceived: {
-            type: 'boolean',
-          },
-          degreeType: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string',
-              },
-            },
-          },
-          major: {
-            type: 'string',
-          },
+          name: { type: 'string' },
+          addressLine1: { type: 'string', maxLength: 100 },
+          addressLine2: { type: 'string', maxLength: 100 },
+          addressLine3: { type: 'string', maxLength: 100 },
+          addressCity: { type: 'string', maxLength: 100 },
+          addressState: { type: 'string', maxLength: 100 },
+          addressPostalCode: { type: 'string', maxLength: 10 },
+          addressCountry: { type: 'string', enum: countries.map(x => x.value), maxLength: 50 },
+          addressIsMilitary: { type: 'boolean' },
+          institutionTypeId: { type: 'integer' },
+          startDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          endDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          reasonForNotCompleting: { type: 'string', maxLength: 250 },
+          degreeTypeId: { type: 'integer' },
+          major: { type: 'string', maxLength: 50 },
+          wasDegreeReceived: { type: 'boolean' },
         },
+        required: ['name', 'startDate', 'wasDegreeReceived', 'major'],
       },
     },
-    jurisdictions: {
+    servedInMilitary: { type: 'boolean' },
+    militaryServices: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          name: {
-            type: 'string',
-          },
-          admissionDate: {
-            $ref: '#/definitions/date',
-          },
-          membershipRegistrationNumber: {
-            type: 'string',
-          },
-          admittanceType: {
-            type: 'string',
-          },
+          serviceBranchId: { type: 'integer' },
+          entryDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          dischargeDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          dischargeTypeId: { type: 'integer' },
+          dischargeTypeExplanation: { type: 'string' },
         },
+        required: ['serviceBranchId', 'entryDate'],
       },
-    },
-    agencies: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string',
-          },
-          admissionDate: {
-            $ref: '#/definitions/date',
-          },
-          membershipRegistrationNumber: {
-            type: 'string',
-          },
-          admittanceType: {
-            type: 'string',
-          },
-        },
-      },
-    },
-    wasImprisoned: {
-      type: 'boolean',
-    },
-    imprisonedExplanation: {
-      type: 'string',
-    },
-    imprisonedDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    wasMilitaryConviction: {
-      type: 'boolean',
-    },
-    militaryConvictionExplanation: {
-      type: 'string',
-    },
-    isCurrentlyCharged: {
-      type: 'boolean',
-    },
-    currentlyChargedExplanation: {
-      type: 'string',
-    },
-    currentlyChargedDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    wasSuspended: {
-      type: 'boolean',
-    },
-    suspendedExplanation: {
-      type: 'string',
-    },
-    suspendedDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    hasWithdrawn: {
-      type: 'boolean',
-    },
-    withdrawnExplanation: {
-      type: 'string',
-    },
-    withdrawnDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    wasDisciplined: {
-      type: 'boolean',
-    },
-    disciplinedExplanation: {
-      type: 'string',
-    },
-    disciplinedDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    hasResignedRetired: {
-      type: 'boolean',
-    },
-    resignedRetiredExplanation: {
-      type: 'string',
-    },
-    resignedRetiredDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    wasAgentAttorney: {
-      type: 'boolean',
-    },
-    agentAttorneyExplanation: {
-      type: 'string',
-    },
-    agentAttorneyDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    wasReprimanded: {
-      type: 'boolean',
-    },
-    reprimandedExplanation: {
-      type: 'string',
-    },
-    reprimandedDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    hasResignedToAvoidReprimand: {
-      type: 'boolean',
-    },
-    resignedToAvoidReprimandExplanation: {
-      type: 'string',
-    },
-    resignedToAvoidReprimandDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    hasAppliedForAccreditation: {
-      type: 'boolean',
-    },
-    appliedForAccreditationExplanation: {
-      type: 'string',
-    },
-    appliedForAccreditationDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    wasAccreditationTerminated: {
-      type: 'boolean',
-    },
-    accreditationTerminatedDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    accreditationTerminatedExplanation: {
-      type: 'string',
-    },
-    hasImpairments: {
-      type: 'boolean',
-    },
-    impairmentsExplanation: {
-      type: 'string',
-    },
-    impairmentsDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    hasPhysicalLimitations: {
-      type: 'boolean',
-    },
-    physicalLimitationsExplanation: {
-      type: 'string',
-    },
-    physicalLimitationsDocumentation: {
-      $ref: '#/definitions/files',
     },
     characterReferences: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          name: {
-            type: 'string',
-          },
-          address: {
-            type: 'object',
-            properties: {
-              addressType: {
-                type: 'boolean',
-              },
-              line1: {
-                type: 'string',
-              },
-              line2: {
-                type: 'string',
-              },
-              city: {
-                type: 'string',
-              },
-              state: {
-                type: 'string',
-              },
-              postalCode: {
-                type: 'string',
-              },
-              country: {
-                type: 'string',
-                enum: countries.map(x => x.value),
-              },
-            },
-          },
-          email: {
-            $ref: '#/definitions/email',
-          },
+          firstName: { type: 'string' },
+          middleName: { type: 'string' },
+          lastName: { type: 'string' },
+          suffix: { type: 'string' },
+          addressLine1: { type: 'string', maxLength: 100 },
+          addressLine2: { type: 'string', maxLength: 100 },
+          addressLine3: { type: 'string', maxLength: 100 },
+          addressCity: { type: 'string', maxLength: 100 },
+          addressState: { type: 'string', maxLength: 100 },
+          addressPostalCode: { type: 'string', maxLength: 10 },
+          addressCountry: { type: 'string', enum: countries.map(x => x.value), maxLength: 50 },
+          addressIsMilitary: { type: 'boolean' },
           phoneNumber: {
-            $ref: '#/definitions/phone',
+            type: 'string',
+            maxLength: 20,
+            pattern: '^[0-9\\-\\(\\)\\s]+$',
           },
-          relationshipToApplicantType: {
-            type: 'object',
-            properties: {
-              name: {
-                type: 'string',
-              },
-            },
-          },
+          phoneExtension: { type: 'string', maxLength: 10 },
+          phoneTypeId: { type: 'integer' },
+          email: { type: 'string', format: 'email', maxLength: 100 },
+          relationshipToApplicantTypeId: { type: 'integer' },
         },
+        required: ['firstName', 'lastName'],
       },
     },
-    signature: {
-      type: 'string',
+    advertisingtoVeterans: { type: 'boolean' },
+    consultingService: { type: 'boolean' },
+    financialPlanning: { type: 'boolean' },
+    funeralIndustry: { type: 'boolean' },
+    homeNursingCare: { type: 'boolean' },
+    medicalServices: { type: 'boolean' },
+    isInGoodStanding: { type: 'boolean' },
+    signature: { type: 'string' },
+    supplementalStatement: { type: 'string' },
+    personalStatement: { type: 'string' },
+    icnNo: { type: 'string' },
+    uId: { type: 'string' },
+    jurisdictions: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: { type: 'string' },
+          admittanceTypeId: { type: 'integer' },
+          admissionDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          membershipRegistrationNumber: { type: 'string' },
+          jurisdiction: { type: 'string' },
+        },
+        required: ['name', 'admittanceTypeId', 'admissionDate'],
+      },
     },
-    jurisdictionDocumentation: {
-      $ref: '#/definitions/files',
+    jurisdictionUploadedAllDocuments: { type: 'boolean' },
+    jurisdictionDeclinedToUploadDocuments: { type: 'boolean' },
+    jurisdictionExplan: { type: 'string' },
+    admittedToPracticeAgency: { type: 'boolean' },
+    agencies: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: { type: 'string' },
+          admittanceTypeId: { type: 'integer' },
+          admittanceType: { type: 'string' },
+          admissionDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+          membershipRegistrationNumber: { type: 'string' },
+        },
+        required: ['name', 'admittanceTypeId', 'admissionDate'],
+      },
     },
-    jurisdictionDeclinedToUploadDocuments: {
-      type: 'boolean',
-    },
-    jurisdictionExplan: {
-      type: 'string',
-    },
-    agenciesDocumentation: {
-      $ref: '#/definitions/files',
-    },
-    agenciesDeclinedToUploadDocuments: {
-      type: 'boolean',
-    },
-    agenciesExplan: {
-      type: 'string',
-    },
+    agenciesUploadedAllDocuments: { type: 'boolean' },
+    agenciesDeclinedToUploadDocuments: { type: 'boolean' },
+    agenciesExplan: { type: 'string' },
+    wasImprisoned: { type: 'boolean' },
+    imprisonedExplanation: { type: 'string' },
+    imprisonedUploadedAllDocuments: { type: 'boolean' },
+    imprisonedDeclinedToUploadDocuments: { type: 'boolean' },
+    wasMilitaryConviction: { type: 'boolean' },
+    militaryConvictionExplanation: { type: 'string' },
+    militaryConvictionUploadedAllDocuments: { type: 'boolean' },
+    militaryConvictionDeclinedToUploadDocuments: { type: 'boolean' },
+    isCurrentlyCharged: { type: 'boolean' },
+    currentlyChargedExplanation: { type: 'string' },
+    currentlyChargedUploadedAllDocuments: { type: 'boolean' },
+    currentlyChargedDeclinedToUploadDocuments: { type: 'boolean' },
+    wasSuspended: { type: 'boolean' },
+    suspendedExplanation: { type: 'string' },
+    suspendedUploadedAllDocuments: { type: 'boolean' },
+    suspendedDeclinedToUploadDocuments: { type: 'boolean' },
+    hasWithdrawn: { type: 'boolean' },
+    withdrawnExplanation: { type: 'string' },
+    withdrawnUploadedAllDocuments: { type: 'boolean' },
+    withdrawnDeclinedToUploadDocuments: { type: 'boolean' },
+    wasDisciplined: { type: 'boolean' },
+    disciplinedExplanation: { type: 'string' },
+    disciplinedUploadedAllDocuments: { type: 'boolean' },
+    disciplinedDeclinedToUploadDocuments: { type: 'boolean' },
+    hasResignedRetired: { type: 'boolean' },
+    resignedRetiredExplanation: { type: 'string' },
+    resignedRetiredUploadedAllDocuments: { type: 'boolean' },
+    resignedRetiredDeclinedToUploadDocuments: { type: 'boolean' },
+    wasAgentAttorney: { type: 'boolean' },
+    agentAttorneyExplanation: { type: 'string' },
+    agentAttorneyUploadedAllDocuments: { type: 'boolean' },
+    agentAttorneyDeclinedToUploadDocuments: { type: 'boolean' },
+    wasReprimanded: { type: 'boolean' },
+    reprimandedExplanation: { type: 'string' },
+    reprimandedUploadedAllDocuments: { type: 'boolean' },
+    reprimandedDeclinedToUploadDocuments: { type: 'boolean' },
+    hasResignedToAvoidReprimand: { type: 'boolean' },
+    resignedToAvoidReprimandExplanation: { type: 'string' },
+    resignedToAvoidReprimandUploadedAllDocuments: { type: 'boolean' },
+    resignedToAvoidReprimandDeclinedToUploadDocuments: { type: 'boolean' },
+    hasAppliedForAccreditation: { type: 'boolean' },
+    appliedForAccreditationExplanation: { type: 'string' },
+    appliedForAccreditationUploadedAllDocuments: { type: 'boolean' },
+    appliedForAccreditationDeclinedToUploadDocuments: { type: 'boolean' },
+    wasAccreditationTerminated: { type: 'boolean' },
+    accreditationTerminatedExplanation: { type: 'string' },
+    accreditationTerminatedUploadedAllDocuments: { type: 'boolean' },
+    accreditationTerminatedDeclinedToUploadDocuments: { type: 'boolean' },
+    hasImpairments: { type: 'boolean' },
+    impairmentsExplanation: { type: 'string' },
+    impairmentsUploadedAllDocuments: { type: 'boolean' },
+    impairmentsDeclinedToUploadDocuments: { type: 'boolean' },
+    hasPhysicalLimitations: { type: 'boolean' },
+    physicalLimitationsExplanation: { type: 'string' },
+    physicalLimitationsUploadedAllDocuments: { type: 'boolean' },
+    physicalLimitationsDeclinedToUploadDocuments: { type: 'boolean' },
   },
+  required: [
+    'firstName',
+    'lastName',
+    'homePhone',
+    'homeEmail',
+    'applicationStatusId',
+    'accreditationTypeId',
+    'genderId',
+    'instructionAcknowledge',
+    'employmentStatusId',
+  ],
 };
 
 export default schema;
