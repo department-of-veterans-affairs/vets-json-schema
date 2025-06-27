@@ -9,8 +9,8 @@
       "properties": {
         "ssn": {
           "type": "string",
-          "pattern": "^\\d{3}-\\d{2}-\\d{4}$",
-          "example": "796-12-6859"
+          "pattern": "^\\d{9}$",
+          "example": "796126859"
         },
         "dateOfBirth": {
           "oneOf": [
@@ -59,8 +59,8 @@
             { "type": "null" },
             {
               "type": "string",
-              "pattern": "^\\d{3}-\\d{2}-\\d{4}$",
-              "example": "796-22-9088"
+              "pattern": "^\\d{9}$",
+              "example": "796126859"
             }
           ]
         },
