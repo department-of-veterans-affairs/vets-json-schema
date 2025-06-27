@@ -36,7 +36,7 @@
         "name"
       ]
     },
-    "dependent": {
+    "claimant": {
       "type": [
         "object",
         "null"
@@ -99,6 +99,6 @@
   },
   "required": [
     "veteran",
-    "dependent"
+    "claimant"
   ]
 }
