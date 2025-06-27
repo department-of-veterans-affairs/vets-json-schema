@@ -10,6 +10,7 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'email',
   'fullNameNoSuffix',
   'privacyAgreementAccepted',
+  'ssn',
   'usaPhone',
   'vaFileNumber',
   'yesNoSchema',
@@ -27,6 +28,9 @@ const schema = {
     },
     dateOfBirth: {
       $ref: '#/definitions/date',
+    },
+    applicantSocialSecurityNumber: {
+      $ref: '#/definitions/ssn',
     },
     applicantFileNumber: {
       $ref: '#/definitions/vaFileNumber',
@@ -121,7 +125,7 @@ const schema = {
   required: [
     'applicantFullName',
     'dateOfBirth',
-    'applicantFileNumber',
+    'ssn',
     'mailingAddress',
     'contactInfo',
     'hasCompletedActiveDuty',

@@ -270,6 +270,10 @@
         true
       ]
     },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
     "usaPhone": {
       "type": "string",
       "pattern": "^\\d{10}$"
@@ -288,6 +292,9 @@
     },
     "dateOfBirth": {
       "$ref": "#/definitions/date"
+    },
+    "applicantSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
     },
     "applicantFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
@@ -403,7 +410,7 @@
   "required": [
     "applicantFullName",
     "dateOfBirth",
-    "applicantFileNumber",
+    "ssn",
     "mailingAddress",
     "contactInfo",
     "hasCompletedActiveDuty",
