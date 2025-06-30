@@ -134,10 +134,10 @@ const testData = {
       },
     ],
   },
-  hitechVetsPrograms: {
+  trainingProviders: {
     valid: [
       {
-        programs: [
+        providers: [
           {
             providerName: 'First Program',
             providerAddress: {
@@ -152,13 +152,13 @@ const testData = {
         plannedStartDate: '2025-08-25',
       },
       {
-        programs: [],
+        providers: [],
         plannedStartDate: '2025-08-25',
       },
     ],
     invalid: [
       {
-        programs: [
+        providers: [
           {
             providerName: 'First Program',
             providerAddress: {
@@ -213,7 +213,7 @@ const testData = {
         plannedStartDate: '2025-08-25',
       },
       {
-        programs: [
+        providers: [
           {
             providerName: 'First Program',
             providerAddress: {
@@ -252,6 +252,10 @@ const testData = {
     valid: [true],
     invalid: [false, '', null],
   },
+  dateSigned: {
+    valid: ['2025-06-30'],
+    invalid: ['', null],
+  },
   yesNoSchema: {
     valid: [true, false],
     invalid: ['', null],
@@ -261,11 +265,11 @@ const testData = {
 describe('10297 schema', () => {
   it('should have required fields', () => {
     expect(schema.properties.contactInfo.required).to.deep.equal(['mobilePhone']);
-    expect(schema.properties.hitechVetsPrograms.properties.programs.items.required).to.deep.equal([
+    expect(schema.properties.trainingProviders.properties.providers.items.required).to.deep.equal([
       'providerName',
       'providerAddress',
     ]);
-    expect(schema.properties.hitechVetsPrograms.required).to.deep.equal(['programs', 'plannedStartDate']);
+    expect(schema.properties.trainingProviders.required).to.deep.equal(['providers', 'plannedStartDate']);
     expect(schema.required).to.deep.equal([
       'applicantFullName',
       'dateOfBirth',
@@ -276,10 +280,12 @@ describe('10297 schema', () => {
       'dateReleasedFromActiveDuty',
       'activeDutyDuringHitechVets',
       'bankAccount',
-      'hitechVetsPrograms',
+      'trainingProviders',
       'isEmployed',
       'highestLevelOfEducation',
       'privacyAgreementAccepted',
+      'statementOfTruthSignature',
+      'dateSigned',
     ]);
   });
 
@@ -294,11 +300,12 @@ describe('10297 schema', () => {
   schemaTestHelper.testValidAndInvalid('dateReleasedFromActiveDuty', testData.dateReleasedFromActiveDuty);
   schemaTestHelper.testValidAndInvalid('activeDutyDuringHitechVets', testData.yesNoSchema);
   schemaTestHelper.testValidAndInvalid('bankAccount', testData.bankAccount);
-  schemaTestHelper.testValidAndInvalid('hitechVetsPrograms', testData.hitechVetsPrograms);
+  schemaTestHelper.testValidAndInvalid('trainingProviders', testData.trainingProviders);
   schemaTestHelper.testValidAndInvalid('isEmployed', testData.yesNoSchema);
   schemaTestHelper.testValidAndInvalid('isInTechnologyIndustry', testData.yesNoSchema);
   schemaTestHelper.testValidAndInvalid('technologyAreaOfFocus', testData.technologyAreaOfFocus);
   schemaTestHelper.testValidAndInvalid('currentSalary', testData.currentSalary);
   schemaTestHelper.testValidAndInvalid('highestLevelOfEducation', testData.highestLevelOfEducation);
   schemaTestHelper.testValidAndInvalid('privacyAgreementAccepted', testData.privacyAgreementAccepted);
+  schemaTestHelper.testValidAndInvalid('dateSigned', testData.dateSigned);
 });

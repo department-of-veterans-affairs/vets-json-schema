@@ -334,10 +334,10 @@
     "bankAccount": {
       "$ref": "#/definitions/bankAccount"
     },
-    "hitechVetsPrograms": {
+    "trainingProviders": {
       "type": "object",
       "properties": {
-        "programs": {
+        "providers": {
           "type": "array",
           "maxItems": 4,
           "items": {
@@ -361,7 +361,7 @@
         }
       },
       "required": [
-        "programs",
+        "providers",
         "plannedStartDate"
       ]
     },
@@ -405,6 +405,12 @@
     },
     "privacyAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
+    },
+    "dateSigned": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [
@@ -417,9 +423,11 @@
     "dateReleasedFromActiveDuty",
     "activeDutyDuringHitechVets",
     "bankAccount",
-    "hitechVetsPrograms",
+    "trainingProviders",
     "isEmployed",
     "highestLevelOfEducation",
-    "privacyAgreementAccepted"
+    "privacyAgreementAccepted",
+    "statementOfTruthSignature",
+    "dateSigned"
   ]
 }

@@ -68,10 +68,10 @@ const schema = {
     bankAccount: {
       $ref: '#/definitions/bankAccount',
     },
-    hitechVetsPrograms: {
+    trainingProviders: {
       type: 'object',
       properties: {
-        programs: {
+        providers: {
           type: 'array',
           maxItems: 4,
           items: {
@@ -91,7 +91,7 @@ const schema = {
           $ref: '#/definitions/date',
         },
       },
-      required: ['programs', 'plannedStartDate'],
+      required: ['providers', 'plannedStartDate'],
     },
     isEmployed: {
       $ref: '#/definitions/yesNoSchema',
@@ -121,6 +121,12 @@ const schema = {
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
     },
+    statementOfTruthSignature: {
+      type: 'string',
+    },
+    dateSigned: {
+      $ref: '#/definitions/date',
+    },
   },
   required: [
     'applicantFullName',
@@ -132,10 +138,12 @@ const schema = {
     'dateReleasedFromActiveDuty',
     'activeDutyDuringHitechVets',
     'bankAccount',
-    'hitechVetsPrograms',
+    'trainingProviders',
     'isEmployed',
     'highestLevelOfEducation',
     'privacyAgreementAccepted',
+    'statementOfTruthSignature',
+    'dateSigned',
   ],
 };
 
