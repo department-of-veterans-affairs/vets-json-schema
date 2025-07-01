@@ -1,12 +1,11 @@
 import { expect } from 'chai';
 import { it } from 'mocha';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, omit } from 'lodash';
 import schema from '../../../src/schemas/22-10216/schema';
 import SchemaTestHelper from '../../support/schema-test-helper';
 
-const schemaWithoutRequired = cloneDeep(schema);
-
-const schemaTestHelper = new SchemaTestHelper(schemaWithoutRequired);
+const schemaClone = cloneDeep(schema);
+const schemaTestHelper = new SchemaTestHelper(omit(schemaClone, 'required'));
 
 const testData = {
   institutionOfficial: {
@@ -46,7 +45,7 @@ const testData = {
     invalid: [
       {
         institutionName: 'Test Institution',
-        facilityCode: '12345f6g',
+        facilityCode: '',
         termStartDate: '2024-01-01',
       },
     ],
@@ -73,6 +72,7 @@ const testData = {
     ],
   },
 };
+
 describe('10216 schema', () => {
   it('should have required fields', () => {
     expect(schema.properties.certifyingOfficial.required).to.deep.equal(['first', 'last', 'title']);
@@ -86,7 +86,8 @@ describe('10216 schema', () => {
       'numOfStudent',
       'dateOfCalculation',
     ]);
-    schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
-    schemaTestHelper.testValidAndInvalid('studentRatioCalcChapter', testData.studentRatioCalcChapter);
   });
+
+  schemaTestHelper.testValidAndInvalid('institutionDetails', testData.institutionDetails);
+  schemaTestHelper.testValidAndInvalid('studentRatioCalcChapter', testData.studentRatioCalcChapter);
 });
