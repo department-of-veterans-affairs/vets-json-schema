@@ -171,9 +171,6 @@
         "No"
       ]
     },
-    "isEssentialAcaCoverage": {
-      "type": "boolean"
-    },
     "vaMedicalFacility": {
       "type": "string"
     },
