@@ -360,7 +360,7 @@ const schema = {
           type: 'object',
           properties: {
             cambodia: {
-              $ref: '#/definition´s/minimumYearDateRange',
+              $ref: '#/definitions/minimumYearDateRange',
             },
             guam: {
               $ref: '#/definitions/minimumYearDateRange',
