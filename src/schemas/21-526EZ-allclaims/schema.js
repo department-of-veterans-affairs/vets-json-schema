@@ -284,137 +284,137 @@ const schema = {
           type: 'object',
           properties: {
             afghanistan: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             bahrain: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             egypt: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             iraq: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             israel: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             jordan: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             kuwait: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             neutralzone: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             oman: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             qatar: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             saudiarabia: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             somalia: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             syria: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             uae: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             turkey: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             waters: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             airspace: {
-              $ref: '#/definitions/minimumYearDateRange'
-            }
-          }
+              $ref: '#/definitions/minimumYearDateRange',
+            },
+          },
         },
         gulfWar2001Details: {
           type: 'object',
           properties: {
             djibouti: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             lebanon: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             uzbekistan: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             yemen: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             airspace: {
-              $ref: '#/definitions/minimumYearDateRange'
-            }
-          }
+              $ref: '#/definitions/minimumYearDateRange',
+            },
+          },
         },
         herbicideDetails: {
           type: 'object',
           properties: {
             cambodia: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definition´s/minimumYearDateRange',
             },
             guam: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             koreandemilitarizedzone: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             johnston: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             laos: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             c123: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             thailand: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             vietnam: {
-              $ref: '#/definitions/minimumYearDateRange'
-            }
-          }
+              $ref: '#/definitions/minimumYearDateRange',
+            },
+          },
         },
         otherExposuresDetails: {
           type: 'object',
           properties: {
             asbestos: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             chemical: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             mos: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             mustardgas: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             radiation: {
-              $ref: '#/definitions/minimumYearDateRange'
+              $ref: '#/definitions/minimumYearDateRange',
             },
             water: {
-              $ref: '#/definitions/minimumYearDateRange'
-            }
-          }
+              $ref: '#/definitions/minimumYearDateRange',
+            },
+          },
         },
         otherHerbicideLocations: {
-          $ref: '#/definitions/minimumYearDateRange'
+          $ref: '#/definitions/minimumYearDateRange',
         },
         specifyOtherExposures: {
-          $ref: '#/definitions/minimumYearDateRange'
-        }
-      }
+          $ref: '#/definitions/minimumYearDateRange',
+        },
+      },
     },
     serviceInformation: {
       type: 'object',
@@ -446,7 +446,7 @@ const schema = {
             separationLocationName: {
               type: 'string',
               maxLength: 256,
-              pattern: "^([a-zA-Z0-9\\/\\-'.#,*()&][a-zA-Z0-9\\/\\-'.#,*()& ]?)*$",
+              pattern: "^[a-zA-Z0-9\\/\\-'.#,*()&]+( [a-zA-Z0-9\\/\\-'.#,*()&]+)*$",
             },
           },
         },
@@ -609,7 +609,7 @@ const schema = {
           treatmentCenterName: {
             type: 'string',
             maxLength: 100,
-            pattern: "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$",
+            pattern: '^([-a-zA-Z0-9"\\/&()\'.#]+( [-a-zA-Z0-9"\\/&()\'.#]+)*)$',
           },
           treatmentDateRange: {
             $ref: '#/definitions/dateRange',
@@ -1099,7 +1099,7 @@ const schema = {
               'Medical Treatment Record - Non-Government Facility',
               'Disability Benefits Questionnaire (DBQ)',
               'VA 21-4142 Authorization for Release of Information',
-              'Other'
+              'Other',
             ],
           },
         },
