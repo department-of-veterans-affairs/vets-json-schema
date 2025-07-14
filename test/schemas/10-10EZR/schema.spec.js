@@ -23,4 +23,23 @@ describe('ezr json schema', () => {
     valid: [stringGenerate(30)],
     invalid: [null, '', '     '],
   });
+
+  schemaTestHelper.testValidAndInvalid('lastServiceBranch', {
+    valid: [
+      'air force',
+      'army',
+      'coast guard',
+      'marine corps',
+      'merchant seaman',
+      'navy',
+      'noaa',
+      'space force',
+      'usphs',
+      'f.commonwealth',
+      'f.guerilla',
+      'f.scouts new',
+      'f.scouts old',
+    ],
+    invalid: [null, 3, 'random-string'],
+  });
 });
