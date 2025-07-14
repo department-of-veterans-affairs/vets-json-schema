@@ -562,6 +562,69 @@
       "maxLength": 30,
       "pattern": "^.*\\S.*"
     },
+    "lastServiceBranch": {
+      "type": "string",
+      "enum": [
+        "air force",
+        "army",
+        "coast guard",
+        "marine corps",
+        "merchant seaman",
+        "navy",
+        "noaa",
+        "space force",
+        "usphs",
+        "f.commonwealth",
+        "f.guerilla",
+        "f.scouts new",
+        "f.scouts old",
+        "other"
+      ]
+    },
+    "lastEntryDate": {
+      "$ref": "#/definitions/date"
+    },
+    "lastDischargeDate": {
+      "$ref": "#/definitions/date"
+    },
+    "dischargeType": {
+      "type": "string",
+      "enum": [
+        "honorable",
+        "general",
+        "other",
+        "bad-conduct",
+        "dishonorable",
+        "undesirable"
+      ]
+    },
+    "purpleHeartRecipient": {
+      "type": "boolean"
+    },
+    "isFormerPow": {
+      "type": "boolean"
+    },
+    "postNov111998Combat": {
+      "type": "boolean"
+    },
+    "disabledInLineOfDuty": {
+      "type": "boolean"
+    },
+    "swAsiaCombat": {
+      "type": "boolean"
+    },
+    "vietnamService": {
+      "type": "boolean"
+    },
+    "exposedToRadiation": {
+      "type": "boolean"
+    },
+    "radiumTreatments": {
+      "type": "boolean"
+    },
+    "campLejeune": {
+      "type": "boolean"
+    },
     "spouseFullName": {
       "type": "object",
       "properties": {
