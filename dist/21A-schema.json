@@ -1100,7 +1100,7 @@
     "employmentStatusId": {
       "type": "integer"
     },
-    "employmentStatusExplain": {
+    "employmentStatusExplaination": {
       "type": "string"
     },
     "employment": {
@@ -2100,7 +2100,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
+          "admittedName": {
             "type": "string"
           },
           "admittanceTypeId": {
@@ -2114,7 +2114,7 @@
           "membershipRegistrationNumber": {
             "type": "string"
           },
-          "jurisdiction": {
+          "admittedNote": {
             "type": "string"
           }
         },
@@ -2142,7 +2142,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
+          "admittedName": {
             "type": "string"
           },
           "admittanceTypeId": {
@@ -2157,6 +2157,9 @@
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
           },
           "membershipRegistrationNumber": {
+            "type": "string"
+          },
+          "admittedNote": {
             "type": "string"
           }
         },
