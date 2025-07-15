@@ -5,7 +5,7 @@ import schema from '../../../src/schemas/22-10297/schema';
 import SchemaTestHelper from '../../support/schema-test-helper';
 
 const schemaClone = cloneDeep(schema);
-const schemaTestHelper = new SchemaTestHelper(omit(schemaClone, 'required'));
+const schemaTestHelper = new SchemaTestHelper(omit(schemaClone, 'required', 'anyOf'));
 
 const testData = {
   applicantFullName: {
@@ -33,11 +33,11 @@ const testData = {
     valid: ['1990-01-01'],
     invalid: ['', null],
   },
-  applicantSocialSecurityNumber: {
+  ssn: {
     valid: ['111223333'],
     invalid: ['', null],
   },
-  applicantFileNumber: {
+  vaFileNumber: {
     valid: ['C1234567'],
     invalid: ['', null],
   },
@@ -273,7 +273,6 @@ describe('10297 schema', () => {
     expect(schema.required).to.deep.equal([
       'applicantFullName',
       'dateOfBirth',
-      'ssn',
       'mailingAddress',
       'contactInfo',
       'hasCompletedActiveDuty',
@@ -287,12 +286,13 @@ describe('10297 schema', () => {
       'statementOfTruthSignature',
       'dateSigned',
     ]);
+    expect(schema.anyOf).to.deep.equal([{ required: ['ssn'] }, { required: ['vaFileNumber'] }]);
   });
 
   schemaTestHelper.testValidAndInvalid('applicantFullName', testData.applicantFullName);
   schemaTestHelper.testValidAndInvalid('dateOfBirth', testData.dateOfBirth);
-  schemaTestHelper.testValidAndInvalid('applicantSocialSecurityNumber', testData.applicantSocialSecurityNumber);
-  schemaTestHelper.testValidAndInvalid('applicantFileNumber', testData.applicantFileNumber);
+  schemaTestHelper.testValidAndInvalid('ssn', testData.ssn);
+  schemaTestHelper.testValidAndInvalid('vaFileNumber', testData.vaFileNumber);
   schemaTestHelper.testValidAndInvalid('mailingAddress', testData.mailingAddress);
   schemaTestHelper.testValidAndInvalid('contactInfo', testData.contactInfo);
   schemaTestHelper.testValidAndInvalid('hasCompletedActiveDuty', testData.yesNoSchema);
