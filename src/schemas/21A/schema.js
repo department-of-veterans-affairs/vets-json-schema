@@ -174,11 +174,11 @@ const schema = {
       items: {
         type: 'object',
         properties: {
-          name: { type: 'string' },
+          admittedName: { type: 'string' },
           admittanceTypeId: { type: 'integer' },
           admissionDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
           membershipRegistrationNumber: { type: 'string' },
-          jurisdiction: { type: 'string' },
+          admittedNote: { type: 'string' },
         },
         required: ['name', 'admittanceTypeId', 'admissionDate'],
       },
@@ -192,11 +192,12 @@ const schema = {
       items: {
         type: 'object',
         properties: {
-          name: { type: 'string' },
+          admittedName: { type: 'string' },
           admittanceTypeId: { type: 'integer' },
           admittanceType: { type: 'string' },
           admissionDate: { type: 'string', format: 'date', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
           membershipRegistrationNumber: { type: 'string' },
+          admittedNote: { type: 'string' },
         },
         required: ['name', 'admittanceTypeId', 'admissionDate'],
       },
