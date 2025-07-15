@@ -2116,7 +2116,7 @@
           }
         },
         "required": [
-          "name",
+          "admittedName",
           "admittanceTypeId",
           "admissionDate"
         ]
@@ -2161,7 +2161,7 @@
           }
         },
         "required": [
-          "name",
+          "admittedName",
           "admittanceTypeId",
           "admissionDate"
         ]
@@ -2352,7 +2352,6 @@
     "homeEmail",
     "applicationStatusId",
     "accreditationTypeId",
-    "genderId",
     "instructionAcknowledge",
     "employmentStatusId"
   ]
