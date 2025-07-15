@@ -53,7 +53,6 @@ const schema = {
     primaryMailingAddress: { type: 'string' },
     applicationStatusId: { type: 'integer' },
     accreditationTypeId: { type: 'integer' },
-    genderId: { type: 'integer' },
     instructionAcknowledge: { type: 'boolean' },
     employmentStatusId: { type: 'integer' },
     employmentStatusExplaination: { type: 'string' },

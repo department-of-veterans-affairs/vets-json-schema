@@ -1091,9 +1091,6 @@
     "accreditationTypeId": {
       "type": "integer"
     },
-    "genderId": {
-      "type": "integer"
-    },
     "instructionAcknowledge": {
       "type": "boolean"
     },
