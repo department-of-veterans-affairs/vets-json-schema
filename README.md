@@ -32,6 +32,30 @@ Forms on VA.gov use JSON schema to define a common contract for data validation 
 
 > If adding or removing a form, update [forms tests](https://github.com/department-of-veterans-affairs/vets-website/blob/master/src/platform/forms/tests/forms.unit.spec.js) in `vets-website`
 
+### How to test locally
+
+What to do in `vets-json-schema`:
+
+1. Add your changes
+2. Create a new branch for your changes
+3. Update the version number in the `package.json `
+4. Run `yarn build` to generate the `dist/` directory where your form schema will be pulled from
+5. Commit your changes to your branch and push the branch up
+
+What to do in `vets-website`:
+
+1. Go to the `package.json` file and change the vets-json-schema line to point to your latest commit hash from your branch `"vets-json-schema": "https://github.com/department-of-veterans-affairs/vets-json-schema.git#YOUR_COMMIT_HASH",`
+2. Run `yarn install`
+3. Run vets-website locally
+
+What to do in `vets-api`:
+1. Go to the Gemfile and update the branch from `master` to `gem 'vets_json_schema', git: 'https://github.com/department-of-veterans-affairs/vets-json-schema', branch: 'BRANCH_NAME'`
+2. Run `bundle update vets_json_schema` 
+   1. You'll see that the Gemfile.lock is updated.
+3. Run vets-api locally
+
+You should now see these changes locally.
+
 ### Environment
 
 node v8.10.0
