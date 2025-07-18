@@ -29,10 +29,10 @@ const schema = {
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
-    applicantSocialSecurityNumber: {
+    ssn: {
       $ref: '#/definitions/ssn',
     },
-    applicantFileNumber: {
+    vaFileNumber: {
       $ref: '#/definitions/vaFileNumber',
     },
     mailingAddress: {
@@ -131,7 +131,6 @@ const schema = {
   required: [
     'applicantFullName',
     'dateOfBirth',
-    'ssn',
     'mailingAddress',
     'contactInfo',
     'hasCompletedActiveDuty',
@@ -145,6 +144,7 @@ const schema = {
     'statementOfTruthSignature',
     'dateSigned',
   ],
+  anyOf: [{ required: ['ssn'] }, { required: ['vaFileNumber'] }],
 };
 
 export default schema;

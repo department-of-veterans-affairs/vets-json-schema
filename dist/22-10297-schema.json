@@ -293,10 +293,10 @@
     "dateOfBirth": {
       "$ref": "#/definitions/date"
     },
-    "applicantSocialSecurityNumber": {
+    "ssn": {
       "$ref": "#/definitions/ssn"
     },
-    "applicantFileNumber": {
+    "vaFileNumber": {
       "$ref": "#/definitions/vaFileNumber"
     },
     "mailingAddress": {
@@ -416,7 +416,6 @@
   "required": [
     "applicantFullName",
     "dateOfBirth",
-    "ssn",
     "mailingAddress",
     "contactInfo",
     "hasCompletedActiveDuty",
@@ -429,5 +428,17 @@
     "privacyAgreementAccepted",
     "statementOfTruthSignature",
     "dateSigned"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "ssn"
+      ]
+    },
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    }
   ]
 }
