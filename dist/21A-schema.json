@@ -1091,16 +1091,13 @@
     "accreditationTypeId": {
       "type": "integer"
     },
-    "genderId": {
-      "type": "integer"
-    },
     "instructionAcknowledge": {
       "type": "boolean"
     },
     "employmentStatusId": {
       "type": "integer"
     },
-    "employmentStatusExplain": {
+    "employmentStatusExplaination": {
       "type": "string"
     },
     "employment": {
@@ -2100,7 +2097,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
+          "admittedName": {
             "type": "string"
           },
           "admittanceTypeId": {
@@ -2114,12 +2111,12 @@
           "membershipRegistrationNumber": {
             "type": "string"
           },
-          "jurisdiction": {
+          "admittedNote": {
             "type": "string"
           }
         },
         "required": [
-          "name",
+          "admittedName",
           "admittanceTypeId",
           "admissionDate"
         ]
@@ -2142,7 +2139,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
+          "admittedName": {
             "type": "string"
           },
           "admittanceTypeId": {
@@ -2158,10 +2155,13 @@
           },
           "membershipRegistrationNumber": {
             "type": "string"
+          },
+          "admittedNote": {
+            "type": "string"
           }
         },
         "required": [
-          "name",
+          "admittedName",
           "admittanceTypeId",
           "admissionDate"
         ]
@@ -2352,7 +2352,6 @@
     "homeEmail",
     "applicationStatusId",
     "accreditationTypeId",
-    "genderId",
     "instructionAcknowledge",
     "employmentStatusId"
   ]
