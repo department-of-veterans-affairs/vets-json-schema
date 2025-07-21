@@ -13,9 +13,15 @@ export default {
           example: '796126859',
         },
         dateOfBirth: {
-          type: 'string',
-          format: 'date',
-          example: '1932-02-05',
+          oneOf: [
+            { type: 'null' },
+            {
+              type: 'string',
+              format: 'date',
+              pattern: '^\\d{4}-\\d{2}-\\d{2}$',
+              example: '1932-02-05'
+            }
+          ]
         },
         postalCode: {
           type: 'string',
@@ -28,10 +34,14 @@ export default {
           properties: {
             first: {
               type: 'string',
+              minLength: 1,
+              maxLength: 30,
               example: 'Hector',
             },
             last: {
               type: 'string',
+              minLength: 1,
+              maxLength: 30,
               example: 'Allen',
             },
           },
@@ -45,26 +55,51 @@ export default {
       additionalProperties: false,
       properties: {
         ssn: {
-          type: ['string', 'null'],
-          pattern: '^\\d{9}$',
-          example: '796229088',
+          oneOf: [
+            { type: 'null' },
+            {
+              type: 'string',
+              pattern: '^\\d{9}$',
+              example: '796229088'
+            }
+          ]
         },
         dateOfBirth: {
-          type: ['string', 'null'],
-          format: 'date',
-          example: '1976-01-16',
+          oneOf: [
+            { type: 'null' },
+            {
+              type: 'string',
+              format: 'date',
+              pattern: '^\\d{4}-\\d{2}-\\d{2}$',
+              example: '1976-01-16'
+            }
+          ]
         },
         name: {
           type: 'object',
           additionalProperties: false,
           properties: {
             first: {
-              type: ['string', 'null'],
-              example: 'Derrick',
+              oneOf: [
+                { type: 'null' },
+                {
+                  type: 'string',
+                  minLength: 1,
+                  maxLength: 30,
+                  example: 'Derrick'
+                }
+              ]
             },
             last: {
-              type: ['string', 'null'],
-              example: 'Reid',
+              oneOf: [
+                { type: 'null' },
+                {
+                  type: 'string',
+                  minLength: 1,
+                  maxLength: 30,
+                  example: 'Reid'
+                }
+              ]
             },
           },
           required: ['first', 'last'],
