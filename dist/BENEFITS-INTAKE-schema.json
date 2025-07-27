@@ -14,7 +14,9 @@
         },
         "dateOfBirth": {
           "oneOf": [
-            { "type": "null" },
+            {
+              "type": "null"
+            },
             {
               "type": "string",
               "format": "date",
@@ -45,28 +47,43 @@
               "example": "Allen"
             }
           },
-          "required": ["first", "last"]
+          "required": [
+            "first",
+            "last"
+          ]
         }
       },
-      "required": ["ssn", "dateOfBirth", "postalCode", "name"]
+      "required": [
+        "ssn",
+        "dateOfBirth",
+        "postalCode",
+        "name"
+      ]
     },
     "dependent": {
-      "type": ["object", "null"],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false,
       "properties": {
         "ssn": {
           "oneOf": [
-            { "type": "null" },
+            {
+              "type": "null"
+            },
             {
               "type": "string",
               "pattern": "^\\d{9}$",
-              "example": "796126859"
+              "example": "796229088"
             }
           ]
         },
         "dateOfBirth": {
           "oneOf": [
-            { "type": "null" },
+            {
+              "type": "null"
+            },
             {
               "type": "string",
               "format": "date",
@@ -81,7 +98,9 @@
           "properties": {
             "first": {
               "oneOf": [
-                { "type": "null" },
+                {
+                  "type": "null"
+                },
                 {
                   "type": "string",
                   "minLength": 1,
@@ -92,7 +111,9 @@
             },
             "last": {
               "oneOf": [
-                { "type": "null" },
+                {
+                  "type": "null"
+                },
                 {
                   "type": "string",
                   "minLength": 1,
@@ -102,11 +123,21 @@
               ]
             }
           },
-          "required": ["first", "last"]
+          "required": [
+            "first",
+            "last"
+          ]
         }
       },
-      "required": ["ssn", "dateOfBirth", "name"]
+      "required": [
+        "ssn",
+        "dateOfBirth",
+        "name"
+      ]
     }
   },
-  "required": ["veteran", "dependent"]
+  "required": [
+    "veteran",
+    "dependent"
+  ]
 }
