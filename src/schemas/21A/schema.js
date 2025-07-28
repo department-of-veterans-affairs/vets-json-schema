@@ -83,7 +83,7 @@ const schema = {
           supervisorName: { type: 'string', maxLength: 100 },
           supervisorEmail: { type: 'string', format: 'email', maxLength: 100 },
         },
-        required: ['employerName', 'startDate', 'endDate'],
+        required: ['employerName', 'startDate'],
       },
     },
     education: {
