@@ -253,7 +253,6 @@
           "transferDate",
           "assetTransferredUnderFairMarketValue",
           "fairMarketValue",
-          "saleValue",
           "capitalGainValue"
         ],
         "properties": {
@@ -299,8 +298,7 @@
             "default": 0
           },
           "saleValue": {
-            "type": "number",
-            "default": 0
+            "type": "number"
           },
           "capitalGainValue": {
             "type": "number",

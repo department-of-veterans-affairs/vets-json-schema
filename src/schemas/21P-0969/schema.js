@@ -140,7 +140,6 @@ const schema = {
           'transferDate',
           'assetTransferredUnderFairMarketValue',
           'fairMarketValue',
-          'saleValue',
           'capitalGainValue',
         ],
         properties: {
@@ -158,7 +157,7 @@ const schema = {
           transferDate: schemaHelpers.getDefinition('date'),
           assetTransferredUnderFairMarketValue: definitions.yesNoSchema,
           fairMarketValue: financialNumber,
-          saleValue: financialNumber,
+          saleValue: { type: 'number' }, // This field is ignored in the context
           capitalGainValue: financialNumber,
         },
       },
