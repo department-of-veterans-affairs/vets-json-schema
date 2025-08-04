@@ -448,7 +448,6 @@ const schema = {
           typeOfProgramOrBenefit: {
             type: 'object',
             oneOf: [
-              // Case 1: "other" is true, require otherProgramOrBenefit
               {
                 properties: {
                   typeOfProgramOrBenefit: {
@@ -460,7 +459,6 @@ const schema = {
                 },
                 required: ['otherProgramOrBenefit'],
               },
-              // Case 2: any of ch35, fry, feca is true (other is false), require benefitPaymentDate
               {
                 properties: {
                   typeOfProgramOrBenefit: {
@@ -509,7 +507,6 @@ const schema = {
                   },
                 ],
               },
-              // Case 3: all are false, neither field is required
               {
                 properties: {
                   typeOfProgramOrBenefit: {
