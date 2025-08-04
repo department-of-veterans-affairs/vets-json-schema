@@ -1,7 +1,1179 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "SUPPLEMENTAL CLAIM FOR COMPENSATION (21-686C & 21-674)",
+  "title": "DEPENDENTS MANAGEMENT FORM (21-686C & 21-674)",
   "type": "object",
-  "definitions": {},
-  "properties": {}
+  "definitions": {
+    "fullNameNoSuffix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      }
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"
+    },
+    "genericLocation": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "outsideUsa": {
+              "not": {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "city",
+                "state"
+              ]
+            }
+          },
+          "required": [
+            "location"
+          ]
+        },
+        {
+          "properties": {
+            "outsideUsa": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "city",
+                "country"
+              ]
+            }
+          },
+          "required": [
+            "location"
+          ]
+        }
+      ]
+    },
+    "genericTextInput": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "genericNumberAndDashInput": {
+      "type": "string",
+      "maxLength": 50,
+      "minLength": 4,
+      "pattern": "^[0-9]*[-]*[0-9]*[-]*[0-9]*$"
+    },
+    "currencyInput": {
+      "type": "string",
+      "pattern": "^\\d+(\\.\\d{1,2})?$"
+    },
+    "addressSchema": {
+      "type": "object",
+      "properties": {
+        "isMilitary": {
+          "type": "boolean"
+        },
+        "country": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "street2": {
+          "type": "string"
+        },
+        "street3": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}$"
+        }
+      },
+      "required": [
+        "country",
+        "street",
+        "city",
+        "state",
+        "postalCode"
+      ]
+    }
+  },
+  "properties": {
+    "useV2": {
+      "type": "boolean"
+    },
+    "daysTillExpires": {
+      "type": "integer"
+    },
+    "veteranInformation": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "object",
+          "properties": {
+            "first": {
+              "type": "string"
+            },
+            "middle": {
+              "type": "string"
+            },
+            "last": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "first",
+            "last"
+          ]
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
+        "ssnLastFour": {
+          "type": "string"
+        },
+        "vaFileLastFour": {
+          "type": "string"
+        }
+      }
+    },
+    "veteranContactInformation": {
+      "type": "object",
+      "properties": {
+        "veteranAddress": {
+          "$ref": "#/definitions/addressSchema"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "veteranAddress",
+        "phoneNumber",
+        "emailAddress"
+      ]
+    },
+    "spouseInformation": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullNameNoSuffix"
+        },
+        "ssn": {
+          "type": "string"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        },
+        "isVeteran": {
+          "type": "boolean"
+        },
+        "vaFileNumber": {
+          "type": "string"
+        },
+        "serviceNumber": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fullName",
+        "ssn",
+        "birthDate",
+        "isVeteran"
+      ]
+    },
+    "doesLiveWithSpouse": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "spouseDoesLiveWithVeteran": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            },
+            "spouseIncome": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "spouseIncome",
+            "spouseDoesLiveWithVeteran"
+          ]
+        },
+        {
+          "properties": {
+            "spouseDoesLiveWithVeteran": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            },
+            "spouseIncome": {
+              "type": "string"
+            },
+            "address": {
+              "$ref": "#/definitions/addressSchema"
+            }
+          },
+          "required": [
+            "spouseIncome",
+            "spouseDoesLiveWithVeteran",
+            "address"
+          ]
+        }
+      ]
+    },
+    "currentMarriageInformation": {
+      "type": "object",
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/genericLocation"
+            },
+            {
+              "properties": {
+                "typeOfMarriage": {
+                  "not": {
+                    "type": "string",
+                    "enum": [
+                      "OTHER"
+                    ]
+                  }
+                },
+                "date": {
+                  "$ref": "#/definitions/date"
+                }
+              },
+              "required": [
+                "typeOfMarriage",
+                "location",
+                "date"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/genericLocation"
+            },
+            {
+              "properties": {
+                "typeOfMarriage": {
+                  "type": "string",
+                  "enum": [
+                    "OTHER"
+                  ]
+                },
+                "typeOther": {
+                  "type": "string"
+                },
+                "date": {
+                  "$ref": "#/definitions/date"
+                }
+              },
+              "required": [
+                "typeOfMarriage",
+                "typeOther",
+                "location",
+                "date"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "spouseMarriageHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "properties": {
+              "fullName": {
+                "$ref": "#/definitions/fullNameNoSuffix"
+              },
+              "reasonMarriageEnded": {
+                "not": {
+                  "type": "string",
+                  "enum": [
+                    "Other"
+                  ]
+                }
+              },
+              "otherReasonMarriageEnded": {
+                "type": "string"
+              },
+              "startDate": {
+                "$ref": "#/definitions/date"
+              },
+              "endDate": {
+                "$ref": "#/definitions/date"
+              },
+              "startLocation": {
+                "$ref": "#/definitions/genericLocation"
+              },
+              "endLocation": {
+                "$ref": "#/definitions/genericLocation"
+              }
+            },
+            "required": [
+              "startLocation",
+              "endLocation",
+              "endDate",
+              "startDate",
+              "reasonMarriageEnded",
+              "fullName"
+            ]
+          },
+          {
+            "properties": {
+              "fullName": {
+                "$ref": "#/definitions/fullNameNoSuffix"
+              },
+              "reasonMarriageEnded": {
+                "type": "string",
+                "enum": [
+                  "Other"
+                ]
+              },
+              "otherReasonMarriageEnded": {
+                "type": "string"
+              },
+              "startDate": {
+                "$ref": "#/definitions/date"
+              },
+              "endDate": {
+                "$ref": "#/definitions/date"
+              },
+              "startLocation": {
+                "$ref": "#/definitions/genericLocation"
+              },
+              "endLocation": {
+                "$ref": "#/definitions/genericLocation"
+              }
+            },
+            "required": [
+              "startLocation",
+              "endLocation",
+              "endDate",
+              "startDate",
+              "reasonMarriageEnded",
+              "otherReasonMarriageEnded",
+              "fullName"
+            ]
+          }
+        ]
+      }
+    },
+    "spouseSupportingDocuments": {
+      "$ref": "#/definitions/files"
+    },
+    "childSupportingDocuments": {
+      "$ref": "#/definitions/files"
+    },
+    "householdIncome": {
+      "type": "boolean"
+    },
+    "reportDivorce": {
+      "type": "object",
+      "properties": {
+        "spouseIncome": {
+          "type": "string"
+        },
+        "date": {
+          "$ref": "#/definitions/date"
+        },
+        "divorceLocation": {
+          "$ref": "#/definitions/genericLocation"
+        },
+        "reasonMarriageEnded": {
+          "type": "string"
+        },
+        "explanationOfOther": {
+          "type": "string"
+        },
+        "fullName": {
+          "$ref": "#/definitions/fullNameNoSuffix"
+        },
+        "birthDate": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": [
+        "date",
+        "divorceLocation",
+        "reasonMarriageEnded",
+        "fullName",
+        "birthDate"
+      ]
+    },
+    "childrenToAdd": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "incomeInLastYear": {
+            "type": "string"
+          },
+          "marriageEndDescription": {
+            "type": "string"
+          },
+          "marriageEndDate": {
+            "$ref": "#/definitions/date"
+          },
+          "marriageEndReason": {
+            "type": "string"
+          },
+          "doesChildLiveWithYou": {
+            "type": "boolean"
+          },
+          "hasChildEverBeenMarried": {
+            "type": "boolean"
+          },
+          "doesChildHaveDisability": {
+            "type": "boolean"
+          },
+          "isBiologicalChildOfSpouse": {
+            "type": "boolean"
+          },
+          "dateEnteredHousehold": {
+            "$ref": "#/definitions/date"
+          },
+          "biologicalParentName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "biologicalParentSsn": {
+            "type": "string"
+          },
+          "biologicalParentDob": {
+            "$ref": "#/definitions/date"
+          },
+          "relationshipToChild": {
+            "type": "object",
+            "properties": {
+              "adopted": {
+                "type": "boolean"
+              },
+              "stepchild": {
+                "type": "boolean"
+              }
+            }
+          },
+          "isBiologicalChild": {
+            "type": "boolean"
+          },
+          "birthLocation": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "postalCode": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "city"
+                ]
+              }
+            },
+            "required": [
+              "location"
+            ]
+          },
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "ssn": {
+            "type": "string"
+          },
+          "birthDate": {
+            "$ref": "#/definitions/date"
+          }
+        },
+        "required": [
+          "incomeInLastYear",
+          "marriageEndDescription",
+          "marriageEndDate",
+          "marriageEndReason",
+          "doesChildLiveWithYou",
+          "hasChildEverBeenMarried",
+          "doesChildHaveDisability",
+          "isBiologicalChildOfSpouse",
+          "dateEnteredHousehold",
+          "biologicalParentName",
+          "biologicalParentSsn",
+          "biologicalParentDob",
+          "relationshipToChild",
+          "isBiologicalChild",
+          "birthLocation",
+          "ssn",
+          "fullName",
+          "birthDate"
+        ]
+      }
+    },
+    "studentInformation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "birthDate": {
+            "$ref": "#/definitions/date"
+          },
+          "ssn": {
+            "$ref": "#/definitions/ssn"
+          },
+          "isParent": {
+            "type": "boolean"
+          },
+          "studentIncome": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/definitions/addressSchema"
+          },
+          "wasMarried": {
+            "oneOf": [
+              {
+                "type": "boolean",
+                "enum": [
+                  true
+                ],
+                "required": [
+                  "wasMarried",
+                  "marriageDate"
+                ]
+              },
+              {
+                "type": "boolean",
+                "enum": [
+                  false
+                ],
+                "required": [
+                  "wasMarried"
+                ]
+              }
+            ]
+          },
+          "marriageDate": {
+            "$ref": "#/definitions/date"
+          },
+          "typeOfProgramOrBenefit": {
+            "type": "object",
+            "oneOf": [
+              {
+                "properties": {
+                  "typeOfProgramOrBenefit": {
+                    "type": "object",
+                    "properties": {
+                      "other": {
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ]
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "otherProgramOrBenefit"
+                ]
+              },
+              {
+                "properties": {
+                  "typeOfProgramOrBenefit": {
+                    "type": "object",
+                    "properties": {
+                      "other": {
+                        "type": "boolean",
+                        "enum": [
+                          false
+                        ]
+                      }
+                    }
+                  }
+                },
+                "anyOf": [
+                  {
+                    "properties": {
+                      "typeOfProgramOrBenefit": {
+                        "type": "object",
+                        "properties": {
+                          "other": {
+                            "type": "boolean",
+                            "enum": [
+                              true
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "benefitPaymentDate"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "typeOfProgramOrBenefit": {
+                        "type": "object",
+                        "properties": {
+                          "ch35": {
+                            "type": "boolean",
+                            "enum": [
+                              true
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "benefitPaymentDate"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "typeOfProgramOrBenefit": {
+                        "type": "object",
+                        "properties": {
+                          "fry": {
+                            "type": "boolean",
+                            "enum": [
+                              true
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "benefitPaymentDate"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "typeOfProgramOrBenefit": {
+                        "type": "object",
+                        "properties": {
+                          "feca": {
+                            "type": "boolean",
+                            "enum": [
+                              true
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "benefitPaymentDate"
+                    ]
+                  }
+                ]
+              },
+              {
+                "properties": {
+                  "typeOfProgramOrBenefit": {
+                    "type": "object",
+                    "properties": {
+                      "ch35": {
+                        "type": "boolean",
+                        "enum": [
+                          false
+                        ]
+                      },
+                      "fry": {
+                        "type": "boolean",
+                        "enum": [
+                          false
+                        ]
+                      },
+                      "feca": {
+                        "type": "boolean",
+                        "enum": [
+                          false
+                        ]
+                      },
+                      "other": {
+                        "type": "boolean",
+                        "enum": [
+                          false
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "otherProgramOrBenefit": {
+            "type": "string"
+          },
+          "tuitionIsPaidByGovAgency": {
+            "type": "boolean"
+          },
+          "benefitPaymentDate": {
+            "$ref": "#/definitions/date"
+          },
+          "schoolInformation": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "studentIsEnrolledFullTime": {
+                "type": "boolean"
+              },
+              "dateFullTimeEnded": {
+                "$ref": "#/definitions/date"
+              },
+              "isSchoolAccredited": {
+                "type": "boolean"
+              },
+              "currentTermDates": {
+                "type": "object",
+                "properties": {
+                  "officialSchoolStartDate": {
+                    "$ref": "#/definitions/date"
+                  },
+                  "expectedStudentStartDate": {
+                    "$ref": "#/definitions/date"
+                  },
+                  "expectedGraduationDate": {
+                    "$ref": "#/definitions/date"
+                  }
+                },
+                "required": [
+                  "officialSchoolStartDate",
+                  "expectedStudentStartDate",
+                  "expectedGraduationDate"
+                ]
+              },
+              "studentDidAttendSchoolLastTerm": {
+                "type": "boolean"
+              },
+              "lastTermSchoolInformation": {
+                "type": "object",
+                "properties": {
+                  "termBegin": {
+                    "type": "string"
+                  },
+                  "dateTermEnded": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "name",
+              "studentIsEnrolledFullTime",
+              "studentDidAttendSchoolLastTerm",
+              "currentTermDates",
+              "isSchoolAccredited"
+            ],
+            "oneOf": [
+              {
+                "properties": {
+                  "studentDidAttendSchoolLastTerm": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  },
+                  "lastTermSchoolInformation": {
+                    "type": "object",
+                    "required": [
+                      "termBegin",
+                      "dateTermEnded"
+                    ]
+                  }
+                },
+                "required": [
+                  "studentDidAttendSchoolLastTerm",
+                  "lastTermSchoolInformation"
+                ]
+              },
+              {
+                "properties": {
+                  "studentDidAttendSchoolLastTerm": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  }
+                },
+                "required": [
+                  "studentDidAttendSchoolLastTerm"
+                ]
+              }
+            ]
+          },
+          "claimsOrReceivesPension": {
+            "type": "boolean"
+          },
+          "studentNetworthInformation": {
+            "type": "object",
+            "properties": {
+              "savings": {
+                "type": "string"
+              },
+              "securities": {
+                "type": "string"
+              },
+              "realEstate": {
+                "type": "string"
+              },
+              "otherAssets": {
+                "type": "string"
+              },
+              "totalValue": {
+                "type": "string"
+              }
+            }
+          },
+          "studentExpectedEarningsNextYear": {
+            "type": "object",
+            "properties": {
+              "earningsFromAllEmployment": {
+                "type": "string"
+              },
+              "annualSocialSecurityPayments": {
+                "type": "string"
+              },
+              "otherAnnuitiesIncome": {
+                "type": "string"
+              },
+              "allOtherIncome": {
+                "type": "string"
+              }
+            }
+          },
+          "studentEarningsFromSchoolYear": {
+            "type": "object",
+            "properties": {
+              "earningsFromAllEmployment": {
+                "type": "string"
+              },
+              "annualSocialSecurityPayments": {
+                "type": "string"
+              },
+              "otherAnnuitiesIncome": {
+                "type": "string"
+              },
+              "allOtherIncome": {
+                "type": "string"
+              }
+            }
+          },
+          "remarks": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fullName",
+          "birthDate",
+          "ssn",
+          "isParent",
+          "address",
+          "wasMarried",
+          "tuitionIsPaidByGovAgency",
+          "schoolInformation",
+          "claimsOrReceivesPension",
+          "typeOfProgramOrBenefit",
+          "otherProgramOrBenefit",
+          "benefitPaymentDate"
+        ]
+      }
+    },
+    "veteranMarriageHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "endLocation": {
+            "$ref": "#/definitions/genericLocation"
+          },
+          "startLocation": {
+            "$ref": "#/definitions/genericLocation"
+          },
+          "endDate": {
+            "$ref": "#/definitions/date"
+          },
+          "startDate": {
+            "$ref": "#/definitions/date"
+          },
+          "reasonMarriageEnded": {
+            "type": "string"
+          },
+          "otherReasonMarriageEnded": {
+            "type": "string"
+          },
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          }
+        },
+        "required": [
+          "endLocation",
+          "startLocation",
+          "endDate",
+          "startDate",
+          "reasonMarriageEnded",
+          "fullName"
+        ]
+      }
+    },
+    "stepChildren": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "whoDoesTheStepchildLiveWith": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "string"
+              },
+              "last": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "first",
+              "last"
+            ]
+          },
+          "address": {
+            "$ref": "#/definitions/addressSchema"
+          },
+          "livingExpensesPaid": {
+            "type": "string"
+          },
+          "supportingStepchild": {
+            "type": "boolean"
+          },
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "ssn": {
+            "type": "string"
+          },
+          "birthDate": {
+            "$ref": "#/definitions/date"
+          }
+        },
+        "required": [
+          "whoDoesTheStepchildLiveWith",
+          "address",
+          "livingExpensesPaid",
+          "supportingStepchild",
+          "fullName",
+          "ssn",
+          "birthDate"
+        ]
+      }
+    },
+    "deaths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dependentDeathLocation": {
+            "$ref": "#/definitions/genericLocation"
+          },
+          "deceasedDependentIncome": {
+            "type": "string"
+          },
+          "dependentDeathDate": {
+            "$ref": "#/definitions/date"
+          },
+          "dependentType": {
+            "type": "string"
+          },
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "ssn": {
+            "type": "string"
+          },
+          "birthDate": {
+            "$ref": "#/definitions/date"
+          }
+        },
+        "required": [
+          "dependentDeathLocation",
+          "deceasedDependentIncome",
+          "dependentDeathDate",
+          "dependentType",
+          "fullName",
+          "ssn",
+          "birthDate"
+        ]
+      }
+    },
+    "childMarriage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dependentIncome": {
+            "type": "string"
+          },
+          "dateMarried": {
+            "$ref": "#/definitions/date"
+          },
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "ssn": {
+            "$ref": "#/definitions/ssn"
+          },
+          "birthDate": {
+            "$ref": "#/definitions/date"
+          }
+        },
+        "required": [
+          "dateMarried",
+          "fullName",
+          "ssn",
+          "birthDate"
+        ]
+      }
+    },
+    "childStoppedAttendingSchool": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dependentIncome": {
+            "type": "string"
+          },
+          "dateChildLeftSchool": {
+            "$ref": "#/definitions/date"
+          },
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "ssn": {
+            "$ref": "#/definitions/ssn"
+          },
+          "birthDate": {
+            "$ref": "#/definitions/date"
+          }
+        },
+        "required": [
+          "dateChildLeftSchool",
+          "fullName",
+          "ssn",
+          "birthDate"
+        ]
+      }
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
+    },
+    "statementOfTruthCertified": {
+      "type": "boolean"
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean"
+    }
+  }
 }

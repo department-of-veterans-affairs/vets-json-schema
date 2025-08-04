@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
 import pick from 'lodash/pick';
-import { countries, states } from '../../common/constants';
+// import { countries, states } from '../../common/constants';
 import commonDefinitions from '../../common/definitions';
 
 // patterns
@@ -10,9 +10,9 @@ const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
 const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
 
 // filter out military states
-const militaryStates = ['AA', 'AE', 'AP'];
-const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
-const nameRegex = '^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$';
+// const militaryStates = ['AA', 'AE', 'AP'];
+// const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
+// const nameRegex = '^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$';
 
 let definitions = cloneDeep(commonDefinitions);
 definitions = pick(definitions, 'fullNameNoSuffix', 'phone', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
@@ -179,13 +179,12 @@ const schema = {
           properties: {
             spouseDoesLiveWithVeteran: { type: 'boolean', enum: [true] },
             spouseIncome: { type: 'string' },
-            address: { $ref: '#/definitions/addressSchema' },
           },
           required: ['spouseIncome', 'spouseDoesLiveWithVeteran'],
         },
         {
           properties: {
-            spouseDoesLiveWithVeteran: { not: { type: 'boolean', enum: [true] } },
+            spouseDoesLiveWithVeteran: { type: 'boolean', enum: [false] },
             spouseIncome: { type: 'string' },
             address: { $ref: '#/definitions/addressSchema' },
           },
@@ -363,10 +362,10 @@ const schema = {
             },
             required: ['location'],
           },
-          ssn: { type: 'string' },
           fullName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
+          ssn: { type: 'string' },
           birthDate: {
             $ref: '#/definitions/date',
           },
@@ -394,11 +393,181 @@ const schema = {
       },
     },
 
+    // Student information section: COMPLETE
+
     studentInformation: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
+          fullName: {
+            $ref: '#/definitions/fullNameNoSuffix',
+          },
+          birthDate: {
+            $ref: '#/definitions/date',
+          },
+          ssn: { $ref: '#/definitions/ssn' },
+          isParent: { type: 'boolean' },
+          studentIncome: { type: 'string' },
+          address: {
+            $ref: '#/definitions/addressSchema',
+          },
+          wasMarried: {
+            oneOf: [
+              {
+                type: 'boolean',
+                enum: [true],
+                required: ['wasMarried', 'marriageDate'],
+              },
+              {
+                type: 'boolean',
+                enum: [false],
+                required: ['wasMarried'],
+              },
+            ],
+          },
+          marriageDate: { $ref: '#/definitions/date' },
+          typeOfProgramOrBenefit: {
+            type: 'object',
+            oneOf: [
+              // Case 1: "other" is true, require otherProgramOrBenefit
+              {
+                properties: {
+                  typeOfProgramOrBenefit: {
+                    type: 'object',
+                    properties: {
+                      other: { type: 'boolean', enum: [true] },
+                    },
+                  },
+                },
+                required: ['otherProgramOrBenefit'],
+              },
+              // Case 2: any of ch35, fry, feca is true (other is false), require benefitPaymentDate
+              {
+                properties: {
+                  typeOfProgramOrBenefit: {
+                    type: 'object',
+                    properties: {
+                      other: { type: 'boolean', enum: [false] },
+                    },
+                  },
+                },
+                anyOf: [
+                  {
+                    properties: {
+                      typeOfProgramOrBenefit: {
+                        type: 'object',
+                        properties: { other: { type: 'boolean', enum: [true] } },
+                      },
+                    },
+                    required: ['benefitPaymentDate'],
+                  },
+                  {
+                    properties: {
+                      typeOfProgramOrBenefit: {
+                        type: 'object',
+                        properties: { ch35: { type: 'boolean', enum: [true] } },
+                      },
+                    },
+                    required: ['benefitPaymentDate'],
+                  },
+                  {
+                    properties: {
+                      typeOfProgramOrBenefit: {
+                        type: 'object',
+                        properties: { fry: { type: 'boolean', enum: [true] } },
+                      },
+                    },
+                    required: ['benefitPaymentDate'],
+                  },
+                  {
+                    properties: {
+                      typeOfProgramOrBenefit: {
+                        type: 'object',
+                        properties: { feca: { type: 'boolean', enum: [true] } },
+                      },
+                    },
+                    required: ['benefitPaymentDate'],
+                  },
+                ],
+              },
+              // Case 3: all are false, neither field is required
+              {
+                properties: {
+                  typeOfProgramOrBenefit: {
+                    type: 'object',
+                    properties: {
+                      ch35: { type: 'boolean', enum: [false] },
+                      fry: { type: 'boolean', enum: [false] },
+                      feca: { type: 'boolean', enum: [false] },
+                      other: { type: 'boolean', enum: [false] },
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          otherProgramOrBenefit: {
+            type: 'string',
+          },
+          tuitionIsPaidByGovAgency: { type: 'boolean' },
+          benefitPaymentDate: {
+            $ref: '#/definitions/date',
+          },
+          schoolInformation: {
+            type: 'object',
+            properties: {
+              name: { type: 'string' },
+              studentIsEnrolledFullTime: {
+                type: 'boolean',
+              },
+              dateFullTimeEnded: { $ref: '#/definitions/date' },
+              isSchoolAccredited: { type: 'boolean' },
+              currentTermDates: {
+                type: 'object',
+                properties: {
+                  officialSchoolStartDate: { $ref: '#/definitions/date' },
+                  expectedStudentStartDate: { $ref: '#/definitions/date' },
+                  expectedGraduationDate: { $ref: '#/definitions/date' },
+                },
+                required: ['officialSchoolStartDate', 'expectedStudentStartDate', 'expectedGraduationDate'],
+              },
+              studentDidAttendSchoolLastTerm: { type: 'boolean' },
+              lastTermSchoolInformation: {
+                type: 'object',
+                properties: {
+                  termBegin: { type: 'string' },
+                  dateTermEnded: { type: 'string' },
+                },
+              },
+            },
+            required: [
+              'name',
+              'studentIsEnrolledFullTime',
+              'studentDidAttendSchoolLastTerm',
+              'currentTermDates',
+              'isSchoolAccredited',
+            ],
+            oneOf: [
+              {
+                properties: {
+                  studentDidAttendSchoolLastTerm: { type: 'boolean', enum: [true] },
+                  lastTermSchoolInformation: {
+                    type: 'object',
+                    required: ['termBegin', 'dateTermEnded'],
+                  },
+                },
+                required: ['studentDidAttendSchoolLastTerm', 'lastTermSchoolInformation'],
+              },
+              {
+                properties: {
+                  studentDidAttendSchoolLastTerm: { type: 'boolean', enum: [false] },
+                },
+                required: ['studentDidAttendSchoolLastTerm'],
+              },
+            ],
+          },
+          claimsOrReceivesPension: { type: 'boolean' },
           studentNetworthInformation: {
             type: 'object',
             properties: {
@@ -408,7 +577,6 @@ const schema = {
               otherAssets: { type: 'string' },
               totalValue: { type: 'string' },
             },
-            required: ['savings', 'securities', 'realEstate', 'otherAssets', 'totalValue'],
           },
           studentExpectedEarningsNextYear: {
             type: 'object',
@@ -418,12 +586,6 @@ const schema = {
               otherAnnuitiesIncome: { type: 'string' },
               allOtherIncome: { type: 'string' },
             },
-            required: [
-              'earningsFromAllEmployment',
-              'annualSocialSecurityPayments',
-              'otherAnnuitiesIncome',
-              'allOtherIncome',
-            ],
           },
           studentEarningsFromSchoolYear: {
             type: 'object',
@@ -433,99 +595,23 @@ const schema = {
               otherAnnuitiesIncome: { type: 'string' },
               allOtherIncome: { type: 'string' },
             },
-            required: [
-              'earningsFromAllEmployment',
-              'annualSocialSecurityPayments',
-              'otherAnnuitiesIncome',
-              'allOtherIncome',
-            ],
           },
-          claimsOrReceivesPension: { type: 'boolean' },
-          schoolInformation: {
-            type: 'object',
-            properties: {
-              studentDidAttendSchoolLastTerm: { type: 'boolean' },
-              dateFullTimeEnded: {
-                $ref: '#/definitions/date',
-              },
-              studentIsEnrolledFullTime: { type: 'boolean' },
-              currentTermDates: {
-                type: 'object',
-                properties: {
-                  officialSchoolStartDate: {
-                    $ref: '#/definitions/date',
-                  },
-                  expectedStudentStartDate: {
-                    $ref: '#/definitions/date',
-                  },
-                  expectedGraduationDate: {
-                    $ref: '#/definitions/date',
-                  },
-                },
-                required: ['officialSchoolStartDate', 'expectedStudentStartDate', 'expectedGraduationDate'],
-              },
-              isSchoolAccredited: { type: 'boolean' },
-              name: { type: 'string' },
-            },
-            required: [
-              'studentDidAttendSchoolLastTerm',
-              'dateFullTimeEnded',
-              'studentIsEnrolledFullTime',
-              'currentTermDates',
-              'isSchoolAccredited',
-              'name',
-            ],
-          },
-          typeOfProgramOrBenefit: {
-            type: 'object',
-            properties: {
-              ch35: { type: 'boolean' },
-              fry: { type: 'boolean' },
-              feca: { type: 'boolean' },
-              other: { type: 'boolean' },
-            },
-          },
-          otherProgramOrBenefit: { type: 'string' },
-          tuitionIsPaidByGovAgency: { type: 'boolean' },
-          ssn: { type: 'string' },
-          isParent: { type: 'boolean' },
-          wasMarried: { type: 'boolean' },
-          address: {
-            $ref: '#/definitions/addressSchema',
-          },
+
           remarks: { type: 'string' },
-          benefitPaymentDate: {
-            $ref: '#/definitions/date',
-          },
-          marriageDate: {
-            $ref: '#/definitions/date',
-          },
-          studentIncome: { type: 'string' },
-          fullName: {
-            $ref: '#/definitions/fullNameNoSuffix',
-          },
-          birthDate: {
-            $ref: '#/definitions/date',
-          },
         },
         required: [
-          'studentNetworthInformation',
-          'studentExpectedEarningsNextYear',
-          'studentEarningsFromSchoolYear',
-          'claimsOrReceivesPension',
-          'schoolInformation',
-          'typeOfProgramOrBenefit',
-          'otherProgramOrBenefit',
-          'tuitionIsPaidByGovAgency',
-          'ssn',
-          'isParent',
-          'wasMarried',
-          'address',
-          'remarks',
-          'benefitPaymentDate',
-          'studentIncome',
           'fullName',
           'birthDate',
+          'ssn',
+          'isParent',
+          'address',
+          'wasMarried',
+          'tuitionIsPaidByGovAgency',
+          'schoolInformation',
+          'claimsOrReceivesPension',
+          'typeOfProgramOrBenefit',
+          'otherProgramOrBenefit',
+          'benefitPaymentDate',
         ],
       },
     },
@@ -628,6 +714,8 @@ const schema = {
       },
     },
 
+    // Remove married child section: COMPLETE
+
     childMarriage: {
       type: 'array',
       items: {
@@ -640,14 +728,16 @@ const schema = {
           fullName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
-          ssn: { type: 'string' },
+          ssn: { $ref: '#/definitions/ssn' },
           birthDate: {
             $ref: '#/definitions/date',
           },
         },
-        required: ['dependentIncome', 'dateMarried', 'fullName', 'ssn', 'birthDate'],
+        required: ['dateMarried', 'fullName', 'ssn', 'birthDate'],
       },
     },
+
+    // Remove child not in school section: COMPLETE
 
     childStoppedAttendingSchool: {
       type: 'array',
@@ -661,12 +751,12 @@ const schema = {
           fullName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
-          ssn: { type: 'string' },
+          ssn: { $ref: '#/definitions/ssn' },
           birthDate: {
             $ref: '#/definitions/date',
           },
         },
-        required: ['dependentIncome', 'dateChildLeftSchool', 'fullName', 'ssn', 'birthDate'],
+        required: ['dateChildLeftSchool', 'fullName', 'ssn', 'birthDate'],
       },
     },
 
@@ -675,28 +765,26 @@ const schema = {
 
     privacyAgreementAccepted: { type: 'boolean' },
   },
-  required: [
-    'spouseSupportingDocuments',
-    'childSupportingDocuments',
-    'householdIncome',
-    'reportDivorce',
-    'currentMarriageInformation',
-    'doesLiveWithSpouse',
-    'spouseInformation',
-    'veteranContactInformation',
-    'spouseMarriageHistory',
-    'childrenToAdd',
-    'studentInformation',
-    'veteranMarriageHistory',
-    'stepChildren',
-    'deaths',
-    'childMarriage',
-    'childStoppedAttendingSchool',
-    'statementOfTruthSignature',
-    'statementOfTruthCertified',
-    'veteranInformation',
-    'privacyAgreementAccepted',
-  ],
+  // required: [
+  //   'spouseSupportingDocuments',
+  //   'childSupportingDocuments',
+  //   'reportDivorce',
+  //   'currentMarriageInformation',
+  //   'doesLiveWithSpouse',
+  //   'spouseInformation',
+  //   'veteranContactInformation',
+  //   'spouseMarriageHistory',
+  //   'childrenToAdd',
+  //   'studentInformation',
+  //   'veteranMarriageHistory',
+  //   'stepChildren',
+  //   'deaths',
+  //   'childMarriage',
+  //   'statementOfTruthSignature',
+  //   'statementOfTruthCertified',
+  //   'veteranInformation',
+  //   'privacyAgreementAccepted',
+  // ],
 };
 
 export default schema;
