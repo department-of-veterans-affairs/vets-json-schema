@@ -377,93 +377,137 @@
       "type": "array",
       "items": {
         "type": "object",
+        "properties": {
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          },
+          "reasonMarriageEnded": {
+            "type": "string"
+          },
+          "otherReasonMarriageEnded": {
+            "type": "string"
+          },
+          "startDate": {
+            "$ref": "#/definitions/date"
+          },
+          "endDate": {
+            "$ref": "#/definitions/date"
+          },
+          "startLocation": {
+            "$ref": "#/definitions/genericLocation"
+          },
+          "endLocation": {
+            "$ref": "#/definitions/genericLocation"
+          }
+        },
+        "required": [
+          "startLocation",
+          "endLocation",
+          "endDate",
+          "startDate",
+          "reasonMarriageEnded",
+          "fullName"
+        ],
         "oneOf": [
           {
             "properties": {
-              "fullName": {
-                "$ref": "#/definitions/fullNameNoSuffix"
-              },
-              "reasonMarriageEnded": {
-                "not": {
-                  "type": "string",
-                  "enum": [
-                    "Other"
-                  ]
-                }
-              },
-              "otherReasonMarriageEnded": {
-                "type": "string"
-              },
-              "startDate": {
-                "$ref": "#/definitions/date"
-              },
-              "endDate": {
-                "$ref": "#/definitions/date"
-              },
-              "startLocation": {
-                "$ref": "#/definitions/genericLocation"
-              },
-              "endLocation": {
-                "$ref": "#/definitions/genericLocation"
-              }
-            },
-            "required": [
-              "startLocation",
-              "endLocation",
-              "endDate",
-              "startDate",
-              "reasonMarriageEnded",
-              "fullName"
-            ]
-          },
-          {
-            "properties": {
-              "fullName": {
-                "$ref": "#/definitions/fullNameNoSuffix"
-              },
               "reasonMarriageEnded": {
                 "type": "string",
                 "enum": [
                   "Other"
                 ]
-              },
-              "otherReasonMarriageEnded": {
-                "type": "string"
-              },
-              "startDate": {
-                "$ref": "#/definitions/date"
-              },
-              "endDate": {
-                "$ref": "#/definitions/date"
-              },
-              "startLocation": {
-                "$ref": "#/definitions/genericLocation"
-              },
-              "endLocation": {
-                "$ref": "#/definitions/genericLocation"
               }
             },
             "required": [
-              "startLocation",
-              "endLocation",
-              "endDate",
-              "startDate",
               "reasonMarriageEnded",
-              "otherReasonMarriageEnded",
-              "fullName"
+              "otherReasonMarriageEnded"
+            ]
+          },
+          {
+            "properties": {
+              "reasonMarriageEnded": {
+                "type": "string",
+                "enum": [
+                  "Death",
+                  "Divorce",
+                  "Annulment"
+                ]
+              }
+            },
+            "required": [
+              "reasonMarriageEnded"
             ]
           }
         ]
       }
     },
-    "spouseSupportingDocuments": {
-      "$ref": "#/definitions/files"
-    },
-    "childSupportingDocuments": {
-      "$ref": "#/definitions/files"
-    },
-    "householdIncome": {
-      "type": "boolean"
+    "veteranMarriageHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "endLocation": {
+            "$ref": "#/definitions/genericLocation"
+          },
+          "startLocation": {
+            "$ref": "#/definitions/genericLocation"
+          },
+          "endDate": {
+            "$ref": "#/definitions/date"
+          },
+          "startDate": {
+            "$ref": "#/definitions/date"
+          },
+          "reasonMarriageEnded": {
+            "type": "string"
+          },
+          "otherReasonMarriageEnded": {
+            "type": "string"
+          },
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
+          }
+        },
+        "required": [
+          "endLocation",
+          "startLocation",
+          "endDate",
+          "startDate",
+          "reasonMarriageEnded",
+          "fullName"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "reasonMarriageEnded": {
+                "type": "string",
+                "enum": [
+                  "Other"
+                ]
+              }
+            },
+            "required": [
+              "reasonMarriageEnded",
+              "otherReasonMarriageEnded"
+            ]
+          },
+          {
+            "properties": {
+              "reasonMarriageEnded": {
+                "type": "string",
+                "enum": [
+                  "Death",
+                  "Divorce",
+                  "Annulment"
+                ]
+              }
+            },
+            "required": [
+              "reasonMarriageEnded"
+            ]
+          }
+        ]
+      }
     },
     "reportDivorce": {
       "type": "object",
@@ -496,6 +540,37 @@
         "reasonMarriageEnded",
         "fullName",
         "birthDate"
+      ],
+      "oneOf": [
+        {
+          "properties": {
+            "reasonMarriageEnded": {
+              "type": "string",
+              "enum": [
+                "Other"
+              ]
+            }
+          },
+          "required": [
+            "reasonMarriageEnded",
+            "explanationOfOther"
+          ]
+        },
+        {
+          "properties": {
+            "reasonMarriageEnded": {
+              "type": "string",
+              "enum": [
+                "Death",
+                "Divorce",
+                "Annulment"
+              ]
+            }
+          },
+          "required": [
+            "reasonMarriageEnded"
+          ]
+        }
       ]
     },
     "childrenToAdd": {
@@ -983,43 +1058,6 @@
         ]
       }
     },
-    "veteranMarriageHistory": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "endLocation": {
-            "$ref": "#/definitions/genericLocation"
-          },
-          "startLocation": {
-            "$ref": "#/definitions/genericLocation"
-          },
-          "endDate": {
-            "$ref": "#/definitions/date"
-          },
-          "startDate": {
-            "$ref": "#/definitions/date"
-          },
-          "reasonMarriageEnded": {
-            "type": "string"
-          },
-          "otherReasonMarriageEnded": {
-            "type": "string"
-          },
-          "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
-          }
-        },
-        "required": [
-          "endLocation",
-          "startLocation",
-          "endDate",
-          "startDate",
-          "reasonMarriageEnded",
-          "fullName"
-        ]
-      }
-    },
     "stepChildren": {
       "type": "array",
       "items": {
@@ -1062,11 +1100,39 @@
         "required": [
           "whoDoesTheStepchildLiveWith",
           "address",
-          "livingExpensesPaid",
           "supportingStepchild",
           "fullName",
           "ssn",
           "birthDate"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "supportingStepchild": {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            },
+            "required": [
+              "supportingStepchild",
+              "livingExpensesPaid"
+            ]
+          },
+          {
+            "properties": {
+              "supportingStepchild": {
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            },
+            "required": [
+              "supportingStepchild"
+            ]
+          }
         ]
       }
     },
@@ -1087,6 +1153,17 @@
           "dependentType": {
             "type": "string"
           },
+          "childStatus": {
+            "type": "object",
+            "properties": {
+              "childUnder18": {
+                "type": "boolean"
+              },
+              "stepChild": {
+                "type": "boolean"
+              }
+            }
+          },
           "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
@@ -1099,12 +1176,37 @@
         },
         "required": [
           "dependentDeathLocation",
-          "deceasedDependentIncome",
           "dependentDeathDate",
           "dependentType",
           "fullName",
           "ssn",
           "birthDate"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "dependentType": {
+                "type": "string",
+                "enum": [
+                  "CHILD"
+                ]
+              }
+            },
+            "required": [
+              "dependentType",
+              "childStatus"
+            ]
+          },
+          {
+            "properties": {
+              "dependentType": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "dependentType"
+            ]
+          }
         ]
       }
     },
@@ -1165,6 +1267,15 @@
           "birthDate"
         ]
       }
+    },
+    "spouseSupportingDocuments": {
+      "$ref": "#/definitions/files"
+    },
+    "childSupportingDocuments": {
+      "$ref": "#/definitions/files"
+    },
+    "householdIncome": {
+      "type": "boolean"
     },
     "statementOfTruthSignature": {
       "type": "string"

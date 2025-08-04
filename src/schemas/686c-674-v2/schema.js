@@ -232,87 +232,105 @@ const schema = {
       ],
     },
 
+    // Spouse marriage history section: COMPLETE
+
     spouseMarriageHistory: {
       type: 'array',
       items: {
         type: 'object',
+        properties: {
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          reasonMarriageEnded: { type: 'string' },
+          otherReasonMarriageEnded: { type: 'string' },
+          startDate: { $ref: '#/definitions/date' },
+          endDate: { $ref: '#/definitions/date' },
+          startLocation: { $ref: '#/definitions/genericLocation' },
+          endLocation: { $ref: '#/definitions/genericLocation' },
+        },
+        required: ['startLocation', 'endLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
         oneOf: [
           {
             properties: {
-              fullName: { $ref: '#/definitions/fullNameNoSuffix' },
-              reasonMarriageEnded: {
-                not: {
-                  type: 'string',
-                  enum: ['Other'],
-                },
-              },
-              otherReasonMarriageEnded: { type: 'string' },
-
-              startDate: { $ref: '#/definitions/date' },
-              endDate: { $ref: '#/definitions/date' },
-              startLocation: { $ref: '#/definitions/genericLocation' },
-              endLocation: { $ref: '#/definitions/genericLocation' },
+              reasonMarriageEnded: { type: 'string', enum: ['Other'] },
             },
-            required: ['startLocation', 'endLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
+            required: ['reasonMarriageEnded', 'otherReasonMarriageEnded'],
           },
           {
             properties: {
-              fullName: { $ref: '#/definitions/fullNameNoSuffix' },
-              reasonMarriageEnded: { type: 'string', enum: ['Other'] },
-              otherReasonMarriageEnded: { type: 'string' },
-
-              startDate: { $ref: '#/definitions/date' },
-              endDate: { $ref: '#/definitions/date' },
-              startLocation: { $ref: '#/definitions/genericLocation' },
-              endLocation: { $ref: '#/definitions/genericLocation' },
+              reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
             },
-            required: [
-              'startLocation',
-              'endLocation',
-              'endDate',
-              'startDate',
-              'reasonMarriageEnded',
-              'otherReasonMarriageEnded',
-              'fullName',
-            ],
+            required: ['reasonMarriageEnded'],
           },
         ],
       },
     },
 
-    spouseSupportingDocuments: {
-      $ref: '#/definitions/files',
+    // Veteran marriage history section: COMPLETE
+
+    veteranMarriageHistory: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          endLocation: { $ref: '#/definitions/genericLocation' },
+          startLocation: { $ref: '#/definitions/genericLocation' },
+          endDate: { $ref: '#/definitions/date' },
+          startDate: { $ref: '#/definitions/date' },
+          reasonMarriageEnded: { type: 'string' },
+          otherReasonMarriageEnded: { type: 'string' },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        },
+        required: ['endLocation', 'startLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
+        oneOf: [
+          {
+            properties: {
+              reasonMarriageEnded: { type: 'string', enum: ['Other'] },
+            },
+            required: ['reasonMarriageEnded', 'otherReasonMarriageEnded'],
+          },
+          {
+            properties: {
+              reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
+            },
+            required: ['reasonMarriageEnded'],
+          },
+        ],
+      },
     },
-    childSupportingDocuments: {
-      $ref: '#/definitions/files',
-    },
-    householdIncome: { type: 'boolean' },
+
+    // Remove divorced: COMPLETE
 
     reportDivorce: {
       type: 'object',
       properties: {
-        spouseIncome: {
-          type: 'string',
-        },
-        date: {
-          $ref: '#/definitions/date',
-        },
-        divorceLocation: {
-          $ref: '#/definitions/genericLocation',
-        },
+        spouseIncome: { type: 'string' },
+        date: { $ref: '#/definitions/date' },
+        divorceLocation: { $ref: '#/definitions/genericLocation' },
         reasonMarriageEnded: { type: 'string' },
         explanationOfOther: { type: 'string' },
-        fullName: {
-          $ref: '#/definitions/fullNameNoSuffix',
-        },
-        birthDate: {
-          $ref: '#/definitions/date',
-        },
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        birthDate: { $ref: '#/definitions/date' },
       },
       required: ['date', 'divorceLocation', 'reasonMarriageEnded', 'fullName', 'birthDate'],
+      oneOf: [
+        {
+          properties: {
+            reasonMarriageEnded: { type: 'string', enum: ['Other'] },
+          },
+          required: ['reasonMarriageEnded', 'explanationOfOther'],
+        },
+        {
+          properties: {
+            reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
+          },
+          required: ['reasonMarriageEnded'],
+        },
+      ],
     },
 
     // **** pick it up here ****
+
+    // Add children section: WIP
 
     childrenToAdd: {
       type: 'array',
@@ -616,32 +634,7 @@ const schema = {
       },
     },
 
-    veteranMarriageHistory: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          endLocation: {
-            $ref: '#/definitions/genericLocation',
-          },
-          startLocation: {
-            $ref: '#/definitions/genericLocation',
-          },
-          endDate: {
-            $ref: '#/definitions/date',
-          },
-          startDate: {
-            $ref: '#/definitions/date',
-          },
-          reasonMarriageEnded: { type: 'string' },
-          otherReasonMarriageEnded: { type: 'string' },
-          fullName: {
-            $ref: '#/definitions/fullNameNoSuffix',
-          },
-        },
-        required: ['endLocation', 'startLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
-      },
-    },
+    // Remove Stepchildren section: COMPLETE
 
     stepChildren: {
       type: 'array',
@@ -656,60 +649,67 @@ const schema = {
             },
             required: ['first', 'last'],
           },
-          address: {
-            $ref: '#/definitions/addressSchema',
-          },
+          address: { $ref: '#/definitions/addressSchema' },
           livingExpensesPaid: { type: 'string' },
           supportingStepchild: { type: 'boolean' },
-          fullName: {
-            $ref: '#/definitions/fullNameNoSuffix',
-          },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           ssn: { type: 'string' },
-          birthDate: {
-            $ref: '#/definitions/date',
-          },
+          birthDate: { $ref: '#/definitions/date' },
         },
-        required: [
-          'whoDoesTheStepchildLiveWith',
-          'address',
-          'livingExpensesPaid',
-          'supportingStepchild',
-          'fullName',
-          'ssn',
-          'birthDate',
+        required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
+        oneOf: [
+          {
+            properties: {
+              supportingStepchild: { type: 'boolean', enum: [true] },
+            },
+            required: ['supportingStepchild', 'livingExpensesPaid'],
+          },
+          {
+            properties: {
+              supportingStepchild: { type: 'boolean', enum: [false] },
+            },
+            required: ['supportingStepchild'],
+          },
         ],
       },
     },
+
+    // Remove deceased section: COMPLETE
 
     deaths: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          dependentDeathLocation: {
-            $ref: '#/definitions/genericLocation',
-          },
+          dependentDeathLocation: { $ref: '#/definitions/genericLocation' },
           deceasedDependentIncome: { type: 'string' },
-          dependentDeathDate: {
-            $ref: '#/definitions/date',
-          },
+          dependentDeathDate: { $ref: '#/definitions/date' },
           dependentType: { type: 'string' },
-          fullName: {
-            $ref: '#/definitions/fullNameNoSuffix',
+          childStatus: {
+            type: 'object',
+            properties: {
+              childUnder18: { type: 'boolean' },
+              stepChild: { type: 'boolean' },
+            },
           },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           ssn: { type: 'string' },
-          birthDate: {
-            $ref: '#/definitions/date',
-          },
+          birthDate: { $ref: '#/definitions/date' },
         },
-        required: [
-          'dependentDeathLocation',
-          'deceasedDependentIncome',
-          'dependentDeathDate',
-          'dependentType',
-          'fullName',
-          'ssn',
-          'birthDate',
+        required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'ssn', 'birthDate'],
+        oneOf: [
+          {
+            properties: {
+              dependentType: { type: 'string', enum: ['CHILD'] },
+            },
+            required: ['dependentType', 'childStatus'],
+          },
+          {
+            properties: {
+              dependentType: { type: 'string' },
+            },
+            required: ['dependentType'],
+          },
         ],
       },
     },
@@ -759,6 +759,14 @@ const schema = {
         required: ['dateChildLeftSchool', 'fullName', 'ssn', 'birthDate'],
       },
     },
+
+    spouseSupportingDocuments: {
+      $ref: '#/definitions/files',
+    },
+    childSupportingDocuments: {
+      $ref: '#/definitions/files',
+    },
+    householdIncome: { type: 'boolean' },
 
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
