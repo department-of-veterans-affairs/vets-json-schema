@@ -1,147 +1,157 @@
-export default {
-  $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'SUPPLEMENTAL CLAIM FOR COMPENSATION (21-686C & 21-674)',
-  type: 'object',
-  definitions: {},
-  properties: {
-    spouseSupportingDocuments: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          confirmationCode: { type: 'string' },
-          attachmentId: { type: 'string' },
-          isEncrypted: { type: 'boolean' },
-        },
-        required: ['name', 'confirmationCode', 'attachmentId', 'isEncrypted'],
-      },
-    },
-    childSupportingDocuments: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          confirmationCode: { type: 'string' },
-          attachmentId: { type: 'string' },
-          isEncrypted: { type: 'boolean' },
-        },
-        required: ['name', 'confirmationCode', 'attachmentId', 'isEncrypted'],
-      },
-    },
-    householdIncome: { type: 'boolean' },
+import cloneDeep from 'lodash/cloneDeep';
+import merge from 'lodash/merge';
+import pick from 'lodash/pick';
+import { countries, states } from '../../common/constants';
+import commonDefinitions from '../../common/definitions';
 
-    reportDivorce: {
+// patterns
+const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
+
+const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
+
+// filter out military states
+const militaryStates = ['AA', 'AE', 'AP'];
+const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
+const nameRegex = '^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$';
+
+let definitions = cloneDeep(commonDefinitions);
+definitions = pick(definitions, 'fullNameNoSuffix', 'phone', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
+
+const schema = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'DEPENDENTS MANAGEMENT FORM (21-686C & 21-674)',
+  type: 'object',
+  definitions: merge(definitions, {
+    date: {
+      type: 'string',
+      // Don't include the "X" placeholders in the pattern
+      pattern: '^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
+    },
+    genericLocation: {
       type: 'object',
-      properties: {
-        spouseIncome: { type: 'string' },
-        date: { type: 'string', format: 'date' },
-        divorceLocation: {
-          type: 'object',
+      oneOf: [
+        {
           properties: {
-            outsideUsa: { type: 'boolean' },
+            outsideUsa: {
+              not: {
+                type: 'boolean',
+                enum: [true],
+              },
+            },
             location: {
               type: 'object',
               properties: {
-                city: { type: 'string' },
-                state: { type: 'string' },
-                country: { type: 'string' },
+                city: {
+                  type: 'string',
+                },
+                state: {
+                  type: 'string',
+                },
               },
-              required: ['city'],
+              required: ['city', 'state'],
             },
           },
-          required: ['location', 'outsideUsa'],
+          required: ['location'],
         },
-        reasonMarriageEnded: { type: 'string' },
-        explanationOfOther: { type: 'string' },
-        fullName: {
-          type: 'object',
+        {
           properties: {
-            first: { type: 'string' },
-            last: { type: 'string' },
+            outsideUsa: {
+              type: 'boolean',
+              enum: [true],
+            },
+            location: {
+              type: 'object',
+              properties: {
+                city: {
+                  type: 'string',
+                },
+                country: {
+                  type: 'string',
+                },
+              },
+              required: ['city', 'country'],
+            },
           },
-          required: ['first', 'last'],
+          required: ['location'],
         },
-        birthDate: { type: 'string', format: 'date' },
-      },
-      required: [
-        'spouseIncome',
-        'date',
-        'divorceLocation',
-        'reasonMarriageEnded',
-        'explanationOfOther',
-        'fullName',
-        'birthDate',
       ],
     },
-
-    currentMarriageInformation: {
-      type: 'object',
-      properties: {
-        typeOfMarriage: { type: 'string' },
-        location: {
-          type: 'object',
-          properties: {
-            city: { type: 'string' },
-            state: { type: 'string' },
-          },
-          required: ['city', 'state'],
-        },
-        date: { type: 'string', format: 'date' },
-      },
-      required: ['typeOfMarriage', 'location', 'date'],
+    genericTextInput: {
+      type: 'string',
+      maxLength: 50,
     },
-
-    doesLiveWithSpouse: {
+    genericNumberAndDashInput: {
+      type: 'string',
+      maxLength: 50,
+      minLength: 4,
+      pattern: numberAndDashPattern,
+    },
+    currencyInput: {
+      type: 'string',
+      pattern: currencyAmountPattern,
+    },
+    addressSchema: {
       type: 'object',
       properties: {
-        spouseIncome: { type: 'string' },
-        spouseDoesLiveWithVeteran: { type: 'boolean' },
-        address: {
-          type: 'object',
-          properties: {
-            // The address fields structure can be more detailed if you wish
-          },
+        isMilitary: {
+          type: 'boolean',
+        },
+        country: {
+          type: 'string',
+        },
+        street: {
+          type: 'string',
+        },
+        street2: {
+          type: 'string',
+        },
+        street3: {
+          type: 'string',
+        },
+        city: {
+          type: 'string',
+        },
+        state: {
+          type: 'string',
+        },
+        postalCode: {
+          type: 'string',
+          pattern: '^\\d{5}$',
         },
       },
-      required: ['spouseIncome', 'spouseDoesLiveWithVeteran', 'address'],
+      required: ['country', 'street', 'city', 'state', 'postalCode'],
     },
+  }),
+  properties: {
+    useV2: { type: 'boolean' },
+    daysTillExpires: { type: 'integer' },
 
-    spouseInformation: {
+    // this is prefilled data, so it doesn't need to be required
+    veteranInformation: {
       type: 'object',
       properties: {
-        ssn: { type: 'string' },
-        vaFileNumber: { type: 'string' },
-        serviceNumber: { type: 'string' },
-        birthDate: { type: 'string', format: 'date' },
-        isVeteran: { type: 'boolean' },
         fullName: {
           type: 'object',
           properties: {
             first: { type: 'string' },
+            middle: { type: 'string' },
             last: { type: 'string' },
           },
           required: ['first', 'last'],
         },
+        birthDate: {
+          $ref: '#/definitions/date',
+        },
+        ssnLastFour: { type: 'string' },
+        vaFileLastFour: { type: 'string' },
       },
-      required: ['ssn', 'vaFileNumber', 'serviceNumber', 'birthDate', 'isVeteran', 'fullName'],
     },
 
     veteranContactInformation: {
       type: 'object',
       properties: {
         veteranAddress: {
-          type: 'object',
-          properties: {
-            isMilitary: { type: 'boolean' },
-            country: { type: 'string' },
-            street: { type: 'string' },
-            city: { type: 'string' },
-            state: { type: 'string' },
-            postalCode: { type: 'string' },
-          },
-          required: ['isMilitary', 'country', 'street', 'city', 'state', 'postalCode'],
+          $ref: '#/definitions/addressSchema',
         },
         phoneNumber: { type: 'string' },
         emailAddress: { type: 'string' },
@@ -149,65 +159,161 @@ export default {
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
 
+    spouseInformation: {
+      type: 'object',
+      properties: {
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        ssn: { type: 'string' },
+        birthDate: { $ref: '#/definitions/date' },
+        isVeteran: { type: 'boolean' },
+        vaFileNumber: { type: 'string' },
+        serviceNumber: { type: 'string' },
+      },
+      required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
+    },
+
+    doesLiveWithSpouse: {
+      type: 'object',
+      oneOf: [
+        {
+          properties: {
+            spouseDoesLiveWithVeteran: { type: 'boolean', enum: [true] },
+            spouseIncome: { type: 'string' },
+            address: { $ref: '#/definitions/addressSchema' },
+          },
+          required: ['spouseIncome', 'spouseDoesLiveWithVeteran'],
+        },
+        {
+          properties: {
+            spouseDoesLiveWithVeteran: { not: { type: 'boolean', enum: [true] } },
+            spouseIncome: { type: 'string' },
+            address: { $ref: '#/definitions/addressSchema' },
+          },
+          required: ['spouseIncome', 'spouseDoesLiveWithVeteran', 'address'],
+        },
+      ],
+    },
+
+    currentMarriageInformation: {
+      type: 'object',
+      oneOf: [
+        {
+          allOf: [
+            { $ref: '#/definitions/genericLocation' },
+            {
+              properties: {
+                typeOfMarriage: {
+                  not: {
+                    type: 'string',
+                    enum: ['OTHER'],
+                  },
+                },
+                date: { $ref: '#/definitions/date' },
+              },
+              required: ['typeOfMarriage', 'location', 'date'],
+            },
+          ],
+        },
+        {
+          allOf: [
+            { $ref: '#/definitions/genericLocation' },
+            {
+              properties: {
+                typeOfMarriage: {
+                  type: 'string',
+                  enum: ['OTHER'],
+                },
+                typeOther: { type: 'string' },
+                date: { $ref: '#/definitions/date' },
+              },
+              required: ['typeOfMarriage', 'typeOther', 'location', 'date'],
+            },
+          ],
+        },
+      ],
+    },
+
     spouseMarriageHistory: {
       type: 'array',
       items: {
         type: 'object',
-        properties: {
-          startLocation: {
-            type: 'object',
+        oneOf: [
+          {
             properties: {
-              outsideUsa: { type: 'boolean' },
-              location: {
-                type: 'object',
-                properties: {
-                  city: { type: 'string' },
-                  country: { type: 'string' },
-                  state: { type: 'string' },
+              fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+              reasonMarriageEnded: {
+                not: {
+                  type: 'string',
+                  enum: ['Other'],
                 },
-                required: ['city'],
               },
+              otherReasonMarriageEnded: { type: 'string' },
+
+              startDate: { $ref: '#/definitions/date' },
+              endDate: { $ref: '#/definitions/date' },
+              startLocation: { $ref: '#/definitions/genericLocation' },
+              endLocation: { $ref: '#/definitions/genericLocation' },
             },
-            required: ['location'],
+            required: ['startLocation', 'endLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
           },
-          endLocation: {
-            type: 'object',
+          {
             properties: {
-              location: {
-                type: 'object',
-                properties: {
-                  city: { type: 'string' },
-                  state: { type: 'string' },
-                },
-                required: ['city'],
-              },
+              fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+              reasonMarriageEnded: { type: 'string', enum: ['Other'] },
+              otherReasonMarriageEnded: { type: 'string' },
+
+              startDate: { $ref: '#/definitions/date' },
+              endDate: { $ref: '#/definitions/date' },
+              startLocation: { $ref: '#/definitions/genericLocation' },
+              endLocation: { $ref: '#/definitions/genericLocation' },
             },
-            required: ['location'],
+            required: [
+              'startLocation',
+              'endLocation',
+              'endDate',
+              'startDate',
+              'reasonMarriageEnded',
+              'otherReasonMarriageEnded',
+              'fullName',
+            ],
           },
-          endDate: { type: 'string', format: 'date' },
-          startDate: { type: 'string', format: 'date' },
-          reasonMarriageEnded: { type: 'string' },
-          otherReasonMarriageEnded: { type: 'string' },
-          fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
-          },
-        },
-        required: [
-          'startLocation',
-          'endLocation',
-          'endDate',
-          'startDate',
-          'reasonMarriageEnded',
-          'otherReasonMarriageEnded',
-          'fullName',
         ],
       },
     },
+
+    spouseSupportingDocuments: {
+      $ref: '#/definitions/files',
+    },
+    childSupportingDocuments: {
+      $ref: '#/definitions/files',
+    },
+    householdIncome: { type: 'boolean' },
+
+    reportDivorce: {
+      type: 'object',
+      properties: {
+        spouseIncome: {
+          type: 'string',
+        },
+        date: {
+          $ref: '#/definitions/date',
+        },
+        divorceLocation: {
+          $ref: '#/definitions/genericLocation',
+        },
+        reasonMarriageEnded: { type: 'string' },
+        explanationOfOther: { type: 'string' },
+        fullName: {
+          $ref: '#/definitions/fullNameNoSuffix',
+        },
+        birthDate: {
+          $ref: '#/definitions/date',
+        },
+      },
+      required: ['date', 'divorceLocation', 'reasonMarriageEnded', 'fullName', 'birthDate'],
+    },
+
+    // **** pick it up here ****
 
     childrenToAdd: {
       type: 'array',
@@ -216,23 +322,24 @@ export default {
         properties: {
           incomeInLastYear: { type: 'string' },
           marriageEndDescription: { type: 'string' },
-          marriageEndDate: { type: 'string', format: 'date' },
+          marriageEndDate: {
+            $ref: '#/definitions/date',
+          },
           marriageEndReason: { type: 'string' },
           doesChildLiveWithYou: { type: 'boolean' },
           hasChildEverBeenMarried: { type: 'boolean' },
           doesChildHaveDisability: { type: 'boolean' },
           isBiologicalChildOfSpouse: { type: 'boolean' },
-          dateEnteredHousehold: { type: 'string', format: 'date' },
+          dateEnteredHousehold: {
+            $ref: '#/definitions/date',
+          },
           biologicalParentName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
           biologicalParentSsn: { type: 'string' },
-          biologicalParentDob: { type: 'string', format: 'date' },
+          biologicalParentDob: {
+            $ref: '#/definitions/date',
+          },
           relationshipToChild: {
             type: 'object',
             properties: {
@@ -258,14 +365,11 @@ export default {
           },
           ssn: { type: 'string' },
           fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
-          birthDate: { type: 'string', format: 'date' },
+          birthDate: {
+            $ref: '#/definitions/date',
+          },
         },
         required: [
           'incomeInLastYear',
@@ -341,14 +445,22 @@ export default {
             type: 'object',
             properties: {
               studentDidAttendSchoolLastTerm: { type: 'boolean' },
-              dateFullTimeEnded: { type: 'string', format: 'date' },
+              dateFullTimeEnded: {
+                $ref: '#/definitions/date',
+              },
               studentIsEnrolledFullTime: { type: 'boolean' },
               currentTermDates: {
                 type: 'object',
                 properties: {
-                  officialSchoolStartDate: { type: 'string', format: 'date' },
-                  expectedStudentStartDate: { type: 'string', format: 'date' },
-                  expectedGraduationDate: { type: 'string', format: 'date' },
+                  officialSchoolStartDate: {
+                    $ref: '#/definitions/date',
+                  },
+                  expectedStudentStartDate: {
+                    $ref: '#/definitions/date',
+                  },
+                  expectedGraduationDate: {
+                    $ref: '#/definitions/date',
+                  },
                 },
                 required: ['officialSchoolStartDate', 'expectedStudentStartDate', 'expectedGraduationDate'],
               },
@@ -372,7 +484,6 @@ export default {
               feca: { type: 'boolean' },
               other: { type: 'boolean' },
             },
-            required: ['ch35', 'fry', 'feca', 'other'],
           },
           otherProgramOrBenefit: { type: 'string' },
           tuitionIsPaidByGovAgency: { type: 'boolean' },
@@ -380,29 +491,22 @@ export default {
           isParent: { type: 'boolean' },
           wasMarried: { type: 'boolean' },
           address: {
-            type: 'object',
-            properties: {
-              country: { type: 'string' },
-              street: { type: 'string' },
-              city: { type: 'string' },
-              state: { type: 'string' },
-              postalCode: { type: 'string' },
-            },
-            required: ['country', 'street', 'city', 'state', 'postalCode'],
+            $ref: '#/definitions/addressSchema',
           },
           remarks: { type: 'string' },
-          benefitPaymentDate: { type: 'string', format: 'date' },
-          marriageDate: { type: 'string', format: 'date' },
+          benefitPaymentDate: {
+            $ref: '#/definitions/date',
+          },
+          marriageDate: {
+            $ref: '#/definitions/date',
+          },
           studentIncome: { type: 'string' },
           fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
-          birthDate: { type: 'string', format: 'date' },
+          birthDate: {
+            $ref: '#/definitions/date',
+          },
         },
         required: [
           'studentNetworthInformation',
@@ -419,7 +523,6 @@ export default {
           'address',
           'remarks',
           'benefitPaymentDate',
-          'marriageDate',
           'studentIncome',
           'fullName',
           'birthDate',
@@ -433,55 +536,24 @@ export default {
         type: 'object',
         properties: {
           endLocation: {
-            type: 'object',
-            properties: {
-              location: {
-                type: 'object',
-                properties: {
-                  city: { type: 'string' },
-                  state: { type: 'string' },
-                },
-                required: ['city'],
-              },
-            },
-            required: ['location'],
+            $ref: '#/definitions/genericLocation',
           },
           startLocation: {
-            type: 'object',
-            properties: {
-              location: {
-                type: 'object',
-                properties: {
-                  city: { type: 'string' },
-                  state: { type: 'string' },
-                },
-                required: ['city'],
-              },
-            },
-            required: ['location'],
+            $ref: '#/definitions/genericLocation',
           },
-          endDate: { type: 'string', format: 'date' },
-          startDate: { type: 'string', format: 'date' },
+          endDate: {
+            $ref: '#/definitions/date',
+          },
+          startDate: {
+            $ref: '#/definitions/date',
+          },
           reasonMarriageEnded: { type: 'string' },
           otherReasonMarriageEnded: { type: 'string' },
           fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
         },
-        required: [
-          'endLocation',
-          'startLocation',
-          'endDate',
-          'startDate',
-          'reasonMarriageEnded',
-          'otherReasonMarriageEnded',
-          'fullName',
-        ],
+        required: ['endLocation', 'startLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
       },
     },
 
@@ -499,28 +571,17 @@ export default {
             required: ['first', 'last'],
           },
           address: {
-            type: 'object',
-            properties: {
-              country: { type: 'string' },
-              street: { type: 'string' },
-              city: { type: 'string' },
-              state: { type: 'string' },
-              postalCode: { type: 'string' },
-            },
-            required: ['country', 'street', 'city', 'state', 'postalCode'],
+            $ref: '#/definitions/addressSchema',
           },
           livingExpensesPaid: { type: 'string' },
           supportingStepchild: { type: 'boolean' },
           fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
           ssn: { type: 'string' },
-          birthDate: { type: 'string', format: 'date' },
+          birthDate: {
+            $ref: '#/definitions/date',
+          },
         },
         required: [
           'whoDoesTheStepchildLiveWith',
@@ -540,33 +601,20 @@ export default {
         type: 'object',
         properties: {
           dependentDeathLocation: {
-            type: 'object',
-            properties: {
-              outsideUsa: { type: 'boolean' },
-              location: {
-                type: 'object',
-                properties: {
-                  city: { type: 'string' },
-                  state: { type: 'string' },
-                },
-                required: ['city'],
-              },
-            },
-            required: ['outsideUsa', 'location'],
+            $ref: '#/definitions/genericLocation',
           },
           deceasedDependentIncome: { type: 'string' },
-          dependentDeathDate: { type: 'string', format: 'date' },
+          dependentDeathDate: {
+            $ref: '#/definitions/date',
+          },
           dependentType: { type: 'string' },
           fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
           ssn: { type: 'string' },
-          birthDate: { type: 'string', format: 'date' },
+          birthDate: {
+            $ref: '#/definitions/date',
+          },
         },
         required: [
           'dependentDeathLocation',
@@ -586,17 +634,16 @@ export default {
         type: 'object',
         properties: {
           dependentIncome: { type: 'string' },
-          dateMarried: { type: 'string', format: 'date' },
+          dateMarried: {
+            $ref: '#/definitions/date',
+          },
           fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
           ssn: { type: 'string' },
-          birthDate: { type: 'string', format: 'date' },
+          birthDate: {
+            $ref: '#/definitions/date',
+          },
         },
         required: ['dependentIncome', 'dateMarried', 'fullName', 'ssn', 'birthDate'],
       },
@@ -608,17 +655,16 @@ export default {
         type: 'object',
         properties: {
           dependentIncome: { type: 'string' },
-          dateChildLeftSchool: { type: 'string', format: 'date' },
+          dateChildLeftSchool: {
+            $ref: '#/definitions/date',
+          },
           fullName: {
-            type: 'object',
-            properties: {
-              first: { type: 'string' },
-              last: { type: 'string' },
-            },
-            required: ['first', 'last'],
+            $ref: '#/definitions/fullNameNoSuffix',
           },
           ssn: { type: 'string' },
-          birthDate: { type: 'string', format: 'date' },
+          birthDate: {
+            $ref: '#/definitions/date',
+          },
         },
         required: ['dependentIncome', 'dateChildLeftSchool', 'fullName', 'ssn', 'birthDate'],
       },
@@ -627,35 +673,6 @@ export default {
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
 
-    veteranInformation: {
-      type: 'object',
-      properties: {
-        fullName: {
-          type: 'object',
-          properties: {
-            first: { type: 'string' },
-            middle: { type: 'string' },
-            last: { type: 'string' },
-          },
-          required: ['first', 'last'],
-        },
-        ssn: { type: 'string' },
-        birthDate: { type: 'string', format: 'date' },
-        ssnLastFour: { type: 'string' },
-        vaFileLastFour: { type: 'string' },
-      },
-      required: ['fullName', 'ssn', 'birthDate', 'ssnLastFour', 'vaFileLastFour'],
-    },
-
-    useV2: { type: 'boolean' },
-    daysTillExpires: { type: 'integer' },
-    metadata: {
-      type: 'object',
-      properties: {
-        formerMarriagesForceRenderTimestamp: { type: 'integer' },
-      },
-      required: ['formerMarriagesForceRenderTimestamp'],
-    },
     privacyAgreementAccepted: { type: 'boolean' },
   },
   required: [
@@ -678,9 +695,8 @@ export default {
     'statementOfTruthSignature',
     'statementOfTruthCertified',
     'veteranInformation',
-    'useV2',
-    'daysTillExpires',
-    'metadata',
     'privacyAgreementAccepted',
   ],
 };
+
+export default schema;
