@@ -1498,7 +1498,11 @@
           {
             "properties": {
               "dependentType": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "SPOUSE",
+                  "DEPENDENT_PARENT"
+                ]
               }
             },
             "required": [
@@ -1580,13 +1584,10 @@
     },
     "statementOfTruthCertified": {
       "type": "boolean"
-    },
-    "privacyAgreementAccepted": {
-      "$ref": "#/definitions/privacyAgreementAccepted"
     }
   },
   "required": [
-    "privacyAgreementAccepted",
+    "statementOfTruthCertified",
     "statementOfTruthSignature"
   ]
 }

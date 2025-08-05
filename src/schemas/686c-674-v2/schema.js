@@ -109,12 +109,12 @@ const schema = {
     },
   }),
   properties: {
-    // Data from prefill transformer: COMPLETE
+    // Data from prefill transformer
 
     useV2: { type: 'boolean' },
     daysTillExpires: { type: 'integer' },
 
-    // Veteran information section: COMPLETE
+    // Veteran information section
     // this is prefilled data, so it doesn't need to be required
 
     veteranInformation: {
@@ -127,7 +127,7 @@ const schema = {
       },
     },
 
-    // Veteran contact information section: COMPLETE
+    // Veteran contact information section
 
     veteranContactInformation: {
       type: 'object',
@@ -139,7 +139,7 @@ const schema = {
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
 
-    // Current spouse information section: COMPLETE
+    // Current spouse information section
 
     spouseInformation: {
       type: 'object',
@@ -154,7 +154,7 @@ const schema = {
       required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
     },
 
-    // Spouse does live with veteran section: COMPLETE
+    // Spouse does live with veteran section
 
     doesLiveWithSpouse: {
       type: 'object',
@@ -179,7 +179,7 @@ const schema = {
       ],
     },
 
-    // Current marriage information section: COMPLETE
+    // Current marriage information section
 
     currentMarriageInformation: {
       type: 'object',
@@ -220,7 +220,7 @@ const schema = {
       ],
     },
 
-    // Spouse marriage history section: COMPLETE
+    // Spouse marriage history section
 
     spouseMarriageHistory: {
       type: 'array',
@@ -253,7 +253,7 @@ const schema = {
       },
     },
 
-    // Veteran marriage history section: COMPLETE
+    // Veteran marriage history section
 
     veteranMarriageHistory: {
       type: 'array',
@@ -286,7 +286,7 @@ const schema = {
       },
     },
 
-    // Remove divorced: COMPLETE
+    // Remove divorced
 
     reportDivorce: {
       type: 'object',
@@ -316,7 +316,7 @@ const schema = {
       ],
     },
 
-    // Add children section: COMPLETE
+    // Add children section
 
     childrenToAdd: {
       type: 'array',
@@ -437,7 +437,7 @@ const schema = {
       },
     },
 
-    // Student information section: COMPLETE
+    // Student information section
 
     studentInformation: {
       type: 'array',
@@ -657,7 +657,7 @@ const schema = {
       },
     },
 
-    // Remove Stepchildren section: COMPLETE
+    // Remove Stepchildren section
 
     stepChildren: {
       type: 'array',
@@ -697,7 +697,7 @@ const schema = {
       },
     },
 
-    // Remove deceased section: COMPLETE
+    // Remove deceased section
 
     deaths: {
       type: 'array',
@@ -729,7 +729,7 @@ const schema = {
           },
           {
             properties: {
-              dependentType: { type: 'string' },
+              dependentType: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] },
             },
             required: ['dependentType'],
           },
@@ -737,7 +737,7 @@ const schema = {
       },
     },
 
-    // Remove married child section: COMPLETE
+    // Remove married child section
 
     childMarriage: {
       type: 'array',
@@ -760,7 +760,7 @@ const schema = {
       },
     },
 
-    // Remove child not in school section: COMPLETE
+    // Remove child not in school section
 
     childStoppedAttendingSchool: {
       type: 'array',
@@ -793,29 +793,8 @@ const schema = {
 
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
-
-    privacyAgreementAccepted: { $ref: '#/definitions/privacyAgreementAccepted' },
   },
-  required: [
-    // 'childMarriage',
-    // 'childrenToAdd',
-    // 'childSupportingDocuments',
-    // 'currentMarriageInformation',
-    // 'deaths',
-    // 'doesLiveWithSpouse',
-    'privacyAgreementAccepted',
-    // 'reportDivorce',
-    // 'spouseInformation',
-    // 'spouseMarriageHistory',
-    // 'spouseSupportingDocuments',
-    // 'statementOfTruthCertified',
-    'statementOfTruthSignature',
-    // 'stepChildren',
-    // 'studentInformation',
-    // 'veteranContactInformation',
-    // 'veteranInformation',
-    // 'veteranMarriageHistory',
-  ],
+  required: ['statementOfTruthCertified', 'statementOfTruthSignature'],
 };
 
 export default schema;
