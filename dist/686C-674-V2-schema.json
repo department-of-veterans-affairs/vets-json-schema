@@ -3,6 +3,236 @@
   "title": "DEPENDENTS MANAGEMENT FORM (21-686C & 21-674)",
   "type": "object",
   "definitions": {
+    "address": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "CAN"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AB",
+                "BC",
+                "MB",
+                "NB",
+                "NL",
+                "NT",
+                "NS",
+                "NU",
+                "ON",
+                "PE",
+                "QC",
+                "SK",
+                "YT"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "MEX"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "aguascalientes",
+                "baja-california-norte",
+                "baja-california-sur",
+                "campeche",
+                "chiapas",
+                "chihuahua",
+                "coahuila",
+                "colima",
+                "distrito-federal",
+                "durango",
+                "guanajuato",
+                "guerrero",
+                "hidalgo",
+                "jalisco",
+                "mexico",
+                "michoacan",
+                "morelos",
+                "nayarit",
+                "nuevo-leon",
+                "oaxaca",
+                "puebla",
+                "queretaro",
+                "quintana-roo",
+                "san-luis-potosi",
+                "sinaloa",
+                "sonora",
+                "tabasco",
+                "tamaulipas",
+                "tlaxcala",
+                "veracruz",
+                "yucatan",
+                "zacatecas"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "type": "string",
+              "enum": [
+                "USA"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "AL",
+                "AK",
+                "AS",
+                "AZ",
+                "AR",
+                "AA",
+                "AE",
+                "AP",
+                "CA",
+                "CO",
+                "CT",
+                "DE",
+                "DC",
+                "FM",
+                "FL",
+                "GA",
+                "GU",
+                "HI",
+                "ID",
+                "IL",
+                "IN",
+                "IA",
+                "KS",
+                "KY",
+                "LA",
+                "ME",
+                "MH",
+                "MD",
+                "MA",
+                "MI",
+                "MN",
+                "MS",
+                "MO",
+                "MT",
+                "NE",
+                "NV",
+                "NH",
+                "NJ",
+                "NM",
+                "NY",
+                "NC",
+                "ND",
+                "MP",
+                "OH",
+                "OK",
+                "OR",
+                "PW",
+                "PA",
+                "PR",
+                "RI",
+                "SC",
+                "SD",
+                "TN",
+                "TX",
+                "UT",
+                "VT",
+                "VI",
+                "VA",
+                "WA",
+                "WV",
+                "WI",
+                "WY"
+              ]
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 10
+            }
+          }
+        },
+        {
+          "properties": {
+            "country": {
+              "not": {
+                "type": "string",
+                "enum": [
+                  "CAN",
+                  "MEX",
+                  "USA"
+                ]
+              }
+            },
+            "state": {
+              "type": "string",
+              "maxLength": 51
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 51
+            }
+          }
+        }
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "street2": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 51
+        }
+      }
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "fullNameNoSuffix": {
       "type": "object",
       "additionalProperties": false,
@@ -31,28 +261,6 @@
       "type": "string",
       "minLength": 10
     },
-    "email": {
-      "type": "string",
-      "maxLength": 256,
-      "format": "email"
-    },
-    "files": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "size": {
-            "type": "integer"
-          },
-          "confirmationCode": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -62,6 +270,14 @@
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
+    },
+    "ssnLastFour": {
+      "type": "string",
+      "pattern": "^(?!0000)[0-9]{4}$"
+    },
+    "veteranServiceNumber": {
+      "type": "string",
+      "pattern": "^[A-Z]{0,2}\\d{5,8}$"
     },
     "date": {
       "type": "string",
@@ -73,12 +289,10 @@
         {
           "properties": {
             "outsideUsa": {
-              "not": {
-                "type": "boolean",
-                "enum": [
-                  true
-                ]
-              }
+              "type": "boolean",
+              "enum": [
+                false
+              ]
             },
             "location": {
               "type": "object",
@@ -130,55 +344,72 @@
         }
       ]
     },
-    "genericTextInput": {
-      "type": "string",
-      "maxLength": 50
-    },
-    "genericNumberAndDashInput": {
-      "type": "string",
-      "maxLength": 50,
-      "minLength": 4,
-      "pattern": "^[0-9]*[-]*[0-9]*[-]*[0-9]*$"
-    },
-    "currencyInput": {
-      "type": "string",
-      "pattern": "^\\d+(\\.\\d{1,2})?$"
-    },
-    "addressSchema": {
+    "genericLocationAlt": {
       "type": "object",
-      "properties": {
-        "isMilitary": {
-          "type": "boolean"
+      "oneOf": [
+        {
+          "properties": {
+            "outsideUsa": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "postalCode": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "city",
+                "state",
+                "postalCode"
+              ]
+            }
+          },
+          "required": [
+            "location"
+          ]
         },
-        "country": {
-          "type": "string"
-        },
-        "street": {
-          "type": "string"
-        },
-        "street2": {
-          "type": "string"
-        },
-        "street3": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        },
-        "postalCode": {
-          "type": "string",
-          "pattern": "^\\d{5}$"
+        {
+          "properties": {
+            "outsideUsa": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "postalCode": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "city",
+                "country"
+              ]
+            }
+          },
+          "required": [
+            "location"
+          ]
         }
-      },
-      "required": [
-        "country",
-        "street",
-        "city",
-        "state",
-        "postalCode"
       ]
     }
   },
@@ -193,31 +424,17 @@
       "type": "object",
       "properties": {
         "fullName": {
-          "type": "object",
-          "properties": {
-            "first": {
-              "type": "string"
-            },
-            "middle": {
-              "type": "string"
-            },
-            "last": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "first",
-            "last"
-          ]
+          "$ref": "#/definitions/fullNameNoSuffix"
         },
         "birthDate": {
           "$ref": "#/definitions/date"
         },
         "ssnLastFour": {
-          "type": "string"
+          "$ref": "#/definitions/ssnLastFour"
         },
         "vaFileLastFour": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^\\d{4}$"
         }
       }
     },
@@ -225,13 +442,13 @@
       "type": "object",
       "properties": {
         "veteranAddress": {
-          "$ref": "#/definitions/addressSchema"
+          "$ref": "#/definitions/address"
         },
         "phoneNumber": {
-          "type": "string"
+          "$ref": "#/definitions/phone"
         },
         "emailAddress": {
-          "type": "string"
+          "$ref": "#/definitions/email"
         }
       },
       "required": [
@@ -247,7 +464,7 @@
           "$ref": "#/definitions/fullNameNoSuffix"
         },
         "ssn": {
-          "type": "string"
+          "$ref": "#/definitions/ssn"
         },
         "birthDate": {
           "$ref": "#/definitions/date"
@@ -259,7 +476,7 @@
           "type": "string"
         },
         "serviceNumber": {
-          "type": "string"
+          "$ref": "#/definitions/veteranServiceNumber"
         }
       },
       "required": [
@@ -285,7 +502,6 @@
             }
           },
           "required": [
-            "spouseIncome",
             "spouseDoesLiveWithVeteran"
           ]
         },
@@ -301,12 +517,18 @@
               "type": "string"
             },
             "address": {
-              "$ref": "#/definitions/addressSchema"
+              "$ref": "#/definitions/address"
+            },
+            "currentSpouseReasonForSeparation": {
+              "type": "string"
+            },
+            "other": {
+              "type": "string"
             }
           },
           "required": [
-            "spouseIncome",
             "spouseDoesLiveWithVeteran",
+            "currentSpouseReasonForSeparation",
             "address"
           ]
         }
@@ -446,17 +668,8 @@
       "items": {
         "type": "object",
         "properties": {
-          "endLocation": {
-            "$ref": "#/definitions/genericLocation"
-          },
-          "startLocation": {
-            "$ref": "#/definitions/genericLocation"
-          },
-          "endDate": {
-            "$ref": "#/definitions/date"
-          },
-          "startDate": {
-            "$ref": "#/definitions/date"
+          "fullName": {
+            "$ref": "#/definitions/fullNameNoSuffix"
           },
           "reasonMarriageEnded": {
             "type": "string"
@@ -464,8 +677,17 @@
           "otherReasonMarriageEnded": {
             "type": "string"
           },
-          "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+          "startDate": {
+            "$ref": "#/definitions/date"
+          },
+          "endDate": {
+            "$ref": "#/definitions/date"
+          },
+          "startLocation": {
+            "$ref": "#/definitions/genericLocation"
+          },
+          "endLocation": {
+            "$ref": "#/definitions/genericLocation"
           }
         },
         "required": [
@@ -578,41 +800,35 @@
       "items": {
         "type": "object",
         "properties": {
-          "incomeInLastYear": {
-            "type": "string"
-          },
-          "marriageEndDescription": {
-            "type": "string"
-          },
-          "marriageEndDate": {
-            "$ref": "#/definitions/date"
-          },
-          "marriageEndReason": {
-            "type": "string"
-          },
-          "doesChildLiveWithYou": {
-            "type": "boolean"
-          },
-          "hasChildEverBeenMarried": {
-            "type": "boolean"
-          },
-          "doesChildHaveDisability": {
-            "type": "boolean"
-          },
-          "isBiologicalChildOfSpouse": {
-            "type": "boolean"
-          },
-          "dateEnteredHousehold": {
-            "$ref": "#/definitions/date"
-          },
-          "biologicalParentName": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
-          "biologicalParentSsn": {
-            "type": "string"
-          },
-          "biologicalParentDob": {
+          "birthDate": {
             "$ref": "#/definitions/date"
+          },
+          "ssn": {
+            "$ref": "#/definitions/ssn"
+          },
+          "birthLocation": {
+            "$ref": "#/definitions/genericLocationAlt"
+          },
+          "isBiologicalChild": {
+            "type": "boolean",
+            "oneOf": [
+              {
+                "enum": [
+                  true
+                ],
+                "required": [
+                  "relationshipToChild"
+                ]
+              },
+              {
+                "enum": [
+                  false
+                ]
+              }
+            ]
           },
           "relationshipToChild": {
             "type": "object",
@@ -625,49 +841,132 @@
               }
             }
           },
-          "isBiologicalChild": {
+          "isBiologicalChildOfSpouse": {
             "type": "boolean"
           },
-          "birthLocation": {
-            "type": "object",
-            "properties": {
-              "location": {
-                "type": "object",
-                "properties": {
-                  "city": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  },
-                  "postalCode": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "city"
-                ]
-              }
-            },
-            "required": [
-              "location"
-            ]
+          "dateEnteredHousehold": {
+            "$ref": "#/definitions/date"
           },
-          "fullName": {
+          "biologicalParentName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
-          "ssn": {
+          "biologicalParentSsn": {
+            "$ref": "#/definitions/ssn"
+          },
+          "biologicalParentDob": {
+            "$ref": "#/definitions/date"
+          },
+          "doesChildHaveDisability": {
+            "oneOf": [
+              {
+                "type": "boolean",
+                "enum": [
+                  true
+                ],
+                "required": [
+                  "doesChildHavePermanentDisability"
+                ]
+              },
+              {
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            ]
+          },
+          "doesChildHavePermanentDisability": {
+            "type": "boolean"
+          },
+          "doesChildLiveWithYou": {
+            "type": "boolean",
+            "oneOf": [
+              {
+                "enum": [
+                  false
+                ],
+                "required": [
+                  "livingWith"
+                ]
+              },
+              {
+                "enum": [
+                  true
+                ]
+              }
+            ]
+          },
+          "hasChildEverBeenMarried": {
+            "type": "boolean",
+            "oneOf": [
+              {
+                "enum": [
+                  true
+                ],
+                "required": [
+                  "marriageEndDate",
+                  "marriageEndReason"
+                ]
+              },
+              {
+                "enum": [
+                  false
+                ]
+              }
+            ]
+          },
+          "marriageEndDate": {
+            "$ref": "#/definitions/date"
+          },
+          "marriageEndReason": {
+            "type": "string",
+            "oneOf": [
+              {
+                "enum": [
+                  "Other"
+                ],
+                "required": [
+                  "marriageEndDescription"
+                ]
+              },
+              {
+                "enum": [
+                  "Death",
+                  "Divorce",
+                  "Annulment"
+                ]
+              }
+            ]
+          },
+          "marriageEndDescription": {
             "type": "string"
           },
-          "birthDate": {
-            "$ref": "#/definitions/date"
+          "incomeInLastYear": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/definitions/address"
+          },
+          "livingWith": {
+            "type": "object",
+            "required": [
+              "first",
+              "last"
+            ],
+            "properties": {
+              "first": {
+                "type": "string"
+              },
+              "middle": {
+                "type": "string"
+              },
+              "last": {
+                "type": "string"
+              }
+            }
           }
         },
         "required": [
-          "incomeInLastYear",
-          "marriageEndDescription",
-          "marriageEndDate",
-          "marriageEndReason",
           "doesChildLiveWithYou",
           "hasChildEverBeenMarried",
           "doesChildHaveDisability",
@@ -676,7 +975,6 @@
           "biologicalParentName",
           "biologicalParentSsn",
           "biologicalParentDob",
-          "relationshipToChild",
           "isBiologicalChild",
           "birthLocation",
           "ssn",
@@ -706,7 +1004,7 @@
             "type": "string"
           },
           "address": {
-            "$ref": "#/definitions/addressSchema"
+            "$ref": "#/definitions/address"
           },
           "wasMarried": {
             "oneOf": [
@@ -1079,7 +1377,7 @@
             ]
           },
           "address": {
-            "$ref": "#/definitions/addressSchema"
+            "$ref": "#/definitions/address"
           },
           "livingExpensesPaid": {
             "type": "string"
@@ -1091,7 +1389,7 @@
             "$ref": "#/definitions/fullNameNoSuffix"
           },
           "ssn": {
-            "type": "string"
+            "$ref": "#/definitions/ssn"
           },
           "birthDate": {
             "$ref": "#/definitions/date"
@@ -1168,7 +1466,7 @@
             "$ref": "#/definitions/fullNameNoSuffix"
           },
           "ssn": {
-            "type": "string"
+            "$ref": "#/definitions/ssn"
           },
           "birthDate": {
             "$ref": "#/definitions/date"
@@ -1284,7 +1582,11 @@
       "type": "boolean"
     },
     "privacyAgreementAccepted": {
-      "type": "boolean"
+      "$ref": "#/definitions/privacyAgreementAccepted"
     }
-  }
+  },
+  "required": [
+    "privacyAgreementAccepted",
+    "statementOfTruthSignature"
+  ]
 }

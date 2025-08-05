@@ -33,20 +33,14 @@ const schema = {
         {
           properties: {
             outsideUsa: {
-              not: {
-                type: 'boolean',
-                enum: [true],
-              },
+              type: 'boolean',
+              enum: [false],
             },
             location: {
               type: 'object',
               properties: {
-                city: {
-                  type: 'string',
-                },
-                state: {
-                  type: 'string',
-                },
+                city: { type: 'string' },
+                state: { type: 'string' },
               },
               required: ['city', 'state'],
             },
@@ -62,12 +56,49 @@ const schema = {
             location: {
               type: 'object',
               properties: {
-                city: {
-                  type: 'string',
-                },
-                country: {
-                  type: 'string',
-                },
+                city: { type: 'string' },
+                country: { type: 'string' },
+              },
+              required: ['city', 'country'],
+            },
+          },
+          required: ['location'],
+        },
+      ],
+    },
+    genericLocationAlt: {
+      type: 'object',
+      oneOf: [
+        {
+          properties: {
+            outsideUsa: {
+              type: 'boolean',
+              enum: [false],
+            },
+            location: {
+              type: 'object',
+              properties: {
+                city: { type: 'string' },
+                state: { type: 'string' },
+                postalCode: { type: 'string' },
+              },
+              required: ['city', 'state', 'postalCode'],
+            },
+          },
+          required: ['location'],
+        },
+        {
+          properties: {
+            outsideUsa: {
+              type: 'boolean',
+              enum: [true],
+            },
+            location: {
+              type: 'object',
+              properties: {
+                city: { type: 'string' },
+                country: { type: 'string' },
+                postalCode: { type: 'string' },
               },
               required: ['city', 'country'],
             },
@@ -285,9 +316,7 @@ const schema = {
       ],
     },
 
-    // **** pick it up here ****
-
-    // Add children section: WIP
+    // Add children section: COMPLETE
 
     childrenToAdd: {
       type: 'array',
@@ -296,16 +325,27 @@ const schema = {
         properties: {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
-
-          incomeInLastYear: { type: 'string' },
-          marriageEndDescription: { type: 'string' },
-          marriageEndDate: {
-            $ref: '#/definitions/date',
+          ssn: { $ref: '#/definitions/ssn' },
+          birthLocation: {
+            $ref: '#/definitions/genericLocationAlt',
           },
-          marriageEndReason: { type: 'string' },
-          doesChildLiveWithYou: { type: 'boolean' },
-          hasChildEverBeenMarried: { type: 'boolean' },
-          doesChildHaveDisability: { type: 'boolean' },
+          isBiologicalChild: {
+            type: 'boolean',
+            oneOf: [
+              {
+                enum: [true],
+                required: ['relationshipToChild'],
+              },
+              { enum: [false] },
+            ],
+          },
+          relationshipToChild: {
+            type: 'object',
+            properties: {
+              adopted: { type: 'boolean' },
+              stepchild: { type: 'boolean' },
+            },
+          },
           isBiologicalChildOfSpouse: { type: 'boolean' },
           dateEnteredHousehold: {
             $ref: '#/definitions/date',
@@ -317,37 +357,69 @@ const schema = {
           biologicalParentDob: {
             $ref: '#/definitions/date',
           },
-          relationshipToChild: {
-            type: 'object',
-            properties: {
-              adopted: { type: 'boolean' },
-              stepchild: { type: 'boolean' },
-            },
-          },
-          isBiologicalChild: { type: 'boolean' },
-          birthLocation: {
-            type: 'object',
-            properties: {
-              location: {
-                type: 'object',
-                properties: {
-                  city: { type: 'string' },
-                  state: { type: 'string' },
-                  postalCode: { type: 'string' },
-                },
-                required: ['city'],
+          doesChildHaveDisability: {
+            oneOf: [
+              {
+                type: 'boolean',
+                enum: [true],
+                required: ['doesChildHavePermanentDisability'],
               },
-            },
-            required: ['location'],
+              {
+                type: 'boolean',
+                enum: [false],
+              },
+            ],
           },
-
-          ssn: { $ref: '#/definitions/ssn' },
+          doesChildHavePermanentDisability: { type: 'boolean' },
+          doesChildLiveWithYou: {
+            type: 'boolean',
+            oneOf: [
+              {
+                enum: [false],
+                required: ['livingWith'],
+              },
+              { enum: [true] },
+            ],
+          },
+          hasChildEverBeenMarried: {
+            type: 'boolean',
+            oneOf: [
+              {
+                enum: [true],
+                required: ['marriageEndDate', 'marriageEndReason'],
+              },
+              { enum: [false] },
+            ],
+          },
+          marriageEndDate: {
+            $ref: '#/definitions/date',
+          },
+          marriageEndReason: {
+            type: 'string',
+            oneOf: [
+              {
+                enum: ['Other'],
+                required: ['marriageEndDescription'],
+              },
+              { enum: ['Death', 'Divorce', 'Annulment'] },
+            ],
+          },
+          marriageEndDescription: { type: 'string' },
+          incomeInLastYear: { type: 'string' },
+          address: {
+            $ref: '#/definitions/address',
+          },
+          livingWith: {
+            type: 'object',
+            required: ['first', 'last'],
+            properties: {
+              first: { type: 'string' },
+              middle: { type: 'string' },
+              last: { type: 'string' },
+            },
+          },
         },
         required: [
-          'incomeInLastYear',
-          'marriageEndDescription',
-          'marriageEndDate',
-          'marriageEndReason',
           'doesChildLiveWithYou',
           'hasChildEverBeenMarried',
           'doesChildHaveDisability',
@@ -356,7 +428,6 @@ const schema = {
           'biologicalParentName',
           'biologicalParentSsn',
           'biologicalParentDob',
-          'relationshipToChild',
           'isBiologicalChild',
           'birthLocation',
           'ssn',
