@@ -24,13 +24,13 @@ const schema = {
   definitions: merge(definitions, {
     date: {
       type: 'string',
-      // Don't include the "X" placeholders in the pattern
       pattern: '^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
     },
     genericLocation: {
       type: 'object',
       oneOf: [
         {
+          type: 'object',
           properties: {
             outsideUsa: {
               type: 'boolean',
@@ -48,6 +48,7 @@ const schema = {
           required: ['location'],
         },
         {
+          type: 'object',
           properties: {
             outsideUsa: {
               type: 'boolean',
@@ -70,6 +71,7 @@ const schema = {
       type: 'object',
       oneOf: [
         {
+          type: 'object',
           properties: {
             outsideUsa: {
               type: 'boolean',
@@ -88,6 +90,7 @@ const schema = {
           required: ['location'],
         },
         {
+          type: 'object',
           properties: {
             outsideUsa: {
               type: 'boolean',
@@ -109,13 +112,8 @@ const schema = {
     },
   }),
   properties: {
-    // Data from prefill transformer
-
     useV2: { type: 'boolean' },
     daysTillExpires: { type: 'integer' },
-
-    // Veteran information section
-    // this is prefilled data, so it doesn't need to be required
 
     veteranInformation: {
       type: 'object',
@@ -127,8 +125,6 @@ const schema = {
       },
     },
 
-    // Veteran contact information section
-
     veteranContactInformation: {
       type: 'object',
       properties: {
@@ -138,8 +134,6 @@ const schema = {
       },
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
-
-    // Current spouse information section
 
     spouseInformation: {
       type: 'object',
@@ -154,12 +148,11 @@ const schema = {
       required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
     },
 
-    // Spouse does live with veteran section
-
     doesLiveWithSpouse: {
       type: 'object',
       oneOf: [
         {
+          type: 'object',
           properties: {
             spouseDoesLiveWithVeteran: { type: 'boolean', enum: [true] },
             spouseIncome: { type: 'string' },
@@ -167,6 +160,7 @@ const schema = {
           required: ['spouseDoesLiveWithVeteran'],
         },
         {
+          type: 'object',
           properties: {
             spouseDoesLiveWithVeteran: { type: 'boolean', enum: [false] },
             spouseIncome: { type: 'string' },
@@ -179,8 +173,6 @@ const schema = {
       ],
     },
 
-    // Current marriage information section
-
     currentMarriageInformation: {
       type: 'object',
       oneOf: [
@@ -188,6 +180,7 @@ const schema = {
           allOf: [
             { $ref: '#/definitions/genericLocation' },
             {
+              type: 'object',
               properties: {
                 typeOfMarriage: {
                   not: {
@@ -205,6 +198,7 @@ const schema = {
           allOf: [
             { $ref: '#/definitions/genericLocation' },
             {
+              type: 'object',
               properties: {
                 typeOfMarriage: {
                   type: 'string',
@@ -219,8 +213,6 @@ const schema = {
         },
       ],
     },
-
-    // Spouse marriage history section
 
     spouseMarriageHistory: {
       type: 'array',
@@ -238,12 +230,14 @@ const schema = {
         required: ['startLocation', 'endLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
         oneOf: [
           {
+            type: 'object',
             properties: {
               reasonMarriageEnded: { type: 'string', enum: ['Other'] },
             },
             required: ['reasonMarriageEnded', 'otherReasonMarriageEnded'],
           },
           {
+            type: 'object',
             properties: {
               reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
             },
@@ -252,8 +246,6 @@ const schema = {
         ],
       },
     },
-
-    // Veteran marriage history section
 
     veteranMarriageHistory: {
       type: 'array',
@@ -271,12 +263,14 @@ const schema = {
         required: ['endLocation', 'startLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
         oneOf: [
           {
+            type: 'object',
             properties: {
               reasonMarriageEnded: { type: 'string', enum: ['Other'] },
             },
             required: ['reasonMarriageEnded', 'otherReasonMarriageEnded'],
           },
           {
+            type: 'object',
             properties: {
               reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
             },
@@ -285,8 +279,6 @@ const schema = {
         ],
       },
     },
-
-    // Remove divorced
 
     reportDivorce: {
       type: 'object',
@@ -302,12 +294,14 @@ const schema = {
       required: ['date', 'divorceLocation', 'reasonMarriageEnded', 'fullName', 'birthDate'],
       oneOf: [
         {
+          type: 'object',
           properties: {
             reasonMarriageEnded: { type: 'string', enum: ['Other'] },
           },
           required: ['reasonMarriageEnded', 'explanationOfOther'],
         },
         {
+          type: 'object',
           properties: {
             reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
           },
@@ -315,8 +309,6 @@ const schema = {
         },
       ],
     },
-
-    // Add children section
 
     childrenToAdd: {
       type: 'array',
@@ -333,10 +325,14 @@ const schema = {
             type: 'boolean',
             oneOf: [
               {
+                type: 'boolean',
                 enum: [true],
                 required: ['relationshipToChild'],
               },
-              { enum: [false] },
+              {
+                type: 'boolean',
+                enum: [false],
+              },
             ],
           },
           relationshipToChild: {
@@ -375,20 +371,28 @@ const schema = {
             type: 'boolean',
             oneOf: [
               {
+                type: 'boolean',
                 enum: [false],
                 required: ['livingWith'],
               },
-              { enum: [true] },
+              {
+                type: 'boolean',
+                enum: [true],
+              },
             ],
           },
           hasChildEverBeenMarried: {
             type: 'boolean',
             oneOf: [
               {
+                type: 'boolean',
                 enum: [true],
                 required: ['marriageEndDate', 'marriageEndReason'],
               },
-              { enum: [false] },
+              {
+                type: 'boolean',
+                enum: [false],
+              },
             ],
           },
           marriageEndDate: {
@@ -398,10 +402,14 @@ const schema = {
             type: 'string',
             oneOf: [
               {
+                type: 'string',
                 enum: ['Other'],
                 required: ['marriageEndDescription'],
               },
-              { enum: ['Death', 'Divorce', 'Annulment'] },
+              {
+                type: 'string',
+                enum: ['Death', 'Divorce', 'Annulment'],
+              },
             ],
           },
           marriageEndDescription: { type: 'string' },
@@ -436,8 +444,6 @@ const schema = {
         ],
       },
     },
-
-    // Student information section
 
     studentInformation: {
       type: 'array',
@@ -475,6 +481,7 @@ const schema = {
             type: 'object',
             oneOf: [
               {
+                type: 'object',
                 properties: {
                   typeOfProgramOrBenefit: {
                     type: 'object',
@@ -486,6 +493,7 @@ const schema = {
                 required: ['otherProgramOrBenefit'],
               },
               {
+                type: 'object',
                 properties: {
                   typeOfProgramOrBenefit: {
                     type: 'object',
@@ -496,6 +504,7 @@ const schema = {
                 },
                 anyOf: [
                   {
+                    type: 'object',
                     properties: {
                       typeOfProgramOrBenefit: {
                         type: 'object',
@@ -505,6 +514,7 @@ const schema = {
                     required: ['benefitPaymentDate'],
                   },
                   {
+                    type: 'object',
                     properties: {
                       typeOfProgramOrBenefit: {
                         type: 'object',
@@ -514,6 +524,7 @@ const schema = {
                     required: ['benefitPaymentDate'],
                   },
                   {
+                    type: 'object',
                     properties: {
                       typeOfProgramOrBenefit: {
                         type: 'object',
@@ -523,6 +534,7 @@ const schema = {
                     required: ['benefitPaymentDate'],
                   },
                   {
+                    type: 'object',
                     properties: {
                       typeOfProgramOrBenefit: {
                         type: 'object',
@@ -534,6 +546,7 @@ const schema = {
                 ],
               },
               {
+                type: 'object',
                 properties: {
                   typeOfProgramOrBenefit: {
                     type: 'object',
@@ -591,6 +604,7 @@ const schema = {
             ],
             oneOf: [
               {
+                type: 'object',
                 properties: {
                   studentDidAttendSchoolLastTerm: { type: 'boolean', enum: [true] },
                   lastTermSchoolInformation: {
@@ -601,6 +615,7 @@ const schema = {
                 required: ['studentDidAttendSchoolLastTerm', 'lastTermSchoolInformation'],
               },
               {
+                type: 'object',
                 properties: {
                   studentDidAttendSchoolLastTerm: { type: 'boolean', enum: [false] },
                 },
@@ -657,8 +672,6 @@ const schema = {
       },
     },
 
-    // Remove Stepchildren section
-
     stepChildren: {
       type: 'array',
       items: {
@@ -682,12 +695,14 @@ const schema = {
         required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
         oneOf: [
           {
+            type: 'object',
             properties: {
               supportingStepchild: { type: 'boolean', enum: [true] },
             },
             required: ['supportingStepchild', 'livingExpensesPaid'],
           },
           {
+            type: 'object',
             properties: {
               supportingStepchild: { type: 'boolean', enum: [false] },
             },
@@ -696,8 +711,6 @@ const schema = {
         ],
       },
     },
-
-    // Remove deceased section
 
     deaths: {
       type: 'array',
@@ -722,12 +735,14 @@ const schema = {
         required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'ssn', 'birthDate'],
         oneOf: [
           {
+            type: 'object',
             properties: {
               dependentType: { type: 'string', enum: ['CHILD'] },
             },
             required: ['dependentType', 'childStatus'],
           },
           {
+            type: 'object',
             properties: {
               dependentType: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] },
             },
@@ -736,8 +751,6 @@ const schema = {
         ],
       },
     },
-
-    // Remove married child section
 
     childMarriage: {
       type: 'array',
@@ -759,8 +772,6 @@ const schema = {
         required: ['dateMarried', 'fullName', 'ssn', 'birthDate'],
       },
     },
-
-    // Remove child not in school section
 
     childStoppedAttendingSchool: {
       type: 'array',

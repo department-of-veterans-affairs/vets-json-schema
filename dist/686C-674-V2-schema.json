@@ -287,6 +287,7 @@
       "type": "object",
       "oneOf": [
         {
+          "type": "object",
           "properties": {
             "outsideUsa": {
               "type": "boolean",
@@ -315,6 +316,7 @@
           ]
         },
         {
+          "type": "object",
           "properties": {
             "outsideUsa": {
               "type": "boolean",
@@ -348,6 +350,7 @@
       "type": "object",
       "oneOf": [
         {
+          "type": "object",
           "properties": {
             "outsideUsa": {
               "type": "boolean",
@@ -380,6 +383,7 @@
           ]
         },
         {
+          "type": "object",
           "properties": {
             "outsideUsa": {
               "type": "boolean",
@@ -490,6 +494,7 @@
       "type": "object",
       "oneOf": [
         {
+          "type": "object",
           "properties": {
             "spouseDoesLiveWithVeteran": {
               "type": "boolean",
@@ -506,6 +511,7 @@
           ]
         },
         {
+          "type": "object",
           "properties": {
             "spouseDoesLiveWithVeteran": {
               "type": "boolean",
@@ -543,6 +549,7 @@
               "$ref": "#/definitions/genericLocation"
             },
             {
+              "type": "object",
               "properties": {
                 "typeOfMarriage": {
                   "not": {
@@ -570,6 +577,7 @@
               "$ref": "#/definitions/genericLocation"
             },
             {
+              "type": "object",
               "properties": {
                 "typeOfMarriage": {
                   "type": "string",
@@ -632,6 +640,7 @@
         ],
         "oneOf": [
           {
+            "type": "object",
             "properties": {
               "reasonMarriageEnded": {
                 "type": "string",
@@ -646,6 +655,7 @@
             ]
           },
           {
+            "type": "object",
             "properties": {
               "reasonMarriageEnded": {
                 "type": "string",
@@ -700,6 +710,7 @@
         ],
         "oneOf": [
           {
+            "type": "object",
             "properties": {
               "reasonMarriageEnded": {
                 "type": "string",
@@ -714,6 +725,7 @@
             ]
           },
           {
+            "type": "object",
             "properties": {
               "reasonMarriageEnded": {
                 "type": "string",
@@ -765,6 +777,7 @@
       ],
       "oneOf": [
         {
+          "type": "object",
           "properties": {
             "reasonMarriageEnded": {
               "type": "string",
@@ -779,6 +792,7 @@
           ]
         },
         {
+          "type": "object",
           "properties": {
             "reasonMarriageEnded": {
               "type": "string",
@@ -816,6 +830,7 @@
             "type": "boolean",
             "oneOf": [
               {
+                "type": "boolean",
                 "enum": [
                   true
                 ],
@@ -824,6 +839,7 @@
                 ]
               },
               {
+                "type": "boolean",
                 "enum": [
                   false
                 ]
@@ -882,6 +898,7 @@
             "type": "boolean",
             "oneOf": [
               {
+                "type": "boolean",
                 "enum": [
                   false
                 ],
@@ -890,6 +907,7 @@
                 ]
               },
               {
+                "type": "boolean",
                 "enum": [
                   true
                 ]
@@ -900,6 +918,7 @@
             "type": "boolean",
             "oneOf": [
               {
+                "type": "boolean",
                 "enum": [
                   true
                 ],
@@ -909,6 +928,7 @@
                 ]
               },
               {
+                "type": "boolean",
                 "enum": [
                   false
                 ]
@@ -922,6 +942,7 @@
             "type": "string",
             "oneOf": [
               {
+                "type": "string",
                 "enum": [
                   "Other"
                 ],
@@ -930,6 +951,7 @@
                 ]
               },
               {
+                "type": "string",
                 "enum": [
                   "Death",
                   "Divorce",
@@ -1036,6 +1058,7 @@
             "type": "object",
             "oneOf": [
               {
+                "type": "object",
                 "properties": {
                   "typeOfProgramOrBenefit": {
                     "type": "object",
@@ -1054,6 +1077,7 @@
                 ]
               },
               {
+                "type": "object",
                 "properties": {
                   "typeOfProgramOrBenefit": {
                     "type": "object",
@@ -1069,6 +1093,7 @@
                 },
                 "anyOf": [
                   {
+                    "type": "object",
                     "properties": {
                       "typeOfProgramOrBenefit": {
                         "type": "object",
@@ -1087,6 +1112,7 @@
                     ]
                   },
                   {
+                    "type": "object",
                     "properties": {
                       "typeOfProgramOrBenefit": {
                         "type": "object",
@@ -1105,6 +1131,7 @@
                     ]
                   },
                   {
+                    "type": "object",
                     "properties": {
                       "typeOfProgramOrBenefit": {
                         "type": "object",
@@ -1123,6 +1150,7 @@
                     ]
                   },
                   {
+                    "type": "object",
                     "properties": {
                       "typeOfProgramOrBenefit": {
                         "type": "object",
@@ -1143,6 +1171,7 @@
                 ]
               },
               {
+                "type": "object",
                 "properties": {
                   "typeOfProgramOrBenefit": {
                     "type": "object",
@@ -1244,6 +1273,7 @@
             ],
             "oneOf": [
               {
+                "type": "object",
                 "properties": {
                   "studentDidAttendSchoolLastTerm": {
                     "type": "boolean",
@@ -1265,6 +1295,7 @@
                 ]
               },
               {
+                "type": "object",
                 "properties": {
                   "studentDidAttendSchoolLastTerm": {
                     "type": "boolean",
@@ -1405,6 +1436,7 @@
         ],
         "oneOf": [
           {
+            "type": "object",
             "properties": {
               "supportingStepchild": {
                 "type": "boolean",
@@ -1419,6 +1451,7 @@
             ]
           },
           {
+            "type": "object",
             "properties": {
               "supportingStepchild": {
                 "type": "boolean",
@@ -1482,6 +1515,7 @@
         ],
         "oneOf": [
           {
+            "type": "object",
             "properties": {
               "dependentType": {
                 "type": "string",
@@ -1496,6 +1530,7 @@
             ]
           },
           {
+            "type": "object",
             "properties": {
               "dependentType": {
                 "type": "string",
