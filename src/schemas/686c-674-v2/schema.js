@@ -1,21 +1,21 @@
 import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
 import pick from 'lodash/pick';
-// import { countries, states } from '../../common/constants';
 import commonDefinitions from '../../common/definitions';
 
-// patterns
-const numberAndDashPattern = '^[0-9]*[-]*[0-9]*[-]*[0-9]*$';
-
-const currencyAmountPattern = '^\\d+(\\.\\d{1,2})?$';
-
-// filter out military states
-// const militaryStates = ['AA', 'AE', 'AP'];
-// const filteredStates = states.USA.filter(state => !militaryStates.includes(state.value));
-// const nameRegex = '^[A-Za-zÀ-ÖØ-öø-ÿ-]+(?:s[A-Za-zÀ-ÖØ-öø-ÿ-][?]+)*$';
-
 let definitions = cloneDeep(commonDefinitions);
-definitions = pick(definitions, 'fullNameNoSuffix', 'phone', 'email', 'files', 'privacyAgreementAccepted', 'ssn');
+definitions = pick(
+  definitions,
+  'address',
+  'email',
+  'files',
+  'fullNameNoSuffix',
+  'phone',
+  'privacyAgreementAccepted',
+  'ssn',
+  'ssnLastFour',
+  'veteranServiceNumber',
+);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -76,101 +76,54 @@ const schema = {
         },
       ],
     },
-    genericTextInput: {
-      type: 'string',
-      maxLength: 50,
-    },
-    genericNumberAndDashInput: {
-      type: 'string',
-      maxLength: 50,
-      minLength: 4,
-      pattern: numberAndDashPattern,
-    },
-    currencyInput: {
-      type: 'string',
-      pattern: currencyAmountPattern,
-    },
-    addressSchema: {
-      type: 'object',
-      properties: {
-        isMilitary: {
-          type: 'boolean',
-        },
-        country: {
-          type: 'string',
-        },
-        street: {
-          type: 'string',
-        },
-        street2: {
-          type: 'string',
-        },
-        street3: {
-          type: 'string',
-        },
-        city: {
-          type: 'string',
-        },
-        state: {
-          type: 'string',
-        },
-        postalCode: {
-          type: 'string',
-          pattern: '^\\d{5}$',
-        },
-      },
-      required: ['country', 'street', 'city', 'state', 'postalCode'],
-    },
   }),
   properties: {
+    // Data from prefill transformer: COMPLETE
+
     useV2: { type: 'boolean' },
     daysTillExpires: { type: 'integer' },
 
+    // Veteran information section: COMPLETE
     // this is prefilled data, so it doesn't need to be required
+
     veteranInformation: {
       type: 'object',
       properties: {
-        fullName: {
-          type: 'object',
-          properties: {
-            first: { type: 'string' },
-            middle: { type: 'string' },
-            last: { type: 'string' },
-          },
-          required: ['first', 'last'],
-        },
-        birthDate: {
-          $ref: '#/definitions/date',
-        },
-        ssnLastFour: { type: 'string' },
-        vaFileLastFour: { type: 'string' },
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        birthDate: { $ref: '#/definitions/date' },
+        ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
+        vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
       },
     },
+
+    // Veteran contact information section: COMPLETE
 
     veteranContactInformation: {
       type: 'object',
       properties: {
-        veteranAddress: {
-          $ref: '#/definitions/addressSchema',
-        },
-        phoneNumber: { type: 'string' },
-        emailAddress: { type: 'string' },
+        veteranAddress: { $ref: '#/definitions/address' },
+        phoneNumber: { $ref: '#/definitions/phone' },
+        emailAddress: { $ref: '#/definitions/email' },
       },
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
+
+    // Current spouse information section: COMPLETE
 
     spouseInformation: {
       type: 'object',
       properties: {
         fullName: { $ref: '#/definitions/fullNameNoSuffix' },
-        ssn: { type: 'string' },
+        ssn: { $ref: '#/definitions/ssn' },
         birthDate: { $ref: '#/definitions/date' },
         isVeteran: { type: 'boolean' },
         vaFileNumber: { type: 'string' },
-        serviceNumber: { type: 'string' },
+        serviceNumber: { $ref: '#/definitions/veteranServiceNumber' },
       },
       required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
     },
+
+    // Spouse does live with veteran section: COMPLETE
 
     doesLiveWithSpouse: {
       type: 'object',
@@ -180,18 +133,22 @@ const schema = {
             spouseDoesLiveWithVeteran: { type: 'boolean', enum: [true] },
             spouseIncome: { type: 'string' },
           },
-          required: ['spouseIncome', 'spouseDoesLiveWithVeteran'],
+          required: ['spouseDoesLiveWithVeteran'],
         },
         {
           properties: {
             spouseDoesLiveWithVeteran: { type: 'boolean', enum: [false] },
             spouseIncome: { type: 'string' },
-            address: { $ref: '#/definitions/addressSchema' },
+            address: { $ref: '#/definitions/address' },
+            currentSpouseReasonForSeparation: { type: 'string' },
+            other: { type: 'string' },
           },
-          required: ['spouseIncome', 'spouseDoesLiveWithVeteran', 'address'],
+          required: ['spouseDoesLiveWithVeteran', 'currentSpouseReasonForSeparation', 'address'],
         },
       ],
     },
+
+    // Current marriage information section: COMPLETE
 
     currentMarriageInformation: {
       type: 'object',
@@ -272,13 +229,13 @@ const schema = {
       items: {
         type: 'object',
         properties: {
-          endLocation: { $ref: '#/definitions/genericLocation' },
-          startLocation: { $ref: '#/definitions/genericLocation' },
-          endDate: { $ref: '#/definitions/date' },
-          startDate: { $ref: '#/definitions/date' },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           reasonMarriageEnded: { type: 'string' },
           otherReasonMarriageEnded: { type: 'string' },
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          startDate: { $ref: '#/definitions/date' },
+          endDate: { $ref: '#/definitions/date' },
+          startLocation: { $ref: '#/definitions/genericLocation' },
+          endLocation: { $ref: '#/definitions/genericLocation' },
         },
         required: ['endLocation', 'startLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
         oneOf: [
@@ -337,6 +294,9 @@ const schema = {
       items: {
         type: 'object',
         properties: {
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          birthDate: { $ref: '#/definitions/date' },
+
           incomeInLastYear: { type: 'string' },
           marriageEndDescription: { type: 'string' },
           marriageEndDate: {
@@ -353,7 +313,7 @@ const schema = {
           biologicalParentName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
-          biologicalParentSsn: { type: 'string' },
+          biologicalParentSsn: { $ref: '#/definitions/ssn' },
           biologicalParentDob: {
             $ref: '#/definitions/date',
           },
@@ -380,13 +340,8 @@ const schema = {
             },
             required: ['location'],
           },
-          fullName: {
-            $ref: '#/definitions/fullNameNoSuffix',
-          },
-          ssn: { type: 'string' },
-          birthDate: {
-            $ref: '#/definitions/date',
-          },
+
+          ssn: { $ref: '#/definitions/ssn' },
         },
         required: [
           'incomeInLastYear',
@@ -428,7 +383,7 @@ const schema = {
           isParent: { type: 'boolean' },
           studentIncome: { type: 'string' },
           address: {
-            $ref: '#/definitions/addressSchema',
+            $ref: '#/definitions/address',
           },
           wasMarried: {
             oneOf: [
@@ -646,11 +601,11 @@ const schema = {
             },
             required: ['first', 'last'],
           },
-          address: { $ref: '#/definitions/addressSchema' },
+          address: { $ref: '#/definitions/address' },
           livingExpensesPaid: { type: 'string' },
           supportingStepchild: { type: 'boolean' },
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
-          ssn: { type: 'string' },
+          ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
         required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
@@ -690,7 +645,7 @@ const schema = {
             },
           },
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
-          ssn: { type: 'string' },
+          ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
         required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'ssn', 'birthDate'],
@@ -768,28 +723,28 @@ const schema = {
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
 
-    privacyAgreementAccepted: { type: 'boolean' },
+    privacyAgreementAccepted: { $ref: '#/definitions/privacyAgreementAccepted' },
   },
-  // required: [
-  //   'spouseSupportingDocuments',
-  //   'childSupportingDocuments',
-  //   'reportDivorce',
-  //   'currentMarriageInformation',
-  //   'doesLiveWithSpouse',
-  //   'spouseInformation',
-  //   'veteranContactInformation',
-  //   'spouseMarriageHistory',
-  //   'childrenToAdd',
-  //   'studentInformation',
-  //   'veteranMarriageHistory',
-  //   'stepChildren',
-  //   'deaths',
-  //   'childMarriage',
-  //   'statementOfTruthSignature',
-  //   'statementOfTruthCertified',
-  //   'veteranInformation',
-  //   'privacyAgreementAccepted',
-  // ],
+  required: [
+    // 'childMarriage',
+    // 'childrenToAdd',
+    // 'childSupportingDocuments',
+    // 'currentMarriageInformation',
+    // 'deaths',
+    // 'doesLiveWithSpouse',
+    'privacyAgreementAccepted',
+    // 'reportDivorce',
+    // 'spouseInformation',
+    // 'spouseMarriageHistory',
+    // 'spouseSupportingDocuments',
+    // 'statementOfTruthCertified',
+    'statementOfTruthSignature',
+    // 'stepChildren',
+    // 'studentInformation',
+    // 'veteranContactInformation',
+    // 'veteranInformation',
+    // 'veteranMarriageHistory',
+  ],
 };
 
 export default schema;
