@@ -293,12 +293,10 @@ const profileAddress = {
     },
     street2: {
       type: 'string',
-      minLength: 1,
       maxLength: 100,
     },
     street3: {
       type: 'string',
-      minLength: 1,
       maxLength: 100,
     },
     city: {
