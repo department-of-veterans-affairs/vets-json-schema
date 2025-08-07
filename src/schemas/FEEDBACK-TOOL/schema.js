@@ -282,6 +282,11 @@ const schema = {
               default: false,
               title: 'Vocational Rehabilitation and Employment (VR&E) (Chapter 31)',
             },
+            vetTec: {
+              type: 'boolean',
+              default: false,
+              title: 'High Technology Veterans education, training, and skills program (VET TEC 2.0)',
+            },
           },
         },
         assistance: {
