@@ -1407,8 +1407,7 @@
         },
         "required": [
           "employerName",
-          "startDate",
-          "endDate"
+          "startDate"
         ]
       }
     },
