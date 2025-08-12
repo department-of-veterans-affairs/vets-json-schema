@@ -369,7 +369,7 @@
                 },
                 "postal_code": {
                   "type": "string",
-                  "maxLength": 5
+                  "pattern": "^\\d{5}$"
                 }
               },
               "required": [

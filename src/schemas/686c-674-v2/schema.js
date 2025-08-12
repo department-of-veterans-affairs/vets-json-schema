@@ -82,7 +82,7 @@ const schema = {
               properties: {
                 city: { type: 'string' },
                 state: { type: 'string' },
-                postal_code: { type: 'string', maxLength: 5 },
+                postal_code: { type: 'string', pattern: '^\\d{5}$' },
               },
               required: ['city', 'state', 'postal_code'],
             },
