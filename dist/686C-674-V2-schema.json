@@ -368,7 +368,8 @@
                   "type": "string"
                 },
                 "postal_code": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^\\d{5}$"
                 }
               },
               "required": [
