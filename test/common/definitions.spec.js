@@ -47,8 +47,16 @@ describe('schema definitions', () => {
         insurancePolicyNumber: stringGenerate(30),
         insuranceGroupCode: stringGenerate(30),
       },
-      { insurancePolicyNumber: '123' },
-      { insuranceGroupCode: '123' },
+      {
+        insuranceName: stringGenerate(100),
+        insurancePolicyHolderName: stringGenerate(50),
+        insurancePolicyNumber: '123',
+      },
+      {
+        insuranceName: stringGenerate(100),
+        insurancePolicyHolderName: stringGenerate(50),
+        insuranceGroupCode: '123',
+      },
     ],
     invalid: [
       {
@@ -62,6 +70,8 @@ describe('schema definitions', () => {
       { insurancePolicyHolderName: ' ' },
       { insuranceGroupCode: ' ' },
       { insurancePolicyNumber: ' ' },
+      { insurancePolicyNumber: '123' },
+      { insuranceGroupCode: '123' },
     ],
   });
 

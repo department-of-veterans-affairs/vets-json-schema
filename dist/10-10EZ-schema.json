@@ -1069,6 +1069,10 @@
             "pattern": "^.*\\S.*"
           }
         },
+        "required": [
+          "insuranceName",
+          "insurancePolicyHolderName"
+        ],
         "anyOf": [
           {
             "required": [

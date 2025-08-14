@@ -90,6 +90,7 @@ const insuranceProvider = {
       ...rejectOnlyWhitespace,
     },
   },
+  required: ['insuranceName', 'insurancePolicyHolderName'],
   anyOf: [
     {
       required: ['insurancePolicyNumber'],
