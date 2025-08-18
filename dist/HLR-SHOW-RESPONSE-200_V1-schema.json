@@ -41,7 +41,6 @@
         }
       },
       "required": [
-        "areaCode",
         "phoneNumber"
       ]
     },
