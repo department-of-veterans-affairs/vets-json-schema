@@ -1,0 +1,833 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 22-0839",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "fullNameNoSuffix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      }
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
+      }
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10
+    },
+    "yesNoSchema": {
+      "type": "boolean"
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "profileAddress": {
+      "type": "object",
+      "properties": {
+        "isMilitary": {
+          "type": "boolean"
+        },
+        "view:militaryBaseDescription": {
+          "type": "object",
+          "properties": {}
+        },
+        "country": {
+          "type": "string",
+          "enum": [
+            "USA",
+            "AFG",
+            "ALB",
+            "DZA",
+            "AND",
+            "AGO",
+            "AIA",
+            "ATA",
+            "ATG",
+            "ARG",
+            "ARM",
+            "ABW",
+            "AUS",
+            "AUT",
+            "AZE",
+            "BHS",
+            "BHR",
+            "BGD",
+            "BRB",
+            "BLR",
+            "BEL",
+            "BLZ",
+            "BEN",
+            "BMU",
+            "BTN",
+            "BOL",
+            "BIH",
+            "BWA",
+            "BVT",
+            "BRA",
+            "IOT",
+            "BRN",
+            "BGR",
+            "BFA",
+            "BDI",
+            "KHM",
+            "CMR",
+            "CAN",
+            "CPV",
+            "CYM",
+            "CAF",
+            "TCD",
+            "CHL",
+            "CHN",
+            "CXR",
+            "CCK",
+            "COL",
+            "COM",
+            "COG",
+            "COD",
+            "COK",
+            "CRI",
+            "CIV",
+            "HRV",
+            "CUB",
+            "CYP",
+            "CZE",
+            "DNK",
+            "DJI",
+            "DMA",
+            "DOM",
+            "ECU",
+            "EGY",
+            "SLV",
+            "GNQ",
+            "ERI",
+            "EST",
+            "ETH",
+            "FLK",
+            "FRO",
+            "FJI",
+            "FIN",
+            "FRA",
+            "GUF",
+            "PYF",
+            "ATF",
+            "GAB",
+            "GMB",
+            "GEO",
+            "DEU",
+            "GHA",
+            "GIB",
+            "GRC",
+            "GRL",
+            "GRD",
+            "GLP",
+            "GTM",
+            "GIN",
+            "GNB",
+            "GUY",
+            "HTI",
+            "HMD",
+            "HND",
+            "HKG",
+            "HUN",
+            "ISL",
+            "IND",
+            "IDN",
+            "IRN",
+            "IRQ",
+            "IRL",
+            "ISR",
+            "ITA",
+            "JAM",
+            "JPN",
+            "JOR",
+            "KAZ",
+            "KEN",
+            "KIR",
+            "PRK",
+            "KOR",
+            "KWT",
+            "KGZ",
+            "LAO",
+            "LVA",
+            "LBN",
+            "LSO",
+            "LBR",
+            "LBY",
+            "LIE",
+            "LTU",
+            "LUX",
+            "MAC",
+            "MKD",
+            "MDG",
+            "MWI",
+            "MYS",
+            "MDV",
+            "MLI",
+            "MLT",
+            "MTQ",
+            "MRT",
+            "MUS",
+            "MYT",
+            "MEX",
+            "FSM",
+            "MDA",
+            "MCO",
+            "MNG",
+            "MSR",
+            "MAR",
+            "MOZ",
+            "MMR",
+            "NAM",
+            "NRU",
+            "NPL",
+            "ANT",
+            "NLD",
+            "NCL",
+            "NZL",
+            "NIC",
+            "NER",
+            "NGA",
+            "NIU",
+            "NFK",
+            "NOR",
+            "OMN",
+            "PAK",
+            "PAN",
+            "PNG",
+            "PRY",
+            "PER",
+            "PHL",
+            "PCN",
+            "POL",
+            "PRT",
+            "QAT",
+            "REU",
+            "ROU",
+            "RUS",
+            "RWA",
+            "SHN",
+            "KNA",
+            "LCA",
+            "SPM",
+            "VCT",
+            "SMR",
+            "STP",
+            "SAU",
+            "SEN",
+            "SCG",
+            "SYC",
+            "SLE",
+            "SGP",
+            "SVK",
+            "SVN",
+            "SLB",
+            "SOM",
+            "ZAF",
+            "SGS",
+            "ESP",
+            "LKA",
+            "SDN",
+            "SUR",
+            "SWZ",
+            "SWE",
+            "CHE",
+            "SYR",
+            "TWN",
+            "TJK",
+            "TZA",
+            "THA",
+            "TLS",
+            "TGO",
+            "TKL",
+            "TON",
+            "TTO",
+            "TUN",
+            "TUR",
+            "TKM",
+            "TCA",
+            "TUV",
+            "UGA",
+            "UKR",
+            "ARE",
+            "GBR",
+            "URY",
+            "UZB",
+            "VUT",
+            "VAT",
+            "VEN",
+            "VNM",
+            "VGB",
+            "WLF",
+            "ESH",
+            "YEM",
+            "ZMB",
+            "ZWE"
+          ],
+          "enumNames": [
+            "United States",
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Anguilla",
+            "Antarctica",
+            "Antigua",
+            "Argentina",
+            "Armenia",
+            "Aruba",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bermuda",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia",
+            "Botswana",
+            "Bouvet Island",
+            "Brazil",
+            "British Indian Ocean Territories",
+            "Brunei Darussalam",
+            "Bulgaria",
+            "Burkina Faso",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cape Verde",
+            "Cayman",
+            "Central African Republic",
+            "Chad",
+            "Chile",
+            "China",
+            "Christmas Island",
+            "Cocos Islands",
+            "Colombia",
+            "Comoros",
+            "Congo",
+            "Democratic Republic of the Congo",
+            "Cook Islands",
+            "Costa Rica",
+            "Ivory Coast",
+            "Croatia",
+            "Cuba",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Ethiopia",
+            "Falkland Islands",
+            "Faroe Islands",
+            "Fiji",
+            "Finland",
+            "France",
+            "French Guiana",
+            "French Polynesia",
+            "French Southern Territories",
+            "Gabon",
+            "Gambia",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Gibraltar",
+            "Greece",
+            "Greenland",
+            "Grenada",
+            "Guadeloupe",
+            "Guatemala",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Heard Island",
+            "Honduras",
+            "Hong Kong",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Ireland",
+            "Israel",
+            "Italy",
+            "Jamaica",
+            "Japan",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "North Korea",
+            "South Korea",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Macao",
+            "Macedonia",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Martinique",
+            "Mauritania",
+            "Mauritius",
+            "Mayotte",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montserrat",
+            "Morocco",
+            "Mozambique",
+            "Myanmar",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands Antilles",
+            "Netherlands",
+            "New Caledonia",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "Niue",
+            "Norfolk",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Pitcairn",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Reunion",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Saint Helena",
+            "Saint Kitts and Nevis",
+            "Saint Lucia",
+            "Saint Pierre and Miquelon",
+            "Saint Vincent and the Grenadines",
+            "San Marino",
+            "Sao Tome and Principe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Georgia and the South Sandwich Islands",
+            "Spain",
+            "Sri Lanka",
+            "Sudan",
+            "Suriname",
+            "Swaziland",
+            "Sweden",
+            "Switzerland",
+            "Syrian Arab Republic",
+            "Taiwan",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Timor-Leste",
+            "Togo",
+            "Tokelau",
+            "Tonga",
+            "Trinidad and Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Turks and Caicos Islands",
+            "Tuvalu",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "United Kingdom",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Vatican",
+            "Venezuela",
+            "Vietnam",
+            "British Virgin Islands",
+            "Wallis and Futuna",
+            "Western Sahara",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe"
+          ]
+        },
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "street3": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "authorizedOfficial",
+    "agreementType",
+    "statementOfTruthSignature",
+    "dateSigned"
+  ],
+  "properties": {
+    "authorizedOfficial": {
+      "type": "object",
+      "required": [
+        "fullName",
+        "title",
+        "phoneNumber"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullNameNoSuffix"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "phoneNumber": {
+          "$ref": "#/definitions/phone"
+        }
+      }
+    },
+    "agreementType": {
+      "type": "string",
+      "enum": [
+        "startNewOpenEndedAgreement",
+        "modifyExistingAgreement",
+        "withdrawFromYellowRibbonProgram"
+      ]
+    },
+    "withdrawFromYellowRibbonProgram": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "facilityCode",
+          "institutionName",
+          "institutionAddress"
+        ],
+        "properties": {
+          "facilityCode": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]{8}$"
+          },
+          "institutionName": {
+            "type": "string"
+          },
+          "institutionAddress": {
+            "$ref": "#/definitions/profileAddress"
+          }
+        }
+      }
+    },
+    "yellowRibbonProgramTerms": {
+      "type": "object",
+      "required": [
+        "firstAcknowledgement",
+        "secondAcknowledgement",
+        "thirdAcknowledgement",
+        "fourthAcknowledgement",
+        "agreeToProvideYellowRibbonProgramContributions"
+      ],
+      "properties": {
+        "firstAcknowledgement": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 3
+        },
+        "secondAcknowledgement": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 3
+        },
+        "thirdAcknowledgement": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 3
+        },
+        "fourthAcknowledgement": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 3
+        },
+        "agreeToProvideYellowRibbonProgramContributions": {
+          "type": "boolean"
+        }
+      }
+    },
+    "institutionDetails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "facilityCode",
+          "institutionName",
+          "institutionAddress"
+        ],
+        "properties": {
+          "facilityCode": {
+            "type": "string",
+            "pattern": "^(?!..[Xx])[A-Za-z0-9]{8}$"
+          },
+          "institutionName": {
+            "type": "string"
+          },
+          "institutionAddress": {
+            "$ref": "#/definitions/profileAddress"
+          }
+        }
+      }
+    },
+    "yellowRibbonProgramAgreementRequest": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "eligibleIndividuals",
+          "yearRange",
+          "maximumNumberofStudents",
+          "degreeLevel",
+          "currencyType",
+          "maximumContributionAmount"
+        ],
+        "properties": {
+          "eligibleIndividuals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "yearRange": {
+            "$ref": "#/definitions/dateRange"
+          },
+          "maximumNumberofStudents": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "degreeLevel": {
+            "type": "string",
+            "enum": [
+              "undergraduate",
+              "graduate",
+              "doctoral",
+              "all"
+            ]
+          },
+          "degreeProgram": {
+            "type": "string"
+          },
+          "currencyType": {
+            "type": "string"
+          },
+          "maximumContributionAmount": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 99999
+          }
+        }
+      }
+    },
+    "pointOfContact": {
+      "type": "object",
+      "required": [
+        "fullName",
+        "phoneNumber",
+        "emailAddress",
+        "role"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullNameNoSuffix"
+        },
+        "phoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "emailAddress": {
+          "type": "string",
+          "maxLength": 256,
+          "format": "email"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "YellowRibbonProgramPOC",
+            "schoolFinancialRepresentative",
+            "schoolCertifyingOfficial"
+          ]
+        }
+      }
+    },
+    "pointOfContactTwo": {
+      "type": "object",
+      "required": [
+        "fullName",
+        "phoneNumber",
+        "emailAddress",
+        "role"
+      ],
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullNameNoSuffix"
+        },
+        "phoneNumber": {
+          "$ref": "#/definitions/phone"
+        },
+        "emailAddress": {
+          "type": "string",
+          "maxLength": 256,
+          "format": "email"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "YellowRibbonProgramPOC",
+            "schoolFinancialRepresentative",
+            "schoolCertifyingOfficial"
+          ]
+        }
+      }
+    },
+    "statementOfTruthSignature": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dateSigned": {
+      "$ref": "#/definitions/date"
+    }
+  },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "agreementType": {
+              "enum": [
+                "withdrawFromYellowRibbonProgram"
+              ]
+            }
+          },
+          "required": [
+            "agreementType",
+            "withdrawFromYellowRibbonProgram"
+          ]
+        },
+        {
+          "properties": {
+            "agreementType": {
+              "enum": [
+                "startNewOpenEndedAgreement",
+                "modifyExistingAgreement"
+              ]
+            }
+          },
+          "required": [
+            "agreementType",
+            "yellowRibbonProgramTerms",
+            "institutionDetails",
+            "yellowRibbonProgramAgreementRequest",
+            "pointOfContact"
+          ],
+          "not": {
+            "required": [
+              "withdrawFromYellowRibbonProgram"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
