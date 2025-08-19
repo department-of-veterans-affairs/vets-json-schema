@@ -791,8 +791,10 @@
   },
   "allOf": [
     {
+      "type": "object",
       "oneOf": [
         {
+          "type": "object",
           "properties": {
             "agreementType": {
               "enum": [
@@ -806,6 +808,7 @@
           ]
         },
         {
+          "type": "object",
           "properties": {
             "agreementType": {
               "enum": [

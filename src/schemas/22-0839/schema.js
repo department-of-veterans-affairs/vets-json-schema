@@ -186,14 +186,18 @@ const schema = {
   },
   allOf: [
     {
+      type: 'object',
       oneOf: [
         {
+          type: 'object',
           properties: {
             agreementType: { enum: ['withdrawFromYellowRibbonProgram'] },
           },
           required: ['agreementType', 'withdrawFromYellowRibbonProgram'],
         },
+
         {
+          type: 'object',
           properties: {
             agreementType: { enum: ['startNewOpenEndedAgreement', 'modifyExistingAgreement'] },
           },
