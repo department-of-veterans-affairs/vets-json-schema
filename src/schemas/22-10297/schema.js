@@ -52,12 +52,6 @@ const schema = {
         },
       },
     },
-    hasCompletedActiveDuty: {
-      $ref: '#/definitions/yesNoSchema',
-    },
-    hasCompletedByDischarge: {
-      $ref: '#/definitions/yesNoSchema',
-    },
     dateReleasedFromActiveDuty: {
       $ref: '#/definitions/date',
     },
@@ -131,7 +125,6 @@ const schema = {
     'applicantFullName',
     'dateOfBirth',
     'mailingAddress',
-    'hasCompletedActiveDuty',
     'dateReleasedFromActiveDuty',
     'activeDutyDuringHitechVets',
     'bankAccount',

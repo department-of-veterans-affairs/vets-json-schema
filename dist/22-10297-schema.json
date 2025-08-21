@@ -316,12 +316,6 @@
         }
       }
     },
-    "hasCompletedActiveDuty": {
-      "$ref": "#/definitions/yesNoSchema"
-    },
-    "hasCompletedByDischarge": {
-      "$ref": "#/definitions/yesNoSchema"
-    },
     "dateReleasedFromActiveDuty": {
       "$ref": "#/definitions/date"
     },
@@ -413,7 +407,6 @@
     "applicantFullName",
     "dateOfBirth",
     "mailingAddress",
-    "hasCompletedActiveDuty",
     "dateReleasedFromActiveDuty",
     "activeDutyDuringHitechVets",
     "bankAccount",
