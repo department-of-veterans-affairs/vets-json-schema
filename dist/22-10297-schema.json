@@ -314,10 +314,7 @@
         "emailAddress": {
           "$ref": "#/definitions/email"
         }
-      },
-      "required": [
-        "mobilePhone"
-      ]
+      }
     },
     "hasCompletedActiveDuty": {
       "$ref": "#/definitions/yesNoSchema"
@@ -361,8 +358,7 @@
         }
       },
       "required": [
-        "providers",
-        "plannedStartDate"
+        "providers"
       ]
     },
     "isEmployed": {
@@ -417,12 +413,10 @@
     "applicantFullName",
     "dateOfBirth",
     "mailingAddress",
-    "contactInfo",
     "hasCompletedActiveDuty",
     "dateReleasedFromActiveDuty",
     "activeDutyDuringHitechVets",
     "bankAccount",
-    "trainingProviders",
     "isEmployed",
     "highestLevelOfEducation",
     "privacyAgreementAccepted",
