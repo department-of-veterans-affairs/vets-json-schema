@@ -52,6 +52,9 @@ const schema = {
         },
       },
     },
+    veteranStatus: {
+      $ref: '#/definitions/yesNoSchema',
+    },
     dateReleasedFromActiveDuty: {
       $ref: '#/definitions/date',
     },
@@ -128,6 +131,7 @@ const schema = {
     'dateReleasedFromActiveDuty',
     'activeDutyDuringHitechVets',
     'bankAccount',
+    'veteranStatus',
     'isEmployed',
     'highestLevelOfEducation',
     'privacyAgreementAccepted',

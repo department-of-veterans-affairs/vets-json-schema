@@ -316,6 +316,9 @@
         }
       }
     },
+    "veteranStatus": {
+      "$ref": "#/definitions/yesNoSchema"
+    },
     "dateReleasedFromActiveDuty": {
       "$ref": "#/definitions/date"
     },
@@ -410,6 +413,7 @@
     "dateReleasedFromActiveDuty",
     "activeDutyDuringHitechVets",
     "bankAccount",
+    "veteranStatus",
     "isEmployed",
     "highestLevelOfEducation",
     "privacyAgreementAccepted",
