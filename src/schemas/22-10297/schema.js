@@ -51,12 +51,8 @@ const schema = {
           $ref: '#/definitions/email',
         },
       },
-      required: ['mobilePhone'],
     },
-    hasCompletedActiveDuty: {
-      $ref: '#/definitions/yesNoSchema',
-    },
-    hasCompletedByDischarge: {
+    veteranStatus: {
       $ref: '#/definitions/yesNoSchema',
     },
     dateReleasedFromActiveDuty: {
@@ -91,7 +87,7 @@ const schema = {
           $ref: '#/definitions/date',
         },
       },
-      required: ['providers', 'plannedStartDate'],
+      required: ['providers'],
     },
     isEmployed: {
       $ref: '#/definitions/yesNoSchema',
@@ -132,14 +128,11 @@ const schema = {
     'applicantFullName',
     'dateOfBirth',
     'mailingAddress',
-    'contactInfo',
-    'hasCompletedActiveDuty',
     'dateReleasedFromActiveDuty',
     'activeDutyDuringHitechVets',
     'bankAccount',
-    'trainingProviders',
+    'veteranStatus',
     'isEmployed',
-    'highestLevelOfEducation',
     'privacyAgreementAccepted',
     'statementOfTruthSignature',
     'dateSigned',
