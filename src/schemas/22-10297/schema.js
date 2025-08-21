@@ -133,7 +133,6 @@ const schema = {
     'bankAccount',
     'veteranStatus',
     'isEmployed',
-    'highestLevelOfEducation',
     'privacyAgreementAccepted',
     'statementOfTruthSignature',
     'dateSigned',
