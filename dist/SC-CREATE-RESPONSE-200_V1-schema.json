@@ -148,7 +148,6 @@
         }
       },
       "required": [
-        "areaCode",
         "phoneNumber"
       ]
     },

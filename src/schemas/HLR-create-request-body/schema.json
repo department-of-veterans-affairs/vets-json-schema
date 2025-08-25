@@ -133,7 +133,6 @@
         "phoneNumberExt":  { "type": "string", "pattern": "^[a-zA-Z0-9]{1,10}$" }
       },
       "required": [
-        "areaCode",
         "phoneNumber"
       ]
     },
