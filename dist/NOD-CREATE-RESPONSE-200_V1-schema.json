@@ -154,7 +154,6 @@
         }
       },
       "required": [
-        "areaCode",
         "phoneNumber"
       ]
     },

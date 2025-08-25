@@ -382,7 +382,6 @@
         }
       },
       "required": [
-        "areaCode",
         "phoneNumber"
       ]
     },

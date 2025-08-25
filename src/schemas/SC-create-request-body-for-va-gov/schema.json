@@ -376,7 +376,7 @@
           "maxLength": 10
         }
       },
-      "required": ["areaCode", "phoneNumber"]
+      "required": ["phoneNumber"]
     },
     "timezone": {
       "type": "string",
