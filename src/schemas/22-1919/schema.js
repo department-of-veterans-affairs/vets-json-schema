@@ -13,12 +13,9 @@ const schema = {
   required: [
     'certifyingOfficial',
     'aboutYourInstitution',
-    'institutionDetails',
     'isProprietaryProfit',
     'isProfitConflictOfInterest',
-    'proprietaryProfitConflicts',
     'allProprietaryConflictOfInterest',
-    'allProprietaryProfitConflicts',
     'statementOfTruthSignature',
     'dateSigned',
   ],
