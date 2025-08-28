@@ -31,7 +31,10 @@ const pickedDefinitions = _.pick(origDefinitions, [
 
 - Need to include principles of excellence in schema?
   - pdf says signature counts as agreeing to principles of excellence
-Check pdf for guidance 
+
+- How to handle required fields?
+  - If agreementType is withdrawl, then only signature and facilityCode required.
+  - If agreementType is newCommitment, then all fields are required.  
 
 */
 
