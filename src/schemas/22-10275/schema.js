@@ -14,6 +14,27 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'yesNoSchema',
 ]);
 
+/*
+
+- institution objects are idential whether withdrawal or new commitment.
+    - should institution object be nested in withdrawl/newCommitment or remain outside at top level?
+
+- multiple institutions are allowed, but first institution stands outside of list and loop
+    - should initial institution be it's own field, THEN list and loop within an additionalInstitutions field
+    - OR should all institutions be nested in an instituions field?
+    - pdf separates them
+
+- associatedOfficial and authorizingOfficial are identical whether withdrawal or new commitment.
+    - should they be nested in institution object or remain outside at top level?
+    - should they be unified to be one "institutionOfficial" object?
+    - currently using 2 since associatedOffical question has additional questions -- principalPointOfContact and schoolCertifyingOfficial
+
+- Need to include principles of excellence in schema?
+  - pdf says signature counts as agreeing to principles of excellence
+Check pdf for guidance 
+
+*/
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: '22-10275 PRINCIPLES OF EXCELLENCE FOR EDUCATIONAL INSTITUTIONS',
@@ -28,7 +49,7 @@ const schema = {
     newCommitment: {
       type: 'object',
       properties: {
-        institutions: { // is there one primary institution than others that are optional?
+        institutions: {
           type: 'array',
           maxItems: 6, // TODO verify
           items: {
@@ -36,7 +57,7 @@ const schema = {
             properties: {
               facilityCode: {
                 type: 'string',
-                pattern: '', // TODO verify pattern, include dashes?
+                pattern: '', // TODO verify pattern, include dashes? Search for exising regex definition.
               },
               institutionName: {
                 type: 'string',
@@ -44,7 +65,6 @@ const schema = {
               institutionAddress: {
                 $ref: '#/definitions/address',
               },
-              
             },
             required: ['facilityCode', 'institutionName', 'institutionAddress'],
           },
@@ -59,20 +79,25 @@ const schema = {
               type: 'string',
             },
             usPhone: {
-              // TODO, refactor implementation to only require one of usPhone or internationalPhone
               $ref: '#/definitions/usaPhone',
             },
             internationalPhone: {
               $ref: '#/definitions/phone',
             },
-            principalPointOfContact: { // refactor to include in list and loop?
-              $ref: '#/definitions/yesNoSchema'
+            email: {
+              $ref: '#/definitions/email',
             },
-            schoolCertifyingOfficial: { // refactor to include in list and loop?
-              $ref: '#/definitions/yesNoSchema'
+            principalPointOfContact: {
+              // refactor to include in list and loop?
+              $ref: '#/definitions/yesNoSchema',
+            },
+            schoolCertifyingOfficial: {
+              // refactor to include in list and loop?
+              $ref: '#/definitions/yesNoSchema',
             },
           },
-          required: ['fullName', 'title', 'usPhone'],
+          required: ['fullName', 'title'],
+          oneOf: [{ usPhone }, { internationalPhone }],
         },
       },
     },
@@ -81,7 +106,7 @@ const schema = {
       properties: {
         facilityCode: {
           type: 'string',
-          pattern: '', // TODOverify pattern, include dashes or no?
+          pattern: '', // TODO verify pattern, include dashes or no?
         },
         authorizingOfficial: {
           type: 'object',
@@ -93,14 +118,14 @@ const schema = {
               type: 'string',
             },
             usPhone: {
-              // TODO, refactor implementation to only require one of usPhone or internationalPhone
               $ref: '#/definitions/usaPhone',
             },
             internationalPhone: {
               $ref: '#/definitions/phone',
             },
           },
-          required: ['fullName', 'title', 'usPhone'],
+          required: ['fullName', 'title'],
+          oneOf: [{ usPhone }, { internationalPhone }],
         },
       },
       required: ['facilityCode', 'authorizingOfficial'],
@@ -118,8 +143,9 @@ const schema = {
 
   /* 
   
-  if agreementType is withdrawl, then only signature and facilityCode required.
-  If agreementType is newCommitment, then all fields are required.
+  How to handle required fields?
+  - If agreementType is withdrawl, then only signature and facilityCode required.
+  - If agreementType is newCommitment, then all fields are required.
   
   */
   oneOf: [{ newCommitment }, { withdrawal }],
