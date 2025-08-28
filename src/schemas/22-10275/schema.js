@@ -8,6 +8,7 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'date',
   'email',
   'fullNameNoSuffix',
+  'phone',
   'privacyAgreementAccepted',
   'ssn',
   'usaPhone',
@@ -16,11 +17,11 @@ const pickedDefinitions = _.pick(origDefinitions, [
 
 /*
 
-- authorizedOfficial is required for both newCommitment and withdrawal
-  - need to include in top level required array? Or ok in nested required arrays
+- facilityCode format/definition ok, need to include dashes?
 
-- 'statementOfTruthSignature' ok name, or 'signature' preferred?
-
+- additionalInstitutions, top level or nested in newCommitment?
+  - in mockups only available in newCommitment, but pdf is unclear whether withdrawl applies only to main institution or additional institutions
+  - not relevant to schema as it's optional either way -- should clarify with design 
 */
 
 const schema = {
@@ -34,12 +35,12 @@ const schema = {
       type: 'string',
       enum: ['newCommitment', 'withdrawal'],
     },
-    mainInstituion: {
+    mainInstitution: {
       type: 'object',
       properties: {
         facilityCode: {
           type: 'string',
-          pattern: '', // TODO verify pattern, include dashes? Search for exising regex definition.
+          pattern: '^[a-zA-Z0-9]{8}$',
         },
         institutionName: {
           type: 'string',
@@ -50,51 +51,59 @@ const schema = {
       },
       required: ['facilityCode', 'institutionName', 'institutionAddress'],
     },
+    additionalInstitutions: {
+      type: 'array',
+      maxItems: 6, // TODO verify
+      items: {
+        type: 'object',
+        properties: {
+          facilityCode: {
+            type: 'string',
+            pattern: '', // TODO verify pattern, include dashes? Search for exising regex definition.
+          },
+          institutionName: {
+            type: 'string',
+          },
+          institutionAddress: {
+            $ref: '#/definitions/address',
+          },
+        },
+        required: ['facilityCode', 'institutionName', 'institutionAddress'],
+      },
+    },
+    authorizedOfficial: {
+      type: 'object',
+      properties: {
+        fullName: {
+          $ref: '#/definitions/fullNameNoSuffix',
+        },
+        title: {
+          type: 'string',
+        },
+        usPhone: {
+          $ref: '#/definitions/usaPhone',
+        },
+        internationalPhone: {
+          $ref: '#/definitions/phone',
+        },
+        email: {
+          $ref: '#/definitions/email',
+        },
+      },
+      required: ['fullName', 'title', 'email'],
+      anyOf: [
+        {
+          required: ['usPhone'],
+        },
+        {
+          required: ['internationalPhone'],
+        },
+      ],
+      maxProperties: 4,
+    },
     newCommitment: {
       type: 'object',
       properties: {
-        additionalInstitutions: {
-          type: 'array',
-          maxItems: 6, // TODO verify
-          items: {
-            type: 'object',
-            properties: {
-              facilityCode: {
-                type: 'string',
-                pattern: '', // TODO verify pattern, include dashes? Search for exising regex definition.
-              },
-              institutionName: {
-                type: 'string',
-              },
-              institutionAddress: {
-                $ref: '#/definitions/address',
-              },
-            },
-            required: ['facilityCode', 'institutionName', 'institutionAddress'],
-          },
-        },
-        authorizedOfficial: {
-          type: 'object',
-          properties: {
-            fullName: {
-              $ref: '#/definitions/fullNameNoSuffix',
-            },
-            title: {
-              type: 'string',
-            },
-            usPhone: {
-              $ref: '#/definitions/usaPhone',
-            },
-            internationalPhone: {
-              $ref: '#/definitions/phone',
-            },
-            email: {
-              $ref: '#/definitions/email',
-            },
-          },
-          required: ['fullName', 'title', 'email'],
-          oneOf: [{ usPhone }, { internationalPhone }],
-        },
         principlesOfExcellencePointOfContact: {
           type: 'object',
           properties: {
@@ -113,12 +122,17 @@ const schema = {
             email: {
               $ref: '#/definitions/email',
             },
-            isAuthorizedOfficial: {
-              $ref: '#/definitions/yesNoSchema',
-            },
           },
           required: ['fullName', 'title', 'email'],
-          oneOf: [{ usPhone }, { internationalPhone }],
+          anyOf: [
+            {
+              required: ['usPhone'],
+            },
+            {
+              required: ['internationalPhone'],
+            },
+          ],
+          maxProperties: 4,
         },
         schoolCertifyingOfficial: {
           type: 'object',
@@ -138,45 +152,20 @@ const schema = {
             email: {
               $ref: '#/definitions/email',
             },
-            isAuthorizedOfficial: {
-              $ref: '#/definitions/yesNoSchema',
-            },
           },
           required: ['fullName', 'title', 'email'],
-          oneOf: [{ usPhone }, { internationalPhone }],
+          anyOf: [
+            {
+              required: ['usPhone'],
+            },
+            {
+              required: ['internationalPhone'],
+            },
+          ],
+          maxProperties: 4,
         },
       },
-      anyOf: [{ principlesOfExcellencePointOfContact }, { schoolCertifyingOfficial }],
-      required: ['institutions', 'authorizedOfficial'],
-    },
-    withdrawal: {
-      type: 'object',
-      properties: {
-        facilityCode: {
-          type: 'string',
-          pattern: '', // TODO verify pattern, include dashes or no?
-        },
-        authorizedOfficial: {
-          type: 'object',
-          properties: {
-            fullName: {
-              $ref: '#/definitions/fullNameNoSuffix',
-            },
-            title: {
-              type: 'string',
-            },
-            usPhone: {
-              $ref: '#/definitions/usaPhone',
-            },
-            internationalPhone: {
-              $ref: '#/definitions/phone',
-            },
-          },
-          required: ['fullName', 'title'],
-          oneOf: [{ usPhone }, { internationalPhone }],
-        },
-      },
-      required: ['facilityCode', 'authorizedOfficial'],
+      required: ['principlesOfExcellencePointOfContact', 'schoolCertifyingOfficial'],
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
@@ -188,8 +177,16 @@ const schema = {
       $ref: '#/definitions/date',
     },
   },
-  oneOf: [{ newCommitment }, { withdrawal }],
-  required: ['agreementType', 'mainInstitution', 'privacyAgreementAccepted', 'statementOfTruthSignature', 'dateSigned'],
+  dependencies: {
+    newCommitment: {
+      properties: {
+        agreementType: {
+          enum: ['newCommitment'],
+        },
+      },
+    },
+  },
+  required: ['agreementType', 'authorizedOfficial', 'mainInstitution', 'statementOfTruthSignature', 'dateSigned'],
 };
 
 export default schema;
