@@ -303,19 +303,31 @@
         "properties": {
           "facilityCode": {
             "type": "string",
-            "pattern": ""
+            "pattern": "^[a-zA-Z0-9]{8}$"
           },
           "institutionName": {
             "type": "string"
           },
           "institutionAddress": {
             "$ref": "#/definitions/address"
+          },
+          "pointOfContact": {
+            "type": "object",
+            "properties": {
+              "fullName": {
+                "$ref": "#/definitions/fullNameNoSuffix"
+              },
+              "email": {
+                "$ref": "#/definitions/email"
+              }
+            }
           }
         },
         "required": [
           "facilityCode",
           "institutionName",
-          "institutionAddress"
+          "institutionAddress",
+          "pointOfContact"
         ]
       }
     },
