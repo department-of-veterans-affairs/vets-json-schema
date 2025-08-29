@@ -44,7 +44,6 @@ const schema = {
     },
     additionalInstitutions: {
       type: 'array',
-      maxItems: 6,
       items: {
         type: 'object',
         properties: {
