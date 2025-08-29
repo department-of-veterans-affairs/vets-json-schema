@@ -320,7 +320,11 @@
               "email": {
                 "$ref": "#/definitions/email"
               }
-            }
+            },
+            "required": [
+              "fullName",
+              "email"
+            ]
           }
         },
         "required": [
@@ -458,7 +462,8 @@
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
     "statementOfTruthSignature": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "dateSigned": {
       "$ref": "#/definitions/date"

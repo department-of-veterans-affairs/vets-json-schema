@@ -68,6 +68,7 @@ const schema = {
                 $ref: '#/definitions/email',
               },
             },
+            required: ['fullName', 'email'],
           },
         },
         required: ['facilityCode', 'institutionName', 'institutionAddress', 'pointOfContact'],
@@ -174,6 +175,7 @@ const schema = {
     },
     statementOfTruthSignature: {
       type: 'string',
+      minLength: 1,
     },
     dateSigned: {
       $ref: '#/definitions/date',
