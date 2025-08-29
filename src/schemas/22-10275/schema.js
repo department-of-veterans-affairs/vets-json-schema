@@ -15,15 +15,6 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'yesNoSchema',
 ]);
 
-/*
-
-- facilityCode format/definition ok, need to include dashes?
-
-- additionalInstitutions, top level or nested in newCommitment?
-  - in mockups only available in newCommitment, but pdf is unclear whether withdrawl applies only to main institution or additional institutions
-  - not relevant to schema as it's optional either way -- should clarify with design 
-*/
-
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: '22-10275 PRINCIPLES OF EXCELLENCE FOR EDUCATIONAL INSTITUTIONS',
@@ -53,13 +44,13 @@ const schema = {
     },
     additionalInstitutions: {
       type: 'array',
-      maxItems: 6, // TODO verify
+      maxItems: 6,
       items: {
         type: 'object',
         properties: {
           facilityCode: {
             type: 'string',
-            pattern: '', // TODO verify pattern, include dashes? Search for exising regex definition.
+            pattern: '^[a-zA-Z0-9]{8}$',
           },
           institutionName: {
             type: 'string',
@@ -67,8 +58,19 @@ const schema = {
           institutionAddress: {
             $ref: '#/definitions/address',
           },
+          pointOfContact: {
+            type: 'object',
+            properties: {
+              fullName: {
+                $ref: '#/definitions/fullNameNoSuffix',
+              },
+              email: {
+                $ref: '#/definitions/email',
+              },
+            },
+          },
         },
-        required: ['facilityCode', 'institutionName', 'institutionAddress'],
+        required: ['facilityCode', 'institutionName', 'institutionAddress', 'pointOfContact'],
       },
     },
     authorizedOfficial: {
