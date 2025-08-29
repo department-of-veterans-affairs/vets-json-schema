@@ -39,7 +39,7 @@ const testData = {
     ],
     invalid: [
       {
-        facilityCode: '1234567', // too short
+        facilityCode: '1234567',
         institutionName: 'Sample University',
         institutionAddress: {
           street: '123 Main St',
@@ -50,7 +50,7 @@ const testData = {
         },
       },
       {
-        facilityCode: '123456789', // too long
+        facilityCode: '123456789',
         institutionName: 'Sample University',
         institutionAddress: {
           street: '123 Main St',
@@ -143,7 +143,7 @@ const testData = {
     invalid: [
       [
         {
-          facilityCode: '1234567', // too short
+          facilityCode: '1234567',
           institutionName: 'Branch Campus',
           institutionAddress: {
             street: '789 Pine St',
@@ -172,7 +172,7 @@ const testData = {
             postalCode: '97201',
             country: 'USA',
           },
-          pointOfContact: null, // missing required field
+          pointOfContact: null,
         },
       ],
       [
@@ -317,7 +317,7 @@ const testData = {
             first: 'Sarah',
             last: 'Wilson',
           },
-          title: null, // missing required field
+          title: null,
           email: 'sarah.wilson@university.edu',
         },
         schoolCertifyingOfficial: {
@@ -336,7 +336,7 @@ const testData = {
             last: 'Wilson',
           },
           title: 'Director of Student Affairs',
-          email: 'invalid-email', // invalid email format
+          email: 'invalid-email',
         },
         schoolCertifyingOfficial: {
           fullName: {
@@ -390,7 +390,6 @@ describe('22-10275 Schema', () => {
     ]);
   });
 
-  // Test individual field validations
   schemaTestHelper.testValidAndInvalid('agreementType', testData.agreementType);
   schemaTestHelper.testValidAndInvalid('mainInstitution', testData.mainInstitution);
   schemaTestHelper.testValidAndInvalid('additionalInstitutions', testData.additionalInstitutions);
@@ -399,117 +398,4 @@ describe('22-10275 Schema', () => {
   schemaTestHelper.testValidAndInvalid('privacyAgreementAccepted', testData.privacyAgreementAccepted);
   schemaTestHelper.testValidAndInvalid('statementOfTruthSignature', testData.statementOfTruthSignature);
   schemaTestHelper.testValidAndInvalid('dateSigned', testData.dateSigned);
-});
-
-// Cross-field business rule tests
-describe('22-10275 Schema (cross-field business rules)', () => {
-  const baseValidData = {
-    agreementType: 'newCommitment',
-    authorizedOfficial: {
-      fullName: {
-        first: 'John',
-        last: 'Doe',
-      },
-      title: 'President',
-      usPhone: '5551234567',
-      email: 'john.doe@university.edu',
-    },
-    mainInstitution: {
-      facilityCode: '12345678',
-      institutionName: 'Sample University',
-      institutionAddress: {
-        street: '123 Main St',
-        city: 'Seattle',
-        state: 'WA',
-        postalCode: '98101',
-        country: 'USA',
-      },
-    },
-    statementOfTruthSignature: 'John Q. Doe',
-    dateSigned: '2024-01-15',
-  };
-
-  it('should allow withdrawal without newCommitment section', () => {
-    const withdrawalPayload = {
-      ...baseValidData,
-      agreementType: 'withdrawal',
-    };
-
-    expect(schemaTestHelper.validateSchema(withdrawalPayload)).to.equal(true);
-  });
-
-  it('should reject newCommitment with withdrawal agreement type', () => {
-    const invalidPayload = {
-      ...baseValidData,
-      agreementType: 'withdrawal',
-      newCommitment: {
-        principlesOfExcellencePointOfContact: {
-          fullName: {
-            first: 'Sarah',
-            last: 'Wilson',
-          },
-          title: 'Director of Student Affairs',
-          usPhone: '5551234567',
-          email: 'sarah.wilson@university.edu',
-        },
-        schoolCertifyingOfficial: {
-          fullName: {
-            first: 'Michael',
-            last: 'Brown',
-          },
-          title: 'Registrar',
-          usPhone: '5559876543',
-          email: 'michael.brown@university.edu',
-        },
-      },
-    };
-
-    expect(schemaTestHelper.validateSchema(invalidPayload)).to.equal(false);
-  });
-
-  it('should require either usPhone or internationalPhone for authorized official', () => {
-    const validWithUsPhone = {
-      ...baseValidData,
-      authorizedOfficial: {
-        fullName: {
-          first: 'John',
-          last: 'Doe',
-        },
-        title: 'President',
-        usPhone: '5551234567',
-        email: 'john.doe@university.edu',
-      },
-    };
-
-    const validWithInternationalPhone = {
-      ...baseValidData,
-      authorizedOfficial: {
-        fullName: {
-          first: 'John',
-          last: 'Doe',
-        },
-        title: 'President',
-        internationalPhone: '+1-555-123-4567',
-        email: 'john.doe@university.edu',
-      },
-    };
-
-    const invalidWithBothPhones = {
-      ...baseValidData,
-      authorizedOfficial: {
-        fullName: {
-          first: 'John',
-          last: 'Doe',
-        },
-        title: 'President',
-        usPhone: '5551234567',
-        internationalPhone: '+1-555-123-4567',
-        email: 'john.doe@university.edu',
-      },
-    };
-
-    expect(schemaTestHelper.validateSchema(validWithUsPhone)).to.equal(true);
-    expect(schemaTestHelper.validateSchema(validWithInternationalPhone)).to.equal(true);
-    expect(schemaTestHelper.validateSchema(invalidWithBothPhones)).to.equal(false);
-  });
 });

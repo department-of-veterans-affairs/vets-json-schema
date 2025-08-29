@@ -181,15 +181,6 @@ const schema = {
       $ref: '#/definitions/date',
     },
   },
-  dependencies: {
-    newCommitment: {
-      properties: {
-        agreementType: {
-          enum: ['newCommitment'],
-        },
-      },
-    },
-  },
   required: ['agreementType', 'authorizedOfficial', 'mainInstitution', 'statementOfTruthSignature', 'dateSigned'],
 };
 

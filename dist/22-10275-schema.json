@@ -469,17 +469,6 @@
       "$ref": "#/definitions/date"
     }
   },
-  "dependencies": {
-    "newCommitment": {
-      "properties": {
-        "agreementType": {
-          "enum": [
-            "newCommitment"
-          ]
-        }
-      }
-    }
-  },
   "required": [
     "agreementType",
     "authorizedOfficial",
