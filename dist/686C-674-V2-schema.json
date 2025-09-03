@@ -283,13 +283,13 @@
       "type": "string",
       "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"
     },
-    "generic_location": {
+    "genericLocation": {
       "type": "object",
       "oneOf": [
         {
           "type": "object",
           "properties": {
-            "outside_usa": {
+            "outsideUsa": {
               "type": "boolean",
               "enum": [
                 false
@@ -318,7 +318,7 @@
         {
           "type": "object",
           "properties": {
-            "outside_usa": {
+            "outsideUsa": {
               "type": "boolean",
               "enum": [
                 true
@@ -346,13 +346,13 @@
         }
       ]
     },
-    "generic_location_alt": {
+    "genericLocationAlt": {
       "type": "object",
       "oneOf": [
         {
           "type": "object",
           "properties": {
-            "outside_usa": {
+            "outsideUsa": {
               "type": "boolean",
               "enum": [
                 false
@@ -367,7 +367,7 @@
                 "state": {
                   "type": "string"
                 },
-                "postal_code": {
+                "postalCode": {
                   "type": "string",
                   "pattern": "^\\d{5}$"
                 }
@@ -375,7 +375,7 @@
               "required": [
                 "city",
                 "state",
-                "postal_code"
+                "postalCode"
               ]
             }
           },
@@ -386,7 +386,7 @@
         {
           "type": "object",
           "properties": {
-            "outside_usa": {
+            "outsideUsa": {
               "type": "boolean",
               "enum": [
                 true
@@ -401,7 +401,7 @@
                 "country": {
                   "type": "string"
                 },
-                "postal_code": {
+                "postalCode": {
                   "type": "string"
                 }
               },
@@ -419,114 +419,114 @@
     }
   },
   "properties": {
-    "use_v2": {
+    "useV2": {
       "type": "boolean"
     },
-    "days_till_expires": {
+    "daysTillExpires": {
       "type": "integer"
     },
-    "veteran_information": {
+    "veteranInformation": {
       "type": "object",
       "properties": {
-        "full_name": {
+        "fullName": {
           "$ref": "#/definitions/fullNameNoSuffix"
         },
-        "birth_date": {
+        "birthDate": {
           "$ref": "#/definitions/date"
         },
         "ssnLastFour": {
           "$ref": "#/definitions/ssnLastFour"
         },
-        "va_file_last_four": {
+        "vaFileLastFour": {
           "type": "string",
           "pattern": "^\\d{4}$"
         }
       }
     },
-    "veteran_contact_information": {
+    "veteranContactInformation": {
       "type": "object",
       "properties": {
-        "veteran_address": {
+        "veteranAddress": {
           "$ref": "#/definitions/address"
         },
-        "phone_number": {
+        "phoneNumber": {
           "$ref": "#/definitions/phone"
         },
-        "email_address": {
+        "emailAddress": {
           "$ref": "#/definitions/email"
         }
       },
       "required": [
-        "veteran_address",
-        "phone_number",
-        "email_address"
+        "veteranAddress",
+        "phoneNumber",
+        "emailAddress"
       ]
     },
-    "spouse_information": {
+    "spouseInformation": {
       "type": "object",
       "properties": {
-        "full_name": {
+        "fullName": {
           "$ref": "#/definitions/fullNameNoSuffix"
         },
         "ssn": {
           "$ref": "#/definitions/ssn"
         },
-        "birth_date": {
+        "birthDate": {
           "$ref": "#/definitions/date"
         },
-        "is_veteran": {
+        "isVeteran": {
           "type": "boolean"
         },
-        "va_file_number": {
+        "vaFileNumber": {
           "type": "string"
         },
-        "service_number": {
+        "serviceNumber": {
           "$ref": "#/definitions/veteranServiceNumber"
         }
       },
       "required": [
-        "full_name",
+        "fullName",
         "ssn",
-        "birth_date",
-        "is_veteran"
+        "birthDate",
+        "isVeteran"
       ]
     },
-    "does_live_with_spouse": {
+    "doesLiveWithSpouse": {
       "type": "object",
       "oneOf": [
         {
           "type": "object",
           "properties": {
-            "spouse_does_live_with_veteran": {
+            "spouseDoesLiveWithVeteran": {
               "type": "boolean",
               "enum": [
                 true
               ]
             },
-            "spouse_income": {
+            "spouseIncome": {
               "type": "string"
             }
           },
           "required": [
-            "spouse_does_live_with_veteran"
+            "spouseDoesLiveWithVeteran"
           ]
         },
         {
           "type": "object",
           "properties": {
-            "spouse_does_live_with_veteran": {
+            "spouseDoesLiveWithVeteran": {
               "type": "boolean",
               "enum": [
                 false
               ]
             },
-            "spouse_income": {
+            "spouseIncome": {
               "type": "string"
             },
             "address": {
               "$ref": "#/definitions/address"
             },
-            "current_spouse_reason_for_separation": {
+            "currentSpouseReasonForSeparation": {
               "type": "string"
             },
             "other": {
@@ -534,25 +534,25 @@
             }
           },
           "required": [
-            "spouse_does_live_with_veteran",
-            "current_spouse_reason_for_separation",
+            "spouseDoesLiveWithVeteran",
+            "currentSpouseReasonForSeparation",
             "address"
           ]
         }
       ]
     },
-    "current_marriage_information": {
+    "currentMarriageInformation": {
       "type": "object",
       "oneOf": [
         {
           "allOf": [
             {
-              "$ref": "#/definitions/generic_location"
+              "$ref": "#/definitions/genericLocation"
             },
             {
               "type": "object",
               "properties": {
-                "type_of_marriage": {
+                "typeOfMarriage": {
                   "not": {
                     "type": "string",
                     "enum": [
@@ -565,7 +565,7 @@
                 }
               },
               "required": [
-                "type_of_marriage",
+                "typeOfMarriage",
                 "location",
                 "date"
               ]
@@ -575,18 +575,18 @@
         {
           "allOf": [
             {
-              "$ref": "#/definitions/generic_location"
+              "$ref": "#/definitions/genericLocation"
             },
             {
               "type": "object",
               "properties": {
-                "type_of_marriage": {
+                "typeOfMarriage": {
                   "type": "string",
                   "enum": [
                     "OTHER"
                   ]
                 },
-                "type_other": {
+                "typeOther": {
                   "type": "string"
                 },
                 "date": {
@@ -594,8 +594,8 @@
                 }
               },
               "required": [
-                "type_of_marriage",
-                "type_other",
+                "typeOfMarriage",
+                "typeOther",
                 "location",
                 "date"
               ]
@@ -604,46 +604,46 @@
         }
       ]
     },
-    "spouse_marriage_history": {
+    "spouseMarriageHistory": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
-          "reason_marriage_ended": {
+          "reasonMarriageEnded": {
             "type": "string"
           },
-          "other_reason_marriage_ended": {
+          "otherReasonMarriageEnded": {
             "type": "string"
           },
-          "start_date": {
+          "startDate": {
             "$ref": "#/definitions/date"
           },
-          "end_date": {
+          "endDate": {
             "$ref": "#/definitions/date"
           },
-          "start_location": {
-            "$ref": "#/definitions/generic_location"
+          "startLocation": {
+            "$ref": "#/definitions/genericLocation"
           },
-          "end_location": {
-            "$ref": "#/definitions/generic_location"
+          "endLocation": {
+            "$ref": "#/definitions/genericLocation"
           }
         },
         "required": [
-          "start_location",
-          "end_location",
-          "end_date",
-          "start_date",
-          "reason_marriage_ended",
-          "full_name"
+          "startLocation",
+          "endLocation",
+          "endDate",
+          "startDate",
+          "reasonMarriageEnded",
+          "fullName"
         ],
         "oneOf": [
           {
             "type": "object",
             "properties": {
-              "reason_marriage_ended": {
+              "reasonMarriageEnded": {
                 "type": "string",
                 "enum": [
                   "Other"
@@ -651,14 +651,14 @@
               }
             },
             "required": [
-              "reason_marriage_ended",
-              "other_reason_marriage_ended"
+              "reasonMarriageEnded",
+              "otherReasonMarriageEnded"
             ]
           },
           {
             "type": "object",
             "properties": {
-              "reason_marriage_ended": {
+              "reasonMarriageEnded": {
                 "type": "string",
                 "enum": [
                   "Death",
@@ -668,52 +668,52 @@
               }
             },
             "required": [
-              "reason_marriage_ended"
+              "reasonMarriageEnded"
             ]
           }
         ]
       }
     },
-    "veteran_marriage_history": {
+    "veteranMarriageHistory": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
-          "reason_marriage_ended": {
+          "reasonMarriageEnded": {
             "type": "string"
           },
-          "other_reason_marriage_ended": {
+          "otherReasonMarriageEnded": {
             "type": "string"
           },
-          "start_date": {
+          "startDate": {
             "$ref": "#/definitions/date"
           },
-          "end_date": {
+          "endDate": {
             "$ref": "#/definitions/date"
           },
-          "start_location": {
-            "$ref": "#/definitions/generic_location"
+          "startLocation": {
+            "$ref": "#/definitions/genericLocation"
           },
-          "end_location": {
-            "$ref": "#/definitions/generic_location"
+          "endLocation": {
+            "$ref": "#/definitions/genericLocation"
           }
         },
         "required": [
-          "end_location",
-          "start_location",
-          "end_date",
-          "start_date",
-          "reason_marriage_ended",
-          "full_name"
+          "endLocation",
+          "startLocation",
+          "endDate",
+          "startDate",
+          "reasonMarriageEnded",
+          "fullName"
         ],
         "oneOf": [
           {
             "type": "object",
             "properties": {
-              "reason_marriage_ended": {
+              "reasonMarriageEnded": {
                 "type": "string",
                 "enum": [
                   "Other"
@@ -721,14 +721,14 @@
               }
             },
             "required": [
-              "reason_marriage_ended",
-              "other_reason_marriage_ended"
+              "reasonMarriageEnded",
+              "otherReasonMarriageEnded"
             ]
           },
           {
             "type": "object",
             "properties": {
-              "reason_marriage_ended": {
+              "reasonMarriageEnded": {
                 "type": "string",
                 "enum": [
                   "Death",
@@ -738,49 +738,49 @@
               }
             },
             "required": [
-              "reason_marriage_ended"
+              "reasonMarriageEnded"
             ]
           }
         ]
       }
     },
-    "report_divorce": {
+    "reportDivorce": {
       "type": "object",
       "properties": {
-        "spouse_income": {
+        "spouseIncome": {
           "type": "string"
         },
         "date": {
           "$ref": "#/definitions/date"
         },
-        "divorce_location": {
-          "$ref": "#/definitions/generic_location"
+        "divorceLocation": {
+          "$ref": "#/definitions/genericLocation"
         },
-        "reason_marriage_ended": {
+        "reasonMarriageEnded": {
           "type": "string"
         },
-        "explanation_of_other": {
+        "explanationOfOther": {
           "type": "string"
         },
-        "full_name": {
+        "fullName": {
           "$ref": "#/definitions/fullNameNoSuffix"
         },
-        "birth_date": {
+        "birthDate": {
           "$ref": "#/definitions/date"
         }
       },
       "required": [
         "date",
-        "divorce_location",
-        "reason_marriage_ended",
-        "full_name",
-        "birth_date"
+        "divorceLocation",
+        "reasonMarriageEnded",
+        "fullName",
+        "birthDate"
       ],
       "oneOf": [
         {
           "type": "object",
           "properties": {
-            "reason_marriage_ended": {
+            "reasonMarriageEnded": {
               "type": "string",
               "enum": [
                 "Other"
@@ -788,14 +788,14 @@
             }
           },
           "required": [
-            "reason_marriage_ended",
-            "explanation_of_other"
+            "reasonMarriageEnded",
+            "explanationOfOther"
           ]
         },
         {
           "type": "object",
           "properties": {
-            "reason_marriage_ended": {
+            "reasonMarriageEnded": {
               "type": "string",
               "enum": [
                 "Death",
@@ -805,29 +805,29 @@
             }
           },
           "required": [
-            "reason_marriage_ended"
+            "reasonMarriageEnded"
           ]
         }
       ]
     },
-    "children_to_add": {
+    "childrenToAdd": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
-          "birth_date": {
+          "birthDate": {
             "$ref": "#/definitions/date"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
-          "birth_location": {
-            "$ref": "#/definitions/generic_location_alt"
+          "birthLocation": {
+            "$ref": "#/definitions/genericLocationAlt"
           },
-          "is_biological_child": {
+          "isBiologicalChild": {
             "type": "boolean",
             "oneOf": [
               {
@@ -836,7 +836,7 @@
                   true
                 ],
                 "required": [
-                  "relationship_to_child"
+                  "relationshipToChild"
                 ]
               },
               {
@@ -847,7 +847,7 @@
               }
             ]
           },
-          "relationship_to_child": {
+          "relationshipToChild": {
             "type": "object",
             "properties": {
               "adopted": {
@@ -858,22 +858,22 @@
               }
             }
           },
-          "is_biological_child_of_spouse": {
+          "isBiologicalChildOfSpouse": {
             "type": "boolean"
           },
-          "date_entered_household": {
+          "dateEnteredHousehold": {
             "$ref": "#/definitions/date"
           },
-          "biological_parent_name": {
+          "biologicalParentName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
-          "biological_parent_ssn": {
+          "biologicalParentSsn": {
             "$ref": "#/definitions/ssn"
           },
-          "biological_parent_dob": {
+          "biologicalParentDob": {
             "$ref": "#/definitions/date"
           },
-          "does_child_have_disability": {
+          "doesChildHaveDisability": {
             "oneOf": [
               {
                 "type": "boolean",
@@ -881,7 +881,7 @@
                   true
                 ],
                 "required": [
-                  "does_child_have_permanent_disability"
+                  "doesChildHavePermanentDisability"
                 ]
               },
               {
@@ -892,10 +892,10 @@
               }
             ]
           },
-          "does_child_have_permanent_disability": {
+          "doesChildHavePermanentDisability": {
             "type": "boolean"
           },
-          "does_child_live_with_you": {
+          "doesChildLiveWithYou": {
             "type": "boolean",
             "oneOf": [
               {
@@ -904,7 +904,7 @@
                   false
                 ],
                 "required": [
-                  "living_with"
+                  "livingWith"
                 ]
               },
               {
@@ -915,7 +915,7 @@
               }
             ]
           },
-          "has_child_ever_been_married": {
+          "hasChildEverBeenMarried": {
             "type": "boolean",
             "oneOf": [
               {
@@ -924,8 +924,8 @@
                   true
                 ],
                 "required": [
-                  "marriage_end_date",
-                  "marriage_end_reason"
+                  "marriageEndDate",
+                  "marriageEndReason"
                 ]
               },
               {
@@ -936,10 +936,10 @@
               }
             ]
           },
-          "marriage_end_date": {
+          "marriageEndDate": {
             "$ref": "#/definitions/date"
           },
-          "marriage_end_reason": {
+          "marriageEndReason": {
             "type": "string",
             "oneOf": [
               {
@@ -948,7 +948,7 @@
                   "Other"
                 ],
                 "required": [
-                  "marriage_end_description"
+                  "marriageEndDescription"
                 ]
               },
               {
@@ -961,16 +961,16 @@
               }
             ]
           },
-          "marriage_end_description": {
+          "marriageEndDescription": {
             "type": "string"
           },
-          "income_in_last_year": {
+          "incomeInLastYear": {
             "type": "string"
           },
           "address": {
             "$ref": "#/definitions/address"
           },
-          "living_with": {
+          "livingWith": {
             "type": "object",
             "required": [
               "first",
@@ -990,46 +990,46 @@
           }
         },
         "required": [
-          "does_child_live_with_you",
-          "has_child_ever_been_married",
-          "does_child_have_disability",
-          "is_biological_child_of_spouse",
-          "date_entered_household",
-          "biological_parent_name",
-          "biological_parent_ssn",
-          "biological_parent_dob",
-          "is_biological_child",
-          "birth_location",
+          "doesChildLiveWithYou",
+          "hasChildEverBeenMarried",
+          "doesChildHaveDisability",
+          "isBiologicalChildOfSpouse",
+          "dateEnteredHousehold",
+          "biologicalParentName",
+          "biologicalParentSsn",
+          "biologicalParentDob",
+          "isBiologicalChild",
+          "birthLocation",
           "ssn",
-          "full_name",
-          "birth_date"
+          "fullName",
+          "birthDate"
         ]
       }
     },
-    "student_information": {
+    "studentInformation": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
-          "birth_date": {
+          "birthDate": {
             "$ref": "#/definitions/date"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
-          "is_parent": {
+          "isParent": {
             "type": "boolean"
           },
-          "student_income": {
+          "studentIncome": {
             "type": "string"
           },
           "address": {
             "$ref": "#/definitions/address"
           },
-          "was_married": {
+          "wasMarried": {
             "oneOf": [
               {
                 "type": "boolean",
@@ -1037,8 +1037,8 @@
                   true
                 ],
                 "required": [
-                  "was_married",
-                  "marriage_date"
+                  "wasMarried",
+                  "marriageDate"
                 ]
               },
               {
@@ -1047,21 +1047,21 @@
                   false
                 ],
                 "required": [
-                  "was_married"
+                  "wasMarried"
                 ]
               }
             ]
           },
-          "marriage_date": {
+          "marriageDate": {
             "$ref": "#/definitions/date"
           },
-          "type_of_program_or_benefit": {
+          "typeOfProgramOrBenefit": {
             "type": "object",
             "oneOf": [
               {
                 "type": "object",
                 "properties": {
-                  "type_of_program_or_benefit": {
+                  "typeOfProgramOrBenefit": {
                     "type": "object",
                     "properties": {
                       "other": {
@@ -1074,13 +1074,13 @@
                   }
                 },
                 "required": [
-                  "other_program_or_benefit"
+                  "otherProgramOrBenefit"
                 ]
               },
               {
                 "type": "object",
                 "properties": {
-                  "type_of_program_or_benefit": {
+                  "typeOfProgramOrBenefit": {
                     "type": "object",
                     "properties": {
                       "other": {
@@ -1096,7 +1096,7 @@
                   {
                     "type": "object",
                     "properties": {
-                      "type_of_program_or_benefit": {
+                      "typeOfProgramOrBenefit": {
                         "type": "object",
                         "properties": {
                           "other": {
@@ -1109,13 +1109,13 @@
                       }
                     },
                     "required": [
-                      "benefit_payment_date"
+                      "benefitPaymentDate"
                     ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "type_of_program_or_benefit": {
+                      "typeOfProgramOrBenefit": {
                         "type": "object",
                         "properties": {
                           "ch35": {
@@ -1128,13 +1128,13 @@
                       }
                     },
                     "required": [
-                      "benefit_payment_date"
+                      "benefitPaymentDate"
                     ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "type_of_program_or_benefit": {
+                      "typeOfProgramOrBenefit": {
                         "type": "object",
                         "properties": {
                           "fry": {
@@ -1147,13 +1147,13 @@
                       }
                     },
                     "required": [
-                      "benefit_payment_date"
+                      "benefitPaymentDate"
                     ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "type_of_program_or_benefit": {
+                      "typeOfProgramOrBenefit": {
                         "type": "object",
                         "properties": {
                           "feca": {
@@ -1166,7 +1166,7 @@
                       }
                     },
                     "required": [
-                      "benefit_payment_date"
+                      "benefitPaymentDate"
                     ]
                   }
                 ]
@@ -1174,7 +1174,7 @@
               {
                 "type": "object",
                 "properties": {
-                  "type_of_program_or_benefit": {
+                  "typeOfProgramOrBenefit": {
                     "type": "object",
                     "properties": {
                       "ch35": {
@@ -1207,59 +1207,59 @@
               }
             ]
           },
-          "other_program_or_benefit": {
+          "otherProgramOrBenefit": {
             "type": "string"
           },
-          "tuition_is_paid_by_gov_agency": {
+          "tuitionIsPaidByGovAgency": {
             "type": "boolean"
           },
-          "benefit_payment_date": {
+          "benefitPaymentDate": {
             "$ref": "#/definitions/date"
           },
-          "school_information": {
+          "schoolInformation": {
             "type": "object",
             "properties": {
               "name": {
                 "type": "string"
               },
-              "student_is_enrolled_full_time": {
+              "studentIsEnrolledFullTime": {
                 "type": "boolean"
               },
-              "date_full_time_ended": {
+              "dateFullTimeEnded": {
                 "$ref": "#/definitions/date"
               },
-              "is_school_accredited": {
+              "isSchoolAccredited": {
                 "type": "boolean"
               },
-              "current_term_dates": {
+              "currentTermDates": {
                 "type": "object",
                 "properties": {
-                  "official_school_start_date": {
+                  "officialSchoolStartDate": {
                     "$ref": "#/definitions/date"
                   },
-                  "expected_student_start_date": {
+                  "expectedStudentStartDate": {
                     "$ref": "#/definitions/date"
                   },
-                  "expected_graduation_date": {
+                  "expectedGraduationDate": {
                     "$ref": "#/definitions/date"
                   }
                 },
                 "required": [
-                  "official_school_start_date",
-                  "expected_student_start_date",
-                  "expected_graduation_date"
+                  "officialSchoolStartDate",
+                  "expectedStudentStartDate",
+                  "expectedGraduationDate"
                 ]
               },
-              "student_did_attend_school_last_term": {
+              "studentDidAttendSchoolLastTerm": {
                 "type": "boolean"
               },
-              "last_term_school_information": {
+              "lastTermSchoolInformation": {
                 "type": "object",
                 "properties": {
-                  "term_begin": {
+                  "termBegin": {
                     "type": "string"
                   },
-                  "date_term_ended": {
+                  "dateTermEnded": {
                     "type": "string"
                   }
                 }
@@ -1267,38 +1267,38 @@
             },
             "required": [
               "name",
-              "student_is_enrolled_full_time",
-              "student_did_attend_school_last_term",
-              "current_term_dates",
-              "is_school_accredited"
+              "studentIsEnrolledFullTime",
+              "studentDidAttendSchoolLastTerm",
+              "currentTermDates",
+              "isSchoolAccredited"
             ],
             "oneOf": [
               {
                 "type": "object",
                 "properties": {
-                  "student_did_attend_school_last_term": {
+                  "studentDidAttendSchoolLastTerm": {
                     "type": "boolean",
                     "enum": [
                       true
                     ]
                   },
-                  "last_term_school_information": {
+                  "lastTermSchoolInformation": {
                     "type": "object",
                     "required": [
-                      "term_begin",
-                      "date_term_ended"
+                      "termBegin",
+                      "dateTermEnded"
                     ]
                   }
                 },
                 "required": [
-                  "student_did_attend_school_last_term",
-                  "last_term_school_information"
+                  "studentDidAttendSchoolLastTerm",
+                  "lastTermSchoolInformation"
                 ]
               },
               {
                 "type": "object",
                 "properties": {
-                  "student_did_attend_school_last_term": {
+                  "studentDidAttendSchoolLastTerm": {
                     "type": "boolean",
                     "enum": [
                       false
@@ -1306,15 +1306,15 @@
                   }
                 },
                 "required": [
-                  "student_did_attend_school_last_term"
+                  "studentDidAttendSchoolLastTerm"
                 ]
               }
             ]
           },
-          "claims_or_receives_pension": {
+          "claimsOrReceivesPension": {
             "type": "boolean"
           },
-          "student_networth_information": {
+          "studentNetworthInformation": {
             "type": "object",
             "properties": {
               "savings": {
@@ -1323,47 +1323,47 @@
               "securities": {
                 "type": "string"
               },
-              "real_estate": {
+              "realEstate": {
                 "type": "string"
               },
-              "other_assets": {
+              "otherAssets": {
                 "type": "string"
               },
-              "total_value": {
+              "totalValue": {
                 "type": "string"
               }
             }
           },
-          "student_expected_earnings_next_year": {
+          "studentExpectedEarningsNextYear": {
             "type": "object",
             "properties": {
-              "earnings_from_all_employment": {
+              "earningsFromAllEmployment": {
                 "type": "string"
               },
-              "annual_social_security_payments": {
+              "annualSocialSecurityPayments": {
                 "type": "string"
               },
-              "other_annuities_income": {
+              "otherAnnuitiesIncome": {
                 "type": "string"
               },
-              "all_other_income": {
+              "allOtherIncome": {
                 "type": "string"
               }
             }
           },
-          "student_earnings_from_school_year": {
+          "studentEarningsFromSchoolYear": {
             "type": "object",
             "properties": {
-              "earnings_from_all_employment": {
+              "earningsFromAllEmployment": {
                 "type": "string"
               },
-              "annual_social_security_payments": {
+              "annualSocialSecurityPayments": {
                 "type": "string"
               },
-              "other_annuities_income": {
+              "otherAnnuitiesIncome": {
                 "type": "string"
               },
-              "all_other_income": {
+              "allOtherIncome": {
                 "type": "string"
               }
             }
@@ -1373,27 +1373,27 @@
           }
         },
         "required": [
-          "full_name",
-          "birth_date",
+          "fullName",
+          "birthDate",
           "ssn",
-          "is_parent",
+          "isParent",
           "address",
-          "was_married",
-          "tuition_is_paid_by_gov_agency",
-          "school_information",
-          "claims_or_receives_pension",
-          "type_of_program_or_benefit",
-          "other_program_or_benefit",
-          "benefit_payment_date"
+          "wasMarried",
+          "tuitionIsPaidByGovAgency",
+          "schoolInformation",
+          "claimsOrReceivesPension",
+          "typeOfProgramOrBenefit",
+          "otherProgramOrBenefit",
+          "benefitPaymentDate"
         ]
       }
     },
-    "step_children": {
+    "stepChildren": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "who_does_the_stepchild_live_with": {
+          "whoDoesTheStepchildLiveWith": {
             "type": "object",
             "properties": {
               "first": {
@@ -1411,35 +1411,35 @@
           "address": {
             "$ref": "#/definitions/address"
           },
-          "living_expenses_paid": {
+          "livingExpensesPaid": {
             "type": "string"
           },
-          "supporting_stepchild": {
+          "supportingStepchild": {
             "type": "boolean"
           },
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
-          "birth_date": {
+          "birthDate": {
             "$ref": "#/definitions/date"
           }
         },
         "required": [
-          "who_does_the_stepchild_live_with",
+          "whoDoesTheStepchildLiveWith",
           "address",
-          "supporting_stepchild",
-          "full_name",
+          "supportingStepchild",
+          "fullName",
           "ssn",
-          "birth_date"
+          "birthDate"
         ],
         "oneOf": [
           {
             "type": "object",
             "properties": {
-              "supporting_stepchild": {
+              "supportingStepchild": {
                 "type": "boolean",
                 "enum": [
                   true
@@ -1447,14 +1447,14 @@
               }
             },
             "required": [
-              "supporting_stepchild",
-              "living_expenses_paid"
+              "supportingStepchild",
+              "livingExpensesPaid"
             ]
           },
           {
             "type": "object",
             "properties": {
-              "supporting_stepchild": {
+              "supportingStepchild": {
                 "type": "boolean",
                 "enum": [
                   false
@@ -1462,7 +1462,7 @@
               }
             },
             "required": [
-              "supporting_stepchild"
+              "supportingStepchild"
             ]
           }
         ]
@@ -1473,52 +1473,52 @@
       "items": {
         "type": "object",
         "properties": {
-          "dependent_death_location": {
-            "$ref": "#/definitions/generic_location"
+          "dependentDeathLocation": {
+            "$ref": "#/definitions/genericLocation"
           },
-          "deceased_dependent_income": {
+          "deceasedDependentIncome": {
             "type": "string"
           },
-          "dependent_death_date": {
+          "dependentDeathDate": {
             "$ref": "#/definitions/date"
           },
-          "dependent_type": {
+          "dependentType": {
             "type": "string"
           },
-          "child_status": {
+          "childStatus": {
             "type": "object",
             "properties": {
-              "child_under18": {
+              "childUnder18": {
                 "type": "boolean"
               },
-              "step_child": {
+              "stepChild": {
                 "type": "boolean"
               }
             }
           },
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
-          "birth_date": {
+          "birthDate": {
             "$ref": "#/definitions/date"
           }
         },
         "required": [
-          "dependent_death_location",
-          "dependent_death_date",
-          "dependent_type",
-          "full_name",
+          "dependentDeathLocation",
+          "dependentDeathDate",
+          "dependentType",
+          "fullName",
           "ssn",
-          "birth_date"
+          "birthDate"
         ],
         "oneOf": [
           {
             "type": "object",
             "properties": {
-              "dependent_type": {
+              "dependentType": {
                 "type": "string",
                 "enum": [
                   "CHILD"
@@ -1526,14 +1526,14 @@
               }
             },
             "required": [
-              "dependent_type",
-              "child_status"
+              "dependentType",
+              "childStatus"
             ]
           },
           {
             "type": "object",
             "properties": {
-              "dependent_type": {
+              "dependentType": {
                 "type": "string",
                 "enum": [
                   "SPOUSE",
@@ -1542,88 +1542,88 @@
               }
             },
             "required": [
-              "dependent_type"
+              "dependentType"
             ]
           }
         ]
       }
     },
-    "child_marriage": {
+    "childMarriage": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "dependent_income": {
+          "dependentIncome": {
             "type": "string"
           },
-          "date_married": {
+          "dateMarried": {
             "$ref": "#/definitions/date"
           },
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
-          "birth_date": {
+          "birthDate": {
             "$ref": "#/definitions/date"
           }
         },
         "required": [
-          "date_married",
-          "full_name",
+          "dateMarried",
+          "fullName",
           "ssn",
-          "birth_date"
+          "birthDate"
         ]
       }
     },
-    "child_stopped_attending_school": {
+    "childStoppedAttendingSchool": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "dependent_income": {
+          "dependentIncome": {
             "type": "string"
           },
-          "date_child_left_school": {
+          "dateChildLeftSchool": {
             "$ref": "#/definitions/date"
           },
-          "full_name": {
+          "fullName": {
             "$ref": "#/definitions/fullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
-          "birth_date": {
+          "birthDate": {
             "$ref": "#/definitions/date"
           }
         },
         "required": [
-          "date_child_left_school",
-          "full_name",
+          "dateChildLeftSchool",
+          "fullName",
           "ssn",
-          "birth_date"
+          "birthDate"
         ]
       }
     },
-    "spouse_supporting_documents": {
+    "spouseSupportingDocuments": {
       "$ref": "#/definitions/files"
     },
-    "child_supporting_documents": {
+    "childSupportingDocuments": {
       "$ref": "#/definitions/files"
     },
-    "household_income": {
+    "householdIncome": {
       "type": "boolean"
     },
-    "statement_of_truth_signature": {
+    "statementOfTruthSignature": {
       "type": "string"
     },
-    "statement_of_truth_certified": {
+    "statementOfTruthCertified": {
       "type": "boolean"
     }
   },
   "required": [
-    "statement_of_truth_certified",
-    "statement_of_truth_signature"
+    "statementOfTruthCertified",
+    "statementOfTruthSignature"
   ]
 }
