@@ -87,7 +87,6 @@ const schema = {
           $ref: '#/definitions/date',
         },
       },
-      required: ['providers'],
     },
     isEmployed: {
       $ref: '#/definitions/yesNoSchema',
@@ -97,14 +96,7 @@ const schema = {
     },
     technologyAreaOfFocus: {
       type: 'string',
-      enum: [
-        'computerProgramming',
-        'computerSoftware',
-        'mediaApplication',
-        'dataProcessing',
-        'informationSciences',
-        'somethingElse',
-      ],
+      enum: ['computerProgramming', 'computerSoftware', 'mediaApplication', 'dataProcessing', 'informationSciences'],
     },
     currentSalary: {
       type: 'string',
@@ -112,9 +104,9 @@ const schema = {
     },
     highestLevelOfEducation: {
       type: 'string',
-      enum: ['HS', 'AD', 'BD', 'MD', 'DD', 'NA'],
+      enum: ['HS', 'AD', 'BD', 'MD', 'DD'],
     },
-    privacyAgreementAccepted: {
+    attestationAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
     },
     statementOfTruthSignature: {
@@ -128,12 +120,12 @@ const schema = {
     'applicantFullName',
     'dateOfBirth',
     'mailingAddress',
+    'veteranStatus',
     'dateReleasedFromActiveDuty',
     'activeDutyDuringHitechVets',
     'bankAccount',
-    'veteranStatus',
     'isEmployed',
-    'privacyAgreementAccepted',
+    'attestationAgreementAccepted',
     'statementOfTruthSignature',
     'dateSigned',
   ],
