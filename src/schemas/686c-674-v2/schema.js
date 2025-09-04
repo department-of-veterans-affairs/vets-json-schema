@@ -26,13 +26,13 @@ const schema = {
       type: 'string',
       pattern: '^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
     },
-    generic_location: {
+    genericLocation: {
       type: 'object',
       oneOf: [
         {
           type: 'object',
           properties: {
-            outside_usa: {
+            outsideUsa: {
               type: 'boolean',
               enum: [false],
             },
@@ -50,7 +50,7 @@ const schema = {
         {
           type: 'object',
           properties: {
-            outside_usa: {
+            outsideUsa: {
               type: 'boolean',
               enum: [true],
             },
@@ -67,13 +67,13 @@ const schema = {
         },
       ],
     },
-    generic_location_alt: {
+    genericLocationAlt: {
       type: 'object',
       oneOf: [
         {
           type: 'object',
           properties: {
-            outside_usa: {
+            outsideUsa: {
               type: 'boolean',
               enum: [false],
             },
@@ -82,9 +82,9 @@ const schema = {
               properties: {
                 city: { type: 'string' },
                 state: { type: 'string' },
-                postal_code: { type: 'string', pattern: '^\\d{5}$' },
+                postalCode: { type: 'string', pattern: '^\\d{5}$' },
               },
-              required: ['city', 'state', 'postal_code'],
+              required: ['city', 'state', 'postalCode'],
             },
           },
           required: ['location'],
@@ -92,7 +92,7 @@ const schema = {
         {
           type: 'object',
           properties: {
-            outside_usa: {
+            outsideUsa: {
               type: 'boolean',
               enum: [true],
             },
@@ -101,7 +101,7 @@ const schema = {
               properties: {
                 city: { type: 'string' },
                 country: { type: 'string' },
-                postal_code: { type: 'string' },
+                postalCode: { type: 'string' },
               },
               required: ['city', 'country'],
             },
@@ -112,77 +112,77 @@ const schema = {
     },
   }),
   properties: {
-    use_v2: { type: 'boolean' },
-    days_till_expires: { type: 'integer' },
+    useV2: { type: 'boolean' },
+    daysTillExpires: { type: 'integer' },
 
-    veteran_information: {
+    veteranInformation: {
       type: 'object',
       properties: {
-        full_name: { $ref: '#/definitions/fullNameNoSuffix' },
-        birth_date: { $ref: '#/definitions/date' },
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
-        va_file_last_four: { type: 'string', pattern: '^\\d{4}$' },
+        vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
       },
     },
 
-    veteran_contact_information: {
+    veteranContactInformation: {
       type: 'object',
       properties: {
-        veteran_address: { $ref: '#/definitions/address' },
-        phone_number: { $ref: '#/definitions/phone' },
-        email_address: { $ref: '#/definitions/email' },
+        veteranAddress: { $ref: '#/definitions/address' },
+        phoneNumber: { $ref: '#/definitions/phone' },
+        emailAddress: { $ref: '#/definitions/email' },
       },
-      required: ['veteran_address', 'phone_number', 'email_address'],
+      required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
 
-    spouse_information: {
+    spouseInformation: {
       type: 'object',
       properties: {
-        full_name: { $ref: '#/definitions/fullNameNoSuffix' },
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
         ssn: { $ref: '#/definitions/ssn' },
-        birth_date: { $ref: '#/definitions/date' },
-        is_veteran: { type: 'boolean' },
-        va_file_number: { type: 'string' },
-        service_number: { $ref: '#/definitions/veteranServiceNumber' },
+        birthDate: { $ref: '#/definitions/date' },
+        isVeteran: { type: 'boolean' },
+        vaFileNumber: { type: 'string' },
+        serviceNumber: { $ref: '#/definitions/veteranServiceNumber' },
       },
-      required: ['full_name', 'ssn', 'birth_date', 'is_veteran'],
+      required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
     },
 
-    does_live_with_spouse: {
+    doesLiveWithSpouse: {
       type: 'object',
       oneOf: [
         {
           type: 'object',
           properties: {
-            spouse_does_live_with_veteran: { type: 'boolean', enum: [true] },
-            spouse_income: { type: 'string' },
+            spouseDoesLiveWithVeteran: { type: 'boolean', enum: [true] },
+            spouseIncome: { type: 'string' },
           },
-          required: ['spouse_does_live_with_veteran'],
+          required: ['spouseDoesLiveWithVeteran'],
         },
         {
           type: 'object',
           properties: {
-            spouse_does_live_with_veteran: { type: 'boolean', enum: [false] },
-            spouse_income: { type: 'string' },
+            spouseDoesLiveWithVeteran: { type: 'boolean', enum: [false] },
+            spouseIncome: { type: 'string' },
             address: { $ref: '#/definitions/address' },
-            current_spouse_reason_for_separation: { type: 'string' },
+            currentSpouseReasonForSeparation: { type: 'string' },
             other: { type: 'string' },
           },
-          required: ['spouse_does_live_with_veteran', 'current_spouse_reason_for_separation', 'address'],
+          required: ['spouseDoesLiveWithVeteran', 'currentSpouseReasonForSeparation', 'address'],
         },
       ],
     },
 
-    current_marriage_information: {
+    currentMarriageInformation: {
       type: 'object',
       oneOf: [
         {
           allOf: [
-            { $ref: '#/definitions/generic_location' },
+            { $ref: '#/definitions/genericLocation' },
             {
               type: 'object',
               properties: {
-                type_of_marriage: {
+                typeOfMarriage: {
                   not: {
                     type: 'string',
                     enum: ['OTHER'],
@@ -190,144 +190,144 @@ const schema = {
                 },
                 date: { $ref: '#/definitions/date' },
               },
-              required: ['type_of_marriage', 'location', 'date'],
+              required: ['typeOfMarriage', 'location', 'date'],
             },
           ],
         },
         {
           allOf: [
-            { $ref: '#/definitions/generic_location' },
+            { $ref: '#/definitions/genericLocation' },
             {
               type: 'object',
               properties: {
-                type_of_marriage: {
+                typeOfMarriage: {
                   type: 'string',
                   enum: ['OTHER'],
                 },
-                type_other: { type: 'string' },
+                typeOther: { type: 'string' },
                 date: { $ref: '#/definitions/date' },
               },
-              required: ['type_of_marriage', 'type_other', 'location', 'date'],
+              required: ['typeOfMarriage', 'typeOther', 'location', 'date'],
             },
           ],
         },
       ],
     },
 
-    spouse_marriage_history: {
+    spouseMarriageHistory: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          full_name: { $ref: '#/definitions/fullNameNoSuffix' },
-          reason_marriage_ended: { type: 'string' },
-          other_reason_marriage_ended: { type: 'string' },
-          start_date: { $ref: '#/definitions/date' },
-          end_date: { $ref: '#/definitions/date' },
-          start_location: { $ref: '#/definitions/generic_location' },
-          end_location: { $ref: '#/definitions/generic_location' },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          reasonMarriageEnded: { type: 'string' },
+          otherReasonMarriageEnded: { type: 'string' },
+          startDate: { $ref: '#/definitions/date' },
+          endDate: { $ref: '#/definitions/date' },
+          startLocation: { $ref: '#/definitions/genericLocation' },
+          endLocation: { $ref: '#/definitions/genericLocation' },
         },
-        required: ['start_location', 'end_location', 'end_date', 'start_date', 'reason_marriage_ended', 'full_name'],
+        required: ['startLocation', 'endLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
         oneOf: [
           {
             type: 'object',
             properties: {
-              reason_marriage_ended: { type: 'string', enum: ['Other'] },
+              reasonMarriageEnded: { type: 'string', enum: ['Other'] },
             },
-            required: ['reason_marriage_ended', 'other_reason_marriage_ended'],
+            required: ['reasonMarriageEnded', 'otherReasonMarriageEnded'],
           },
           {
             type: 'object',
             properties: {
-              reason_marriage_ended: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
+              reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
             },
-            required: ['reason_marriage_ended'],
+            required: ['reasonMarriageEnded'],
           },
         ],
       },
     },
 
-    veteran_marriage_history: {
+    veteranMarriageHistory: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          full_name: { $ref: '#/definitions/fullNameNoSuffix' },
-          reason_marriage_ended: { type: 'string' },
-          other_reason_marriage_ended: { type: 'string' },
-          start_date: { $ref: '#/definitions/date' },
-          end_date: { $ref: '#/definitions/date' },
-          start_location: { $ref: '#/definitions/generic_location' },
-          end_location: { $ref: '#/definitions/generic_location' },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          reasonMarriageEnded: { type: 'string' },
+          otherReasonMarriageEnded: { type: 'string' },
+          startDate: { $ref: '#/definitions/date' },
+          endDate: { $ref: '#/definitions/date' },
+          startLocation: { $ref: '#/definitions/genericLocation' },
+          endLocation: { $ref: '#/definitions/genericLocation' },
         },
-        required: ['end_location', 'start_location', 'end_date', 'start_date', 'reason_marriage_ended', 'full_name'],
+        required: ['endLocation', 'startLocation', 'endDate', 'startDate', 'reasonMarriageEnded', 'fullName'],
         oneOf: [
           {
             type: 'object',
             properties: {
-              reason_marriage_ended: { type: 'string', enum: ['Other'] },
+              reasonMarriageEnded: { type: 'string', enum: ['Other'] },
             },
-            required: ['reason_marriage_ended', 'other_reason_marriage_ended'],
+            required: ['reasonMarriageEnded', 'otherReasonMarriageEnded'],
           },
           {
             type: 'object',
             properties: {
-              reason_marriage_ended: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
+              reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
             },
-            required: ['reason_marriage_ended'],
+            required: ['reasonMarriageEnded'],
           },
         ],
       },
     },
 
-    report_divorce: {
+    reportDivorce: {
       type: 'object',
       properties: {
-        spouse_income: { type: 'string' },
+        spouseIncome: { type: 'string' },
         date: { $ref: '#/definitions/date' },
-        divorce_location: { $ref: '#/definitions/generic_location' },
-        reason_marriage_ended: { type: 'string' },
-        explanation_of_other: { type: 'string' },
-        full_name: { $ref: '#/definitions/fullNameNoSuffix' },
-        birth_date: { $ref: '#/definitions/date' },
+        divorceLocation: { $ref: '#/definitions/genericLocation' },
+        reasonMarriageEnded: { type: 'string' },
+        explanationOfOther: { type: 'string' },
+        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        birthDate: { $ref: '#/definitions/date' },
       },
-      required: ['date', 'divorce_location', 'reason_marriage_ended', 'full_name', 'birth_date'],
+      required: ['date', 'divorceLocation', 'reasonMarriageEnded', 'fullName', 'birthDate'],
       oneOf: [
         {
           type: 'object',
           properties: {
-            reason_marriage_ended: { type: 'string', enum: ['Other'] },
+            reasonMarriageEnded: { type: 'string', enum: ['Other'] },
           },
-          required: ['reason_marriage_ended', 'explanation_of_other'],
+          required: ['reasonMarriageEnded', 'explanationOfOther'],
         },
         {
           type: 'object',
           properties: {
-            reason_marriage_ended: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
+            reasonMarriageEnded: { type: 'string', enum: ['Death', 'Divorce', 'Annulment'] },
           },
-          required: ['reason_marriage_ended'],
+          required: ['reasonMarriageEnded'],
         },
       ],
     },
 
-    children_to_add: {
+    childrenToAdd: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          full_name: { $ref: '#/definitions/fullNameNoSuffix' },
-          birth_date: { $ref: '#/definitions/date' },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
-          birth_location: {
-            $ref: '#/definitions/generic_location_alt',
+          birthLocation: {
+            $ref: '#/definitions/genericLocationAlt',
           },
-          is_biological_child: {
+          isBiologicalChild: {
             type: 'boolean',
             oneOf: [
               {
                 type: 'boolean',
                 enum: [true],
-                required: ['relationship_to_child'],
+                required: ['relationshipToChild'],
               },
               {
                 type: 'boolean',
@@ -335,30 +335,30 @@ const schema = {
               },
             ],
           },
-          relationship_to_child: {
+          relationshipToChild: {
             type: 'object',
             properties: {
               adopted: { type: 'boolean' },
               stepchild: { type: 'boolean' },
             },
           },
-          is_biological_child_of_spouse: { type: 'boolean' },
-          date_entered_household: {
+          isBiologicalChildOfSpouse: { type: 'boolean' },
+          dateEnteredHousehold: {
             $ref: '#/definitions/date',
           },
-          biological_parent_name: {
+          biologicalParentName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
-          biological_parent_ssn: { $ref: '#/definitions/ssn' },
-          biological_parent_dob: {
+          biologicalParentSsn: { $ref: '#/definitions/ssn' },
+          biologicalParentDob: {
             $ref: '#/definitions/date',
           },
-          does_child_have_disability: {
+          doesChildHaveDisability: {
             oneOf: [
               {
                 type: 'boolean',
                 enum: [true],
-                required: ['does_child_have_permanent_disability'],
+                required: ['doesChildHavePermanentDisability'],
               },
               {
                 type: 'boolean',
@@ -366,14 +366,14 @@ const schema = {
               },
             ],
           },
-          does_child_have_permanent_disability: { type: 'boolean' },
-          does_child_live_with_you: {
+          doesChildHavePermanentDisability: { type: 'boolean' },
+          doesChildLiveWithYou: {
             type: 'boolean',
             oneOf: [
               {
                 type: 'boolean',
                 enum: [false],
-                required: ['living_with'],
+                required: ['livingWith'],
               },
               {
                 type: 'boolean',
@@ -381,13 +381,13 @@ const schema = {
               },
             ],
           },
-          has_child_ever_been_married: {
+          hasChildEverBeenMarried: {
             type: 'boolean',
             oneOf: [
               {
                 type: 'boolean',
                 enum: [true],
-                required: ['marriage_end_date', 'marriage_end_reason'],
+                required: ['marriageEndDate', 'marriageEndReason'],
               },
               {
                 type: 'boolean',
@@ -395,16 +395,16 @@ const schema = {
               },
             ],
           },
-          marriage_end_date: {
+          marriageEndDate: {
             $ref: '#/definitions/date',
           },
-          marriage_end_reason: {
+          marriageEndReason: {
             type: 'string',
             oneOf: [
               {
                 type: 'string',
                 enum: ['Other'],
-                required: ['marriage_end_description'],
+                required: ['marriageEndDescription'],
               },
               {
                 type: 'string',
@@ -412,12 +412,12 @@ const schema = {
               },
             ],
           },
-          marriage_end_description: { type: 'string' },
-          income_in_last_year: { type: 'string' },
+          marriageEndDescription: { type: 'string' },
+          incomeInLastYear: { type: 'string' },
           address: {
             $ref: '#/definitions/address',
           },
-          living_with: {
+          livingWith: {
             type: 'object',
             required: ['first', 'last'],
             properties: {
@@ -428,74 +428,74 @@ const schema = {
           },
         },
         required: [
-          'does_child_live_with_you',
-          'has_child_ever_been_married',
-          'does_child_have_disability',
-          'is_biological_child_of_spouse',
-          'date_entered_household',
-          'biological_parent_name',
-          'biological_parent_ssn',
-          'biological_parent_dob',
-          'is_biological_child',
-          'birth_location',
+          'doesChildLiveWithYou',
+          'hasChildEverBeenMarried',
+          'doesChildHaveDisability',
+          'isBiologicalChildOfSpouse',
+          'dateEnteredHousehold',
+          'biologicalParentName',
+          'biologicalParentSsn',
+          'biologicalParentDob',
+          'isBiologicalChild',
+          'birthLocation',
           'ssn',
-          'full_name',
-          'birth_date',
+          'fullName',
+          'birthDate',
         ],
       },
     },
 
-    student_information: {
+    studentInformation: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          full_name: {
+          fullName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
-          birth_date: {
+          birthDate: {
             $ref: '#/definitions/date',
           },
           ssn: { $ref: '#/definitions/ssn' },
-          is_parent: { type: 'boolean' },
-          student_income: { type: 'string' },
+          isParent: { type: 'boolean' },
+          studentIncome: { type: 'string' },
           address: {
             $ref: '#/definitions/address',
           },
-          was_married: {
+          wasMarried: {
             oneOf: [
               {
                 type: 'boolean',
                 enum: [true],
-                required: ['was_married', 'marriage_date'],
+                required: ['wasMarried', 'marriageDate'],
               },
               {
                 type: 'boolean',
                 enum: [false],
-                required: ['was_married'],
+                required: ['wasMarried'],
               },
             ],
           },
-          marriage_date: { $ref: '#/definitions/date' },
-          type_of_program_or_benefit: {
+          marriageDate: { $ref: '#/definitions/date' },
+          typeOfProgramOrBenefit: {
             type: 'object',
             oneOf: [
               {
                 type: 'object',
                 properties: {
-                  type_of_program_or_benefit: {
+                  typeOfProgramOrBenefit: {
                     type: 'object',
                     properties: {
                       other: { type: 'boolean', enum: [true] },
                     },
                   },
                 },
-                required: ['other_program_or_benefit'],
+                required: ['otherProgramOrBenefit'],
               },
               {
                 type: 'object',
                 properties: {
-                  type_of_program_or_benefit: {
+                  typeOfProgramOrBenefit: {
                     type: 'object',
                     properties: {
                       other: { type: 'boolean', enum: [false] },
@@ -506,49 +506,49 @@ const schema = {
                   {
                     type: 'object',
                     properties: {
-                      type_of_program_or_benefit: {
+                      typeOfProgramOrBenefit: {
                         type: 'object',
                         properties: { other: { type: 'boolean', enum: [true] } },
                       },
                     },
-                    required: ['benefit_payment_date'],
+                    required: ['benefitPaymentDate'],
                   },
                   {
                     type: 'object',
                     properties: {
-                      type_of_program_or_benefit: {
+                      typeOfProgramOrBenefit: {
                         type: 'object',
                         properties: { ch35: { type: 'boolean', enum: [true] } },
                       },
                     },
-                    required: ['benefit_payment_date'],
+                    required: ['benefitPaymentDate'],
                   },
                   {
                     type: 'object',
                     properties: {
-                      type_of_program_or_benefit: {
+                      typeOfProgramOrBenefit: {
                         type: 'object',
                         properties: { fry: { type: 'boolean', enum: [true] } },
                       },
                     },
-                    required: ['benefit_payment_date'],
+                    required: ['benefitPaymentDate'],
                   },
                   {
                     type: 'object',
                     properties: {
-                      type_of_program_or_benefit: {
+                      typeOfProgramOrBenefit: {
                         type: 'object',
                         properties: { feca: { type: 'boolean', enum: [true] } },
                       },
                     },
-                    required: ['benefit_payment_date'],
+                    required: ['benefitPaymentDate'],
                   },
                 ],
               },
               {
                 type: 'object',
                 properties: {
-                  type_of_program_or_benefit: {
+                  typeOfProgramOrBenefit: {
                     type: 'object',
                     properties: {
                       ch35: { type: 'boolean', enum: [false] },
@@ -561,123 +561,123 @@ const schema = {
               },
             ],
           },
-          other_program_or_benefit: {
+          otherProgramOrBenefit: {
             type: 'string',
           },
-          tuition_is_paid_by_gov_agency: { type: 'boolean' },
-          benefit_payment_date: {
+          tuitionIsPaidByGovAgency: { type: 'boolean' },
+          benefitPaymentDate: {
             $ref: '#/definitions/date',
           },
-          school_information: {
+          schoolInformation: {
             type: 'object',
             properties: {
               name: { type: 'string' },
-              student_is_enrolled_full_time: {
+              studentIsEnrolledFullTime: {
                 type: 'boolean',
               },
-              date_full_time_ended: { $ref: '#/definitions/date' },
-              is_school_accredited: { type: 'boolean' },
-              current_term_dates: {
+              dateFullTimeEnded: { $ref: '#/definitions/date' },
+              isSchoolAccredited: { type: 'boolean' },
+              currentTermDates: {
                 type: 'object',
                 properties: {
-                  official_school_start_date: { $ref: '#/definitions/date' },
-                  expected_student_start_date: { $ref: '#/definitions/date' },
-                  expected_graduation_date: { $ref: '#/definitions/date' },
+                  officialSchoolStartDate: { $ref: '#/definitions/date' },
+                  expectedStudentStartDate: { $ref: '#/definitions/date' },
+                  expectedGraduationDate: { $ref: '#/definitions/date' },
                 },
-                required: ['official_school_start_date', 'expected_student_start_date', 'expected_graduation_date'],
+                required: ['officialSchoolStartDate', 'expectedStudentStartDate', 'expectedGraduationDate'],
               },
-              student_did_attend_school_last_term: { type: 'boolean' },
-              last_term_school_information: {
+              studentDidAttendSchoolLastTerm: { type: 'boolean' },
+              lastTermSchoolInformation: {
                 type: 'object',
                 properties: {
-                  term_begin: { type: 'string' },
-                  date_term_ended: { type: 'string' },
+                  termBegin: { type: 'string' },
+                  dateTermEnded: { type: 'string' },
                 },
               },
             },
             required: [
               'name',
-              'student_is_enrolled_full_time',
-              'student_did_attend_school_last_term',
-              'current_term_dates',
-              'is_school_accredited',
+              'studentIsEnrolledFullTime',
+              'studentDidAttendSchoolLastTerm',
+              'currentTermDates',
+              'isSchoolAccredited',
             ],
             oneOf: [
               {
                 type: 'object',
                 properties: {
-                  student_did_attend_school_last_term: { type: 'boolean', enum: [true] },
-                  last_term_school_information: {
+                  studentDidAttendSchoolLastTerm: { type: 'boolean', enum: [true] },
+                  lastTermSchoolInformation: {
                     type: 'object',
-                    required: ['term_begin', 'date_term_ended'],
+                    required: ['termBegin', 'dateTermEnded'],
                   },
                 },
-                required: ['student_did_attend_school_last_term', 'last_term_school_information'],
+                required: ['studentDidAttendSchoolLastTerm', 'lastTermSchoolInformation'],
               },
               {
                 type: 'object',
                 properties: {
-                  student_did_attend_school_last_term: { type: 'boolean', enum: [false] },
+                  studentDidAttendSchoolLastTerm: { type: 'boolean', enum: [false] },
                 },
-                required: ['student_did_attend_school_last_term'],
+                required: ['studentDidAttendSchoolLastTerm'],
               },
             ],
           },
-          claims_or_receives_pension: { type: 'boolean' },
-          student_networth_information: {
+          claimsOrReceivesPension: { type: 'boolean' },
+          studentNetworthInformation: {
             type: 'object',
             properties: {
               savings: { type: 'string' },
               securities: { type: 'string' },
-              real_estate: { type: 'string' },
-              other_assets: { type: 'string' },
-              total_value: { type: 'string' },
+              realEstate: { type: 'string' },
+              otherAssets: { type: 'string' },
+              totalValue: { type: 'string' },
             },
           },
-          student_expected_earnings_next_year: {
+          studentExpectedEarningsNextYear: {
             type: 'object',
             properties: {
-              earnings_from_all_employment: { type: 'string' },
-              annual_social_security_payments: { type: 'string' },
-              other_annuities_income: { type: 'string' },
-              all_other_income: { type: 'string' },
+              earningsFromAllEmployment: { type: 'string' },
+              annualSocialSecurityPayments: { type: 'string' },
+              otherAnnuitiesIncome: { type: 'string' },
+              allOtherIncome: { type: 'string' },
             },
           },
-          student_earnings_from_school_year: {
+          studentEarningsFromSchoolYear: {
             type: 'object',
             properties: {
-              earnings_from_all_employment: { type: 'string' },
-              annual_social_security_payments: { type: 'string' },
-              other_annuities_income: { type: 'string' },
-              all_other_income: { type: 'string' },
+              earningsFromAllEmployment: { type: 'string' },
+              annualSocialSecurityPayments: { type: 'string' },
+              otherAnnuitiesIncome: { type: 'string' },
+              allOtherIncome: { type: 'string' },
             },
           },
 
           remarks: { type: 'string' },
         },
         required: [
-          'full_name',
-          'birth_date',
+          'fullName',
+          'birthDate',
           'ssn',
-          'is_parent',
+          'isParent',
           'address',
-          'was_married',
-          'tuition_is_paid_by_gov_agency',
-          'school_information',
-          'claims_or_receives_pension',
-          'type_of_program_or_benefit',
-          'other_program_or_benefit',
-          'benefit_payment_date',
+          'wasMarried',
+          'tuitionIsPaidByGovAgency',
+          'schoolInformation',
+          'claimsOrReceivesPension',
+          'typeOfProgramOrBenefit',
+          'otherProgramOrBenefit',
+          'benefitPaymentDate',
         ],
       },
     },
 
-    step_children: {
+    stepChildren: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          who_does_the_stepchild_live_with: {
+          whoDoesTheStepchildLiveWith: {
             type: 'object',
             properties: {
               first: { type: 'string' },
@@ -686,27 +686,27 @@ const schema = {
             required: ['first', 'last'],
           },
           address: { $ref: '#/definitions/address' },
-          living_expenses_paid: { type: 'string' },
-          supporting_stepchild: { type: 'boolean' },
-          full_name: { $ref: '#/definitions/fullNameNoSuffix' },
+          livingExpensesPaid: { type: 'string' },
+          supportingStepchild: { type: 'boolean' },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
-          birth_date: { $ref: '#/definitions/date' },
+          birthDate: { $ref: '#/definitions/date' },
         },
-        required: ['who_does_the_stepchild_live_with', 'address', 'supporting_stepchild', 'full_name', 'ssn', 'birth_date'],
+        required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
         oneOf: [
           {
             type: 'object',
             properties: {
-              supporting_stepchild: { type: 'boolean', enum: [true] },
+              supportingStepchild: { type: 'boolean', enum: [true] },
             },
-            required: ['supporting_stepchild', 'living_expenses_paid'],
+            required: ['supportingStepchild', 'livingExpensesPaid'],
           },
           {
             type: 'object',
             properties: {
-              supporting_stepchild: { type: 'boolean', enum: [false] },
+              supportingStepchild: { type: 'boolean', enum: [false] },
             },
-            required: ['supporting_stepchild'],
+            required: ['supportingStepchild'],
           },
         ],
       },
@@ -717,95 +717,95 @@ const schema = {
       items: {
         type: 'object',
         properties: {
-          dependent_death_location: { $ref: '#/definitions/generic_location' },
-          deceased_dependent_income: { type: 'string' },
-          dependent_death_date: { $ref: '#/definitions/date' },
-          dependent_type: { type: 'string' },
-          child_status: {
+          dependentDeathLocation: { $ref: '#/definitions/genericLocation' },
+          deceasedDependentIncome: { type: 'string' },
+          dependentDeathDate: { $ref: '#/definitions/date' },
+          dependentType: { type: 'string' },
+          childStatus: {
             type: 'object',
             properties: {
-              child_under18: { type: 'boolean' },
-              step_child: { type: 'boolean' },
+              childUnder18: { type: 'boolean' },
+              stepChild: { type: 'boolean' },
             },
           },
-          full_name: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
-          birth_date: { $ref: '#/definitions/date' },
+          birthDate: { $ref: '#/definitions/date' },
         },
-        required: ['dependent_death_location', 'dependent_death_date', 'dependent_type', 'full_name', 'ssn', 'birth_date'],
+        required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'ssn', 'birthDate'],
         oneOf: [
           {
             type: 'object',
             properties: {
-              dependent_type: { type: 'string', enum: ['CHILD'] },
+              dependentType: { type: 'string', enum: ['CHILD'] },
             },
-            required: ['dependent_type', 'child_status'],
+            required: ['dependentType', 'childStatus'],
           },
           {
             type: 'object',
             properties: {
-              dependent_type: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] },
+              dependentType: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] },
             },
-            required: ['dependent_type'],
+            required: ['dependentType'],
           },
         ],
       },
     },
 
-    child_marriage: {
+    childMarriage: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          dependent_income: { type: 'string' },
-          date_married: {
+          dependentIncome: { type: 'string' },
+          dateMarried: {
             $ref: '#/definitions/date',
           },
-          full_name: {
+          fullName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
           ssn: { $ref: '#/definitions/ssn' },
-          birth_date: {
+          birthDate: {
             $ref: '#/definitions/date',
           },
         },
-        required: ['date_married', 'full_name', 'ssn', 'birth_date'],
+        required: ['dateMarried', 'fullName', 'ssn', 'birthDate'],
       },
     },
 
-    child_stopped_attending_school: {
+    childStoppedAttendingSchool: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          dependent_income: { type: 'string' },
-          date_child_left_school: {
+          dependentIncome: { type: 'string' },
+          dateChildLeftSchool: {
             $ref: '#/definitions/date',
           },
-          full_name: {
+          fullName: {
             $ref: '#/definitions/fullNameNoSuffix',
           },
           ssn: { $ref: '#/definitions/ssn' },
-          birth_date: {
+          birthDate: {
             $ref: '#/definitions/date',
           },
         },
-        required: ['date_child_left_school', 'full_name', 'ssn', 'birth_date'],
+        required: ['dateChildLeftSchool', 'fullName', 'ssn', 'birthDate'],
       },
     },
 
-    spouse_supporting_documents: {
+    spouseSupportingDocuments: {
       $ref: '#/definitions/files',
     },
-    child_supporting_documents: {
+    childSupportingDocuments: {
       $ref: '#/definitions/files',
     },
-    household_income: { type: 'boolean' },
+    householdIncome: { type: 'boolean' },
 
-    statement_of_truth_signature: { type: 'string' },
-    statement_of_truth_certified: { type: 'boolean' },
+    statementOfTruthSignature: { type: 'string' },
+    statementOfTruthCertified: { type: 'boolean' },
   },
-  required: ['statement_of_truth_certified', 'statement_of_truth_signature'],
+  required: ['statementOfTruthCertified', 'statementOfTruthSignature'],
 };
 
 export default schema;
