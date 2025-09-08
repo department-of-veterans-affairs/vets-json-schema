@@ -620,7 +620,7 @@ const schema = {
           treatedDisabilityNames: {
             type: 'array',
             minItems: 1,
-            maxItems: 100,
+            maxItems: 150,
             items: {
               type: 'string',
             },
