@@ -230,14 +230,7 @@ const testData = {
     ],
   },
   technologyAreaOfFocus: {
-    valid: [
-      'computerProgramming',
-      'computerSoftware',
-      'mediaApplication',
-      'dataProcessing',
-      'informationSciences',
-      'somethingElse',
-    ],
+    valid: ['computerProgramming', 'computerSoftware', 'mediaApplication', 'dataProcessing', 'informationSciences'],
     invalid: ['', null, 'engineer', 'computerScience', 'technology'],
   },
   currentSalary: {
@@ -245,10 +238,10 @@ const testData = {
     invalid: ['', null, 'twentyFive', 50, 'overFifty'],
   },
   highestLevelOfEducation: {
-    valid: ['HS', 'AD', 'BD', 'MD', 'DD', 'NA'],
+    valid: ['HS', 'AD', 'BD', 'MD', 'DD'],
     invalid: ['', null, 'AA', 'BB', 'CC'],
   },
-  privacyAgreementAccepted: {
+  attestationAgreementAccepted: {
     valid: [true],
     invalid: [false, '', null],
   },
@@ -264,25 +257,20 @@ const testData = {
 
 describe('10297 schema', () => {
   it('should have required fields', () => {
-    expect(schema.properties.contactInfo.required).to.deep.equal(['mobilePhone']);
     expect(schema.properties.trainingProviders.properties.providers.items.required).to.deep.equal([
       'providerName',
       'providerAddress',
     ]);
-    expect(schema.properties.trainingProviders.required).to.deep.equal(['providers', 'plannedStartDate']);
     expect(schema.required).to.deep.equal([
       'applicantFullName',
       'dateOfBirth',
       'mailingAddress',
-      'contactInfo',
-      'hasCompletedActiveDuty',
+      'veteranStatus',
       'dateReleasedFromActiveDuty',
       'activeDutyDuringHitechVets',
       'bankAccount',
-      'trainingProviders',
       'isEmployed',
-      'highestLevelOfEducation',
-      'privacyAgreementAccepted',
+      'attestationAgreementAccepted',
       'statementOfTruthSignature',
       'dateSigned',
     ]);
@@ -295,8 +283,7 @@ describe('10297 schema', () => {
   schemaTestHelper.testValidAndInvalid('vaFileNumber', testData.vaFileNumber);
   schemaTestHelper.testValidAndInvalid('mailingAddress', testData.mailingAddress);
   schemaTestHelper.testValidAndInvalid('contactInfo', testData.contactInfo);
-  schemaTestHelper.testValidAndInvalid('hasCompletedActiveDuty', testData.yesNoSchema);
-  schemaTestHelper.testValidAndInvalid('hasCompletedByDischarge', testData.yesNoSchema);
+  schemaTestHelper.testValidAndInvalid('veteranStatus', testData.yesNoSchema);
   schemaTestHelper.testValidAndInvalid('dateReleasedFromActiveDuty', testData.dateReleasedFromActiveDuty);
   schemaTestHelper.testValidAndInvalid('activeDutyDuringHitechVets', testData.yesNoSchema);
   schemaTestHelper.testValidAndInvalid('bankAccount', testData.bankAccount);
@@ -306,6 +293,6 @@ describe('10297 schema', () => {
   schemaTestHelper.testValidAndInvalid('technologyAreaOfFocus', testData.technologyAreaOfFocus);
   schemaTestHelper.testValidAndInvalid('currentSalary', testData.currentSalary);
   schemaTestHelper.testValidAndInvalid('highestLevelOfEducation', testData.highestLevelOfEducation);
-  schemaTestHelper.testValidAndInvalid('privacyAgreementAccepted', testData.privacyAgreementAccepted);
+  schemaTestHelper.testValidAndInvalid('attestationAgreementAccepted', testData.attestationAgreementAccepted);
   schemaTestHelper.testValidAndInvalid('dateSigned', testData.dateSigned);
 });

@@ -51,12 +51,8 @@ const schema = {
           $ref: '#/definitions/email',
         },
       },
-      required: ['mobilePhone'],
     },
-    hasCompletedActiveDuty: {
-      $ref: '#/definitions/yesNoSchema',
-    },
-    hasCompletedByDischarge: {
+    veteranStatus: {
       $ref: '#/definitions/yesNoSchema',
     },
     dateReleasedFromActiveDuty: {
@@ -91,7 +87,6 @@ const schema = {
           $ref: '#/definitions/date',
         },
       },
-      required: ['providers', 'plannedStartDate'],
     },
     isEmployed: {
       $ref: '#/definitions/yesNoSchema',
@@ -101,14 +96,7 @@ const schema = {
     },
     technologyAreaOfFocus: {
       type: 'string',
-      enum: [
-        'computerProgramming',
-        'computerSoftware',
-        'mediaApplication',
-        'dataProcessing',
-        'informationSciences',
-        'somethingElse',
-      ],
+      enum: ['computerProgramming', 'computerSoftware', 'mediaApplication', 'dataProcessing', 'informationSciences'],
     },
     currentSalary: {
       type: 'string',
@@ -116,9 +104,9 @@ const schema = {
     },
     highestLevelOfEducation: {
       type: 'string',
-      enum: ['HS', 'AD', 'BD', 'MD', 'DD', 'NA'],
+      enum: ['HS', 'AD', 'BD', 'MD', 'DD'],
     },
-    privacyAgreementAccepted: {
+    attestationAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
     },
     statementOfTruthSignature: {
@@ -132,15 +120,12 @@ const schema = {
     'applicantFullName',
     'dateOfBirth',
     'mailingAddress',
-    'contactInfo',
-    'hasCompletedActiveDuty',
+    'veteranStatus',
     'dateReleasedFromActiveDuty',
     'activeDutyDuringHitechVets',
     'bankAccount',
-    'trainingProviders',
     'isEmployed',
-    'highestLevelOfEducation',
-    'privacyAgreementAccepted',
+    'attestationAgreementAccepted',
     'statementOfTruthSignature',
     'dateSigned',
   ],
