@@ -314,15 +314,9 @@
         "emailAddress": {
           "$ref": "#/definitions/email"
         }
-      },
-      "required": [
-        "mobilePhone"
-      ]
+      }
     },
-    "hasCompletedActiveDuty": {
-      "$ref": "#/definitions/yesNoSchema"
-    },
-    "hasCompletedByDischarge": {
+    "veteranStatus": {
       "$ref": "#/definitions/yesNoSchema"
     },
     "dateReleasedFromActiveDuty": {
@@ -359,11 +353,7 @@
         "plannedStartDate": {
           "$ref": "#/definitions/date"
         }
-      },
-      "required": [
-        "providers",
-        "plannedStartDate"
-      ]
+      }
     },
     "isEmployed": {
       "$ref": "#/definitions/yesNoSchema"
@@ -378,8 +368,7 @@
         "computerSoftware",
         "mediaApplication",
         "dataProcessing",
-        "informationSciences",
-        "somethingElse"
+        "informationSciences"
       ]
     },
     "currentSalary": {
@@ -399,11 +388,10 @@
         "AD",
         "BD",
         "MD",
-        "DD",
-        "NA"
+        "DD"
       ]
     },
-    "privacyAgreementAccepted": {
+    "attestationAgreementAccepted": {
       "$ref": "#/definitions/privacyAgreementAccepted"
     },
     "statementOfTruthSignature": {
@@ -417,15 +405,12 @@
     "applicantFullName",
     "dateOfBirth",
     "mailingAddress",
-    "contactInfo",
-    "hasCompletedActiveDuty",
+    "veteranStatus",
     "dateReleasedFromActiveDuty",
     "activeDutyDuringHitechVets",
     "bankAccount",
-    "trainingProviders",
     "isEmployed",
-    "highestLevelOfEducation",
-    "privacyAgreementAccepted",
+    "attestationAgreementAccepted",
     "statementOfTruthSignature",
     "dateSigned"
   ],
