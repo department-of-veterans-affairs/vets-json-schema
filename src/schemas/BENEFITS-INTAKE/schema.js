@@ -13,7 +13,7 @@ export default {
           example: '796126859',
         },
         dateOfBirth: {
-          type: 'string',
+          type: ['string', 'null'],
           format: 'date',
           example: '1932-02-05',
         },
