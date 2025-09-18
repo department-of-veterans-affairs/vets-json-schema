@@ -12,6 +12,10 @@ const disabilitiesBaseDef = {
       name: {
         type: 'string',
       },
+      approximateDate: {
+        type: ['string', 'null'],
+        pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+      },
       disabilityActionType: {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN'],
@@ -155,6 +159,10 @@ const schema = {
         type: 'object',
         required: ['condition', 'cause'],
         properties: {
+          approximateDate: {
+            type: ['string', 'null'],
+            pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+          },
           condition: {
             type: 'string',
           },
