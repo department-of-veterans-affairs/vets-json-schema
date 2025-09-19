@@ -89,7 +89,10 @@ const schema = {
             },
             childName: { type: 'string' },
             provider: { type: 'string' },
-            careType: { type: 'string', enum: ['CARE_FACILITY', 'IN_HOME_CARE_PROVIDER'] },
+            careType: {
+              type: 'string',
+              enum: ['NURSING_HOME', 'CARE_FACILITY', 'ADULT_DAYCARE', 'IN_HOME_CARE_PROVIDER'],
+            },
             ratePerHour: { type: 'number' },
             hoursPerWeek: { type: 'string' },
             careDateRange: schemaHelpers.getDefinition('dateRange'),

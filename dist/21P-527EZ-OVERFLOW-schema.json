@@ -259,7 +259,9 @@
           "careType": {
             "type": "string",
             "enum": [
+              "NURSING_HOME",
               "CARE_FACILITY",
+              "ADULT_DAYCARE",
               "IN_HOME_CARE_PROVIDER"
             ]
           },
