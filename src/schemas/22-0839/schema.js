@@ -116,7 +116,6 @@ const schema = {
       items: {
         type: 'object',
         required: [
-          'eligibleIndividuals',
           'yearRange',
           'maximumNumberofStudents',
           'degreeLevel',
@@ -124,7 +123,6 @@ const schema = {
           'maximumContributionAmount',
         ],
         properties: {
-          eligibleIndividuals: { type: 'integer', minimum: 0, maximum: 1000000 },
           yearRange: {
             $ref: '#/definitions/dateRange',
           },
