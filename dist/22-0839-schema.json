@@ -559,7 +559,8 @@
     "authorizedOfficial",
     "agreementType",
     "statementOfTruthSignature",
-    "dateSigned"
+    "dateSigned",
+    "isAuthenticated"
   ],
   "properties": {
     "authorizedOfficial": {
@@ -787,6 +788,9 @@
     },
     "dateSigned": {
       "$ref": "#/definitions/date"
+    },
+    "isAuthenticated": {
+      "type": "boolean"
     }
   },
   "allOf": [
