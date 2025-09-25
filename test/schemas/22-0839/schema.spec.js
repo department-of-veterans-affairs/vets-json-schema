@@ -126,7 +126,6 @@ const testData = {
     valid: [
       [
         {
-          eligibleIndividuals: 25,
           yearRange: { from: '2025-08-01', to: '2026-07-31' },
           maximumNumberofStudents: 100,
           degreeLevel: 'undergraduate',
@@ -137,7 +136,6 @@ const testData = {
       ],
       [
         {
-          eligibleIndividuals: 0,
           yearRange: { from: '1900-01-01', to: '1900-12-31' },
           maximumNumberofStudents: 0,
           degreeLevel: 'doctoral',
@@ -146,7 +144,6 @@ const testData = {
           maximumContributionAmount: 0,
         },
         {
-          eligibleIndividuals: 1000,
           yearRange: { from: '2100-01-01', to: '2100-12-31' },
           maximumNumberofStudents: 99999,
           degreeLevel: 'all',
@@ -159,7 +156,6 @@ const testData = {
     invalid: [
       [
         {
-          eligibleIndividuals: -1,
           yearRange: '2025-2026',
           maximumNumberofStudents: 1000001,
           degreeLevel: 'middle-school',
@@ -291,7 +287,6 @@ describe('22-0839 schema (cross-field business rules)', () => {
       ],
       yellowRibbonProgramAgreementRequest: [
         {
-          eligibleIndividuals: 25,
           yearRange: { from: '2025-08-01', to: '2026-07-31' },
           maximumNumberofStudents: 100,
           degreeLevel: 'undergraduate',
