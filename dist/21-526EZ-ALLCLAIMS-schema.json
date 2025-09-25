@@ -438,22 +438,22 @@
         "addressLine1": {
           "type": "string",
           "maxLength": 20,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "addressLine2": {
           "type": "string",
           "maxLength": 20,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "addressLine3": {
           "type": "string",
           "maxLength": 20,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.#][ ]?)+$"
         },
         "state": {
           "$ref": "#/definitions/state"
@@ -473,22 +473,22 @@
         "addressLine1": {
           "type": "string",
           "maxLength": 20,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "addressLine2": {
           "type": "string",
           "maxLength": 20,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "addressLine3": {
           "type": "string",
           "maxLength": 20,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.#][ ]?)+$"
         },
         "state": {
           "$ref": "#/definitions/state"
@@ -511,7 +511,7 @@
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.#][ ]?)+$"
         },
         "state": {
           "$ref": "#/definitions/state"
@@ -770,19 +770,19 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 30,
-            "pattern": "^([-a-zA-Z0-9/']+( ?))+$"
+            "pattern": "^([-a-zA-Z0-9/'][ ]?)+$"
           },
           "middle": {
             "type": "string",
             "minLength": 1,
             "maxLength": 30,
-            "pattern": "^([-a-zA-Z0-9/']+( ?))+$"
+            "pattern": "^([-a-zA-Z0-9/'][ ]?)+$"
           },
           "last": {
             "type": "string",
             "minLength": 1,
             "maxLength": 30,
-            "pattern": "^([-a-zA-Z0-9/']+( ?))+$"
+            "pattern": "^([-a-zA-Z0-9/'][ ]?)+$"
           }
         }
       }
@@ -961,7 +961,7 @@
             "separationLocationName": {
               "type": "string",
               "maxLength": 256,
-              "pattern": "^([a-zA-Z0-9\\/\\-'.#,*()&][a-zA-Z0-9\\/\\-'.#,*()& ]?)*$"
+              "pattern": "^([a-zA-Z0-9\\/\\-'.#,*()&][ ]?)*$"
             }
           }
         },
@@ -975,7 +975,7 @@
             "unitName": {
               "type": "string",
               "maxLength": 256,
-              "pattern": "^([a-zA-Z0-9\\-'.#][a-zA-Z0-9\\-'.# ]?)*$"
+              "pattern": "^([a-zA-Z0-9\\-'.# ])*$"
             },
             "obligationTermOfServiceDateRange": {
               "$ref": "#/definitions/dateRangeAllRequired"
@@ -1047,22 +1047,22 @@
         "addressLine1": {
           "type": "string",
           "maxLength": 35,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "addressLine2": {
           "type": "string",
           "maxLength": 35,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "addressLine3": {
           "type": "string",
           "maxLength": 35,
-          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
         },
         "city": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+          "pattern": "^([-a-zA-Z0-9'.#][ ]?)+$"
         },
         "state": {
           "$ref": "#/definitions/state"
@@ -1133,7 +1133,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 100,
-          "pattern": "^([-a-zA-Z0-9/']+( ?))*$"
+          "pattern": "^([-a-zA-Z0-9/'][ ]?)*$"
         },
         "phoneNumber": {
           "$ref": "#/definitions/phone"
@@ -1157,7 +1157,7 @@
           "treatmentCenterName": {
             "type": "string",
             "maxLength": 100,
-            "pattern": "([-a-zA-Z0-9\"\\/&()'.#]([-a-zA-Z0-9()'.# ])?)+$"
+            "pattern": "^([-a-zA-Z0-9\"\\/&()'.#][ ]?)+$"
           },
           "treatmentDateRange": {
             "$ref": "#/definitions/dateRange"
@@ -1358,7 +1358,7 @@
                   "city": {
                     "type": "string",
                     "maxLength": 30,
-                    "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+                    "pattern": "^([-a-zA-Z0-9'.#][ ]?)+$"
                   },
                   "state": {
                     "$ref": "#/definitions/state"
@@ -1441,17 +1441,17 @@
                         "addressLine1": {
                           "type": "string",
                           "maxLength": 20,
-                          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+                          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
                         },
                         "addressLine2": {
                           "type": "string",
                           "maxLength": 20,
-                          "pattern": "^([-a-zA-Z0-9'.,&#]([-a-zA-Z0-9'.,&# ])?)+$"
+                          "pattern": "^([-a-zA-Z0-9'.,&#][ ]?)+$"
                         },
                         "city": {
                           "type": "string",
                           "maxLength": 30,
-                          "pattern": "^([-a-zA-Z0-9'.#]([-a-zA-Z0-9'.# ])?)+$"
+                          "pattern": "^([-a-zA-Z0-9'.#][ ]?)+$"
                         },
                         "state": {
                           "$ref": "#/definitions/state"

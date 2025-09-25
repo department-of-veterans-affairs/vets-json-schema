@@ -1,5 +1,6 @@
 import { cloneDeep, omit } from 'lodash';
 import { expect } from 'chai';
+import { it } from 'mocha';
 import schema from '../../../src/schemas/22-0839/schema';
 import SchemaTestHelper from '../../support/schema-test-helper';
 
@@ -231,6 +232,7 @@ describe('22-0839 schema (cross-field business rules)', () => {
     },
     statementOfTruthSignature: 'Jane Q. Smith',
     dateSigned: '2025-08-01',
+    isAuthenticated: true,
   };
 
   const usAddress = {
@@ -255,7 +257,9 @@ describe('22-0839 schema (cross-field business rules)', () => {
     };
 
     expect(payload.agreementType).to.equal('withdrawFromYellowRibbonProgram');
-    expect(requires(payload, ['authorizedOfficial', 'statementOfTruthSignature', 'dateSigned'])).to.equal(true);
+    expect(
+      requires(payload, ['authorizedOfficial', 'statementOfTruthSignature', 'dateSigned', 'isAuthenticated']),
+    ).to.equal(true);
     expect(requires(payload, ['withdrawFromYellowRibbonProgram'])).to.equal(true);
     expect(
       forbids(payload, [
@@ -305,7 +309,9 @@ describe('22-0839 schema (cross-field business rules)', () => {
     };
 
     expect(['startNewOpenEndedAgreement', 'modifyExistingAgreement']).to.include(payload.agreementType);
-    expect(requires(payload, ['authorizedOfficial', 'statementOfTruthSignature', 'dateSigned'])).to.equal(true);
+    expect(
+      requires(payload, ['authorizedOfficial', 'statementOfTruthSignature', 'dateSigned', 'isAuthenticated']),
+    ).to.equal(true);
     expect(
       requires(payload, [
         'yellowRibbonProgramTerms',

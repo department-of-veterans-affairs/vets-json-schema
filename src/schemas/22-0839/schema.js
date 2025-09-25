@@ -18,7 +18,7 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
-  required: ['authorizedOfficial', 'agreementType', 'statementOfTruthSignature', 'dateSigned'],
+  required: ['authorizedOfficial', 'agreementType', 'statementOfTruthSignature', 'dateSigned', 'isAuthenticated'],
   properties: {
     authorizedOfficial: {
       type: 'object',
@@ -136,7 +136,6 @@ const schema = {
           degreeProgram: {
             type: 'string',
           },
-          //default: 'USD'
           currencyType: {
             type: 'string',
           },
@@ -178,10 +177,12 @@ const schema = {
         },
       },
     },
-
     statementOfTruthSignature: { type: 'string', minLength: 1 },
     dateSigned: {
       $ref: '#/definitions/date',
+    },
+    isAuthenticated: {
+      type: 'boolean',
     },
   },
   allOf: [
@@ -195,7 +196,6 @@ const schema = {
           },
           required: ['agreementType', 'withdrawFromYellowRibbonProgram'],
         },
-
         {
           type: 'object',
           properties: {
