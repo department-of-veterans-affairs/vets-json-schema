@@ -157,7 +157,6 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['condition', 'cause'],
         properties: {
           approximateDate: {
             type: ['string', 'null'],
