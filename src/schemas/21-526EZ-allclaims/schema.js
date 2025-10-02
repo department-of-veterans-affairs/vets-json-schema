@@ -13,7 +13,7 @@ const disabilitiesBaseDef = {
         type: 'string',
       },
       approximateDate: {
-        type: ['string', 'null'],
+        type: 'string',
         pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
       },
       disabilityActionType: {
@@ -159,7 +159,7 @@ const schema = {
         type: 'object',
         properties: {
           approximateDate: {
-            type: ['string', 'null'],
+            type: 'string',
             pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
           },
           condition: {
