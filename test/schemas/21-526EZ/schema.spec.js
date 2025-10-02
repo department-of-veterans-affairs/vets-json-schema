@@ -354,12 +354,12 @@ const data = {
       [{ condition: 'issue 4', cause: 'VA' }],
     ],
     invalid: [
-      // [{}],
-      // [{ condition: 1234 }],
-      // [{ condition: 1234, cause: 'NEW' }],
-      // [{ condition: 'issue 5' }],
-      // [{ condition: 'issue 6', cause: 'XYZ' }],
-      // [{ condition: 'issue 7', cause: 123 }],
+      [{}],
+      [{ condition: 1234 }],
+      [{ condition: 1234, cause: 'NEW' }],
+      [{ condition: 'issue 5' }],
+      [{ condition: 'issue 6', cause: 'XYZ' }],
+      [{ condition: 'issue 7', cause: 123 }],
     ],
   },
   ptsdIncident: {
