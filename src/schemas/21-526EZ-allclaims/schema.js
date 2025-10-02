@@ -157,7 +157,6 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: [], // new workflow needs none
         properties: {
           approximateDate: {
             type: ['string', 'null'],
