@@ -274,10 +274,6 @@
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
-    },
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
@@ -306,10 +302,10 @@
       "type": "object",
       "properties": {
         "mobilePhone": {
-          "$ref": "#/definitions/usaPhone"
+          "type": "string"
         },
         "homePhone": {
-          "$ref": "#/definitions/usaPhone"
+          "type": "string"
         },
         "emailAddress": {
           "$ref": "#/definitions/email"

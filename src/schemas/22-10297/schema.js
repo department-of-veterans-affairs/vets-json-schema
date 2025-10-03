@@ -11,7 +11,6 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'fullNameNoSuffix',
   'privacyAgreementAccepted',
   'ssn',
-  'usaPhone',
   'vaFileNumber',
   'yesNoSchema',
 ]);
@@ -42,10 +41,10 @@ const schema = {
       type: 'object',
       properties: {
         mobilePhone: {
-          $ref: '#/definitions/usaPhone',
+          type: 'string',
         },
         homePhone: {
-          $ref: '#/definitions/usaPhone',
+          type: 'string',
         },
         emailAddress: {
           $ref: '#/definitions/email',
