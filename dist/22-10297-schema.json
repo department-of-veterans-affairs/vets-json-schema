@@ -388,7 +388,8 @@
         "AD",
         "BD",
         "MD",
-        "DD"
+        "DD",
+        "OTHER"
       ]
     },
     "attestationAgreementAccepted": {

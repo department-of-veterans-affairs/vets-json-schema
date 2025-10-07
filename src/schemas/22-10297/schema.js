@@ -104,7 +104,7 @@ const schema = {
     },
     highestLevelOfEducation: {
       type: 'string',
-      enum: ['HS', 'AD', 'BD', 'MD', 'DD'],
+      enum: ['HS', 'AD', 'BD', 'MD', 'DD', 'OTHER'],
     },
     attestationAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
