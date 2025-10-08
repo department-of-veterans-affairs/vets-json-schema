@@ -86,15 +86,15 @@ const testData = {
   contactInfo: {
     valid: [
       {
-        mobilePhone: '1234567890',
-        homePhone: '1112223333',
+        mobilePhone: '+1 1234567890 (US)',
+        homePhone: '+44 7654321 (GB)',
         emailAddress: 'test@email.com',
       },
     ],
     invalid: [
       {
-        mobilePhone: '',
-        homePhone: '1112223333',
+        mobilePhone: 1234567890,
+        homePhone: null,
         emailAddress: 'test@email.com',
       },
     ],
