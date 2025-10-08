@@ -238,8 +238,8 @@ const testData = {
     invalid: ['', null, 'twentyFive', 50, 'overFifty'],
   },
   highestLevelOfEducation: {
-    valid: ['HS', 'AD', 'BD', 'MD', 'DD'],
-    invalid: ['', null, 'AA', 'BB', 'CC'],
+    valid: ['HS', 'AD', 'BD', 'MD', 'DD', 'OTHER'],
+    invalid: ['', null, 'AA', 'BB', 'CC', 'EE'],
   },
   attestationAgreementAccepted: {
     valid: [true],
