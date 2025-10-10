@@ -12,6 +12,10 @@ const disabilitiesBaseDef = {
       name: {
         type: 'string',
       },
+      approximateDate: {
+        type: 'string',
+        pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+      },
       disabilityActionType: {
         type: 'string',
         enum: ['NONE', 'NEW', 'SECONDARY', 'INCREASE', 'REOPEN'],
@@ -152,54 +156,49 @@ const schema = {
     newDisabilities: {
       type: 'array',
       items: {
-        type: 'object',
-        required: ['condition', 'cause'],
-        properties: {
-          condition: {
-            type: 'string',
+        anyOf: [
+          // A) Real NEW/SECONDARY/WORSENED/VA condition 
+          {
+            type: 'object',
+            required: ['condition', 'cause'],
+            properties: {
+              approximateDate: {
+                type: ['string', 'null'],
+                pattern:
+                  '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+              },
+              condition: { type: 'string' },
+              cause: {
+                type: 'string',
+                enum: ['NEW', 'SECONDARY', 'WORSENED', 'VA'],
+              },
+              classificationCode: { type: 'string' },
+              primaryDescription: { type: 'string', maxLength: 400 },
+              causedByDisability: { type: 'string' },
+              causedByDisabilityDescription: { type: 'string', maxLength: 400 },
+              specialIssues: { $ref: '#/definitions/specialIssues' },
+              worsenedDescription: { type: 'string', maxLength: 50 },
+              worsenedEffects: { type: 'string', maxLength: 350 },
+              vaMistreatmentDescription: { type: 'string', maxLength: 350 },
+              vaMistreatmentLocation: { type: 'string', maxLength: 25 },
+              vaMistreatmentDate: { type: 'string', maxLength: 25 },
+            },
           },
-          cause: {
-            type: 'string',
-            enum: ['NEW', 'SECONDARY', 'WORSENED', 'VA'],
+
+          // B) Increase selected rated disability 
+          {
+            type: 'object',
+            required: ['ratedDisability'],
+            properties: {
+              ratedDisability: { type: 'string' },
+              conditionDate: { type: 'string' },
+              disabilityActionType: {
+                type: 'string',
+                enum: ['INCREASE', 'NONE', 'NEW', 'SECONDARY', 'REOPEN', 'WORSENED', 'VA'],
+              },
+            },
           },
-          classificationCode: {
-            type: 'string',
-          },
-          primaryDescription: {
-            type: 'string',
-            maxLength: 400,
-          },
-          causedByDisability: {
-            type: 'string',
-          },
-          causedByDisabilityDescription: {
-            type: 'string',
-            maxLength: 400,
-          },
-          specialIssues: {
-            $ref: '#/definitions/specialIssues',
-          },
-          worsenedDescription: {
-            type: 'string',
-            maxLength: 50,
-          },
-          worsenedEffects: {
-            type: 'string',
-            maxLength: 350,
-          },
-          vaMistreatmentDescription: {
-            type: 'string',
-            maxLength: 350,
-          },
-          vaMistreatmentLocation: {
-            type: 'string',
-            maxLength: 25,
-          },
-          vaMistreatmentDate: {
-            type: 'string',
-            maxLength: 25,
-          },
-        },
+        ],
       },
     },
     unitAssigned: {
