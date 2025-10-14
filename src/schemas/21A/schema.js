@@ -1,5 +1,17 @@
 import { countries } from '../../common/constants';
 
+const documentItem = {
+  type: 'object',
+  properties: {
+    name: { type: 'string' },
+    size: { type: 'number' },
+    type: { type: 'string' },
+    errorMessage: { type: 'string' }
+  },
+  required: ['name', 'size', 'type', 'errorMessage'],
+  additionalProperties: false
+};
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Apply to become a VA-accredited attorney or claims agent',
@@ -208,54 +220,106 @@ const schema = {
     imprisonedExplanation: { type: 'string' },
     imprisonedUploadedAllDocuments: { type: 'boolean' },
     imprisonedDeclinedToUploadDocuments: { type: 'boolean' },
+    convictionDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     wasMilitaryConviction: { type: 'boolean' },
     militaryConvictionExplanation: { type: 'string' },
     militaryConvictionUploadedAllDocuments: { type: 'boolean' },
     militaryConvictionDeclinedToUploadDocuments: { type: 'boolean' },
+    courtMartialedDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     isCurrentlyCharged: { type: 'boolean' },
     currentlyChargedExplanation: { type: 'string' },
     currentlyChargedUploadedAllDocuments: { type: 'boolean' },
     currentlyChargedDeclinedToUploadDocuments: { type: 'boolean' },
+    underChargesDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     wasSuspended: { type: 'boolean' },
     suspendedExplanation: { type: 'string' },
     suspendedUploadedAllDocuments: { type: 'boolean' },
     suspendedDeclinedToUploadDocuments: { type: 'boolean' },
+    resignedFromEducationDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     hasWithdrawn: { type: 'boolean' },
     withdrawnExplanation: { type: 'string' },
     withdrawnUploadedAllDocuments: { type: 'boolean' },
     withdrawnDeclinedToUploadDocuments: { type: 'boolean' },
+    withdrawnFromEducationDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     wasDisciplined: { type: 'boolean' },
     disciplinedExplanation: { type: 'string' },
     disciplinedUploadedAllDocuments: { type: 'boolean' },
     disciplinedDeclinedToUploadDocuments: { type: 'boolean' },
+    disciplinedForDishonestyDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     hasResignedRetired: { type: 'boolean' },
     resignedRetiredExplanation: { type: 'string' },
     resignedRetiredUploadedAllDocuments: { type: 'boolean' },
     resignedRetiredDeclinedToUploadDocuments: { type: 'boolean' },
+    resignedForDishonestyDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     wasAgentAttorney: { type: 'boolean' },
     agentAttorneyExplanation: { type: 'string' },
     agentAttorneyUploadedAllDocuments: { type: 'boolean' },
     agentAttorneyDeclinedToUploadDocuments: { type: 'boolean' },
+    representativeForAgencyDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     wasReprimanded: { type: 'boolean' },
     reprimandedExplanation: { type: 'string' },
     reprimandedUploadedAllDocuments: { type: 'boolean' },
     reprimandedDeclinedToUploadDocuments: { type: 'boolean' },
+        reprimandedInAgencyDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     hasResignedToAvoidReprimand: { type: 'boolean' },
     resignedToAvoidReprimandExplanation: { type: 'string' },
     resignedToAvoidReprimandUploadedAllDocuments: { type: 'boolean' },
     resignedToAvoidReprimandDeclinedToUploadDocuments: { type: 'boolean' },
+    resignedFromAgencyDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     hasAppliedForAccreditation: { type: 'boolean' },
     appliedForAccreditationExplanation: { type: 'string' },
     appliedForAccreditationUploadedAllDocuments: { type: 'boolean' },
     appliedForAccreditationDeclinedToUploadDocuments: { type: 'boolean' },
+    appliedForVaAccreditationDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     wasAccreditationTerminated: { type: 'boolean' },
     accreditationTerminatedExplanation: { type: 'string' },
     accreditationTerminatedUploadedAllDocuments: { type: 'boolean' },
     accreditationTerminatedDeclinedToUploadDocuments: { type: 'boolean' },
+    terminatedByVsorgDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     hasImpairments: { type: 'boolean' },
     impairmentsExplanation: { type: 'string' },
     impairmentsUploadedAllDocuments: { type: 'boolean' },
     impairmentsDeclinedToUploadDocuments: { type: 'boolean' },
+    conditionThatAffectsRepresentationDetailsDocuments: {
+      type: 'array',
+      items: documentItem
+    },
     hasPhysicalLimitations: { type: 'boolean' },
     physicalLimitationsExplanation: { type: 'string' },
     physicalLimitationsUploadedAllDocuments: { type: 'boolean' },

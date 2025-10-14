@@ -2187,6 +2187,33 @@
     "imprisonedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
+    "convictionDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
+    },
     "wasMilitaryConviction": {
       "type": "boolean"
     },
@@ -2198,6 +2225,33 @@
     },
     "militaryConvictionDeclinedToUploadDocuments": {
       "type": "boolean"
+    },
+    "courtMartialedDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
     },
     "isCurrentlyCharged": {
       "type": "boolean"
@@ -2211,6 +2265,33 @@
     "currentlyChargedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
+    "underChargesDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
+    },
     "wasSuspended": {
       "type": "boolean"
     },
@@ -2222,6 +2303,33 @@
     },
     "suspendedDeclinedToUploadDocuments": {
       "type": "boolean"
+    },
+    "resignedFromEducationDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
     },
     "hasWithdrawn": {
       "type": "boolean"
@@ -2235,6 +2343,33 @@
     "withdrawnDeclinedToUploadDocuments": {
       "type": "boolean"
     },
+    "withdrawnFromEducationDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
+    },
     "wasDisciplined": {
       "type": "boolean"
     },
@@ -2246,6 +2381,33 @@
     },
     "disciplinedDeclinedToUploadDocuments": {
       "type": "boolean"
+    },
+    "disciplinedForDishonestyDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
     },
     "hasResignedRetired": {
       "type": "boolean"
@@ -2259,6 +2421,33 @@
     "resignedRetiredDeclinedToUploadDocuments": {
       "type": "boolean"
     },
+    "resignedForDishonestyDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
+    },
     "wasAgentAttorney": {
       "type": "boolean"
     },
@@ -2270,6 +2459,33 @@
     },
     "agentAttorneyDeclinedToUploadDocuments": {
       "type": "boolean"
+    },
+    "representativeForAgencyDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
     },
     "wasReprimanded": {
       "type": "boolean"
@@ -2283,6 +2499,33 @@
     "reprimandedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
+    "reprimandedInAgencyDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
+    },
     "hasResignedToAvoidReprimand": {
       "type": "boolean"
     },
@@ -2294,6 +2537,33 @@
     },
     "resignedToAvoidReprimandDeclinedToUploadDocuments": {
       "type": "boolean"
+    },
+    "resignedFromAgencyDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
     },
     "hasAppliedForAccreditation": {
       "type": "boolean"
@@ -2307,6 +2577,33 @@
     "appliedForAccreditationDeclinedToUploadDocuments": {
       "type": "boolean"
     },
+    "appliedForVaAccreditationDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
+    },
     "wasAccreditationTerminated": {
       "type": "boolean"
     },
@@ -2319,6 +2616,33 @@
     "accreditationTerminatedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
+    "terminatedByVsorgDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
+    },
     "hasImpairments": {
       "type": "boolean"
     },
@@ -2330,6 +2654,33 @@
     },
     "impairmentsDeclinedToUploadDocuments": {
       "type": "boolean"
+    },
+    "conditionThatAffectsRepresentationDetailsDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "type",
+          "errorMessage"
+        ],
+        "additionalProperties": false
+      }
     },
     "hasPhysicalLimitations": {
       "type": "boolean"
