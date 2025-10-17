@@ -2187,7 +2187,7 @@
     "imprisonedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "convictionDetailsDocuments": {
+    "imprisonedDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2226,7 +2226,7 @@
     "militaryConvictionDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "courtMartialedDetailsDocuments": {
+    "militaryConvictionDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2265,7 +2265,7 @@
     "currentlyChargedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "underChargesDetailsDocuments": {
+    "currentlyChargedDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2304,7 +2304,7 @@
     "suspendedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "resignedFromEducationDetailsDocuments": {
+    "suspendedDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2343,7 +2343,7 @@
     "withdrawnDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "withdrawnFromEducationDetailsDocuments": {
+    "withdrawnDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2382,7 +2382,7 @@
     "disciplinedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "disciplinedForDishonestyDetailsDocuments": {
+    "disciplinedDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2421,7 +2421,7 @@
     "resignedRetiredDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "resignedForDishonestyDetailsDocuments": {
+    "resignedRetiredDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2460,7 +2460,7 @@
     "agentAttorneyDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "representativeForAgencyDetailsDocuments": {
+    "agentAttorneyDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2499,7 +2499,7 @@
     "reprimandedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "reprimandedInAgencyDetailsDocuments": {
+    "reprimandedDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2538,7 +2538,7 @@
     "resignedToAvoidReprimandDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "resignedFromAgencyDetailsDocuments": {
+    "resignedToAvoidReprimandDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2577,7 +2577,7 @@
     "appliedForAccreditationDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "appliedForVaAccreditationDetailsDocuments": {
+    "appliedForAccreditationDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2616,7 +2616,7 @@
     "accreditationTerminatedDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "terminatedByVsorgDetailsDocuments": {
+    "accreditationTerminatedDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
@@ -2655,7 +2655,7 @@
     "impairmentsDeclinedToUploadDocuments": {
       "type": "boolean"
     },
-    "conditionThatAffectsRepresentationDetailsDocuments": {
+    "impairmentsDetailsDocuments": {
       "type": "array",
       "items": {
         "type": "object",
