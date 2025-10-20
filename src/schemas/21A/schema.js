@@ -220,7 +220,7 @@ const schema = {
     imprisonedExplanation: { type: 'string' },
     imprisonedUploadedAllDocuments: { type: 'boolean' },
     imprisonedDeclinedToUploadDocuments: { type: 'boolean' },
-    convictionDetailsDocuments: {
+    imprisonedDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -228,7 +228,7 @@ const schema = {
     militaryConvictionExplanation: { type: 'string' },
     militaryConvictionUploadedAllDocuments: { type: 'boolean' },
     militaryConvictionDeclinedToUploadDocuments: { type: 'boolean' },
-    courtMartialedDetailsDocuments: {
+    militaryConvictionDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -236,7 +236,7 @@ const schema = {
     currentlyChargedExplanation: { type: 'string' },
     currentlyChargedUploadedAllDocuments: { type: 'boolean' },
     currentlyChargedDeclinedToUploadDocuments: { type: 'boolean' },
-    underChargesDetailsDocuments: {
+    currentlyChargedDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -244,7 +244,7 @@ const schema = {
     suspendedExplanation: { type: 'string' },
     suspendedUploadedAllDocuments: { type: 'boolean' },
     suspendedDeclinedToUploadDocuments: { type: 'boolean' },
-    resignedFromEducationDetailsDocuments: {
+    suspendedDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -252,7 +252,7 @@ const schema = {
     withdrawnExplanation: { type: 'string' },
     withdrawnUploadedAllDocuments: { type: 'boolean' },
     withdrawnDeclinedToUploadDocuments: { type: 'boolean' },
-    withdrawnFromEducationDetailsDocuments: {
+    withdrawnDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -260,7 +260,7 @@ const schema = {
     disciplinedExplanation: { type: 'string' },
     disciplinedUploadedAllDocuments: { type: 'boolean' },
     disciplinedDeclinedToUploadDocuments: { type: 'boolean' },
-    disciplinedForDishonestyDetailsDocuments: {
+    disciplinedDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -268,7 +268,7 @@ const schema = {
     resignedRetiredExplanation: { type: 'string' },
     resignedRetiredUploadedAllDocuments: { type: 'boolean' },
     resignedRetiredDeclinedToUploadDocuments: { type: 'boolean' },
-    resignedForDishonestyDetailsDocuments: {
+    resignedRetiredDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -276,7 +276,7 @@ const schema = {
     agentAttorneyExplanation: { type: 'string' },
     agentAttorneyUploadedAllDocuments: { type: 'boolean' },
     agentAttorneyDeclinedToUploadDocuments: { type: 'boolean' },
-    representativeForAgencyDetailsDocuments: {
+    agentAttorneyDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -284,7 +284,7 @@ const schema = {
     reprimandedExplanation: { type: 'string' },
     reprimandedUploadedAllDocuments: { type: 'boolean' },
     reprimandedDeclinedToUploadDocuments: { type: 'boolean' },
-        reprimandedInAgencyDetailsDocuments: {
+    reprimandedDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -292,7 +292,7 @@ const schema = {
     resignedToAvoidReprimandExplanation: { type: 'string' },
     resignedToAvoidReprimandUploadedAllDocuments: { type: 'boolean' },
     resignedToAvoidReprimandDeclinedToUploadDocuments: { type: 'boolean' },
-    resignedFromAgencyDetailsDocuments: {
+    resignedToAvoidReprimandDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -300,7 +300,7 @@ const schema = {
     appliedForAccreditationExplanation: { type: 'string' },
     appliedForAccreditationUploadedAllDocuments: { type: 'boolean' },
     appliedForAccreditationDeclinedToUploadDocuments: { type: 'boolean' },
-    appliedForVaAccreditationDetailsDocuments: {
+    appliedForAccreditationDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -308,7 +308,7 @@ const schema = {
     accreditationTerminatedExplanation: { type: 'string' },
     accreditationTerminatedUploadedAllDocuments: { type: 'boolean' },
     accreditationTerminatedDeclinedToUploadDocuments: { type: 'boolean' },
-    terminatedByVsorgDetailsDocuments: {
+    accreditationTerminatedDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
@@ -316,7 +316,7 @@ const schema = {
     impairmentsExplanation: { type: 'string' },
     impairmentsUploadedAllDocuments: { type: 'boolean' },
     impairmentsDeclinedToUploadDocuments: { type: 'boolean' },
-    conditionThatAffectsRepresentationDetailsDocuments: {
+    impairmentsDetailsDocuments: {
       type: 'array',
       items: documentItem
     },
