@@ -2,14 +2,27 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "MEDICAL EXPENSE REPORT (21P-8416)",
   "type": "object",
-  "definitions": {},
+  "definitions": {
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
+    }
+  },
   "properties": {
     "claimantNotVeteran": {
       "type": "boolean"
     },
     "veteranSocialSecurityNumber": {
-      "type": "string",
-      "pattern": "^[0-9]{9}$"
+      "$ref": "#/definitions/ssn"
     },
     "firstTimeReporting": {
       "type": "boolean"
@@ -19,10 +32,17 @@
     },
     "statementOfTruthCertified": {
       "type": "boolean"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "email": {
+      "$ref": "#/definitions/email"
     }
   },
   "required": [
     "statementOfTruthSignature",
-    "statementOfTruthCertified"
+    "statementOfTruthCertified",
+    "veteranSocialSecurityNumber"
   ]
 }
