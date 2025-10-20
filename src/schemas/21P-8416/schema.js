@@ -6,17 +6,13 @@ const schema = {
   type: 'object',
   definitions: {},
   properties: {
-    // Section I VETERAN'S IDENTIFICATION INFORMATION
-    veteran: {
-      type: 'object',
-      properties: {
-        veteranFullName: definitions.fullName,
-        veteranSsn: definitions.ssn,
-        veteranFileNumber: definitions.fileNumber,
-      },
-    },
+    claimantNotVeteran: { type: 'boolean' },
+    veteranSocialSecurityNumber: definitions.ssn,
+    firstTimeReporting: { type: 'boolean' },
+    statementOfTruthSignature: { type: 'string' },
+    statementOfTruthCertified: { type: 'boolean' },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranSsn', 'veteranFileNumber'],
+  required: ['statementOfTruthSignature', 'statementOfTruthCertified'],
 };
 
 export default schema;

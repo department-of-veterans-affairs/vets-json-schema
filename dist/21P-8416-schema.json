@@ -4,53 +4,25 @@
   "type": "object",
   "definitions": {},
   "properties": {
-    "veteran": {
-      "type": "object",
-      "properties": {
-        "veteranFullName": {
-          "type": "object",
-          "properties": {
-            "first": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 30
-            },
-            "middle": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "last": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 30
-            },
-            "suffix": {
-              "type": "string",
-              "enum": [
-                "Jr.",
-                "Sr.",
-                "II",
-                "III",
-                "IV"
-              ]
-            }
-          },
-          "required": [
-            "first",
-            "last"
-          ]
-        },
-        "veteranSsn": {
-          "type": "string",
-          "pattern": "^[0-9]{9}$"
-        }
-      }
+    "claimantNotVeteran": {
+      "type": "boolean"
+    },
+    "veteranSocialSecurityNumber": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "firstTimeReporting": {
+      "type": "boolean"
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
+    },
+    "statementOfTruthCertified": {
+      "type": "boolean"
     }
   },
   "required": [
-    "privacyAgreementAccepted",
-    "veteranFullName",
-    "veteranSsn",
-    "veteranFileNumber"
+    "statementOfTruthSignature",
+    "statementOfTruthCertified"
   ]
 }
