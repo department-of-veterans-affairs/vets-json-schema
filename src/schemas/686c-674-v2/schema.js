@@ -457,7 +457,7 @@ const schema = {
             $ref: '#/definitions/date',
           },
           ssn: { $ref: '#/definitions/ssn' },
-          isParent: { type: 'boolean' },
+          relationshipToStudent: { type: 'string' },
           studentIncome: { type: 'string' },
           address: {
             $ref: '#/definitions/address',

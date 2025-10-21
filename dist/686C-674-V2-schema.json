@@ -1020,8 +1020,8 @@
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
-          "isParent": {
-            "type": "boolean"
+          "relationshipToStudent": {
+            "type": "string"
           },
           "studentIncome": {
             "type": "string"
