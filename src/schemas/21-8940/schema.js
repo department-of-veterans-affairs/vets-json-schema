@@ -224,6 +224,7 @@ const schema = {
         maxLength: 34,
       },
     },
+    files: definitions.files,
   },
   required: [],
 };
