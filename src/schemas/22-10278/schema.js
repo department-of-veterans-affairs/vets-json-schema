@@ -68,6 +68,8 @@ const schema = {
             properties: {
                 organizationName: {
                     type: 'string',
+                    minLength: 1,
+                    maxLength: 30,
                 },
                 organizationAddress: {
                     $ref: '#/definitions/address',
@@ -84,35 +86,73 @@ const schema = {
                 required: ['fullName'],
             },
         },
-        authorizedOfficial: {
+        claimInformation: {
             type: 'object',
+            required: ['claims'],
             properties: {
-                fullName: {
-                    $ref: '#/definitions/fullNameNoSuffix',
-                },
-                title: {
+                claims: {
                     type: 'string',
+                    enum: ['statusOfClaim', 'currentBenefit', 'paymentHistory', 'amountOwed', 'minor', 'other'],
                 },
-                usPhone: {
-                    $ref: '#/definitions/usaPhone',
-                },
-                internationalPhone: {
-                    $ref: '#/definitions/phone',
-                },
-                email: {
-                    $ref: '#/definitions/email',
+                other: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 30,
                 },
             },
-            required: ['fullName', 'title', 'email'],
-            anyOf: [
+             oneOf: [
                 {
-                    required: ['usPhone'],
+                    type: 'object',
+                    properties: {
+                        claims: {
+                            enum: ['statusOfClaim', 'currentBenefit', 'paymentHistory', 'amountOwed', 'minor']
+                        }
+                    },
+                    required: ['claims']
                 },
                 {
-                    required: ['internationalPhone'],
+                    type: 'object',
+                    properties: {
+                        claims: {
+                            enum: ['other']
+                        }
+                    },
+                    required: ['claims', 'other']
+                }
+            ]
+        },
+        lengthOfRelease: {
+            type: 'object',
+            required: ['lengthOfRelease'],
+            properties: {
+                lengthOfRelease: {
+                    type: 'string',
+                    enum: ['ongoing', 'date']
                 },
-            ],
-            maxProperties: 4,
+                date: {
+                    $ref: '#/definitions/date',
+                }
+            },
+            oneOf: [
+                {
+                    type: 'object',
+                    properties: {
+                        lengthOfRelease: {
+                            enum: ['ongoing']
+                        }
+                    },
+                    required: ['lengthOfRelease']
+                },
+                {
+                    type: 'object',
+                    properties: {
+                        lengthOfRelease: {
+                            enum: ['date']
+                        }
+                    },
+                    required: ['lengthOfRelease', 'date']
+                }
+            ]
         },
         privacyAgreementAccepted: {
             $ref: '#/definitions/privacyAgreementAccepted',
