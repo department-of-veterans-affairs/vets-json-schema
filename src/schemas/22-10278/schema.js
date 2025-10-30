@@ -24,29 +24,9 @@ const schema = {
     definitions: pickedDefinitions,
     //required: ['agreementType', 'authorizedOfficial', 'mainInstitution', 'statementOfTruthSignature', 'dateSigned'],
     properties: {
-        // fullName: { $ref: '#/definitions/fullNameNoSuffix' },
-        // ssn: {
-        //     $ref: '#/definitions/ssn',
-        // },
-        // vaFileNumber: {
-        //     $ref: '#/definitions/vaFileNumber',
-        // },
-        // dateOfBirth: {
-        //     $ref: '#/definitions/date',
-        // },
-        // mailingAddress: {
-        //     $ref: '#/definitions/address',
-        // },
-        // phoneNumber: {
-        //     $ref: '#/definitions/phone',
-        // },
-        // emailAddress: {
-        //     $ref: '#/definitions/email',
-        // },
-
         claimantInformation: {
             type: 'object',
-            required: ['fullName', 'ssn', 'emailAddress'],
+            required: ['fullName', 'ssn', 'dateOfBirth', 'mailingAddress', 'phoneNumber'],
             properties: {
                 fullName: { $ref: '#/definitions/fullNameNoSuffix' },
                 ssn: {
@@ -68,79 +48,90 @@ const schema = {
                     $ref: '#/definitions/email',
                 },
             },
-            additionalInstitutions: {
-                type: 'array',
-                items: {
-                    type: 'object',
-                    properties: {
-                        facilityCode: {
-                            type: 'string',
-                            pattern: '^[a-zA-Z0-9]{8}$',
-                        },
-                        institutionName: {
-                            type: 'string',
-                        },
-                        institutionAddress: {
-                            $ref: '#/definitions/address',
-                        },
-                        pointOfContact: {
-                            type: 'object',
-                            properties: {
-                                fullName: {
-                                    $ref: '#/definitions/fullNameNoSuffix',
-                                },
-                                email: {
-                                    $ref: '#/definitions/email',
-                                },
-                            },
-                            required: ['fullName', 'email'],
-                        },
-                    },
-                    required: ['facilityCode', 'institutionName', 'institutionAddress', 'pointOfContact'],
+        },
+        thirdPartyInformation: {
+            type: 'object',
+            required: ['fullName', 'address'],
+            properties: {
+                fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+                address: {
+                    $ref: '#/definitions/address',
                 },
-            },
-            authorizedOfficial: {
+
+            }
+        },
+        additionalInstitutions: {
+            type: 'array',
+            items: {
                 type: 'object',
                 properties: {
-                    fullName: {
-                        $ref: '#/definitions/fullNameNoSuffix',
+                    facilityCode: {
+                        type: 'string',
+                        pattern: '^[a-zA-Z0-9]{8}$',
                     },
-                    title: {
+                    institutionName: {
                         type: 'string',
                     },
-                    usPhone: {
-                        $ref: '#/definitions/usaPhone',
+                    institutionAddress: {
+                        $ref: '#/definitions/address',
                     },
-                    internationalPhone: {
-                        $ref: '#/definitions/phone',
-                    },
-                    email: {
-                        $ref: '#/definitions/email',
+                    pointOfContact: {
+                        type: 'object',
+                        properties: {
+                            fullName: {
+                                $ref: '#/definitions/fullNameNoSuffix',
+                            },
+                            email: {
+                                $ref: '#/definitions/email',
+                            },
+                        },
+                        required: ['fullName', 'email'],
                     },
                 },
-                required: ['fullName', 'title', 'email'],
-                anyOf: [
-                    {
-                        required: ['usPhone'],
-                    },
-                    {
-                        required: ['internationalPhone'],
-                    },
-                ],
-                maxProperties: 4,
-            },
-            privacyAgreementAccepted: {
-                $ref: '#/definitions/privacyAgreementAccepted',
-            },
-            statementOfTruthSignature: {
-                type: 'string',
-                minLength: 1,
-            },
-            dateSigned: {
-                $ref: '#/definitions/date',
+                required: ['facilityCode', 'institutionName', 'institutionAddress', 'pointOfContact'],
             },
         },
-    }
+        authorizedOfficial: {
+            type: 'object',
+            properties: {
+                fullName: {
+                    $ref: '#/definitions/fullNameNoSuffix',
+                },
+                title: {
+                    type: 'string',
+                },
+                usPhone: {
+                    $ref: '#/definitions/usaPhone',
+                },
+                internationalPhone: {
+                    $ref: '#/definitions/phone',
+                },
+                email: {
+                    $ref: '#/definitions/email',
+                },
+            },
+            required: ['fullName', 'title', 'email'],
+            anyOf: [
+                {
+                    required: ['usPhone'],
+                },
+                {
+                    required: ['internationalPhone'],
+                },
+            ],
+            maxProperties: 4,
+        },
+        privacyAgreementAccepted: {
+            $ref: '#/definitions/privacyAgreementAccepted',
+        },
+        statementOfTruthSignature: {
+            type: 'string',
+            minLength: 1,
+        },
+        dateSigned: {
+            $ref: '#/definitions/date',
+        },
+    },
 };
 
 export default schema;
