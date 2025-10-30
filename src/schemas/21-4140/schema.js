@@ -82,10 +82,10 @@ const schema = {
             },
           },
           timeLost: {
-            type: 'integer',
+            type: 'string',
           },
           grossEarningsPerMonth: {
-            type: 'integer',
+            type: 'string',
           },
         },
       },
