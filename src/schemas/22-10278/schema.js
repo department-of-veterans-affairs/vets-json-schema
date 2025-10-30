@@ -22,11 +22,11 @@ const schema = {
     type: 'object',
     additionalProperties: false,
     definitions: pickedDefinitions,
-    //required: ['agreementType', 'authorizedOfficial', 'mainInstitution', 'statementOfTruthSignature', 'dateSigned'],
+    //required: ['claimantPersonalInformation', 'claimantAddress', 'claimantContactInformation', 'statementOfTruthSignature', 'dateSigned'],
     properties: {
-        claimantInformation: {
+        claimantPersonalInformation: {
             type: 'object',
-            required: ['fullName', 'ssn', 'dateOfBirth', 'mailingAddress', 'phoneNumber'],
+            required: ['fullName', 'ssn', 'dateOfBirth'],
             properties: {
                 fullName: { $ref: '#/definitions/fullNameNoSuffix' },
                 ssn: {
@@ -38,9 +38,16 @@ const schema = {
                 dateOfBirth: {
                     $ref: '#/definitions/date',
                 },
-                mailingAddress: {
-                    $ref: '#/definitions/address',
-                },
+
+            },
+        },
+        claimantAddress: {
+            $ref: '#/definitions/address',
+        },
+        claimantContactInformation: {
+            type: 'object',
+            required: ['phoneNumber'],
+            properties: {
                 phoneNumber: {
                     $ref: '#/definitions/phone',
                 },
@@ -49,46 +56,32 @@ const schema = {
                 },
             },
         },
-        thirdPartyInformation: {
+        thirdPartyPersonName: {
+            $ref: '#/definitions/fullNameNoSuffix',
+        },
+        thirdPartyPersonAddress: {
+            $ref: '#/definitions/address',
+        },
+        thirdPartyOrganizationInformation: {
             type: 'object',
-            required: ['fullName', 'address'],
+            required: ['organizationName', 'organizationAddress'],
             properties: {
-                fullName: { $ref: '#/definitions/fullNameNoSuffix' },
-                address: {
+                organizationName: {
+                    type: 'string',
+                },
+                organizationAddress: {
                     $ref: '#/definitions/address',
                 },
-
-            }
+            } 
         },
-        additionalInstitutions: {
+        organizationRepresentatives: {
             type: 'array',
             items: {
                 type: 'object',
                 properties: {
-                    facilityCode: {
-                        type: 'string',
-                        pattern: '^[a-zA-Z0-9]{8}$',
-                    },
-                    institutionName: {
-                        type: 'string',
-                    },
-                    institutionAddress: {
-                        $ref: '#/definitions/address',
-                    },
-                    pointOfContact: {
-                        type: 'object',
-                        properties: {
-                            fullName: {
-                                $ref: '#/definitions/fullNameNoSuffix',
-                            },
-                            email: {
-                                $ref: '#/definitions/email',
-                            },
-                        },
-                        required: ['fullName', 'email'],
-                    },
+                  fullName: { $ref: '#/definitions/fullNameNoSuffix' },
                 },
-                required: ['facilityCode', 'institutionName', 'institutionAddress', 'pointOfContact'],
+                required: ['fullName'],
             },
         },
         authorizedOfficial: {
