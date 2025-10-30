@@ -22,7 +22,7 @@ const schema = {
     type: 'object',
     additionalProperties: false,
     definitions: pickedDefinitions,
-    //required: ['claimantPersonalInformation', 'claimantAddress', 'claimantContactInformation', 'statementOfTruthSignature', 'dateSigned'],
+    required: ['claimantPersonalInformation', 'claimantAddress', 'claimantContactInformation', 'claimInformation', 'lengthOfRelease', 'securityQuestion'],
     properties: {
         claimantPersonalInformation: {
             type: 'object',
@@ -154,6 +154,53 @@ const schema = {
                 }
             ]
         },
+        securityQuestion: {
+            type: 'object',
+            required: ['question'],
+            properties: {
+                question: {
+                    type: 'string',
+                    enum: ['pin', 'motherBornLocation', 'highSchool', 'petName', 'teacherName', 'fatherMiddleName', 'create']
+                }
+            }
+        },
+        securityAnswerText: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 30,
+        },
+        securityAnswerLocation: {
+            type: 'object',
+            required: ['city', 'state'],
+            properties: {
+                city: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 30,
+                },
+                state: {
+                    type: 'string',
+                    minLength: 2,
+                    maxLength: 2,
+                }
+            }
+        },
+        securityAnswerCreate: {
+            type: 'object',
+            required: ['question', 'answer'],
+            properties: {
+                question: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 100,
+                },
+                answer: {
+                    type: 'string',
+                    minLength: 1,
+                    maxLength: 30,
+                }
+            }
+        },
         privacyAgreementAccepted: {
             $ref: '#/definitions/privacyAgreementAccepted',
         },
@@ -165,6 +212,11 @@ const schema = {
             $ref: '#/definitions/date',
         },
     },
+    oneOf: [
+        { required: ['securityAnswerText'] },
+        { required: ['securityAnswerLocation'] },
+        { required: ['securityAnswerCreate'] }
+    ]
 };
 
 export default schema;
