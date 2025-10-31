@@ -100,7 +100,7 @@ const schema = {
         properties: {
           facilityCode: {
             type: 'string',
-            pattern: '^(?!..[Xx])[A-Za-z0-9]{8}$',
+            pattern: '^[A-Za-z0-9]{8}$',
           },
           institutionName: {
             type: 'string',
