@@ -1,4 +1,5 @@
 import definitions from '../../common/definitions';
+import schemaHelpers from '../../common/schema-helpers';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -23,7 +24,7 @@ const schema = {
     },
     veteranSocialSecurityNumber: definitions.ssn,
     vaFileNumber: definitions.vaFileNumber,
-    dateOfBirth: definitions.date,
+    dateOfBirth: schemaHelpers.getDefinition('date'),
     // no good address def for 2 charatcher country code "US"
     // backend has a extract_country helper to get 2 letter country codes
     veteranAddress: definitions.address,
@@ -69,9 +70,9 @@ const schema = {
     },
     hospitalCareDateRanges: definitions.dateRange,
     // SECTION III -  EMPLOYMENT STATEMENT
-    disabilityAffectEmployFTDate: definitions.date,
-    lastWorkedFullTimeDate: definitions.date,
-    becameTooDisabledToWorkDate: definitions.date,
+    disabilityAffectEmployFTDate: schemaHelpers.getDefinition('date'),
+    lastWorkedFullTimeDate: schemaHelpers.getDefinition('date'),
+    becameTooDisabledToWorkDate: schemaHelpers.getDefinition('date'),
     mostEarningsInAYear: {
       type: 'integer',
     },
@@ -153,7 +154,7 @@ const schema = {
             maxLength: 62,
             type: 'string',
           },
-          dateApplied: definitions.date,
+          dateApplied: schemaHelpers.getDefinition('date'),
         },
       },
     },
@@ -203,7 +204,7 @@ const schema = {
     signature: {
       type: 'string',
     },
-    signatureDate: definitions.date,
+    signatureDate: schemaHelpers.getDefinition('date'),
     witnessSignature1: {
       type: 'object',
       signature: {
