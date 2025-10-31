@@ -27,7 +27,8 @@
       "pattern": "^[cC]{0,1}\\d{7,9}$"
     },
     "dateOfBirth": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "veteranAddress": {
       "type": "object",
@@ -289,13 +290,16 @@
       }
     },
     "disabilityAffectEmployFTDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "lastWorkedFullTimeDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "becameTooDisabledToWorkDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "mostEarningsInAYear": {
       "type": "integer"
@@ -379,7 +383,8 @@
             "type": "string"
           },
           "dateApplied": {
-            "$ref": "#/definitions/date"
+            "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+            "type": "string"
           }
         }
       }
@@ -465,7 +470,8 @@
       "type": "string"
     },
     "signatureDate": {
-      "$ref": "#/definitions/date"
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
     },
     "witnessSignature1": {
       "type": "object",
