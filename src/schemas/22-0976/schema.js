@@ -92,7 +92,7 @@ const schema = {
         isIHL: { $ref: '#/definitions/yesNoSchema' },
         ihlDegreeTypes: { type: 'string', maxLength: 500 },
         participatesInTitleIV: { $ref: '#/definitions/yesNoSchema' },
-        opeidNumber: { type: 'string', pattern: '^[0-9]{8}$', minLength: 8, maxLength: 8 },
+        opeidNumber: { type: 'string', pattern: '^[A-Za-z0-9]{8}$', minLength: 8, maxLength: 8 },
       },
       allOf: [
         // If isIHL == yes, require ihlDegreeTypes (non-empty)

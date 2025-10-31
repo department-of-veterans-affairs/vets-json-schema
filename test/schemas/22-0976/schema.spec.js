@@ -138,18 +138,18 @@ const testData = {
     valid: [
       { isIHL: NO, participatesInTitleIV: NO },
       { isIHL: YES, ihlDegreeTypes: 'Associate, Bachelor', participatesInTitleIV: NO },
-      { isIHL: NO, participatesInTitleIV: YES, opeidNumber: '01234567' },
-      { isIHL: YES, ihlDegreeTypes: 'Doctoral', participatesInTitleIV: YES, opeidNumber: '12345678' },
+      { isIHL: NO, participatesInTitleIV: YES, opeidNumber: '0123ABCD' },
+      { isIHL: YES, ihlDegreeTypes: 'Doctoral', participatesInTitleIV: YES, opeidNumber: 'A1B2C3D4' },
     ],
     invalid: [
       { isIHL: YES }, // missing ihlDegreeTypes when isIHL is YES/true
       { participatesInTitleIV: YES }, // missing opeidNumber when Title IV is YES/true
       { isIHL: YES, ihlDegreeTypes: '' }, // empty when required
       { participatesInTitleIV: YES, opeidNumber: '' }, // empty when required
-      { participatesInTitleIV: YES, opeidNumber: '012345-0' }, // fails 8-digits pattern
-      { participatesInTitleIV: YES, opeidNumber: '1234567' }, // 7 digits
-      { participatesInTitleIV: YES, opeidNumber: '123456789' }, // 9 digits
-      { participatesInTitleIV: YES, opeidNumber: 'ABCDEFGH' }, // letters not allowed now
+      { participatesInTitleIV: YES, opeidNumber: '012345-0' }, // hyphen not allowed
+      { participatesInTitleIV: YES, opeidNumber: '1234567' }, // 7 chars
+      { participatesInTitleIV: YES, opeidNumber: '123456789' }, // 9 chars
+      { participatesInTitleIV: YES, opeidNumber: 'ABC DEF1' }, // space not allowed
     ],
   },
 
