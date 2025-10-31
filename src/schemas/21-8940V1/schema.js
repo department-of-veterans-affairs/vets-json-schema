@@ -229,6 +229,6 @@ const schema = {
     },
     files: definitions.files,
   },
-  required: [],
+  // required: [],
 };
 export default schema;
