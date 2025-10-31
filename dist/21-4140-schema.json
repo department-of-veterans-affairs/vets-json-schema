@@ -2,23 +2,8 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Employment Questionairres (21-4140)",
   "type": "object",
-  "properties": {
-    "veteranFullName": {
-      "type": "object",
-      "first": {
-        "type": "string",
-        "maxLength": 12
-      },
-      "middle": {
-        "type": "string",
-        "maxLength": 1
-      },
-      "last": {
-        "type": "string",
-        "maxLength": 18
-      }
-    },
-    "veteranSocialSecurityNumber": {
+  "definitions": {
+    "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
@@ -26,15 +11,7 @@
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
     },
-    "vaServiceNumber": {
-      "type": "string",
-      "maxLength": 18
-    },
-    "dateOfBirth": {
-      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-      "type": "string"
-    },
-    "veteranAddress": {
+    "address": {
       "type": "object",
       "oneOf": [
         {
@@ -242,6 +219,43 @@
         }
       }
     },
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "veteranFullName": {
+      "type": "object",
+      "first": {
+        "type": "string",
+        "maxLength": 12
+      },
+      "middle": {
+        "type": "string",
+        "maxLength": 1
+      },
+      "last": {
+        "type": "string",
+        "maxLength": 18
+      }
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "vaServiceNumber": {
+      "type": "string",
+      "maxLength": 18
+    },
+    "dateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranAddress": {
+      "$ref": "#/definitions/address"
+    },
     "veteranContact": {
       "type": "object",
       "email": {
@@ -264,20 +278,17 @@
         "maxLength": 12
       },
       "mailedDate": {
-        "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-        "type": "string"
+        "$ref": "#/definitions/date"
       }
     },
     "signatureSection1": {
       "type": "object",
       "properties": {
         "signatureDate": {
-          "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-          "type": "string"
+          "$ref": "#/definitions/date"
         },
         "veteranSocialSecurityNumber": {
-          "type": "string",
-          "pattern": "^[0-9]{9}$"
+          "$ref": "#/definitions/ssn"
         }
       }
     },
@@ -301,20 +312,18 @@
             "type": "object",
             "properties": {
               "from": {
-                "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-                "type": "string"
+                "$ref": "#/definitions/date"
               },
               "to": {
-                "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-                "type": "string"
+                "$ref": "#/definitions/date"
               }
             }
           },
           "timeLost": {
-            "type": "integer"
+            "type": "string"
           },
           "grossEarningsPerMonth": {
-            "type": "integer"
+            "type": "string"
           }
         }
       }
@@ -322,8 +331,7 @@
     "signatureSection2": {
       "type": "object",
       "signatureDate": {
-        "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
-        "type": "string"
+        "$ref": "#/definitions/date"
       }
     },
     "stationAddress": {

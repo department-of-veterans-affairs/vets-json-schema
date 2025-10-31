@@ -4,6 +4,12 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Employment Questionairres (21-4140)',
   type: 'object',
+  definitions: {
+    ssn: definitions.ssn,
+    vaFileNumber: definitions.vaFileNumber,
+    address: definitions.address,
+    date: definitions.date,
+  },
   properties: {
     veteranFullName: {
       type: 'object',
@@ -20,14 +26,14 @@ const schema = {
         maxLength: 18,
       },
     },
-    veteranSocialSecurityNumber: definitions.ssn,
-    vaFileNumber: definitions.vaFileNumber,
+    veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
+    vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
     vaServiceNumber: {
       type: 'string',
       maxLength: 18,
     },
-    dateOfBirth: definitions.date,
-    veteranAddress: definitions.address,
+    dateOfBirth: { $ref: '#/definitions/date' },
+    veteranAddress: { $ref: '#/definitions/address' },
     veteranContact: {
       type: 'object',
       email: {
@@ -49,13 +55,13 @@ const schema = {
         type: 'boolean',
         maxLength: 12,
       },
-      mailedDate: definitions.date,
+      mailedDate: { $ref: '#/definitions/date' },
     },
     signatureSection1: {
       type: 'object',
       properties: {
-        signatureDate: definitions.date,
-        veteranSocialSecurityNumber: definitions.ssn,
+        signatureDate: { $ref: '#/definitions/date' },
+        veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
       },
     },
     employmentHistory: {
@@ -77,8 +83,8 @@ const schema = {
           dateRange: {
             type: 'object',
             properties: {
-              from: definitions.date,
-              to: definitions.date,
+              from: { $ref: '#/definitions/date' },
+              to: { $ref: '#/definitions/date' },
             },
           },
           timeLost: {
@@ -92,7 +98,7 @@ const schema = {
     },
     signatureSection2: {
       type: 'object',
-      signatureDate: definitions.date,
+      signatureDate: { $ref: '#/definitions/date' },
     },
     stationAddress: {
       type: 'string',
