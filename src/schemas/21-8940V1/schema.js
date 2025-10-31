@@ -25,7 +25,8 @@ const schema = {
     veteranSocialSecurityNumber: definitions.ssn,
     vaFileNumber: definitions.vaFileNumber,
     dateOfBirth: {
-      $ref: '#/definitions/date',
+      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+      type: 'string',
     },
     // no good address def for 2 charatcher country code "US"
     // backend has a extract_country helper to get 2 letter country codes
@@ -73,13 +74,16 @@ const schema = {
     hospitalCareDateRanges: definitions.dateRange,
     // SECTION III -  EMPLOYMENT STATEMENT
     disabilityAffectEmployFTDate: {
-      $ref: '#/definitions/date',
+      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+      type: 'string',
     },
     lastWorkedFullTimeDate: {
-      $ref: '#/definitions/date',
+      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+      type: 'string',
     },
     becameTooDisabledToWorkDate: {
-      $ref: '#/definitions/date',
+      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+      type: 'string',
     },
     mostEarningsInAYear: {
       type: 'integer',
@@ -163,7 +167,8 @@ const schema = {
             type: 'string',
           },
           dateApplied: {
-            $ref: '#/definitions/date',
+            pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+            type: 'string',
           },
         },
       },
@@ -215,7 +220,8 @@ const schema = {
       type: 'string',
     },
     signatureDate: {
-      $ref: '#/definitions/date',
+      pattern: '^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+      type: 'string',
     },
     witnessSignature1: {
       type: 'object',
