@@ -5,6 +5,17 @@ const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'APPLICATION FOR INCREASED COMPENSATION BASED ON UNEMPLOYABILITY (21-8940)',
   type: 'object',
+  definitions: {
+    date: definitions.date,
+    dateRange: definitions.dateRange,
+    email: definitions.email,
+    ssn: definitions.ssn,
+    vaFileNumber: definitions.vaFileNumber,
+    address: definitions.address,
+    usaPhone: definitions.usaPhone,
+    fullName: definitions.fullName,
+    files: definitions.files,
+  },
   properties: {
     // Section I Veteran's Information
     veteranFullName: {
@@ -22,14 +33,14 @@ const schema = {
         maxLength: 18,
       },
     },
-    veteranSocialSecurityNumber: definitions.ssn,
-    vaFileNumber: definitions.vaFileNumber,
+    veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
+    vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
     // no good address def for 2 charatcher country code "US"
     // backend has a extract_country helper to get 2 letter country codes
-    veteranAddress: definitions.address,
+    veteranAddress: { $ref: '#/definitions/address' },
     // veteranAddress: {
     //   $ref: '#/definitions/usAddress',
     //   country: {
@@ -46,7 +57,7 @@ const schema = {
       type: 'string',
       format: 'email',
     },
-    veteranPhone: definitions.usaPhone,
+    veteranPhone: { $ref: '#/definitions/usaPhone' },
     internationalPhone: {
       type: 'string',
     },
@@ -61,7 +72,7 @@ const schema = {
       // type: 'string',
       // enum: ['Yes', 'No']
     },
-    doctorsTreatmentDates: definitions.dateRange,
+    doctorsTreatmentDates: { $ref: '#/definitions/dateRange' },
     nameAndAddressesOfDoctors: {
       maxLength: 135,
       type: 'string',
@@ -70,7 +81,7 @@ const schema = {
       maxLength: 127,
       type: 'string',
     },
-    hospitalCareDateRanges: definitions.dateRange,
+    hospitalCareDateRanges: { $ref: '#/definitions/dateRange' },
     // SECTION III -  EMPLOYMENT STATEMENT
     disabilityAffectEmployFTDate: {
       $ref: '#/definitions/date',
@@ -108,7 +119,7 @@ const schema = {
           hoursPerWeek: {
             type: 'integer',
           },
-          datesOfEmployment: definitions.dateRange,
+          datesOfEmployment: { $ref: '#/definitions/dateRange' },
           timeLostFromIllness: {
             type: 'integer',
           },
@@ -191,7 +202,7 @@ const schema = {
         maxLength: 12,
         type: 'string',
       },
-      dateOfTraining: definitions.dateRange,
+      dateOfTraining: { $ref: '#/definitions/dateRange' },
     },
     trainingPostUnemployment: {
       type: 'boolean',
@@ -203,7 +214,7 @@ const schema = {
         maxLength: 12,
         type: 'string',
       },
-      datesOfTraining: definitions.dateRange,
+      datesOfTraining: { $ref: '#/definitions/dateRange' },
     },
     //  SECTION V - REMARKS
     remarks: {
@@ -239,7 +250,7 @@ const schema = {
         maxLength: 34,
       },
     },
-    files: definitions.files,
+    files: { $ref: '#/definitions/files' },
   },
   // required: [],
 };

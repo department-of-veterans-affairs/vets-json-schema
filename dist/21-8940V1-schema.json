@@ -2,23 +2,28 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "APPLICATION FOR INCREASED COMPENSATION BASED ON UNEMPLOYABILITY (21-8940)",
   "type": "object",
-  "properties": {
-    "veteranFullName": {
+  "definitions": {
+    "date": {
+      "pattern": "^(\\d{4}|XXXX)-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$",
+      "type": "string"
+    },
+    "dateRange": {
       "type": "object",
-      "first": {
-        "type": "string",
-        "maxLength": 12
-      },
-      "middleinitial": {
-        "type": "string",
-        "maxLength": 1
-      },
-      "last": {
-        "type": "string",
-        "maxLength": 18
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/date"
+        },
+        "to": {
+          "$ref": "#/definitions/date"
+        }
       }
     },
-    "veteranSocialSecurityNumber": {
+    "email": {
+      "type": "string",
+      "maxLength": 256,
+      "format": "email"
+    },
+    "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
     },
@@ -26,10 +31,7 @@
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
     },
-    "dateOfBirth": {
-      "$ref": "#/definitions/date"
-    },
-    "veteranAddress": {
+    "address": {
       "type": "object",
       "oneOf": [
         {
@@ -237,6 +239,89 @@
         }
       }
     },
+    "usaPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV"
+          ]
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "confirmationCode": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "veteranFullName": {
+      "type": "object",
+      "first": {
+        "type": "string",
+        "maxLength": 12
+      },
+      "middleinitial": {
+        "type": "string",
+        "maxLength": 1
+      },
+      "last": {
+        "type": "string",
+        "maxLength": 18
+      }
+    },
+    "veteranSocialSecurityNumber": {
+      "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
+    },
+    "dateOfBirth": {
+      "$ref": "#/definitions/date"
+    },
+    "veteranAddress": {
+      "$ref": "#/definitions/address"
+    },
     "electronicCorrespondance": {
       "type": "boolean"
     },
@@ -245,8 +330,7 @@
       "format": "email"
     },
     "veteranPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
+      "$ref": "#/definitions/usaPhone"
     },
     "internationalPhone": {
       "type": "string"
@@ -259,15 +343,7 @@
       "type": "boolean"
     },
     "doctorsTreatmentDates": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
-        },
-        "to": {
-          "$ref": "#/definitions/date"
-        }
-      }
+      "$ref": "#/definitions/dateRange"
     },
     "nameAndAddressesOfDoctors": {
       "maxLength": 135,
@@ -278,15 +354,7 @@
       "type": "string"
     },
     "hospitalCareDateRanges": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/date"
-        },
-        "to": {
-          "$ref": "#/definitions/date"
-        }
-      }
+      "$ref": "#/definitions/dateRange"
     },
     "disabilityAffectEmployFTDate": {
       "$ref": "#/definitions/date"
@@ -325,15 +393,7 @@
             "type": "integer"
           },
           "datesOfEmployment": {
-            "type": "object",
-            "properties": {
-              "from": {
-                "$ref": "#/definitions/date"
-              },
-              "to": {
-                "$ref": "#/definitions/date"
-              }
-            }
+            "$ref": "#/definitions/dateRange"
           },
           "timeLostFromIllness": {
             "type": "integer"
@@ -425,15 +485,7 @@
         "type": "string"
       },
       "dateOfTraining": {
-        "type": "object",
-        "properties": {
-          "from": {
-            "$ref": "#/definitions/date"
-          },
-          "to": {
-            "$ref": "#/definitions/date"
-          }
-        }
+        "$ref": "#/definitions/dateRange"
       }
     },
     "trainingPostUnemployment": {
@@ -446,15 +498,7 @@
         "type": "string"
       },
       "datesOfTraining": {
-        "type": "object",
-        "properties": {
-          "from": {
-            "$ref": "#/definitions/date"
-          },
-          "to": {
-            "$ref": "#/definitions/date"
-          }
-        }
+        "$ref": "#/definitions/dateRange"
       }
     },
     "remarks": {
@@ -490,21 +534,7 @@
       }
     },
     "files": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "size": {
-            "type": "integer"
-          },
-          "confirmationCode": {
-            "type": "string"
-          }
-        }
-      }
+      "$ref": "#/definitions/files"
     }
   }
 }
