@@ -105,6 +105,5 @@ const schema = {
       maxLength: 400,
     },
   },
-  required: [],
 };
 export default schema;
