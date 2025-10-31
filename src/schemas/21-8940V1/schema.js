@@ -1,5 +1,5 @@
 import definitions from '../../common/definitions';
-import schemaHelpers from '../../common/schema-helpers';
+// import schemaHelpers from '../../common/schema-helpers';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -24,7 +24,9 @@ const schema = {
     },
     veteranSocialSecurityNumber: definitions.ssn,
     vaFileNumber: definitions.vaFileNumber,
-    dateOfBirth: schemaHelpers.getDefinition('date'),
+    dateOfBirth: {
+      $ref: '#/definitions/date',
+    },
     // no good address def for 2 charatcher country code "US"
     // backend has a extract_country helper to get 2 letter country codes
     veteranAddress: definitions.address,
@@ -70,9 +72,15 @@ const schema = {
     },
     hospitalCareDateRanges: definitions.dateRange,
     // SECTION III -  EMPLOYMENT STATEMENT
-    disabilityAffectEmployFTDate: schemaHelpers.getDefinition('date'),
-    lastWorkedFullTimeDate: schemaHelpers.getDefinition('date'),
-    becameTooDisabledToWorkDate: schemaHelpers.getDefinition('date'),
+    disabilityAffectEmployFTDate: {
+      $ref: '#/definitions/date',
+    },
+    lastWorkedFullTimeDate: {
+      $ref: '#/definitions/date',
+    },
+    becameTooDisabledToWorkDate: {
+      $ref: '#/definitions/date',
+    },
     mostEarningsInAYear: {
       type: 'integer',
     },
@@ -154,7 +162,9 @@ const schema = {
             maxLength: 62,
             type: 'string',
           },
-          dateApplied: schemaHelpers.getDefinition('date'),
+          dateApplied: {
+            $ref: '#/definitions/date',
+          },
         },
       },
     },
@@ -204,7 +214,9 @@ const schema = {
     signature: {
       type: 'string',
     },
-    signatureDate: schemaHelpers.getDefinition('date'),
+    signatureDate: {
+      $ref: '#/definitions/date',
+    },
     witnessSignature1: {
       type: 'object',
       signature: {
