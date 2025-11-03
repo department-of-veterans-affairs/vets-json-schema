@@ -67,6 +67,22 @@ const usAddr = {
   country: 'USA',
 };
 
+// Country is now free-text with “not just whitespace” pattern,
+// so these should validate even if not in an enum list.
+const engAddr = {
+  street: '10 Downing St',
+  city: 'London',
+  postalCode: 'SW1A 2AA',
+  country: 'ENGLAND',
+};
+
+const nzAddrMisspelled = {
+  street: '1 Queen St',
+  city: 'Auckland',
+  postalCode: '1010',
+  country: 'NEW ZEALEDN', // intentionally misspelled; should still pass
+};
+
 const base = {
   submissionReasons: { initialApplication: true },
   institutionClassification: 'public',
@@ -154,11 +170,28 @@ const testData = {
 
   institutionDetails: {
     valid: [
+      // USA address
       [
         {
           institutionName: 'Global Institute',
           physicalAddress: usAddr,
           vaFacilityCode: 'AB12CD34',
+        },
+      ],
+      // England (free-text country) — no state required
+      [
+        {
+          institutionName: 'Royal College',
+          physicalAddress: engAddr,
+          vaFacilityCode: 'EF34GH56',
+        },
+      ],
+      // New Zealand (misspelled country) — should still pass
+      [
+        {
+          institutionName: 'Aotearoa Tech',
+          physicalAddress: nzAddrMisspelled,
+          vaFacilityCode: 'IJ78KL90',
         },
       ],
     ],
@@ -176,6 +209,14 @@ const testData = {
           institutionName: 'Bad Code',
           physicalAddress: usAddr,
           vaFacilityCode: 'BADCODE!', // pattern fail
+        },
+      ],
+      // whitespace-only country should fail due to pattern
+      [
+        {
+          institutionName: 'Whitespace Country U',
+          physicalAddress: { ...usAddr, country: '   ' },
+          vaFacilityCode: 'MN12OP34',
         },
       ],
     ],

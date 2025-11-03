@@ -12,12 +12,28 @@ const pickedDefinitions = _.pick(orig, [
   'phone',
 ]);
 
+// Override only the `country` field on profileAddress to be a plain string
+const profileAddressWithFreeCountry = _.cloneDeep(pickedDefinitions.profileAddress || {});
+if (profileAddressWithFreeCountry?.properties?.country) {
+  profileAddressWithFreeCountry.properties.country = {
+    type: 'string',
+    minLength: 2,
+    maxLength: 100,
+    pattern: '^(?!\\s*$).+', // not just whitespace
+  };
+  delete profileAddressWithFreeCountry.properties.country.enum;
+  delete profileAddressWithFreeCountry.properties.country.enumNames;
+}
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'VA Form 22-0976 APPLICATION FOR APPROVAL OF A PROGRAM IN A FOREIGN COUNTRY',
   type: 'object',
   additionalProperties: false,
-  definitions: pickedDefinitions,
+  definitions: {
+    ...pickedDefinitions,
+    profileAddress: profileAddressWithFreeCountry,
+  },
   required: [
     'submissionReasons',
     'institutionClassification',
