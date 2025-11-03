@@ -606,6 +606,7 @@
         {
           "anyOf": [
             {
+              "type": "object",
               "required": [
                 "initialApplication"
               ],
@@ -618,6 +619,7 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "approvalOfNewPrograms"
               ],
@@ -630,6 +632,7 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "reapproval"
               ],
@@ -642,6 +645,7 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "updateInformation"
               ],
@@ -654,6 +658,7 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "other"
               ],
@@ -670,6 +675,7 @@
         {
           "anyOf": [
             {
+              "type": "object",
               "not": {
                 "properties": {
                   "other": {
@@ -684,11 +690,13 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "otherText"
               ],
               "properties": {
                 "otherText": {
+                  "type": "string",
                   "minLength": 1
                 }
               }
@@ -698,6 +706,7 @@
         {
           "anyOf": [
             {
+              "type": "object",
               "not": {
                 "properties": {
                   "updateInformation": {
@@ -712,11 +721,13 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "updateInformationText"
               ],
               "properties": {
                 "updateInformationText": {
+                  "type": "string",
                   "minLength": 1
                 }
               }
@@ -758,6 +769,7 @@
         {
           "anyOf": [
             {
+              "type": "object",
               "not": {
                 "properties": {
                   "isIHL": {
@@ -773,11 +785,13 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "ihlDegreeTypes"
               ],
               "properties": {
                 "ihlDegreeTypes": {
+                  "type": "string",
                   "minLength": 1
                 }
               }
@@ -787,6 +801,7 @@
         {
           "anyOf": [
             {
+              "type": "object",
               "not": {
                 "properties": {
                   "participatesInTitleIV": {
@@ -802,11 +817,13 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "opeidNumber"
               ],
               "properties": {
                 "opeidNumber": {
+                  "type": "string",
                   "minLength": 8
                 }
               }
@@ -921,6 +938,7 @@
         {
           "anyOf": [
             {
+              "type": "object",
               "not": {
                 "properties": {
                   "financiallySound": {
@@ -936,11 +954,13 @@
               }
             },
             {
+              "type": "object",
               "required": [
                 "financialSoundnessExplanation"
               ],
               "properties": {
                 "financialSoundnessExplanation": {
+                  "type": "string",
                   "minLength": 1
                 }
               }
@@ -1072,6 +1092,7 @@
     {
       "anyOf": [
         {
+          "type": "object",
           "not": {
             "properties": {
               "isMedicalSchool": {
@@ -1087,6 +1108,7 @@
           }
         },
         {
+          "type": "object",
           "required": [
             "listedInWDOMS",
             "accreditingAuthorityName",
@@ -1096,6 +1118,7 @@
           ],
           "properties": {
             "accreditingAuthorityName": {
+              "type": "string",
               "minLength": 1
             }
           }
@@ -1105,6 +1128,7 @@
     {
       "anyOf": [
         {
+          "type": "object",
           "not": {
             "properties": {
               "graduatedLast12Months": {
@@ -1120,11 +1144,13 @@
           }
         },
         {
+          "type": "object",
           "required": [
             "graduatedClasses"
           ],
           "properties": {
             "graduatedClasses": {
+              "type": "array",
               "minItems": 2,
               "maxItems": 2
             }

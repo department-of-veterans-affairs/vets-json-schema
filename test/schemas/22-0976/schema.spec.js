@@ -93,7 +93,7 @@ const base = {
   acknowledgement7: 'AB',
   acknowledgement8: 'CD',
   acknowledgement9: 'EF',
-  acknowledgement10a: { financiallySound: YES }, // no initials in schema anymore
+  acknowledgement10a: { financiallySound: YES },
   acknowledgement10b: 'IJ',
   financialRepresentative: {
     fullName: { first: 'Pat', last: 'Lee' },
@@ -134,7 +134,6 @@ const testData = {
   },
 
   institutionProfile: {
-    // Note: OPEID is now strictly 8 digits (^[0-9]{8}$)
     valid: [
       { isIHL: NO, participatesInTitleIV: NO },
       { isIHL: YES, ihlDegreeTypes: 'Associate, Bachelor', participatesInTitleIV: NO },
@@ -240,7 +239,6 @@ const testData = {
   },
 
   acknowledgement10a: {
-    // No initials in schema now; only YES/NO + conditional explanation
     valid: [
       { financiallySound: YES }, // no explanation required when YES
       { financiallySound: NO, financialSoundnessExplanation: 'Under review with auditor' },
@@ -320,18 +318,14 @@ describe('22-0976 schema (Ajv mini-root for ref-heavy props)', () => {
     it('accepts valid shapes', () => {
       testData.institutionProfile.valid.forEach(v => {
         const ok = validateInstitutionProfile({ institutionProfile: v });
-        if (!ok) {
-          // eslint-disable-next-line no-console
-          console.log('institutionProfile valid case failed:', v, validateInstitutionProfile.errors);
-        }
-        expect(ok).to.equal(true);
+        expect(ok, JSON.stringify(validateInstitutionProfile.errors, null, 2)).to.equal(true);
       });
     });
 
     it('rejects invalid shapes', () => {
       testData.institutionProfile.invalid.forEach(v => {
         const ok = validateInstitutionProfile({ institutionProfile: v });
-        expect(ok).to.equal(false);
+        expect(ok, 'expected invalid but got valid: ' + JSON.stringify(v)).to.equal(false);
       });
     });
   });
@@ -340,18 +334,14 @@ describe('22-0976 schema (Ajv mini-root for ref-heavy props)', () => {
     it('accepts valid shapes', () => {
       testData.acknowledgement10a.valid.forEach(v => {
         const ok = validateAcknowledgement10a({ acknowledgement10a: v });
-        if (!ok) {
-          // eslint-disable-next-line no-console
-          console.log('acknowledgement10a valid case failed:', v, validateAcknowledgement10a.errors);
-        }
-        expect(ok).to.equal(true);
+        expect(ok, JSON.stringify(validateAcknowledgement10a.errors, null, 2)).to.equal(true);
       });
     });
 
     it('rejects invalid shapes', () => {
       testData.acknowledgement10a.invalid.forEach(v => {
         const ok = validateAcknowledgement10a({ acknowledgement10a: v });
-        expect(ok).to.equal(false);
+        expect(ok, 'expected invalid but got valid: ' + JSON.stringify(v)).to.equal(false);
       });
     });
   });
@@ -359,7 +349,6 @@ describe('22-0976 schema (Ajv mini-root for ref-heavy props)', () => {
 
 // ---- Cross-field business rules (structure-only) ---------------------------
 const requires = (obj, keys) => keys.every(k => Object.prototype.hasOwnProperty.call(obj, k));
-const forbids = (obj, keys) => keys.every(k => !Object.prototype.hasOwnProperty.call(obj, k));
 
 describe('22-0976 schema (cross-field business rules)', () => {
   it('base payload includes all root-required keys', () => {

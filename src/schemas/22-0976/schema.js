@@ -50,36 +50,47 @@ const schema = {
         updateInformationText: { type: 'string', maxLength: 500 },
         otherText: { type: 'string', maxLength: 500 },
       },
-
       allOf: [
         // Require at least one checkbox selected
         {
           anyOf: [
-            { required: ['initialApplication'], properties: { initialApplication: { enum: [true] } } },
-            { required: ['approvalOfNewPrograms'], properties: { approvalOfNewPrograms: { enum: [true] } } },
-            { required: ['reapproval'], properties: { reapproval: { enum: [true] } } },
-            { required: ['updateInformation'], properties: { updateInformation: { enum: [true] } } },
-            { required: ['other'], properties: { other: { enum: [true] } } },
+            { type: 'object', required: ['initialApplication'], properties: { initialApplication: { enum: [true] } } },
+            {
+              type: 'object',
+              required: ['approvalOfNewPrograms'],
+              properties: { approvalOfNewPrograms: { enum: [true] } },
+            },
+            { type: 'object', required: ['reapproval'], properties: { reapproval: { enum: [true] } } },
+            { type: 'object', required: ['updateInformation'], properties: { updateInformation: { enum: [true] } } },
+            { type: 'object', required: ['other'], properties: { other: { enum: [true] } } },
           ],
         },
 
         // If "other" is true, require otherText
         {
           anyOf: [
-            { not: { properties: { other: { enum: [true] } }, required: ['other'] } },
-            { required: ['otherText'], properties: { otherText: { minLength: 1 } } },
+            { type: 'object', not: { properties: { other: { enum: [true] } }, required: ['other'] } },
+            { type: 'object', required: ['otherText'], properties: { otherText: { type: 'string', minLength: 1 } } },
           ],
         },
 
         // If "updateInformation" is true, require updateInformationText
         {
           anyOf: [
-            { not: { properties: { updateInformation: { enum: [true] } }, required: ['updateInformation'] } },
-            { required: ['updateInformationText'], properties: { updateInformationText: { minLength: 1 } } },
+            {
+              type: 'object',
+              not: { properties: { updateInformation: { enum: [true] } }, required: ['updateInformation'] },
+            },
+            {
+              type: 'object',
+              required: ['updateInformationText'],
+              properties: { updateInformationText: { type: 'string', minLength: 1 } },
+            },
           ],
         },
       ],
     },
+
     institutionClassification: {
       type: 'string',
       enum: ['public', 'privateForProfit', 'privateNotForProfit'],
@@ -92,32 +103,41 @@ const schema = {
         isIHL: { $ref: '#/definitions/yesNoSchema' },
         ihlDegreeTypes: { type: 'string', maxLength: 500 },
         participatesInTitleIV: { $ref: '#/definitions/yesNoSchema' },
+        // 8 alphanumeric characters
         opeidNumber: { type: 'string', pattern: '^[A-Za-z0-9]{8}$', minLength: 8, maxLength: 8 },
       },
       allOf: [
         // If isIHL == yes, require ihlDegreeTypes (non-empty)
         {
           anyOf: [
-            // Case A: isIHL not true -> no requirement
-            { not: { properties: { isIHL: { enum: ['Y', true] } }, required: ['isIHL'] } },
-            // Case B: isIHL true -> ihlDegreeTypes required and non-empty
-            { required: ['ihlDegreeTypes'], properties: { ihlDegreeTypes: { minLength: 1 } } },
+            { type: 'object', not: { properties: { isIHL: { enum: ['Y', true] } }, required: ['isIHL'] } },
+            {
+              type: 'object',
+              required: ['ihlDegreeTypes'],
+              properties: { ihlDegreeTypes: { type: 'string', minLength: 1 } },
+            },
           ],
         },
-        // If participatesInTitleIV == yes, require opeidNumber (non-empty)
+        // If participatesInTitleIV == yes, require opeidNumber
         {
           anyOf: [
             {
+              type: 'object',
               not: {
                 properties: { participatesInTitleIV: { enum: ['Y', true] } },
                 required: ['participatesInTitleIV'],
               },
             },
-            { required: ['opeidNumber'], properties: { opeidNumber: { minLength: 8 } } },
+            {
+              type: 'object',
+              required: ['opeidNumber'],
+              properties: { opeidNumber: { type: 'string', minLength: 8 } },
+            },
           ],
         },
       ],
     },
+
     institutionDetails: {
       type: 'array',
       minItems: 1,
@@ -129,11 +149,12 @@ const schema = {
           institutionName: { type: 'string' },
           vaFacilityCode: { type: 'string', pattern: '^[A-Za-z0-9]{8}$' },
           physicalAddress: { $ref: '#/definitions/profileAddress' },
-          //Could be two different ones figma doesn thandle that yet
+          // Could be two different ones; Figma doesn't handle that yet
           mailingAddress: { $ref: '#/definitions/profileAddress' },
         },
       },
     },
+
     website: { type: 'string', format: 'uri', maxLength: 300 },
 
     // PART II — DEGREE PROGRAMS
@@ -163,6 +184,7 @@ const schema = {
     acknowledgement7: { type: 'string', minLength: 2, maxLength: 3 },
     acknowledgement8: { type: 'string', minLength: 2, maxLength: 3 },
     acknowledgement9: { type: 'string', minLength: 2, maxLength: 3 },
+
     acknowledgement10a: {
       type: 'object',
       additionalProperties: false,
@@ -174,18 +196,23 @@ const schema = {
       allOf: [
         {
           anyOf: [
-            { not: { properties: { financiallySound: { enum: ['N', false] } }, required: ['financiallySound'] } },
             {
+              type: 'object',
+              not: { properties: { financiallySound: { enum: ['N', false] } }, required: ['financiallySound'] },
+            },
+            {
+              type: 'object',
               required: ['financialSoundnessExplanation'],
-              properties: { financialSoundnessExplanation: { minLength: 1 } },
+              properties: { financialSoundnessExplanation: { type: 'string', minLength: 1 } },
             },
           ],
         },
       ],
     },
+
     acknowledgement10b: { type: 'string', minLength: 2, maxLength: 3 },
 
-    //Optional
+    // Optional
     governingBodyAndFaculty: {
       type: 'array',
       items: {
@@ -199,7 +226,6 @@ const schema = {
     },
 
     // PART IV — MEDICAL SCHOOL INFORMATION ONLY
-
     isMedicalSchool: { $ref: '#/definitions/yesNoSchema' },
     listedInWDOMS: { $ref: '#/definitions/yesNoSchema' }, // World Directory of Medical Schools
     accreditingAuthorityName: { type: 'string', maxLength: 100 },
@@ -221,7 +247,6 @@ const schema = {
     },
 
     // PART V — INSTITUTION CONTACTS
-
     financialRepresentative: {
       type: 'object',
       required: ['fullName', 'email'],
@@ -251,19 +276,22 @@ const schema = {
         signature: { type: 'string', minLength: 1, maxLength: 300 },
       },
     },
+
     dateSigned: { $ref: '#/definitions/date' },
 
     isAuthenticated: { type: 'boolean' },
   },
+
   allOf: [
     // 1) If isMedicalSchool == Yes, require all the medical-school fields
     {
       anyOf: [
-        // Case A: Not Yes -> no extra requirements
-        { not: { properties: { isMedicalSchool: { enum: ['Y', true] } }, required: ['isMedicalSchool'] } },
-
-        // Case B: Yes -> require the rest (and make the string non-empty)
         {
+          type: 'object',
+          not: { properties: { isMedicalSchool: { enum: ['Y', true] } }, required: ['isMedicalSchool'] },
+        },
+        {
+          type: 'object',
           required: [
             'listedInWDOMS',
             'accreditingAuthorityName',
@@ -272,7 +300,7 @@ const schema = {
             'graduatedClasses',
           ],
           properties: {
-            accreditingAuthorityName: { minLength: 1 },
+            accreditingAuthorityName: { type: 'string', minLength: 1 },
           },
         },
       ],
@@ -282,9 +310,14 @@ const schema = {
     {
       anyOf: [
         {
+          type: 'object',
           not: { properties: { graduatedLast12Months: { enum: ['Y', true] } }, required: ['graduatedLast12Months'] },
         },
-        { required: ['graduatedClasses'], properties: { graduatedClasses: { minItems: 2, maxItems: 2 } } },
+        {
+          type: 'object',
+          required: ['graduatedClasses'],
+          properties: { graduatedClasses: { type: 'array', minItems: 2, maxItems: 2 } },
+        },
       ],
     },
   ],
