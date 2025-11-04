@@ -12,17 +12,16 @@ const pickedDefinitions = _.pick(orig, [
   'phone',
 ]);
 
-// Override only the `country` field on profileAddress to be a plain string
-const profileAddressWithFreeCountry = _.cloneDeep(pickedDefinitions.profileAddress || {});
-if (profileAddressWithFreeCountry?.properties?.country) {
-  profileAddressWithFreeCountry.properties.country = {
+const profileAddressForeign = _.cloneDeep(pickedDefinitions.profileAddress || {});
+if (profileAddressForeign?.properties?.country) {
+  profileAddressForeign.properties.country = {
     type: 'string',
     minLength: 2,
     maxLength: 100,
     pattern: '^(?!\\s*$).+', // not just whitespace
   };
-  delete profileAddressWithFreeCountry.properties.country.enum;
-  delete profileAddressWithFreeCountry.properties.country.enumNames;
+  delete profileAddressForeign.properties.country.enum;
+  delete profileAddressForeign.properties.country.enumNames;
 }
 
 const schema = {
@@ -32,7 +31,7 @@ const schema = {
   additionalProperties: false,
   definitions: {
     ...pickedDefinitions,
-    profileAddress: profileAddressWithFreeCountry,
+    profileAddressForeign,
   },
   required: [
     'submissionReasons',
@@ -156,15 +155,40 @@ const schema = {
       minItems: 1,
       items: {
         type: 'object',
-        required: ['institutionName', 'physicalAddress'],
         additionalProperties: false,
+        required: ['institutionName', 'isForeignCountry', 'physicalAddress'],
         properties: {
           institutionName: { type: 'string' },
           vaFacilityCode: { type: 'string', pattern: '^[A-Za-z0-9]{8}$' },
-          physicalAddress: { $ref: '#/definitions/profileAddress' },
+          isForeignCountry: { $ref: '#/definitions/yesNoSchema' },
+          physicalAddress: {},
           // Could be two different ones; Figma doesn't handle that yet
-          mailingAddress: { $ref: '#/definitions/profileAddress' },
+          mailingAddress: {},
         },
+        allOf: [
+          {
+            anyOf: [
+              {
+                type: 'object',
+                required: ['isForeignCountry'],
+                properties: {
+                  isForeignCountry: { enum: [true] },
+                  physicalAddress: { $ref: '#/definitions/profileAddressForeign' },
+                  mailingAddress: { $ref: '#/definitions/profileAddressForeign' },
+                },
+              },
+              {
+                type: 'object',
+                required: ['isForeignCountry'],
+                properties: {
+                  isForeignCountry: { enum: [false] },
+                  physicalAddress: { $ref: '#/definitions/profileAddress' },
+                  mailingAddress: { $ref: '#/definitions/profileAddress' },
+                },
+              },
+            ],
+          },
+        ],
       },
     },
 

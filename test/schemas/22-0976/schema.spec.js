@@ -93,6 +93,7 @@ const base = {
   institutionDetails: [
     {
       institutionName: 'Global Institute',
+      isForeignCountry: false,
       physicalAddress: usAddr,
       vaFacilityCode: 'A1B2C3D4',
     },
@@ -170,26 +171,29 @@ const testData = {
 
   institutionDetails: {
     valid: [
-      // USA address
+      // USA address (domestic)
       [
         {
           institutionName: 'Global Institute',
+          isForeignCountry: false,
           physicalAddress: usAddr,
           vaFacilityCode: 'AB12CD34',
         },
       ],
-      // England (free-text country) — no state required
+      // England (foreign)
       [
         {
           institutionName: 'Royal College',
+          isForeignCountry: true,
           physicalAddress: engAddr,
           vaFacilityCode: 'EF34GH56',
         },
       ],
-      // New Zealand (misspelled country) — should still pass
+      // New Zealand (foreign, misspelled country still ok)
       [
         {
           institutionName: 'Aotearoa Tech',
+          isForeignCountry: true,
           physicalAddress: nzAddrMisspelled,
           vaFacilityCode: 'IJ78KL90',
         },
@@ -201,20 +205,23 @@ const testData = {
         {
           // missing required keys
           institutionName: '',
+          isForeignCountry: false,
           physicalAddress: { street: '', city: 'Nowhere' },
         },
       ],
       [
         {
           institutionName: 'Bad Code',
+          isForeignCountry: false,
           physicalAddress: usAddr,
           vaFacilityCode: 'BADCODE!', // pattern fail
         },
       ],
-      // whitespace-only country should fail due to pattern
+      // whitespace-only country should fail due to pattern (foreign branch uses free-text country with non-whitespace pattern)
       [
         {
           institutionName: 'Whitespace Country U',
+          isForeignCountry: true,
           physicalAddress: { ...usAddr, country: '   ' },
           vaFacilityCode: 'MN12OP34',
         },
