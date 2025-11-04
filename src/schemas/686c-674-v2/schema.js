@@ -663,6 +663,7 @@ const schema = {
           'address',
           'wasMarried',
           'tuitionIsPaidByGovAgency',
+          'claimsOrReceivesPension',
           'schoolInformation',
           'typeOfProgramOrBenefit',
         ],
