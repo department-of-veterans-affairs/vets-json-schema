@@ -894,8 +894,12 @@
           "isForeignCountry": {
             "$ref": "#/definitions/yesNoSchema"
           },
-          "physicalAddress": {},
-          "mailingAddress": {}
+          "physicalAddress": {
+            "type": "object"
+          },
+          "mailingAddress": {
+            "type": "object"
+          }
         },
         "allOf": [
           {
