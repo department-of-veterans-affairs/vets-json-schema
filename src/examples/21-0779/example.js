@@ -30,7 +30,7 @@ const example = {
       street2: 'apt 1',
       city: 'Springfield',
       state: 'IL',
-      country: 'US',
+      country: 'USA',
       postalCode: '62701',
     },
   },
