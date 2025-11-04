@@ -169,7 +169,9 @@
               "not": {
                 "properties": {
                   "hasVaFacilityCode": {
-                    "const": true
+                    "enum": [
+                      true
+                    ]
                   }
                 },
                 "required": [

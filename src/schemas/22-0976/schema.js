@@ -123,10 +123,10 @@ const schema = {
         opeidNumber: { type: 'string', pattern: '^[A-Za-z0-9]{8}$', minLength: 8, maxLength: 8 },
       },
       allOf: [
-        // If isIHL == yes, require ihlDegreeTypes (non-empty)
+        // If isIHL == true, require ihlDegreeTypes (non-empty)
         {
           anyOf: [
-            { type: 'object', not: { properties: { isIHL: { enum: ['Y', true] } }, required: ['isIHL'] } },
+            { type: 'object', not: { properties: { isIHL: { enum: [true] } }, required: ['isIHL'] } },
             {
               type: 'object',
               required: ['ihlDegreeTypes'],
@@ -134,15 +134,12 @@ const schema = {
             },
           ],
         },
-        // If participatesInTitleIV == yes, require opeidNumber
+        // If participatesInTitleIV == true, require opeidNumber
         {
           anyOf: [
             {
               type: 'object',
-              not: {
-                properties: { participatesInTitleIV: { enum: ['Y', true] } },
-                required: ['participatesInTitleIV'],
-              },
+              not: { properties: { participatesInTitleIV: { enum: [true] } }, required: ['participatesInTitleIV'] },
             },
             {
               type: 'object',
@@ -212,9 +209,10 @@ const schema = {
       allOf: [
         {
           anyOf: [
+            // If financiallySound === false, require explanation; otherwise no requirement
             {
               type: 'object',
-              not: { properties: { financiallySound: { enum: ['N', false] } }, required: ['financiallySound'] },
+              not: { properties: { financiallySound: { enum: [false] } }, required: ['financiallySound'] },
             },
             {
               type: 'object',
@@ -299,13 +297,10 @@ const schema = {
   },
 
   allOf: [
-    // 1) If isMedicalSchool == Yes, require all the medical-school fields
+    // 1) If isMedicalSchool == true, require all the medical-school fields
     {
       anyOf: [
-        {
-          type: 'object',
-          not: { properties: { isMedicalSchool: { enum: ['Y', true] } }, required: ['isMedicalSchool'] },
-        },
+        { type: 'object', not: { properties: { isMedicalSchool: { enum: [true] } }, required: ['isMedicalSchool'] } },
         {
           type: 'object',
           required: [
@@ -315,19 +310,17 @@ const schema = {
             'graduatedLast12Months',
             'graduatedClasses',
           ],
-          properties: {
-            accreditingAuthorityName: { type: 'string', minLength: 1 },
-          },
+          properties: { accreditingAuthorityName: { type: 'string', minLength: 1 } },
         },
       ],
     },
 
-    // 2) If graduatedLast12Months == Yes, enforce exactly 2 class entries
+    // 2) If graduatedLast12Months == true, enforce exactly 2 class entries
     {
       anyOf: [
         {
           type: 'object',
-          not: { properties: { graduatedLast12Months: { enum: ['Y', true] } }, required: ['graduatedLast12Months'] },
+          not: { properties: { graduatedLast12Months: { enum: [true] } }, required: ['graduatedLast12Months'] },
         },
         {
           type: 'object',

@@ -317,7 +317,6 @@
                 "properties": {
                   "isIHL": {
                     "enum": [
-                      "Y",
                       true
                     ]
                   }
@@ -349,7 +348,6 @@
                 "properties": {
                   "participatesInTitleIV": {
                     "enum": [
-                      "Y",
                       true
                     ]
                   }
@@ -486,7 +484,6 @@
                 "properties": {
                   "financiallySound": {
                     "enum": [
-                      "N",
                       false
                     ]
                   }
@@ -640,7 +637,6 @@
             "properties": {
               "isMedicalSchool": {
                 "enum": [
-                  "Y",
                   true
                 ]
               }
@@ -676,7 +672,6 @@
             "properties": {
               "graduatedLast12Months": {
                 "enum": [
-                  "Y",
                   true
                 ]
               }

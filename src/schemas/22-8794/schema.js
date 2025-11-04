@@ -71,7 +71,7 @@ const schema = {
         facilityCode: {
           oneOf: [
             { type: 'string', pattern: '^[a-zA-Z0-9]{8}$' },
-            { type: 'string', enum: [''] },
+            { type: 'string', enum: [''] }, // keep if UI sends '' when hasVaFacilityCode === false
           ],
         },
         institutionName: { type: 'string' },
@@ -80,21 +80,26 @@ const schema = {
       allOf: [
         {
           anyOf: [
+            // hasVaFacilityCode !== true -> facilityCode not required
             {
               type: 'object',
-              not: { properties: { hasVaFacilityCode: { const: true } }, required: ['hasVaFacilityCode'] },
+              not: {
+                properties: { hasVaFacilityCode: { enum: [true] } },
+                required: ['hasVaFacilityCode'],
+              },
             },
-            // If hasVaFacilityCode === true -> facilityCode required and must match pattern
+            // hasVaFacilityCode === true -> facilityCode required & must match pattern
             {
               type: 'object',
               required: ['facilityCode'],
-              properties: { facilityCode: { type: 'string', pattern: '^[a-zA-Z0-9]{8}$' } },
+              properties: {
+                facilityCode: { type: 'string', pattern: '^[a-zA-Z0-9]{8}$' },
+              },
             },
           ],
         },
       ],
     },
-
     primaryOfficialDetails: {
       type: 'object',
       required: ['fullName', 'title', 'emailAddress'],
