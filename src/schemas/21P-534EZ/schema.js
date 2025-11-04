@@ -16,7 +16,7 @@ const schema = {
       },
     },
   },
-  required: ['privacyAgreementAccepted', 'veteranFullName', 'veteranSsn', 'veteranFileNumber'],
+  required: [],
 };
 
 export default schema;
