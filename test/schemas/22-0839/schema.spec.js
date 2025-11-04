@@ -59,8 +59,48 @@ const testData = {
           },
         },
       ],
+      // Free-text country: ENGLAND
+      [
+        {
+          facilityCode: 'EF34GH56',
+          institutionName: 'Royal College',
+          institutionAddress: {
+            street: '10 Downing St',
+            city: 'London',
+            postalCode: 'SW1A 2AA',
+            country: 'ENGLAND',
+          },
+        },
+      ],
+      // Free-text country misspelled, no postalCode (optional)
+      [
+        {
+          facilityCode: 'ZX98CV76',
+          institutionName: 'Aotearoa Tech',
+          institutionAddress: {
+            street: '1 Queen St',
+            city: 'Auckland',
+            country: 'NEW ZEALEDN',
+          },
+        },
+      ],
     ],
-    invalid: [[{ facilityCode: '123', institutionName: '', institutionAddress: null }]],
+    invalid: [
+      [{ facilityCode: '123', institutionName: '', institutionAddress: null }],
+      // Whitespace-only country should fail country pattern
+      [
+        {
+          facilityCode: 'QQ11WW22',
+          institutionName: 'Whitespace U',
+          institutionAddress: {
+            street: '123 Anywhere',
+            city: 'Nowhere',
+            postalCode: '00000',
+            country: '   ',
+          },
+        },
+      ],
+    ],
   },
   yellowRibbonProgramTerms: {
     valid: [
@@ -110,6 +150,31 @@ const testData = {
           },
         },
       ],
+      // Free-text country: ENGLAND
+      [
+        {
+          facilityCode: 'MN12OP34',
+          institutionName: 'Royal College',
+          institutionAddress: {
+            street: '10 Downing St',
+            city: 'London',
+            postalCode: 'SW1A 2AA',
+            country: 'ENGLAND',
+          },
+        },
+      ],
+      // Free-text country misspelled, no postalCode (optional)
+      [
+        {
+          facilityCode: 'RT56YU78',
+          institutionName: 'Aotearoa Tech',
+          institutionAddress: {
+            street: '1 Queen St',
+            city: 'Auckland',
+            country: 'NEW ZEALEDN',
+          },
+        },
+      ],
     ],
     invalid: [
       [
@@ -117,6 +182,19 @@ const testData = {
           facilityCode: '12',
           institutionName: '',
           institutionAddress: { street: '', city: 'Nowhere' },
+        },
+      ],
+      // Whitespace-only country should fail
+      [
+        {
+          facilityCode: 'GH78JK90',
+          institutionName: 'Whitespace U',
+          institutionAddress: {
+            street: '123 Anywhere',
+            city: 'Nowhere',
+            postalCode: '00000',
+            country: '   ',
+          },
         },
       ],
     ],
