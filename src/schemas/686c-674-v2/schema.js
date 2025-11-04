@@ -623,7 +623,7 @@ const schema = {
               },
             ],
           },
-          claimsOrReceivesPension: { type: 'boolean' },
+          claimsOrReceivesPension: { type: 'boolean' }, // might need conditional required
           studentNetworthInformation: {
             type: 'object',
             properties: {
@@ -663,7 +663,7 @@ const schema = {
           'address',
           'wasMarried',
           'tuitionIsPaidByGovAgency',
-          'claimsOrReceivesPension',
+          // 'claimsOrReceivesPension', // remove from required and verify condition later - will allow submission
           'schoolInformation',
           'typeOfProgramOrBenefit',
         ],
