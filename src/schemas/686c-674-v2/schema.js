@@ -659,15 +659,38 @@ const schema = {
           'fullName',
           'birthDate',
           'ssn',
-          'isParent',
+          'relationshipToStudent',
           'address',
           'wasMarried',
           'tuitionIsPaidByGovAgency',
           'schoolInformation',
-          'claimsOrReceivesPension',
           'typeOfProgramOrBenefit',
-          'otherProgramOrBenefit',
-          'benefitPaymentDate',
+        ],
+        oneOf: [
+          {
+            type: 'object',
+            properties: {
+              typeOfProgramOrBenefit: {
+                type: 'object',
+                properties: {
+                  other: { type: 'boolean', enum: [true] },
+                },
+                required: ['other'],
+              },
+            },
+            required: ['otherProgramOrBenefit'],
+          },
+          {
+            type: 'object',
+            properties: {
+              typeOfProgramOrBenefit: {
+                type: 'object',
+                properties: {
+                  other: { type: 'boolean', enum: [false] },
+                },
+              },
+            },
+          },
         ],
       },
     },
