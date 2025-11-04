@@ -28,6 +28,7 @@ const testData = {
   },
   institutionDetails: {
     valid: [
+      // Original US address
       {
         facilityCode: '12345678',
         institutionName: 'Institution of Test',
@@ -37,10 +38,33 @@ const testData = {
           state: 'WA',
           postalCode: '33771',
           county: 'Washington',
+          country: 'USA',
+        },
+      },
+      // Country free text: ENGLAND
+      {
+        facilityCode: 'A1B2C3D4',
+        institutionName: 'Royal College',
+        institutionAddress: {
+          street: '10 Downing St',
+          city: 'London',
+          postalCode: 'SW1A 2AA',
+          country: 'ENGLAND',
+        },
+      },
+      // Country free text (misspelled): NEW ZEALEDN and no postalCode
+      {
+        facilityCode: 'EF34GH56',
+        institutionName: 'Aotearoa Tech',
+        institutionAddress: {
+          street: '1 Queen St',
+          city: 'Auckland',
+          country: 'NEW ZEALEDN',
         },
       },
     ],
     invalid: [
+      // Bad facility code pattern etc.
       {
         facilityCode: '1234567!',
         institutionName: 'Test Institution',
@@ -50,6 +74,18 @@ const testData = {
           state: 'CAL',
           postalCode: '',
           county: null,
+          country: 'USA',
+        },
+      },
+      //  Country is whitespace-only — should fail the "not just whitespace" pattern
+      {
+        facilityCode: 'ZZ99YY88',
+        institutionName: 'Whitespace U',
+        institutionAddress: {
+          street: '123 Anywhere',
+          city: 'Nowhere',
+          postalCode: '00000',
+          country: '   ',
         },
       },
     ],
