@@ -4,7 +4,6 @@ import definitions from '../../common/definitions';
 const origDefinitions = _.cloneDeep(definitions);
 
 const pickedDefinitions = _.pick(origDefinitions, [
-  'address',
   'date',
   'email',
   'fullNameNoSuffix',
@@ -13,14 +12,31 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'ssn',
   'usaPhone',
   'yesNoSchema',
+  'profileAddress',
 ]);
+
+// Make `country` on profileAddress a free-text string (no enum), not just whitespace
+const profileAddressWithFreeCountry = _.cloneDeep(pickedDefinitions.profileAddress || {});
+if (profileAddressWithFreeCountry?.properties?.country) {
+  profileAddressWithFreeCountry.properties.country = {
+    type: 'string',
+    minLength: 2,
+    maxLength: 100,
+    pattern: '^(?!\\s*$).+', // not just whitespace
+  };
+  delete profileAddressWithFreeCountry.properties.country.enum;
+  delete profileAddressWithFreeCountry.properties.country.enumNames;
+}
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: '22-10275 PRINCIPLES OF EXCELLENCE FOR EDUCATIONAL INSTITUTIONS',
   type: 'object',
   additionalProperties: false,
-  definitions: pickedDefinitions,
+  definitions: {
+    ...pickedDefinitions,
+    profileAddress: profileAddressWithFreeCountry,
+  },
   properties: {
     agreementType: {
       type: 'string',
@@ -37,7 +53,7 @@ const schema = {
           type: 'string',
         },
         institutionAddress: {
-          $ref: '#/definitions/address',
+          $ref: '#/definitions/profileAddress',
         },
       },
       required: ['facilityCode', 'institutionName', 'institutionAddress'],
@@ -55,7 +71,7 @@ const schema = {
             type: 'string',
           },
           institutionAddress: {
-            $ref: '#/definitions/address',
+            $ref: '#/definitions/profileAddress',
           },
           pointOfContact: {
             type: 'object',
