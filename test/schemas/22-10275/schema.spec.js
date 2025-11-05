@@ -281,7 +281,6 @@ const testData = {
         },
         title: 'Dean',
         internationalPhone: '+1-555-123-4567',
-        email: 'robert.johnson@university.edu',
       },
     ],
     invalid: [
@@ -439,7 +438,7 @@ describe('22-10275 Schema', () => {
       'institutionAddress',
       'pointOfContact',
     ]);
-    expect(schema.properties.authorizedOfficial.required).to.deep.equal(['fullName', 'title', 'email']);
+    expect(schema.properties.authorizedOfficial.required).to.deep.equal(['fullName', 'title']);
     expect(schema.properties.newCommitment.required).to.deep.equal([
       'principlesOfExcellencePointOfContact',
       'schoolCertifyingOfficial',

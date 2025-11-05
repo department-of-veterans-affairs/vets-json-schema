@@ -108,7 +108,7 @@ const schema = {
           $ref: '#/definitions/email',
         },
       },
-      required: ['fullName', 'title', 'email'],
+      required: ['fullName', 'title'],
       anyOf: [
         {
           required: ['usPhone'],

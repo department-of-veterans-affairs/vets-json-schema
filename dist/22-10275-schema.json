@@ -189,8 +189,7 @@
       },
       "required": [
         "fullName",
-        "title",
-        "email"
+        "title"
       ],
       "anyOf": [
         {
