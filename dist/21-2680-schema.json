@@ -59,7 +59,7 @@
         "country": {
           "type": "string",
           "example": "US",
-          "maxLength": 2
+          "maxLength": 3
         }
       }
     }

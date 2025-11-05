@@ -59,7 +59,7 @@
         "country": {
           "type": "string",
           "example": "US",
-          "maxLength": 2
+          "maxLength": 3
         }
       }
     }
@@ -95,34 +95,41 @@
       }
     },
     "claimantInformation": {
-      "type": "object",
-      "required": [
-        "fullName",
-        "dateOfBirth",
-        "veteranId"
-      ],
-      "description": "SECTION II - CLAIMANT'S IDENTIFICATION INFORMATION '            '(Complete this section ONLY IF the claimant is NOT the veteran)",
-      "properties": {
-        "fullName": {
-          "$ref": "#/definitions/fullName"
+      "oneOf": [
+        {
+          "type": "null"
         },
-        "dateOfBirth": {
-          "type": "string",
-          "format": "date",
-          "example": "1992-05-15",
-          "nullable": true
-        },
-        "ssn": {
-          "type": "string",
-          "example": "987654321",
-          "nullable": true
-        },
-        "vaFileNumber": {
-          "type": "string",
-          "example": "123456789",
-          "nullable": true
+        {
+          "type": "object",
+          "required": [
+            "fullName",
+            "dateOfBirth",
+            "veteranId"
+          ],
+          "description": "SECTION II - CLAIMANT'S IDENTIFICATION INFORMATION '            '(Complete this section ONLY IF the claimant is NOT the veteran)",
+          "properties": {
+            "fullName": {
+              "$ref": "#/definitions/fullName"
+            },
+            "dateOfBirth": {
+              "type": "string",
+              "format": "date",
+              "example": "1992-05-15",
+              "nullable": true
+            },
+            "ssn": {
+              "type": "string",
+              "example": "987654321",
+              "nullable": true
+            },
+            "vaFileNumber": {
+              "type": "string",
+              "example": "123456789",
+              "nullable": true
+            }
+          }
         }
-      }
+      ]
     },
     "nursingHomeInformation": {
       "type": "object",
