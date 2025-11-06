@@ -298,16 +298,13 @@
     "veteranFullName": {
       "type": "object",
       "first": {
-        "type": "string",
-        "maxLength": 12
+        "type": "string"
       },
       "middleinitial": {
-        "type": "string",
-        "maxLength": 1
+        "type": "string"
       },
       "last": {
-        "type": "string",
-        "maxLength": 18
+        "type": "string"
       }
     },
     "veteranSocialSecurityNumber": {
@@ -336,7 +333,6 @@
       "type": "string"
     },
     "listOfDisabilities": {
-      "maxLength": 81,
       "type": "string"
     },
     "doctorsCareInLastYTD": {
@@ -346,11 +342,9 @@
       "$ref": "#/definitions/dateRange"
     },
     "nameAndAddressesOfDoctors": {
-      "maxLength": 135,
       "type": "string"
     },
     "nameAndAddressesOfHospitals": {
-      "maxLength": 127,
       "type": "string"
     },
     "hospitalCareDateRanges": {
@@ -369,12 +363,10 @@
       "type": "integer"
     },
     "yearOfMostEarnings": {
-      "maxLength": 4,
       "type": "integer"
     },
     "occupationDuringMostEarnings": {
-      "type": "string",
-      "maxLength": 27
+      "type": "string"
     },
     "previousEmployers": {
       "type": "array",
@@ -382,11 +374,9 @@
         "type": "object",
         "properties": {
           "nameAndAddress": {
-            "maxLength": 110,
             "type": "string"
           },
           "typeOfWork": {
-            "maxLength": 39,
             "type": "string"
           },
           "hoursPerWeek": {
@@ -431,11 +421,9 @@
         "type": "object",
         "properties": {
           "nameAndAddress": {
-            "maxLength": 110,
             "type": "string"
           },
           "typeOfWork": {
-            "maxLength": 62,
             "type": "string"
           },
           "dateApplied": {
@@ -481,7 +469,6 @@
     "educationTrainingPreUnemployability": {
       "type": "object",
       "name": {
-        "maxLength": 12,
         "type": "string"
       },
       "dateOfTraining": {
@@ -494,7 +481,6 @@
     "educationTrainingPostUnemployability": {
       "type": "object",
       "name": {
-        "maxLength": 12,
         "type": "string"
       },
       "datesOfTraining": {
@@ -502,8 +488,13 @@
       }
     },
     "remarks": {
-      "type": "string",
-      "maxLength": 603
+      "type": "string"
+    },
+    "statementOfTruthCertified": {
+      "type": "boolean"
+    },
+    "statementOfTruthSignature": {
+      "type": "string"
     },
     "signature": {
       "type": "string"
@@ -514,23 +505,19 @@
     "witnessSignature1": {
       "type": "object",
       "signature": {
-        "maxLength": 38,
         "type": "string"
       },
       "address": {
-        "type": "string",
-        "maxLength": 34
+        "type": "string"
       }
     },
     "witnessSignature2": {
       "type": "object",
       "signature": {
-        "maxLength": 38,
         "type": "string"
       },
       "address": {
-        "type": "string",
-        "maxLength": 34
+        "type": "string"
       }
     },
     "files": {

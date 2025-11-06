@@ -22,15 +22,12 @@ const schema = {
       type: 'object',
       first: {
         type: 'string',
-        maxLength: 12,
       },
       middleinitial: {
         type: 'string',
-        maxLength: 1,
       },
       last: {
         type: 'string',
-        maxLength: 18,
       },
     },
     veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
@@ -45,7 +42,6 @@ const schema = {
     //   $ref: '#/definitions/usAddress',
     //   country: {
     //     type: 'string',
-    //     maxLength: 2,
     //   },
     // },
     electronicCorrespondance: {
@@ -64,21 +60,17 @@ const schema = {
 
     // Section II  DISABILITY AND MEDICAL TREATMENT
     listOfDisabilities: {
-      maxLength: 81,
       type: 'string',
     },
     doctorsCareInLastYTD: {
       type: 'boolean',
-      // type: 'string',
       // enum: ['Yes', 'No']
     },
     doctorsTreatmentDates: { $ref: '#/definitions/dateRange' },
     nameAndAddressesOfDoctors: {
-      maxLength: 135,
       type: 'string',
     },
     nameAndAddressesOfHospitals: {
-      maxLength: 127,
       type: 'string',
     },
     hospitalCareDateRanges: { $ref: '#/definitions/dateRange' },
@@ -96,12 +88,10 @@ const schema = {
       type: 'integer',
     },
     yearOfMostEarnings: {
-      maxLength: 4,
       type: 'integer',
     },
     occupationDuringMostEarnings: {
       type: 'string',
-      maxLength: 27,
     },
     previousEmployers: {
       type: 'array',
@@ -109,11 +99,9 @@ const schema = {
         type: 'object',
         properties: {
           nameAndAddress: {
-            maxLength: 110,
             type: 'string',
           },
           typeOfWork: {
-            maxLength: 39,
             type: 'string',
           },
           hoursPerWeek: {
@@ -131,8 +119,6 @@ const schema = {
     },
     preventMilitaryDuties: {
       type: 'boolean',
-      // type: 'string',
-      // enum: ['Yes', 'No'],
     },
     past12MonthsEarnedIncome: {
       type: 'integer',
@@ -142,23 +128,15 @@ const schema = {
     },
     leftLastJobDueToDisability: {
       type: 'boolean',
-      // type: 'string',
-      // enum: ['Yes', 'No'],
     },
     expectDisabilityRetirement: {
       type: 'boolean',
-      // type: 'string',
-      // enum: ['Yes', 'No'],
     },
     receiveExpectWorkersCompensation: {
       type: 'boolean',
-      // type: 'string',
-      // enum: ['Yes', 'No'],
     },
     attemptedEmploy: {
       type: 'boolean',
-      // type: 'string',
-      // enum: ['Yes', 'No'],
     },
     appliedEmployers: {
       type: 'array',
@@ -166,11 +144,9 @@ const schema = {
         type: 'object',
         properties: {
           nameAndAddress: {
-            maxLength: 110,
             type: 'string',
           },
           typeOfWork: {
-            maxLength: 62,
             type: 'string',
           },
           dateApplied: {
@@ -194,24 +170,20 @@ const schema = {
     },
     trainingPreDisabled: {
       type: 'boolean',
-      // enum: ['Yes', 'No'],
     },
     educationTrainingPreUnemployability: {
       type: 'object',
       name: {
-        maxLength: 12,
         type: 'string',
       },
       dateOfTraining: { $ref: '#/definitions/dateRange' },
     },
     trainingPostUnemployment: {
       type: 'boolean',
-      // enum: ['Yes', 'No'],
     },
     educationTrainingPostUnemployability: {
       type: 'object',
       name: {
-        maxLength: 12,
         type: 'string',
       },
       datesOfTraining: { $ref: '#/definitions/dateRange' },
@@ -219,9 +191,14 @@ const schema = {
     //  SECTION V - REMARKS
     remarks: {
       type: 'string',
-      maxLength: 603,
     },
     //  SECTION VI - AUTHORIZATION, CERTIFICATION, AND SIGNATURE
+    statementOfTruthCertified: {
+      type: 'boolean',
+    },
+    statementOfTruthSignature: {
+      type: 'string',
+    },
     signature: {
       type: 'string',
     },
@@ -231,23 +208,19 @@ const schema = {
     witnessSignature1: {
       type: 'object',
       signature: {
-        maxLength: 38,
         type: 'string',
       },
       address: {
         type: 'string',
-        maxLength: 34,
       },
     },
     witnessSignature2: {
       type: 'object',
       signature: {
-        maxLength: 38,
         type: 'string',
       },
       address: {
         type: 'string',
-        maxLength: 34,
       },
     },
     files: { $ref: '#/definitions/files' },
