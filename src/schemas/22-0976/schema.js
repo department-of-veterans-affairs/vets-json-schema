@@ -156,13 +156,12 @@ const schema = {
       items: {
         type: 'object',
         additionalProperties: false,
-        required: ['institutionName', 'isForeignCountry', 'physicalAddress'],
+        required: ['institutionName', 'isForeignCountry', 'mailingAddress'],
         properties: {
           institutionName: { type: 'string' },
           vaFacilityCode: { type: 'string', pattern: '^[A-Za-z0-9]{8}$' },
           isForeignCountry: { $ref: '#/definitions/yesNoSchema' },
           physicalAddress: { type: 'object' },
-          // Could be two different ones; Figma doesn't handle that yet
           mailingAddress: { type: 'object' },
         },
         allOf: [

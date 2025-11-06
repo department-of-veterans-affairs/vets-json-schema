@@ -881,7 +881,7 @@
         "required": [
           "institutionName",
           "isForeignCountry",
-          "physicalAddress"
+          "mailingAddress"
         ],
         "properties": {
           "institutionName": {

@@ -95,6 +95,7 @@ const base = {
       institutionName: 'Global Institute',
       isForeignCountry: false,
       physicalAddress: usAddr,
+      mailingAddress: usAddr,
       vaFacilityCode: 'A1B2C3D4',
     },
   ],
@@ -171,30 +172,33 @@ const testData = {
 
   institutionDetails: {
     valid: [
-      // USA address (domestic)
+      // USA address (domestic) with required mailingAddress
       [
         {
           institutionName: 'Global Institute',
           isForeignCountry: false,
           physicalAddress: usAddr,
+          mailingAddress: usAddr,
           vaFacilityCode: 'AB12CD34',
         },
       ],
-      // England (foreign)
+      // England (foreign) with required mailingAddress
       [
         {
           institutionName: 'Royal College',
           isForeignCountry: true,
           physicalAddress: engAddr,
+          mailingAddress: engAddr,
           vaFacilityCode: 'EF34GH56',
         },
       ],
-      // New Zealand (foreign, misspelled country still ok)
+      // New Zealand (foreign, misspelled country still ok) with required mailingAddress
       [
         {
           institutionName: 'Aotearoa Tech',
           isForeignCountry: true,
           physicalAddress: nzAddrMisspelled,
+          mailingAddress: nzAddrMisspelled,
           vaFacilityCode: 'IJ78KL90',
         },
       ],
@@ -203,7 +207,7 @@ const testData = {
       [], // minItems: 1
       [
         {
-          // missing required keys
+          // missing required keys (mailingAddress missing)
           institutionName: '',
           isForeignCountry: false,
           physicalAddress: { street: '', city: 'Nowhere' },
@@ -214,6 +218,7 @@ const testData = {
           institutionName: 'Bad Code',
           isForeignCountry: false,
           physicalAddress: usAddr,
+          mailingAddress: usAddr,
           vaFacilityCode: 'BADCODE!', // pattern fail
         },
       ],
@@ -222,7 +227,8 @@ const testData = {
         {
           institutionName: 'Whitespace Country U',
           isForeignCountry: true,
-          physicalAddress: { ...usAddr, country: '   ' },
+          physicalAddress: { ...usAddr, country: 'USA' },
+          mailingAddress: { ...usAddr, country: '   ' },
           vaFacilityCode: 'MN12OP34',
         },
       ],
