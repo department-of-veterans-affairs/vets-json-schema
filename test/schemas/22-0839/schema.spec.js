@@ -26,6 +26,7 @@ const testData = {
         {
           facilityCode: '12345678',
           institutionName: 'Sample Campus',
+          isForeignCountry: false,
           institutionAddress: {
             street: '111 2nd St S',
             city: 'Seattle',
@@ -39,6 +40,7 @@ const testData = {
         {
           facilityCode: 'A1B2C3D4',
           institutionName: 'Another Campus',
+          isForeignCountry: false,
           institutionAddress: {
             street: '1 First Ave',
             city: 'Boston',
@@ -50,6 +52,7 @@ const testData = {
         {
           facilityCode: '87654321',
           institutionName: 'Branch',
+          isForeignCountry: false,
           institutionAddress: {
             street: '500 Main St',
             city: 'Austin',
@@ -64,6 +67,7 @@ const testData = {
         {
           facilityCode: 'EF34GH56',
           institutionName: 'Royal College',
+          isForeignCountry: true,
           institutionAddress: {
             street: '10 Downing St',
             city: 'London',
@@ -77,6 +81,7 @@ const testData = {
         {
           facilityCode: 'ZX98CV76',
           institutionName: 'Aotearoa Tech',
+          isForeignCountry: true,
           institutionAddress: {
             street: '1 Queen St',
             city: 'Auckland',
@@ -86,12 +91,13 @@ const testData = {
       ],
     ],
     invalid: [
-      [{ facilityCode: '123', institutionName: '', institutionAddress: null }],
+      [{ facilityCode: '123', institutionName: '', isForeignCountry: false, institutionAddress: null }],
       // Whitespace-only country should fail country pattern
       [
         {
           facilityCode: 'QQ11WW22',
           institutionName: 'Whitespace U',
+          isForeignCountry: true,
           institutionAddress: {
             street: '123 Anywhere',
             city: 'Nowhere',
@@ -128,6 +134,7 @@ const testData = {
         {
           facilityCode: '12345678',
           institutionName: 'Institution of Test',
+          isForeignCountry: false,
           institutionAddress: {
             street: '111 2nd St S',
             city: 'Seattle',
@@ -141,6 +148,7 @@ const testData = {
         {
           facilityCode: 'A1B2C3D4',
           institutionName: 'Another Institution',
+          isForeignCountry: false,
           institutionAddress: {
             street: '10 Downing St',
             city: 'Boston',
@@ -155,6 +163,7 @@ const testData = {
         {
           facilityCode: 'MN12OP34',
           institutionName: 'Royal College',
+          isForeignCountry: true,
           institutionAddress: {
             street: '10 Downing St',
             city: 'London',
@@ -168,6 +177,7 @@ const testData = {
         {
           facilityCode: 'RT56YU78',
           institutionName: 'Aotearoa Tech',
+          isForeignCountry: true,
           institutionAddress: {
             street: '1 Queen St',
             city: 'Auckland',
@@ -181,6 +191,7 @@ const testData = {
         {
           facilityCode: '12',
           institutionName: '',
+          isForeignCountry: false,
           institutionAddress: { street: '', city: 'Nowhere' },
         },
       ],
@@ -189,6 +200,7 @@ const testData = {
         {
           facilityCode: 'GH78JK90',
           institutionName: 'Whitespace U',
+          isForeignCountry: true,
           institutionAddress: {
             street: '123 Anywhere',
             city: 'Nowhere',
@@ -199,7 +211,6 @@ const testData = {
       ],
     ],
   },
-
   yellowRibbonProgramAgreementRequest: {
     valid: [
       [
@@ -247,7 +258,6 @@ const testData = {
       ],
     ],
   },
-
   pointOfContact: {
     valid: [
       {
@@ -329,6 +339,7 @@ describe('22-0839 schema (cross-field business rules)', () => {
         {
           facilityCode: '12345678',
           institutionName: 'Sample Campus',
+          isForeignCountry: false,
           institutionAddress: usAddress,
         },
       ],
@@ -364,6 +375,7 @@ describe('22-0839 schema (cross-field business rules)', () => {
         {
           facilityCode: 'A1B2C3D4',
           institutionName: 'Institution of Test',
+          isForeignCountry: false,
           institutionAddress: usAddress,
         },
       ],

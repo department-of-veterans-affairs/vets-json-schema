@@ -12,17 +12,17 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'profileAddress',
 ]);
 
-// Override only the `country` field on profileAddress to be a plain string (no enum)
-const profileAddressWithFreeCountry = _.cloneDeep(pickedDefinitions.profileAddress || {});
-if (profileAddressWithFreeCountry?.properties?.country) {
-  profileAddressWithFreeCountry.properties.country = {
+// Clone profileAddress, but make "country" a free-text string (no enum) for foreign addresses
+const profileAddressForeign = _.cloneDeep(pickedDefinitions.profileAddress || {});
+if (profileAddressForeign?.properties?.country) {
+  profileAddressForeign.properties.country = {
     type: 'string',
     minLength: 2,
     maxLength: 100,
     pattern: '^(?!\\s*$).+', // not just whitespace
   };
-  delete profileAddressWithFreeCountry.properties.country.enum;
-  delete profileAddressWithFreeCountry.properties.country.enumNames;
+  delete profileAddressForeign.properties.country.enum;
+  delete profileAddressForeign.properties.country.enumNames;
 }
 
 const schema = {
@@ -32,7 +32,7 @@ const schema = {
   additionalProperties: false,
   definitions: {
     ...pickedDefinitions,
-    profileAddress: profileAddressWithFreeCountry,
+    profileAddressForeign,
   },
   required: ['authorizedOfficial', 'agreementType', 'statementOfTruthSignature', 'dateSigned', 'isAuthenticated'],
   properties: {
@@ -59,7 +59,8 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['facilityCode', 'institutionName', 'institutionAddress'],
+        additionalProperties: false,
+        required: ['facilityCode', 'institutionName', 'isForeignCountry', 'institutionAddress'],
         properties: {
           facilityCode: {
             type: 'string',
@@ -68,10 +69,34 @@ const schema = {
           institutionName: {
             type: 'string',
           },
-          institutionAddress: {
-            $ref: '#/definitions/profileAddress',
-          },
+          isForeignCountry: { $ref: '#/definitions/yesNoSchema' },
+          // Declare as object; the exact schema enforced via allOf below
+          institutionAddress: { type: 'object' },
         },
+        allOf: [
+          {
+            anyOf: [
+              // Foreign → profileAddressForeign
+              {
+                type: 'object',
+                required: ['isForeignCountry'],
+                properties: {
+                  isForeignCountry: { enum: [true] },
+                  institutionAddress: { $ref: '#/definitions/profileAddressForeign' },
+                },
+              },
+              // Domestic → profileAddress
+              {
+                type: 'object',
+                required: ['isForeignCountry'],
+                properties: {
+                  isForeignCountry: { enum: [false] },
+                  institutionAddress: { $ref: '#/definitions/profileAddress' },
+                },
+              },
+            ],
+          },
+        ],
       },
     },
     yellowRibbonProgramTerms: {
@@ -112,8 +137,10 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required: ['facilityCode', 'institutionName', 'institutionAddress'],
+        additionalProperties: false,
+        required: ['facilityCode', 'isForeignCountry', 'institutionName', 'institutionAddress'],
         properties: {
+          isForeignCountry: { $ref: '#/definitions/yesNoSchema' },
           facilityCode: {
             type: 'string',
             pattern: '^[A-Za-z0-9]{8}$',
@@ -121,10 +148,33 @@ const schema = {
           institutionName: {
             type: 'string',
           },
-          institutionAddress: {
-            $ref: '#/definitions/profileAddress',
-          },
+          // Declare as object; branch schema applied in allOf
+          institutionAddress: { type: 'object' },
         },
+        allOf: [
+          {
+            anyOf: [
+              // Foreign → profileAddressForeign
+              {
+                type: 'object',
+                required: ['isForeignCountry'],
+                properties: {
+                  isForeignCountry: { enum: [true] },
+                  institutionAddress: { $ref: '#/definitions/profileAddressForeign' },
+                },
+              },
+              // Domestic → profileAddress
+              {
+                type: 'object',
+                required: ['isForeignCountry'],
+                properties: {
+                  isForeignCountry: { enum: [false] },
+                  institutionAddress: { $ref: '#/definitions/profileAddress' },
+                },
+              },
+            ],
+          },
+        ],
       },
     },
     yellowRibbonProgramAgreementRequest: {
