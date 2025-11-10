@@ -44,7 +44,7 @@ const schema = {
     //     type: 'string',
     //   },
     // },
-    electronicCorrespondance: {
+    electronicCorrespondence: {
       type: 'boolean',
     },
     // may need some altering? email is 2 lines in the form
@@ -176,7 +176,7 @@ const schema = {
       name: {
         type: 'string',
       },
-      dateOfTraining: { $ref: '#/definitions/dateRange' },
+      datesOfTraining: { $ref: '#/definitions/dateRange' },
     },
     trainingPostUnemployment: {
       type: 'boolean',
