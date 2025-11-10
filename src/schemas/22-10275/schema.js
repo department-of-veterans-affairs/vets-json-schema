@@ -7,10 +7,8 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'date',
   'email',
   'fullNameNoSuffix',
-  'phone',
   'privacyAgreementAccepted',
   'ssn',
-  'usaPhone',
   'yesNoSchema',
   'profileAddress',
 ]);
@@ -99,10 +97,10 @@ const schema = {
           type: 'string',
         },
         usPhone: {
-          $ref: '#/definitions/usaPhone',
+          type: 'string',
         },
         internationalPhone: {
-          $ref: '#/definitions/phone',
+          type: 'string',
         },
         email: {
           $ref: '#/definitions/email',
@@ -132,10 +130,10 @@ const schema = {
               type: 'string',
             },
             usPhone: {
-              $ref: '#/definitions/usaPhone',
+              type: 'string',
             },
             internationalPhone: {
-              $ref: '#/definitions/phone',
+              type: 'string',
             },
             email: {
               $ref: '#/definitions/email',
@@ -162,10 +160,10 @@ const schema = {
               type: 'string',
             },
             usPhone: {
-              $ref: '#/definitions/usaPhone',
+              type: 'string',
             },
             internationalPhone: {
-              $ref: '#/definitions/phone',
+              type: 'string',
             },
             email: {
               $ref: '#/definitions/email',
