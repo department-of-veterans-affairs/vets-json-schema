@@ -36,7 +36,7 @@
   "becameTooDisabledToWorkDate": "2023-11-01",
   "mostEarningsInAYear": 45000,
   "yearOfMostEarnings": 2022,
-  "occupationDuringMostEarnings": "Moblie Infanty Private",
+  "occupationDuringMostEarnings": "Mobile Infantry Private",
   "previousEmployers": [
     {
       "nameAndAddress": "Federal Service, 101 Trooper Rd, Cheyenne, WY 82001",
@@ -129,7 +129,7 @@
       "from": "2001-01-15",
       "to": "2001-03-30"
     },
-    "name": "scholl"
+    "name": "School"
   },
   "trainingPostUnemployment": false,
   "educationTrainingPostUnemployability": {

@@ -319,7 +319,7 @@
     "veteranAddress": {
       "$ref": "#/definitions/address"
     },
-    "electronicCorrespondance": {
+    "electronicCorrespondence": {
       "type": "boolean"
     },
     "email": {
@@ -471,7 +471,7 @@
       "name": {
         "type": "string"
       },
-      "dateOfTraining": {
+      "datesOfTraining": {
         "$ref": "#/definitions/dateRange"
       }
     },
