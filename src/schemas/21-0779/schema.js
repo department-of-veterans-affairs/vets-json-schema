@@ -1,0 +1,176 @@
+const buildDefinitionReference = referenceId => ({ $ref: `#/definitions/${referenceId}` });
+
+const schema = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  type: 'object',
+  definitions: {
+    fullName: {
+      type: 'object',
+      properties: {
+        first: { type: 'string', example: 'John', maxLength: 12 },
+        middle: { type: ['string', 'null'], example: 'A', maxLength: 1 },
+        last: { type: 'string', example: 'Doe', maxLength: 18 },
+      },
+    },
+    simpleAddress: {
+      type: 'object',
+      properties: {
+        street: { type: 'string', example: '123 Main St', maxLength: 30 },
+        street2: { type: ['string', 'null'], example: 'Apt 4', maxLength: 5 },
+        city: { type: 'string', example: 'Springfield', maxLength: 18 },
+        state: { type: 'string', example: 'IL', maxLength: 2 },
+        postalCode: { type: 'string', example: '62701', maxLength: 9 },
+        country: { type: 'string', example: 'US', maxLength: 3 },
+      },
+    },
+  },
+  properties: {
+    veteranInformation: {
+      type: 'object',
+      required: ['fullName', 'dateOfBirth', 'veteranId'],
+      description: "SECTION I - VETERAN'S IDENTIFICATION INFORMATION",
+      properties: {
+        fullName: buildDefinitionReference('fullName'),
+        dateOfBirth: {
+          type: 'string',
+          format: 'date',
+          example: '1990-01-01',
+        },
+        ssn: {
+          type: 'string',
+          example: '123456789',
+          nullable: true,
+        },
+        vaFileNumber: {
+          type: 'string',
+          example: '987654321',
+          nullable: true,
+        },
+      },
+    },
+    claimantInformation: {
+      oneOf: [ 
+        { type: 'null' },
+        {
+          type: 'object',
+          required: ['fullName', 'dateOfBirth', 'veteranId'],
+          description:
+            "SECTION II - CLAIMANT'S IDENTIFICATION INFORMATION '            '(Complete this section ONLY IF the claimant is NOT the veteran)",
+          properties: {
+            fullName: buildDefinitionReference('fullName'),
+            dateOfBirth: {
+              type: 'string',
+              format: 'date',
+              example: '1992-05-15',
+              nullable: true,
+            },
+            ssn: {
+              type: 'string',
+              example: '987654321',
+              nullable: true,
+            },
+            vaFileNumber: {
+              type: 'string',
+              example: '123456789',
+              nullable: true,
+            },
+          },
+       },
+     ],
+    },
+    nursingHomeInformation: {
+      type: 'object',
+      required: ['nursingHomeName', 'nursingHomeAddress'],
+      description: 'SECTION III - NURSING HOME INFORMATION',
+      properties: {
+        nursingHomeName: {
+          type: 'string',
+          example: 'Sunrise Senior Living',
+        },
+        nursingHomeAddress: buildDefinitionReference('simpleAddress'),
+      },
+    },
+    generalInformation: {
+      type: 'object',
+      required: [
+        'admissionDate',
+        'medicaidFacility',
+        'medicaidApplication',
+        'patientMedicaidCovered',
+        'certificationLevelOfCare',
+        'nursingOfficialName',
+        'nursingOfficialTitle',
+        'nursingOfficialPhoneNumber',
+      ],
+      description: 'SECTION IV - GENERAL INFORMATION (To be completed by a Nursing Home Official)',
+      properties: {
+        admissionDate: {
+          type: 'string',
+          format: 'date',
+          example: '2024-01-01',
+        },
+        medicaidFacility: {
+          type: 'boolean',
+          example: true,
+        },
+        medicaidApplication: {
+          type: 'boolean',
+          example: true,
+        },
+        patientMedicaidCovered: {
+          type: 'boolean',
+          example: true,
+        },
+        medicaidStartDate: {
+          type: 'string',
+          format: 'date',
+          example: '2024-02-01',
+        },
+        monthlyCosts: {
+          type: 'string',
+          example: '3000.00',
+          pattern: '^\\d+(\\.\\d+)?$',
+        },
+        certificationLevelOfCare: {
+          type: 'string',
+          description:
+            'I CERTIFY THAT THE CLAIMANT IS A PATIENT IN THIS FACILITY BECAUSE OF MENTAL OR PHYSICAL DISABILITY AND IS RECEIVING:',
+          example: 'skilled',
+          enum: ['skilled', 'intermediate'],
+        },
+        nursingOfficialName: {
+          type: 'string',
+          description: "NURSING HOME OFFICIAL'S NAME (First and Last)",
+          example: 'Dr. Sarah Smith',
+        },
+        nursingOfficialTitle: {
+          type: 'string',
+          example: 'Director of Nursing',
+        },
+        nursingOfficialPhoneNumber: {
+          type: 'string',
+          example: '555-789-0123',
+          maxLength: 10,
+          format: '^d{9}$',
+        },
+        nursingOfficialInternationalPhoneNumber: {
+          type: 'string',
+          example: '+4 9555-789-0123',
+        },
+        signature: {
+          type: 'string',
+          example: 'Dr. Sarah Smith',
+          minLength: 1,
+        },
+        dateSigned: {
+          type: 'string',
+          format: 'date',
+          example: '1990-01-01',
+        },
+      },
+    },
+  },
+  required: ['veteranInformation', 'claimantInformation', 'nursingHomeInformation', 'generalInformation'],
+};
+
+export default schema;
