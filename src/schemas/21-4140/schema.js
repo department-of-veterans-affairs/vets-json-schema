@@ -13,17 +13,19 @@ const schema = {
   properties: {
     veteranFullName: {
       type: 'object',
-      first: {
-        type: 'string',
-        maxLength: 12,
-      },
-      middle: {
-        type: 'string',
-        maxLength: 1,
-      },
-      last: {
-        type: 'string',
-        maxLength: 18,
+      properties: {
+        first: {
+          type: 'string',
+          maxLength: 12,
+        },
+        middle: {
+          type: 'string',
+          maxLength: 1,
+        },
+        last: {
+          type: 'string',
+          maxLength: 18,
+        },
       },
     },
     veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
@@ -36,26 +38,30 @@ const schema = {
     veteranAddress: { $ref: '#/definitions/address' },
     veteranContact: {
       type: 'object',
-      email: {
-        type: 'string',
-        maxLength: 12,
-      },
-      primaryPhone: {
-        type: 'string',
-        maxLength: 1,
-      },
-      alternatePhone: {
-        type: 'string',
-        maxLength: 18,
+      properties: {
+        email: {
+          type: 'string',
+          maxLength: 12,
+        },
+        primaryPhone: {
+          type: 'string',
+          maxLength: 1,
+        },
+        alternatePhone: {
+          type: 'string',
+          maxLength: 18,
+        },
       },
     },
     employmentStatus: {
       type: 'object',
-      radio: {
-        type: 'boolean',
-        maxLength: 12,
+      properties: {
+        radio: {
+          type: 'boolean',
+          maxLength: 12,
+        },
+        mailedDate: { $ref: '#/definitions/date' },
       },
-      mailedDate: { $ref: '#/definitions/date' },
     },
     signatureSection1: {
       type: 'object',
@@ -98,7 +104,9 @@ const schema = {
     },
     signatureSection2: {
       type: 'object',
-      signatureDate: { $ref: '#/definitions/date' },
+      properties: {
+        signatureDate: { $ref: '#/definitions/date' },
+      },
     },
     stationAddress: {
       type: 'string',
