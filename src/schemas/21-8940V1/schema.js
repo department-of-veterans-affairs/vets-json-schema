@@ -20,14 +20,16 @@ const schema = {
     // Section I Veteran's Information
     veteranFullName: {
       type: 'object',
-      first: {
-        type: 'string',
-      },
-      middleinitial: {
-        type: 'string',
-      },
-      last: {
-        type: 'string',
+      properties: {
+        first: {
+          type: 'string',
+        },
+        middleinitial: {
+          type: 'string',
+        },
+        last: {
+          type: 'string',
+        },
       },
     },
     veteranSocialSecurityNumber: { $ref: '#/definitions/ssn' },
@@ -35,15 +37,9 @@ const schema = {
     dateOfBirth: {
       $ref: '#/definitions/date',
     },
-    // no good address def for 2 charatcher country code "US"
+    // no good address def for 2 character country code "US"
     // backend has a extract_country helper to get 2 letter country codes
     veteranAddress: { $ref: '#/definitions/address' },
-    // veteranAddress: {
-    //   $ref: '#/definitions/usAddress',
-    //   country: {
-    //     type: 'string',
-    //   },
-    // },
     electronicCorrespondence: {
       type: 'boolean',
     },
@@ -158,14 +154,16 @@ const schema = {
     // SECTION IV - SCHOOLING AND OTHER TRAINING
     education: {
       type: 'object',
-      gradeSchool: {
-        enum: [1, 2, 3, 4, 5, 6, 7, 8],
-      },
-      highSchool: {
-        enum: [9, 10, 11, 12],
-      },
-      college: {
-        enum: ['Fresh', 'Soph', 'Jr', 'Sr'],
+      properties: {
+        gradeSchool: {
+          enum: [1, 2, 3, 4, 5, 6, 7, 8],
+        },
+        highSchool: {
+          enum: [9, 10, 11, 12],
+        },
+        college: {
+          enum: ['Fresh', 'Soph', 'Jr', 'Sr'],
+        },
       },
     },
     trainingPreDisabled: {
@@ -173,20 +171,24 @@ const schema = {
     },
     educationTrainingPreUnemployability: {
       type: 'object',
-      name: {
-        type: 'string',
+      properties: {
+        name: {
+          type: 'string',
+        },
+        datesOfTraining: { $ref: '#/definitions/dateRange' },
       },
-      datesOfTraining: { $ref: '#/definitions/dateRange' },
     },
     trainingPostUnemployment: {
       type: 'boolean',
     },
     educationTrainingPostUnemployability: {
       type: 'object',
-      name: {
-        type: 'string',
+      properties: {
+        name: {
+          type: 'string',
+        },
+        datesOfTraining: { $ref: '#/definitions/dateRange' },
       },
-      datesOfTraining: { $ref: '#/definitions/dateRange' },
     },
     //  SECTION V - REMARKS
     remarks: {
@@ -207,20 +209,24 @@ const schema = {
     },
     witnessSignature1: {
       type: 'object',
-      signature: {
-        type: 'string',
-      },
-      address: {
-        type: 'string',
+      properties: {
+        signature: {
+          type: 'string',
+        },
+        address: {
+          type: 'string',
+        },
       },
     },
     witnessSignature2: {
       type: 'object',
-      signature: {
-        type: 'string',
-      },
-      address: {
-        type: 'string',
+      properties: {
+        signature: {
+          type: 'string',
+        },
+        address: {
+          type: 'string',
+        },
       },
     },
     files: { $ref: '#/definitions/files' },
