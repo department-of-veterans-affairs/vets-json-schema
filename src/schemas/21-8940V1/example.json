@@ -15,7 +15,7 @@
     "street2": "4B",
     "city": "Cheyenne"
   },
-  "electronicCorrespondance": true,
+  "electronicCorrespondence": true,
   "email": "johnny.rico@example.com",
   "veteranPhone": "3075551234",
   "internationalPhone": "+44 20 7946 0958",
@@ -108,7 +108,7 @@
       "dateApplied": "2024-01-15"
     },
     {
-      "nameAndAddress": "Starship K9 Traning, 202 Fleet St, Cheyenne, WY 82001",
+      "nameAndAddress": "Starship K9 Training, 202 Fleet St, Cheyenne, WY 82001",
       "typeOfWork": "K9 Handler",
       "dateApplied": "2024-01-15"
     },

@@ -297,14 +297,16 @@
   "properties": {
     "veteranFullName": {
       "type": "object",
-      "first": {
-        "type": "string"
-      },
-      "middleinitial": {
-        "type": "string"
-      },
-      "last": {
-        "type": "string"
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "middleinitial": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        }
       }
     },
     "veteranSocialSecurityNumber": {
@@ -434,33 +436,35 @@
     },
     "education": {
       "type": "object",
-      "gradeSchool": {
-        "enum": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8
-        ]
-      },
-      "highSchool": {
-        "enum": [
-          9,
-          10,
-          11,
-          12
-        ]
-      },
-      "college": {
-        "enum": [
-          "Fresh",
-          "Soph",
-          "Jr",
-          "Sr"
-        ]
+      "properties": {
+        "gradeSchool": {
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "highSchool": {
+          "enum": [
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "college": {
+          "enum": [
+            "Fresh",
+            "Soph",
+            "Jr",
+            "Sr"
+          ]
+        }
       }
     },
     "trainingPreDisabled": {
@@ -468,11 +472,13 @@
     },
     "educationTrainingPreUnemployability": {
       "type": "object",
-      "name": {
-        "type": "string"
-      },
-      "datesOfTraining": {
-        "$ref": "#/definitions/dateRange"
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "datesOfTraining": {
+          "$ref": "#/definitions/dateRange"
+        }
       }
     },
     "trainingPostUnemployment": {
@@ -480,11 +486,13 @@
     },
     "educationTrainingPostUnemployability": {
       "type": "object",
-      "name": {
-        "type": "string"
-      },
-      "datesOfTraining": {
-        "$ref": "#/definitions/dateRange"
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "datesOfTraining": {
+          "$ref": "#/definitions/dateRange"
+        }
       }
     },
     "remarks": {
@@ -504,20 +512,24 @@
     },
     "witnessSignature1": {
       "type": "object",
-      "signature": {
-        "type": "string"
-      },
-      "address": {
-        "type": "string"
+      "properties": {
+        "signature": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
       }
     },
     "witnessSignature2": {
       "type": "object",
-      "signature": {
-        "type": "string"
-      },
-      "address": {
-        "type": "string"
+      "properties": {
+        "signature": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
       }
     },
     "files": {
