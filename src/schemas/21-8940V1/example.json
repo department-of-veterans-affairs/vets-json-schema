@@ -1,7 +1,7 @@
 {
   "veteranFullName": {
     "first": "Johnny",
-    "middleinitial": "D",
+    "middleinitial": "Juan",
     "last": "Rico"
   },
   "veteranSocialSecurityNumber": "123456789",
@@ -11,32 +11,44 @@
     "country": "US",
     "state": "WY",
     "postalCode": "82001",
-    "street": "123 Starship Lane",
+    "street": "123 Federal Starship Lane",
     "street2": "4B",
     "city": "Cheyenne"
   },
-  "electronicCorrespondence": true,
-  "email": "johnny.rico@example.com",
+  "electronicCorrespondance": true,
+  "email": "juan.johnny.rico@example.com",
   "veteranPhone": "3075551234",
   "internationalPhone": "+44 20 7946 0958",
   "listOfDisabilities": "Post-traumatic stress disorder, shrapnel wounds",
   "doctorsCareInLastYTD": true,
-  "doctorsTreatmentDates": {
-    "from": "2024-01-10",
-    "to": "2025-02-20"
-  },
-  "nameAndAddressesOfDoctors": "Dr. Carl Jenkins, 456 Medical St, Cheyenne, WY 82001",
-  "nameAndAddressesOfHospitals": "Cheyenne VA Medical Center, 789 Health Ave, Cheyenne, WY 82001",
-  "hospitalCareDateRanges": {
-    "from": "2024-06-01",
-    "to": "2024-06-15"
-  },
+  "doctorsCare": [
+    {
+      "doctorsTreatmentDates": [
+        {
+          "from": "2024-01-10",
+          "to": "2025-02-20"
+        }
+      ],
+      "nameAndAddressOfDoctor": "Dr. Carl Jenkins, 456 Medical St, Cheyenne, WY 82001"
+    }
+  ],
+  "hospitalCare": [
+    {
+      "nameAndAddressOfHospital": "Cheyenne VA Medical Center, 789 Health Ave, Cheyenne, WY 82001",
+      "hospitalCareDateRanges": [
+        {
+          "from": "2024-06-01",
+          "to": "2024-06-15"
+        }
+      ]
+    }
+  ],
   "disabilityAffectEmployFTDate": "2023-11-01",
   "lastWorkedFullTimeDate": "2023-10-31",
   "becameTooDisabledToWorkDate": "2023-11-01",
   "mostEarningsInAYear": 45000,
   "yearOfMostEarnings": 2022,
-  "occupationDuringMostEarnings": "Mobile Infantry Private",
+  "occupationDuringMostEarnings": "Moblie Infanty Private",
   "previousEmployers": [
     {
       "nameAndAddress": "Federal Service, 101 Trooper Rd, Cheyenne, WY 82001",
@@ -62,7 +74,7 @@
     },
     {
       "nameAndAddress": "Starship Logistics, 202 Fleet St, Cheyenne, WY 82001",
-      "typeOfWork": "Fleet Operations",
+      "typeOfWork": "Operations Officer",
       "hoursPerWeek": 35,
       "datesOfEmployment": {
         "from": "2018-06-15",
@@ -73,7 +85,7 @@
     },
     {
       "nameAndAddress": "Klendathu Defense Corps, 303 Battle Ave, Casper, WY 82601",
-      "typeOfWork": "Tactical Training",
+      "typeOfWork": "Tactical Training Officer",
       "hoursPerWeek": 45,
       "datesOfEmployment": {
         "from": "2016-09-01",
@@ -108,7 +120,7 @@
       "dateApplied": "2024-01-15"
     },
     {
-      "nameAndAddress": "Starship K9 Training, 202 Fleet St, Cheyenne, WY 82001",
+      "nameAndAddress": "Starship K9 Traning, 202 Fleet St, Cheyenne, WY 82001",
       "typeOfWork": "K9 Handler",
       "dateApplied": "2024-01-15"
     },
@@ -119,8 +131,8 @@
     }
   ],
   "education": {
-    "gradeSchool": 5,
-    "highSchool": 11,
+    "gradeSchool": 8,
+    "highSchool": 12,
     "college": "Sr"
   },
   "trainingPreDisabled": true,
@@ -129,7 +141,7 @@
       "from": "2001-01-15",
       "to": "2001-03-30"
     },
-    "name": "School"
+    "name": "high school"
   },
   "trainingPostUnemployment": false,
   "educationTrainingPostUnemployability": {
@@ -139,9 +151,11 @@
     },
     "name": "technical"
   },
-  "remarks": "Served in Mobile Infantry, injured during Klendathu campaign, unable to perform physical duties due to injuries.",
+  "remarks": "Starship Troopers (1997), directed by Paul Verhoeven, is a cinematic masterpiece that brilliantly disguises razor-sharp satire as a bombastic sci-fi action flick. On the surface, it’s a thrilling tale of humanity’s war against giant arachnid aliens on distant planets, complete with jaw-dropping practical effects, explosive battles, and a cast of charismatic young actors.",
   "signature": "Johnny Rico",
   "signatureDate": "2025-10-09",
+  "statementOfTruthCertified": true,
+  "statementOfTruthSignature": "Jonny Rico",
   "witnessSignature1": {
     "signature": "Carmen Ibanez",
     "address": "303 Fleet Ave, Cheyenne, WY 82001"
@@ -149,5 +163,19 @@
   "witnessSignature2": {
     "signature": "Carl Jenkins",
     "address": "456 Medical St, Cheyenne, WY 82001"
-  }
+  },
+  "files": [
+    {
+      "name": "training-doc.pdf",
+      "size": 1000,
+      "confirmationCode": "10c55013-b881-453f-bc10-fbc29e3bc517",
+      "isEncrypted": false
+    },
+    {
+      "name": "training-doc-2.pdf",
+      "size": 1000,
+      "confirmationCode": "11c66124-b992-564f-bc21-fbc30e4bc628",
+      "isEncrypted": false
+    }
+  ]
 }

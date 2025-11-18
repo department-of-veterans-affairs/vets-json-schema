@@ -60,16 +60,39 @@ const schema = {
     },
     doctorsCareInLastYTD: {
       type: 'boolean',
-      // enum: ['Yes', 'No']
     },
-    doctorsTreatmentDates: { $ref: '#/definitions/dateRange' },
-    nameAndAddressesOfDoctors: {
-      type: 'string',
+    doctorsCare: {
+      type: 'array',
+      items: 'object',
+      properties: {
+        doctorsTreatmentDates: {
+          type: 'Array',
+          items: 'object',
+          properties: {
+            $ref: '#/definitions/dateRange',
+          },
+        },
+        nameAndAddressOfDoctor: {
+          type: 'string',
+        },
+      },
     },
-    nameAndAddressesOfHospitals: {
-      type: 'string',
+    hospitalCare: {
+      type: 'array',
+      items: 'object',
+      properties: {
+        hospitalCareDateRanges: {
+          type: 'Array',
+          items: 'object',
+          properties: {
+            $ref: '#/definitions/dateRange',
+          },
+        },
+        nameAndAddressOfHospitals: {
+          type: 'string',
+        },
+      },
     },
-    hospitalCareDateRanges: { $ref: '#/definitions/dateRange' },
     // SECTION III -  EMPLOYMENT STATEMENT
     disabilityAffectEmployFTDate: {
       $ref: '#/definitions/date',
