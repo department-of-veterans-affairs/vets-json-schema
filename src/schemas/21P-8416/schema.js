@@ -12,31 +12,32 @@ const schema = {
     vaFileNumber: definitions.vaFileNumber,
     address: definitions.address,
     fullName: definitions.fullName,
-    files: definitions.files
+    files: definitions.files,
   },
   properties: {
     veteranSocialSecurityNumber: {
-      $ref: '#/definitions/ssn',
+      type: 'object',
+      properties: {
+        ssn: { $ref: '#/definitions/ssn' },
+        vaFileNumber: { $ref: '#/definitions/vaFileNumber' },
+      },
     },
     veteranDateOfBirth: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     veteranAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     veteranFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     claimantNotVeteran: { type: 'boolean' },
     claimantFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     firstTimeReporting: { type: 'boolean' },
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
-    vaFileNumber: {
-      $ref: '#/definitions/vaFileNumber',
-    },
     email: {
       $ref: '#/definitions/email',
     },
@@ -96,15 +97,15 @@ const schema = {
           travelLocationOther: { type: 'string' },
           travelMilesTraveled: { type: 'string', pattern: '^\\d*$' },
           travelDate: {
-            $ref: '#/definitions/date'
+            $ref: '#/definitions/date',
           },
-          travelReimbursementAmount: { type: 'number' }
-        }
-      }
+          travelReimbursementAmount: { type: 'number' },
+        },
+      },
     },
-    files: { $ref: '#/definitions/files' }
+    files: { $ref: '#/definitions/files' },
   },
-  required: ['statementOfTruthSignature', 'statementOfTruthCertified', 'veteranSocialSecurityNumber'],
+  required: ['statementOfTruthSignature', 'statementOfTruthCertified'],
 };
 
 export default schema;
