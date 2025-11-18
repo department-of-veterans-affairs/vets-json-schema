@@ -340,17 +340,37 @@
     "doctorsCareInLastYTD": {
       "type": "boolean"
     },
-    "doctorsTreatmentDates": {
-      "$ref": "#/definitions/dateRange"
+    "doctorsCare": {
+      "type": "array",
+      "items": "object",
+      "properties": {
+        "doctorsTreatmentDates": {
+          "type": "Array",
+          "items": "object",
+          "properties": {
+            "$ref": "#/definitions/dateRange"
+          }
+        },
+        "nameAndAddressOfDoctor": {
+          "type": "string"
+        }
+      }
     },
-    "nameAndAddressesOfDoctors": {
-      "type": "string"
-    },
-    "nameAndAddressesOfHospitals": {
-      "type": "string"
-    },
-    "hospitalCareDateRanges": {
-      "$ref": "#/definitions/dateRange"
+    "hospitalCare": {
+      "type": "array",
+      "items": "object",
+      "properties": {
+        "hospitalCareDateRanges": {
+          "type": "Array",
+          "items": "object",
+          "properties": {
+            "$ref": "#/definitions/dateRange"
+          }
+        },
+        "nameAndAddressOfHospitals": {
+          "type": "string"
+        }
+      }
     },
     "disabilityAffectEmployFTDate": {
       "$ref": "#/definitions/date"
