@@ -2,7 +2,15 @@ import _ from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
-const pickedDefinitions = _.pick(origDefinitions, ['date', 'phone', 'yesNoSchema', 'email', 'address']);
+const pickedDefinitions = _.pick(origDefinitions, [
+  'date',
+  'phone',
+  'yesNoSchema',
+  'email',
+  'address',
+  'ssn',
+  'vaFileNumber',
+]);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -10,16 +18,6 @@ const schema = {
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
-  required: [
-    'hasPreviouslyApplied',
-    'vaBenefitProgram',
-    'mailingAddress',
-    'testName',
-    'testDate',
-    'organizationName',
-    'organizationAddress',
-    'testCost',
-  ],
   properties: {
     statementOfTruthSignature: { type: 'string', minLength: 1 },
     hasPreviouslyApplied: {
@@ -28,6 +26,12 @@ const schema = {
     vaBenefitProgram: {
       type: 'string',
       enum: ['chapter30', 'chapter33', 'chapter35', 'chapter1606'],
+    },
+    ssn: {
+      $ref: '#/definitions/ssn',
+    },
+    vaFileNumber: {
+      $ref: '#/definitions/vaFileNumber',
     },
     payeeNumber: {
       type: 'string',
@@ -68,5 +72,33 @@ const schema = {
       maxLength: 500,
     },
   },
+  required: [
+    'hasPreviouslyApplied',
+    'mailingAddress',
+    'testName',
+    'testDate',
+    'organizationName',
+    'organizationAddress',
+    'testCost',
+  ],
+  anyOf: [
+    {
+      required: ['ssn'],
+    },
+    {
+      required: ['vaFileNumber'],
+    },
+  ],
+  oneOf: [
+    {
+      type: 'object',
+      properties: { hasPreviouslyApplied: { enum: [true] } },
+      required: ['vaBenefitProgram'],
+    },
+    {
+      type: 'object',
+      properties: { hasPreviouslyApplied: { enum: [false] } },
+    },
+  ],
 };
 export default schema;

@@ -227,18 +227,16 @@
           "maxLength": 51
         }
       }
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^[cC]{0,1}\\d{7,9}$"
     }
   },
-  "required": [
-    "hasPreviouslyApplied",
-    "vaBenefitProgram",
-    "mailingAddress",
-    "testName",
-    "testDate",
-    "organizationName",
-    "organizationAddress",
-    "testCost"
-  ],
   "properties": {
     "statementOfTruthSignature": {
       "type": "string",
@@ -255,6 +253,12 @@
         "chapter35",
         "chapter1606"
       ]
+    },
+    "ssn": {
+      "$ref": "#/definitions/ssn"
+    },
+    "vaFileNumber": {
+      "$ref": "#/definitions/vaFileNumber"
     },
     "payeeNumber": {
       "type": "string",
@@ -294,5 +298,51 @@
       "type": "string",
       "maxLength": 500
     }
-  }
+  },
+  "required": [
+    "hasPreviouslyApplied",
+    "mailingAddress",
+    "testName",
+    "testDate",
+    "organizationName",
+    "organizationAddress",
+    "testCost"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "ssn"
+      ]
+    },
+    {
+      "required": [
+        "vaFileNumber"
+      ]
+    }
+  ],
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "hasPreviouslyApplied": {
+          "enum": [
+            true
+          ]
+        }
+      },
+      "required": [
+        "vaBenefitProgram"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "hasPreviouslyApplied": {
+          "enum": [
+            false
+          ]
+        }
+      }
+    }
+  ]
 }
