@@ -281,7 +281,15 @@
   },
   "properties": {
     "veteranSocialSecurityNumber": {
-      "$ref": "#/definitions/ssn"
+      "type": "object",
+      "properties": {
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "vaFileNumber": {
+          "$ref": "#/definitions/vaFileNumber"
+        }
+      }
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"
@@ -306,9 +314,6 @@
     },
     "statementOfTruthCertified": {
       "type": "boolean"
-    },
-    "vaFileNumber": {
-      "$ref": "#/definitions/vaFileNumber"
     },
     "email": {
       "$ref": "#/definitions/email"
@@ -452,7 +457,6 @@
   },
   "required": [
     "statementOfTruthSignature",
-    "statementOfTruthCertified",
-    "veteranSocialSecurityNumber"
+    "statementOfTruthCertified"
   ]
 }
