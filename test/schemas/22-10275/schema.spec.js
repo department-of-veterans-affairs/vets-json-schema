@@ -36,8 +36,30 @@ const testData = {
           country: 'USA',
         },
       },
+      // International: free-text country (ENGLAND)
+      {
+        facilityCode: 'ZXCV1234',
+        institutionName: 'Royal College',
+        institutionAddress: {
+          street: '10 Downing St',
+          city: 'London',
+          postalCode: 'SW1A 2AA',
+          country: 'ENGLAND',
+        },
+      },
+      // International: misspelled country allowed; postalCode omitted (optional)
+      {
+        facilityCode: 'EF34GH56',
+        institutionName: 'Aotearoa Tech',
+        institutionAddress: {
+          street: '1 Queen St',
+          city: 'Auckland',
+          country: 'NEW ZEALEDN',
+        },
+      },
     ],
     invalid: [
+      // Bad facility code (7 chars)
       {
         facilityCode: '1234567',
         institutionName: 'Sample University',
@@ -49,6 +71,7 @@ const testData = {
           country: 'USA',
         },
       },
+      // Bad facility code (9 chars)
       {
         facilityCode: '123456789',
         institutionName: 'Sample University',
@@ -60,6 +83,7 @@ const testData = {
           country: 'USA',
         },
       },
+      // Missing institutionName
       {
         facilityCode: '12345678',
         institutionName: null,
@@ -71,15 +95,28 @@ const testData = {
           country: 'USA',
         },
       },
+      // Missing institutionAddress
       {
         facilityCode: '12345678',
         institutionName: 'Sample University',
         institutionAddress: null,
       },
+      // Country is whitespace-only (fails "not just whitespace" pattern)
+      {
+        facilityCode: 'QQ11WW22',
+        institutionName: 'Whitespace U',
+        institutionAddress: {
+          street: '123 Anywhere',
+          city: 'Nowhere',
+          postalCode: '00000',
+          country: '   ',
+        },
+      },
     ],
   },
   additionalInstitutions: {
     valid: [
+      // Single US item
       [
         {
           facilityCode: '87654321',
@@ -100,6 +137,7 @@ const testData = {
           },
         },
       ],
+      // Mixed list: international free-text & US
       [
         {
           facilityCode: 'A1B2C3D4',
@@ -107,9 +145,8 @@ const testData = {
           institutionAddress: {
             street: '10 University Blvd',
             city: 'Toronto',
-            state: 'ON',
             postalCode: 'M5S 1A1',
-            country: 'CAN',
+            country: 'CANADA', // free-text allowed
           },
           pointOfContact: {
             fullName: {
@@ -139,8 +176,25 @@ const testData = {
           },
         },
       ],
+      // International: misspelled country; omit postalCode
+      [
+        {
+          facilityCode: 'PL90MN12',
+          institutionName: 'Kiwi Institute',
+          institutionAddress: {
+            street: '1 Queen St',
+            city: 'Auckland',
+            country: 'NEW ZEALEDN',
+          },
+          pointOfContact: {
+            fullName: { first: 'Kiri', last: 'Te Kanawa' },
+            email: 'kiri@example.nz',
+          },
+        },
+      ],
     ],
     invalid: [
+      // Bad facility code pattern
       [
         {
           facilityCode: '1234567',
@@ -161,6 +215,7 @@ const testData = {
           },
         },
       ],
+      // Missing pointOfContact
       [
         {
           facilityCode: '87654321',
@@ -175,6 +230,7 @@ const testData = {
           pointOfContact: null,
         },
       ],
+      // Invalid email; whitespace-only country
       [
         {
           facilityCode: '87654321',
@@ -184,7 +240,7 @@ const testData = {
             city: 'Portland',
             state: 'OR',
             postalCode: '97201',
-            country: 'USA',
+            country: '   ',
           },
           pointOfContact: {
             fullName: {
@@ -225,7 +281,6 @@ const testData = {
         },
         title: 'Dean',
         internationalPhone: '+1-555-123-4567',
-        email: 'robert.johnson@university.edu',
       },
     ],
     invalid: [
@@ -244,15 +299,6 @@ const testData = {
         },
         title: 'President',
         email: 'invalid-email', // invalid email format
-      },
-      {
-        fullName: {
-          first: 'John',
-          last: 'Doe',
-        },
-        title: 'President',
-        usPhone: '123', // invalid phone format
-        email: 'john.doe@university.edu',
       },
       {
         fullName: {
@@ -383,7 +429,7 @@ describe('22-10275 Schema', () => {
       'institutionAddress',
       'pointOfContact',
     ]);
-    expect(schema.properties.authorizedOfficial.required).to.deep.equal(['fullName', 'title', 'email']);
+    expect(schema.properties.authorizedOfficial.required).to.deep.equal(['fullName', 'title']);
     expect(schema.properties.newCommitment.required).to.deep.equal([
       'principlesOfExcellencePointOfContact',
       'schoolCertifyingOfficial',

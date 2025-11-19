@@ -28,6 +28,7 @@ const testData = {
   },
   institutionDetails: {
     valid: [
+      // US with standard fields
       {
         hasVaFacilityCode: true,
         facilityCode: '12345678',
@@ -52,8 +53,32 @@ const testData = {
           county: 'Washington',
         },
       },
+      // International: free-text country (ENGLAND)
+      {
+        hasVaFacilityCode: false,
+        facilityCode: '',
+        institutionName: 'Royal College',
+        institutionAddress: {
+          street: '10 Downing St',
+          city: 'London',
+          postalCode: 'SW1A 2AA',
+          country: 'ENGLAND',
+        },
+      },
+      // International: misspelled country NEW ZEALEDN; postalCode omitted (optional)
+      {
+        hasVaFacilityCode: true,
+        facilityCode: 'EF34GH56',
+        institutionName: 'Aotearoa Tech',
+        institutionAddress: {
+          street: '1 Queen St',
+          city: 'Auckland',
+          country: 'NEW ZEALEDN',
+        },
+      },
     ],
     invalid: [
+      // Missing required top-level fields
       {
         hasVaFacilityCode: null,
         facilityCode: '12345678',
@@ -63,6 +88,18 @@ const testData = {
         hasVaFacilityCode: '',
         facilityCode: '',
         institutionName: '',
+      },
+      // Country whitespace-only should fail the "not just whitespace" pattern
+      {
+        hasVaFacilityCode: false,
+        facilityCode: '',
+        institutionName: 'Whitespace U',
+        institutionAddress: {
+          street: '123 Anywhere',
+          city: 'Nowhere',
+          postalCode: '00000',
+          country: '   ',
+        },
       },
     ],
   },

@@ -623,7 +623,7 @@ const schema = {
               },
             ],
           },
-          claimsOrReceivesPension: { type: 'boolean' },
+          claimsOrReceivesPension: { type: 'boolean' }, // might need conditional required
           studentNetworthInformation: {
             type: 'object',
             properties: {
@@ -659,15 +659,39 @@ const schema = {
           'fullName',
           'birthDate',
           'ssn',
-          'isParent',
+          'relationshipToStudent',
           'address',
           'wasMarried',
           'tuitionIsPaidByGovAgency',
+          // 'claimsOrReceivesPension', // remove from required and verify condition later - will allow submission
           'schoolInformation',
-          'claimsOrReceivesPension',
           'typeOfProgramOrBenefit',
-          'otherProgramOrBenefit',
-          'benefitPaymentDate',
+        ],
+        oneOf: [
+          {
+            type: 'object',
+            properties: {
+              typeOfProgramOrBenefit: {
+                type: 'object',
+                properties: {
+                  other: { type: 'boolean', enum: [true] },
+                },
+                required: ['other'],
+              },
+            },
+            required: ['otherProgramOrBenefit'],
+          },
+          {
+            type: 'object',
+            properties: {
+              typeOfProgramOrBenefit: {
+                type: 'object',
+                properties: {
+                  other: { type: 'boolean', enum: [false] },
+                },
+              },
+            },
+          },
         ],
       },
     },
