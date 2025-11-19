@@ -277,40 +277,28 @@ const schema = {
       items: {
         type: 'object',
         properties: {
-          whoReceives: {
+          recipient: {
             type: 'string',
             enum: ['SURVIVING_SPOUSE', 'VETERANS_CHILD', 'CUSTODIAN', 'CUSTODIAN_SPOUSE'],
           },
-          typeOfIncome: {
+          incomeType: {
             type: 'string',
             enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'CIVIL_SERVICE', 'PENSION_RETIREMENT', 'OTHER'],
           },
-          otherTypeExplanation: { type: 'string' },
-          payer: { type: 'string' },
-          amount: { type: 'string' },
+          recipientName: { type: 'string' },
+          incomePayer: { type: 'string' },
+          monthlyIncome: { type: 'number' },
         },
       },
     },
-    additionalLandValue: { type: 'string' },
+    homeAcreageValue: { type: 'number' },
     homeOwnership: definitions.yesNo,
-    hasAssetsOverThreshold: definitions.yesNo,
-    moreThanFourSources: definitions.yesNo,
-    otherIncomeLastYearNoLongerReceive: definitions.yesNo,
-    landLotSize: definitions.yesNo,
-    additionalLandMarketable: definitions.yesNo,
-    whoReceives: {
-      type: 'string',
-      enum: ['SURVIVING_SPOUSE', 'VETERANS_CHILD', 'CUSTODIAN', 'CUSTODIAN_SPOUSE', 'OTHER'],
-    },
-    fullName: { type: 'string' },
-    typeOfIncome: {
-      type: 'string',
-      enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDEND', 'CIVIL_SERVICE', 'PENSION_RETIREMENT', 'OTHER'],
-    },
-    otherTypeExplanation: { type: 'string' },
-    payer: { type: 'string' },
-    amount: { type: 'string' },
-    totalAssets: { type: 'string' },
+    totalNetWorth: definitions.yesNo,
+    moreThanFourIncomeSources: definitions.yesNo,
+    otherIncome: definitions.yesNo,
+    homeAcreageMoreThanTwo: definitions.yesNo,
+    landMarketable: definitions.yesNo,
+    netWorthEstimation: { type: 'number' },
     transferredAssets: definitions.yesNo,
     // SECTION 7 ADDITIONAL INFORMATION
     hasBankAccount: definitions.yesNo,
