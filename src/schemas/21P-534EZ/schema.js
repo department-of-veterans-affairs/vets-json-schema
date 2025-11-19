@@ -2,7 +2,7 @@ import definitions from '../../common/definitions';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'APPLICATION FOR D.I.C., SURVIVORS PENSION, AND/OR ACCRUED BENEFITS (21P-534EZ)',
+  title: 'APPLICATION FOR DIC, SURVIVORS PENSION, AND/OR ACCRUED BENEFITS (21P-534EZ)',
   type: 'object',
   definitions: {},
   properties: {
@@ -23,7 +23,7 @@ const schema = {
     claims: {
       type: 'object',
       properties: {
-        dependencyIndemnityComp: definitions.checkbox,
+        DIC: definitions.checkbox,
         survivorsPension: definitions.checkbox,
         accruedBenefits: definitions.checkbox,
       },
@@ -36,24 +36,31 @@ const schema = {
     claimantDateOfBirth: definitions.date,
     claimantSocialSecurityNumber: definitions.ssn,
     claimantIsVeteran: definitions.yesNo,
-    email: definitions.email,
+    claimantEmail: definitions.email,
     primaryPhone: definitions.phone,
     claimantAddress: definitions.address,
     // SECTION 3 MILITARY HISTORY
     nationalGuardActivated: definitions.yesNo,
-    dateOfActivation: definitions.date,
+    nationalGuardActivationDate: definitions.date,
     unitName: { type: 'string' },
-    unitPhoneNumber: definitions.phone,
+    unitPhone: definitions.phone,
     unitAddress: definitions.address,
-    powPeriod: {
+    powDateRange: {
       type: 'object',
       properties: {
         from: definitions.date,
         to: definitions.date,
       },
     },
-    prisonerOfWar: definitions.yesNo,
-    branchOfService: {
+    pow: definitions.yesNo,
+    activeServiceDateRange: {
+      type: 'object',
+      properties: {
+        from: definitions.date,
+        to: definitions.date,
+      },
+    },
+    serviceBranch: {
       type: 'object',
       properties: {
         ARMY: { type: 'boolean' },
@@ -68,14 +75,14 @@ const schema = {
     },
     dateInitiallyEnteredActiveDuty: definitions.date,
     finalReleaseDateFromActiveDuty: definitions.date,
-    cityStateOrForeignCountry: { type: 'string' },
+    placeOfSeparation: { type: 'string' },
     receivedBenefits: definitions.yesNo,
-    otherServiceNames: {
+    veteranPreviousNames: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          otherServiceName: definitions.fullName,
+          veteranPreviousNames: definitions.fullName,
         },
       },
     },
