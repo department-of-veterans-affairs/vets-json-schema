@@ -32,13 +32,9 @@ const schema = {
                 ssn: {
                     $ref: '#/definitions/ssn',
                 },
-                vaFileNumber: {
-                    $ref: '#/definitions/vaFileNumber',
-                },
                 dateOfBirth: {
                     $ref: '#/definitions/date',
                 },
-
             },
         },
         claimantAddress: {
@@ -58,9 +54,9 @@ const schema = {
         },
         discloseInformation: {
             type: 'object',
-            required: ['selection'],
+            required: ['authorize'],
             properties: {
-                selection: {
+                authorize: {
                     type: 'string',
                     enum: ['person', 'organization']
                 }
@@ -110,7 +106,7 @@ const schema = {
                     maxLength: 30,
                 },
             },
-            oneOf: [
+            anyOf: [
                 {
                     type: 'object',
                     properties: {
@@ -239,14 +235,14 @@ const schema = {
                 {
                     type: 'object',
                     properties: {
-                        selection: { enum: ['person'] },
+                        authorize: { enum: ['person'] },
                     },
                     required: ['thirdPartyPersonName', 'thirdPartyPersonAddress'],
                 },
                 {
                     type: 'object',
                     properties: {
-                        selection: { enum: ['organization'] },
+                        authorize: { enum: ['organization'] },
                     },
                     required: [
                         'thirdPartyOrganizationInformation',
