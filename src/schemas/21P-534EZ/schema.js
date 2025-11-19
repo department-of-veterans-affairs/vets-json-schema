@@ -211,14 +211,14 @@ const schema = {
       type: 'string',
       enum: ['DIC', 'DIC_1151', 'DIC_REEVALUATION'],
     },
-    needRegularAssistance: definitions.yesNo,
-    inNursingHome: definitions.yesNo,
-    vaMedicalCenters: {
+    claimingMonthlySpecialPension: definitions.yesNo,
+    claimantLivesInANursingHome: definitions.yesNo,
+    treatments: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          vaMedicalCenterName: { type: 'string' },
+          facility: { type: 'string' },
           city: { type: 'string' },
           state: { type: 'string' },
           startDate: definitions.date,
