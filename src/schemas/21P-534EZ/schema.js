@@ -232,22 +232,25 @@ const schema = {
       items: {
         type: 'object',
         properties: {
-          typeOfCare: { type: 'string' },
-          recipient: { type: 'string' },
+          careType: {
+            type: 'string',
+            enum: ['RESIDENTIAL_CARE_FACILITY', 'IN_HOME_CARE_ATTENDANT', 'NURSING_HOME', 'ADULT_DAYCARE'],
+          },
+          recipient: { type: 'string', enum: ['SURVIVING_SPOUSE', 'OTHER'] },
           recipientName: { type: 'string' },
           provider: { type: 'string' },
-          careDate: {
+          dateRange: {
             type: 'object',
             properties: {
               from: definitions.date,
               to: definitions.date,
             },
           },
-          noEdDate: { type: 'boolean' },
-          frequency: { type: 'string' },
-          paymentAmount: { type: 'string' },
-          hourlyRate: { type: 'string' },
-          weeklyHours: { type: 'string' },
+          noEndDate: { type: 'boolean' },
+          paymentFrequency: { type: 'string', enum: ['MONTHLY', 'YEARLY'] },
+          paymentAmount: { type: 'number' },
+          paymentRate: { type: 'number' },
+          hoursPerWeek: { type: 'number' },
         },
       },
     },
@@ -257,12 +260,15 @@ const schema = {
         type: 'object',
         properties: {
           recipient: { type: 'string' },
-          recipientName: { type: 'string' },
-          paymentRecipient: { type: 'string' },
+          childName: { type: 'string' },
+          provider: { type: 'string' },
           purpose: { type: 'string' },
           paymentDate: definitions.date,
-          frequency: { type: 'string' },
-          amount: { type: 'string' },
+          paymentFrequency: {
+            type: 'string',
+            enum: ['MONTHLY', 'YEARLY', 'ONE_TIME'],
+          },
+          paymentAmount: { type: 'number' },
         },
       },
     },
