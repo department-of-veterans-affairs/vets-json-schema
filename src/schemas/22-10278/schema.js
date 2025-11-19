@@ -22,7 +22,7 @@ const schema = {
     type: 'object',
     additionalProperties: false,
     definitions: pickedDefinitions,
-    required: ['claimantPersonalInformation', 'claimantAddress', 'claimantContactInformation', 'claimInformation', 'lengthOfRelease', 'securityQuestion'],
+    required: ['claimantPersonalInformation', 'claimantAddress', 'claimantContactInformation', 'discloseInformation', 'claimInformation', 'lengthOfRelease', 'securityQuestion', 'securityAnswer'],
     properties: {
         claimantPersonalInformation: {
             type: 'object',
@@ -49,12 +49,22 @@ const schema = {
             required: ['phoneNumber'],
             properties: {
                 phoneNumber: {
-                    $ref: '#/definitions/phone',
+                    type: 'string',
                 },
                 emailAddress: {
                     $ref: '#/definitions/email',
                 },
             },
+        },
+        discloseInformation: {
+            type: 'object',
+            required: ['selection'],
+            properties: {
+                selection: {
+                    type: 'string',
+                    enum: ['person', 'organization']
+                }
+            }
         },
         thirdPartyPersonName: {
             $ref: '#/definitions/fullNameNoSuffix',
@@ -74,14 +84,14 @@ const schema = {
                 organizationAddress: {
                     $ref: '#/definitions/address',
                 },
-            } 
+            }
         },
         organizationRepresentatives: {
             type: 'array',
             items: {
                 type: 'object',
                 properties: {
-                  fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+                    fullName: { $ref: '#/definitions/fullNameNoSuffix' },
                 },
                 required: ['fullName'],
             },
@@ -100,7 +110,7 @@ const schema = {
                     maxLength: 30,
                 },
             },
-             oneOf: [
+            oneOf: [
                 {
                     type: 'object',
                     properties: {
@@ -164,42 +174,52 @@ const schema = {
                 }
             }
         },
-        securityAnswerText: {
-            type: 'string',
-            minLength: 1,
-            maxLength: 30,
-        },
-        securityAnswerLocation: {
+        securityAnswer: {
             type: 'object',
-            required: ['city', 'state'],
             properties: {
-                city: {
+                securityAnswerText: {
                     type: 'string',
                     minLength: 1,
                     maxLength: 30,
                 },
-                state: {
-                    type: 'string',
-                    minLength: 2,
-                    maxLength: 2,
-                }
-            }
-        },
-        securityAnswerCreate: {
-            type: 'object',
-            required: ['question', 'answer'],
-            properties: {
-                question: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 100,
+                securityAnswerLocation: {
+                    type: 'object',
+                    required: ['city', 'state'],
+                    properties: {
+                        city: {
+                            type: 'string',
+                            minLength: 1,
+                            maxLength: 30,
+                        },
+                        state: {
+                            type: 'string',
+                            minLength: 2,
+                            maxLength: 2,
+                        }
+                    }
                 },
-                answer: {
-                    type: 'string',
-                    minLength: 1,
-                    maxLength: 30,
-                }
-            }
+                securityAnswerCreate: {
+                    type: 'object',
+                    required: ['question', 'answer'],
+                    properties: {
+                        question: {
+                            type: 'string',
+                            minLength: 1,
+                            maxLength: 100,
+                        },
+                        answer: {
+                            type: 'string',
+                            minLength: 1,
+                            maxLength: 30,
+                        }
+                    }
+                },
+            },
+            oneOf: [
+                { required: ['securityAnswerText'] },
+                { required: ['securityAnswerLocation'] },
+                { required: ['securityAnswerCreate'] }
+            ]
         },
         privacyAgreementAccepted: {
             $ref: '#/definitions/privacyAgreementAccepted',
@@ -212,11 +232,30 @@ const schema = {
             $ref: '#/definitions/date',
         },
     },
-    oneOf: [
-        { required: ['securityAnswerText'] },
-        { required: ['securityAnswerLocation'] },
-        { required: ['securityAnswerCreate'] }
-    ]
+    allOf: [
+        {
+            type: 'object',
+            oneOf: [
+                {
+                    type: 'object',
+                    properties: {
+                        selection: { enum: ['person'] },
+                    },
+                    required: ['thirdPartyPersonName', 'thirdPartyPersonAddress'],
+                },
+                {
+                    type: 'object',
+                    properties: {
+                        selection: { enum: ['organization'] },
+                    },
+                    required: [
+                        'thirdPartyOrganizationInformation',
+                        'organizationRepresentatives',
+                    ],
+                },
+            ],
+        },
+    ],
 };
 
 export default schema;
