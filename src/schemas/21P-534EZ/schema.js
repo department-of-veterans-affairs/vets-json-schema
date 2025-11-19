@@ -80,18 +80,18 @@ const schema = {
       },
     },
     // SECTION 4 HOUSEHOLD INFORMATION
-    additionalMarriages: definitions.yesNo,
-    dependents: {
+    claimantHasAdditionalMarriages: definitions.yesNo,
+    veteransChildren: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          dependentFullName: definitions.fullName,
-          dependentSocialSecurityNumber: definitions.ssn,
+          childFullName: definitions.fullName,
+          childSocialSecurityNumber: definitions.ssn,
           noSSN: { type: 'boolean' },
-          dateOfBirth: definitions.date,
+          childDateOfBirth: definitions.date,
           bornOutsideUS: { type: 'boolean' },
-          birthPlace: {
+          childPlaceOfBirth: {
             type: 'object',
             properties: {
               city: { type: 'string' },
@@ -99,42 +99,51 @@ const schema = {
               country: { type: 'string' },
             },
           },
+          childStatusBiological: { type: 'string', enum: ['BIOLOGICAL', 'ADOPTED', 'STEPCHILD'] },
+          childStatusDisabled: definitions.yesNo,
+          childStatusMarried: definitions.yesNo,
+          childStatusSupported: definitions.yesNo,
+          childSupport: { type: 'number' },
+          childrenLiveTogetherButNotWithSpouse: definitions.yesNo,
+          custodianFullName: definitions.fullName,
+          custodianAddress: definitions.address,
         },
       },
     },
-    awareOfLegalIssues: definitions.yesNo,
+    validMarriage: definitions.yesNo,
+    marriageValidityExplanation: { type: 'string' },
     livedContinuouslyWithVeteran: definitions.yesNo,
-    marriedAtDeath: definitions.yesNo,
-    marriageEndDetails: {
+    marriedToVeteranAtTimeOfDeath: definitions.yesNo,
+    howMarriageEnded: {
+      type: 'string',
+      enum: ['DEATH', 'DIVORCE', 'OTHER'],
+    },
+    howMarriageEndedExplanation: { type: 'string' },
+    marriageDates: {
       type: 'object',
       properties: {
-        marriageEndReason: {
-          type: 'string',
-          enum: ['DEATH', 'DIVORCE', 'OTHER'],
-        },
-        marriageEndOtherReason: { type: 'string' },
+        from: definitions.date,
+        to: definitions.date,
       },
     },
-    marriageDate: definitions.date,
-    marriageEndDate: definitions.date,
     placeOfMarriage: { type: 'string' },
-    placeMarriageEnded: { type: 'string' },
+    placeOfMarriageTermination: { type: 'string' },
     marriageType: {
       type: 'string',
       enum: ['CIVIL_RELIGIOUS', 'OTHER_WAY'],
     },
-    marriageTypeOther: { type: 'string' },
+    marriageTypeExplanation: { type: 'string' },
     recognizedAsSpouse: definitions.yesNo,
     hadPreviousMarriages: definitions.yesNo,
-    previousMarriages: {
+    spouseMarriages: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          previousSpouseName: definitions.fullName,
-          marriageToVeteranDate: definitions.date,
+          spouseFullName: definitions.fullName,
+          dateOfMarriage: definitions.date,
           marriedOutsideUS: { type: 'boolean' },
-          marriageLocation: {
+          locationOfMarriage: {
             type: 'object',
             properties: {
               city: { type: 'string' },
@@ -142,9 +151,9 @@ const schema = {
               country: { type: 'string' },
             },
           },
-          marriageEndDate: definitions.date,
+          dateOfSeparation: definitions.date,
           marriageEndedOutsideUS: { type: 'boolean' },
-          marriageEndLocation: {
+          locationOfSeparation: {
             type: 'object',
             properties: {
               city: { type: 'string' },
@@ -152,38 +161,43 @@ const schema = {
               country: { type: 'string' },
             },
           },
-          marriageEndReason: { type: 'string' },
-          marriageEndOtherExplanation: { type: 'string' },
+          reasonForSeparation: { type: 'string', enum: ['DEATH', 'DIVORCE', 'OTHER'] },
+          reasonForSeparationExplanation: { type: 'string' },
         },
       },
     },
-    separationDueToAssignedReasons: {
+    separationDueToAssignedReasonsYes: {
       type: 'string',
       enum: ['MEDICAL_FINANCIAL', 'RELATIONSHIP_DIFFERENCES', 'OTHER'],
     },
-    remarried: definitions.yesNo,
-    remarriageEndReason: {
+    remarriedAfterVeteranDeath: definitions.yesNo,
+    remarriageEndCauseDeath: {
       type: 'string',
       enum: ['DID_NOT_END', 'SPOUSE_DEATH', 'DIVORCE', 'OTHER'],
     },
-    remarriageEndOtherReason: { type: 'string' },
-    remarriageDate: definitions.date,
-    remarriageEndDate: definitions.date,
+    remarriageEndCauseExplanation: { type: 'string' },
+    remarriageDates: {
+      type: 'object',
+      properties: {
+        from: definitions.date,
+        to: definitions.date,
+      },
+    },
     separationExplanation: { type: 'string' },
     separationStartDate: definitions.date,
     separationEndDate: definitions.date,
     courtOrderedSeparation: definitions.yesNo,
-    expectingChild: definitions.yesNo,
-    hadChildWithVeteran: definitions.yesNo,
-    veteranPreviousMarriages: {
+    pregnantWithVeteran: definitions.yesNo,
+    childWithVeteran: definitions.yesNo,
+    veteranMarriages: {
       type: 'array',
       items: {
         type: 'object',
         properties: {
-          previousSpouseFullName: definitions.fullName,
-          marriageDate: definitions.date,
+          spouseFullName: definitions.fullName,
+          dateOfMarriage: definitions.date,
           marriedOutsideUS: { type: 'boolean' },
-          marriageLocation: {
+          locationOfMarriage: {
             type: 'object',
             properties: {
               city: { type: 'string' },
@@ -191,11 +205,11 @@ const schema = {
               country: { type: 'string' },
             },
           },
-          marriageEndedBy: { type: 'string' },
-          marriageEndedOther: { type: 'string' },
-          dateOfTermination: definitions.date,
+          reasonForSeparation: { type: 'string', enum: ['DEATH', 'DIVORCE', 'OTHER'] },
+          reasonForSeparationExplanation: { type: 'string' },
+          dateOfSeparation: definitions.date,
           marriageEndedOutsideUS: { type: 'boolean' },
-          marriageEndLocation: {
+          locationOfSeparation: {
             type: 'object',
             properties: {
               city: { type: 'string' },
