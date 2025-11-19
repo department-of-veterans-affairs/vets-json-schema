@@ -308,7 +308,23 @@ const schema = {
     transferredAssets: definitions.yesNo,
     // SECTION 7 ADDITIONAL INFORMATION
     hasBankAccount: definitions.yesNo,
-    bankAccount: definitions.bankAccount,
+    bankAccount: {
+      type: 'object',
+      properties: {
+        bankName: { type: 'string' },
+        accountType: {
+          type: 'string',
+          enum: ['checking', 'savings'],
+        },
+        routingNumber: {
+          type: 'string',
+          pattern: '^\\d{9}$',
+        },
+        accountNumber: {
+          type: 'string',
+        },
+      },
+    },
     files: definitions.files,
   },
   required: [],
