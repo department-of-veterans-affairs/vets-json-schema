@@ -32,7 +32,7 @@
       "nameAndAddressOfDoctor": "Dr. Carl Jenkins, 456 Medical St, Cheyenne, WY 82001"
     }
   ],
-  "hospitalCare": [
+  "hospitalsCare": [
     {
       "nameAndAddressOfHospital": "Cheyenne VA Medical Center, 789 Health Ave, Cheyenne, WY 82001",
       "hospitalCareDateRanges": [

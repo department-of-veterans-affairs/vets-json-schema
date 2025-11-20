@@ -77,7 +77,7 @@ const schema = {
         },
       },
     },
-    hospitalCare: {
+    hospitalsCare: {
       type: 'array',
       items: 'object',
       properties: {
