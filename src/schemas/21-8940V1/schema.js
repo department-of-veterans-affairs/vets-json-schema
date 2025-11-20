@@ -81,7 +81,7 @@ const schema = {
       type: 'array',
       items: 'object',
       properties: {
-        hospitalCareDateRanges: {
+        hospitalTreatmentDates: {
           type: 'Array',
           items: 'object',
           properties: {
