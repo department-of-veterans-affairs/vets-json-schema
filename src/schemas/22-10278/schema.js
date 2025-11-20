@@ -32,6 +32,10 @@ const schema = {
     'lengthOfRelease',
     'securityQuestion',
     'securityAnswer',
+    'privacyAgreementAccepted',
+    'statementOfTruthSignature',
+    'dateSigned',
+    'isAuthenticated',
   ],
   properties: {
     claimantPersonalInformation: {
@@ -107,49 +111,81 @@ const schema = {
     },
     claimInformation: {
       type: 'object',
-      required: ['claims'],
+    //   required: ['claims'],
       properties: {
-        claims: {
-          type: 'string',
-          enum: [
-            'statusOfClaim',
-            'currentBenefit',
-            'paymentHistory',
-            'amountOwed',
-            'minor',
-            'other',
+        // claims: {
+        //   type: 'string',
+        //   enum: [
+        //     'statusOfClaim',
+        //     'currentBenefit',
+        //     'paymentHistory',
+        //     'amountOwed',
+        //     'minor',
+        //     'other',
+        //   ],
+        // },
+        // other: {
+        //   type: 'string',
+        //   minLength: 1,
+        //   maxLength: 30,
+        // },
+        statusOfClaim: { type: 'boolean' },
+        currentBenefit: { type: 'boolean' },
+        paymentHistory: { type: 'boolean' },
+        amountOwed: { type: 'boolean' },
+        minor: { type: 'boolean'},
+        other: { type: 'boolean' },
+        otherText: { type: 'string', minLength: 1, maxLength: 30 },
+      },
+    //   anyOf: [
+    //     {
+    //       type: 'object',
+    //       properties: {
+    //         claims: {
+    //           enum: [
+    //             'statusOfClaim',
+    //             'currentBenefit',
+    //             'paymentHistory',
+    //             'amountOwed',
+    //             'minor',
+    //           ],
+    //         },
+    //       },
+    //       required: ['claims'],
+    //     },
+    //     {
+    //       type: 'object',
+    //       properties: {
+    //         claims: {
+    //           enum: ['other'],
+    //         },
+    //       },
+    //       required: ['claims', 'other'],
+    //     },
+    //   ],
+     allOf: [
+        // Require at least one checkbox selected
+        {
+          anyOf: [
+            { type: 'object', required: ['statusOfClaim'], properties: { statusOfClaim: { enum: [true] } } },
+            {
+              type: 'object',
+              required: ['currentBenefit'],
+              properties: { currentBenefit: { enum: [true] } },
+            },
+            { type: 'object', required: ['paymentHistory'], properties: { paymentHistory: { enum: [true] } } },
+            { type: 'object', required: ['amountOwed'], properties: { amountOwed: { enum: [true] } } },
+            { type: 'object', required: ['minor'], properties: { minor: { enum: [true] } } },
+            { type: 'object', required: ['other'], properties: { other: { enum: [true] } } },
           ],
         },
-        other: {
-          type: 'string',
-          minLength: 1,
-          maxLength: 30,
-        },
-      },
-      anyOf: [
+
+        // If "other" is true, require otherText
         {
-          type: 'object',
-          properties: {
-            claims: {
-              enum: [
-                'statusOfClaim',
-                'currentBenefit',
-                'paymentHistory',
-                'amountOwed',
-                'minor',
-              ],
-            },
-          },
-          required: ['claims'],
-        },
-        {
-          type: 'object',
-          properties: {
-            claims: {
-              enum: ['other'],
-            },
-          },
-          required: ['claims', 'other'],
+          anyOf: [
+            { type: 'object', not: { properties: { other: { enum: [true] } }, required: ['other'] } },
+            { type: 'object', required: ['otherText'], properties: { otherText: { type: 'string', minLength: 1, maxLength: 30 } } },
+          ],
         },
       ],
     },
@@ -261,6 +297,7 @@ const schema = {
     dateSigned: {
       $ref: '#/definitions/date',
     },
+    isAuthenticated: { type: 'boolean' },
   },
   allOf: [
     {

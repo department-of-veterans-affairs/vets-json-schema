@@ -279,7 +279,11 @@
     "claimInformation",
     "lengthOfRelease",
     "securityQuestion",
-    "securityAnswer"
+    "securityAnswer",
+    "privacyAgreementAccepted",
+    "statementOfTruthSignature",
+    "dateSigned",
+    "isAuthenticated"
   ],
   "properties": {
     "claimantPersonalInformation": {
@@ -571,6 +575,9 @@
     },
     "dateSigned": {
       "$ref": "#/definitions/date"
+    },
+    "isAuthenticated": {
+      "type": "boolean"
     }
   },
   "allOf": [
