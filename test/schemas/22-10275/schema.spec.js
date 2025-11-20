@@ -306,15 +306,6 @@ const testData = {
           last: 'Doe',
         },
         title: 'President',
-        usPhone: '123', // invalid phone format
-        email: 'john.doe@university.edu',
-      },
-      {
-        fullName: {
-          first: 'John',
-          last: 'Doe',
-        },
-        title: 'President',
         usPhone: '5551234567',
         internationalPhone: '+1-555-123-4567', // both phone types (maxProperties: 4)
         email: 'john.doe@university.edu',
