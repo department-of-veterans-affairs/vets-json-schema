@@ -345,7 +345,7 @@
       "items": "object",
       "properties": {
         "doctorsTreatmentDates": {
-          "type": "Array",
+          "type": "array",
           "items": "object",
           "properties": {
             "$ref": "#/definitions/dateRange"
@@ -353,6 +353,12 @@
         },
         "nameAndAddressOfDoctor": {
           "type": "string"
+        },
+        "relatedDisability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -361,7 +367,7 @@
       "items": "object",
       "properties": {
         "hospitalTreatmentDates": {
-          "type": "Array",
+          "type": "array",
           "items": "object",
           "properties": {
             "$ref": "#/definitions/dateRange"
@@ -369,6 +375,12 @@
         },
         "nameAndAddressOfHospitals": {
           "type": "string"
+        },
+        "relatedDisability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

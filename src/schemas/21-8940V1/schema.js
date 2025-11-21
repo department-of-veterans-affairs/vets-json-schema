@@ -66,7 +66,7 @@ const schema = {
       items: 'object',
       properties: {
         doctorsTreatmentDates: {
-          type: 'Array',
+          type: 'array',
           items: 'object',
           properties: {
             $ref: '#/definitions/dateRange',
@@ -75,6 +75,12 @@ const schema = {
         nameAndAddressOfDoctor: {
           type: 'string',
         },
+        relatedDisability: {
+          type: 'array',
+          items: {
+            type: 'string',
+          },
+        },
       },
     },
     hospitalsCare: {
@@ -82,7 +88,7 @@ const schema = {
       items: 'object',
       properties: {
         hospitalTreatmentDates: {
-          type: 'Array',
+          type: 'array',
           items: 'object',
           properties: {
             $ref: '#/definitions/dateRange',
@@ -90,6 +96,12 @@ const schema = {
         },
         nameAndAddressOfHospitals: {
           type: 'string',
+        },
+        relatedDisability: {
+          type: 'array',
+          items: {
+            type: 'string',
+          },
         },
       },
     },
