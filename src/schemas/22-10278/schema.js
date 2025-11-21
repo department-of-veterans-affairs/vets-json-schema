@@ -155,7 +155,6 @@ const schema = {
     },
     lengthOfRelease: {
       type: 'object',
-      required: ['lengthOfRelease'],
       properties: {
         lengthOfRelease: {
           type: 'string',
@@ -165,24 +164,31 @@ const schema = {
           $ref: '#/definitions/date',
         },
       },
-      oneOf: [
+      required: ['lengthOfRelease'],
+      allOf: [
         {
-          type: 'object',
-          properties: {
-            lengthOfRelease: {
-              enum: ['ongoing'],
+          oneOf: [
+            // Case 1: ongoing, and NOT allowed to have date
+            {
+              type: 'object',
+              properties: {
+                lengthOfRelease: { enum: ['ongoing'] },
+              },
+              required: ['lengthOfRelease'],
+              not: {
+                type: 'object',
+                required: ['date'],
+              },
             },
-          },
-          required: ['lengthOfRelease'],
-        },
-        {
-          type: 'object',
-          properties: {
-            lengthOfRelease: {
-              enum: ['date'],
+            // Case 2: date, must include date
+            {
+              type: 'object',
+              properties: {
+                lengthOfRelease: { enum: ['date'] },
+              },
+              required: ['lengthOfRelease', 'date'],
             },
-          },
-          required: ['lengthOfRelease', 'date'],
+          ],
         },
       ],
     },

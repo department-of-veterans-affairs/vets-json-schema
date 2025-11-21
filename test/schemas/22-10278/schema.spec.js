@@ -359,6 +359,10 @@ const testData = {
         lengthOfRelease: 'date',
         date: null,
       },
+         {
+        lengthOfRelease: 'ongoing',
+        date: '2022-01-01',
+      },
     ],
   },
   securityQuestion: {
@@ -373,30 +377,44 @@ const testData = {
     ],
     invalid: [{ question: 'pinCode' }, { question: '' }, {}],
   },
-  // securityAnswer: {
-  //     valid: [
-  //         {
-  //             securityAnswerText: '1234'
-  //         },
-  //         {
-  //             securityAnswerLocation: '1234'
-  //         },
-  //         {
-  //             securityAnswerCreate: '1234'
-  //         }
-  //     ],
-  //     invalid: [
-  //         {
-  //             securityAnswerText: null
-  //         },
-  //         {
-  //             securityAnswerLocation: null
-  //         },
-  //         {
-  //             securityAnswerCreate: null
-  //         }
-  //     ]
-  // }
+  securityAnswer: {
+      valid: [
+          {
+              securityAnswerText: '1234'
+          },
+          {
+              securityAnswerLocation: {
+                city: 'City',
+                state: 'CA'
+              }
+          },
+          {
+              securityAnswerCreate: {
+                question: 'Test question',
+                answer: 'Test answer'
+              }
+          }
+      ],
+      invalid: [
+          {
+              securityAnswerText: null
+          },
+          {
+              securityAnswerLocation: null
+          },
+          {
+              securityAnswerCreate: null
+          },
+          // Two types of answers
+          {
+            securityAnswerText: '1234',
+           securityAnswerLocation: {
+                city: 'City',
+                state: 'CA'
+              }
+          }
+      ]
+  },
   dateSigned: {
     valid: ['2025-01-31', '2024-12-01'],
     invalid: ['01/31/2025', '2025-13-01', null],
@@ -439,5 +457,6 @@ describe('22-10278 Schema', () => {
   schemaTestHelper.testValidAndInvalid('claimInformation', testData.claimInformation);
   schemaTestHelper.testValidAndInvalid('lengthOfRelease', testData.lengthOfRelease);
   schemaTestHelper.testValidAndInvalid('securityQuestion', testData.securityQuestion);
+    schemaTestHelper.testValidAndInvalid('securityAnswer', testData.securityAnswer);
   schemaTestHelper.testValidAndInvalid('dateSigned', testData.dateSigned);
 });
