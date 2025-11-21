@@ -5,6 +5,7 @@ const origDefinitions = _.cloneDeep(definitions);
 
 const pickedDefinitions = _.pick(origDefinitions, [
   'address',
+  'profileAddress',
   'date',
   'email',
   'fullNameNoSuffix',
@@ -55,7 +56,7 @@ const schema = {
       },
     },
     claimantAddress: {
-      $ref: '#/definitions/address',
+      $ref: '#/definitions/profileAddress',
     },
     claimantContactInformation: {
       type: 'object',
@@ -101,6 +102,8 @@ const schema = {
     },
     organizationRepresentatives: {
       type: 'array',
+      minItems: 1,
+      maxItems: 6,
       items: {
         type: 'object',
         properties: {
@@ -111,24 +114,7 @@ const schema = {
     },
     claimInformation: {
       type: 'object',
-    //   required: ['claims'],
       properties: {
-        // claims: {
-        //   type: 'string',
-        //   enum: [
-        //     'statusOfClaim',
-        //     'currentBenefit',
-        //     'paymentHistory',
-        //     'amountOwed',
-        //     'minor',
-        //     'other',
-        //   ],
-        // },
-        // other: {
-        //   type: 'string',
-        //   minLength: 1,
-        //   maxLength: 30,
-        // },
         statusOfClaim: { type: 'boolean' },
         currentBenefit: { type: 'boolean' },
         paymentHistory: { type: 'boolean' },
@@ -137,32 +123,6 @@ const schema = {
         other: { type: 'boolean' },
         otherText: { type: 'string', minLength: 1, maxLength: 30 },
       },
-    //   anyOf: [
-    //     {
-    //       type: 'object',
-    //       properties: {
-    //         claims: {
-    //           enum: [
-    //             'statusOfClaim',
-    //             'currentBenefit',
-    //             'paymentHistory',
-    //             'amountOwed',
-    //             'minor',
-    //           ],
-    //         },
-    //       },
-    //       required: ['claims'],
-    //     },
-    //     {
-    //       type: 'object',
-    //       properties: {
-    //         claims: {
-    //           enum: ['other'],
-    //         },
-    //       },
-    //       required: ['claims', 'other'],
-    //     },
-    //   ],
      allOf: [
         // Require at least one checkbox selected
         {
@@ -281,11 +241,30 @@ const schema = {
           },
         },
       },
-      oneOf: [
-        { required: ['securityAnswerLocation'] },
-        { required: ['securityAnswerCreate'] },
-        { required: ['securityAnswerText'] },
-      ],
+      // oneOf: [
+      //   { required: ['securityAnswerLocation'] },
+      //   { required: ['securityAnswerCreate'] },
+      //   { required: ['securityAnswerText'] },
+      // ],
+      allOf: [{
+        oneOf: [
+          {
+            type: 'object',
+            required: ['securityAnswerLocation'],
+            not: { anyOf: [{ required: ['securityAnswerText'] }, { required: ['securityAnswerCreate'] }] }
+          },
+          {
+            type: 'object',
+            required: ['securityAnswerCreate'],
+            not: { anyOf: [{ required: ['securityAnswerText'] }, { required: ['securityAnswerLocation'] }] }
+          },
+          {
+            type: 'object',
+            required: ['securityAnswerText'],
+            not: { anyOf: [{ required: ['securityAnswerLocation'] }, { required: ['securityAnswerCreate'] }] }
+          }
+        ]
+      }]
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
