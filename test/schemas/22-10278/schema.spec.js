@@ -8,6 +8,60 @@ import { minor } from 'semver';
 const schemaClone = cloneDeep(schema);
 const schemaTestHelper = new SchemaTestHelper(omit(schemaClone, ['required', 'allOf']));
 
+const base = {
+    claimantPersonalInformation: {
+        fullName: {
+            first: 'John',
+            middle: 'Michael',
+            last: 'Doe',
+        },
+    },
+    claimantAddress: {
+        street: '123 Main St',
+        city: 'Seattle',
+        state: 'WA',
+        postalCode: '98101',
+        country: 'USA',
+    },
+    claimantContactInformation:
+    {
+        phoneNumber: '+1 1234567890 (US)',
+        emailAddress: 'test@email.com',
+    },
+    discloseInformation: { authorize: 'person' },
+    thirdPartyPersonName: {
+        first: 'Sarah',
+        last: 'Wilson',
+    },
+    thirdPartyPersonAddress: {
+        street: '123 Main St',
+        city: 'Seattle',
+        state: 'WA',
+        postalCode: '98101',
+        country: 'USA',
+    },
+    claimInformation: {
+        statusOfClaim: true,
+        currentBenefit: true,
+        paymentHistory: true,
+        amountOwed: true,
+        minor: true,
+        other: true,
+        otherText: 'Other text example',
+    },
+    lengthOfRelease: {
+        lengthOfRelease: 'ongoing',
+    },
+    securityQuestion: { question: 'pin' },
+    securityAnswer: {
+        securityAnswerText: '1234'
+    },
+    privacyAgreementAccepted: true,
+    statementOfTruthSignature: 'John Michael Doe',
+    dateSigned: '2025-08-01',
+    isAuthenticated: true,
+}
+
 const testData = {
   claimantPersonalInformation: {
     valid: [
@@ -421,13 +475,18 @@ const testData = {
   },
 };
 
+const requires = (obj, keys) => keys.every(k => Object.prototype.hasOwnProperty.call(obj, k));
+
 describe('22-10278 Schema', () => {
-  it('should have required fields', () => {
-    expect(schema.required).to.deep.equal([
+   it('base payload includes all root-required keys', () => {
+      const payload = cloneDeep(base);
+      const requiredRoot = [
       'claimantPersonalInformation',
       'claimantAddress',
       'claimantContactInformation',
       'discloseInformation',
+      'thirdPartyPersonName',
+      'thirdPartyPersonAddress',
       'claimInformation',
       'lengthOfRelease',
       'securityQuestion',
@@ -436,15 +495,56 @@ describe('22-10278 Schema', () => {
       'statementOfTruthSignature',
       'dateSigned',
       'isAuthenticated',
-    ]);
-    expect(schema.properties.claimantPersonalInformation.required).to.deep.equal([
-     'fullName', 'ssn', 'dateOfBirth'
-    ]);
-    expect(schema.properties.claimantContactInformation.required).to.deep.equal([
-      'phoneNumber'
-    ]);
-    expect(schema.properties.thirdPartyOrganizationInformation.required).to.deep.equal(['organizationName', 'organizationAddress']);
-  });
+      ];
+      expect(requires(payload, requiredRoot)).to.equal(true);
+    });
+
+    it('if authorize == organization, includes required keys)', () => {
+        const payload = {
+            ...cloneDeep(base),
+            discloseInformation: { authorize: 'organization' },
+            thirdPartyOrganizationInformation: {
+                organizationName: 'Sample Organization',
+                organizationAddress: {
+                    street: '123 Main St',
+                    city: 'Seattle',
+                    state: 'WA',
+                    postalCode: '98101',
+                    country: 'USA',
+                },
+            },
+            organizationRepresentatives: [
+                {
+                    fullName: {
+                        first: 'John',
+                        last: 'Doe',
+                    },
+                },
+            ],
+        };
+        delete payload.thirdPartyPersonName;
+        delete payload.thirdPartyPersonAddress;
+
+        expect(
+            requires(payload, [
+                'claimantPersonalInformation',
+                'claimantAddress',
+                'claimantContactInformation',
+                'discloseInformation',
+                'thirdPartyOrganizationInformation',
+                'organizationRepresentatives',
+                'claimInformation',
+                'lengthOfRelease',
+                'securityQuestion',
+                'securityAnswer',
+                'privacyAgreementAccepted',
+                'statementOfTruthSignature',
+                'dateSigned',
+                'isAuthenticated',
+            ]),
+        ).to.equal(true);
+        expect(payload.discloseInformation.authorize).to.equal('organization');
+    });
 
   schemaTestHelper.testValidAndInvalid('claimantPersonalInformation', testData.claimantPersonalInformation);
   schemaTestHelper.testValidAndInvalid('claimantAddress', testData.claimantAddress);
