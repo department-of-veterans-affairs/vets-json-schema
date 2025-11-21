@@ -457,6 +457,6 @@ describe('22-10278 Schema', () => {
   schemaTestHelper.testValidAndInvalid('claimInformation', testData.claimInformation);
   schemaTestHelper.testValidAndInvalid('lengthOfRelease', testData.lengthOfRelease);
   schemaTestHelper.testValidAndInvalid('securityQuestion', testData.securityQuestion);
-    schemaTestHelper.testValidAndInvalid('securityAnswer', testData.securityAnswer);
+  schemaTestHelper.testValidAndInvalid('securityAnswer', testData.securityAnswer);
   schemaTestHelper.testValidAndInvalid('dateSigned', testData.dateSigned);
 });
