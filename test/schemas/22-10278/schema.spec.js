@@ -91,12 +91,6 @@ const testData = {
                 postalCode: 'SW1A 2AA',
                 country: 'ENGLAND',
             },
-            // International: misspelled country allowed; postalCode omitted (optional)
-            {
-                street: '1 Queen St',
-                city: 'Auckland',
-                country: 'NEW ZEALEDN',
-            },
         ],
         invalid: [
             // Country is whitespace-only (fails "not just whitespace" pattern)

@@ -4,8 +4,8 @@ import definitions from '../../common/definitions';
 const origDefinitions = _.cloneDeep(definitions);
 
 const pickedDefinitions = _.pick(origDefinitions, [
-  'address',
   'profileAddress',
+  'address',
   'date',
   'email',
   'fullNameNoSuffix',
@@ -19,8 +19,7 @@ const pickedDefinitions = _.pick(origDefinitions, [
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title:
-    'Authorize VA to disclose personal information to a third party (VA Form 22-10278)',
+  title: 'Authorize VA to disclose personal information to a third party (VA Form 22-10278)',
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
@@ -56,7 +55,7 @@ const schema = {
       },
     },
     claimantAddress: {
-      $ref: '#/definitions/profileAddress',
+      $ref: '#/definitions/profileAddress', //use profileAddress definition for military type address
     },
     claimantContactInformation: {
       type: 'object',
@@ -84,7 +83,7 @@ const schema = {
       $ref: '#/definitions/fullNameNoSuffix',
     },
     thirdPartyPersonAddress: {
-      $ref: '#/definitions/address',
+      $ref: '#/definitions/address', //use address definition for basic address
     },
     thirdPartyOrganizationInformation: {
       type: 'object',
@@ -112,6 +111,7 @@ const schema = {
         required: ['fullName'],
       },
     },
+
     claimInformation: {
       type: 'object',
       properties: {
@@ -119,11 +119,11 @@ const schema = {
         currentBenefit: { type: 'boolean' },
         paymentHistory: { type: 'boolean' },
         amountOwed: { type: 'boolean' },
-        minor: { type: 'boolean'},
+        minor: { type: 'boolean' },
         other: { type: 'boolean' },
         otherText: { type: 'string', minLength: 1, maxLength: 30 },
       },
-     allOf: [
+      allOf: [
         // Require at least one checkbox selected
         {
           anyOf: [
@@ -144,7 +144,11 @@ const schema = {
         {
           anyOf: [
             { type: 'object', not: { properties: { other: { enum: [true] } }, required: ['other'] } },
-            { type: 'object', required: ['otherText'], properties: { otherText: { type: 'string', minLength: 1, maxLength: 30 } } },
+            {
+              type: 'object',
+              required: ['otherText'],
+              properties: { otherText: { type: 'string', minLength: 1, maxLength: 30 } },
+            },
           ],
         },
       ],
@@ -188,15 +192,7 @@ const schema = {
       properties: {
         question: {
           type: 'string',
-          enum: [
-            'pin',
-            'motherBornLocation',
-            'highSchool',
-            'petName',
-            'teacherName',
-            'fatherMiddleName',
-            'create',
-          ],
+          enum: ['pin', 'motherBornLocation', 'highSchool', 'petName', 'teacherName', 'fatherMiddleName', 'create'],
         },
       },
     },
@@ -241,30 +237,20 @@ const schema = {
           },
         },
       },
-      // oneOf: [
-      //   { required: ['securityAnswerLocation'] },
-      //   { required: ['securityAnswerCreate'] },
-      //   { required: ['securityAnswerText'] },
-      // ],
-      allOf: [{
-        oneOf: [
-          {
-            type: 'object',
-            required: ['securityAnswerLocation'],
-            not: { anyOf: [{ required: ['securityAnswerText'] }, { required: ['securityAnswerCreate'] }] }
-          },
-          {
-            type: 'object',
-            required: ['securityAnswerCreate'],
-            not: { anyOf: [{ required: ['securityAnswerText'] }, { required: ['securityAnswerLocation'] }] }
-          },
-          {
-            type: 'object',
-            required: ['securityAnswerText'],
-            not: { anyOf: [{ required: ['securityAnswerLocation'] }, { required: ['securityAnswerCreate'] }] }
-          }
-        ]
-      }]
+      oneOf: [
+        {
+          type: 'object',
+          required: ['securityAnswerLocation'],
+        },
+        {
+          type: 'object',
+          required: ['securityAnswerCreate'],
+        },
+        {
+          type: 'object',
+          required: ['securityAnswerText'],
+        },
+      ],
     },
     privacyAgreementAccepted: {
       $ref: '#/definitions/privacyAgreementAccepted',
@@ -282,6 +268,7 @@ const schema = {
     {
       oneOf: [
         {
+          type: 'object',
           properties: {
             discloseInformation: {
               type: 'object',
@@ -291,13 +278,10 @@ const schema = {
               required: ['authorize'],
             },
           },
-          required: [
-            'discloseInformation',
-            'thirdPartyPersonName',
-            'thirdPartyPersonAddress',
-          ],
+          required: ['discloseInformation', 'thirdPartyPersonName', 'thirdPartyPersonAddress'],
         },
         {
+          type: 'object',
           properties: {
             discloseInformation: {
               type: 'object',
@@ -307,17 +291,14 @@ const schema = {
               required: ['authorize'],
             },
           },
-          required: [
-            'discloseInformation',
-            'thirdPartyOrganizationInformation',
-            'organizationRepresentatives',
-          ],
+          required: ['discloseInformation', 'thirdPartyOrganizationInformation', 'organizationRepresentatives'],
         },
       ],
     },
     {
       oneOf: [
         {
+          type: 'object',
           properties: {
             securityQuestion: {
               type: 'object',
@@ -334,6 +315,7 @@ const schema = {
           required: ['securityQuestion', 'securityAnswer'],
         },
         {
+          type: 'object',
           properties: {
             securityQuestion: {
               type: 'object',
@@ -350,18 +332,13 @@ const schema = {
           required: ['securityQuestion', 'securityAnswer'],
         },
         {
+          type: 'object',
           properties: {
             securityQuestion: {
               type: 'object',
               properties: {
                 question: {
-                  enum: [
-                    'pin',
-                    'highSchool',
-                    'petName',
-                    'teacherName',
-                    'fatherMiddleName',
-                  ],
+                  enum: ['pin', 'highSchool', 'petName', 'teacherName', 'fatherMiddleName'],
                 },
               },
               required: ['question'],
