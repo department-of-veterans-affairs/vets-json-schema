@@ -3,7 +3,6 @@ import { it } from 'mocha';
 import { cloneDeep, omit } from 'lodash';
 import schema from '../../../src/schemas/22-10278/schema';
 import SchemaTestHelper from '../../support/schema-test-helper';
-import { minor } from 'semver';
 
 const schemaClone = cloneDeep(schema);
 const schemaTestHelper = new SchemaTestHelper(omit(schemaClone, ['required', 'allOf']));
