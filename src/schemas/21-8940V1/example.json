@@ -29,7 +29,8 @@
           "to": "2025-02-20"
         }
       ],
-      "nameAndAddressOfDoctor": "Dr. Carl Jenkins, 456 Medical St, Cheyenne, WY 82001"
+      "nameAndAddressOfDoctor": "Dr. Carl Jenkins, 456 Medical St, Cheyenne, WY 82001",
+      "relatedDisability": [""]
     }
   ],
   "hospitalsCare": [
@@ -40,7 +41,8 @@
           "from": "2024-06-01",
           "to": "2024-06-15"
         }
-      ]
+      ],
+      "relatedDisability": [""]
     }
   ],
   "disabilityAffectEmployFTDate": "2023-11-01",
