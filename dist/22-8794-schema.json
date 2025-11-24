@@ -47,6 +47,48 @@
       "type": "string",
       "maxLength": 256,
       "format": "email"
+    },
+    "profileAddress": {
+      "type": "object",
+      "properties": {
+        "isMilitary": {
+          "type": "boolean"
+        },
+        "view:militaryBaseDescription": {
+          "type": "object",
+          "properties": {}
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "pattern": "^(?!\\s*$).+"
+        },
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "street3": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      }
     }
   },
   "required": [
@@ -88,24 +130,69 @@
     },
     "institutionDetails": {
       "type": "object",
-      "hasVaFacilityCode": {
-        "type": "boolean"
-      },
-      "facilityCode": {
-        "type": "string",
-        "pattern": "^[a-zA-Z0-9]{8}$"
-      },
-      "institutionName": {
-        "type": "string"
-      },
-      "institutionAddress": {
-        "$ref": "#/definitions/profileAddress"
-      },
+      "additionalProperties": false,
       "required": [
-        "facilityCode",
         "institutionName",
         "hasVaFacilityCode",
         "institutionAddress"
+      ],
+      "properties": {
+        "hasVaFacilityCode": {
+          "type": "boolean"
+        },
+        "facilityCode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{8}$"
+            },
+            {
+              "type": "string",
+              "enum": [
+                ""
+              ]
+            }
+          ]
+        },
+        "institutionName": {
+          "type": "string"
+        },
+        "institutionAddress": {
+          "$ref": "#/definitions/profileAddress"
+        }
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "type": "object",
+              "not": {
+                "properties": {
+                  "hasVaFacilityCode": {
+                    "enum": [
+                      true
+                    ]
+                  }
+                },
+                "required": [
+                  "hasVaFacilityCode"
+                ]
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "facilityCode"
+              ],
+              "properties": {
+                "facilityCode": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{8}$"
+                }
+              }
+            }
+          ]
+        }
       ]
     },
     "primaryOfficialDetails": {

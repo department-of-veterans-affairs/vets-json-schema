@@ -37,10 +37,6 @@
         }
       }
     },
-    "phone": {
-      "type": "string",
-      "minLength": 10
-    },
     "privacyAgreementAccepted": {
       "type": "boolean",
       "enum": [
@@ -50,10 +46,6 @@
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
-    },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
     },
     "yesNoSchema": {
       "type": "boolean"
@@ -178,10 +170,10 @@
           "type": "string"
         },
         "usPhone": {
-          "$ref": "#/definitions/usaPhone"
+          "type": "string"
         },
         "internationalPhone": {
-          "$ref": "#/definitions/phone"
+          "type": "string"
         },
         "email": {
           "$ref": "#/definitions/email"
@@ -218,10 +210,10 @@
               "type": "string"
             },
             "usPhone": {
-              "$ref": "#/definitions/usaPhone"
+              "type": "string"
             },
             "internationalPhone": {
-              "$ref": "#/definitions/phone"
+              "type": "string"
             },
             "email": {
               "$ref": "#/definitions/email"
@@ -256,10 +248,10 @@
               "type": "string"
             },
             "usPhone": {
-              "$ref": "#/definitions/usaPhone"
+              "type": "string"
             },
             "internationalPhone": {
-              "$ref": "#/definitions/phone"
+              "type": "string"
             },
             "email": {
               "$ref": "#/definitions/email"
