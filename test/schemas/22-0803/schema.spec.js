@@ -15,7 +15,6 @@ const testData = {
       { first: 'A', last: 'B' },
     ],
     invalid: [{ first: null, last: null }],
-    // invalid: [],
   },
   organizationName: {
     valid: ['Test Org'],
