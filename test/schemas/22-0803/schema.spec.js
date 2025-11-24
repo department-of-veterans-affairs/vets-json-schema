@@ -11,6 +11,10 @@ const schemaTestHelper = new SchemaTestHelper(schemaClone);
 describe('22-0803 schema', () => {
   const base = {
     testCost: 123,
+    applicantName: {
+      first: 'Joe',
+      last: 'Smith',
+    },
     organizationName: 'test org',
     organizationAddress: {
       country: 'USA',

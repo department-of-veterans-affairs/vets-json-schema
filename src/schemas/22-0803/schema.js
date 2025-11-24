@@ -10,6 +10,7 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'address',
   'ssn',
   'vaFileNumber',
+  'fullNameNoSuffix',
 ]);
 
 const schema = {
@@ -19,6 +20,9 @@ const schema = {
   additionalProperties: false,
   definitions: pickedDefinitions,
   properties: {
+    applicantName: {
+      fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+    },
     statementOfTruthSignature: { type: 'string', minLength: 1 },
     hasPreviouslyApplied: {
       $ref: '#/definitions/yesNoSchema',
@@ -73,6 +77,7 @@ const schema = {
     },
   },
   required: [
+    'applicantName',
     'hasPreviouslyApplied',
     'mailingAddress',
     'testName',
