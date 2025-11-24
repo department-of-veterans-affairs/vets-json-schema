@@ -89,6 +89,8 @@ const schema = {
     'organizationName',
     'organizationAddress',
     'testCost',
+    'statementOfTruthSignature',
+    'dateSigned',
   ],
   anyOf: [
     {

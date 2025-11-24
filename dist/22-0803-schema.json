@@ -836,7 +836,9 @@
     "testDate",
     "organizationName",
     "organizationAddress",
-    "testCost"
+    "testCost",
+    "statementOfTruthSignature",
+    "dateSigned"
   ],
   "anyOf": [
     {
