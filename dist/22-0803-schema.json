@@ -235,9 +235,38 @@
     "vaFileNumber": {
       "type": "string",
       "pattern": "^[cC]{0,1}\\d{7,9}$"
+    },
+    "fullNameNoSuffix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      }
     }
   },
   "properties": {
+    "applicantName": {
+      "fullName": {
+        "$ref": "#/definitions/fullNameNoSuffix"
+      }
+    },
     "statementOfTruthSignature": {
       "type": "string",
       "minLength": 1
@@ -300,6 +329,7 @@
     }
   },
   "required": [
+    "applicantName",
     "hasPreviouslyApplied",
     "mailingAddress",
     "testName",
