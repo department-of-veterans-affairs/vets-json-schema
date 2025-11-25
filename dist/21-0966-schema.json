@@ -111,10 +111,19 @@
         "dateOfBirth",
         "name"
       ]
+    },
+    "benefitType": {
+      "type": "string",
+      "enum": [
+        "compensation",
+        "pension",
+        "survivor"
+      ]
     }
   },
   "required": [
     "veteran",
-    "dependent"
+    "dependent",
+    "benefitType"
   ]
 }

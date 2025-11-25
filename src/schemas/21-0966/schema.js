@@ -76,6 +76,10 @@ export default {
       },
       required: ['ssn', 'dateOfBirth', 'name'],
     },
+    benefitType: {
+      type: 'string',
+      enum: ['compensation', 'pension', 'survivor'],
+    }
   },
-  required: ['veteran', 'dependent'],
+  required: ['veteran', 'dependent', 'benefitType'],
 };
