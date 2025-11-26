@@ -74,6 +74,7 @@ const schema = {
     testCost: {
       type: 'number',
       minimum: 0,
+      multipleOf: 0.01, // allows 2 decimal places
     },
     remarks: {
       type: 'string',
