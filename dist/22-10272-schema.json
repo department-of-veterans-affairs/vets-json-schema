@@ -820,7 +820,8 @@
     },
     "prepCourseCost": {
       "type": "number",
-      "minimum": 0
+      "minimum": 0,
+      "multipleOf": 0.01
     },
     "remarks": {
       "type": "string",
