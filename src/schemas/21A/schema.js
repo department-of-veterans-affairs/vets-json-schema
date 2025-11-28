@@ -7,9 +7,10 @@ const documentItem = {
     size: { type: 'number' },
     type: { type: 'string' },
     confirmationCode: { type: 'string' },
+    isEncrypted: { type: 'boolean' },
     errorMessage: { type: 'string' }
   },
-  required: ['name', 'size', 'type', 'errorMessage'],
+  required: ['name', 'size', 'type', 'errorMessage', 'confirmationCode'],
   additionalProperties: false
 };
 
