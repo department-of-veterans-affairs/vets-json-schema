@@ -6,6 +6,7 @@ const documentItem = {
     name: { type: 'string' },
     size: { type: 'number' },
     type: { type: 'string' },
+    confirmationCode: { type: 'string' },
     errorMessage: { type: 'string' }
   },
   required: ['name', 'size', 'type', 'errorMessage'],

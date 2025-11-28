@@ -2201,6 +2201,9 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2238,6 +2241,9 @@
             "type": "number"
           },
           "type": {
+            "type": "string"
+          },
+          "confirmationCode": {
             "type": "string"
           },
           "errorMessage": {
@@ -2279,6 +2285,9 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2316,6 +2325,9 @@
             "type": "number"
           },
           "type": {
+            "type": "string"
+          },
+          "confirmationCode": {
             "type": "string"
           },
           "errorMessage": {
@@ -2357,6 +2369,9 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2394,6 +2409,9 @@
             "type": "number"
           },
           "type": {
+            "type": "string"
+          },
+          "confirmationCode": {
             "type": "string"
           },
           "errorMessage": {
@@ -2435,6 +2453,9 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2472,6 +2493,9 @@
             "type": "number"
           },
           "type": {
+            "type": "string"
+          },
+          "confirmationCode": {
             "type": "string"
           },
           "errorMessage": {
@@ -2513,6 +2537,9 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2550,6 +2577,9 @@
             "type": "number"
           },
           "type": {
+            "type": "string"
+          },
+          "confirmationCode": {
             "type": "string"
           },
           "errorMessage": {
@@ -2591,6 +2621,9 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2630,6 +2663,9 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2667,6 +2703,9 @@
             "type": "number"
           },
           "type": {
+            "type": "string"
+          },
+          "confirmationCode": {
             "type": "string"
           },
           "errorMessage": {
