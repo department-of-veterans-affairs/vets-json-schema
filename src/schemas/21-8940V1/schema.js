@@ -65,6 +65,9 @@ const schema = {
       type: 'array',
       items: 'object',
       properties: {
+        inVANetwork: {
+          type: 'boolean',
+        },
         doctorsTreatmentDates: {
           type: 'array',
           items: 'object',
@@ -87,6 +90,9 @@ const schema = {
       type: 'array',
       items: 'object',
       properties: {
+        inVANetwork: {
+          type: 'boolean',
+        },
         hospitalTreatmentDates: {
           type: 'array',
           items: 'object',

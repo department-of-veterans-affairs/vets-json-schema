@@ -23,6 +23,7 @@
   "doctorsCareInLastYTD": true,
   "doctorsCare": [
     {
+      "inVANetwork": true,
       "doctorsTreatmentDates": [
         {
           "from": "2024-01-10",
@@ -35,6 +36,7 @@
   ],
   "hospitalsCare": [
     {
+      "inVANetwork": true,
       "nameAndAddressOfHospital": "Cheyenne VA Medical Center, 789 Health Ave, Cheyenne, WY 82001",
       "hospitalTreatmentDates": [
         {
