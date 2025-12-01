@@ -1,6 +1,6 @@
 const addressPou = {
   correspondence: 'CORRESPONDENCE',
-  residence: 'RESIDENCE/CHOICE',
+  residence: 'RESIDENCE',
 };
 
 const addressTypes = {
