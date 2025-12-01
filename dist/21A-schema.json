@@ -2215,7 +2215,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2261,7 +2260,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2307,7 +2305,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2353,7 +2350,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2399,7 +2395,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2445,7 +2440,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2491,7 +2485,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2537,7 +2530,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2583,7 +2575,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2629,7 +2620,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2675,7 +2665,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2721,7 +2710,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false
@@ -2767,7 +2755,6 @@
           "name",
           "size",
           "type",
-          "errorMessage",
           "confirmationCode"
         ],
         "additionalProperties": false

@@ -10,7 +10,7 @@ const documentItem = {
     isEncrypted: { type: 'boolean' },
     errorMessage: { type: 'string' }
   },
-  required: ['name', 'size', 'type', 'errorMessage', 'confirmationCode'],
+  required: ['name', 'size', 'type', 'confirmationCode'],
   additionalProperties: false
 };
 
