@@ -1,6 +1,6 @@
 {
   "name": "vets-json-schema",
-  "version": "25.2.16",
+  "version": "25.2.25",
   "license": "CC0-1.0",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "mocha": "^3.0.2",
     "node-watch": "^0.4.0",
     "prettier": "^1.19.1",
-    "semver": "^7.7.2"
+    "semver": "^7.7.3"
   },
   "engines": {
     "node": ">=14.15.0"
