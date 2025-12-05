@@ -32,14 +32,6 @@
         }
       }
     },
-    "usaPhone": {
-      "type": "string",
-      "pattern": "^\\d{10}$"
-    },
-    "phone": {
-      "type": "string",
-      "minLength": 10
-    },
     "yesNoSchema": {
       "type": "boolean"
     },
@@ -116,10 +108,10 @@
           "maxLength": 50
         },
         "phoneNumber": {
-          "$ref": "#/definitions/usaPhone"
+          "type": "string"
         },
         "internationalPhoneNumber": {
-          "$ref": "#/definitions/phone"
+          "type": "string"
         },
         "emailAddress": {
           "type": "string",
@@ -212,10 +204,10 @@
           "maxLength": 50
         },
         "phoneNumber": {
-          "$ref": "#/definitions/usaPhone"
+          "type": "string"
         },
         "internationalPhoneNumber": {
-          "$ref": "#/definitions/phone"
+          "type": "string"
         },
         "emailAddress": {
           "type": "string",
@@ -276,10 +268,10 @@
                 "maxLength": 50
               },
               "phoneNumber": {
-                "$ref": "#/definitions/usaPhone"
+                "type": "string"
               },
               "internationalPhoneNumber": {
-                "$ref": "#/definitions/phone"
+                "type": "string"
               },
               "emailAddress": {
                 "type": "string",

@@ -5,8 +5,6 @@ const origDefinitions = _.cloneDeep(definitions);
 const pickedDefinitions = _.pick(origDefinitions, [
   'date',
   'fullNameNoSuffix',
-  'usaPhone',
-  'phone',
   'yesNoSchema',
   'email',
   'profileAddress',
@@ -54,10 +52,10 @@ const schema = {
           maxLength: 50,
         },
         phoneNumber: {
-          $ref: '#/definitions/usaPhone',
+          type: 'string'
         },
         internationalPhoneNumber: {
-          $ref: '#/definitions/phone',
+          type: 'string'
         },
         emailAddress: definitions.email,
       },
@@ -111,10 +109,10 @@ const schema = {
           maxLength: 50,
         },
         phoneNumber: {
-          $ref: '#/definitions/usaPhone',
+          type: 'string'
         },
         internationalPhoneNumber: {
-          $ref: '#/definitions/phone',
+          type: 'string'
         },
         emailAddress: definitions.email,
       },
@@ -156,10 +154,10 @@ const schema = {
                 maxLength: 50,
               },
               phoneNumber: {
-                $ref: '#/definitions/usaPhone',
+                type: 'string'
               },
               internationalPhoneNumber: {
-                $ref: '#/definitions/phone',
+                type: 'string'
               },
               emailAddress: definitions.email,
               trainingCompletionDate: {
