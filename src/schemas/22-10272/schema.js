@@ -2,7 +2,6 @@ import _ from 'lodash';
 import definitions from '../../common/definitions';
 
 const origDefinitions = _.cloneDeep(definitions);
-
 const pickedDefinitions = _.pick(origDefinitions, [
   'date',
   'phone',
