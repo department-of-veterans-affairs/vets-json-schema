@@ -122,7 +122,6 @@ const schema = {
     'veteranStatus',
     'dateReleasedFromActiveDuty',
     'activeDutyDuringHitechVets',
-    'bankAccount',
     'isEmployed',
     'attestationAgreementAccepted',
     'statementOfTruthSignature',
