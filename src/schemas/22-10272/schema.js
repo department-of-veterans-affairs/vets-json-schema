@@ -9,41 +9,20 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'email',
   'address',
   'profileAddress',
-  'ssn',
   'vaFileNumber',
   'fullNameNoSuffix',
 ]);
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
-  title: 'VA Form 22-0803',
+  title: 'VA Form 22-10272',
   type: 'object',
   additionalProperties: false,
   definitions: pickedDefinitions,
   properties: {
+    // PART I - IDENTIFICATION INFORMATION
     applicantName: {
       $ref: '#/definitions/fullNameNoSuffix',
-    },
-    statementOfTruthSignature: { type: 'string', minLength: 1 },
-    dateSigned: {
-      $ref: '#/definitions/date',
-    },
-    hasPreviouslyApplied: {
-      $ref: '#/definitions/yesNoSchema',
-    },
-    vaBenefitProgram: {
-      type: 'string',
-      enum: ['chapter30', 'chapter33', 'chapter35', 'chapter1606'],
-    },
-    ssn: {
-      $ref: '#/definitions/ssn',
-    },
-    vaFileNumber: {
-      $ref: '#/definitions/vaFileNumber',
-    },
-    payeeNumber: {
-      type: 'string',
-      maxLength: 2,
     },
     mailingAddress: {
       $ref: '#/definitions/profileAddress',
@@ -57,50 +36,99 @@ const schema = {
     mobilePhone: {
       $ref: '#/definitions/phone',
     },
-    testDate: {
-      $ref: '#/definitions/date',
+    vaFileNumber: {
+      $ref: '#/definitions/vaFileNumber',
     },
+    payeeNumber: {
+      type: 'string',
+      maxLength: 2,
+    },
+
+    // PART II - VA EDUCATION INFORMATION
+    hasPreviouslyApplied: {
+      $ref: '#/definitions/yesNoSchema',
+    },
+    vaBenefitProgram: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 500,
+    },
+
+    // PART III - LICENSING OR CERTIFICATION TEST
     testName: {
+      type: 'string',
+      minLength: 1,
+    },
+    organizationName: {
       type: 'string',
       minLength: 1,
     },
     organizationAddress: {
       $ref: '#/definitions/address',
     },
-    organizationName: {
+
+    // PART IV - PREP COURSE INFORMATION
+    prepCourseName: {
       type: 'string',
       minLength: 1,
     },
-    testCost: {
+    prepCourseOrganizationName: {
+      type: 'string',
+      minLength: 1,
+    },
+    prepCourseOrganizationAddress: {
+      $ref: '#/definitions/address',
+    },
+    prepCourseTakenOnline: {
+      $ref: '#/definitions/yesNoSchema',
+    },
+    prepCourseStartDate: {
+      $ref: '#/definitions/date',
+    },
+    prepCourseEndDate: {
+      $ref: '#/definitions/date',
+    },
+    prepCourseCost: {
       type: 'number',
       minimum: 0,
       multipleOf: 0.01, // allows 2 decimal places
     },
+
     remarks: {
       type: 'string',
       maxLength: 500,
     },
+
+    // PART V - CERTIFICATION AND SIGNATURE
+    statementOfTruthSignature: {
+      type: 'string',
+      minLength: 1,
+    },
+    dateSigned: {
+      $ref: '#/definitions/date',
+    },
   },
+
   required: [
     'applicantName',
-    'hasPreviouslyApplied',
     'mailingAddress',
+    'vaFileNumber',
+    'hasPreviouslyApplied',
     'testName',
-    'testDate',
     'organizationName',
     'organizationAddress',
-    'testCost',
+    'prepCourseName',
+    'prepCourseOrganizationName',
+    'prepCourseOrganizationAddress',
+    'prepCourseStartDate',
+    'prepCourseEndDate',
+    'prepCourseCost',
+    'prepCourseTakenOnline',
     'statementOfTruthSignature',
     'dateSigned',
   ],
-  anyOf: [
-    {
-      required: ['ssn'],
-    },
-    {
-      required: ['vaFileNumber'],
-    },
-  ],
+
+  // If they've previously applied, they must indicate which benefit
   oneOf: [
     {
       type: 'object',
@@ -113,4 +141,5 @@ const schema = {
     },
   ],
 };
+
 export default schema;
