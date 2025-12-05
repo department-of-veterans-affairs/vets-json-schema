@@ -1,4 +1,6 @@
 name: Shai-Hulud 2.0 Security Check
+permissions:
+  contents: read
 
 on:
   push:
