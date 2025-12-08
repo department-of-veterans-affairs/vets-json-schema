@@ -222,7 +222,7 @@ const testData = {
   },
   remarks: {
     valid: ['This is another remark', 'This is a remark'],
-    invalid: [null, ''],
+    invalid: [null],
   },
 };
 describe('22-8794 schema', () => {

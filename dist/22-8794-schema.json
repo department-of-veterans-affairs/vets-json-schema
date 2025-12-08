@@ -312,8 +312,7 @@
     },
     "remarks": {
       "type": "string",
-      "maxLength": 500,
-      "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*]+$"
+      "maxLength": 500
     },
     "statementOfTruthSignature": {
       "type": "string"
