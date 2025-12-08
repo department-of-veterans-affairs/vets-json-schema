@@ -27,6 +27,12 @@
     },
     "simpleAddress": {
       "type": "object",
+      "required": [
+        "street",
+        "city",
+        "state",
+        "postalCode"
+      ],
       "properties": {
         "street": {
           "type": "string",

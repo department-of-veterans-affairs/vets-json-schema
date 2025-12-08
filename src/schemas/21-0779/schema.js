@@ -14,6 +14,7 @@ const schema = {
     },
     simpleAddress: {
       type: 'object',
+      required: ['street', 'city', 'state', 'postalCode'],
       properties: {
         street: { type: 'string', example: '123 Main St', maxLength: 30 },
         street2: { type: ['string', 'null'], example: 'Apt 4', maxLength: 5 },
