@@ -189,7 +189,6 @@ const schema = {
     remarks: {
       type: 'string',
       maxLength: 500,
-      pattern: textAndNumbersRegex,
     },
     statementOfTruthSignature: {
       type: 'string',
