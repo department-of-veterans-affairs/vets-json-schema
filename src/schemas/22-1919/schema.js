@@ -37,6 +37,7 @@ const schema = {
     'allProprietaryProfitConflicts',
     'statementOfTruthSignature',
     'dateSigned',
+    'isAuthenticated'
   ],
   properties: {
     certifyingOfficial: {
@@ -163,6 +164,9 @@ const schema = {
     },
     dateSigned: {
       $ref: '#/definitions/date',
+    },
+    isAuthenticated: {
+      type: 'boolean',
     },
   },
 };
