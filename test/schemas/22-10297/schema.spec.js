@@ -268,7 +268,6 @@ describe('10297 schema', () => {
       'veteranStatus',
       'dateReleasedFromActiveDuty',
       'activeDutyDuringHitechVets',
-      'bankAccount',
       'isEmployed',
       'attestationAgreementAccepted',
       'statementOfTruthSignature',

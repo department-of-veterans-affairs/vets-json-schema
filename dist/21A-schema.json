@@ -2201,6 +2201,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2209,7 +2215,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2240,6 +2246,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2248,7 +2260,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2279,6 +2291,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2287,7 +2305,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2318,6 +2336,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2326,7 +2350,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2357,6 +2381,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2365,7 +2395,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2396,6 +2426,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2404,7 +2440,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2435,6 +2471,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2443,7 +2485,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2474,6 +2516,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2482,7 +2530,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2513,6 +2561,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2521,7 +2575,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2552,6 +2606,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2560,7 +2620,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2591,6 +2651,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2599,7 +2665,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2630,6 +2696,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2638,7 +2710,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
@@ -2669,6 +2741,12 @@
           "type": {
             "type": "string"
           },
+          "confirmationCode": {
+            "type": "string"
+          },
+          "isEncrypted": {
+            "type": "boolean"
+          },
           "errorMessage": {
             "type": "string"
           }
@@ -2677,7 +2755,7 @@
           "name",
           "size",
           "type",
-          "errorMessage"
+          "confirmationCode"
         ],
         "additionalProperties": false
       }
