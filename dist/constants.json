@@ -1,7 +1,7 @@
 {
   "addressPou": {
     "correspondence": "CORRESPONDENCE",
-    "residence": "RESIDENCE/CHOICE"
+    "residence": "RESIDENCE"
   },
   "addressTypes": {
     "domestic": "DOMESTIC",
