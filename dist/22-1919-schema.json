@@ -65,7 +65,8 @@
     "allProprietaryConflictOfInterest",
     "allProprietaryProfitConflicts",
     "statementOfTruthSignature",
-    "dateSigned"
+    "dateSigned",
+    "isAuthenticated"
   ],
   "properties": {
     "certifyingOfficial": {
@@ -243,6 +244,9 @@
     },
     "dateSigned": {
       "$ref": "#/definitions/date"
+    },
+    "isAuthenticated": {
+      "type": "boolean"
     }
   }
 }
