@@ -12,24 +12,24 @@ const schema = {
     vaFileNumber: definitions.vaFileNumber,
     address: definitions.address,
     fullName: definitions.fullName,
-    files: definitions.files
+    files: definitions.files,
   },
   properties: {
     veteranSocialSecurityNumber: {
       $ref: '#/definitions/ssn',
     },
     veteranDateOfBirth: {
-      $ref: '#/definitions/date'
+      $ref: '#/definitions/date',
     },
     veteranAddress: {
-      $ref: '#/definitions/address'
+      $ref: '#/definitions/address',
     },
     veteranFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     claimantNotVeteran: { type: 'boolean' },
     claimantFullName: {
-      $ref: '#/definitions/fullName'
+      $ref: '#/definitions/fullName',
     },
     firstTimeReporting: { type: 'boolean' },
     statementOfTruthSignature: { type: 'string' },
@@ -48,7 +48,7 @@ const schema = {
         properties: {
           recipient: {
             type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT', 'OTHER'],
+            enum: ['VETERAN', 'SPOUSE', 'CHILD', 'OTHER'],
           },
           recipientName: { type: 'string' },
           provider: { type: 'string' },
@@ -67,7 +67,7 @@ const schema = {
         properties: {
           recipient: {
             type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT', 'OTHER'],
+            enum: ['VETERAN', 'SPOUSE', 'CHILD', 'OTHER'],
           },
           recipientName: { type: 'string' },
           provider: { type: 'string' },
@@ -86,7 +86,7 @@ const schema = {
         properties: {
           traveler: {
             type: 'string',
-            enum: ['VETERAN', 'SPOUSE', 'DEPENDENT', 'OTHER'],
+            enum: ['VETERAN', 'SPOUSE', 'CHILD', 'OTHER'],
           },
           travelerName: { type: 'string' },
           travelLocation: {
@@ -96,13 +96,13 @@ const schema = {
           travelLocationOther: { type: 'string' },
           travelMilesTraveled: { type: 'string', pattern: '^\\d*$' },
           travelDate: {
-            $ref: '#/definitions/date'
+            $ref: '#/definitions/date',
           },
-          travelReimbursementAmount: { type: 'number' }
-        }
-      }
+          travelReimbursementAmount: { type: 'number' },
+        },
+      },
     },
-    files: { $ref: '#/definitions/files' }
+    files: { $ref: '#/definitions/files' },
   },
   required: ['statementOfTruthSignature', 'statementOfTruthCertified', 'veteranSocialSecurityNumber'],
 };
