@@ -197,7 +197,6 @@ const schema = {
           maximumNumberofStudents: { type: 'integer', minimum: 0, maximum: 1000000 },
           degreeLevel: {
             type: 'string',
-            enum: ['undergraduate', 'graduate', 'doctoral', 'all'],
           },
           degreeProgram: {
             type: 'string',

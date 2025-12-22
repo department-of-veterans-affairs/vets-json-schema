@@ -828,13 +828,7 @@
             "maximum": 1000000
           },
           "degreeLevel": {
-            "type": "string",
-            "enum": [
-              "undergraduate",
-              "graduate",
-              "doctoral",
-              "all"
-            ]
+            "type": "string"
           },
           "degreeProgram": {
             "type": "string"
