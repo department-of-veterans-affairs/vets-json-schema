@@ -63,50 +63,54 @@ const schema = {
     },
     doctorsCare: {
       type: 'array',
-      items: 'object',
-      properties: {
-        inVANetwork: {
-          type: 'boolean',
-        },
-        doctorsTreatmentDates: {
-          type: 'array',
-          items: 'object',
-          properties: {
-            $ref: '#/definitions/dateRange',
+      items: {
+        type: 'object',
+        properties: {
+          inVANetwork: {
+            type: 'boolean',
           },
-        },
-        nameAndAddressOfDoctor: {
-          type: 'string',
-        },
-        relatedDisability: {
-          type: 'array',
-          items: {
+          doctorsTreatmentDates: {
+            type: 'array',
+            items: 'object',
+            properties: {
+              $ref: '#/definitions/dateRange',
+            },
+          },
+          nameAndAddressOfDoctor: {
             type: 'string',
+          },
+          relatedDisability: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
           },
         },
       },
     },
     hospitalsCare: {
       type: 'array',
-      items: 'object',
-      properties: {
-        inVANetwork: {
-          type: 'boolean',
-        },
-        hospitalTreatmentDates: {
-          type: 'array',
-          items: 'object',
-          properties: {
-            $ref: '#/definitions/dateRange',
+      items: {
+        type: 'object',
+        properties: {
+          inVANetwork: {
+            type: 'boolean',
           },
-        },
-        nameAndAddressOfHospitals: {
-          type: 'string',
-        },
-        relatedDisability: {
-          type: 'array',
-          items: {
+          hospitalTreatmentDates: {
+            type: 'array',
+            items: 'object',
+            properties: {
+              $ref: '#/definitions/dateRange',
+            },
+          },
+          nameAndAddressOfHospitals: {
             type: 'string',
+          },
+          relatedDisability: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
           },
         },
       },
