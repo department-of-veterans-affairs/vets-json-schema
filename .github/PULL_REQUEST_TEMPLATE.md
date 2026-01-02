@@ -1,7 +1,8 @@
 # New schema
 _Please describe the new schema that is being added and include links to any relevant issues to help future developers understand the schema and related code._
 
-_Please ensure you have incremented the version in_ `package.json`.
+- Please ensure you have incremented the version in `package.json`
+- Please add `backend-review-group` as a reviewer if this PR requires a Backend review (otherwise, it will get a frontend review only)
 
 - https://github.com/department-of-veterans-affairs/va.gov-team/issues/
 
