@@ -78,7 +78,7 @@ const testData = {
   },
   vaFileNumber: {
     valid: ['796111863', '123456789'],
-    invalid: ['abc', '', null],
+    invalid: ['abc', '', null, '12345678', '1234567890'],
   },
   statementOfTruthSignature: {
     valid: ['Jane Q. Smith', 'J Smith'],

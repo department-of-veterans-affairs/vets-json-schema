@@ -9,7 +9,7 @@ const pickedDefinitions = _.pick(origDefinitions, [
   'email',
   'address',
   'profileAddress',
-  'vaFileNumber',
+  'ssn',
   'fullNameNoSuffix',
 ]);
 
@@ -37,7 +37,7 @@ const schema = {
       $ref: '#/definitions/phone',
     },
     vaFileNumber: {
-      $ref: '#/definitions/vaFileNumber',
+      $ref: '#/definitions/ssn',
     },
     payeeNumber: {
       type: 'string',
