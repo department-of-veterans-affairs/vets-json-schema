@@ -727,9 +727,9 @@
         }
       }
     },
-    "vaFileNumber": {
+    "ssn": {
       "type": "string",
-      "pattern": "^[cC]{0,1}\\d{7,9}$"
+      "pattern": "^[0-9]{9}$"
     },
     "fullNameNoSuffix": {
       "type": "object",
@@ -773,7 +773,7 @@
       "$ref": "#/definitions/phone"
     },
     "vaFileNumber": {
-      "$ref": "#/definitions/vaFileNumber"
+      "$ref": "#/definitions/ssn"
     },
     "payeeNumber": {
       "type": "string",
