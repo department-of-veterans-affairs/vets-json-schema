@@ -20,11 +20,6 @@
           "format": "date",
           "example": "1932-02-05"
         },
-        "postalCode": {
-          "type": "string",
-          "pattern": "^\\d{5}$",
-          "example": "12345"
-        },
         "vaFileNumber": {
           "type": [
             "string",
@@ -54,7 +49,6 @@
       "required": [
         "ssn",
         "dateOfBirth",
-        "postalCode",
         "name"
       ]
     },
