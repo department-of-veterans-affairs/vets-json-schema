@@ -17,11 +17,6 @@ export default {
           format: 'date',
           example: '1932-02-05',
         },
-        postalCode: {
-          type: 'string',
-          pattern: '^\\d{5}$',
-          example: '12345',
-        },
         vaFileNumber: {
           type: ['string', 'null'],
           pattern: "^[cC]{0,1}\\d{7,9}$",
@@ -42,7 +37,7 @@ export default {
           required: ['first', 'last'],
         },
       },
-      required: ['ssn', 'dateOfBirth', 'postalCode', 'name'],
+      required: ['ssn', 'dateOfBirth', 'name'],
     },
     dependent: {
       type: ['object', 'null'],
