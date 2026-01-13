@@ -46,6 +46,32 @@ const schema = {
       maxLength: 30,
       ...definitions.rejectOnlyWhitespace,
     },
+    lastServiceBranch: {
+      type: 'string',
+      enum: constants.branchesServed.map(option => option.value),
+    },
+    lastEntryDate: {
+      $ref: '#/definitions/date',
+    },
+    lastDischargeDate: {
+      $ref: '#/definitions/date',
+    },
+    dischargeType: definitions.dischargeType,
+    purpleHeartRecipient: {
+      type: 'boolean',
+    },
+    isFormerPow: {
+      type: 'boolean',
+    },
+    postNov111998Combat: {
+      type: 'boolean',
+    },
+    disabledInLineOfDuty: {
+      type: 'boolean',
+    },
+    swAsiaCombat: {
+      type: 'boolean',
+    },
     spouseFullName: definitions.hcaFullName,
     spouseSocialSecurityNumber: definitions.ssn,
     spouseDateOfBirth: {
