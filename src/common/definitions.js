@@ -528,7 +528,7 @@ const nullableDate = {
 // and future data. The backend parses XX, so the regex accepts them. Year must be
 // valid with no Xs.
 const minimumYearDate = {
-  pattern: '^(?:19|20)[0-9]{2}(?:-(0[1-9]|1[0-2]|XX)(?:-(0[1-9]|[1-2][0-9]|3[0-1]|XX))?)?$$',
+  pattern: '^(?:19|20)[0-9]{2}(?:-(0[1-9]|1[0-2]|XX)(?:-(0[1-9]|[1-2][0-9]|3[0-1]|XX))?)?$',
   type: 'string',
 };
 
