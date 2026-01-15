@@ -36,25 +36,11 @@ Forms on VA.gov use JSON schema to define a common contract for data validation 
 
 What to do in `vets-json-schema`:
 
-1. Add your changes
-2. Create a new branch for your changes
-3. Update the version number in the `package.json `
-4. Run `yarn build` to generate the `dist/` directory where your form schema will be pulled from
-5. Commit your changes to your branch and push the branch up
-
-What to do in `vets-website`:
-
-1. Go to the `package.json` file and change the vets-json-schema line to point to your latest commit hash from your branch `"vets-json-schema": "https://github.com/department-of-veterans-affairs/vets-json-schema.git#YOUR_COMMIT_HASH",`
-2. Run `yarn install`
-3. Run vets-website locally
-
-What to do in `vets-api`:
-1. Go to the Gemfile and update the branch from `master` to `gem 'vets_json_schema', git: 'https://github.com/department-of-veterans-affairs/vets-json-schema', branch: 'BRANCH_NAME'`
-2. Run `bundle update vets_json_schema` 
-   1. You'll see that the Gemfile.lock is updated.
-3. Run vets-api locally
-
-You should now see these changes locally.
+1. Add your changes on your branch in vets-json-schema
+1. Run `yarn build` to generate the `dist/` directory where your form schema will be pulled from
+1. run `yarn run local-link`
+   "local-link" updates your personal vets-api [bundler config](https://bundler.io/v1.12/man/bundle-config.1.html#LOCAL-GIT-REPOS) to use this local repo, rather than the Gem in Gemfile.lock AND runs `yarn link` in vets-website to link to this directory
+1. After local dev/testing is complete, run run `yarn run local-unlink` to revert to your original config in vets-website and vets-api
 
 ### Environment
 
@@ -63,13 +49,14 @@ node v8.10.0
 ### I want to...
 
 | I want to...                                   | Then you should...                                                                                                                                                                        |
-|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | clone the repo                                 | `git clone https://github.com/department-of-veterans-affairs/vets-json-schema.git` followed by `cd vets-json-schema`, `yarn install`. Run `yarn install` any time `package.json` changes. |
 | build the json schemas and examples            | `yarn run build`                                                                                                                                                                          |
 | watch for changes and rebuild when they happen | `yarn run watch`                                                                                                                                                                          |
 | run tests on the built schemas                 | `yarn run test`                                                                                                                                                                           |
 | create a new schema                            | https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/platform/engineering/frontend/vets-website/creating-form-schema.md                                              |
 | link library for local development             | `yarn run local-link` or `yarn run local-unlink`                                                                                                                                          |
+
 ### Updating Version
 
 - Update the "version" property in `package.json` with the new version. Please follow [Semantic Versioning](https://semver.org/#summary) practices.
@@ -88,5 +75,6 @@ node v8.10.0
   - update `vets-api` by running `bundle update vets_json_schema` and making a PR. _Caution: verify that you changes are only related to vets_json_schema version. If you see sidekiq changes, follow [these instructions](https://github.com/department-of-veterans-affairs/va.gov-team-sensitive/blob/master/platform/engineering/sidekiq-enterprise-setup.md)_
 
 ## Not a member of the repository and want to be added?
+
 - If you're on a VA.gov Platform team, contact your Program Manager.
 - If you're on a VFS team, you must complete [Platform Orientation](https://depo-platform-documentation.scrollhelp.site/getting-started/platform-orientation) to be added to this repository. This includes completing your Platform Orientation ticket(s) in GitHub.
