@@ -523,13 +523,12 @@ const nullableDate = {
   type: ['string', 'null'],
 };
 
-// currently being used primarily by the 526EZ app for toxic exposure dates,
-// which technically require either just YYYY or YYYY-MM. Partial dates are not
-// yet supported in the FE, but dates with X's still occasionally get through.
-// Since the BE knows how to parse XX for the month and day, the below regex
-// still allows XX for them- however, the year MUST be valid and with no X's
+// Used for toxic exposure dates in the 526EZ app. Supports YYYY, YYYY-MM, and
+// YYYY-MM-DD formats. XX placeholders for month/day may appear in both historical
+// and future data. The backend parses XX, so the regex accepts them. Year must be
+// valid with no Xs.
 const minimumYearDate = {
-  pattern: '^(?:19|20)[0-9][0-9]-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
+  pattern: '^(?:19|20)[0-9]{2}(?:-(0[1-9]|1[0-2]|XX)(?:-(0[1-9]|[1-2][0-9]|3[0-1]|XX))?)?$',
   type: 'string',
 };
 
