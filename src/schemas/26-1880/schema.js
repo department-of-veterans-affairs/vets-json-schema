@@ -21,26 +21,28 @@ const schema = {
     },
     contactInformation: {
       type: 'object',
-      mailingAddress: {
-        type: 'object',
-        properties: {
-          applicantAddress: {
-            $ref: '#/definitions/profileAddress',
+      properties: {
+        mailingAddress: {
+          type: 'object',
+          properties: {
+            applicantAddress: {
+              $ref: '#/definitions/profileAddress',
+            },
           },
         },
-      },
-      additionalInformation: {
-        type: 'object',
-        properties: {
-          contactPhone: {
-            $ref: '#/definitions/usaPhone',
+        additionalInformation: {
+          type: 'object',
+          properties: {
+            contactPhone: {
+              $ref: '#/definitions/usaPhone',
+            },
+            contactEmail: {
+              $ref: '#/definitions/email',
+            },
           },
-          contactEmail: {
-            $ref: '#/definitions/email',
-          },
+          required: ['contactPhone', 'contactEmail'],
         },
-        required: ['contactPhone', 'contactEmail'],
-      },
+      }
     },
     serviceStatus: {
       type: 'object',
