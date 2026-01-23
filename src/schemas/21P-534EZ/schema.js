@@ -11,6 +11,21 @@ const schema = {
     email: definitions.email,
     fullName: definitions.fullName,
     phone: definitions.phone,
+    fullPhone: {
+      type: 'object',
+      properties: {
+        callingCode: {
+          type: 'string',
+        },
+        countryCode: {
+          type: 'string',
+        },
+        contact: {
+          type: 'string',
+          minLength: 10,
+        },
+      },
+    },
     veteranServiceNumber: definitions.veteranServiceNumber,
     ssn: definitions.ssn,
     vaFileNumber: definitions.vaFileNumber,
@@ -61,7 +76,7 @@ const schema = {
       $ref: '#/definitions/address',
     },
     claimantPhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/fullPhone',
     },
     claimantInternationalPhone: {
       $ref: '#/definitions/phone',
@@ -99,7 +114,7 @@ const schema = {
     },
     unitNameAndAddress: { type: 'string' },
     unitPhone: {
-      $ref: '#/definitions/phone',
+      $ref: '#/definitions/fullPhone',
     },
     pow: { type: 'boolean' },
     powDateRange: {
