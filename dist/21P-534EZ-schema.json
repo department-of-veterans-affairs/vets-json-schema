@@ -257,6 +257,10 @@
       "type": "string",
       "minLength": 10
     },
+    "veteranServiceNumber": {
+      "type": "string",
+      "pattern": "^[A-Z]{0,2}\\d{5,8}$"
+    },
     "ssn": {
       "type": "string",
       "pattern": "^[0-9]{9}$"
@@ -277,7 +281,7 @@
       "$ref": "#/definitions/vaFileNumber"
     },
     "veteranServiceNumber": {
-      "$ref": "#/definitions/serviceNumber"
+      "$ref": "#/definitions/veteranServiceNumber"
     },
     "veteranDateOfBirth": {
       "$ref": "#/definitions/date"

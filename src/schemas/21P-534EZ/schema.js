@@ -11,7 +11,7 @@ const schema = {
     email: definitions.email,
     fullName: definitions.fullName,
     phone: definitions.phone,
-    serviceNumber: definitions.serviceNumber,
+    veteranServiceNumber: definitions.veteranServiceNumber,
     ssn: definitions.ssn,
     vaFileNumber: definitions.vaFileNumber,
   },
@@ -27,7 +27,7 @@ const schema = {
       $ref: '#/definitions/vaFileNumber',
     },
     veteranServiceNumber: {
-      $ref: '#/definitions/serviceNumber',
+      $ref: '#/definitions/veteranServiceNumber',
     },
     veteranDateOfBirth: {
       $ref: '#/definitions/date',
