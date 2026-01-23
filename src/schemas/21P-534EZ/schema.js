@@ -1,5 +1,4 @@
 import definitions from '../../common/definitions';
-import schemaHelpers from '../../common/schema-helpers';
 
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -8,6 +7,7 @@ const schema = {
   definitions: {
     address: definitions.address,
     date: definitions.date,
+    dateRange: definitions.dateRange,
     email: definitions.email,
     fullName: definitions.fullName,
     phone: definitions.phone,
@@ -85,7 +85,9 @@ const schema = {
         $ref: '#/definitions/fullName',
       },
     },
-    activeServiceDateRange: schemaHelpers.getDefinition('dateRange'),
+    activeServiceDateRange: {
+      $ref: '#/definitions/dateRange',
+    },
     serviceBranch: {
       type: 'string',
       enum: ['army', 'navy', 'airForce', 'coastGuard', 'marineCorps', 'spaceForce', 'usphs', 'noaa'],
@@ -100,7 +102,9 @@ const schema = {
       $ref: '#/definitions/phone',
     },
     pow: { type: 'boolean' },
-    powDateRange: schemaHelpers.getDefinition('dateRange'),
+    powDateRange: {
+      $ref: '#/definitions/dateRange',
+    },
     // Section 4: Marital Information
     // Section 5: Marital History
     // Section 6: Children of the Veteran Information
