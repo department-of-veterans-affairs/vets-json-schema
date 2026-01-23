@@ -15,7 +15,7 @@ const schema = {
       type: 'object',
       properties: {
         callingCode: {
-          type: 'string',
+          type: 'number',
         },
         countryCode: {
           type: 'string',
