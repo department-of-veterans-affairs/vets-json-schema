@@ -206,6 +206,34 @@ const schema = {
       },
     },
     // Section 6: Children of the Veteran Information
+    veteranChildrenCount: { type: 'integer' },
+    veteransChildren: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          childFullName: {
+            $ref: '#/definitions/fullName',
+          },
+          childDateOfBirth: {
+            $ref: '#/definitions/date',
+          },
+          childSocialSecurityNumber: {
+            $ref: '#/definitions/socialSecurityNumber',
+          },
+          childPlaceOfBirth: { type: 'string' },
+          childStatus: { type: 'array', items: { type: 'string' } },
+          childSupport: { type: 'number' },
+        },
+      },
+    },
+    childrenLiveTogetherButNotWithSpouse: { type: 'boolean' },
+    custodianFullName: {
+      $ref: '#/definitions/fullName',
+    },
+    custodianAddress: {
+      $ref: '#/definitions/address',
+    },
     // Section 7: Dependency and Indemnity Compensation (D.I.C.)
     // Section 8: Nursing Home or Increased Survivors Entitlement
     // Section 9: Income And Assets (current income entries)
