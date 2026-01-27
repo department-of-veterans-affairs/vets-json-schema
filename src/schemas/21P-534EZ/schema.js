@@ -15,7 +15,7 @@ const schema = {
       type: 'object',
       properties: {
         callingCode: {
-          type: 'number',
+          type: 'string',
         },
         countryCode: {
           type: 'string',
@@ -124,15 +124,21 @@ const schema = {
     validMarriage: { type: 'boolean' },
     marriageValidityExplanation: { type: 'string' },
     marriedToVeteranAtTimeOfDeath: { type: 'boolean' },
-    howMarriageEnded: {},
+    howMarriageEnded: { 
+      type: 'string',
+      enum: ['death', 'divorce', 'other'],
+    },
     howMarriageEndedExplanation: { type: 'string' },
     marriageDates: {
-      $ref: '#/definitions/dateRange',
+      $ref: '#/definitions/dateRange'
     },
     placeOfMarriage: { type: 'string' },
     placeOfMarriageTermination: { type: 'string' },
-    marriageType: {},
-    marriageTypeExplanation: {},
+    marriageType: {
+      type: 'string',
+      enum: ['ceremonial', 'other'],
+    },
+    marriageTypeExplanation: { type: 'string' },
     childWithVeteran: { type: 'boolean' },
     pregnantWithVeteran: { type: 'boolean' },
     livedContinuouslyWithVeteran: { type: 'boolean' },
@@ -140,12 +146,65 @@ const schema = {
     separationExplanation: { type: 'string' },
     remarriedAfterVeteralDeath: { type: 'boolean' },
     remarriageDates: {
-      $ref: '#/definitions/dateRange',
+      $ref: '#/definitions/dateRange'
     },
-    remarriageEndCause: {},
+    remarriageEndCause: {
+      type: 'string',
+      enum: ['death', 'divorce', 'didNotEnd', 'other'],
+    },
     remarriageEndCauseExplanation: { type: 'string' },
     claimantHasAdditionalMarriages: { type: 'boolean' },
     // Section 5: Marital History
+    veteranMarriages: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          spouseFullName: {
+            $ref: '#/definitions/fullName',
+          },
+          reasonForSeparation: {
+            type: 'string',
+            enum: ['DEATH', 'DIVORCE', 'OTHER'],
+          },
+          reasonForSeparationExplanation: { type: 'string' },
+          dateOfMarriage: {
+            $ref: '#/definitions/date',
+          },
+          dateOfSeparation: {
+            $ref: '#/definitions/date',
+          },
+          locationOfMarriage: { type: 'string' },
+          locationOfSeparation: { type: 'string' },
+          veteranHasAdditionalMarriages: { type: 'boolean' }
+        },
+      },
+    },
+    spouseMarriages: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          spouseFullName: {
+            $ref: '#/definitions/fullName',
+          },
+          reasonForSeparation: {
+            type: 'string',
+            enum: ['DEATH', 'DIVORCE', 'OTHER'],
+          },
+          reasonForSeparationExplanation: { type: 'string' },
+          dateOfMarriage: {
+            $ref: '#/definitions/date',
+          },
+          dateOfSeparation: {
+            $ref: '#/definitions/date',
+          },
+          locationOfMarriage: { type: 'string' },
+          locationOfSeparation: { type: 'string' },
+          spouseHasAdditionalMarriages: { type: 'boolean' },
+        },
+      },
+    },
     // Section 6: Children of the Veteran Information
     // Section 7: Dependency and Indemnity Compensation (D.I.C.)
     // Section 8: Nursing Home or Increased Survivors Entitlement
