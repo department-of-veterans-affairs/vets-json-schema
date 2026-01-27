@@ -121,6 +121,30 @@ const schema = {
       $ref: '#/definitions/dateRange',
     },
     // Section 4: Marital Information
+    validMarriage: { type: 'boolean' },
+    marriageValidityExplanation: { type: 'string' },
+    marriedToVeteranAtTimeOfDeath: { type: 'boolean' },
+    howMarriageEnded: {},
+    howMarriageEndedExplanation: { type: 'string' },
+    marriageDates: {
+      $ref: '#/definitions/dateRange',
+    },
+    placeOfMarriage: { type: 'string' },
+    placeOfMarriageTermination: { type: 'string' },
+    marriageType: {},
+    marriageTypeExplanation: {},
+    childWithVeteran: { type: 'boolean' },
+    pregnantWithVeteran: { type: 'boolean' },
+    livedContinuouslyWithVeteran: { type: 'boolean' },
+    separationDueToAssignedReasons: { type: 'boolean' },
+    separationExplanation: { type: 'string' },
+    remarriedAfterVeteralDeath: { type: 'boolean' },
+    remarriageDates: {
+      $ref: '#/definitions/dateRange',
+    },
+    remarriageEndCause: {},
+    remarriageEndCauseExplanation: { type: 'string' },
+    claimantHasAdditionalMarriages: { type: 'boolean' },
     // Section 5: Marital History
     // Section 6: Children of the Veteran Information
     // Section 7: Dependency and Indemnity Compensation (D.I.C.)
