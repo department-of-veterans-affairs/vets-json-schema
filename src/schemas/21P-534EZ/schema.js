@@ -219,7 +219,7 @@ const schema = {
             $ref: '#/definitions/date',
           },
           childSocialSecurityNumber: {
-            $ref: '#/definitions/socialSecurityNumber',
+            $ref: '#/definitions/ssn',
           },
           childPlaceOfBirth: { type: 'string' },
           childStatus: { type: 'array', items: { type: 'string' } },
