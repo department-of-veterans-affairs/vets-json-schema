@@ -272,7 +272,7 @@
       "type": "object",
       "properties": {
         "callingCode": {
-          "type": "string"
+          "type": "number"
         },
         "countryCode": {
           "type": "string"
@@ -564,7 +564,7 @@
       }
     },
     "veteranChildrenCount": {
-      "type": "integer"
+      "type": "string"
     },
     "veteransChildren": {
       "type": "array",
@@ -705,8 +705,7 @@
             "type": "string",
             "enum": [
               "SURVIVING_SPOUSE",
-              "VETERAN",
-              "CHILD"
+              "OTHER"
             ]
           },
           "recipientName": {
@@ -756,8 +755,9 @@
           "recipient": {
             "type": "string",
             "enum": [
-              "CARE_FACILITY",
-              "IN_HOME_CARE_ATTENDANT"
+              "SURVIVING_SPOUSE",
+              "VETERAN",
+              "CHILD"
             ]
           },
           "childName": {
