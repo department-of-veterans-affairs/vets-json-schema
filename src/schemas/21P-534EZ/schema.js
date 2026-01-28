@@ -124,13 +124,13 @@ const schema = {
     validMarriage: { type: 'boolean' },
     marriageValidityExplanation: { type: 'string' },
     marriedToVeteranAtTimeOfDeath: { type: 'boolean' },
-    howMarriageEnded: { 
+    howMarriageEnded: {
       type: 'string',
       enum: ['death', 'divorce', 'other'],
     },
     howMarriageEndedExplanation: { type: 'string' },
     marriageDates: {
-      $ref: '#/definitions/dateRange'
+      $ref: '#/definitions/dateRange',
     },
     placeOfMarriage: { type: 'string' },
     placeOfMarriageTermination: { type: 'string' },
@@ -146,7 +146,7 @@ const schema = {
     separationExplanation: { type: 'string' },
     remarriedAfterVeteralDeath: { type: 'boolean' },
     remarriageDates: {
-      $ref: '#/definitions/dateRange'
+      $ref: '#/definitions/dateRange',
     },
     remarriageEndCause: {
       type: 'string',
@@ -176,7 +176,7 @@ const schema = {
           },
           locationOfMarriage: { type: 'string' },
           locationOfSeparation: { type: 'string' },
-          veteranHasAdditionalMarriages: { type: 'boolean' }
+          veteranHasAdditionalMarriages: { type: 'boolean' },
         },
       },
     },
@@ -235,11 +235,110 @@ const schema = {
       $ref: '#/definitions/address',
     },
     // Section 7: Dependency and Indemnity Compensation (D.I.C.)
+    benefit: {
+      type: 'string',
+      enum: ['DIC', 'pactActDIC', '1151DIC'],
+    },
+    treatments: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          facility: { type: 'string' },
+          startDate: { $ref: '#/definitions/date' },
+          endDate: { $ref: '#/definitions/date' },
+        },
+      },
+    },
     // Section 8: Nursing Home or Increased Survivors Entitlement
+    claimingMonthlySpecialPension: { type: 'boolean' },
+    claimantLivesInANursingHome: { type: 'boolean' },
     // Section 9: Income And Assets (current income entries)
+    totalNetWorth: { type: 'boolean' },
+    netWorthEstimation: { type: 'number' },
+    transferredAssets: { type: 'boolean' },
+    homeOwnership: { type: 'boolean' },
+    homeAcreageMoreThanTwo: { type: 'boolean' },
+    homeAcreageValue: { type: 'number' },
+    landMarketable: { type: 'boolean' },
+    moreThanFourIncomeSources: { type: 'boolean' },
+    otherIncome: { type: 'boolean' },
+    incomeEntries: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          recipient: {
+            type: 'string',
+            enum: ['SURVIVING_SPOUSE', 'CHILD'],
+          },
+          recipientName: { type: 'string' },
+          incomeType: {
+            type: 'string',
+            enum: ['SOCIAL_SECURITY', 'INTEREST_DIVIDENDS', 'CIVIL_SERVICE', 'PENSION_RETIREMENT', 'OTHER'],
+          },
+          incomePayer: { type: 'string' },
+          monthlyIncome: { type: 'number' },
+        },
+      },
+    },
     // Section 10: Information About Your Medical Or Other Expense
+    careExpenses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          recipient: {
+            type: 'string',
+            enum: ['SURVIVING_SPOUSE', 'VETERAN', 'CHILD'],
+          },
+          recipientName: { type: 'string' },
+          provider: { type: 'string' },
+          careType: {
+            type: 'string',
+            enum: ['CARE_FACILITY', 'IN_HOME_CARE_ATTENDANT'],
+          },
+          paymentRate: { type: 'number' },
+          hoursPerWeek: { type: 'number' },
+          dateRange: {
+            $ref: '#/definitions/dateRange',
+          },
+          noEndDate: { type: 'boolean' },
+          paymentFrequency: { type: 'string', enum: ['MONTHLY', 'ANNUALLY', 'ONE_TIME'] },
+          paymentAmount: { type: 'number' },
+        },
+      },
+    },
+    medicalExpenses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          recipient: {
+            type: 'string',
+            enum: ['CARE_FACILITY', 'IN_HOME_CARE_ATTENDANT'],
+          },
+          childName: { type: 'string' },
+          provider: { type: 'string' },
+          purpose: { type: 'string' },
+          paymentDate: { $ref: '#/definitions/date' },
+          paymentFrequency: { type: 'string', enum: ['MONTHLY', 'ANNUALLY', 'ONE_TIME'] },
+          paymentAmount: { type: 'number' },
+        },
+      },
+    },
     // Section 11: Direct Deposit Information
+    bankAccount: {
+      type: 'object',
+      properties: {
+        bankName: { type: 'string' },
+        accountNumber: { type: 'string' },
+        routingNumber: { type: 'string' },
+        accountType: { type: 'string', enum: ['CHECKING', 'SAVINGS', 'NO_ACCOUNT'] },
+      },
+    },
     // Section 12: Claim Certification And Signature
+    dateSigned: { $ref: '#/definitions/date' },
   },
   required: [],
 };
