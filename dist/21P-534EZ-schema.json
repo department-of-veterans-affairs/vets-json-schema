@@ -578,7 +578,7 @@
             "$ref": "#/definitions/date"
           },
           "childSocialSecurityNumber": {
-            "$ref": "#/definitions/socialSecurityNumber"
+            "$ref": "#/definitions/ssn"
           },
           "childPlaceOfBirth": {
             "type": "string"
