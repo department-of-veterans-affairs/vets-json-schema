@@ -15,7 +15,7 @@ const schema = {
       type: 'object',
       properties: {
         callingCode: {
-          type: 'string',
+          type: 'number',
         },
         countryCode: {
           type: 'string',
@@ -206,7 +206,7 @@ const schema = {
       },
     },
     // Section 6: Children of the Veteran Information
-    veteranChildrenCount: { type: 'integer' },
+    veteranChildrenCount: { type: 'string' },
     veteransChildren: {
       type: 'array',
       items: {
@@ -290,7 +290,7 @@ const schema = {
         properties: {
           recipient: {
             type: 'string',
-            enum: ['SURVIVING_SPOUSE', 'VETERAN', 'CHILD'],
+            enum: ['SURVIVING_SPOUSE', 'OTHER'],
           },
           recipientName: { type: 'string' },
           provider: { type: 'string' },
@@ -316,7 +316,7 @@ const schema = {
         properties: {
           recipient: {
             type: 'string',
-            enum: ['CARE_FACILITY', 'IN_HOME_CARE_ATTENDANT'],
+            enum: ['SURVIVING_SPOUSE', 'VETERAN', 'CHILD'],
           },
           childName: { type: 'string' },
           provider: { type: 'string' },
