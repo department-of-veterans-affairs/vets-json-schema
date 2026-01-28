@@ -298,12 +298,12 @@ const schema = {
             type: 'string',
             enum: ['CARE_FACILITY', 'IN_HOME_CARE_ATTENDANT'],
           },
-          paymentRate: { type: 'number' },
+          ratePerHour: { type: 'number' },
           hoursPerWeek: { type: 'number' },
-          dateRange: {
+          careDateRange: {
             $ref: '#/definitions/dateRange',
           },
-          noEndDate: { type: 'boolean' },
+          noCareEndDate: { type: 'boolean' },
           paymentFrequency: { type: 'string', enum: ['MONTHLY', 'ANNUALLY', 'ONE_TIME'] },
           paymentAmount: { type: 'number' },
         },
