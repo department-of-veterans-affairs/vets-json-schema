@@ -721,16 +721,16 @@
               "IN_HOME_CARE_ATTENDANT"
             ]
           },
-          "paymentRate": {
+          "ratePerHour": {
             "type": "number"
           },
           "hoursPerWeek": {
             "type": "number"
           },
-          "dateRange": {
+          "careDateRange": {
             "$ref": "#/definitions/dateRange"
           },
-          "noEndDate": {
+          "noCareEndDate": {
             "type": "boolean"
           },
           "paymentFrequency": {
