@@ -46,6 +46,9 @@ const schema = {
       maxLength: 30,
       ...definitions.rejectOnlyWhitespace,
     },
+    isServiceHistoryCorrect: {
+      type: 'boolean',
+    },
     lastServiceBranch: {
       type: 'string',
       enum: constants.branchesServed.map(option => option.value),

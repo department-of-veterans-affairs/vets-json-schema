@@ -10,8 +10,7 @@
           "type": {
             "type": "string",
             "enum": [
-              "contestableIssue",
-              "appealableIssue"
+              "contestableIssue"
             ]
           },
           "id": {
