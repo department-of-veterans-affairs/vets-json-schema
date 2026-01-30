@@ -1002,6 +1002,44 @@ const teraQuestions = {
   toxicExposureEndDate: date,
 };
 
+const serviceHistoryQuestions = {
+  isServiceHistoryCorrect: {
+    type: 'boolean',
+  },
+  branch_of_service: {
+    type: 'string',
+    enum: [
+      'honorable',
+      'general',
+      'other',
+      'bad-conduct',
+      'dishonorable',
+      'undesirable',
+    ],
+  },
+  branch_of_service: {
+    type: 'string',
+    enum: [
+      'air force',
+      'army',
+      'coast guard',
+      'marine corps',
+      'merchant seaman',
+      'navy',
+      'noaa',
+      'space force',
+      'usphs',
+      'f.commonwealth',
+      'f.guerilla',
+      'f.scouts new',
+      'f.scouts old',
+      'other',
+    ],
+  },
+  start_date: date,
+  end_date: date,
+};
+
 const yesNoSchema = {
   type: 'boolean',
 };
