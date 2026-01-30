@@ -562,6 +562,9 @@
       "maxLength": 30,
       "pattern": "^.*\\S.*"
     },
+    "isServiceHistoryCorrect": {
+      "type": "boolean"
+    },
     "lastServiceBranch": {
       "type": "string",
       "enum": [
