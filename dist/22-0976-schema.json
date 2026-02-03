@@ -949,7 +949,6 @@
     },
     "website": {
       "type": "string",
-      "format": "uri",
       "maxLength": 300
     },
     "programs": {
