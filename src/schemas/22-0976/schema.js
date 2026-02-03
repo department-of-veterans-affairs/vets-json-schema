@@ -191,7 +191,7 @@ const schema = {
       },
     },
 
-    website: { type: 'string', format: 'uri', maxLength: 300 },
+    website: { type: 'string', maxLength: 300 },
 
     // PART II — DEGREE PROGRAMS
     programs: {
