@@ -104,7 +104,7 @@ const schema = {
     },
     files: { $ref: '#/definitions/files' },
   },
-  required: ['statementOfTruthSignature', 'statementOfTruthCertified', 'veteranSocialSecurityNumber'],
+  required: ['statementOfTruthSignature', 'statementOfTruthCertified'],
 };
 
 export default schema;

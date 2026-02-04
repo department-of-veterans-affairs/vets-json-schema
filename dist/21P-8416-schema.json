@@ -452,7 +452,6 @@
   },
   "required": [
     "statementOfTruthSignature",
-    "statementOfTruthCertified",
-    "veteranSocialSecurityNumber"
+    "statementOfTruthCertified"
   ]
 }
