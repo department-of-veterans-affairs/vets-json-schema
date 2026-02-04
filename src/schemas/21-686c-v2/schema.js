@@ -129,7 +129,7 @@ export const schema686c = {
         vaFileNumber: { type: 'string' },
         serviceNumber: { $ref: '#/definitions/veteranServiceNumber' },
       },
-      required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
+      required: ['fullName', 'birthDate', 'isVeteran'],
     },
 
     currentMarriageInformation: {
@@ -348,9 +348,23 @@ export const schema686c = {
           'biologicalParentDob',
           'isBiologicalChild',
           'birthLocation',
-          'ssn',
           'fullName',
           'birthDate',
+        ],
+        oneOf: [
+          {
+            type: 'object',
+            properties: {
+              isBiologicalChild: { type: 'boolean', enum: [true] },
+            },
+            required: ['ssn'],
+          },
+          {
+            type: 'object',
+            properties: {
+              isBiologicalChild: { type: 'boolean', enum: [false] },
+            },
+          },
         ],
       },
     },
@@ -372,7 +386,7 @@ export const schema686c = {
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
-        required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
+        required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'birthDate'],
         oneOf: [
           {
             type: 'object',
@@ -405,7 +419,7 @@ export const schema686c = {
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
-        required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'ssn', 'birthDate'],
+        required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'birthDate'],
         oneOf: [
           { type: 'object', properties: { dependentType: { type: 'string', enum: ['CHILD'] } }, required: ['dependentType', 'childStatus'] },
           { type: 'object', properties: { dependentType: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] } }, required: ['dependentType'] },
@@ -424,7 +438,7 @@ export const schema686c = {
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
-        required: ['dateMarried', 'fullName', 'ssn', 'birthDate'],
+        required: ['dateMarried', 'fullName', 'birthDate'],
       },
     },
 
@@ -439,7 +453,7 @@ export const schema686c = {
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
-        required: ['dateChildLeftSchool', 'fullName', 'ssn', 'birthDate'],
+        required: ['dateChildLeftSchool', 'fullName', 'birthDate'],
       },
     },
 

@@ -489,7 +489,6 @@
       },
       "required": [
         "fullName",
-        "ssn",
         "birthDate",
         "isVeteran"
       ]
@@ -1003,9 +1002,35 @@
           "biologicalParentDob",
           "isBiologicalChild",
           "birthLocation",
-          "ssn",
           "fullName",
           "birthDate"
+        ],
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "isBiologicalChild": {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            },
+            "required": [
+              "ssn"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "isBiologicalChild": {
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            }
+          }
         ]
       }
     },
@@ -1053,7 +1078,6 @@
           "address",
           "supportingStepchild",
           "fullName",
-          "ssn",
           "birthDate"
         ],
         "oneOf": [
@@ -1132,7 +1156,6 @@
           "dependentDeathDate",
           "dependentType",
           "fullName",
-          "ssn",
           "birthDate"
         ],
         "oneOf": [
@@ -1193,7 +1216,6 @@
         "required": [
           "dateMarried",
           "fullName",
-          "ssn",
           "birthDate"
         ]
       }
@@ -1222,7 +1244,6 @@
         "required": [
           "dateChildLeftSchool",
           "fullName",
-          "ssn",
           "birthDate"
         ]
       }

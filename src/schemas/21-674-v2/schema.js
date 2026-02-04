@@ -280,7 +280,6 @@ export const schema674 = {
         required: [
           'fullName',
           'birthDate',
-          'ssn',
           'isParent',
           'address',
           'wasMarried',
@@ -305,7 +304,7 @@ export const schema674 = {
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
-        required: ['dateChildLeftSchool', 'fullName', 'ssn', 'birthDate'],
+        required: ['dateChildLeftSchool', 'fullName', 'birthDate'],
       },
     },
   },
