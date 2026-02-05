@@ -63,6 +63,7 @@ const schema = {
     },
     doctorsCare: {
       type: 'array',
+      minItems: 0,
       items: {
         type: 'object',
         properties: {
@@ -73,7 +74,8 @@ const schema = {
             type: 'array',
             items: 'object',
             properties: {
-              $ref: '#/definitions/dateRange',
+              from: 'string',
+              to: 'string',
             },
           },
           nameAndAddressOfDoctor: {
@@ -90,6 +92,7 @@ const schema = {
     },
     hospitalsCare: {
       type: 'array',
+      minItems: 0,
       items: {
         type: 'object',
         properties: {
@@ -100,7 +103,8 @@ const schema = {
             type: 'array',
             items: 'object',
             properties: {
-              $ref: '#/definitions/dateRange',
+              from: 'string',
+              to: 'string',
             },
           },
           nameAndAddressOfHospitals: {

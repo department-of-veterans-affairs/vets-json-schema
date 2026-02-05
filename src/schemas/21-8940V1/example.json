@@ -26,8 +26,8 @@
       "inVANetwork": true,
       "doctorsTreatmentDates": [
         {
-          "from": "2024-01-10",
-          "to": "2025-02-20"
+          "from": "2024-10",
+          "to": "2025-02"
         }
       ],
       "nameAndAddressOfDoctor": "Dr. Carl Jenkins, 456 Medical St, Cheyenne, WY 82001",
@@ -40,8 +40,8 @@
       "nameAndAddressOfHospital": "Cheyenne VA Medical Center, 789 Health Ave, Cheyenne, WY 82001",
       "hospitalTreatmentDates": [
         {
-          "from": "2024-06-01",
-          "to": "2024-06-15"
+          "from": "2024-01",
+          "to": "2024-06"
         }
       ],
       "relatedDisability": [""]
