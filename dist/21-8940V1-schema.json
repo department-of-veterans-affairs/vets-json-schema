@@ -342,6 +342,7 @@
     },
     "doctorsCare": {
       "type": "array",
+      "minItems": 0,
       "items": {
         "type": "object",
         "properties": {
@@ -352,7 +353,8 @@
             "type": "array",
             "items": "object",
             "properties": {
-              "$ref": "#/definitions/dateRange"
+              "from": "string",
+              "to": "string"
             }
           },
           "nameAndAddressOfDoctor": {
@@ -369,6 +371,7 @@
     },
     "hospitalsCare": {
       "type": "array",
+      "minItems": 0,
       "items": {
         "type": "object",
         "properties": {
@@ -379,7 +382,8 @@
             "type": "array",
             "items": "object",
             "properties": {
-              "$ref": "#/definitions/dateRange"
+              "from": "string",
+              "to": "string"
             }
           },
           "nameAndAddressOfHospitals": {
