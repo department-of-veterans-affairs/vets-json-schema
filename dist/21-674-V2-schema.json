@@ -763,7 +763,6 @@
         "required": [
           "fullName",
           "birthDate",
-          "ssn",
           "isParent",
           "address",
           "wasMarried",
@@ -800,7 +799,6 @@
         "required": [
           "dateChildLeftSchool",
           "fullName",
-          "ssn",
           "birthDate"
         ]
       }
