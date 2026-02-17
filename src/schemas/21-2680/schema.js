@@ -7,9 +7,9 @@ const schema = {
     fullName: {
       type: 'object',
       properties: {
-        first: { type: 'string', example: 'John', maxLength: 12 },
+        first: { type: 'string', example: 'John', maxLength: 30 },
         middle: { type: ['string', 'null'], example: 'A', maxLength: 1 },
-        last: { type: 'string', example: 'Doe', maxLength: 18 },
+        last: { type: 'string', example: 'Doe', maxLength: 30 },
       },
     },
     simpleAddress: {
