@@ -76,7 +76,7 @@ const schema = {
       $ref: '#/definitions/address',
     },
     claimantPhone: {
-      $ref: '#/definitions/fullPhone',
+      type: 'string',
     },
     claimantInternationalPhone: {
       $ref: '#/definitions/phone',
@@ -114,7 +114,7 @@ const schema = {
     },
     unitNameAndAddress: { type: 'string' },
     unitPhone: {
-      $ref: '#/definitions/fullPhone',
+      type: 'string',
     },
     pow: { type: 'boolean' },
     powDateRange: {
