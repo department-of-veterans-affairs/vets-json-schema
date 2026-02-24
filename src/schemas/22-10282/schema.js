@@ -51,10 +51,10 @@ const schema = {
           $ref: '#/definitions/email',
         },
         mobilePhone: {
-          $ref: '#/definitions/usaPhone',
+          type: 'string',
         },
         homePhone: {
-          $ref: '#/definitions/usaPhone',
+          type: 'string',
         },
       }
     },
