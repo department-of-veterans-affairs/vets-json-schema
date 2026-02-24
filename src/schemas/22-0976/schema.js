@@ -326,13 +326,7 @@ const schema = {
         { type: 'object', not: { properties: { isMedicalSchool: { enum: [true] } }, required: ['isMedicalSchool'] } },
         {
           type: 'object',
-          required: [
-            'listedInWDOMS',
-            'accreditingAuthorityName',
-            'programAtLeast32Months',
-            'graduatedLast12Months',
-            'graduatedClasses',
-          ],
+          required: ['listedInWDOMS', 'accreditingAuthorityName', 'programAtLeast32Months', 'graduatedLast12Months'],
           properties: { accreditingAuthorityName: { type: 'string', minLength: 1 } },
         },
       ],

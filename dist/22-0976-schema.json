@@ -1198,8 +1198,7 @@
             "listedInWDOMS",
             "accreditingAuthorityName",
             "programAtLeast32Months",
-            "graduatedLast12Months",
-            "graduatedClasses"
+            "graduatedLast12Months"
           ],
           "properties": {
             "accreditingAuthorityName": {
