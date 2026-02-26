@@ -895,7 +895,7 @@
             "$ref": "#/definitions/yesNoSchema"
           },
           "physicalAddress": {
-            "type": "object"
+            "$ref": "#/definitions/profileAddressForeign"
           },
           "mailingAddress": {
             "type": "object"
@@ -915,9 +915,6 @@
                       true
                     ]
                   },
-                  "physicalAddress": {
-                    "$ref": "#/definitions/profileAddressForeign"
-                  },
                   "mailingAddress": {
                     "$ref": "#/definitions/profileAddressForeign"
                   }
@@ -933,9 +930,6 @@
                     "enum": [
                       false
                     ]
-                  },
-                  "physicalAddress": {
-                    "$ref": "#/definitions/profileAddress"
                   },
                   "mailingAddress": {
                     "$ref": "#/definitions/profileAddress"
