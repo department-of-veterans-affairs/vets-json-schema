@@ -161,7 +161,7 @@ const schema = {
           institutionName: { type: 'string' },
           vaFacilityCode: { type: 'string', pattern: '^[A-Za-z0-9]{8}$' },
           isForeignCountry: { $ref: '#/definitions/yesNoSchema' },
-          physicalAddress: { type: 'object' },
+          physicalAddress: { $ref: '#/definitions/profileAddressForeign' },
           mailingAddress: { type: 'object' },
         },
         allOf: [
@@ -172,7 +172,6 @@ const schema = {
                 required: ['isForeignCountry'],
                 properties: {
                   isForeignCountry: { enum: [true] },
-                  physicalAddress: { $ref: '#/definitions/profileAddressForeign' },
                   mailingAddress: { $ref: '#/definitions/profileAddressForeign' },
                 },
               },
@@ -181,7 +180,6 @@ const schema = {
                 required: ['isForeignCountry'],
                 properties: {
                   isForeignCountry: { enum: [false] },
-                  physicalAddress: { $ref: '#/definitions/profileAddress' },
                   mailingAddress: { $ref: '#/definitions/profileAddress' },
                 },
               },
@@ -326,13 +324,7 @@ const schema = {
         { type: 'object', not: { properties: { isMedicalSchool: { enum: [true] } }, required: ['isMedicalSchool'] } },
         {
           type: 'object',
-          required: [
-            'listedInWDOMS',
-            'accreditingAuthorityName',
-            'programAtLeast32Months',
-            'graduatedLast12Months',
-            'graduatedClasses',
-          ],
+          required: ['listedInWDOMS', 'accreditingAuthorityName', 'programAtLeast32Months', 'graduatedLast12Months'],
           properties: { accreditingAuthorityName: { type: 'string', minLength: 1 } },
         },
       ],
