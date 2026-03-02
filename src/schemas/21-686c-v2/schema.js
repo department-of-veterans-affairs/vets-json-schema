@@ -101,18 +101,23 @@ export const schema686c = {
         birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
         vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
+        ssn: { $ref: '#/definitions/ssn' },
+        vaFileNumber: { type: 'string' },
       },
     },
 
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
+    signatureDate: { $ref: '#/definitions/date' },
 
     veteranContactInformation: {
       type: 'object',
       properties: {
         veteranAddress: { $ref: '#/definitions/address' },
         phoneNumber: { $ref: '#/definitions/phone' },
+        internationalPhoneNumber: { type: 'string' },
         emailAddress: { $ref: '#/definitions/email' },
+        electronicCorrespondence: { type: 'boolean' },
       },
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
@@ -376,7 +381,11 @@ export const schema686c = {
         properties: {
           whoDoesTheStepchildLiveWith: {
             type: 'object',
-            properties: { first: { type: 'string' }, last: { type: 'string' } },
+            properties: {
+              first: { type: 'string' },
+              middle: { type: 'string' },
+              last: { type: 'string' },
+            },
             required: ['first', 'last'],
           },
           address: { $ref: '#/definitions/address' },
@@ -385,6 +394,7 @@ export const schema686c = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
+          dateStepchildLeftHousehold: { $ref: '#/definitions/date' },
         },
         required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'birthDate'],
         oneOf: [

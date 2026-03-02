@@ -122,6 +122,8 @@ const schema = {
         birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
         vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
+        ssn: { $ref: '#/definitions/ssn' },
+        vaFileNumber: { type: 'string' },
       },
     },
 
@@ -130,7 +132,9 @@ const schema = {
       properties: {
         veteranAddress: { $ref: '#/definitions/address' },
         phoneNumber: { $ref: '#/definitions/phone' },
+        internationalPhoneNumber: { type: 'string' },
         emailAddress: { $ref: '#/definitions/email' },
+        electronicCorrespondence: { type: 'boolean' },
       },
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
@@ -705,6 +709,7 @@ const schema = {
             type: 'object',
             properties: {
               first: { type: 'string' },
+              middle: { type: 'string' },
               last: { type: 'string' },
             },
             required: ['first', 'last'],
@@ -715,6 +720,7 @@ const schema = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
+          dateStepchildLeftHousehold: { $ref: '#/definitions/date' },
         },
         required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
         oneOf: [
@@ -828,6 +834,7 @@ const schema = {
 
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
+    signatureDate: { $ref: '#/definitions/date' },
   },
   required: ['statementOfTruthCertified', 'statementOfTruthSignature'],
 };
