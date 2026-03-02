@@ -434,6 +434,12 @@
         "vaFileLastFour": {
           "type": "string",
           "pattern": "^\\d{4}$"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "vaFileNumber": {
+          "type": "string"
         }
       }
     },
@@ -442,6 +448,9 @@
     },
     "statementOfTruthCertified": {
       "type": "boolean"
+    },
+    "signatureDate": {
+      "$ref": "#/definitions/date"
     },
     "veteranContactInformation": {
       "type": "object",
@@ -452,8 +461,14 @@
         "phoneNumber": {
           "$ref": "#/definitions/phone"
         },
+        "internationalPhoneNumber": {
+          "type": "string"
+        },
         "emailAddress": {
           "$ref": "#/definitions/email"
+        },
+        "electronicCorrespondence": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -1045,6 +1060,9 @@
               "first": {
                 "type": "string"
               },
+              "middle": {
+                "type": "string"
+              },
               "last": {
                 "type": "string"
               }
@@ -1070,6 +1088,9 @@
             "$ref": "#/definitions/ssn"
           },
           "birthDate": {
+            "$ref": "#/definitions/date"
+          },
+          "dateStepchildLeftHousehold": {
             "$ref": "#/definitions/date"
           }
         },
