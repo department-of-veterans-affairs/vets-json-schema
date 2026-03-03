@@ -494,11 +494,13 @@
         },
         "serviceNumber": {
           "$ref": "#/definitions/veteranServiceNumber"
+        },
+        "noSsnReason": {
+          "type": "string"
         }
       },
       "required": [
         "fullName",
-        "ssn",
         "birthDate",
         "isVeteran"
       ]
@@ -836,6 +838,9 @@
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
+          "noSsnReason": {
+            "type": "string"
+          },
           "birthLocation": {
             "$ref": "#/definitions/genericLocationAlt"
           },
@@ -1012,7 +1017,6 @@
           "biologicalParentDob",
           "isBiologicalChild",
           "birthLocation",
-          "ssn",
           "fullName",
           "birthDate"
         ]
@@ -1031,6 +1035,9 @@
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
+          },
+          "noSsnReason": {
+            "type": "string"
           },
           "relationshipToStudent": {
             "type": "string"
@@ -1387,7 +1394,6 @@
         "required": [
           "fullName",
           "birthDate",
-          "ssn",
           "relationshipToStudent",
           "address",
           "wasMarried",

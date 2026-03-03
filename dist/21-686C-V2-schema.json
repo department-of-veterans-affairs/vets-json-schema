@@ -489,6 +489,9 @@
         "ssn": {
           "$ref": "#/definitions/ssn"
         },
+        "noSsnReason": {
+          "type": "string"
+        },
         "birthDate": {
           "$ref": "#/definitions/date"
         },
@@ -840,6 +843,9 @@
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
+          },
+          "noSsnReason": {
+            "type": "string"
           },
           "birthLocation": {
             "$ref": "#/definitions/genericLocationAlt"

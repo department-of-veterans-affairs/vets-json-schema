@@ -148,8 +148,9 @@ const schema = {
         isVeteran: { type: 'boolean' },
         vaFileNumber: { type: 'string' },
         serviceNumber: { $ref: '#/definitions/veteranServiceNumber' },
+        noSsnReason: { type: 'string' },
       },
-      required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
+      required: ['fullName', 'birthDate', 'isVeteran'],
     },
 
     doesLiveWithSpouse: {
@@ -322,6 +323,7 @@ const schema = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsnReason: { type: 'string' },
           birthLocation: {
             $ref: '#/definitions/genericLocationAlt',
           },
@@ -442,7 +444,6 @@ const schema = {
           'biologicalParentDob',
           'isBiologicalChild',
           'birthLocation',
-          'ssn',
           'fullName',
           'birthDate',
         ],
@@ -461,6 +462,7 @@ const schema = {
             $ref: '#/definitions/date',
           },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsnReason: { type: 'string' },
           relationshipToStudent: { type: 'string' },
           studentIncome: { type: 'string' },
           address: {
@@ -662,7 +664,6 @@ const schema = {
         required: [
           'fullName',
           'birthDate',
-          'ssn',
           'relationshipToStudent',
           'address',
           'wasMarried',

@@ -90,6 +90,7 @@ export const schema674 = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsnReason: { type: 'string' },
           isParent: { type: 'boolean' },
           studentIncome: { type: 'string' },
           address: { $ref: '#/definitions/address' },

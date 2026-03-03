@@ -408,6 +408,9 @@
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
+          "noSsnReason": {
+            "type": "string"
+          },
           "isParent": {
             "type": "boolean"
           },
