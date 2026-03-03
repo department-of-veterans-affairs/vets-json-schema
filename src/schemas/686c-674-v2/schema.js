@@ -148,6 +148,7 @@ const schema = {
         isVeteran: { type: 'boolean' },
         vaFileNumber: { type: 'string' },
         serviceNumber: { $ref: '#/definitions/veteranServiceNumber' },
+        noSsn: { type: 'boolean' },
         noSsnReason: { type: 'string' },
       },
       required: ['fullName', 'birthDate', 'isVeteran'],
@@ -323,6 +324,7 @@ const schema = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsn: { type: 'boolean' },
           noSsnReason: { type: 'string' },
           birthLocation: {
             $ref: '#/definitions/genericLocationAlt',
@@ -477,6 +479,7 @@ const schema = {
             $ref: '#/definitions/date',
           },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsn: { type: 'boolean' },
           noSsnReason: { type: 'string' },
           relationshipToStudent: { type: 'string' },
           studentIncome: { type: 'string' },

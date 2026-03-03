@@ -129,6 +129,7 @@ export const schema686c = {
       properties: {
         fullName: { $ref: '#/definitions/fullNameNoSuffix' },
         ssn: { $ref: '#/definitions/ssn' },
+        noSsn: { type: 'boolean' },
         noSsnReason: { type: 'string' },
         birthDate: { $ref: '#/definitions/date' },
         isVeteran: { type: 'boolean' },
@@ -288,6 +289,7 @@ export const schema686c = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsn: { type: 'boolean' },
           noSsnReason: { type: 'string' },
           birthLocation: { $ref: '#/definitions/genericLocationAlt' },
           isBiologicalChild: {

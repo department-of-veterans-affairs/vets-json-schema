@@ -495,6 +495,9 @@
         "serviceNumber": {
           "$ref": "#/definitions/veteranServiceNumber"
         },
+        "noSsn": {
+          "type": "boolean"
+        },
         "noSsnReason": {
           "type": "string"
         }
@@ -838,6 +841,9 @@
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
+          "noSsn": {
+            "type": "boolean"
+          },
           "noSsnReason": {
             "type": "string"
           },
@@ -1062,6 +1068,9 @@
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
+          },
+          "noSsn": {
+            "type": "boolean"
           },
           "noSsnReason": {
             "type": "string"

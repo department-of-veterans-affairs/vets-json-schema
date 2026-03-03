@@ -414,6 +414,9 @@
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
+          "noSsn": {
+            "type": "boolean"
+          },
           "noSsnReason": {
             "type": "string"
           },
