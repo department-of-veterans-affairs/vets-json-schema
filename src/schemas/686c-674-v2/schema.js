@@ -447,6 +447,21 @@ const schema = {
           'fullName',
           'birthDate',
         ],
+        oneOf: [
+          {
+            type: 'object',
+            properties: {
+              isBiologicalChild: { type: 'boolean', enum: [true] },
+            },
+            required: ['ssn'],
+          },
+          {
+            type: 'object',
+            properties: {
+              isBiologicalChild: { type: 'boolean', enum: [false] },
+            },
+          },
+        ],
       },
     },
 
