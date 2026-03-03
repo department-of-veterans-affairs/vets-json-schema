@@ -64,6 +64,8 @@ export const schema674 = {
         birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
         vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
+        ssn: { $ref: '#/definitions/ssn' },
+        vaFileNumber: { type: 'string' },
       },
     },
 

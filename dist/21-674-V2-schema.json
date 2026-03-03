@@ -363,6 +363,12 @@
         "vaFileLastFour": {
           "type": "string",
           "pattern": "^\\d{4}$"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "vaFileNumber": {
+          "type": "string"
         }
       }
     },
