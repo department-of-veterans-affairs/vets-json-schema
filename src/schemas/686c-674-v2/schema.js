@@ -122,6 +122,8 @@ const schema = {
         birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
         vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
+        ssn: { $ref: '#/definitions/ssn' },
+        vaFileNumber: { type: 'string' },
       },
     },
 
@@ -130,7 +132,9 @@ const schema = {
       properties: {
         veteranAddress: { $ref: '#/definitions/address' },
         phoneNumber: { $ref: '#/definitions/phone' },
+        internationalPhoneNumber: { type: 'string' },
         emailAddress: { $ref: '#/definitions/email' },
+        electronicCorrespondence: { type: 'boolean' },
       },
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
@@ -144,8 +148,10 @@ const schema = {
         isVeteran: { type: 'boolean' },
         vaFileNumber: { type: 'string' },
         serviceNumber: { $ref: '#/definitions/veteranServiceNumber' },
+        noSsn: { type: 'boolean' },
+        noSsnReason: { type: 'string' },
       },
-      required: ['fullName', 'ssn', 'birthDate', 'isVeteran'],
+      required: ['fullName', 'birthDate', 'isVeteran'],
     },
 
     doesLiveWithSpouse: {
@@ -318,6 +324,8 @@ const schema = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsn: { type: 'boolean' },
+          noSsnReason: { type: 'string' },
           birthLocation: {
             $ref: '#/definitions/genericLocationAlt',
           },
@@ -438,9 +446,23 @@ const schema = {
           'biologicalParentDob',
           'isBiologicalChild',
           'birthLocation',
-          'ssn',
           'fullName',
           'birthDate',
+        ],
+        oneOf: [
+          {
+            type: 'object',
+            properties: {
+              isBiologicalChild: { type: 'boolean', enum: [true] },
+            },
+            required: ['ssn'],
+          },
+          {
+            type: 'object',
+            properties: {
+              isBiologicalChild: { type: 'boolean', enum: [false] },
+            },
+          },
         ],
       },
     },
@@ -457,6 +479,8 @@ const schema = {
             $ref: '#/definitions/date',
           },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsn: { type: 'boolean' },
+          noSsnReason: { type: 'string' },
           relationshipToStudent: { type: 'string' },
           studentIncome: { type: 'string' },
           address: {
@@ -658,7 +682,6 @@ const schema = {
         required: [
           'fullName',
           'birthDate',
-          'ssn',
           'relationshipToStudent',
           'address',
           'wasMarried',
@@ -705,6 +728,7 @@ const schema = {
             type: 'object',
             properties: {
               first: { type: 'string' },
+              middle: { type: 'string' },
               last: { type: 'string' },
             },
             required: ['first', 'last'],
@@ -715,6 +739,7 @@ const schema = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
+          dateStepchildLeftHousehold: { $ref: '#/definitions/date' },
         },
         required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
         oneOf: [
@@ -828,6 +853,7 @@ const schema = {
 
     statementOfTruthSignature: { type: 'string' },
     statementOfTruthCertified: { type: 'boolean' },
+    signatureDate: { $ref: '#/definitions/date' },
   },
   required: ['statementOfTruthCertified', 'statementOfTruthSignature'],
 };

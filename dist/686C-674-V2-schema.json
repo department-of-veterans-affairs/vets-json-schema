@@ -440,6 +440,12 @@
         "vaFileLastFour": {
           "type": "string",
           "pattern": "^\\d{4}$"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "vaFileNumber": {
+          "type": "string"
         }
       }
     },
@@ -452,8 +458,14 @@
         "phoneNumber": {
           "$ref": "#/definitions/phone"
         },
+        "internationalPhoneNumber": {
+          "type": "string"
+        },
         "emailAddress": {
           "$ref": "#/definitions/email"
+        },
+        "electronicCorrespondence": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -482,11 +494,16 @@
         },
         "serviceNumber": {
           "$ref": "#/definitions/veteranServiceNumber"
+        },
+        "noSsn": {
+          "type": "boolean"
+        },
+        "noSsnReason": {
+          "type": "string"
         }
       },
       "required": [
         "fullName",
-        "ssn",
         "birthDate",
         "isVeteran"
       ]
@@ -824,6 +841,12 @@
           "ssn": {
             "$ref": "#/definitions/ssn"
           },
+          "noSsn": {
+            "type": "boolean"
+          },
+          "noSsnReason": {
+            "type": "string"
+          },
           "birthLocation": {
             "$ref": "#/definitions/genericLocationAlt"
           },
@@ -1000,9 +1023,35 @@
           "biologicalParentDob",
           "isBiologicalChild",
           "birthLocation",
-          "ssn",
           "fullName",
           "birthDate"
+        ],
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "isBiologicalChild": {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            },
+            "required": [
+              "ssn"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "isBiologicalChild": {
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            }
+          }
         ]
       }
     },
@@ -1019,6 +1068,12 @@
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
+          },
+          "noSsn": {
+            "type": "boolean"
+          },
+          "noSsnReason": {
+            "type": "string"
           },
           "relationshipToStudent": {
             "type": "string"
@@ -1375,7 +1430,6 @@
         "required": [
           "fullName",
           "birthDate",
-          "ssn",
           "relationshipToStudent",
           "address",
           "wasMarried",
@@ -1436,6 +1490,9 @@
               "first": {
                 "type": "string"
               },
+              "middle": {
+                "type": "string"
+              },
               "last": {
                 "type": "string"
               }
@@ -1461,6 +1518,9 @@
             "$ref": "#/definitions/ssn"
           },
           "birthDate": {
+            "$ref": "#/definitions/date"
+          },
+          "dateStepchildLeftHousehold": {
             "$ref": "#/definitions/date"
           }
         },
@@ -1657,6 +1717,9 @@
     },
     "statementOfTruthCertified": {
       "type": "boolean"
+    },
+    "signatureDate": {
+      "$ref": "#/definitions/date"
     }
   },
   "required": [
