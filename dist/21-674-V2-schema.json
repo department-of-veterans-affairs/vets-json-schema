@@ -363,6 +363,12 @@
         "vaFileLastFour": {
           "type": "string",
           "pattern": "^\\d{4}$"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "vaFileNumber": {
+          "type": "string"
         }
       }
     },
@@ -407,6 +413,12 @@
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
+          },
+          "noSsn": {
+            "type": "boolean"
+          },
+          "noSsnReason": {
+            "type": "string"
           },
           "isParent": {
             "type": "boolean"
