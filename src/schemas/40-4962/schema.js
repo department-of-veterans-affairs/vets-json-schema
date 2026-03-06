@@ -270,11 +270,7 @@ const schema = {
     },
 
     desiredCemetery: {
-      type: 'object',
-      properties: {
-        id: { type: 'string' },
-        label: { type: 'string' },
-      },
+      type: 'string',
     },
 
     burialType: {
