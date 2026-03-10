@@ -212,6 +212,7 @@
             },
             {
               "fieldId": "otherMarriageType",
+              "fieldLabel": "Other Marriage Type:",
               "fieldType": "string",
               "fieldValue": "{{#currentMarriageInformation}}{{#isOtherMarriageType}}{{typeOther}}{{/isOtherMarriageType}}{{/currentMarriageInformation}}"
 
@@ -268,93 +269,94 @@
     {
       "sectionNumber": "2A",
       "sectionId": "spouseFormerMarriageSection",
-      "repeatable": true,
+      "sectionHeader": "Spouse's former spouse:",
+      "repeatable": "spouseMarriageHistory",
       "blocks": [
         {
           "blockLabel":"Spouse's former spouse:",
-          "blockValue": "{{spouseMarriageHistory[LIST_INDEX].fullName}}",
+          "blockValue": "{{fullName}}",
           "fields": [
             {
               "fieldLabel": "First name:",
               "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].fullName.first}}"
+              "fieldValue": "{{fullName.first}}"
             },
             {
               "fieldLabel": "Middle name:",
               "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].fullName.middle}}"
+              "fieldValue": "{{fullName.middle}}"
             },
             {
               "fieldLabel": "Last name:",
               "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].fullName.last}}"
+              "fieldValue": "{{fullName.last}}"
             },
             {
               "fieldLabel": "How did your spouse's previous marriage end?",
               "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].reasonMarriageEnded}}"
+              "fieldValue": "{{reasonMarriageEnded}}"
             },
             {
               "fieldLabel": "When did your spouse's previous get married?",
               "fieldType": "string",
               "fieldFormat": "DATE",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].startDate}}"
+              "fieldValue": "{{startDate}}"
             },
             {
               "fieldLabel": "When did your spouse's previous marriage end?",
               "fieldType": "string",
               "fieldFormat": "DATE",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].endDate}}"
-            }
-          ]
-        },
-        {
-          "blockLabel":"Where did your spouse previously get married:",
-          "fields": [
-            {
-              "fieldLabel": "This occurred outside the U.S:",
-              "fieldType": "boolean",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].startLocation.outsideUsa}}"
+              "fieldValue": "{{endDate}}"
             },
             {
-              "fieldLabel": "City:",
-              "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].startLocation.location.city}}"
+              "blockLabel":"Where did your spouse previously get married:",
+              "fields": [
+                {
+                  "fieldLabel": "This occurred outside the U.S:",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{startLocation.outsideUsa}}"
+                },
+                {
+                  "fieldLabel": "City:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.location.city}}"
+                },
+                {
+                  "fieldLabel": "State:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.location.state}}"
+                },
+                {
+                  "fieldLabel": "Country:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.location.country}}"
+                }
+              ]
             },
             {
-              "fieldLabel": "State:",
-              "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].startLocation.location.state}}"
-            },
-            {
-              "fieldLabel": "Country:",
-              "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].startLocation.location.country}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Where did the marriage end?",
-          "fields": [
-            {
-              "fieldLabel": "This occurred outside the U.S:",
-              "fieldType": "boolean",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].endLocation.outsideUsa}}"
-            },
-            {
-              "fieldLabel": "City:",
-              "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].endLocation.location.city}}"
-            },
-            {
-              "fieldLabel": "State:",
-              "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].endLocation.location.state}}"
-            },
-            {
-              "fieldLabel": "Country:",
-              "fieldType": "string",
-              "fieldValue": "{{spouseMarriageHistory[LIST_INDEX].endLocation.location.country}}"
+              "blockLabel": "Where did the marriage end?",
+              "fields": [
+                {
+                  "fieldLabel": "This occurred outside the U.S:",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{endLocation.outsideUsa}}"
+                },
+                {
+                  "fieldLabel": "City:",
+                  "fieldType": "string",
+                  "fieldValue": "{{endLocation.location.city}}"
+                },
+                {
+                  "fieldLabel": "State:",
+                  "fieldType": "string",
+                  "fieldValue": "{{endLocation.location.state}}"
+                },
+                {
+                  "fieldLabel": "Country:",
+                  "fieldType": "string",
+                  "fieldValue": "{{endLocation.location.country}}"
+                }
+              ]
             }
           ]
         }
@@ -363,93 +365,94 @@
     {
       "sectionNumber": "2B",
       "sectionId": "veteranFormerMarriageSection",
-      "repeatable": true,
+      "sectionHeader": "Your former marriage:",
+      "repeatable": "veteranMarriageHistory",
       "blocks": [
         {
           "blockLabel": "Your former marriage:",
-          "blockValue": "{{veteranMarriageHistory[LIST_INDEX].fullName}}",
+          "blockValue": "{{fullName}}",
           "fields": [
             {
               "fieldLabel": "First name:",
               "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].fullName.first}}"
+              "fieldValue": "{{fullName.first}}"
             },
             {
               "fieldLabel": "Middle name:",
               "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].fullName.middle}}"
+              "fieldValue": "{{fullName.middle}}"
             },
             {
               "fieldLabel": "Last name:",
               "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].fullName.last}}"
+              "fieldValue": "{{fullName.last}}"
             },
             {
               "fieldLabel": "How did your marriage end?",
               "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].reasonMarriageEnded}}"
+              "fieldValue": "{{reasonMarriageEnded}}"
             },
             {
               "fieldLabel": "When did you get married?",
               "fieldType": "string",
               "fieldFormat": "DATE",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].startDate}}"
+              "fieldValue": "{{startDate}}"
             },
             {
               "fieldLabel": "When did your marriage end?",
               "fieldType": "string",
               "fieldFormat": "DATE",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].endDate}}"
-            }
-          ]
-        },
-        {
-          "blockLabel":"Where did you get married:",
-          "fields": [
-            {
-              "fieldLabel": "This occurred outside the U.S.:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].startLocation.outsideUsa}}"
+              "fieldValue": "{{endDate}}"
             },
             {
-              "fieldLabel": "City:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].startLocation.location.city}}"
+              "blockLabel":"Where did you get married:",
+              "fields": [
+                {
+                  "fieldLabel": "This occurred outside the U.S.:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.outsideUsa}}"
+                },
+                {
+                  "fieldLabel": "City:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.location.city}}"
+                },
+                {
+                  "fieldLabel": "State:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.location.state}}"
+                },
+                {
+                  "fieldLabel": "Country:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.location.country}}"
+                }
+              ]
             },
             {
-              "fieldLabel": "State:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].startLocation.location.state}}"
-            },
-            {
-              "fieldLabel": "Country:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].startLocation.location.country}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Where did the marriage end?",
-          "fields": [
-            {
-              "fieldLabel": "This occurred outside the U.S.:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].endLocation.outsideUsa}}"
-            },
-            {
-              "fieldLabel": "City:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].endLocation.location.city}}"
-            },
-            {
-              "fieldLabel": "State:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].endLocation.location.state}}"
-            },
-            {
-              "fieldLabel": "Country:",
-              "fieldType": "string",
-              "fieldValue": "{{veteranMarriageHistory[LIST_INDEX].startLocation.location.country}}"
+              "blockLabel": "Where did the marriage end?",
+              "fields": [
+                {
+                  "fieldLabel": "This occurred outside the U.S.:",
+                  "fieldType": "string",
+                  "fieldValue": "{{endLocation.outsideUsa}}"
+                },
+                {
+                  "fieldLabel": "City:",
+                  "fieldType": "string",
+                  "fieldValue": "{{endLocation.location.city}}"
+                },
+                {
+                  "fieldLabel": "State:",
+                  "fieldType": "string",
+                  "fieldValue": "{{endLocation.location.state}}"
+                },
+                {
+                  "fieldLabel": "Country:",
+                  "fieldType": "string",
+                  "fieldValue": "{{startLocation.location.country}}"
+                }
+              ]
             }
           ]
         }
@@ -459,230 +462,232 @@
       "sectionNumber": "3",
       "sectionId": "addChildrenSection",
       "sectionHeader": "Section 3: Add one or more children",
-      "repeatable":true,
+      "repeatable": "childrenToAdd",
       "blocks": [
         {
-          "blockLabel": "Child {{LIST_INDEX}}: {{childrenToAdd[LIST_INDEX].fullName.first}} {{childrenToAdd[LIST_INDEX].fullName.middle}} {{childrenToAdd[LIST_INDEX].fullName.last}}",
+          "blockLabel": "Child {{LIST_INDEX}}: {{fullName.first}} {{fullName.middle}} {{fullName.last}}",
           "fields": [
             {
               "fieldLabel": "Child's first name:",
               "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].fullName.first}}"
+              "fieldValue": "{{fullName.first}}"
             },
             {
               "fieldLabel": "Child's middle name:",
               "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].fullName.middle}}"
+              "fieldValue": "{{fullName.middle}}"
             },
             {
               "fieldLabel": "Child's last name:",
               "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].fullName.last}}"
+              "fieldValue": "{{fullName.last}}"
             },
             {
               "fieldLabel": "Child's date of birth:",
               "fieldFormat": "dob",
               "fieldType": "date",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].birthDate}}"
+              "fieldValue": "{{birthDate}}"
             },
             {
               "fieldLabel": "Child's Social Security number:",
               "fieldFormat": "ssn",
               "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].ssn}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Child birth place?",
-          "fields": [
-            {
-              "fieldLabel": "This child was born outside the U.S.",
-              "fieldType": "boolean",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].birthLocation.outsideUsa}}"
+              "fieldValue": "{{ssn}}"
             },
             {
-              "fieldLabel": "City:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].birthLocation.location.city}}"
-            },
-            {
-              "fieldLabel": "State:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].birthLocation.location.state}}"
-            },
-            {
-              "fieldLabel": "Country:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].birthLocation.location.country}}"
-            },
-            {
-              "fieldLabel": "Postal Code:",
-              "fieldFormat": "postalCode",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].birthLocation.location.postalCode}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Your relationship to this child",
-          "fields": [
-            {
-              "fieldLabel": "Is this child your biological child?",
-              "fieldType": "boolean",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].isBiologicalChild}}"
-            },
-            {
-              "fieldLabel": "Your relationship to this child",
-              "fieldOptions": [
+              "blockLabel": "Child birth place?",
+              "fields": [
                 {
-                  "label": "adopted",
-                  "valueType": "boolean",
-                  "value": "{{childrenToAdd[LIST_INDEX].relationshipToChild.adopted}}"
+                  "fieldLabel": "This child was born outside the U.S.",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{birthLocation.outsideUsa}}"
                 },
                 {
-                  "label": "Stepchild",
-                  "value": "{{childrenToAdd[LIST_INDEX].relationshipToChild.stepchild}}"
+                  "fieldLabel": "City:",
+                  "fieldType": "string",
+                  "fieldValue": "{{birthLocation.location.city}}"
+                },
+                {
+                  "fieldLabel": "State:",
+                  "fieldType": "string",
+                  "fieldValue": "{{birthLocation.location.state}}"
+                },
+                {
+                  "fieldLabel": "Country:",
+                  "fieldType": "string",
+                  "fieldValue": "{{birthLocation.location.country}}"
+                },
+                {
+                  "fieldLabel": "Postal Code:",
+                  "fieldFormat": "postalCode",
+                  "fieldType": "string",
+                  "fieldValue": "{{birthLocation.location.postalCode}}"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "blockLabel": "Child's biological parents",
-          "fields": [
-            {
-              "fieldLabel": "Is this child the biological child of your current spouse?",
-              "fieldType": "boolean",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].isBiologicalChildOfSpouse}}"
             },
             {
-              "fieldLabel": "Date this child entered your household",
-              "fieldType": "date",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].dateEnteredHousehold}}"
+              "blockLabel": "Your relationship to this child",
+              "fields": [
+                {
+                  "fieldLabel": "Is this child your biological child?",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{isBiologicalChild}}"
+                },
+                {
+                  "fieldLabel": "Your relationship to this child",
+                  "fieldOptions": [
+                    {
+                      "label": "adopted",
+                      "valueType": "boolean",
+                      "value": "{{relationshipToChild.adopted}}"
+                    },
+                    {
+                      "label": "Stepchild",
+                      "value": "{{relationshipToChild.stepchild}}"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "fieldLabel": "Child's biological parent's first name:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].biologicalParentName.first}}"
+              "blockLabel": "Child's biological parents",
+              "fields": [
+                {
+                  "fieldLabel": "Is this child the biological child of your current spouse?",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{isBiologicalChildOfSpouse}}"
+                },
+                {
+                  "fieldLabel": "Date this child entered your household",
+                  "fieldType": "date",
+                  "fieldValue": "{{dateEnteredHousehold}}"
+                },
+                {
+                  "fieldLabel": "Child's biological parent's first name:",
+                  "fieldType": "string",
+                  "fieldValue": "{{biologicalParentName.first}}"
+                },
+                {
+                  "fieldLabel": "Child's biological parent's last name:",
+                  "fieldType": "string",
+                  "fieldValue": "{{biologicalParentName.last}}"
+                },
+                {
+                  "fieldLabel": "Child's biological parent's Social Security number:",
+                  "fieldFormat": "ssn",
+                  "fieldType": "string",
+                  "fieldValue": "{{biologicalParentSsn}}"
+                },
+                {
+                  "fieldLabel": "Child's biological parent's date of birth:",
+                  "fieldFormat": "dob",
+                  "fieldType": "date",
+                  "fieldValue": "{{biologicalParentDob}}"
+                }
+              ]
             },
             {
-              "fieldLabel": "Child's biological parent's last name:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].biologicalParentName.last}}"
+              "blockLabel": "Child's disability status",
+              "fields": [
+                {
+                  "fieldLabel": "Does this child have a permanent mental or physical disability?",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{doesChildHaveDisability}}"
+                }
+              ]
             },
             {
-              "fieldLabel": "Child's biological parent's Social Security number:",
-              "fieldFormat": "ssn",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].biologicalParentSsn}}"
+              "blockLabel": "Child's disability details",
+              "fields": [
+                {
+                  "fieldLabel": "Is this child permanently unable to support themselves because they developed a permanent mental or physical disability before they turned 18 years old?",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{doesChildHavePermanentDisability}}"
+                }
+              ]
             },
             {
-              "fieldLabel": "Child's biological parent's date of birth:",
-              "fieldFormat": "dob",
-              "fieldType": "date",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].biologicalParentDob}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Child's disability status",
-          "fields": [
-            {
-              "fieldLabel": "Does this child have a permanent mental or physical disability?",
-              "fieldType": "boolean",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].doesChildHaveDisability}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Child's disability details",
-          "fields": [
-            {
-              "fieldLabel": "Is this child permanently unable to support themselves because they developed a permanent mental or physical disability before they turned 18 years old?",
-              "fieldType": "boolean",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].doesChildHavePermanentDisability}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Additional information about this child",
-          "fields": [
-            {
-              "fieldLabel": "Does this child live with you?",
-              "fieldType": "boolean",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].doesChildLiveWithYou}}"
+              "blockLabel": "Additional information about this child",
+              "fields": [
+                {
+                  "fieldLabel": "Does this child live with you?",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{doesChildLiveWithYou}}"
+                },
+                {
+                  "fieldLabel": "Has this child ever been married?",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{hasChildEverBeenMarried}}"
+                }
+              ]
             },
             {
-              "fieldLabel": "Has this child ever been married?",
-              "fieldType": "boolean",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].hasChildEverBeenMarried}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Child's address?",
-          "fields": [
-            {
-              "fieldLabel": "This child lives on a United States military base outside the U.S.",
-              "fieldType": "boolean",
-              "fieldValue": "{{todo}}"
+              "blockLabel": "Child's address?",
+              "showIf": "address",
+              "fields": [
+                {
+                  "fieldLabel": "This child lives on a United States military base outside the U.S.",
+                  "fieldType": "boolean",
+                  "fieldValue": "{{todo}}"
+                },
+                {
+                  "fieldLabel": "Country:",
+                  "fieldType": "string",
+                  "fieldValue": "{{address.country}}"
+                },
+                {
+                  "fieldLabel": "Street address:",
+                  "fieldType": "string",
+                  "fieldValue": "{{address.street}}"
+                },
+                {
+                  "fieldLabel": "Apartment or unit number:",
+                  "fieldType": "string",
+                  "fieldValue": "{{address.street2}}"
+                },
+                {
+                  "fieldLabel": "Additional Address information:",
+                  "fieldType": "string",
+                  "fieldValue": "{{todo}}"
+                },
+                {
+                  "fieldLabel": "Military post office:",
+                  "fieldType": "string",
+                  "fieldValue": "{{todo}}"
+                },
+                {
+                  "fieldLabel": "Overseas 'state' abbreviation",
+                  "fieldType": "string",
+                  "fieldValue": "{{address.state}}"
+                },
+                {
+                  "fieldLabel": "Postal Code:",
+                  "fieldFormat": "postalCode",
+                  "fieldType": "string",
+                  "fieldValue": "{{address.postalCode}}"
+                }
+              ]
             },
             {
-              "fieldLabel": "Country:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].address.country}}"
-            },
-            {
-              "fieldLabel": "Street address:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].address.street}}"
-            },
-            {
-              "fieldLabel": "Apartment or unit number:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].address.street2}}"
-            },
-            {
-              "fieldLabel": "Additional Address information:",
-              "fieldType": "string",
-              "fieldValue": "{{todo}}"
-            },
-            {
-              "fieldLabel": "Military post office:",
-              "fieldType": "string",
-              "fieldValue": "{{todo}}"
-            },
-            {
-              "fieldLabel": "Overseas 'state' abbreviation",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].address.state}}"
-            },
-            {
-              "fieldLabel": "Postal Code:",
-              "fieldFormat": "postalCode",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].address.postalCode}}"
-            }
-          ]
-        },
-        {
-          "blockLabel": "Who does this child live with?",
-          "fields": [
-            {
-              "fieldLabel": "First name:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].livingWith.first}}"
-            },
-            {
-              "fieldLabel": "Middle name:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].livingWith.middle}}"
-            },
-            {
-              "fieldLabel": "Last name:",
-              "fieldType": "string",
-              "fieldValue": "{{childrenToAdd[LIST_INDEX].livingWith.last}}"
+              "blockLabel": "Who does this child live with?",
+              "showIf": "livingWith",
+              "fields": [
+                {
+                  "fieldLabel": "First name:",
+                  "fieldType": "string",
+                  "fieldValue": "{{livingWith.first}}"
+                },
+                {
+                  "fieldLabel": "Middle name:",
+                  "fieldType": "string",
+                  "fieldValue": "{{livingWith.middle}}"
+                },
+                {
+                  "fieldLabel": "Last name:",
+                  "fieldType": "string",
+                  "fieldValue": "{{livingWith.last}}"
+                }
+              ]
             }
           ]
         }
@@ -692,7 +697,8 @@
       "sectionNumber": "4",
       "sectionId": "divorcedSpouseSection",
       "sectionHeader": "Section 4: Remove a divorced spouse",
-      "repeatable": true,
+      "repeatable": false,
+      "showIf": "reportDivorce",
       "blocks": [
         {
           "blockLabel": "Divorced spouse's information",
@@ -757,7 +763,7 @@
       "sectionNumber": "5",
       "sectionId": "stepchildrenSection",
       "sectionHeader": "Section 5: Remove one or more stepchildren who have left your household",
-      "repeatable": true,
+      "repeatable": "stepChildren",
       "blocks": [
         {
           "blockLabel": "Stepchild:",
@@ -765,44 +771,44 @@
             {
               "fieldLabel": "Child's first name:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].fullName.first}}"
+              "fieldValue": "{{fullName.first}}"
             },
             {
               "fieldLabel": "Child's middle name:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].fullName.middle}}"
+              "fieldValue": "{{fullName.middle}}"
             },
             {
               "fieldLabel": "Child's last name:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].fullName.last}}"
+              "fieldValue": "{{fullName.last}}"
             },
             {
               "fieldLabel": "Child's Social Security number:",
               "fieldFormat": "ssn",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].ssn}}"
+              "fieldValue": "{{ssn}}"
             },
             {
               "fieldLabel": "Child's date of birth:",
               "fieldFormat": "dob",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].birthDate}}"
+              "fieldValue": "{{birthDate}}"
             },
             {
               "fieldLabel": "Date stepchild left your household",
               "fieldType": "date",
-              "fieldValue": "{{stepChildren[LIST_INDEX].todo}}"
+              "fieldValue": "{{todo}}"
             },
             {
               "fieldLabel": "Are you still supporting this stepchild?",
               "fieldType": "boolean",
-              "fieldValue": "{{stepChildren[LIST_INDEX].supportingStepchild}}"
+              "fieldValue": "{{supportingStepchild}}"
             },
             {
               "fieldLabel": "How much of this stepchild's living expenses do you pay?",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].livingExpensesPaid}}"
+              "fieldValue": "{{livingExpensesPaid}}"
             }
           ]
         },
@@ -817,38 +823,38 @@
             {
               "fieldLabel": "Country:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].address.country}}"
+              "fieldValue": "{{address.country}}"
             },
             {
               "fieldLabel": "Street address:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].address.street}}"
+              "fieldValue": "{{address.street}}"
             },
             {
               "fieldLabel": "Street address line 2:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].address.street2}}"
+              "fieldValue": "{{address.street2}}"
             },
             {
               "fieldLabel": "Street address line 3:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].address.todo}}"
+              "fieldValue": "{{address.todo}}"
             },
             {
               "fieldLabel": "City:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].address.city}}"
+              "fieldValue": "{{address.city}}"
             },
             {
               "fieldLabel": "State:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].address.state}}"
+              "fieldValue": "{{address.state}}"
             },
             {
               "fieldLabel": "Postal code:",
               "fieldFormat": "postalCode",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].address.postalCode}}"
+              "fieldValue": "{{address.postalCode}}"
             }
           ]
         },
@@ -858,7 +864,7 @@
             {
               "fieldLabel": "Parent or guardian's first name:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].whoDoesTheStepchildLiveWith.first}}"
+              "fieldValue": "{{whoDoesTheStepchildLiveWith.first}}"
             },
             {
               "fieldLabel": "Parent or guardian's middle name:",
@@ -868,7 +874,7 @@
             {
               "fieldLabel": "Parent or guardian's  last name:",
               "fieldType": "string",
-              "fieldValue": "{{stepChildren[LIST_INDEX].whoDoesTheStepchildLiveWith.last}}"
+              "fieldValue": "{{whoDoesTheStepchildLiveWith.last}}"
             }
           ]
         }
@@ -878,7 +884,7 @@
       "sectionNumber": "6",
       "sectionId": "deceasedDependentsSection",
       "sectionHeader": "Section 6: Remove one or more dependents who have died",
-      "repeatable": true,
+      "repeatable": "deaths",
       "blocks": [
         {
           "blockLabel": "A deceased dependent",
@@ -886,35 +892,35 @@
             {
               "fieldLabel": "First name:",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].fullName.first}}"
+              "fieldValue": "{{fullName.first}}"
             },
             {
               "fieldLabel": "Middle name:",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].fullName.middle}}"
+              "fieldValue": "{{fullName.middle}}"
             },
             {
               "fieldLabel": "Last name:",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].fullName.last}}"
+              "fieldValue": "{{fullName.last}}"
             },
             {
               "fieldLabel": "Dependent's Social Security number:",
               "fieldFormat": "ssn",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].ssn}}"
+              "fieldValue": "{{ssn}}"
             },
             {
               "fieldLabel": "Dependent's date of birth:",
               "fieldFormat": "dob",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].birthDate}}"
+              "fieldValue": "{{birthDate}}"
             },
             {
               "fieldLabel": "Date of death",
               "fieldFormat": "DATE",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].dependentDeathDate}}"
+              "fieldValue": "{{dependentDeathDate}}"
             },
             {
               "fieldLabel": "What was your relationship to this dependent?",
@@ -922,17 +928,17 @@
                 {
                   "label": "Spouse",
                   "valueType": "boolean",
-                  "value": "{{deaths[LIST_INDEX].SPOUSE}}"
+                  "value": "{{SPOUSE}}"
                 },
                 {
                   "label": "Dependent parent",
-                  "value": "{{deaths[LIST_INDEX].DEPENDENT_PARENT}}"
+                  "value": "{{DEPENDENT_PARENT}}"
                 },
                 {
                   "label": "Child",
-                  "value": "{{deaths[LIST_INDEX].CHILD}}"
+                  "value": "{{CHILD}}"
                 }
-                ]
+              ]
             }
           ]
         },
@@ -942,17 +948,17 @@
             {
               "fieldLabel": "This occurred outside the U.S.",
               "fieldType": "boolean",
-              "fieldValue": "{{deaths[LIST_INDEX].dependentDeathLocation.outsideUsa}}"
+              "fieldValue": "{{dependentDeathLocation.outsideUsa}}"
             },
             {
               "fieldLabel": "City:",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].dependentDeathLocation.location.city}}"
+              "fieldValue": "{{dependentDeathLocation.location.city}}"
             },
             {
               "fieldLabel": "State:",
               "fieldType": "string",
-              "fieldValue": "{{deaths[LIST_INDEX].dependentDeathLocation.location.state}}"
+              "fieldValue": "{{dependentDeathLocation.location.state}}"
             }
           ]
         }
@@ -962,7 +968,7 @@
       "sectionNumber": "7",
       "sectionId": "marriedChildrenSection",
       "sectionHeader": "Section 7: Remove one or more children who got married",
-      "repeatable": true,
+      "repeatable": "childMarriage",
       "blocks": [
         {
           "blockLabel": "Married Child",
@@ -970,35 +976,35 @@
             {
               "fieldLabel": "First Name:",
               "fieldType": "string",
-              "fieldValue": "{{childMarriage[LIST_INDEX].fullName.first}}"
+              "fieldValue": "{{fullName.first}}"
             },
             {
               "fieldLabel": "Middle Name:",
               "fieldType": "string",
-              "fieldValue": "{{childMarriage[LIST_INDEX].fullName.middle}}"
+              "fieldValue": "{{fullName.middle}}"
             },
             {
               "fieldLabel": "Last Name:",
               "fieldType": "string",
-              "fieldValue": "{{childMarriage[LIST_INDEX].fullName.last}}"
+              "fieldValue": "{{fullName.last}}"
             },
             {
               "fieldLabel": "Child's Social Security number:",
               "fieldFormat": "ssn",
               "fieldType": "string",
-              "fieldValue": "{{childMarriage[LIST_INDEX].ssn}}"
+              "fieldValue": "{{ssn}}"
             },
             {
               "fieldLabel": "Child's date of birth:",
               "fieldFormat": "dob",
               "fieldType": "string",
-              "fieldValue": "{{childMarriage[LIST_INDEX].birthDate}}"
+              "fieldValue": "{{birthDate}}"
             },
             {
               "fieldLabel": "When did this child get married?",
               "fieldFormat": "DATE",
               "fieldType": "string",
-              "fieldValue": "{{childMarriage[LIST_INDEX].dateMarried}}"
+              "fieldValue": "{{dateMarried}}"
             }
           ]
         }
@@ -1008,7 +1014,7 @@
       "sectionNumber": "8",
       "sectionId": "leftSchoolChildSection",
       "sectionHeader": "Section 8: Remove one or more children between ages 18 and 23 who left school",
-      "repeatable": true,
+      "repeatable": "childStoppedAttendingSchool",
       "blocks": [
         {
           "blockLabel": "Remove a child between ages 18 and 23 who left school",
@@ -1016,35 +1022,35 @@
             {
               "fieldLabel": "First name:",
               "fieldType": "string",
-              "fieldValue": "{{childStoppedAttendingSchool[LIST_INDEX].fullName.first}}"
+              "fieldValue": "{{fullName.first}}"
             },
             {
               "fieldLabel": "Middle name:",
               "fieldType": "string",
-              "fieldValue": "{{childStoppedAttendingSchool[LIST_INDEX].fullName.middle}}"
+              "fieldValue": "{{fullName.middle}}"
             },
             {
               "fieldLabel": "Last name:",
               "fieldType": "string",
-              "fieldValue": "{{childStoppedAttendingSchool[LIST_INDEX].fullName.last}}"
+              "fieldValue": "{{fullName.last}}"
             },
             {
               "fieldLabel": "Child's Social Security number:",
               "fieldFormat": "ssn",
               "fieldType": "string",
-              "fieldValue": "{{childStoppedAttendingSchool[LIST_INDEX].ssn}}"
+              "fieldValue": "{{ssn}}"
             },
             {
               "fieldLabel": "Child's date of birth:",
               "fieldFormat": "dob",
               "fieldType": "string",
-              "fieldValue": "{{childStoppedAttendingSchool[LIST_INDEX].birthDate}}"
+              "fieldValue": "{{birthDate}}"
             },
             {
               "fieldLabel": "When did this child stop attending school?",
               "fieldFormat": "DATE",
               "fieldType": "string",
-              "fieldValue": "{{childStoppedAttendingSchool[LIST_INDEX].dateChildLeftSchool}}"
+              "fieldValue": "{{dateChildLeftSchool}}"
             }
           ]
         }
@@ -1057,11 +1063,12 @@
       "repeatable": false,
       "blocks": [
         {
+          "blockLabel": "Household Income",
           "fields": [
             {
               "fieldLabel": "Did your household have a net worth less than $159,240 in the last tax year?",
-              "fieldType": "string",
-              "fieldValue": "{{todo}}"
+              "fieldType": "boolean",
+              "fieldValue": "{{householdIncome}}"
             }
           ]
         }
@@ -1072,6 +1079,7 @@
       "sectionId": "additionalInformationSection",
       "sectionHeader": "Section 10: Additional information",
       "repeatable": false,
+      "showIf": "WIP",
       "blocks": [
         {
           "fields": [
@@ -1096,7 +1104,7 @@
       "repeatable": false,
       "blocks": [
         {
-          "blockSubLabel": "I confirm that the identifying information in this form is accurate has been represented correctly. I have read and accept the privacy policy.",
+          "blockLabel": "I confirm that the identifying information in this form is accurate has been represented correctly. I have read and accept the privacy policy.",
           "fields": [
             {
               "fieldLabel": "Your full name:",

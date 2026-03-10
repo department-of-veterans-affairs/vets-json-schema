@@ -64,6 +64,8 @@ export const schema674 = {
         birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
         vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
+        ssn: { $ref: '#/definitions/ssn' },
+        vaFileNumber: { type: 'string' },
       },
     },
 
@@ -90,6 +92,8 @@ export const schema674 = {
           fullName: { $ref: '#/definitions/fullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
+          noSsn: { type: 'boolean' },
+          noSsnReason: { type: 'string' },
           isParent: { type: 'boolean' },
           studentIncome: { type: 'string' },
           address: { $ref: '#/definitions/address' },
