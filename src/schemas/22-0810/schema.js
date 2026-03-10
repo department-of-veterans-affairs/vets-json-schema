@@ -1,0 +1,116 @@
+import _ from 'lodash';
+import definitions from '../../common/definitions';
+
+const origDefinitions = _.cloneDeep(definitions);
+const pickedDefinitions = _.pick(origDefinitions, [
+  'date',
+  'phone',
+  'yesNoSchema',
+  'email',
+  'address',
+  'profileAddress',
+  'ssn',
+  'vaFileNumber',
+  'fullNameNoSuffix',
+]);
+
+const schema = {
+  $schema: 'http://json-schema.org/draft-04/schema#',
+  title: 'VA Form 22-0810',
+  type: 'object',
+  additionalProperties: false,
+  definitions: pickedDefinitions,
+  properties: {
+    applicantName: {
+      $ref: '#/definitions/fullNameNoSuffix',
+    },
+    statementOfTruthSignature: { type: 'string', minLength: 1 },
+    dateSigned: {
+      $ref: '#/definitions/date',
+    },
+    hasPreviouslyApplied: {
+      $ref: '#/definitions/yesNoSchema',
+    },
+    vaBenefitProgram: {
+      type: 'string',
+      enum: ['chapter30', 'chapter33', 'chapter35', 'chapter1606'],
+    },
+    ssn: {
+      $ref: '#/definitions/ssn',
+    },
+    vaFileNumber: {
+      $ref: '#/definitions/vaFileNumber',
+    },
+    payeeNumber: {
+      type: 'string',
+      maxLength: 2,
+    },
+    mailingAddress: {
+      $ref: '#/definitions/profileAddress',
+    },
+    emailAddress: {
+      $ref: '#/definitions/email',
+    },
+    homePhone: {
+      $ref: '#/definitions/phone',
+    },
+    mobilePhone: {
+      $ref: '#/definitions/phone',
+    },
+    examDate: {
+      $ref: '#/definitions/date',
+    },
+    examName: {
+      type: 'string',
+      minLength: 1,
+    },
+    organizationAddress: {
+      $ref: '#/definitions/address',
+    },
+    organizationName: {
+      type: 'string',
+      minLength: 1,
+    },
+    examCost: {
+      type: 'number',
+      minimum: 0,
+      multipleOf: 0.01, // allows 2 decimal places
+    },
+    remarks: {
+      type: 'string',
+      maxLength: 500,
+    },
+  },
+  required: [
+    'applicantName',
+    'hasPreviouslyApplied',
+    'mailingAddress',
+    'examName',
+    'examDate',
+    'organizationName',
+    'organizationAddress',
+    'examCost',
+    'statementOfTruthSignature',
+    'dateSigned',
+  ],
+  anyOf: [
+    {
+      required: ['ssn'],
+    },
+    {
+      required: ['vaFileNumber'],
+    },
+  ],
+  oneOf: [
+    {
+      type: 'object',
+      properties: { hasPreviouslyApplied: { enum: [true] } },
+      required: ['vaBenefitProgram'],
+    },
+    {
+      type: 'object',
+      properties: { hasPreviouslyApplied: { enum: [false] } },
+    },
+  ],
+};
+export default schema;
