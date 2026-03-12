@@ -320,7 +320,7 @@
       "$ref": "#/definitions/address"
     },
     "branchOfService": {
-      "typr": "string"
+      "type": "string"
     },
     "activeDuty": {
       "type": "boolean"
@@ -358,7 +358,7 @@
     "previousApplicationLocation": {
       "type": "string"
     },
-    "passangerOnly": {
+    "venteranWillOperateVehicle": {
       "type": "boolean"
     },
     "statementOfTruthSignature": {

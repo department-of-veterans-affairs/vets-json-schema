@@ -102,7 +102,7 @@ const schema = {
     previousApplicationLocation: {
       type: 'string',
     },
-    passangerOnly: {
+    venteranWillOperateVehicle: {
       type: 'boolean',
     },
     statementOfTruthSignature: {
