@@ -1,0 +1,75 @@
+{
+  "form_number": "21-4502",
+  "full_name": {
+    "first": "Taylor",
+    "middle": "A",
+    "last": "Veteran"
+  },
+  "dob": {
+    "month": "01",
+    "day": "01",
+    "year": "1980"
+  },
+  "ssn": "123456789",
+  "va_file_number": "123456789",
+  "va_service_number": "123456789",
+  "phone_number": {
+    "area_code": "555",
+    "number": "1234567"
+  },
+  "international_phone_number": {
+    "country_code": "1",
+    "area_code": "555",
+    "number": "1234567"
+  },
+  "email": "taylor.veteran@example.com",
+  "electronic_correspondence": true,
+  "current_mailing_address": {
+    "street": "123 Main St",
+    "street2": "Apt 4B",
+    "city": "Anytown",
+    "state": "VA",
+    "postal_code": "12345",
+    "country": "US"
+  },
+  "planned_mailing_address": {
+    "street": "456 Elm St",
+    "street2": "Suite 5C",
+    "city": "Othertown",
+    "state": "VA",
+    "postal_code": "67890",
+    "country": "US"
+  },
+  "branch_of_service": "USPHS",
+  "active_duty": true,
+  "place_of_entry": "some text info",
+  "date_of_entry": {
+    "month": "01",
+    "day": "01",
+    "year": "2000"
+  },
+  "place_of_release": "some text info",
+  "date_of_release": {
+    "month": "01",
+    "day": "01",
+    "year": "2010"
+  },
+  "applied_for_compensation": true,
+  "date_applied_for_compensation": {
+    "month": "01",
+    "day": "01",
+    "year": "2020"
+  },
+  "location_of_office": "some text info",
+  "vehicle_type": "something random",
+  "previously_applied": true,
+  "date_of_previous_application": {
+    "month": "01",
+    "day": "01",
+    "year": "2015"
+  },
+  "passanger_only": false,
+  "previous_application_location": "some text info",
+  "statement_of_truth_signature": "Taylor A Veteran",
+  "signature_date": "11-21-2026"
+}
