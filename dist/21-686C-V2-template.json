@@ -249,7 +249,7 @@
             {
               "showIf": "doesLiveWithSpouse.address.isMilitary",
               "fieldLabel": "Overseas 'state' abbreviation:",
-              "fieldValue": "{{address.state}}"
+              "fieldValue": "{{doesLiveWithSpouse.address.state}}"
             },
             {
               "showUnless": "doesLiveWithSpouse.address.isMilitary",
@@ -405,7 +405,7 @@
           ],
           "blocks": [
             {
-              "blockLabel": "Where did you get married:",
+              "blockLabel": "Where did you get married?",
               "fields": [
                 {
                   "fieldLabel": "This occurred outside the U.S.",
@@ -451,7 +451,7 @@
                 {
                   "fieldLabel": "Country:",
                   "fieldType": "string",
-                  "fieldValue": "{{startLocation.location.country}}",
+                  "fieldValue": "{{endLocation.location.country}}",
                   "showIf": "endLocation.outsideUsa"
                 }
               ]
