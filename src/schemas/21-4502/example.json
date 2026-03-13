@@ -68,7 +68,7 @@
     "day": "01",
     "year": "2015"
   },
-  "passanger_only": false,
+  "veteran_will_operate_vehicle": false,
   "previous_application_location": "some text info",
   "statement_of_truth_signature": "Taylor A Veteran",
   "signature_date": "11-21-2026"
