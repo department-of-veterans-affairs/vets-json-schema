@@ -285,7 +285,7 @@ const schema = {
             vetTec: {
               type: 'boolean',
               default: false,
-              title: 'High Technology Veterans education, training, and skills program (VET TEC 2.0)',
+              title: 'High Technology Program (VET TEC 2.0)',
             },
           },
         },
