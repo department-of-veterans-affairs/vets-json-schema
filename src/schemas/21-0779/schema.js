@@ -18,7 +18,7 @@ const schema = {
       // If country is USA, CAN, or MEX, then state is also required.
       // Uses the draft-04 "implication" pattern: (NOT condition) OR (requirement)
       anyOf: [
-        { not: { properties: { country: { enum: ['USA', 'CAN', 'MEX'] } } } },
+        { not: { type: 'object', properties: { country: { enum: ['USA', 'CAN', 'MEX'] } } } },
         { required: ['state'] },
       ],
       properties: {
