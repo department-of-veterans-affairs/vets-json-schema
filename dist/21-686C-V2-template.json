@@ -2,10 +2,10 @@
   "$schema": "https://vefs-forms-api.prod.bip.vba.va.gov/api/v1/rest/forms/formTemplateSchema/versions/1.0/schema",
   "formId": "21-686c",
   "formDescription": "Add or remove a dependent on VA benefits",
-  "formVersion": "OMB Version Aug 2024, Release 1.3.4",
+  "formVersion": "OMB Version Aug 2025, Control #: 2900-0043",
   "title": "21-686c Form Template",
   "description": "Form Template for 21-686c Application Request to Add and/or Remove Dependents",
-  "version": "1.0",
+  "version": "0.2.0",
   "sections": [
     {
       "sectionNumber": "1",
@@ -495,9 +495,11 @@
               "fieldFormat": "ssn",
               "fieldType": "string",
               "fieldValue": "{{ssn}}"
-            },
+            }
+          ],
+          "blocks": [
             {
-              "blockLabel": "Child birth place?",
+              "blockLabel": "Child's birth place",
               "fields": [
                 {
                   "fieldLabel": "This child was born outside the U.S.",
@@ -532,18 +534,19 @@
               "blockLabel": "Your relationship to this child",
               "fields": [
                 {
-                  "fieldLabel": "Is this child your biological child?",
-                  "fieldValue": "{{formatBool isBiologicalChild 'Yes' 'No'}}"
-                },
-                {
-                  "showUnless": "isBiologicalChild",
                   "fieldLabel": "What's your relationship to this child?",
-                  "fieldValue": "{{{getRelationshipDisplay relationshipToChild}}}"
+                  "fieldValue": "{{formatBool isBiologicalChild '1' ''}}{{formatBool relationshipToChild.stepchild '2' ''}}{{formatBool relationshipToChild.adopted '3' ''}}",
+                  "fieldDisplayMap": {
+                    "1": "They're my biological child",
+                    "2": "They're my stepchild",
+                    "3": "They're my adopted child"
+                  }
                 }
               ]
             },
             {
               "blockLabel": "Child's biological parents",
+              "showIf": "relationshipToChild.stepchild",
               "fields": [
                 {
                   "fieldLabel": "Is this child the biological child of your current spouse?",
@@ -556,12 +559,12 @@
                   "fieldValue": "{{dateEnteredHousehold}}"
                 },
                 {
-                  "fieldLabel": "Child's biological parent's first name:",
+                  "fieldLabel": "Child's biological parent's first or given name:",
                   "fieldType": "string",
                   "fieldValue": "{{biologicalParentName.first}}"
                 },
                 {
-                  "fieldLabel": "Child's biological parent's last name:",
+                  "fieldLabel": "Child's biological parent's last or family name:",
                   "fieldType": "string",
                   "fieldValue": "{{biologicalParentName.last}}"
                 },
@@ -688,12 +691,12 @@
                 {
                   "fieldLabel": "Middle name:",
                   "fieldType": "string",
-                  "fieldValue": "{{livingWith.fullName.middle}}"
+                  "fieldValue": "{{livingWith.middle}}"
                 },
                 {
                   "fieldLabel": "Last name:",
                   "fieldType": "string",
-                  "fieldValue": "{{livingWith.fullName.last}}"
+                  "fieldValue": "{{livingWith.last}}"
                 }
               ]
             }
@@ -706,9 +709,9 @@
       "sectionId": "divorcedSpouseSection",
       "sectionHeader": "Section 4: Remove a divorced spouse",
       "repeatable": false,
-      "showIf": "reportDivorce",
       "blocks": [
         {
+          "showIf": "reportDivorce",
           "blockLabel": "Divorced spouse's information",
           "fields": [
             {
@@ -735,6 +738,7 @@
           ]
         },
         {
+          "showIf": "reportDivorce",
           "blockLabel": "When, where, and why did this marriage end?",
           "fields": [
             {
@@ -942,27 +946,19 @@
               "fieldValue": "{{birthDate}}"
             },
             {
+              "fieldLabel": "What was your relationship to this dependent?",
+              "fieldValue": "{{dependentType}}",
+              "fieldDisplayMap": {
+                "SPOUSE": "Spouse",
+                "DEPENDENT_PARENT": "Dependent parent",
+                "CHILD": "Child"
+              }
+            },
+            {
               "fieldLabel": "Date of death",
               "fieldFormat": "biographicalDate",
               "fieldType": "string",
               "fieldValue": "{{dependentDeathDate}}"
-            },
-            {
-              "fieldLabel": "What was your relationship to this dependent?",
-              "fieldOptions": [
-                {
-                  "label": "Spouse",
-                  "value": "{{SPOUSE}}"
-                },
-                {
-                  "label": "Dependent parent",
-                  "value": "{{DEPENDENT_PARENT}}"
-                },
-                {
-                  "label": "Child",
-                  "value": "{{CHILD}}"
-                }
-              ]
             }
           ],
           "blocks": [
@@ -1107,11 +1103,13 @@
       "repeatable": false,
       "fields": [
         {
+          "showIf": "spouseSupportingDocuments.length",
           "fieldLabel": "Submit supporting evidence to add your spouse",
           "fieldType": "multiline",
           "fieldValue": "{{multilineList spouseSupportingDocuments pluck='name'}}"
         },
         {
+          "showIf": "childSupportingDocuments.length",
           "fieldLabel": "Upload your supporting evidence to add your child",
           "fieldType": "multiline",
           "fieldValue": "{{multilineList childSupportingDocuments pluck='name'}}"
