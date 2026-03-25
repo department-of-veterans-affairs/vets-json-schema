@@ -28,6 +28,10 @@
               "fieldValue": "{{veteranInformation.ssn}}"
             },
             {
+              "fieldLabel": "VA file number:",
+              "fieldValue": "{{veteranInformation.vaFileNumber}}"
+            },
+            {
               "fieldLabel": "Date of Birth:",
               "fieldFormat": "biographicalDate",
               "fieldType": "string",
