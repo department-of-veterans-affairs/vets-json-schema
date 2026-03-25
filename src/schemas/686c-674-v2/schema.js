@@ -741,7 +741,7 @@ const schema = {
           birthDate: { $ref: '#/definitions/date' },
           dateStepchildLeftHousehold: { $ref: '#/definitions/date' },
         },
-        required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
+        required: ['whoDoesTheStepchildLiveWith', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
         oneOf: [
           {
             type: 'object',
