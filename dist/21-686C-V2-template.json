@@ -1095,7 +1095,7 @@
       "repeatable": false,
       "fields": [
         {
-          "fieldLabel": "Did your household have a net worth less than $159,240 in the last tax year?",
+          "fieldLabel": "Did your household have a net worth less than $163,699 in the last tax year?",
           "fieldValue": "{{formatBool householdIncome 'Yes' 'No'}}"
         }
       ]
