@@ -1526,7 +1526,6 @@
         },
         "required": [
           "whoDoesTheStepchildLiveWith",
-          "address",
           "supportingStepchild",
           "fullName",
           "ssn",

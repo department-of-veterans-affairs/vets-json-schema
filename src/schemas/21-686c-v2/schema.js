@@ -400,7 +400,7 @@ export const schema686c = {
           birthDate: { $ref: '#/definitions/date' },
           dateStepchildLeftHousehold: { $ref: '#/definitions/date' },
         },
-        required: ['whoDoesTheStepchildLiveWith', 'address', 'supportingStepchild', 'fullName', 'birthDate'],
+        required: ['whoDoesTheStepchildLiveWith', 'supportingStepchild', 'fullName', 'birthDate'],
         oneOf: [
           {
             type: 'object',
