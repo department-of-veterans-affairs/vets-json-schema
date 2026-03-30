@@ -116,6 +116,7 @@
       "repeatable": false,
       "blocks": [
         {
+          "showIf": "spouseInformation",
           "blockLabel": "Your spouse's personal information",
           "fields": [
             {
@@ -164,6 +165,7 @@
           ]
         },
         {
+          "showIf": "spouseInformation",
           "blockLabel": "Information about your marriage",
           "fields": [
             {
@@ -179,6 +181,7 @@
           ]
         },
         {
+          "showIf": "currentMarriageInformation",
           "blockLabel": "Where did you get married?",
           "fields": [
             {
@@ -205,6 +208,7 @@
           ]
         },
         {
+          "showIf": "currentMarriageInformation",
           "blockLabel": "How did you get married?",
           "fields": [
             {
@@ -224,6 +228,7 @@
           ]
         },
         {
+          "showIf": "spouseInformation",
           "blockLabel": "Spouse's address",
           "showUnless": "doesLiveWithSpouse.spouseDoesLiveWithVeteran",
           "fields": [
@@ -267,6 +272,7 @@
           ]
         },
         {
+          "showIf": "spouseInformation",
           "repeatable": "spouseMarriageHistory",
           "blockLabel": "Spouse's former spouse: {{fullName.first}} {{fullName.middle}} {{fullName.last}}",
           "fields": [
@@ -365,6 +371,7 @@
           ]
         },
         {
+          "showIf": "spouseInformation",
           "repeatable": "veteranMarriageHistory",
           "blockLabel": "Your former marriage: {{fullName.first}} {{fullName.middle}} {{fullName.last}}",
           "fields": [
