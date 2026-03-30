@@ -50,7 +50,8 @@ const schema = {
 
     appliances: {
       type: 'array',
-      items: {
+      minItems: 0,
+      items: [{
         type: 'object',
         properties: {
           type: {
@@ -78,7 +79,7 @@ const schema = {
             type: 'boolean',
           },
         },
-      },
+      }],
     },
 
      signature: {
