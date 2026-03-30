@@ -22,7 +22,7 @@ const schema = {
         first: {
           type: 'string',
         },
-        middleinitial: {
+        middle: {
           type: 'string',
         },
         last: {
