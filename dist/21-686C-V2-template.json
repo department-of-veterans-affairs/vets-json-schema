@@ -44,6 +44,7 @@
           "fields": [
             {
               "fieldLabel": "Country:",
+              "fieldFormat": "countrycodealpha2",
               "fieldValue": "{{veteranContactInformation.veteranAddress.country}}"
             },
             {
@@ -201,7 +202,7 @@
             },
             {
               "fieldLabel": "Country:",
-              "fieldType": "string",
+              "fieldFormat": "countrycodealpha2",
               "fieldValue": "{{currentMarriageInformation.location.country}}",
               "showIf": "currentMarriageInformation.outsideUsa"
             }
@@ -234,6 +235,7 @@
           "fields": [
             {
               "fieldLabel": "Country:",
+              "fieldFormat": "countrycodealpha2",
               "fieldValue": "{{doesLiveWithSpouse.address.country}}"
             },
             {
@@ -336,7 +338,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
-                  "fieldType": "string",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{startLocation.location.country}}",
                   "showIf": "startLocation.outsideUsa"
                 }
@@ -362,7 +364,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
-                  "fieldType": "string",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{endLocation.location.country}}",
                   "showIf": "endLocation.outsideUsa"
                 }
@@ -435,7 +437,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
-                  "fieldType": "string",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{startLocation.location.country}}",
                   "showIf": "startLocation.outsideUsa"
                 }
@@ -461,7 +463,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
-                  "fieldType": "string",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{endLocation.location.country}}",
                   "showIf": "endLocation.outsideUsa"
                 }
@@ -529,7 +531,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
-                  "fieldType": "string",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{birthLocation.location.country}}",
                   "showIf": "birthLocation.outsideUsa"
                 },
@@ -653,6 +655,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{address.country}}"
                 },
                 {
@@ -775,7 +778,7 @@
             },
             {
               "fieldLabel": "Country:",
-              "fieldType": "string",
+              "fieldFormat": "countrycodealpha2",
               "fieldValue": "{{reportDivorce.divorceLocation.location.country}}",
               "showIf": "reportDivorce.divorceLocation.outsideUsa"
             },
@@ -859,6 +862,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{address.country}}"
                 },
                 {
@@ -993,7 +997,7 @@
                 },
                 {
                   "fieldLabel": "Country:",
-                  "fieldType": "string",
+                  "fieldFormat": "countrycodealpha2",
                   "fieldValue": "{{dependentDeathLocation.location.country}}",
                   "showIf": "dependentDeathLocation.outsideUsa"
                 }
