@@ -72,6 +72,10 @@ export default {
       },
       required: ['ssn', 'dateOfBirth', 'name'],
     },
+    benefitsDeliveryDischarge: {
+      type: 'boolean',
+      enum: [true, false],
+    },
   },
   required: ['veteran', 'dependent'],
 };
