@@ -30,28 +30,8 @@
       "required": [
         "street",
         "city",
+        "state",
         "postalCode"
-      ],
-      "anyOf": [
-        {
-          "not": {
-            "type": "object",
-            "properties": {
-              "country": {
-                "enum": [
-                  "USA",
-                  "CAN",
-                  "MEX"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "required": [
-            "state"
-          ]
-        }
       ],
       "properties": {
         "street": {
