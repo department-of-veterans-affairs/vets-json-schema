@@ -1,0 +1,41 @@
+{
+ "calendar_year": "2026",
+
+ "full_name": {
+   "first": "John",
+   "middle": "A",
+   "last": "Doe"
+ },
+ "ssn": "123-45-6789",
+ "address": {
+   "street": "123 Main St",
+   "city": "Anytown",
+   "state": "CA",
+   "postal_code": "90210"
+  },
+ "phone_day": "555-123-4567",
+ "phone_evening": "555-987-6543",
+ "email_address": "john.doe@example.com",
+ "appliances": [
+ {
+   "type": "Prosthetic Arm",
+   "issued_month_year": "01/2026",
+   "facility": "VA Medical Center",
+   "service_connected_disabilities": ["Amputation, Right Arm"],
+   "impacted_locations": ["Right Arm"],
+   "approved": true
+ },
+ {
+   "type": "Wheelchair",
+   "issued_month_year": "03/2026",
+   "facility": "VA Medical Center",
+   "service_connected_disabilities": ["Paraplegia"],
+   "impacted_locations": ["Lower Body"],
+   "approved": true
+  }
+ ],
+ "signature": {
+   "veteran_signature": "John A Doe",
+   "date_signed": "03/15/2026"
+ }
+}
