@@ -439,11 +439,6 @@ const schema = {
           'doesChildLiveWithYou',
           'hasChildEverBeenMarried',
           'doesChildHaveDisability',
-          'isBiologicalChildOfSpouse',
-          'dateEnteredHousehold',
-          'biologicalParentName',
-          'biologicalParentSsn',
-          'biologicalParentDob',
           'isBiologicalChild',
           'birthLocation',
           'fullName',
@@ -455,12 +450,30 @@ const schema = {
             properties: {
               isBiologicalChild: { type: 'boolean', enum: [true] },
             },
+            // SSN not required for biological children (See #131480)
             required: ['ssn'],
           },
           {
             type: 'object',
             properties: {
-              isBiologicalChild: { type: 'boolean', enum: [false] },
+              isBiologicalChild: {
+                type: 'boolean',
+                enum: [false],
+              },
+              relationshipToChild: {
+                type: 'object',
+                properties: {
+                  adopted: { type: 'boolean', enum: [false] },
+                },
+              },
+              // Require biological parent info for non-adopted stepchildren
+              required: [
+                'isBiologicalChildOfSpouse',
+                'dateEnteredHousehold',
+                'biologicalParentName',
+                'biologicalParentSsn',
+                'biologicalParentDob',
+              ],
             },
           },
         ],

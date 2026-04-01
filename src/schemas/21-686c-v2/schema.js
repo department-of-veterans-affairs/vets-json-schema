@@ -350,11 +350,6 @@ export const schema686c = {
           'doesChildLiveWithYou',
           'hasChildEverBeenMarried',
           'doesChildHaveDisability',
-          'isBiologicalChildOfSpouse',
-          'dateEnteredHousehold',
-          'biologicalParentName',
-          'biologicalParentSsn',
-          'biologicalParentDob',
           'isBiologicalChild',
           'birthLocation',
           'fullName',
@@ -366,12 +361,27 @@ export const schema686c = {
             properties: {
               isBiologicalChild: { type: 'boolean', enum: [true] },
             },
+            // SSN not required for biological children (See #131480)
             required: ['ssn'],
           },
           {
             type: 'object',
             properties: {
               isBiologicalChild: { type: 'boolean', enum: [false] },
+              relationshipToChild: {
+                type: 'object',
+                properties: {
+                  adopted: { type: 'boolean', enum: [false] },
+                },
+              },
+              // Require biological parent info for non-adopted stepchildren
+              required: [
+                'isBiologicalChildOfSpouse',
+                'dateEnteredHousehold',
+                'biologicalParentName',
+                'biologicalParentSsn',
+                'biologicalParentDob',
+              ],
             },
           },
         ],
@@ -435,8 +445,16 @@ export const schema686c = {
         },
         required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'birthDate'],
         oneOf: [
-          { type: 'object', properties: { dependentType: { type: 'string', enum: ['CHILD'] } }, required: ['dependentType', 'childStatus'] },
-          { type: 'object', properties: { dependentType: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] } }, required: ['dependentType'] },
+          {
+            type: 'object',
+            properties: { dependentType: { type: 'string', enum: ['CHILD'] } },
+            required: ['dependentType', 'childStatus'],
+          },
+          {
+            type: 'object',
+            properties: { dependentType: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] } },
+            required: ['dependentType'],
+          },
         ],
       },
     },

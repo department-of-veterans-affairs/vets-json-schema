@@ -1022,11 +1022,6 @@
           "doesChildLiveWithYou",
           "hasChildEverBeenMarried",
           "doesChildHaveDisability",
-          "isBiologicalChildOfSpouse",
-          "dateEnteredHousehold",
-          "biologicalParentName",
-          "biologicalParentSsn",
-          "biologicalParentDob",
           "isBiologicalChild",
           "birthLocation",
           "fullName",
@@ -1055,7 +1050,25 @@
                 "enum": [
                   false
                 ]
-              }
+              },
+              "relationshipToChild": {
+                "type": "object",
+                "properties": {
+                  "adopted": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "isBiologicalChildOfSpouse",
+                "dateEnteredHousehold",
+                "biologicalParentName",
+                "biologicalParentSsn",
+                "biologicalParentDob"
+              ]
             }
           }
         ]
