@@ -1,3 +1,4 @@
+// Known schema issues: https://github.com/department-of-veterans-affairs/va.gov-team/issues/138238
 import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
 import pick from 'lodash/pick';
@@ -17,6 +18,17 @@ definitions = pick(
   'veteranServiceNumber',
 );
 
+// Fix #4: Remove minLength: 1 from address.street2 (production data includes empty strings)
+if (definitions.address && definitions.address.properties && definitions.address.properties.street2) {
+  delete definitions.address.properties.street2.minLength;
+}
+
+// Fix #12: Extend veteranServiceNumber pattern to allow 5-10 digit service numbers
+definitions.veteranServiceNumber = {
+  type: 'string',
+  pattern: '^[A-Z]{0,2}\\d{5,10}$',
+};
+
 const schema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'DEPENDENTS MANAGEMENT FORM (21-686C & 21-674)',
@@ -24,7 +36,8 @@ const schema = {
   definitions: merge(definitions, {
     date: {
       type: 'string',
-      pattern: '^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$',
+      // Fix #11: Allow XX for month and day to support partial dates (e.g. 1994-06-XX)
+      pattern: '^(\\d{4})-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$',
     },
     genericLocation: {
       type: 'object',
@@ -118,7 +131,18 @@ const schema = {
     veteranInformation: {
       type: 'object',
       properties: {
-        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        // Fix #10: Inlined fullName with optional suffix (7 veterans in production had Jr., II, etc.)
+        fullName: {
+          type: 'object',
+          required: ['first', 'last'],
+          properties: {
+            first: { type: 'string', minLength: 1, maxLength: 30 },
+            middle: { type: 'string', maxLength: 30 },
+            last: { type: 'string', minLength: 1, maxLength: 30 },
+            suffix: { type: 'string', maxLength: 10 },
+          },
+          additionalProperties: false,
+        },
         birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
         vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
@@ -139,6 +163,7 @@ const schema = {
       required: ['veteranAddress', 'phoneNumber', 'emailAddress'],
     },
 
+    // Fix #3: ssn conditional on noSsn flag
     spouseInformation: {
       type: 'object',
       properties: {
@@ -152,6 +177,22 @@ const schema = {
         noSsnReason: { type: 'string' },
       },
       required: ['fullName', 'birthDate', 'isVeteran'],
+      oneOf: [
+        {
+          type: 'object',
+          properties: {
+            noSsn: { not: { type: 'boolean', enum: [true] } },
+          },
+          required: ['ssn'],
+        },
+        {
+          type: 'object',
+          properties: {
+            noSsn: { type: 'boolean', enum: [true] },
+          },
+          required: ['noSsnReason'],
+        },
+      ],
     },
 
     doesLiveWithSpouse: {
@@ -316,6 +357,10 @@ const schema = {
       ],
     },
 
+    // Fixes #1, #6, #8, #9: childrenToAdd restructured
+    // - Stepchild fields conditional via oneOf (biological vs stepchild vs adopted)
+    // - Removed invalid required inside boolean/string oneOf branches (Draft 4 cleanup)
+    // - Removed ssn from base required (noSsn support)
     childrenToAdd: {
       type: 'array',
       items: {
@@ -329,20 +374,7 @@ const schema = {
           birthLocation: {
             $ref: '#/definitions/genericLocationAlt',
           },
-          isBiologicalChild: {
-            type: 'boolean',
-            oneOf: [
-              {
-                type: 'boolean',
-                enum: [true],
-                required: ['relationshipToChild'],
-              },
-              {
-                type: 'boolean',
-                enum: [false],
-              },
-            ],
-          },
+          isBiologicalChild: { type: 'boolean' },
           relationshipToChild: {
             type: 'object',
             properties: {
@@ -361,65 +393,14 @@ const schema = {
           biologicalParentDob: {
             $ref: '#/definitions/date',
           },
-          doesChildHaveDisability: {
-            oneOf: [
-              {
-                type: 'boolean',
-                enum: [true],
-                required: ['doesChildHavePermanentDisability'],
-              },
-              {
-                type: 'boolean',
-                enum: [false],
-              },
-            ],
-          },
+          doesChildHaveDisability: { type: 'boolean' },
           doesChildHavePermanentDisability: { type: 'boolean' },
-          doesChildLiveWithYou: {
-            type: 'boolean',
-            oneOf: [
-              {
-                type: 'boolean',
-                enum: [false],
-                required: ['livingWith'],
-              },
-              {
-                type: 'boolean',
-                enum: [true],
-              },
-            ],
-          },
-          hasChildEverBeenMarried: {
-            type: 'boolean',
-            oneOf: [
-              {
-                type: 'boolean',
-                enum: [true],
-                required: ['marriageEndDate', 'marriageEndReason'],
-              },
-              {
-                type: 'boolean',
-                enum: [false],
-              },
-            ],
-          },
+          doesChildLiveWithYou: { type: 'boolean' },
+          hasChildEverBeenMarried: { type: 'boolean' },
           marriageEndDate: {
             $ref: '#/definitions/date',
           },
-          marriageEndReason: {
-            type: 'string',
-            oneOf: [
-              {
-                type: 'string',
-                enum: ['Other'],
-                required: ['marriageEndDescription'],
-              },
-              {
-                type: 'string',
-                enum: ['Death', 'Divorce', 'Annulment'],
-              },
-            ],
-          },
+          marriageEndReason: { type: 'string' },
           marriageEndDescription: { type: 'string' },
           incomeInLastYear: { type: 'string' },
           address: {
@@ -434,16 +415,12 @@ const schema = {
               last: { type: 'string' },
             },
           },
+          relationshipType: { type: 'string' },
         },
         required: [
           'doesChildLiveWithYou',
           'hasChildEverBeenMarried',
           'doesChildHaveDisability',
-          'isBiologicalChildOfSpouse',
-          'dateEnteredHousehold',
-          'biologicalParentName',
-          'biologicalParentSsn',
-          'biologicalParentDob',
           'isBiologicalChild',
           'birthLocation',
           'fullName',
@@ -451,22 +428,47 @@ const schema = {
         ],
         oneOf: [
           {
+            // Biological child
             type: 'object',
             properties: {
               isBiologicalChild: { type: 'boolean', enum: [true] },
             },
-            required: ['ssn'],
+            required: ['isBiologicalChild'],
           },
           {
+            // Stepchild: requires parent info
             type: 'object',
             properties: {
               isBiologicalChild: { type: 'boolean', enum: [false] },
+              relationshipType: { type: 'string', enum: ['STEPCHILD'] },
             },
+            required: [
+              'isBiologicalChild',
+              'relationshipType',
+              'isBiologicalChildOfSpouse',
+              'dateEnteredHousehold',
+              'biologicalParentName',
+              'biologicalParentSsn',
+              'biologicalParentDob',
+            ],
+          },
+          {
+            // Adopted child: no stepchild-specific fields
+            type: 'object',
+            properties: {
+              isBiologicalChild: { type: 'boolean', enum: [false] },
+              relationshipType: { type: 'string', enum: ['ADOPTED'] },
+            },
+            required: ['isBiologicalChild', 'relationshipType'],
           },
         ],
       },
     },
 
+    // Fixes #6, #7, #13: studentInformation restructured
+    // - Simplified wasMarried (removed invalid required inside boolean oneOf)
+    // - Simplified typeOfProgramOrBenefit to accept both string and object
+    // - ssn conditional on noSsn
     studentInformation: {
       type: 'array',
       items: {
@@ -486,103 +488,12 @@ const schema = {
           address: {
             $ref: '#/definitions/address',
           },
-          wasMarried: {
-            oneOf: [
-              {
-                type: 'boolean',
-                enum: [true],
-                required: ['wasMarried', 'marriageDate'],
-              },
-              {
-                type: 'boolean',
-                enum: [false],
-                required: ['wasMarried'],
-              },
-            ],
-          },
+          wasMarried: { type: 'boolean' },
           marriageDate: { $ref: '#/definitions/date' },
           typeOfProgramOrBenefit: {
-            type: 'object',
             oneOf: [
-              {
-                type: 'object',
-                properties: {
-                  typeOfProgramOrBenefit: {
-                    type: 'object',
-                    properties: {
-                      other: { type: 'boolean', enum: [true] },
-                    },
-                  },
-                },
-                required: ['otherProgramOrBenefit'],
-              },
-              {
-                type: 'object',
-                properties: {
-                  typeOfProgramOrBenefit: {
-                    type: 'object',
-                    properties: {
-                      other: { type: 'boolean', enum: [false] },
-                    },
-                  },
-                },
-                anyOf: [
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { other: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { ch35: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { fry: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { feca: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                ],
-              },
-              {
-                type: 'object',
-                properties: {
-                  typeOfProgramOrBenefit: {
-                    type: 'object',
-                    properties: {
-                      ch35: { type: 'boolean', enum: [false] },
-                      fry: { type: 'boolean', enum: [false] },
-                      feca: { type: 'boolean', enum: [false] },
-                      other: { type: 'boolean', enum: [false] },
-                    },
-                  },
-                },
-              },
+              { type: 'string' },
+              { type: 'object' },
             ],
           },
           otherProgramOrBenefit: {
@@ -647,7 +558,7 @@ const schema = {
               },
             ],
           },
-          claimsOrReceivesPension: { type: 'boolean' }, // might need conditional required
+          claimsOrReceivesPension: { type: 'boolean' },
           studentNetworthInformation: {
             type: 'object',
             properties: {
@@ -686,7 +597,6 @@ const schema = {
           'address',
           'wasMarried',
           'tuitionIsPaidByGovAgency',
-          // 'claimsOrReceivesPension', // remove from required and verify condition later - will allow submission
           'schoolInformation',
           'typeOfProgramOrBenefit',
         ],
@@ -694,31 +604,22 @@ const schema = {
           {
             type: 'object',
             properties: {
-              typeOfProgramOrBenefit: {
-                type: 'object',
-                properties: {
-                  other: { type: 'boolean', enum: [true] },
-                },
-                required: ['other'],
-              },
+              noSsn: { not: { type: 'boolean', enum: [true] } },
             },
-            required: ['otherProgramOrBenefit'],
+            required: ['ssn'],
           },
           {
             type: 'object',
             properties: {
-              typeOfProgramOrBenefit: {
-                type: 'object',
-                properties: {
-                  other: { type: 'boolean', enum: [false] },
-                },
-              },
+              noSsn: { type: 'boolean', enum: [true] },
             },
+            required: ['noSsn'],
           },
         ],
       },
     },
 
+    // Fix #2: stepChildren required reduced to [fullName, ssn, birthDate], removed supportingStepchild oneOf
     stepChildren: {
       type: 'array',
       items: {
@@ -741,23 +642,7 @@ const schema = {
           birthDate: { $ref: '#/definitions/date' },
           dateStepchildLeftHousehold: { $ref: '#/definitions/date' },
         },
-        required: ['whoDoesTheStepchildLiveWith', 'supportingStepchild', 'fullName', 'ssn', 'birthDate'],
-        oneOf: [
-          {
-            type: 'object',
-            properties: {
-              supportingStepchild: { type: 'boolean', enum: [true] },
-            },
-            required: ['supportingStepchild', 'livingExpensesPaid'],
-          },
-          {
-            type: 'object',
-            properties: {
-              supportingStepchild: { type: 'boolean', enum: [false] },
-            },
-            required: ['supportingStepchild'],
-          },
-        ],
+        required: ['fullName', 'ssn', 'birthDate'],
       },
     },
 
