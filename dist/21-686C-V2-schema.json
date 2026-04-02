@@ -201,7 +201,6 @@
         },
         "street2": {
           "type": "string",
-          "minLength": 1,
           "maxLength": 50
         },
         "city": {
@@ -277,11 +276,11 @@
     },
     "veteranServiceNumber": {
       "type": "string",
-      "pattern": "^[A-Z]{0,2}\\d{5,8}$"
+      "pattern": "^[A-Z]{0,2}\\d{5,10}$"
     },
     "date": {
       "type": "string",
-      "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"
+      "pattern": "^(\\d{4})-(0[1-9]|1[0-2]|XX)-(0[1-9]|[1-2][0-9]|3[0-1]|XX)$"
     },
     "genericLocation": {
       "type": "object",
@@ -423,7 +422,32 @@
       "type": "object",
       "properties": {
         "fullName": {
-          "$ref": "#/definitions/fullNameNoSuffix"
+          "type": "object",
+          "required": [
+            "first",
+            "last"
+          ],
+          "properties": {
+            "first": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "middle": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "last": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "suffix": {
+              "type": "string",
+              "maxLength": 10
+            }
+          },
+          "additionalProperties": false
         },
         "birthDate": {
           "$ref": "#/definitions/date"
@@ -512,6 +536,38 @@
         "fullName",
         "birthDate",
         "isVeteran"
+      ],
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "noSsn": {
+              "not": {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            }
+          },
+          "required": [
+            "ssn"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "noSsn": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          },
+          "required": [
+            "noSsnReason"
+          ]
+        }
       ]
     },
     "currentMarriageInformation": {
@@ -857,24 +913,7 @@
             "$ref": "#/definitions/genericLocationAlt"
           },
           "isBiologicalChild": {
-            "type": "boolean",
-            "oneOf": [
-              {
-                "type": "boolean",
-                "enum": [
-                  true
-                ],
-                "required": [
-                  "relationshipToChild"
-                ]
-              },
-              {
-                "type": "boolean",
-                "enum": [
-                  false
-                ]
-              }
-            ]
+            "type": "boolean"
           },
           "relationshipToChild": {
             "type": "object",
@@ -903,92 +942,22 @@
             "$ref": "#/definitions/date"
           },
           "doesChildHaveDisability": {
-            "oneOf": [
-              {
-                "type": "boolean",
-                "enum": [
-                  true
-                ],
-                "required": [
-                  "doesChildHavePermanentDisability"
-                ]
-              },
-              {
-                "type": "boolean",
-                "enum": [
-                  false
-                ]
-              }
-            ]
+            "type": "boolean"
           },
           "doesChildHavePermanentDisability": {
             "type": "boolean"
           },
           "doesChildLiveWithYou": {
-            "type": "boolean",
-            "oneOf": [
-              {
-                "type": "boolean",
-                "enum": [
-                  false
-                ],
-                "required": [
-                  "livingWith"
-                ]
-              },
-              {
-                "type": "boolean",
-                "enum": [
-                  true
-                ]
-              }
-            ]
+            "type": "boolean"
           },
           "hasChildEverBeenMarried": {
-            "type": "boolean",
-            "oneOf": [
-              {
-                "type": "boolean",
-                "enum": [
-                  true
-                ],
-                "required": [
-                  "marriageEndDate",
-                  "marriageEndReason"
-                ]
-              },
-              {
-                "type": "boolean",
-                "enum": [
-                  false
-                ]
-              }
-            ]
+            "type": "boolean"
           },
           "marriageEndDate": {
             "$ref": "#/definitions/date"
           },
           "marriageEndReason": {
-            "type": "string",
-            "oneOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "Other"
-                ],
-                "required": [
-                  "marriageEndDescription"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "Death",
-                  "Divorce",
-                  "Annulment"
-                ]
-              }
-            ]
+            "type": "string"
           },
           "marriageEndDescription": {
             "type": "string"
@@ -1016,17 +985,15 @@
                 "type": "string"
               }
             }
+          },
+          "relationshipType": {
+            "type": "string"
           }
         },
         "required": [
           "doesChildLiveWithYou",
           "hasChildEverBeenMarried",
           "doesChildHaveDisability",
-          "isBiologicalChildOfSpouse",
-          "dateEnteredHousehold",
-          "biologicalParentName",
-          "biologicalParentSsn",
-          "biologicalParentDob",
           "isBiologicalChild",
           "birthLocation",
           "fullName",
@@ -1044,7 +1011,7 @@
               }
             },
             "required": [
-              "ssn"
+              "isBiologicalChild"
             ]
           },
           {
@@ -1055,8 +1022,44 @@
                 "enum": [
                   false
                 ]
+              },
+              "relationshipType": {
+                "type": "string",
+                "enum": [
+                  "STEPCHILD"
+                ]
               }
-            }
+            },
+            "required": [
+              "isBiologicalChild",
+              "relationshipType",
+              "isBiologicalChildOfSpouse",
+              "dateEnteredHousehold",
+              "biologicalParentName",
+              "biologicalParentSsn",
+              "biologicalParentDob"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "isBiologicalChild": {
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "relationshipType": {
+                "type": "string",
+                "enum": [
+                  "ADOPTED"
+                ]
+              }
+            },
+            "required": [
+              "isBiologicalChild",
+              "relationshipType"
+            ]
           }
         ]
       }
@@ -1107,41 +1110,9 @@
           }
         },
         "required": [
-          "whoDoesTheStepchildLiveWith",
-          "supportingStepchild",
           "fullName",
+          "ssn",
           "birthDate"
-        ],
-        "oneOf": [
-          {
-            "type": "object",
-            "properties": {
-              "supportingStepchild": {
-                "type": "boolean",
-                "enum": [
-                  true
-                ]
-              }
-            },
-            "required": [
-              "supportingStepchild",
-              "livingExpensesPaid"
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {
-              "supportingStepchild": {
-                "type": "boolean",
-                "enum": [
-                  false
-                ]
-              }
-            },
-            "required": [
-              "supportingStepchild"
-            ]
-          }
         ]
       }
     },
