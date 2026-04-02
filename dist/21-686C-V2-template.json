@@ -1106,6 +1106,8 @@
       "repeatable": false,
       "fields": [
         {
+          "showIf": "householdIncome",
+          "showIfCondition": "defined",
           "fieldLabel": "Did your household have a net worth less than $163,699 in the last tax year?",
           "fieldValue": "{{formatBool householdIncome 'Yes' 'No'}}"
         }
@@ -1139,6 +1141,7 @@
       "blocks": [
         {
           "blockStyle": "italic",
+          "blockLabelType": "body",
           "blockLabel": "I confirm that the identifying information in this form is accurate and has been represented correctly. I have read and accept the privacy policy.",
           "fields": [
             {
