@@ -64,68 +64,64 @@ const schema = {
     doctorsCare: {
       type: 'array',
       minItems: 0,
-      items: [
-        {
-          type: 'object',
-          properties: {
-            inVANetwork: {
-              type: 'boolean',
-            },
-            doctorsTreatmentDates: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  from: { type: 'string' },
-                  to: { type: 'string' },
-                },
-              },
-            },
-            nameAndAddressOfDoctor: {
-              type: 'string',
-            },
-            relatedDisability: {
-              type: 'array',
-              items: {
-                type: 'string',
+      items: {
+        type: 'object',
+        properties: {
+          inVANetwork: {
+            type: 'boolean',
+          },
+          doctorsTreatmentDates: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                from: { type: 'string' },
+                to: { type: 'string' },
               },
             },
           },
+          nameAndAddressOfDoctor: {
+            type: 'string',
+          },
+          relatedDisability: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
         },
-      ],
+      },
     },
     hospitalsCare: {
       type: 'array',
       minItems: 0,
-      items: [
-        {
-          type: 'object',
-          properties: {
-            inVANetwork: {
-              type: 'boolean',
-            },
-            hospitalTreatmentDates: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  from: { type: 'string' },
-                  to: { type: 'string' },
-                },
-              },
-            },
-            nameAndAddressOfHospitals: {
-              type: 'string',
-            },
-            relatedDisability: {
-              type: 'array',
-              items: {
-                type: 'string',
+      items: {
+        type: 'object',
+        properties: {
+          inVANetwork: {
+            type: 'boolean',
+          },
+          hospitalTreatmentDates: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                from: { type: 'string' },
+                to: { type: 'string' },
               },
             },
           },
+          nameAndAddressOfHospitals: {
+            type: 'string',
+          },
+          relatedDisability: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
         },
-      ],
+      },
     },
     // SECTION III -  EMPLOYMENT STATEMENT
     disabilityAffectEmployFTDate: {
