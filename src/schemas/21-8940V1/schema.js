@@ -72,10 +72,12 @@ const schema = {
           },
           doctorsTreatmentDates: {
             type: 'array',
-            items: 'object',
-            properties: {
-              from: 'string',
-              to: 'string',
+            items: {
+              type: 'object',
+              properties: {
+                from: { type: 'string' },
+                to: { type: 'string' },
+              },
             },
           },
           nameAndAddressOfDoctor: {
@@ -101,10 +103,12 @@ const schema = {
           },
           hospitalTreatmentDates: {
             type: 'array',
-            items: 'object',
-            properties: {
-              from: 'string',
-              to: 'string',
+            items: {
+              type: 'object',
+              properties: {
+                from: { type: 'string' },
+                to: { type: 'string' },
+              },
             },
           },
           nameAndAddressOfHospitals: {
@@ -282,4 +286,5 @@ const schema = {
   },
   // required: [],
 };
+
 export default schema;
