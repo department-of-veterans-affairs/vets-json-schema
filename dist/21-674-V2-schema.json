@@ -649,6 +649,7 @@
           {
             "properties": {
               "typeOfProgramOrBenefit": {
+                "type": "object",
                 "properties": {
                   "none": {
                     "enum": [
@@ -662,6 +663,7 @@
           {
             "properties": {
               "typeOfProgramOrBenefit": {
+                "type": "object",
                 "properties": {
                   "none": {
                     "not": {

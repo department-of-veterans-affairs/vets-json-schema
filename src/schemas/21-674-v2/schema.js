@@ -224,6 +224,7 @@ export const schema674 = {
           {
             properties: {
               typeOfProgramOrBenefit: {
+                type: 'object',
                 properties: {
                   none: { enum: [true] }
                 }
@@ -233,6 +234,7 @@ export const schema674 = {
           {
             properties: {
               typeOfProgramOrBenefit: {
+                type: 'object',
                 properties: {
                   none: { not: { enum: [true] } }
                 }
