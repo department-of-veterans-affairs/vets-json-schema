@@ -491,13 +491,14 @@ const schema = {
           wasMarried: { type: 'boolean' },
           marriageDate: { $ref: '#/definitions/date' },
           typeOfProgramOrBenefit: {
-            oneOf: [
-              { type: 'string' },
-              { type: 'object' },
-            ],
-          },
-          otherProgramOrBenefit: {
-            type: 'string',
+            type: 'object',
+            properties: {
+              "ch35": { type: 'boolean' },
+              "fry": { type: 'boolean' },
+              "feca": { type: 'boolean' },
+              "none": { type: 'boolean' }
+            },
+            required: ['benefitPaymentDate']
           },
           tuitionIsPaidByGovAgency: { type: 'boolean' },
           benefitPaymentDate: {

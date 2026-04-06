@@ -106,85 +106,14 @@ export const schema674 = {
           marriageDate: { $ref: '#/definitions/date' },
           typeOfProgramOrBenefit: {
             type: 'object',
-            oneOf: [
-              {
-                type: 'object',
-                properties: {
-                  typeOfProgramOrBenefit: {
-                    type: 'object',
-                    properties: { other: { type: 'boolean', enum: [true] } },
-                  },
-                },
-                required: ['otherProgramOrBenefit'],
-              },
-              {
-                type: 'object',
-                properties: {
-                  typeOfProgramOrBenefit: {
-                    type: 'object',
-                    properties: { other: { type: 'boolean', enum: [false] } },
-                  },
-                },
-                anyOf: [
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { other: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { ch35: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { fry: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                  {
-                    type: 'object',
-                    properties: {
-                      typeOfProgramOrBenefit: {
-                        type: 'object',
-                        properties: { feca: { type: 'boolean', enum: [true] } },
-                      },
-                    },
-                    required: ['benefitPaymentDate'],
-                  },
-                ],
-              },
-              {
-                type: 'object',
-                properties: {
-                  typeOfProgramOrBenefit: {
-                    type: 'object',
-                    properties: {
-                      ch35: { type: 'boolean', enum: [false] },
-                      fry: { type: 'boolean', enum: [false] },
-                      feca: { type: 'boolean', enum: [false] },
-                      other: { type: 'boolean', enum: [false] },
-                    },
-                  },
-                },
-              },
-            ],
+            properties: {
+              "ch35": { type: 'boolean' },
+              "fry": { type: 'boolean' },
+              "feca": { type: 'boolean' },
+              "none": { type: 'boolean' }
+            },
+            required: ['benefitPaymentDate']
           },
-          otherProgramOrBenefit: { type: 'string' },
           tuitionIsPaidByGovAgency: { type: 'boolean' },
           benefitPaymentDate: { $ref: '#/definitions/date' },
 

@@ -1094,17 +1094,24 @@
             "$ref": "#/definitions/date"
           },
           "typeOfProgramOrBenefit": {
-            "oneOf": [
-              {
-                "type": "string"
+            "type": "object",
+            "properties": {
+              "ch35": {
+                "type": "boolean"
               },
-              {
-                "type": "object"
+              "fry": {
+                "type": "boolean"
+              },
+              "feca": {
+                "type": "boolean"
+              },
+              "none": {
+                "type": "boolean"
               }
+            },
+            "required": [
+              "benefitPaymentDate"
             ]
-          },
-          "otherProgramOrBenefit": {
-            "type": "string"
           },
           "tuitionIsPaidByGovAgency": {
             "type": "boolean"
