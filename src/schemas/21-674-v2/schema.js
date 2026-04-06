@@ -111,8 +111,7 @@ export const schema674 = {
               "fry": { type: 'boolean' },
               "feca": { type: 'boolean' },
               "none": { type: 'boolean' }
-            },
-            required: ['benefitPaymentDate']
+            }
           },
           tuitionIsPaidByGovAgency: { type: 'boolean' },
           benefitPaymentDate: { $ref: '#/definitions/date' },
@@ -220,8 +219,27 @@ export const schema674 = {
           'schoolInformation',
           'claimsOrReceivesPension',
           'typeOfProgramOrBenefit',
-          'otherProgramOrBenefit',
-          'benefitPaymentDate',
+        ],
+        oneOf: [
+          {
+            properties: {
+              typeOfProgramOrBenefit: {
+                properties: {
+                  none: { enum: [true] }
+                }
+              }
+            }
+          },
+          {
+            properties: {
+              typeOfProgramOrBenefit: {
+                properties: {
+                  none: { not: { enum: [true] } }
+                }
+              }
+            },
+            required: ['benefitPaymentDate']
+          }
         ],
       },
     },

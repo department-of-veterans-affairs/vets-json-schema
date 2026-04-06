@@ -470,10 +470,7 @@
               "none": {
                 "type": "boolean"
               }
-            },
-            "required": [
-              "benefitPaymentDate"
-            ]
+            }
           },
           "tuitionIsPaidByGovAgency": {
             "type": "boolean"
@@ -646,9 +643,40 @@
           "tuitionIsPaidByGovAgency",
           "schoolInformation",
           "claimsOrReceivesPension",
-          "typeOfProgramOrBenefit",
-          "otherProgramOrBenefit",
-          "benefitPaymentDate"
+          "typeOfProgramOrBenefit"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "typeOfProgramOrBenefit": {
+                "properties": {
+                  "none": {
+                    "enum": [
+                      true
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "typeOfProgramOrBenefit": {
+                "properties": {
+                  "none": {
+                    "not": {
+                      "enum": [
+                        true
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "benefitPaymentDate"
+            ]
+          }
         ]
       }
     },
