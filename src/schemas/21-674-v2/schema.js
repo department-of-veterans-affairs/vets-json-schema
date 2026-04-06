@@ -223,6 +223,7 @@ export const schema674 = {
           {
             oneOf: [
               {
+                type: 'object',
                 properties: {
                   typeOfProgramOrBenefit: {
                     type: 'object',
@@ -233,6 +234,7 @@ export const schema674 = {
                 }
               },
               {
+                type: 'object',
                 properties: {
                   typeOfProgramOrBenefit: {
                     type: 'object',
@@ -248,6 +250,7 @@ export const schema674 = {
           {
             oneOf: [
               {
+                type: 'object',
                 properties: {
                   tuitionIsPaidByGovAgency: { type: 'boolean', enum: [true] },
                   schoolInformation: {
@@ -257,6 +260,7 @@ export const schema674 = {
                 },
               },
               {
+                type: 'object',
                 properties: {
                   tuitionIsPaidByGovAgency: { type: 'boolean', enum: [false] },
                 },

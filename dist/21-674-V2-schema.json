@@ -648,6 +648,7 @@
           {
             "oneOf": [
               {
+                "type": "object",
                 "properties": {
                   "typeOfProgramOrBenefit": {
                     "type": "object",
@@ -662,6 +663,7 @@
                 }
               },
               {
+                "type": "object",
                 "properties": {
                   "typeOfProgramOrBenefit": {
                     "type": "object",
@@ -685,6 +687,7 @@
           {
             "oneOf": [
               {
+                "type": "object",
                 "properties": {
                   "tuitionIsPaidByGovAgency": {
                     "type": "boolean",
@@ -701,6 +704,7 @@
                 }
               },
               {
+                "type": "object",
                 "properties": {
                   "tuitionIsPaidByGovAgency": {
                     "type": "boolean",
