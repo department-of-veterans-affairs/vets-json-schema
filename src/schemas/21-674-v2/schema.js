@@ -146,7 +146,6 @@ export const schema674 = {
               },
             },
             required: [
-              'name',
               'studentIsEnrolledFullTime',
               'studentDidAttendSchoolLastTerm',
               'currentTermDates',
@@ -220,28 +219,50 @@ export const schema674 = {
           'claimsOrReceivesPension',
           'typeOfProgramOrBenefit',
         ],
-        oneOf: [
+        allOf: [
           {
-            properties: {
-              typeOfProgramOrBenefit: {
-                type: 'object',
+            oneOf: [
+              {
                 properties: {
-                  none: { enum: [true] }
+                  typeOfProgramOrBenefit: {
+                    type: 'object',
+                    properties: {
+                      none: { enum: [true] }
+                    }
+                  }
                 }
+              },
+              {
+                properties: {
+                  typeOfProgramOrBenefit: {
+                    type: 'object',
+                    properties: {
+                      none: { not: { enum: [true] } }
+                    }
+                  }
+                },
+                required: ['benefitPaymentDate']
               }
-            }
+            ],
           },
           {
-            properties: {
-              typeOfProgramOrBenefit: {
-                type: 'object',
+            oneOf: [
+              {
                 properties: {
-                  none: { not: { enum: [true] } }
-                }
-              }
-            },
-            required: ['benefitPaymentDate']
-          }
+                  tuitionIsPaidByGovAgency: { type: 'boolean', enum: [true] },
+                  schoolInformation: {
+                    type: 'object',
+                    required: ['name'],
+                  },
+                },
+              },
+              {
+                properties: {
+                  tuitionIsPaidByGovAgency: { type: 'boolean', enum: [false] },
+                },
+              },
+            ],
+          },
         ],
       },
     },

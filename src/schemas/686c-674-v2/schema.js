@@ -531,7 +531,6 @@ const schema = {
               },
             },
             required: [
-              'name',
               'studentIsEnrolledFullTime',
               'studentDidAttendSchoolLastTerm',
               'currentTermDates',
@@ -600,20 +599,44 @@ const schema = {
           'schoolInformation',
           'typeOfProgramOrBenefit',
         ],
-        oneOf: [
+        allOf: [
           {
-            type: 'object',
-            properties: {
-              noSsn: { not: { type: 'boolean', enum: [true] } },
-            },
-            required: ['ssn'],
+            oneOf: [
+              {
+                type: 'object',
+                properties: {
+                  noSsn: { not: { type: 'boolean', enum: [true] } },
+                },
+                required: ['ssn'],
+              },
+              {
+                type: 'object',
+                properties: {
+                  noSsn: { type: 'boolean', enum: [true] },
+                },
+                required: ['noSsn'],
+              },
+            ],
           },
           {
-            type: 'object',
-            properties: {
-              noSsn: { type: 'boolean', enum: [true] },
-            },
-            required: ['noSsn'],
+            oneOf: [
+              {
+                type: 'object',
+                properties: {
+                  tuitionIsPaidByGovAgency: { type: 'boolean', enum: [true] },
+                  schoolInformation: {
+                    type: 'object',
+                    required: ['name'],
+                  },
+                },
+              },
+              {
+                type: 'object',
+                properties: {
+                  tuitionIsPaidByGovAgency: { type: 'boolean', enum: [false] },
+                },
+              },
+            ],
           },
         ],
       },
