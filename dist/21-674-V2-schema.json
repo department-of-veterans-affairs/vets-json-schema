@@ -457,158 +457,20 @@
           },
           "typeOfProgramOrBenefit": {
             "type": "object",
-            "oneOf": [
-              {
-                "type": "object",
-                "properties": {
-                  "typeOfProgramOrBenefit": {
-                    "type": "object",
-                    "properties": {
-                      "other": {
-                        "type": "boolean",
-                        "enum": [
-                          true
-                        ]
-                      }
-                    }
-                  }
-                },
-                "required": [
-                  "otherProgramOrBenefit"
-                ]
+            "properties": {
+              "ch35": {
+                "type": "boolean"
               },
-              {
-                "type": "object",
-                "properties": {
-                  "typeOfProgramOrBenefit": {
-                    "type": "object",
-                    "properties": {
-                      "other": {
-                        "type": "boolean",
-                        "enum": [
-                          false
-                        ]
-                      }
-                    }
-                  }
-                },
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "typeOfProgramOrBenefit": {
-                        "type": "object",
-                        "properties": {
-                          "other": {
-                            "type": "boolean",
-                            "enum": [
-                              true
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    "required": [
-                      "benefitPaymentDate"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "typeOfProgramOrBenefit": {
-                        "type": "object",
-                        "properties": {
-                          "ch35": {
-                            "type": "boolean",
-                            "enum": [
-                              true
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    "required": [
-                      "benefitPaymentDate"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "typeOfProgramOrBenefit": {
-                        "type": "object",
-                        "properties": {
-                          "fry": {
-                            "type": "boolean",
-                            "enum": [
-                              true
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    "required": [
-                      "benefitPaymentDate"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "typeOfProgramOrBenefit": {
-                        "type": "object",
-                        "properties": {
-                          "feca": {
-                            "type": "boolean",
-                            "enum": [
-                              true
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    "required": [
-                      "benefitPaymentDate"
-                    ]
-                  }
-                ]
+              "fry": {
+                "type": "boolean"
               },
-              {
-                "type": "object",
-                "properties": {
-                  "typeOfProgramOrBenefit": {
-                    "type": "object",
-                    "properties": {
-                      "ch35": {
-                        "type": "boolean",
-                        "enum": [
-                          false
-                        ]
-                      },
-                      "fry": {
-                        "type": "boolean",
-                        "enum": [
-                          false
-                        ]
-                      },
-                      "feca": {
-                        "type": "boolean",
-                        "enum": [
-                          false
-                        ]
-                      },
-                      "other": {
-                        "type": "boolean",
-                        "enum": [
-                          false
-                        ]
-                      }
-                    }
-                  }
-                }
+              "feca": {
+                "type": "boolean"
+              },
+              "none": {
+                "type": "boolean"
               }
-            ]
-          },
-          "otherProgramOrBenefit": {
-            "type": "string"
+            }
           },
           "tuitionIsPaidByGovAgency": {
             "type": "boolean"
@@ -666,7 +528,6 @@
               }
             },
             "required": [
-              "name",
               "studentIsEnrolledFullTime",
               "studentDidAttendSchoolLastTerm",
               "currentTermDates",
@@ -781,9 +642,80 @@
           "tuitionIsPaidByGovAgency",
           "schoolInformation",
           "claimsOrReceivesPension",
-          "typeOfProgramOrBenefit",
-          "otherProgramOrBenefit",
-          "benefitPaymentDate"
+          "typeOfProgramOrBenefit"
+        ],
+        "allOf": [
+          {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "typeOfProgramOrBenefit": {
+                    "type": "object",
+                    "properties": {
+                      "none": {
+                        "enum": [
+                          true
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "typeOfProgramOrBenefit": {
+                    "type": "object",
+                    "properties": {
+                      "none": {
+                        "not": {
+                          "enum": [
+                            true
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "benefitPaymentDate"
+                ]
+              }
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "tuitionIsPaidByGovAgency": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  },
+                  "schoolInformation": {
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "tuitionIsPaidByGovAgency": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  }
+                }
+              }
+            ]
+          }
         ]
       }
     },

@@ -1094,17 +1094,21 @@
             "$ref": "#/definitions/date"
           },
           "typeOfProgramOrBenefit": {
-            "oneOf": [
-              {
-                "type": "string"
+            "type": "object",
+            "properties": {
+              "ch35": {
+                "type": "boolean"
               },
-              {
-                "type": "object"
+              "fry": {
+                "type": "boolean"
+              },
+              "feca": {
+                "type": "boolean"
+              },
+              "none": {
+                "type": "boolean"
               }
-            ]
-          },
-          "otherProgramOrBenefit": {
-            "type": "string"
+            }
           },
           "tuitionIsPaidByGovAgency": {
             "type": "boolean"
@@ -1162,7 +1166,6 @@
               }
             },
             "required": [
-              "name",
               "studentIsEnrolledFullTime",
               "studentDidAttendSchoolLastTerm",
               "currentTermDates",
@@ -1278,35 +1281,71 @@
           "schoolInformation",
           "typeOfProgramOrBenefit"
         ],
-        "oneOf": [
+        "allOf": [
           {
-            "type": "object",
-            "properties": {
-              "noSsn": {
-                "not": {
-                  "type": "boolean",
-                  "enum": [
-                    true
-                  ]
-                }
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "noSsn": {
+                    "not": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "ssn"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "noSsn": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  }
+                },
+                "required": [
+                  "noSsn"
+                ]
               }
-            },
-            "required": [
-              "ssn"
             ]
           },
           {
-            "type": "object",
-            "properties": {
-              "noSsn": {
-                "type": "boolean",
-                "enum": [
-                  true
-                ]
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "tuitionIsPaidByGovAgency": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  },
+                  "schoolInformation": {
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "tuitionIsPaidByGovAgency": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  }
+                }
               }
-            },
-            "required": [
-              "noSsn"
             ]
           }
         ]
@@ -1410,35 +1449,78 @@
           "ssn",
           "birthDate"
         ],
-        "oneOf": [
+        "allOf": [
           {
-            "type": "object",
-            "properties": {
-              "dependentType": {
-                "type": "string",
-                "enum": [
-                  "CHILD"
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "noSsn": {
+                    "not": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "ssn"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "noSsn": {
+                    "type": "boolean",
+                    "enum": [
+                      true
+                    ]
+                  }
+                },
+                "required": [
+                  "noSsn"
                 ]
               }
-            },
-            "required": [
-              "dependentType",
-              "childStatus"
             ]
           },
           {
-            "type": "object",
-            "properties": {
-              "dependentType": {
-                "type": "string",
-                "enum": [
-                  "SPOUSE",
-                  "DEPENDENT_PARENT"
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "typeOfProgramOrBenefit": {
+                    "type": "object",
+                    "properties": {
+                      "none": {
+                        "enum": [
+                          true
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "typeOfProgramOrBenefit": {
+                    "type": "object",
+                    "properties": {
+                      "none": {
+                        "not": {
+                          "enum": [
+                            true
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "benefitPaymentDate"
                 ]
               }
-            },
-            "required": [
-              "dependentType"
             ]
           }
         ]

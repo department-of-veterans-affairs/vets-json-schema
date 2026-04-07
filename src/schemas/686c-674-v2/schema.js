@@ -491,13 +491,13 @@ const schema = {
           wasMarried: { type: 'boolean' },
           marriageDate: { $ref: '#/definitions/date' },
           typeOfProgramOrBenefit: {
-            oneOf: [
-              { type: 'string' },
-              { type: 'object' },
-            ],
-          },
-          otherProgramOrBenefit: {
-            type: 'string',
+            type: 'object',
+            properties: {
+              "ch35": { type: 'boolean' },
+              "fry": { type: 'boolean' },
+              "feca": { type: 'boolean' },
+              "none": { type: 'boolean' }
+            }
           },
           tuitionIsPaidByGovAgency: { type: 'boolean' },
           benefitPaymentDate: {
@@ -531,7 +531,6 @@ const schema = {
               },
             },
             required: [
-              'name',
               'studentIsEnrolledFullTime',
               'studentDidAttendSchoolLastTerm',
               'currentTermDates',
@@ -600,20 +599,44 @@ const schema = {
           'schoolInformation',
           'typeOfProgramOrBenefit',
         ],
-        oneOf: [
+        allOf: [
           {
-            type: 'object',
-            properties: {
-              noSsn: { not: { type: 'boolean', enum: [true] } },
-            },
-            required: ['ssn'],
+            oneOf: [
+              {
+                type: 'object',
+                properties: {
+                  noSsn: { not: { type: 'boolean', enum: [true] } },
+                },
+                required: ['ssn'],
+              },
+              {
+                type: 'object',
+                properties: {
+                  noSsn: { type: 'boolean', enum: [true] },
+                },
+                required: ['noSsn'],
+              },
+            ],
           },
           {
-            type: 'object',
-            properties: {
-              noSsn: { type: 'boolean', enum: [true] },
-            },
-            required: ['noSsn'],
+            oneOf: [
+              {
+                type: 'object',
+                properties: {
+                  tuitionIsPaidByGovAgency: { type: 'boolean', enum: [true] },
+                  schoolInformation: {
+                    type: 'object',
+                    required: ['name'],
+                  },
+                },
+              },
+              {
+                type: 'object',
+                properties: {
+                  tuitionIsPaidByGovAgency: { type: 'boolean', enum: [false] },
+                },
+              },
+            ],
           },
         ],
       },
@@ -667,21 +690,52 @@ const schema = {
           birthDate: { $ref: '#/definitions/date' },
         },
         required: ['dependentDeathLocation', 'dependentDeathDate', 'dependentType', 'fullName', 'ssn', 'birthDate'],
-        oneOf: [
+                allOf: [
           {
-            type: 'object',
-            properties: {
-              dependentType: { type: 'string', enum: ['CHILD'] },
-            },
-            required: ['dependentType', 'childStatus'],
+            oneOf: [
+              {
+                type: 'object',
+                properties: {
+                  noSsn: { not: { type: 'boolean', enum: [true] } },
+                },
+                required: ['ssn'],
+              },
+              {
+                type: 'object',
+                properties: {
+                  noSsn: { type: 'boolean', enum: [true] },
+                },
+                required: ['noSsn'],
+              },
+            ],
           },
           {
-            type: 'object',
-            properties: {
-              dependentType: { type: 'string', enum: ['SPOUSE', 'DEPENDENT_PARENT'] },
-            },
-            required: ['dependentType'],
-          },
+            oneOf: [
+              {
+                type: 'object',
+                properties: {
+                  typeOfProgramOrBenefit: {
+                    type: 'object',
+                    properties: {
+                      none: { enum: [true] }
+                    }
+                  }
+                }
+              },
+              {
+                type: 'object',
+                properties: {
+                  typeOfProgramOrBenefit: {
+                    type: 'object',
+                    properties: {
+                      none: { not: { enum: [true] } }
+                    }
+                  }
+                },
+                required: ['benefitPaymentDate']
+              }
+            ]
+          }
         ],
       },
     },
