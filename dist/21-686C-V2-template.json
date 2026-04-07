@@ -229,7 +229,7 @@
           ]
         },
         {
-          "showIf": "spouseInformation",
+          "showIf": "doesLiveWithSpouse",
           "blockLabel": "Spouse's address",
           "showUnless": "doesLiveWithSpouse.spouseDoesLiveWithVeteran",
           "fields": [
@@ -1102,7 +1102,7 @@
     {
       "sectionNumber": "9",
       "sectionId": "householdIncomeSection",
-      "sectionHeader": "Section 9: Your net worth",
+      "sectionHeader": "Section 9: Remarks",
       "repeatable": false,
       "fields": [
         {
