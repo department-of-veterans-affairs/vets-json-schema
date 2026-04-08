@@ -220,7 +220,11 @@ const documentTypes526 = [
     value: 'L222',
     label: 'VA Form 21-0779 - Request for Nursing Home Information in Connection with Claim for Aid & Attendance',
   },
-  { value: 'L228', label: 'VA Form 21-0781 - Statement in Support of Claimed Mental Health Disorder(s) Due to an In-Service Traumatic Event(s)' },
+  {
+    value: 'L228',
+    label:
+      'VA Form 21-0781 - Statement in Support of Claimed Mental Health Disorder(s) Due to an In-Service Traumatic Event(s)',
+  },
   { value: 'L229', label: 'VA Form 21-0781a - Statement in Support of Claim for PTSD Secondary to Personal Assault' },
   {
     value: 'L102',
@@ -247,6 +251,7 @@ const documentTypes526 = [
     value: 'L149',
     label: 'VA Form 21-8940 - Veterans Application for Increased Compensation Based on Un-employability',
   },
+  { value: 'L1839', label: 'Separation Health Assessment (SHA)' },
 ];
 
 // These definitions match caseflow:
