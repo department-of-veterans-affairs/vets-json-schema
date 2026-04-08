@@ -609,7 +609,9 @@
               "fields": [
                 {
                   "fieldLabel": "Is this child permanently unable to support themselves because they developed a permanent mental or physical disability before they turned 18 years old?",
-                  "fieldValue": "{{formatBool doesChildHavePermanentDisability 'Yes' 'No'}}"
+                  "fieldValue": "{{formatBool doesChildHavePermanentDisability 'Yes' 'No'}}",
+                  "showIf": "doesChildHavePermanentDisability",
+                  "showIfCondition": "defined"
                 }
               ]
             },
