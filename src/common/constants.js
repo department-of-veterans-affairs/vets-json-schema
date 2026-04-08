@@ -247,7 +247,7 @@ const documentTypes526 = [
     value: 'L149',
     label: 'VA Form 21-8940 - Veterans Application for Increased Compensation Based on Un-employability',
   },
-  { value: 'L1839', label: 'Separation Health Assessment (SHA)' },
+  { value: 'L1839', label: 'Separation Health Assessment (SHA) - Part A' },
 ];
 
 // These definitions match caseflow:
