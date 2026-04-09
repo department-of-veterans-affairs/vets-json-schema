@@ -606,6 +606,8 @@
             },
             {
               "blockLabel": "Child's disability details",
+              "showIf": "doesChildHavePermanentDisability",
+              "showIfCondition": "defined",
               "fields": [
                 {
                   "fieldLabel": "Is this child permanently unable to support themselves because they developed a permanent mental or physical disability before they turned 18 years old?",
