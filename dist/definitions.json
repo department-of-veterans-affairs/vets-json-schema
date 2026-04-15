@@ -36,6 +36,63 @@
       "last"
     ]
   },
+  "dependentsManagementFullNameNoSuffix": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "first",
+      "last"
+    ],
+    "properties": {
+      "first": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30,
+        "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+      },
+      "middle": {
+        "type": "string",
+        "maxLength": 30,
+        "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+      },
+      "last": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30,
+        "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+      }
+    }
+  },
+  "dependentsManagementVeteranFullName": {
+    "type": "object",
+    "properties": {
+      "first": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30,
+        "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+      },
+      "middle": {
+        "type": "string",
+        "maxLength": 30,
+        "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+      },
+      "last": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30,
+        "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+      },
+      "suffix": {
+        "type": "string",
+        "maxLength": 10
+      }
+    },
+    "required": [
+      "first",
+      "last"
+    ]
+  },
   "teraQuestions": {
     "hasTeraResponse": {
       "type": "boolean"
