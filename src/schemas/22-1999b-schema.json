@@ -1,0 +1,251 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "suffix": {
+          "type": "string",
+          "enum": ["Jr.", "Sr.", "II", "III", "IV"]
+        }
+      },
+      "required": ["first", "last"]
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 256
+    },
+    "currency": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999999.99
+    }
+  },
+  "properties": {
+    "veteranInformation": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "phone": {
+          "$ref": "#/definitions/phone"
+        }
+      },
+      "required": ["fullName", "ssn", "dateOfBirth", "email", "phone"]
+    },
+    "benefitInformation": {
+      "type": "object",
+      "properties": {
+        "educationProgram": {
+          "type": "string",
+          "enum": ["chapter30", "chapter31", "chapter32", "chapter33", "chapter35", "chapter1606"]
+        }
+      },
+      "required": ["educationProgram"]
+    },
+    "testInformation": {
+      "type": "object",
+      "properties": {
+        "testName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "testingOrganization": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "testDate": {
+          "$ref": "#/definitions/date"
+        },
+        "testLocation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "required": ["testName", "testingOrganization", "testDate", "testLocation"]
+    },
+    "occupationDetails": {
+      "type": "object",
+      "properties": {
+        "occupationTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "occupationDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "isHighDemand": {
+          "type": "string",
+          "enum": ["yes", "no", "unsure"]
+        }
+      },
+      "required": ["occupationTitle", "occupationDescription", "isHighDemand"]
+    },
+    "costInformation": {
+      "type": "object",
+      "properties": {
+        "testCost": {
+          "$ref": "#/definitions/currency",
+          "minimum": 0.01,
+          "maximum": 2000
+        },
+        "amountRequested": {
+          "$ref": "#/definitions/currency",
+          "minimum": 0.01,
+          "maximum": 2000
+        },
+        "additionalCosts": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": ["testCost", "amountRequested"]
+    },
+    "testResults": {
+      "type": "object",
+      "properties": {
+        "testOutcome": {
+          "type": "string",
+          "enum": ["passed", "failed", "pending"]
+        },
+        "resultsDate": {
+          "$ref": "#/definitions/date"
+        },
+        "licenseNumber": {
+          "type": "string",
+          "maxLength": 50
+        }
+      },
+      "required": ["testOutcome"]
+    },
+    "supportingDocuments": {
+      "type": "object",
+      "properties": {
+        "testReceipt": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "confirmationCode": {
+              "type": "string"
+            },
+            "attachmentId": {
+              "type": "string"
+            }
+          }
+        },
+        "testResults": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "confirmationCode": {
+              "type": "string"
+            },
+            "attachmentId": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalDocuments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "confirmationCode": {
+                "type": "string"
+              },
+              "attachmentId": {
+                "type": "string"
+              }
+            }
+          },
+          "maxItems": 10
+        }
+      },
+      "required": ["testReceipt"]
+    },
+    "bankInformation": {
+      "type": "object",
+      "properties": {
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["direct", "check"]
+        },
+        "routingNumber": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "accountNumber": {
+          "type": "string",
+          "pattern": "^\\d{4,17}$"
+        },
+        "accountType": {
+          "type": "string",
+          "enum": ["checking", "savings"]
+        }
+      },
+      "required": ["paymentMethod"]
+    }
+  },
+  "required": [
+    "veteranInformation",
+    "benefitInformation", 
+    "testInformation",
+    "occupationDetails",
+    "costInformation",
+    "testResults",
+    "supportingDocuments",
+    "bankInformation"
+  ]
+}
