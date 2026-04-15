@@ -1,0 +1,396 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 21P-8767 - Statement Regarding Marriage",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "fullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      },
+      "required": ["first", "last"]
+    },
+    "usAddress": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string",
+          "enum": ["USA"]
+        },
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(?:-\\d{4})?$"
+        }
+      },
+      "required": ["country", "street", "city", "state", "postalCode"]
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
+  },
+  "properties": {
+    "veteranInformation": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "dateOfDeath": {
+          "$ref": "#/definitions/date"
+        },
+        "branchOfService": {
+          "type": "string",
+          "enum": [
+            "Army",
+            "Navy",
+            "Air Force",
+            "Marine Corps",
+            "Coast Guard",
+            "Space Force"
+          ]
+        }
+      },
+      "required": ["fullName", "ssn", "dateOfBirth", "dateOfDeath", "branchOfService"]
+    },
+    "claimantInformation": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "address": {
+          "$ref": "#/definitions/usAddress"
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^\\d{10}$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 256
+        }
+      },
+      "required": ["fullName", "ssn", "dateOfBirth", "address", "phone"]
+    },
+    "currentMarriage": {
+      "type": "object",
+      "properties": {
+        "marriageDate": {
+          "$ref": "#/definitions/date"
+        },
+        "placeOfMarriage": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "state": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "country": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
+          },
+          "required": ["city", "state", "country"]
+        },
+        "marriageType": {
+          "type": "string",
+          "enum": [
+            "religious",
+            "civil",
+            "common_law",
+            "other"
+          ]
+        },
+        "ceremonyDetails": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "commonLawDetails": {
+          "type": "object",
+          "properties": {
+            "stateRecognized": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "relationshipBeganDate": {
+              "$ref": "#/definitions/date"
+            },
+            "evidenceTypes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "joint_accounts",
+                  "joint_property",
+                  "joint_insurance",
+                  "joint_taxes",
+                  "children",
+                  "other"
+                ]
+              },
+              "minItems": 1
+            }
+          }
+        }
+      },
+      "required": ["marriageDate", "placeOfMarriage", "marriageType"]
+    },
+    "previousMarriages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "spouseName": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "middle": {
+                "type": "string",
+                "maxLength": 30
+              },
+              "last": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              }
+            },
+            "required": ["first", "last"]
+          },
+          "marriageDate": {
+            "$ref": "#/definitions/date"
+          },
+          "endDate": {
+            "$ref": "#/definitions/date"
+          },
+          "howEnded": {
+            "type": "string",
+            "enum": [
+              "divorce",
+              "death",
+              "annulment"
+            ]
+          },
+          "placeOfMarriage": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "state": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              }
+            },
+            "required": ["city", "state"]
+          },
+          "placeOfDivorce": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "state": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              }
+            }
+          }
+        },
+        "required": ["spouseName", "marriageDate", "endDate", "howEnded", "placeOfMarriage"]
+      }
+    },
+    "veteranPreviousMarriages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "spouseName": {
+            "type": "object",
+            "properties": {
+              "first": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "middle": {
+                "type": "string",
+                "maxLength": 30
+              },
+              "last": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              }
+            },
+            "required": ["first", "last"]
+          },
+          "marriageDate": {
+            "$ref": "#/definitions/date"
+          },
+          "endDate": {
+            "$ref": "#/definitions/date"
+          },
+          "howEnded": {
+            "type": "string",
+            "enum": [
+              "divorce",
+              "death",
+              "annulment"
+            ]
+          },
+          "additionalDetails": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "required": ["spouseName", "marriageDate", "endDate", "howEnded"]
+      }
+    },
+    "cohabitationEvidence": {
+      "type": "object",
+      "properties": {
+        "evidenceTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "joint_accounts",
+              "joint_property",
+              "joint_insurance",
+              "joint_taxes",
+              "children",
+              "other"
+            ]
+          },
+          "minItems": 1
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": ["evidenceTypes", "explanation"]
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "documentType": {
+            "type": "string",
+            "enum": [
+              "marriage_certificate",
+              "divorce_decree",
+              "death_certificate",
+              "cohabitation_evidence"
+            ]
+          },
+          "fileName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "confirmationCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          }
+        },
+        "required": ["documentType", "fileName", "confirmationCode"]
+      }
+    },
+    "swornStatement": {
+      "type": "object",
+      "properties": {
+        "signature": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "dateSigned": {
+          "$ref": "#/definitions/date"
+        },
+        "certificationAgreement": {
+          "type": "boolean",
+          "enum": [true]
+        }
+      },
+      "required": ["signature", "dateSigned", "certificationAgreement"]
+    }
+  },
+  "required": [
+    "veteranInformation",
+    "claimantInformation", 
+    "currentMarriage",
+    "swornStatement"
+  ]
+}
