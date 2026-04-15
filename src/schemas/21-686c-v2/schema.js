@@ -8,9 +8,10 @@ let definitions = cloneDeep(commonDefinitions);
 definitions = pick(
   definitions,
   'address',
+  'dependentsManagementFullNameNoSuffix',
+  'dependentsManagementVeteranFullName',
   'email',
   'files',
-  'fullNameNoSuffix',
   'phone',
   'privacyAgreementAccepted',
   'ssn',
@@ -110,18 +111,7 @@ export const schema686c = {
     veteranInformation: {
       type: 'object',
       properties: {
-        // Fix #10: Inlined fullName with optional suffix (7 veterans in production had Jr., II, etc.)
-        fullName: {
-          type: 'object',
-          required: ['first', 'last'],
-          properties: {
-            first: { type: 'string', minLength: 1, maxLength: 30 },
-            middle: { type: 'string', maxLength: 30 },
-            last: { type: 'string', minLength: 1, maxLength: 30 },
-            suffix: { type: 'string', maxLength: 10 },
-          },
-          additionalProperties: false,
-        },
+        fullName: { $ref: '#/definitions/dependentsManagementVeteranFullName' },
         birthDate: { $ref: '#/definitions/date' },
         ssnLastFour: { $ref: '#/definitions/ssnLastFour' },
         vaFileLastFour: { type: 'string', pattern: '^\\d{4}$' },
@@ -152,7 +142,7 @@ export const schema686c = {
     spouseInformation: {
       type: 'object',
       properties: {
-        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
         ssn: { $ref: '#/definitions/ssn' },
         noSsn: { type: 'boolean' },
         noSsnReason: { type: 'string' },
@@ -243,7 +233,7 @@ export const schema686c = {
       items: {
         type: 'object',
         properties: {
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
           reasonMarriageEnded: { type: 'string' },
           otherReasonMarriageEnded: { type: 'string' },
           startDate: { $ref: '#/definitions/date' },
@@ -272,7 +262,7 @@ export const schema686c = {
       items: {
         type: 'object',
         properties: {
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
           reasonMarriageEnded: { type: 'string' },
           otherReasonMarriageEnded: { type: 'string' },
           startDate: { $ref: '#/definitions/date' },
@@ -304,7 +294,7 @@ export const schema686c = {
         divorceLocation: { $ref: '#/definitions/genericLocation' },
         reasonMarriageEnded: { type: 'string' },
         explanationOfOther: { type: 'string' },
-        fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+        fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
         birthDate: { $ref: '#/definitions/date' },
       },
       required: ['date', 'divorceLocation', 'reasonMarriageEnded', 'fullName', 'birthDate'],
@@ -331,7 +321,7 @@ export const schema686c = {
       items: {
         type: 'object',
         properties: {
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
           birthDate: { $ref: '#/definitions/date' },
           ssn: { $ref: '#/definitions/ssn' },
           noSsn: { type: 'boolean' },
@@ -352,7 +342,7 @@ export const schema686c = {
             $ref: '#/definitions/date',
           },
           biologicalParentName: {
-            $ref: '#/definitions/fullNameNoSuffix',
+            $ref: '#/definitions/dependentsManagementFullNameNoSuffix',
           },
           biologicalParentSsn: { $ref: '#/definitions/ssn' },
           biologicalParentDob: {
@@ -448,7 +438,7 @@ export const schema686c = {
           address: { $ref: '#/definitions/address' },
           livingExpensesPaid: { type: 'string' },
           supportingStepchild: { type: 'boolean' },
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
           dateStepchildLeftHousehold: { $ref: '#/definitions/date' },
@@ -470,7 +460,7 @@ export const schema686c = {
             type: 'object',
             properties: { childUnder18: { type: 'boolean' }, stepChild: { type: 'boolean' } },
           },
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
@@ -489,7 +479,7 @@ export const schema686c = {
         properties: {
           dependentIncome: { type: 'string' },
           dateMarried: { $ref: '#/definitions/date' },
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
@@ -504,7 +494,7 @@ export const schema686c = {
         properties: {
           dependentIncome: { type: 'string' },
           dateChildLeftSchool: { $ref: '#/definitions/date' },
-          fullName: { $ref: '#/definitions/fullNameNoSuffix' },
+          fullName: { $ref: '#/definitions/dependentsManagementFullNameNoSuffix' },
           ssn: { $ref: '#/definitions/ssn' },
           birthDate: { $ref: '#/definitions/date' },
         },
