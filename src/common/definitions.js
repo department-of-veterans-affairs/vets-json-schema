@@ -62,6 +62,23 @@ const fullNameNoSuffix = {
   },
 };
 
+// Names should not allow numbers
+const dependentsManagementNamePattern = '^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$';
+
+const dependentsManagementFullNameNoSuffix = _.cloneDeep(fullNameNoSuffix);
+dependentsManagementFullNameNoSuffix.properties.first.pattern = dependentsManagementNamePattern;
+dependentsManagementFullNameNoSuffix.properties.middle.pattern = dependentsManagementNamePattern;
+dependentsManagementFullNameNoSuffix.properties.last.pattern = dependentsManagementNamePattern;
+
+const dependentsManagementVeteranFullName = _.cloneDeep(fullName);
+dependentsManagementVeteranFullName.properties.first.pattern = dependentsManagementNamePattern;
+dependentsManagementVeteranFullName.properties.middle.pattern = dependentsManagementNamePattern;
+dependentsManagementVeteranFullName.properties.last.pattern = dependentsManagementNamePattern;
+dependentsManagementVeteranFullName.properties.suffix = {
+  type: 'string',
+  maxLength: 10,
+};
+
 const rejectOnlyWhitespace = {
   pattern: '^.*\\S.*',
 };
@@ -1009,6 +1026,8 @@ const yesNoSchema = {
 export default {
   usaPhone,
   fullName,
+  dependentsManagementFullNameNoSuffix,
+  dependentsManagementVeteranFullName,
   teraQuestions,
   fullNameNoSuffix,
   otherIncome,

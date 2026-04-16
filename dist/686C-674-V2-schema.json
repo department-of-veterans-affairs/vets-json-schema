@@ -210,6 +210,63 @@
         }
       }
     },
+    "dependentsManagementFullNameNoSuffix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        }
+      }
+    },
+    "dependentsManagementVeteranFullName": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^(?!\\s)(?!.*?\\s{2,})[^<>%$#@!^&*0-9]+$"
+        },
+        "suffix": {
+          "type": "string",
+          "maxLength": 10
+        }
+      },
+      "required": [
+        "first",
+        "last"
+      ]
+    },
     "email": {
       "type": "string",
       "maxLength": 256,
@@ -229,30 +286,6 @@
           "confirmationCode": {
             "type": "string"
           }
-        }
-      }
-    },
-    "fullNameNoSuffix": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "first",
-        "last"
-      ],
-      "properties": {
-        "first": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
-        },
-        "middle": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "last": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30
         }
       }
     },
@@ -428,32 +461,7 @@
       "type": "object",
       "properties": {
         "fullName": {
-          "type": "object",
-          "required": [
-            "first",
-            "last"
-          ],
-          "properties": {
-            "first": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 30
-            },
-            "middle": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "last": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 30
-            },
-            "suffix": {
-              "type": "string",
-              "maxLength": 10
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/dependentsManagementVeteranFullName"
         },
         "birthDate": {
           "$ref": "#/definitions/date"
@@ -502,7 +510,7 @@
       "type": "object",
       "properties": {
         "fullName": {
-          "$ref": "#/definitions/fullNameNoSuffix"
+          "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
         },
         "ssn": {
           "$ref": "#/definitions/ssn"
@@ -683,7 +691,7 @@
         "type": "object",
         "properties": {
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "reasonMarriageEnded": {
             "type": "string"
@@ -753,7 +761,7 @@
         "type": "object",
         "properties": {
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "reasonMarriageEnded": {
             "type": "string"
@@ -836,7 +844,7 @@
           "type": "string"
         },
         "fullName": {
-          "$ref": "#/definitions/fullNameNoSuffix"
+          "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
         },
         "birthDate": {
           "$ref": "#/definitions/date"
@@ -889,7 +897,7 @@
         "type": "object",
         "properties": {
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "birthDate": {
             "$ref": "#/definitions/date"
@@ -927,7 +935,7 @@
             "$ref": "#/definitions/date"
           },
           "biologicalParentName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "biologicalParentSsn": {
             "$ref": "#/definitions/ssn"
@@ -1064,7 +1072,7 @@
         "type": "object",
         "properties": {
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "birthDate": {
             "$ref": "#/definitions/date"
@@ -1384,7 +1392,7 @@
             "type": "boolean"
           },
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
@@ -1432,7 +1440,7 @@
             }
           },
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
@@ -1538,7 +1546,7 @@
             "$ref": "#/definitions/date"
           },
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
@@ -1567,7 +1575,7 @@
             "$ref": "#/definitions/date"
           },
           "fullName": {
-            "$ref": "#/definitions/fullNameNoSuffix"
+            "$ref": "#/definitions/dependentsManagementFullNameNoSuffix"
           },
           "ssn": {
             "$ref": "#/definitions/ssn"
