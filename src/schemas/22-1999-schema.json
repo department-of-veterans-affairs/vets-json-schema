@@ -1,0 +1,279 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Request for Certification of Enrollment or Attendance (22-1999)",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^[0-9]{10}$"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 256
+    },
+    "fullName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z\\s\\-']+$"
+    }
+  },
+  "properties": {
+    "sco": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "title", "email", "phone", "institutionFacilityCode", "institutionName", "certifications"],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/fullName"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "phone": {
+          "$ref": "#/definitions/phone"
+        },
+        "institutionFacilityCode": {
+          "type": "string",
+          "pattern": "^[0-9A-Z]{8}$"
+        },
+        "institutionName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "certifications": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "studentEnrolledAsStated",
+              "institutionApprovedForVATraining", 
+              "studentMakingSatisfactoryProgress",
+              "informationAccurateAndComplete"
+            ]
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true
+        }
+      }
+    },
+    "student": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "ssn", "dateOfBirth", "relationshipToVeteran"],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "vaFileNumber": {
+          "type": "string",
+          "pattern": "^[0-9]{8,9}$"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "relationshipToVeteran": {
+          "type": "string",
+          "enum": ["child", "spouse", "survivingChild", "survivingSpouse"]
+        }
+      }
+    },
+    "veteran": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "ssn", "status"],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/fullName"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "vaFileNumber": {
+          "type": "string",
+          "pattern": "^[0-9]{8,9}$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "deceasedServiceConnected",
+            "permanentlyTotallyDisabled", 
+            "missingInAction",
+            "prisonerOfWar"
+          ]
+        }
+      }
+    },
+    "enrollment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["termStartDate", "termEndDate", "enrollmentType", "creditHours", "attendancePattern"],
+      "properties": {
+        "termStartDate": {
+          "$ref": "#/definitions/date"
+        },
+        "termEndDate": {
+          "$ref": "#/definitions/date"
+        },
+        "academicYear": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "termDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "enrollmentType": {
+          "type": "string",
+          "enum": ["initial", "continuing", "reEnrollment"]
+        },
+        "creditHours": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "attendancePattern": {
+          "type": "string",
+          "enum": ["fullTime", "threeQuarterTime", "halfTime", "lessThanHalfTime"]
+        }
+      }
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["degreeObjective", "degreeLevel", "majorField"],
+      "properties": {
+        "degreeObjective": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "degreeLevel": {
+          "type": "string",
+          "enum": [
+            "certificate",
+            "associateDegree",
+            "bachelorsDegree",
+            "mastersDegree",
+            "doctoralDegree",
+            "professionalDegree"
+          ]
+        },
+        "majorField": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      }
+    },
+    "enrollmentStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trainingType"],
+      "properties": {
+        "trainingType": {
+          "type": "string",
+          "enum": [
+            "institutional",
+            "apprenticeship",
+            "onTheJobTraining",
+            "correspondence",
+            "flightTraining"
+          ]
+        },
+        "clockHours": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 40
+        },
+        "specialCircumstances": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "cooperativeTraining",
+              "workStudyProgram",
+              "remedialDevelopmentalCourses"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "paymentRateBasis": {
+          "type": "string",
+          "enum": [
+            "institutionalFullTime",
+            "institutionalThreeQuarter",
+            "institutionalHalfTime",
+            "institutionalLessThanHalf",
+            "apprenticeshipOjt"
+          ]
+        }
+      }
+    },
+    "previousBenefits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receivedPreviousBenefits"],
+      "properties": {
+        "receivedPreviousBenefits": {
+          "type": "boolean"
+        },
+        "monthsUsed": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 48
+        },
+        "previousInstitutionDetails": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    },
+    "certification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["certificationDate"],
+      "properties": {
+        "certificationDate": {
+          "$ref": "#/definitions/date"
+        },
+        "additionalRemarks": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    }
+  },
+  "required": [
+    "sco",
+    "student", 
+    "veteran",
+    "enrollment",
+    "program",
+    "enrollmentStatus",
+    "previousBenefits",
+    "certification"
+  ]
+}
