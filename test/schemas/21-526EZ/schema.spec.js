@@ -32,6 +32,7 @@ const makeAttachments = (ids = [], isEnum = true) => {
         { name: 'def', attachmentId: randomId() },
         { name: 'ghi', attachmentId: randomId(), confirmationCode: '123' },
       ],
+      [{ name: 'sha-doc', attachmentId: randomId(), formId: 'L1839' }],
     ],
     invalid,
   };

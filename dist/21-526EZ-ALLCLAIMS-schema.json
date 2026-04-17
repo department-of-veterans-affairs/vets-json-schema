@@ -1292,6 +1292,9 @@
               "VA Form 21-686c - Declaration of Status of Dependents",
               "VA Form 21-8940 - Veterans Application for Increased Compensation Based on Un-employability"
             ]
+          },
+          "formId": {
+            "type": "string"
           }
         }
       }

@@ -644,6 +644,9 @@ const schema = {
             enum: documentTypes526.map(doc => doc.value),
             enumNames: documentTypes526.map(doc => doc.label),
           },
+          formId: {
+            type: 'string',
+          },
         },
       },
     },
