@@ -346,6 +346,9 @@
     "locationOfOffice": {
       "type": "string"
     },
+    "nameOfOffice": {
+      "type": "string"
+    },
     "vehicleType": {
       "type": "string"
     },
