@@ -12,7 +12,7 @@ const schema = {
     ssn: definitions.ssn,
     vaFileNumber: definitions.vaFileNumber,
     address: definitions.address,
-    usaPhone: definitions.usaPhone,
+    internationalPhone: definitions.internationalPhone,
     fullName: definitions.fullName,
     files: definitions.files,
   },
@@ -43,13 +43,13 @@ const schema = {
     electronicCorrespondence: {
       type: 'boolean',
     },
-    // may need some altering? email is 2 lines in the form
-    // emailAddresses: {email1: "", email2: "", max length: 36? },
     email: {
       type: 'string',
       format: 'email',
     },
-    veteranPhone: { $ref: '#/definitions/usaPhone' },
+    // the new international phone component formats numbers into a object
+    // fowarding this object to the backend to then be transformed into the pdf
+    veteranPhone: { $ref: '#/definitions/internationalPhone' },
     internationalPhone: {
       type: 'string',
     },
