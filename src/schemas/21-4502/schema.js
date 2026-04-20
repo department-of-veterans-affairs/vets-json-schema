@@ -90,6 +90,10 @@ const schema = {
     locationOfOffice: {
       type: 'string',
     },
+    nameOfOffice: {
+      // limit: 14,
+      type: 'string',
+    },
     vehicleType: {
       type: 'string',
     },
