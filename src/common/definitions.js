@@ -340,6 +340,16 @@ const hcaPhone = {
   pattern: '^[0-9]{10}$',
 };
 
+const internationalPhone = {
+  // This maps to the international phone object in vets-website
+  type: 'object',
+  properties: {
+    callingCode: { type: 'string' },
+    contact: { type: 'string' },
+    countryCode: { type: 'string' },
+  },
+};
+
 const ssn = {
   type: 'string',
   pattern: '^[0-9]{9}$',
@@ -1087,6 +1097,7 @@ export default {
   hcaAddress,
   sigiGenders,
   hcaPhone,
+  internationalPhone,
   insuranceProvider,
   hcaEmail,
   yesNoSchema,
