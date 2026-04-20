@@ -1,0 +1,425 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 22-1999 — Enrollment Certification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "certifyingOfficial",
+    "institution",
+    "student",
+    "studentBenefitInfo",
+    "programInformation",
+    "enrollmentPeriod",
+    "creditHours",
+    "tuitionAndFees",
+    "certificationTypeAttestation"
+  ],
+  "properties": {
+
+    "certifyingOfficial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "firstName",
+        "lastName",
+        "title",
+        "workPhone",
+        "workEmail",
+        "isAuthorizedCertifyingOfficial"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[A-Za-z\\-\\'\\s]+$"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[A-Za-z\\-\\'\\s]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "workPhone": {
+          "type": "string",
+          "pattern": "^\\d{10}$"
+        },
+        "workEmail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 254,
+          "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+        },
+        "isAuthorizedCertifyingOfficial": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "institution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "facilityCode",
+        "saaApprovalStatus"
+      ],
+      "properties": {
+        "facilityCode": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 8,
+          "pattern": "^[A-Z0-9]{8}$"
+        },
+        "institutionName": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "institutionAddress": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "street": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "street2": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "state": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "pattern": "^[A-Z]{2}$"
+            },
+            "postalCode": {
+              "type": "string",
+              "pattern": "^\\d{5}(-\\d{4})?$"
+            },
+            "country": {
+              "type": "string",
+              "maxLength": 50
+            }
+          }
+        },
+        "saaApprovalStatus": {
+          "type": "string",
+          "enum": [
+            "approved",
+            "not_approved",
+            "unsure"
+          ]
+        }
+      }
+    },
+
+    "student": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "firstName",
+        "lastName",
+        "identifierType",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "middleName": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "identifierType": {
+          "type": "string",
+          "enum": [
+            "ssn",
+            "vaFileNumber"
+          ]
+        },
+        "ssn": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "vaFileNumber": {
+          "type": "string",
+          "pattern": "^\\d{7,9}$"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+
+    "studentBenefitInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "benefitChapter",
+        "studentBenefitType",
+        "isActiveDuty"
+      ],
+      "properties": {
+        "benefitChapter": {
+          "type": "string",
+          "enum": [
+            "chapter33"
+          ]
+        },
+        "studentBenefitType": {
+          "type": "string",
+          "enum": [
+            "veteran",
+            "toeDependent",
+            "chapter35Survivor"
+          ]
+        },
+        "isActiveDuty": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no"
+          ]
+        },
+        "isTransferOfEntitlement": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no"
+          ]
+        }
+      }
+    },
+
+    "programInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "programName",
+        "degreeType",
+        "institutionType",
+        "isProgramSaaApproved"
+      ],
+      "properties": {
+        "programName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "degreeType": {
+          "type": "string",
+          "enum": [
+            "bachelors",
+            "associates",
+            "certificate",
+            "nonCollegeDegree",
+            "graduate",
+            "doctoral",
+            "vocational",
+            "other"
+          ]
+        },
+        "cipCode": {
+          "type": "string",
+          "maxLength": 10,
+          "pattern": "^\\d{2}\\.\\d{4}$"
+        },
+        "institutionType": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private",
+            "foreign"
+          ]
+        },
+        "isProgramSaaApproved": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "enrollmentPeriod": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trainingBeginDate",
+        "trainingEndDate",
+        "termType",
+        "isAdvanceCertification"
+      ],
+      "properties": {
+        "trainingBeginDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "trainingEndDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "termType": {
+          "type": "string",
+          "enum": [
+            "semester",
+            "quarter",
+            "nonStandardSession",
+            "clockHourProgram"
+          ]
+        },
+        "isAdvanceCertification": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no"
+          ]
+        }
+      }
+    },
+
+    "creditHours": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "creditHoursCertified",
+        "institutionFullTimeStandard",
+        "trainingTimeClassification"
+      ],
+      "properties": {
+        "creditHoursCertified": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "institutionFullTimeStandard": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99
+        },
+        "rateOfPursuit": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "trainingTimeClassification": {
+          "type": "string",
+          "enum": [
+            "fullTime",
+            "threeQuarterTime",
+            "halfTime",
+            "lessThanHalfTime"
+          ]
+        }
+      }
+    },
+
+    "tuitionAndFees": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "totalTuitionCharged",
+        "totalFeesCharged",
+        "isYellowRibbonParticipant"
+      ],
+      "properties": {
+        "totalTuitionCharged": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999999.99
+        },
+        "totalFeesCharged": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999999.99
+        },
+        "isYellowRibbonParticipant": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no"
+          ]
+        },
+        "tuitionNotes": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+
+    "yellowRibbon": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schoolContributionAmount": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999999.99
+        },
+        "yellowRibbonAgreementName": {
+          "type": "string",
+          "maxLength": 200
+        }
+      }
+    },
+
+    "certificationTypeAttestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "certificationType",
+        "scoAttestation"
+      ],
+      "properties": {
+        "certificationType": {
+          "type": "string",
+          "enum": [
+            "original"
+          ]
+        },
+        "scoAttestation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "isDesignatedCertifyingOfficial",
+            "informationIsAccurate",
+            "understandsPenalties"
+          ],
+          "properties": {
+            "isDesignatedCertifyingOfficial": {
+              "type": "boolean"
+            },
+            "informationIsAccurate": {
+              "type": "boolean"
+            },
+            "understandsPenalties": {
+              "type": "boolean"
+            }
+          }
+        },
+        "duplicateCheckAcknowledged": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "finalCertificationStatement": {
+      "type": "boolean"
+    }
+
+  }
+}
