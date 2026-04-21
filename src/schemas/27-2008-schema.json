@@ -1,0 +1,457 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 27-2008 — Application for United States Flag for Burial Purposes",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "date": {
+      "type": "string",
+      "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^\\d{9}$"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "usaState": {
+      "type": "string",
+      "enum": [
+        "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+        "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+        "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+        "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+        "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+        "DC", "PR", "GU", "VI", "AS", "MP", "AA", "AE", "AP"
+      ]
+    },
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "state": {
+          "$ref": "#/definitions/usaState"
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        }
+      },
+      "required": ["street", "city", "state", "postalCode"]
+    },
+    "fullName": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "middleName": {
+          "type": "string",
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']*$"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "suffix": {
+          "type": "string",
+          "enum": ["Jr.", "Sr.", "II", "III", "IV", "V"]
+        }
+      },
+      "required": ["firstName", "lastName"]
+    }
+  },
+  "properties": {
+    "claimantType": {
+      "type": "string",
+      "enum": [
+        "spouse",
+        "child",
+        "parent",
+        "sibling",
+        "otherNextOfKin",
+        "closeFriend",
+        "funeralDirector",
+        "vsoRepresentative",
+        "governmentOfficial",
+        "authorizedRepresentative"
+      ]
+    },
+    "claimant": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "middleInitial": {
+          "type": "string",
+          "maxLength": 1,
+          "pattern": "^[A-Za-z]$"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "phone": {
+          "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "relationshipDescription": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 500
+        }
+      },
+      "required": ["firstName", "lastName", "phone", "email", "address"]
+    },
+    "veteran": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "middleName": {
+          "type": "string",
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']*$"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date"
+        },
+        "dateOfDeath": {
+          "$ref": "#/definitions/date"
+        },
+        "vaFileNumber": {
+          "type": "string",
+          "pattern": "^\\d{7,9}$"
+        }
+      },
+      "required": ["firstName", "lastName", "ssn", "dateOfBirth", "dateOfDeath"]
+    },
+    "serviceInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "branchOfService": {
+          "type": "string",
+          "enum": [
+            "army",
+            "navy",
+            "airForce",
+            "marines",
+            "coastGuard",
+            "spaceForce",
+            "publicHealthService",
+            "noaa",
+            "merchantMarine",
+            "philippineArmy"
+          ]
+        },
+        "serviceType": {
+          "type": "string",
+          "enum": ["activeDuty", "reserveGuard"]
+        },
+        "serviceEntryDate": {
+          "$ref": "#/definitions/date"
+        },
+        "serviceSeparationDate": {
+          "$ref": "#/definitions/date"
+        },
+        "rankAtDischarge": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "dischargeCharacter": {
+          "type": "string",
+          "enum": [
+            "honorable",
+            "generalUnderHonorableConditions",
+            "otherThanHonorable",
+            "badConduct",
+            "dishonorable",
+            "uncharacterized"
+          ]
+        },
+        "warPeriods": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "wwi",
+              "wwii",
+              "korea",
+              "vietnam",
+              "gulfWar",
+              "operationEnduringFreedom",
+              "operationIraqiFreedom",
+              "operationNewDawn",
+              "peacetime",
+              "other"
+            ]
+          }
+        }
+      },
+      "required": ["branchOfService", "serviceType", "serviceEntryDate", "serviceSeparationDate", "dischargeCharacter"]
+    },
+    "reserveGuardEligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entitledToRetiredPay": {
+          "type": "boolean"
+        },
+        "diedWhileActiveMember": {
+          "type": "boolean"
+        },
+        "hospitalizedAtVaForServiceConnected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "specialServiceCategories": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "merchantMarinerWwiiQualifyingService": {
+          "type": "boolean"
+        },
+        "commissionedOfficerPublicHealthService": {
+          "type": "boolean"
+        },
+        "philippineCommonwealthArmyOrGuerrilla": {
+          "type": "boolean"
+        }
+      }
+    },
+    "priorFlagInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "priorFlagIssued": {
+          "type": "boolean"
+        },
+        "replacementReason": {
+          "type": "string",
+          "enum": [
+            "destroyedInDisaster",
+            "stolen",
+            "neverReceived",
+            "other"
+          ]
+        },
+        "replacementReasonDescription": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    },
+    "dischargeDocumentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hasDd214": {
+          "type": "boolean"
+        },
+        "alternativeDocuments": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "npcRequest",
+              "militaryOrders",
+              "buddyStatements",
+              "vaRecords",
+              "other"
+            ]
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "confirmationCode": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 255
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "attachmentId": {
+                "type": "string"
+              }
+            },
+            "required": ["confirmationCode", "name"]
+          }
+        }
+      }
+    },
+    "burialInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "burialType": {
+          "type": "string",
+          "enum": [
+            "casketBurial",
+            "cremationWithUrn",
+            "other"
+          ]
+        },
+        "burialAtNationalCemetery": {
+          "type": "boolean"
+        },
+        "cemeteryName": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "burialCity": {
+          "type": "string",
+          "maxLength": 50,
+          "pattern": "^[A-Za-z\\s\\-']+$"
+        },
+        "burialState": {
+          "$ref": "#/definitions/usaState"
+        },
+        "funeralServiceDate": {
+          "$ref": "#/definitions/date"
+        }
+      },
+      "required": ["burialType"]
+    },
+    "flagDelivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "recipientIsSameAsClaimant": {
+          "type": "boolean"
+        },
+        "flagRecipient": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30,
+              "pattern": "^[A-Za-z\\s\\-']+$"
+            },
+            "middleInitial": {
+              "type": "string",
+              "maxLength": 1,
+              "pattern": "^[A-Za-z]$"
+            },
+            "lastName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30,
+              "pattern": "^[A-Za-z\\s\\-']+$"
+            },
+            "address": {
+              "$ref": "#/definitions/address"
+            }
+          },
+          "required": ["firstName", "lastName"]
+        },
+        "deliveryMethod": {
+          "type": "string",
+          "enum": [
+            "mailToAddress",
+            "pickUpAtVaFacility"
+          ]
+        }
+      },
+      "required": ["recipientIsSameAsClaimant"]
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "certifyInformationIsAccurate": {
+          "type": "boolean"
+        },
+        "understandsFlagIssuancePolicy": {
+          "type": "boolean"
+        },
+        "electronicSignatureFullName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "certifyInformationIsAccurate",
+        "understandsFlagIssuancePolicy",
+        "electronicSignatureFullName"
+      ]
+    }
+  },
+  "required": [
+    "claimantType",
+    "claimant",
+    "veteran",
+    "serviceInformation",
+    "burialInformation",
+    "attestation"
+  ]
+}
