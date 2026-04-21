@@ -2,19 +2,18 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "VA Form 22-1999 — Enrollment Certification",
-  "description": "Schema for VA Form 22-1999 submitted by School Certifying Officials to certify student enrollment for GI Bill benefits.",
+  "description": "Schema for VA Form 22-1999 submitted by School Certifying Officials (SCOs) to certify student enrollment for GI Bill benefits.",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "scoVerification",
-    "certificationInfo",
+    "certificationTypeInfo",
     "studentInformation",
     "institutionInformation",
     "programInformation",
     "enrollmentPeriod",
     "creditHours",
-    "certifyingOfficial",
-    "privacyAgreementAccepted"
+    "certifyingOfficial"
   ],
   "definitions": {
     "address": {
@@ -39,26 +38,30 @@
         "state": {
           "type": "string",
           "enum": [
-            "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI",
-            "ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN",
-            "MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH",
-            "OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA",
-            "WV","WI","WY","PR","VI","GU","MP","AS","FM","MH","PW","AA",
-            "AE","AP"
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+            "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+            "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+            "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+            "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+            "DC", "PR", "GU", "VI", "AS", "MP"
           ]
         },
         "postalCode": {
           "type": "string",
-          "pattern": "^\\d{5}(-\\d{4})?$"
+          "pattern": "^\\d{5}(?:-\\d{4})?$"
         },
         "country": {
           "type": "string",
-          "default": "USA",
           "maxLength": 50
         }
       }
     },
-    "phoneNumber": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "usPhone": {
       "type": "string",
       "pattern": "^\\d{10}$",
       "minLength": 10,
@@ -67,13 +70,7 @@
     "email": {
       "type": "string",
       "format": "email",
-      "maxLength": 255
-    },
-    "ssn": {
-      "type": "string",
-      "pattern": "^(?!000|666|9\\d{2})\\d{3}(?!00)\\d{2}(?!0000)\\d{4}$",
-      "minLength": 9,
-      "maxLength": 9
+      "maxLength": 256
     },
     "facilityCode": {
       "type": "string",
@@ -81,215 +78,267 @@
       "minLength": 8,
       "maxLength": 8
     },
-    "date": {
+    "ssn": {
       "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      "pattern": "^(?!000|666|9\\d{2})\\d{3}(?!00)\\d{2}(?!0000)\\d{4}$",
+      "minLength": 9,
+      "maxLength": 9
     },
-    "currencyAmount": {
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^\\d{7,9}$",
+      "minLength": 7,
+      "maxLength": 9
+    },
+    "dollarAmount": {
       "type": "number",
       "minimum": 0,
       "maximum": 999999.99
+    },
+    "creditHourCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 99
     }
   },
   "properties": {
     "scoVerification": {
       "type": "object",
+      "title": "SCO and Institution Verification",
+      "description": "Chapter 1 — Verifies that the submitter is a designated School Certifying Official for a VA-approved institution.",
       "additionalProperties": false,
       "required": ["scoName", "facilityCode"],
-      "description": "Screen 2 — SCO and institution verification data",
       "properties": {
         "scoName": {
           "type": "string",
+          "title": "SCO full name",
+          "description": "Full name of the School Certifying Official. Pre-filled from authenticated VA.gov profile. Must match the name on file with VA for the institution.",
           "minLength": 2,
           "maxLength": 100,
-          "pattern": "^[A-Za-z\\s'\\-]+$",
-          "description": "Full name of the certifying official, pre-filled from authenticated VA.gov profile"
+          "pattern": "^[A-Za-z\\s'\\-]+$"
         },
         "facilityCode": {
           "$ref": "#/definitions/facilityCode",
-          "description": "8-digit VA-assigned facility code for the institution"
+          "title": "VA facility code",
+          "description": "The institution's 8-digit VA-assigned facility code. Must match an active record in VA Education Service's facility code registry."
         },
-        "institutionName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 200,
-          "description": "Institution name auto-populated from facility code lookup; read-only in UI"
-        },
-        "role": {
-          "type": "string",
-          "enum": ["primary", "secondary", "alternate"],
-          "description": "SCO role designation at the institution"
-        },
-        "isPrimaryOfficer": {
+        "institutionVerified": {
           "type": "boolean",
-          "description": "Whether the authenticated SCO is the primary certifying official"
+          "title": "Institution verified by back-end lookup",
+          "description": "Set to true when the facility code lookup returns a valid active institution record. Used as a guard before allowing form progression.",
+          "default": false
+        },
+        "scoRole": {
+          "type": "string",
+          "title": "SCO role designation",
+          "description": "The SCO's role as registered with VA Education Service.",
+          "enum": [
+            "primary_certifying_official",
+            "alternate_certifying_official",
+            "secondary_certifying_official"
+          ]
         }
       }
     },
-    "certificationInfo": {
+    "certificationTypeInfo": {
       "type": "object",
+      "title": "Certification Type",
+      "description": "Chapter 2 — Identifies whether this is an original, amended, or termination certification. Phase 1 supports original certifications only.",
       "additionalProperties": false,
-      "required": ["certificationtype"],
-      "description": "Screen 3 — Certification type selection",
+      "required": ["certificationType"],
       "properties": {
-        "certificationtype": {
+        "certificationType": {
           "type": "string",
-          "enum": ["original", "amended", "termination"],
-          "description": "Type of enrollment certification. Phase 1 supports 'original' only."
-        },
-        "originalCertificationId": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Reference ID of the original certification, required for amended or termination types"
+          "title": "Certification type",
+          "description": "The type of enrollment certification being submitted.",
+          "enum": [
+            "original",
+            "amended",
+            "termination"
+          ]
         }
       }
     },
     "studentInformation": {
       "type": "object",
+      "title": "Student Identifying Information",
+      "description": "Chapter 3 — Identifies the student whose enrollment is being certified.",
       "additionalProperties": false,
-      "required": ["firstName", "lastName", "dateOfBirth", "chapter"],
-      "description": "Screen 4 — Student identifying information",
+      "required": ["firstName", "lastName", "dateOfBirth", "giChapter"],
       "properties": {
         "firstName": {
           "type": "string",
+          "title": "Student first name",
           "minLength": 1,
           "maxLength": 50,
-          "description": "Student's first name"
+          "pattern": "^[A-Za-z\\s'\\-]+$"
         },
         "middleName": {
           "type": "string",
+          "title": "Student middle name",
+          "description": "Optional. Student's middle name or initial.",
           "maxLength": 50,
-          "description": "Student's middle name (optional)"
+          "pattern": "^[A-Za-z\\s'\\-]*$"
         },
         "lastName": {
           "type": "string",
+          "title": "Student last name",
           "minLength": 1,
           "maxLength": 50,
-          "description": "Student's last name"
-        },
-        "suffix": {
-          "type": "string",
-          "enum": ["Jr.", "Sr.", "II", "III", "IV", "V"],
-          "description": "Student's name suffix (optional)"
+          "pattern": "^[A-Za-z\\s'\\-]+$"
         },
         "ssn": {
           "$ref": "#/definitions/ssn",
-          "description": "Student's Social Security Number (9 digits, no dashes). Required if vaFileNumber not provided."
+          "title": "Student Social Security number",
+          "description": "Required if VA file number is not provided. 9-digit SSN without dashes. Cannot begin with 000, 666, or 900-999. Cannot be all the same digit."
         },
         "vaFileNumber": {
-          "type": "string",
-          "pattern": "^\\d{7,9}$",
-          "minLength": 7,
-          "maxLength": 9,
-          "description": "Student's VA file number. Required if SSN not provided. 7–9 digits."
+          "$ref": "#/definitions/vaFileNumber",
+          "title": "Student VA file number",
+          "description": "Required if SSN is not provided. 7–9 digit VA file number found on the student's Certificate of Eligibility."
         },
         "dateOfBirth": {
           "$ref": "#/definitions/date",
-          "description": "Student's date of birth in YYYY-MM-DD format. Student must be at least 16 years old."
+          "title": "Student date of birth",
+          "description": "Student's date of birth. Must represent a date between 1900-01-01 and (current date minus 16 years). Student must be at least 16 years old."
         },
-        "chapter": {
+        "giChapter": {
           "type": "string",
-          "enum": ["33", "30", "1606", "35", "32"],
-          "description": "GI Bill chapter the student is using. 33=Post-9/11, 30=MGIB Active Duty, 1606=MGIB Selected Reserve, 35=DEA, 32=VEAP."
+          "title": "GI Bill chapter",
+          "description": "The GI Bill chapter under which the student is receiving benefits. Determines how VA calculates and pays education benefits.",
+          "enum": [
+            "33",
+            "30",
+            "1606",
+            "35",
+            "32"
+          ]
         }
       }
     },
     "studentEligibility": {
       "type": "object",
+      "title": "Student COE / Eligibility Check Result",
+      "description": "Chapter 4 interstitial — Records the result of the Certificate of Eligibility lookup performed when the SCO navigates to the eligibility check screen. This is a read-only system-populated section.",
       "additionalProperties": false,
-      "description": "Screen 5 — COE/eligibility lookup result (system-populated, not SCO-entered)",
       "properties": {
         "coeFound": {
           "type": "boolean",
-          "description": "Whether a Certificate of Eligibility was found for the student via VA back-end lookup"
+          "title": "Certificate of Eligibility found",
+          "description": "True if the VA back-end COE lookup returned a valid active COE for the student."
         },
         "entitlementRemaining": {
           "type": "number",
+          "title": "Entitlement months remaining",
+          "description": "Months of entitlement remaining on the student's COE, if returned by the lookup. Expressed as a decimal (e.g., 36.0 = full entitlement).",
           "minimum": 0,
-          "maximum": 100,
-          "description": "Percentage of entitlement remaining for Chapter 33 students, if available from COE lookup"
+          "maximum": 48
         },
-        "scoAcknowledgedNoCoe": {
+        "scoAcknowledgedNoCoE": {
           "type": "boolean",
-          "description": "SCO acknowledged the warning that no COE was found and elected to proceed"
+          "title": "SCO acknowledged no COE found and chose to continue",
+          "description": "Set to true when the SCO selects 'Continue despite warning' after a no-COE-found result.",
+          "default": false
+        },
+        "eligibilityCheckTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Eligibility check timestamp",
+          "description": "ISO 8601 UTC timestamp when the COE lookup was performed."
         }
       }
     },
     "institutionInformation": {
       "type": "object",
+      "title": "Institution Information",
+      "description": "Chapter 5 — Confirms institution details for the certification. Most fields are auto-populated from the facility code lookup.",
       "additionalProperties": false,
-      "required": ["facilityCode", "institutionName", "institutionType"],
-      "description": "Screen 6 — Institution details",
+      "required": ["facilityCode", "institutionName", "institutionType", "publicOrPrivate"],
       "properties": {
         "facilityCode": {
           "$ref": "#/definitions/facilityCode",
-          "description": "VA facility code, carried forward from SCO verification; read-only in UI"
+          "title": "VA facility code",
+          "description": "Carried from SCO verification. Read-only on this screen."
         },
         "institutionName": {
           "type": "string",
+          "title": "Institution name",
+          "description": "Auto-populated from the facility code lookup. Read-only.",
           "minLength": 1,
-          "maxLength": 200,
-          "description": "Institution name auto-populated from facility code lookup; read-only in UI"
+          "maxLength": 200
         },
         "institutionAddress": {
           "$ref": "#/definitions/address",
-          "description": "Institution mailing address auto-populated from facility code lookup; read-only in UI"
+          "title": "Institution address",
+          "description": "Auto-populated from the facility code lookup. Read-only."
         },
         "institutionType": {
           "type": "string",
-          "enum": ["IHL", "NCD", "flight", "correspondence", "OJT"],
-          "description": "Type of institution. Phase 1 supports IHL (Institution of Higher Learning) only."
+          "title": "Institution program type",
+          "description": "Type of institution for VA program purposes. Phase 1 supports IHL (Institution of Higher Learning) only.",
+          "enum": [
+            "IHL",
+            "NCD",
+            "flight",
+            "correspondence",
+            "OJT"
+          ]
+        },
+        "publicOrPrivate": {
+          "type": "string",
+          "title": "Public or private institution",
+          "description": "Whether the institution is public (state-funded) or private. Drives tuition cap logic for Chapter 33.",
+          "enum": [
+            "public",
+            "private"
+          ]
         },
         "institutionState": {
           "type": "string",
+          "title": "Institution state",
+          "description": "The US state where the institution is located. Used for in-state vs. out-of-state tuition cap determination under Chapter 33.",
           "enum": [
-            "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI",
-            "ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN",
-            "MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH",
-            "OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA",
-            "WV","WI","WY","PR","VI","GU","MP","AS","FM","MH","PW","AA",
-            "AE","AP"
-          ],
-          "description": "State where the institution is located; used for in-state vs. out-of-state tuition cap determination"
-        },
-        "institutionOwnership": {
-          "type": "string",
-          "enum": ["public", "private"],
-          "description": "Whether the institution is public or private. Drives Chapter 33 tuition cap logic."
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+            "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+            "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+            "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+            "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+            "DC", "PR", "GU", "VI", "AS", "MP"
+          ]
         },
         "studentState": {
           "type": "string",
+          "title": "Student state of residence",
+          "description": "The student's state of legal residence, used for in-state vs. out-of-state tuition determination at public institutions under Chapter 33.",
           "enum": [
-            "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI",
-            "ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN",
-            "MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH",
-            "OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA",
-            "WV","WI","WY","PR","VI","GU","MP","AS","FM","MH","PW","AA",
-            "AE","AP"
-          ],
-          "description": "State of the student's legal residency; used to determine in-state vs. out-of-state rate at public institutions"
-        },
-        "institutionZipCode": {
-          "type": "string",
-          "pattern": "^\\d{5}(-\\d{4})?$",
-          "description": "ZIP code of the institution; used for BAH/MHA rate lookup for Chapter 33"
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+            "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+            "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+            "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+            "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+            "DC", "PR", "GU", "VI", "AS", "MP"
+          ]
         }
       }
     },
     "programInformation": {
       "type": "object",
+      "title": "Program of Education",
+      "description": "Chapter 6 — Captures the student's program of study including degree level, CIP code, and SAA approval cross-reference.",
       "additionalProperties": false,
       "required": ["programName", "degreeLevel"],
-      "description": "Screen 7 — Program of education details",
       "properties": {
         "programName": {
           "type": "string",
+          "title": "Program name",
+          "description": "The formal name of the program of education as approved by the State Approving Agency (SAA).",
           "minLength": 1,
-          "maxLength": 200,
-          "description": "Name of the student's program of education"
+          "maxLength": 200
         },
         "degreeLevel": {
           "type": "string",
+          "title": "Degree or certificate level",
+          "description": "The level of the credential awarded upon program completion.",
           "enum": [
             "associate",
             "bachelors",
@@ -297,278 +346,333 @@
             "doctoral",
             "certificate",
             "other"
-          ],
-          "description": "Degree or certificate level of the program"
+          ]
         },
         "cipCode": {
           "type": "string",
-          "pattern": "^\\d{2}\\.?\\d{4}$",
-          "description": "6-digit Classification of Instructional Programs (CIP) code (optional)"
+          "title": "CIP code",
+          "description": "Optional. The 6-digit Classification of Instructional Programs (CIP) code for the student's program.",
+          "pattern": "^\\d{2}\\.\\d{4}$",
+          "minLength": 7,
+          "maxLength": 7
         },
-        "programApprovedBySaa": {
+        "saaApprovalVerified": {
           "type": "boolean",
-          "description": "Whether the program was found in the SAA-approved program list (system-populated from lookup)"
+          "title": "Program found in SAA-approved list",
+          "description": "Set to true when the SAA program approval lookup confirms this program is approved for VA benefits at this institution."
         }
       }
     },
     "enrollmentPeriod": {
       "type": "object",
+      "title": "Training Period / Enrollment Period",
+      "description": "Chapter 7 — Captures the certification's training period begin and end dates and term type. Critical for payment start/stop and advance certification validation.",
       "additionalProperties": false,
       "required": ["enrollmentBeginDate", "enrollmentEndDate", "termType"],
-      "description": "Screen 8 — Training period dates and term information",
       "properties": {
         "enrollmentBeginDate": {
           "$ref": "#/definitions/date",
-          "description": "First date of the enrollment period in YYYY-MM-DD format. Cannot be more than 120 days in the future."
+          "title": "Enrollment begin date",
+          "description": "First day of the training period being certified. May not be more than 120 days in the future (advance certification limit). Cannot be before the student's date of birth."
         },
         "enrollmentEndDate": {
           "$ref": "#/definitions/date",
-          "description": "Last date of the enrollment period in YYYY-MM-DD format. Must be after enrollmentBeginDate."
+          "title": "Enrollment end date",
+          "description": "Last day of the training period being certified. Must be after the enrollment begin date."
         },
         "termType": {
           "type": "string",
+          "title": "Term type",
+          "description": "The academic term structure for this enrollment period.",
           "enum": [
             "semester",
             "quarter",
-            "non-standard-session",
-            "clock-hour-program"
-          ],
-          "description": "Type of academic term for the enrollment period"
+            "non_standard_session",
+            "clock_hour_program"
+          ]
         },
         "isAdvanceCertification": {
           "type": "boolean",
-          "description": "System-set flag indicating the enrollment begin date is in the future (1–120 days); payment will not generate until term start"
+          "title": "Is advance certification",
+          "description": "System-set flag indicating the enrollment begin date is in the future (1–120 days). Payment will not generate until the term start date.",
+          "default": false
         }
       }
     },
     "creditHours": {
       "type": "object",
+      "title": "Credit / Clock Hours and Rate of Pursuit",
+      "description": "Chapter 8 — Captures credit or clock hours enrolled and the institution's full-time standard. System calculates rate of pursuit.",
       "additionalProperties": false,
-      "required": [
-        "creditHoursEnrolled",
-        "institutionFullTimeHours",
-        "trainingTimeClassification"
-      ],
-      "description": "Screen 9 — Credit/clock hours and rate of pursuit",
+      "required": ["hoursEnrolled", "institutionFullTimeHours", "trainingTimeClassification"],
       "properties": {
-        "creditHoursEnrolled": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 30,
-          "description": "Number of credit or clock hours in which the student is enrolled for the term"
+        "hoursEnrolled": {
+          "$ref": "#/definitions/creditHourCount",
+          "title": "Credit or clock hours enrolled",
+          "description": "Number of credit or clock hours the student is enrolled in for this certification period."
         },
         "institutionFullTimeHours": {
-          "type": "integer",
+          "$ref": "#/definitions/creditHourCount",
+          "title": "Institution full-time credit hour standard",
+          "description": "The number of credit or clock hours the institution considers full-time enrollment (e.g., 12 for undergraduate semester programs).",
           "minimum": 1,
-          "maximum": 30,
-          "description": "Institution's full-time credit hour standard (e.g., 12 for undergraduate)"
+          "maximum": 99
         },
         "calculatedRateOfPursuit": {
           "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "System-calculated rate of pursuit (creditHoursEnrolled / institutionFullTimeHours). Read-only in UI."
+          "title": "Calculated rate of pursuit",
+          "description": "System-calculated: hoursEnrolled ÷ institutionFullTimeHours. Read-only computed field. Value between 0.0 and 1.0 (or greater than 1.0 if over full-time).",
+          "minimum": 0
         },
         "trainingTimeClassification": {
           "type": "string",
+          "title": "Training time classification",
+          "description": "The training time category based on rate of pursuit. System-suggested but SCO may override with justification.",
           "enum": [
             "full_time",
-            "three_quarter",
+            "three_quarter_time",
             "half_time",
-            "less_than_half"
-          ],
-          "description": "Training time classification based on rate of pursuit. System-suggested but SCO may override with justification."
+            "less_than_half_time"
+          ]
         },
-        "scoOverrodeClassification": {
+        "classificationOverridden": {
           "type": "boolean",
-          "description": "Whether the SCO manually overrode the system-suggested training time classification"
+          "title": "SCO overrode system-suggested training time classification",
+          "description": "True if the SCO manually selected a training time classification that differs from the system calculation.",
+          "default": false
         },
         "overrideJustification": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 500,
-          "description": "Required textual justification when SCO overrides the system-suggested training time classification"
+          "title": "Override justification",
+          "description": "Required when classificationOverridden is true. SCO must provide a written justification for overriding the system-calculated training time.",
+          "minLength": 10,
+          "maxLength": 500
         }
       }
     },
-    "tuitionFees": {
+    "tuitionAndFees": {
       "type": "object",
+      "title": "Tuition and Fees",
+      "description": "Chapter 9 — Captures tuition charged, mandatory fees, and waiver amounts for Chapter 33 certifications. System applies and displays applicable tuition cap.",
       "additionalProperties": false,
       "required": ["tuitionCharged", "mandatoryFees"],
-      "description": "Screen 10 — Tuition and fees (Chapter 33 only)",
       "properties": {
         "tuitionCharged": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "Total tuition charged by the institution for the enrollment period"
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Tuition charged by institution",
+          "description": "Gross tuition amount charged by the institution for this enrollment period, before any waivers or scholarships."
         },
         "mandatoryFees": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "Total mandatory fees charged by the institution for the enrollment period"
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Mandatory fees",
+          "description": "Total mandatory fees charged to the student for this enrollment period."
         },
-        "tuitionWaiverAmount": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "Total amount of tuition waivers or scholarships applied; conditional on any waivers existing"
+        "hasWaivers": {
+          "type": "boolean",
+          "title": "Student has tuition waivers or scholarships",
+          "description": "Whether the student receives any tuition waivers, scholarships, or other remissions that reduce net tuition.",
+          "default": false
+        },
+        "waiverAmount": {
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Tuition waiver or scholarship amount",
+          "description": "Total dollar value of waivers and scholarships applied. Shown conditionally when hasWaivers is true."
         },
         "netTuition": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "Net tuition after waivers and scholarships. System-calculated; read-only in UI. (tuitionCharged - tuitionWaiverAmount)"
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Net tuition after waivers",
+          "description": "System-calculated: tuitionCharged minus waiverAmount. Read-only computed field."
         },
         "applicableTuitionCap": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "VA-determined tuition cap applicable to this student. System-populated; read-only in UI."
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Applicable tuition cap",
+          "description": "System-populated: the applicable VA tuition cap for this student (in-state rate for public institutions; national maximum for private institutions under Chapter 33)."
         },
         "tuitionExceedsCap": {
           "type": "boolean",
-          "description": "System-set flag indicating the net tuition exceeds the applicable cap; VA will certify at the cap amount"
+          "title": "Net tuition exceeds applicable cap",
+          "description": "System-set flag: true when net tuition exceeds the applicable cap. Amount certified will be the cap amount, not the net tuition.",
+          "default": false
         }
       }
     },
     "yellowRibbon": {
       "type": "object",
+      "title": "Yellow Ribbon Program",
+      "description": "Chapter 10 — Captures Yellow Ribbon Program participation details. Conditional: shown only for Chapter 33, private institutions or out-of-state public, where a Yellow Ribbon Agreement is on file.",
       "additionalProperties": false,
-      "required": ["studentUsesYellowRibbon"],
-      "description": "Screen 11 — Yellow Ribbon program participation (conditional: Chapter 33, private or out-of-state public institution)",
+      "required": ["isUsingYellowRibbon"],
       "properties": {
-        "studentUsesYellowRibbon": {
+        "isUsingYellowRibbon": {
           "type": "boolean",
-          "description": "Whether the student is participating in the Yellow Ribbon program for this enrollment period"
+          "title": "Is student using Yellow Ribbon Program",
+          "description": "Whether this student is participating in the Yellow Ribbon Program for this enrollment period."
         },
         "institutionContribution": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "Dollar amount the institution is contributing under its Yellow Ribbon agreement. Required if studentUsesYellowRibbon is true."
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Institution Yellow Ribbon contribution",
+          "description": "Dollar amount the institution is contributing through its Yellow Ribbon Agreement. Required when isUsingYellowRibbon is true."
         },
         "vaMatchAmount": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "VA matching Yellow Ribbon amount. System-populated from Yellow Ribbon Agreement lookup; read-only in UI."
+          "$ref": "#/definitions/dollarAmount",
+          "title": "VA Yellow Ribbon match amount",
+          "description": "System-populated from Yellow Ribbon Agreement lookup. VA matches the institution contribution up to the agreement maximum."
         },
         "yellowRibbonAgreementFound": {
           "type": "boolean",
-          "description": "System-set flag indicating whether a Yellow Ribbon agreement was found for this institution for the current academic year"
+          "title": "Yellow Ribbon Agreement found for institution and academic year",
+          "description": "System-set: true when the Yellow Ribbon Agreement lookup returns an active agreement for this facility code and academic year."
         },
-        "institutionContributionExceedsAgreement": {
+        "agreementMaximumContribution": {
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Agreement maximum contribution",
+          "description": "System-populated: the maximum institutional contribution allowed under the Yellow Ribbon Agreement for this institution and academic year."
+        },
+        "institutionContributionExceedsMax": {
           "type": "boolean",
-          "description": "System-set flag indicating the institution's entered contribution exceeds the maximum in their agreement"
+          "title": "Institution contribution exceeds agreement maximum",
+          "description": "System-set flag: true when institutionContribution exceeds agreementMaximumContribution.",
+          "default": false
         }
       }
     },
     "housingAllowanceSummary": {
       "type": "object",
+      "title": "Monthly Housing Allowance Summary",
+      "description": "Chapter 11 — System-calculated MHA display. Read-only informational section for Chapter 33. No SCO data entry.",
       "additionalProperties": false,
-      "description": "Screen 12 — MHA summary (Chapter 33 only; system-calculated read-only display values)",
       "properties": {
-        "calculatedMhaAmount": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "System-calculated Monthly Housing Allowance based on rate of pursuit and BAH E-5 w/dependents for institution ZIP"
+        "calculatedMonthlyHousingAllowance": {
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Calculated Monthly Housing Allowance",
+          "description": "System-calculated MHA based on rate of pursuit and BAH E-5 with dependents for the institution's ZIP code."
         },
-        "bahRateUsed": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "BAH E-5 with dependents rate used for MHA calculation, based on institution ZIP code"
+        "bahRateApplied": {
+          "$ref": "#/definitions/dollarAmount",
+          "title": "BAH E-5 with dependents rate applied",
+          "description": "The BAH rate for E-5 with dependents at the institution's location used in the MHA calculation."
         },
-        "mhaReduced": {
+        "mhaIsZeroDueToActiveDuty": {
           "type": "boolean",
-          "description": "Whether the MHA is reduced due to rate of pursuit being less than 100%"
+          "title": "MHA is $0 due to active duty status",
+          "description": "True if the student's active duty status results in a $0 MHA.",
+          "default": false
         },
-        "mhaZeroDueToActiveDuty": {
+        "mhaIsZeroDueLowRateOfPursuit": {
           "type": "boolean",
-          "description": "Whether MHA is $0 because the student is on active duty"
-        },
-        "mhaZeroDueToPursuit": {
-          "type": "boolean",
-          "description": "Whether MHA is $0 because rate of pursuit is less than 50%"
+          "title": "MHA is $0 due to rate of pursuit below 50%",
+          "description": "True when the rate of pursuit is below 0.50, resulting in $0 MHA for Chapter 33.",
+          "default": false
         },
         "bookStipendEligible": {
           "type": "boolean",
-          "description": "Whether the student is eligible for the book stipend"
+          "title": "Student is eligible for book stipend",
+          "description": "True when the student qualifies for the Chapter 33 book stipend based on enrollment status."
         }
       }
     },
     "bookStipend": {
       "type": "object",
+      "title": "Book Stipend",
+      "description": "Chapter 12 — System-calculated book stipend display. Chapter 33 only. Read-only.",
       "additionalProperties": false,
-      "description": "Screen 13 — Book stipend (Chapter 33 only; system-calculated)",
       "properties": {
-        "bookStipendAmount": {
-          "$ref": "#/definitions/currencyAmount",
-          "description": "System-calculated book stipend amount (up to $1,000/year, prorated for partial terms). Read-only in UI."
+        "calculatedBookStipend": {
+          "$ref": "#/definitions/dollarAmount",
+          "title": "Calculated book stipend amount",
+          "description": "System-calculated book stipend. Up to $1,000 per academic year, prorated for partial terms. $0 if rate of pursuit is 0."
         },
-        "proRatedFromAnnualCap": {
+        "bookStipendProrated": {
           "type": "boolean",
-          "description": "Whether the book stipend has been prorated from the $1,000 annual cap due to partial enrollment"
+          "title": "Book stipend is prorated",
+          "description": "True when the book stipend has been prorated due to partial year or partial enrollment period.",
+          "default": false
         }
       }
     },
     "certifyingOfficial": {
       "type": "object",
+      "title": "Certifying Official Attestation",
+      "description": "Chapter 13 — Captures certifying official contact information and attestation. Name and email are pre-filled from the authenticated profile.",
       "additionalProperties": false,
-      "required": [
-        "officialName",
-        "title",
-        "phone",
-        "email",
-        "attestationConfirmed"
-      ],
-      "description": "Screen 14 — Certifying official attestation",
+      "required": ["officialName", "officialTitle", "officialPhone", "officialEmail", "attestationSigned"],
       "properties": {
         "officialName": {
           "type": "string",
+          "title": "Certifying official full name",
+          "description": "Pre-filled from authenticated VA.gov profile. Read-only. This name appears on the certification.",
           "minLength": 2,
           "maxLength": 100,
-          "pattern": "^[A-Za-z\\s'\\-]+$",
-          "description": "Full name of the certifying official. Pre-filled from authenticated profile; read-only in UI."
+          "pattern": "^[A-Za-z\\s'\\-]+$"
         },
-        "title": {
+        "officialTitle": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Job title or role of the certifying official (e.g., 'School Certifying Official', 'Registrar')"
+          "title": "Certifying official title or role",
+          "description": "The SCO's official title at the institution (e.g., 'School Certifying Official', 'Registrar', 'Veterans Services Coordinator').",
+          "minLength": 2,
+          "maxLength": 100
         },
-        "phone": {
-          "$ref": "#/definitions/phoneNumber",
-          "description": "Direct phone number for the certifying official (10 digits, no dashes)"
+        "officialPhone": {
+          "$ref": "#/definitions/usPhone",
+          "title": "Certifying official phone number",
+          "description": "10-digit phone number for the certifying official. No dashes or spaces."
         },
-        "phoneExtension": {
-          "type": "string",
-          "pattern": "^\\d{1,6}$",
-          "maxLength": 6,
-          "description": "Phone extension for the certifying official (optional)"
-        },
-        "email": {
+        "officialEmail": {
           "$ref": "#/definitions/email",
-          "description": "Email address of the certifying official. Pre-filled from authenticated profile; read-only in UI."
+          "title": "Certifying official email address",
+          "description": "Pre-filled from authenticated VA.gov profile. Read-only. Used for VA correspondence regarding this certification."
         },
-        "attestationConfirmed": {
+        "attestationSigned": {
           "type": "boolean",
-          "description": "SCO has confirmed the attestation: 'I certify that the information provided is accurate and complete to the best of my knowledge; I am an authorized School Certifying Official for this institution'"
+          "title": "Attestation signed",
+          "description": "The SCO certifies: 'I certify that the information provided is accurate and complete to the best of my knowledge; I am an authorized School Certifying Official for this institution.' Must be true to submit.",
+          "enum": [true]
+        }
+      }
+    },
+    "submissionMetadata": {
+      "type": "object",
+      "title": "Submission Metadata",
+      "description": "System-populated metadata recorded at submission time. Not shown to the SCO during the form flow.",
+      "additionalProperties": false,
+      "properties": {
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Submission timestamp",
+          "description": "ISO 8601 UTC timestamp when the form was submitted."
+        },
+        "confirmationNumber": {
+          "type": "string",
+          "title": "Confirmation number",
+          "description": "VA-assigned confirmation number returned after successful submission.",
+          "maxLength": 50
+        },
+        "formVersion": {
+          "type": "integer",
+          "title": "Schema version",
+          "description": "The version of the 22-1999 schema used for this submission.",
+          "minimum": 0
+        },
+        "vaProfileId": {
+          "type": "string",
+          "title": "Authenticated user VA profile ID",
+          "description": "The VA.gov profile ID of the authenticated SCO who submitted the form. Used for audit and deduplication.",
+          "maxLength": 50
+        },
+        "ipAddress": {
+          "type": "string",
+          "title": "Submitter IP address",
+          "description": "IP address of the client at submission time. Captured by vets-api; not stored in form data payload.",
+          "maxLength": 45
         }
       }
     },
     "privacyAgreementAccepted": {
       "type": "boolean",
-      "description": "Whether the SCO has accepted the VA privacy agreement (required before final submission)"
-    },
-    "submissionMeta": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "Submission metadata populated at submit time; not editable by the SCO",
-      "properties": {
-        "confirmationNumber": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "VA-assigned confirmation number returned from the benefits intake API upon successful submission"
-        },
-        "submittedAt": {
-          "$ref": "#/definitions/date",
-          "description": "Date the form was submitted in YYYY-MM-DD format"
-        },
-        "formVersion": {
-          "type": "string",
-          "description": "Version of the 22-1999 schema used for this submission"
-        },
-        "vaOnceDuplicateAcknowledged": {
-          "type": "boolean",
-          "description": "Whether the SCO acknowledged the duplicate-submission warning shown on the introduction page regarding existing VA-ONCE submissions"
-        }
-      }
+      "title": "Privacy agreement accepted",
+      "description": "The SCO has accepted the VA Privacy Agreement on the Review and Submit page. Must be true to submit.",
+      "enum": [true]
     }
   }
 }
