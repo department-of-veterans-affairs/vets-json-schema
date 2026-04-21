@@ -244,6 +244,10 @@ const schema = {
       items: {
         type: 'object',
         properties: {
+          city: { type: 'string' },
+          state: { type: 'string' },
+          vaMedicalCenterName: { type: 'string' },
+          // 2022 combines the above into one string.
           facility: { type: 'string' },
           startDate: { $ref: '#/definitions/date' },
           endDate: { $ref: '#/definitions/date' },
