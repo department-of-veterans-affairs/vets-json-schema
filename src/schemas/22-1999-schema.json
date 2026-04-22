@@ -2,585 +2,851 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "VA Form 22-1999 Enrollment Certification",
+  "description": "Schema for VA Form 22-1999 — Enrollment Certification (Paper-Fallback Digital Submission Channel). Submitted by School Certifying Officials for foreign schools, non-Title IV institutions, OJT/apprenticeship programs, and institutions experiencing VA-ONCE outages.",
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "scoAuthorization",
-    "certificationTypeInfo",
-    "institutionInformation",
-    "studentIdentification",
+    "certifierInfo",
+    "institutionInfo",
+    "studentInfo",
     "benefitChapter",
+    "programInfo",
     "enrollmentPeriod",
-    "programInformation",
-    "creditHoursTrainingTime",
-    "scoCertification"
+    "creditClockHours",
+    "advancePay",
+    "certifierSignature",
+    "privacyAgreementAccepted"
   ],
-  "properties": {
-
-    "scoAuthorization": {
+  "definitions": {
+    "address": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["scoAttestation"],
+      "required": ["street", "city"],
       "properties": {
-        "scoUserId": {
+        "street": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "VA-assigned SCO User ID; may be pre-populated from authenticated session"
+          "maxLength": 100
         },
-        "scoAttestation": {
-          "type": "boolean",
-          "description": "SCO confirms they are a designated certifying official for the institution; must be true to proceed"
-        }
-      }
-    },
-
-    "certificationTypeInfo": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["certificationType"],
-      "properties": {
-        "certificationType": {
+        "street2": {
           "type": "string",
-          "enum": ["original", "amended", "termination"],
-          "description": "Type of certification being submitted"
-        }
-      }
-    },
-
-    "institutionInformation": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "facilityCode",
-        "institutionName",
-        "addressLine1",
-        "city",
-        "state",
-        "zipCode",
-        "institutionType",
-        "yellowRibbonParticipant"
-      ],
-      "properties": {
-        "facilityCode": {
-          "type": "string",
-          "pattern": "^\\d{8}$",
-          "minLength": 8,
-          "maxLength": 8,
-          "description": "VA-assigned 8-digit numeric facility code"
-        },
-        "institutionName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 200,
-          "description": "Institution name; may be auto-populated read-only from facility code lookup"
-        },
-        "addressLine1": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Institution street address line 1"
-        },
-        "addressLine2": {
-          "type": "string",
-          "maxLength": 100,
-          "description": "Institution street address line 2 (optional)"
+          "maxLength": 100
         },
         "city": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 100,
-          "description": "Institution city"
+          "maxLength": 100
         },
         "state": {
           "type": "string",
-          "enum": [
-            "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI",
-            "ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN",
-            "MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH",
-            "OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA",
-            "WV","WI","WY","AS","GU","MP","PR","VI","FM","MH","PW"
-          ],
-          "description": "Two-letter US state or territory abbreviation"
+          "maxLength": 50
         },
-        "zipCode": {
+        "postalCode": {
           "type": "string",
-          "pattern": "^\\d{5}(-\\d{4})?$",
-          "minLength": 5,
+          "maxLength": 20
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
+    "usAddress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["street", "city", "state", "postalCode"],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "pattern": "^[A-Z]{2}$"
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        }
+      }
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^\\d{3}-\\d{2}-\\d{4}$"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "minLength": 5,
+      "maxLength": 254
+    },
+    "currencyAmount": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 999999.99
+    }
+  },
+  "properties": {
+    "certifierInfo": {
+      "type": "object",
+      "description": "Chapter 1 — Certifying Official Identity. SCO personal and contact information.",
+      "additionalProperties": false,
+      "required": [
+        "firstName",
+        "lastName",
+        "title",
+        "email",
+        "phone",
+        "scoRegistrationNumber"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "SCO first name, pre-filled from authenticated session where available.",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "lastName": {
+          "type": "string",
+          "description": "SCO last name, pre-filled from authenticated session where available.",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "middleInitial": {
+          "type": "string",
+          "description": "SCO middle initial (optional).",
+          "maxLength": 1,
+          "pattern": "^[A-Za-z]$"
+        },
+        "title": {
+          "type": "string",
+          "description": "SCO job title at the institution (e.g., Registrar, Financial Aid Officer).",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "email": {
+          "$ref": "#/definitions/email",
+          "description": "SCO institutional email address. Must be an official school or employer email, not a personal email provider."
+        },
+        "phone": {
+          "$ref": "#/definitions/phone",
+          "description": "SCO daytime phone number, 10 digits, no formatting. Area code required."
+        },
+        "phoneExtension": {
+          "type": "string",
+          "description": "Phone extension (optional).",
           "maxLength": 10,
-          "description": "US ZIP code, 5-digit or ZIP+4 format"
+          "pattern": "^\\d{1,10}$"
+        },
+        "scoRegistrationNumber": {
+          "type": "string",
+          "description": "VA-assigned School Certifying Official registration number from VA-ONCE profile or SCO authorization letter.",
+          "minLength": 6,
+          "maxLength": 12,
+          "pattern": "^[A-Z0-9]{6,12}$"
+        }
+      }
+    },
+    "institutionInfo": {
+      "type": "object",
+      "description": "Chapter 1 — Institution Identity. School Facility Code lookup and institution details.",
+      "additionalProperties": false,
+      "required": [
+        "schoolFacilityCode",
+        "institutionName",
+        "institutionType",
+        "institutionAddress"
+      ],
+      "properties": {
+        "schoolFacilityCode": {
+          "type": "string",
+          "description": "VA-assigned School Facility Code (SFC). Used for SFC master list lookup to auto-populate institution fields.",
+          "minLength": 8,
+          "maxLength": 8,
+          "pattern": "^\\d{8}$"
+        },
+        "sfcLookupSucceeded": {
+          "type": "boolean",
+          "description": "True when SFC lookup returned a valid match and auto-populated institution fields. False/absent when SCO entered fields manually."
+        },
+        "institutionName": {
+          "type": "string",
+          "description": "Full name of the educational institution. Pre-populated from SFC lookup when available.",
+          "minLength": 1,
+          "maxLength": 200
         },
         "institutionType": {
           "type": "string",
-          "enum": ["public", "privateNonProfit", "proprietary"],
-          "description": "Type of institution: Public, Private Non-Profit, or Proprietary/For-Profit"
+          "description": "Type of educational institution. Drives conditional page routing (OJT_APPRENTICESHIP shows ojtDetails chapter).",
+          "enum": [
+            "IHL",
+            "OJT_APPRENTICESHIP",
+            "NON_COLLEGE_DEGREE",
+            "FLIGHT",
+            "NATIONAL_EXAM",
+            "FOREIGN_SCHOOL"
+          ]
         },
-        "yellowRibbonParticipant": {
-          "type": "boolean",
-          "description": "Whether institution has a Yellow Ribbon Agreement on file with VA"
+        "institutionAddress": {
+          "type": "object",
+          "description": "Institution address. Label and required fields differ for foreign schools vs. domestic institutions.",
+          "additionalProperties": false,
+          "required": ["street", "city"],
+          "properties": {
+            "street": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "street2": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "state": {
+              "type": "string",
+              "description": "U.S. state abbreviation for domestic institutions, or state/province name for foreign schools.",
+              "maxLength": 50
+            },
+            "country": {
+              "type": "string",
+              "description": "Country name. Required when institutionType is FOREIGN_SCHOOL.",
+              "maxLength": 100
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "ZIP code for domestic institutions; postal code for foreign schools. Label adjusts by country.",
+              "maxLength": 20
+            }
+          }
+        },
+        "vaRegionalProcessingOffice": {
+          "type": "string",
+          "description": "VA Regional Processing Office auto-populated based on institution state/country using RPO routing table. Read-only display field.",
+          "enum": [
+            "BUFFALO",
+            "MUSKOGEE",
+            "ST_LOUIS"
+          ]
         }
       }
     },
-
-    "studentIdentification": {
+    "studentInfo": {
       "type": "object",
+      "description": "Chapter 2 — Student Identification. SSN or VA file number, name, and date of birth for MPI lookup.",
       "additionalProperties": false,
       "required": [
-        "identifierType",
-        "studentIdentifier",
-        "studentFirstName",
-        "studentLastName",
-        "studentDateOfBirth"
+        "studentIdentifierType",
+        "firstName",
+        "lastName",
+        "dateOfBirth"
       ],
       "properties": {
-        "identifierType": {
+        "studentIdentifierType": {
           "type": "string",
-          "enum": ["ssn", "vaFileNumber"],
-          "description": "Whether the student is identified by SSN or VA File Number"
+          "description": "Whether the SCO is identifying the student by SSN or VA File Number.",
+          "enum": [
+            "SSN",
+            "VA_FILE_NUMBER"
+          ]
         },
-        "studentIdentifier": {
-          "type": "string",
-          "maxLength": 30,
-          "description": "SSN (9 digits, masked) or VA File Number (alphanumeric); format validated conditionally by identifierType"
+        "ssn": {
+          "$ref": "#/definitions/ssn",
+          "description": "Student Social Security Number in XXX-XX-XXXX format. Required when studentIdentifierType is SSN."
         },
-        "studentSsn": {
+        "vaFileNumber": {
           "type": "string",
-          "pattern": "^\\d{9}$",
-          "minLength": 9,
+          "description": "VA File Number. Required when studentIdentifierType is VA_FILE_NUMBER.",
+          "minLength": 7,
           "maxLength": 9,
-          "description": "Student Social Security Number — 9 digits, no dashes; used when identifierType = ssn"
+          "pattern": "^[A-Z]?\\d{7,9}$"
         },
-        "studentVaFileNumber": {
+        "firstName": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9]{5,10}$",
-          "minLength": 5,
-          "maxLength": 10,
-          "description": "VA File Number — alphanumeric; used when identifierType = vaFileNumber"
-        },
-        "studentFirstName": {
-          "type": "string",
+          "description": "Student first name.",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "Student legal first name"
+          "maxLength": 50
         },
-        "studentMiddleName": {
+        "middleInitial": {
           "type": "string",
-          "maxLength": 50,
-          "description": "Student legal middle name (optional)"
+          "description": "Student middle initial (optional).",
+          "maxLength": 1,
+          "pattern": "^[A-Za-z]$"
         },
-        "studentLastName": {
+        "lastName": {
           "type": "string",
+          "description": "Student last name.",
           "minLength": 1,
-          "maxLength": 50,
-          "description": "Student legal last name"
+          "maxLength": 50
         },
-        "studentSuffix": {
+        "suffix": {
           "type": "string",
-          "enum": ["Jr.", "Sr.", "II", "III", "IV"],
-          "description": "Student name suffix (optional)"
+          "description": "Student name suffix (optional).",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
         },
-        "studentDateOfBirth": {
-          "type": "string",
-          "format": "date",
-          "description": "Student date of birth in YYYY-MM-DD format"
+        "dateOfBirth": {
+          "$ref": "#/definitions/date",
+          "description": "Student date of birth in YYYY-MM-DD format."
         },
-        "studentEmailAddress": {
-          "type": "string",
-          "format": "email",
-          "maxLength": 256,
-          "description": "Student email address for Veteran status notification (optional)"
-        }
-      }
-    },
-
-    "benefitChapter": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["chapter"],
-      "properties": {
-        "chapter": {
-          "type": "string",
-          "enum": ["chapter33", "chapter30", "chapter1606", "chapter35", "chapter32"],
-          "description": "GI Bill chapter under which student is being certified; Phase 1 enforces chapter33 only"
-        },
-        "activeDutyStatus": {
+        "mpiLookupSucceeded": {
           "type": "boolean",
-          "description": "Whether student is currently on active duty; shown and required only when chapter = chapter33 (active duty = $0 MHA)"
+          "description": "True when MPI lookup returned an active benefits record for this student. Drives display of entitlement balance info."
+        },
+        "mpiEntitlementBalance": {
+          "type": "object",
+          "description": "Student entitlement balance data returned from MPI lookup. Read-only display. Not submitted by user.",
+          "additionalProperties": false,
+          "properties": {
+            "remainingEntitlementMonths": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 36
+            },
+            "remainingEntitlementDays": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 30
+            }
+          }
         }
       }
     },
-
+    "benefitChapter": {
+      "type": "string",
+      "description": "Chapter 2 — GI Bill chapter the student is using. This is the primary branching field that drives conditional display of subsequent payment/tuition fields.",
+      "enum": [
+        "chapter33",
+        "chapter30",
+        "chapter35",
+        "chapter1606",
+        "chapter1607",
+        "veap"
+      ]
+    },
+    "programInfo": {
+      "type": "object",
+      "description": "Chapter 3 — Educational Program Details. Program name, degree objective, CIP code, approval number, and full-time credit hour standard.",
+      "additionalProperties": false,
+      "required": [
+        "programName",
+        "degreeObjective",
+        "institutionalFullTimeCreditHourStandard",
+        "creditOrClockHours"
+      ],
+      "properties": {
+        "programName": {
+          "type": "string",
+          "description": "Name of the educational or training program.",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "degreeObjective": {
+          "type": "string",
+          "description": "Degree or certificate objective for the student's program.",
+          "enum": [
+            "ASSOCIATE",
+            "BACHELOR",
+            "MASTER",
+            "DOCTORAL",
+            "CERTIFICATE",
+            "VOCATIONAL_CERTIFICATE",
+            "OJT",
+            "APPRENTICESHIP",
+            "FLIGHT",
+            "LICENSING_CERTIFICATION_EXAM",
+            "CORRESPONDENCE"
+          ]
+        },
+        "cipCode": {
+          "type": "string",
+          "description": "Classification of Instructional Programs code (6-digit). Optional but recommended.",
+          "pattern": "^\\d{2}\\.\\d{4}$"
+        },
+        "vaProgramApprovalNumber": {
+          "type": "string",
+          "description": "VA program approval number assigned by the State Approving Agency.",
+          "maxLength": 50
+        },
+        "institutionalFullTimeCreditHourStandard": {
+          "type": "integer",
+          "description": "The number of credit hours the institution considers full-time for this program type. Required for training time percentage calculation.",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "creditOrClockHours": {
+          "type": "string",
+          "description": "Whether the program measures enrollment in credit hours or clock hours. Drives conditional display of credit/clock hour fields.",
+          "enum": [
+            "CREDIT_HOURS",
+            "CLOCK_HOURS"
+          ]
+        }
+      }
+    },
     "enrollmentPeriod": {
       "type": "object",
-      "additionalProperties": false,
-      "required": ["trainingPeriodBeginDate", "trainingPeriodEndDate"],
-      "properties": {
-        "trainingPeriodBeginDate": {
-          "type": "string",
-          "format": "date",
-          "description": "Training period begin date in YYYY-MM-DD format"
-        },
-        "trainingPeriodEndDate": {
-          "type": "string",
-          "format": "date",
-          "description": "Training period end date in YYYY-MM-DD format"
-        },
-        "priorCertificationReferenceNumber": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Prior certification reference number; shown only for Amended and Termination types"
-        },
-        "effectiveDateOfChange": {
-          "type": "string",
-          "format": "date",
-          "description": "Effective date of change in YYYY-MM-DD format; shown only for Amended and Termination types"
-        }
-      }
-    },
-
-    "programInformation": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["programMajorName", "degreeCertificateLevel", "standardLengthOfProgram"],
-      "properties": {
-        "programMajorName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 200,
-          "description": "Approved program or major name; must be SAA-approved at this facility"
-        },
-        "degreeCertificateLevel": {
-          "type": "string",
-          "enum": [
-            "nonCollegeDegree",
-            "associate",
-            "bachelors",
-            "masters",
-            "doctoral",
-            "certificate",
-            "vocationalTechnical"
-          ],
-          "description": "Degree or certificate level of the enrolled program"
-        },
-        "standardLengthOfProgram": {
-          "type": "string",
-          "enum": [
-            "1semester",
-            "1year",
-            "2years",
-            "3years",
-            "4years",
-            "other"
-          ],
-          "description": "Standard length of the approved program"
-        },
-        "standardLengthOther": {
-          "type": "string",
-          "maxLength": 100,
-          "description": "Description of program length when standardLengthOfProgram = 'other'"
-        },
-        "specialProgramFlags": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "licensingCertificationProgram": {
-              "type": "boolean",
-              "description": "Program is a Licensing or Certification program (MISSION Act restrictions apply)"
-            },
-            "correspondence": {
-              "type": "boolean",
-              "description": "Program is a Correspondence program"
-            },
-            "independentStudy": {
-              "type": "boolean",
-              "description": "Program includes Independent Study"
-            },
-            "coopTraining": {
-              "type": "boolean",
-              "description": "Program includes Co-op Training"
-            }
-          }
-        }
-      }
-    },
-
-    "creditHoursTrainingTime": {
-      "type": "object",
+      "description": "Chapter 3 — Enrollment Period Dates. Begin and end dates of the enrollment period being certified.",
       "additionalProperties": false,
       "required": [
-        "creditType",
-        "hoursEnrolled",
-        "fullTimeStandard",
-        "trainingTimeClassification"
+        "enrollmentBeginDate",
+        "enrollmentEndDate",
+        "certificationTypeSelection"
       ],
       "properties": {
-        "creditType": {
+        "enrollmentBeginDate": {
+          "$ref": "#/definitions/date",
+          "description": "First date of class, not registration date. In YYYY-MM-DD format."
+        },
+        "enrollmentEndDate": {
+          "$ref": "#/definitions/date",
+          "description": "Last scheduled day of class for the term. In YYYY-MM-DD format."
+        },
+        "certificationTypeSelection": {
           "type": "string",
-          "enum": ["creditHours", "clockHours"],
-          "description": "Whether enrollment is measured in credit hours or clock hours"
+          "description": "Whether this is an initial certification or an amendment/correction. Drives conditional display of amendmentInfo chapter.",
+          "enum": [
+            "initial",
+            "amendment"
+          ]
         },
-        "hoursEnrolled": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 30,
-          "description": "Number of credit or clock hours enrolled this term (max 30 for credit hours)"
-        },
-        "fullTimeStandard": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 30,
-          "description": "Institution's full-time credit or clock hour standard (e.g., 12 for undergraduate)"
-        },
-        "trainingTimeClassification": {
+        "termName": {
           "type": "string",
-          "enum": ["fullTime", "threeQuarterTime", "halfTime", "lessThanHalfTime"],
-          "description": "Training time classification; auto-suggested from rate of pursuit calculation but SCO must confirm"
-        },
-        "rateOfPursuit": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 100,
-          "description": "Calculated read-only field: hoursEnrolled / fullTimeStandard * 100, rounded to nearest integer"
+          "description": "Term name or identifier (e.g., 'Fall 2025') to help match to academic calendar on file.",
+          "maxLength": 100
         }
       }
     },
-
+    "creditClockHours": {
+      "type": "object",
+      "description": "Chapter 3 — Credit or Clock Hours Enrolled. Hours certified and course type breakdown.",
+      "additionalProperties": false,
+      "properties": {
+        "creditHoursEnrolled": {
+          "type": "integer",
+          "description": "Number of credit hours the student is enrolled in for this enrollment period. Shown when creditOrClockHours is CREDIT_HOURS.",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "clockHoursPerWeek": {
+          "type": "integer",
+          "description": "Number of clock hours per week the student attends training. Shown when creditOrClockHours is CLOCK_HOURS.",
+          "minimum": 0,
+          "maximum": 168
+        },
+        "clockHoursForPeriod": {
+          "type": "integer",
+          "description": "Total clock hours for the entire enrollment period. Shown when creditOrClockHours is CLOCK_HOURS.",
+          "minimum": 0,
+          "maximum": 9999
+        },
+        "courseTypes": {
+          "type": "array",
+          "description": "Course types included in this enrollment certification. Multi-select.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "REGULAR_DEGREE",
+              "REMEDIAL_DEFICIENCY",
+              "INDEPENDENT_STUDY",
+              "ONLINE_DISTANCE",
+              "WORK_STUDY"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "onlineCreditHours": {
+          "type": "integer",
+          "description": "Number of online/distance learning credit hours within the total enrolled hours. Relevant for Chapter 33 MHA calculation.",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "calculatedTrainingTimePercent": {
+          "type": "integer",
+          "description": "Computed training time percentage: creditHoursEnrolled / institutionalFullTimeCreditHourStandard × 100. Derived field — not user input. Stored for routing logic (gates housingAllowance chapter at >= 50%). Values are VA training time tiers.",
+          "enum": [
+            100,
+            75,
+            50,
+            40
+          ]
+        },
+        "calculatedTrainingTimeLabel": {
+          "type": "string",
+          "description": "Human-readable training time label derived from calculatedTrainingTimePercent.",
+          "enum": [
+            "FULL_TIME",
+            "THREE_QUARTER_TIME",
+            "HALF_TIME",
+            "LESS_THAN_HALF_TIME"
+          ]
+        }
+      }
+    },
     "tuitionFees": {
       "type": "object",
-      "additionalProperties": false,
-      "required": ["tuitionCharged", "mandatoryFeesCharged", "nonResidentStudent"],
-      "properties": {
-        "tuitionCharged": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Tuition charged this term in US dollars; Chapter 33 only"
-        },
-        "mandatoryFeesCharged": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Mandatory fees charged this term in US dollars"
-        },
-        "totalTuitionAndFees": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Calculated read-only sum of tuitionCharged + mandatoryFeesCharged"
-        },
-        "itemizedFeeDescription": {
-          "type": "string",
-          "maxLength": 2000,
-          "description": "Required itemization of each mandatory fee type and amount if mandatoryFeesCharged > 0"
-        },
-        "nonResidentStudent": {
-          "type": "boolean",
-          "description": "Whether student is a non-resident/out-of-state student at a public institution (VA pays in-state rate)"
-        }
-      }
-    },
-
-    "yellowRibbon": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["schoolYellowRibbonContribution"],
-      "properties": {
-        "schoolYellowRibbonContribution": {
-          "type": "number",
-          "minimum": 0,
-          "description": "School's Yellow Ribbon contribution this term in US dollars; validated against Agreement maximum"
-        },
-        "vaYellowRibbonMatchingAmount": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Calculated read-only: VA matching amount equal to school contribution up to Agreement maximum"
-        },
-        "yellowRibbonAgreementReferenceNumber": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Yellow Ribbon Agreement reference number for SCO records (optional)"
-        }
-      }
-    },
-
-    "priorCertificationChanges": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["typesOfChange", "changeDescription"],
-      "properties": {
-        "typesOfChange": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "addedCourses": {
-              "type": "boolean",
-              "description": "Student added courses"
-            },
-            "droppedCourses": {
-              "type": "boolean",
-              "description": "Student dropped courses"
-            },
-            "trainingTimeReclassification": {
-              "type": "boolean",
-              "description": "Training time reclassification"
-            },
-            "tuitionFeeCorrection": {
-              "type": "boolean",
-              "description": "Tuition or fee correction"
-            },
-            "programChange": {
-              "type": "boolean",
-              "description": "Change in program of education"
-            },
-            "other": {
-              "type": "boolean",
-              "description": "Other type of change"
-            }
-          }
-        },
-        "changeDescription": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 2000,
-          "description": "Required detailed description of what changed from the prior certification"
-        },
-        "courseChangeDate": {
-          "type": "string",
-          "format": "date",
-          "description": "Date student added or dropped courses in YYYY-MM-DD format; required if addedCourses or droppedCourses is true"
-        },
-        "updatedHoursEnrolled": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 30,
-          "description": "Updated credit or clock hours enrolled after change; shown if hours changed"
-        },
-        "updatedTrainingTimeClassification": {
-          "type": "string",
-          "enum": ["fullTime", "threeQuarterTime", "halfTime", "lessThanHalfTime"],
-          "description": "Updated training time classification after amendment"
-        },
-        "mitigatingCircumstancesApply": {
-          "type": "boolean",
-          "description": "Whether mitigating circumstances apply to a reduction or drop"
-        },
-        "mitigatingCircumstancesDescription": {
-          "type": "string",
-          "maxLength": 2000,
-          "description": "Description of mitigating circumstances; required if mitigatingCircumstancesApply = true"
-        }
-      }
-    },
-
-    "terminationInformation": {
-      "type": "object",
+      "description": "Chapter 4 — Tuition and Fees. Required for Chapter 33 only. Conditionally absent for all other benefit chapters.",
       "additionalProperties": false,
       "required": [
-        "terminationReason",
-        "lastDateOfAttendance",
-        "nonPunitiveGradesReceived",
-        "mitigatingCircumstancesApply"
+        "tuitionCharges",
+        "tuitionRateType",
+        "mandatoryFees",
+        "totalTuitionAndFeesCertified"
       ],
       "properties": {
-        "terminationReason": {
+        "tuitionCharges": {
+          "$ref": "#/definitions/currencyAmount",
+          "description": "Total tuition charges for the enrollment period (in-state or out-of-state as applicable)."
+        },
+        "tuitionRateType": {
           "type": "string",
+          "description": "Whether the tuition rate is in-state or out-of-state.",
           "enum": [
-            "studentWithdrew",
-            "studentExpelled",
-            "didNotReturnFromBreak",
-            "changeInTrainingTime",
-            "unsatisfactoryProgress",
-            "graduatedEarly",
-            "militaryDeployment",
-            "other"
-          ],
-          "description": "Reason for termination or reduction of enrollment"
+            "IN_STATE",
+            "OUT_OF_STATE",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "mandatoryFees": {
+          "$ref": "#/definitions/currencyAmount",
+          "description": "Itemized total of all mandatory fees charged to the student."
+        },
+        "feeDescription": {
+          "type": "string",
+          "description": "Description listing each mandatory fee by name and amount (e.g., 'Student Activity Fee $150, Technology Fee $75').",
+          "maxLength": 2000
+        },
+        "yellowRibbonContribution": {
+          "$ref": "#/definitions/currencyAmount",
+          "description": "Yellow Ribbon Program contribution from the institution. Enter 0 if not participating."
+        },
+        "totalTuitionAndFeesCertified": {
+          "$ref": "#/definitions/currencyAmount",
+          "description": "Total tuition and fees being certified for VA payment. Should equal tuitionCharges + mandatoryFees minus any applicable exclusions."
+        },
+        "feeExclusionsApplied": {
+          "type": "array",
+          "description": "Fee exclusions or adjustments applied to this certification.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "TUITION_ONLY",
+              "FEES_INCLUDED",
+              "YELLOW_RIBBON_APPLIED"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "housingAllowance": {
+      "type": "object",
+      "description": "Chapter 4 — Housing Allowance ZIP Code. For Chapter 33 at half-time or more. Conditionally absent for below-half-time or other chapters.",
+      "additionalProperties": false,
+      "required": [
+        "primaryCampusZip",
+        "enrollmentModality"
+      ],
+      "properties": {
+        "primaryCampusZip": {
+          "type": "string",
+          "description": "ZIP code of the primary campus where the student physically attends the majority of classes. Used for DoD BAH MHA calculation. For exclusively online enrollment, enter the student's home ZIP code.",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        },
+        "enrollmentModality": {
+          "type": "string",
+          "description": "Enrollment modality indicating degree of in-person vs. online attendance. Affects MHA rate determination.",
+          "enum": [
+            "ALL_IN_PERSON",
+            "MAJORITY_ONLINE",
+            "EXCLUSIVELY_ONLINE",
+            "HYBRID_LESS_THAN_50_ONLINE"
+          ]
+        }
+      }
+    },
+    "ojtDetails": {
+      "type": "object",
+      "description": "Chapter 4 — OJT/Apprenticeship Program Details. Conditionally present when institutionType is OJT_APPRENTICESHIP.",
+      "additionalProperties": false,
+      "required": [
+        "employerName",
+        "employerAddress",
+        "trainingHoursPerWeek",
+        "monthlyTrainingHours",
+        "trainingPeriodBeginDate",
+        "trainingPeriodEndDate"
+      ],
+      "properties": {
+        "employerName": {
+          "type": "string",
+          "description": "Name of the employer or training establishment.",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "employerAddress": {
+          "$ref": "#/definitions/usAddress",
+          "description": "Full address of the employer/training establishment."
+        },
+        "apprenticeshipRegistrationNumber": {
+          "type": "string",
+          "description": "Federal or state apprenticeship registration number, if applicable.",
+          "maxLength": 50
+        },
+        "trainingHoursPerWeek": {
+          "type": "integer",
+          "description": "Number of training hours per week.",
+          "minimum": 1,
+          "maximum": 168
+        },
+        "monthlyTrainingHours": {
+          "type": "integer",
+          "description": "Total monthly training hours for this certification period.",
+          "minimum": 1,
+          "maximum": 999
+        },
+        "trainingPhase": {
+          "type": "string",
+          "description": "Current phase of the apprenticeship training program.",
+          "enum": [
+            "PROBATIONARY",
+            "PHASE_1",
+            "PHASE_2",
+            "PHASE_3",
+            "JOURNEYMAN"
+          ]
+        },
+        "trainingPeriodBeginDate": {
+          "$ref": "#/definitions/date",
+          "description": "Begin date of the OJT/apprenticeship training period being certified."
+        },
+        "trainingPeriodEndDate": {
+          "$ref": "#/definitions/date",
+          "description": "End date of the OJT/apprenticeship training period being certified."
+        }
+      }
+    },
+    "amendmentInfo": {
+      "type": "object",
+      "description": "Chapter 5 — Amendment Details. Conditionally present when certificationTypeSelection is 'amendment'.",
+      "additionalProperties": false,
+      "required": [
+        "originalCertificationId",
+        "effectiveDateOfChange",
+        "natureOfAmendment"
+      ],
+      "properties": {
+        "originalCertificationId": {
+          "type": "string",
+          "description": "Confirmation number or VA-ONCE certification ID for the original certification being amended.",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "effectiveDateOfChange": {
+          "$ref": "#/definitions/date",
+          "description": "The effective date of the enrollment change being reported."
+        },
+        "natureOfAmendment": {
+          "type": "string",
+          "description": "The type of change being made by this amendment.",
+          "enum": [
+            "REDUCTION_IN_HOURS",
+            "WITHDRAWAL",
+            "PROGRAM_CHANGE",
+            "ENROLLMENT_DATE_CORRECTION",
+            "OTHER"
+          ]
         },
         "lastDateOfAttendance": {
+          "$ref": "#/definitions/date",
+          "description": "Last date the student attended class. Required when natureOfAmendment is WITHDRAWAL."
+        },
+        "explanationOfChange": {
           "type": "string",
-          "format": "date",
-          "description": "Student's last date of attendance in YYYY-MM-DD format"
+          "description": "Free-text explanation of the change. Required when natureOfAmendment is OTHER; optional contextual detail for other amendment types.",
+          "maxLength": 4000
         },
-        "officialWithdrawalDate": {
+        "mitigatingCircumstances": {
+          "type": "array",
+          "description": "Mitigating circumstances claimed when natureOfAmendment is WITHDRAWAL. May reduce or waive overpayment debt under 38 U.S.C. § 3696.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "MILITARY_ORDERS",
+              "MEDICAL",
+              "OTHER_CIRCUMSTANCES"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "mitigatingCircumstanceExplanation": {
           "type": "string",
-          "format": "date",
-          "description": "Official withdrawal date if different from last date of attendance in YYYY-MM-DD format (optional)"
-        },
-        "nonPunitiveGradesReceived": {
-          "type": "boolean",
-          "description": "Whether student received any non-punitive grades (W, I, NC) this term"
-        },
-        "mitigatingCircumstancesApply": {
-          "type": "boolean",
-          "description": "Whether mitigating circumstances apply to the termination or reduction"
-        },
-        "mitigatingCircumstancesDescription": {
-          "type": "string",
-          "maxLength": 2000,
-          "description": "Description of mitigating circumstances; required if mitigatingCircumstancesApply = true"
+          "description": "Explanation of mitigating circumstances including description and supporting documentation to be submitted. Shown when mitigatingCircumstances is non-empty.",
+          "maxLength": 4000
         }
       }
     },
-
-    "scoCertification": {
+    "advancePay": {
       "type": "object",
+      "description": "Chapter 5 — Advance Pay Request. Whether the student is requesting advance payment at start of term.",
       "additionalProperties": false,
       "required": [
-        "scoFirstName",
-        "scoLastName",
-        "scoTitle",
-        "scoPhoneNumber",
-        "scoEmailAddress",
-        "certificationAttestation",
-        "dateOfCertification"
+        "isRequestingAdvancePay"
       ],
       "properties": {
-        "scoFirstName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 50,
-          "description": "SCO certifier first name; pre-populated from authenticated session"
-        },
-        "scoLastName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 50,
-          "description": "SCO certifier last name; pre-populated from authenticated session"
-        },
-        "scoTitle": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "SCO title or position at the institution"
-        },
-        "scoPhoneNumber": {
-          "type": "string",
-          "pattern": "^\\d{10}$",
-          "minLength": 10,
-          "maxLength": 10,
-          "description": "SCO phone number — 10 digits, no dashes or formatting"
-        },
-        "scoEmailAddress": {
-          "type": "string",
-          "format": "email",
-          "maxLength": 256,
-          "description": "SCO email address; pre-populated from authenticated session"
-        },
-        "scoFaxNumber": {
-          "type": "string",
-          "pattern": "^\\d{10}$",
-          "minLength": 10,
-          "maxLength": 10,
-          "description": "SCO fax number — 10 digits, no dashes or formatting (optional)"
-        },
-        "certificationAttestation": {
+        "isRequestingAdvancePay": {
           "type": "boolean",
-          "description": "SCO certifies that the information is true and correct and understands 18 U.S.C. § 1001; must be true to submit"
+          "description": "Whether the student is requesting advance payment for this enrollment period per 38 CFR 21.4136."
         },
-        "dateOfCertification": {
+        "advancePayAcknowledgments": {
+          "type": "array",
+          "description": "Required acknowledgments when isRequestingAdvancePay is true. All three items must be present.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "STUDENT_AUTHORIZED_ADVANCE_PAY",
+              "STUDENT_HAS_DIRECT_DEPOSIT",
+              "SUBMITTED_WITHIN_ALLOWABLE_WINDOW"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 0,
+          "maxItems": 3
+        }
+      }
+    },
+    "certifierSignature": {
+      "type": "object",
+      "description": "Chapter 6 — Certifier Certification and Signature. Certification statements, typed digital signature, and submission timestamp.",
+      "additionalProperties": false,
+      "required": [
+        "certificationStatements",
+        "typedSignature",
+        "signatureTimestamp"
+      ],
+      "properties": {
+        "additionalRemarks": {
           "type": "string",
-          "format": "date",
-          "description": "Date of certification in YYYY-MM-DD format; defaults to today's date"
+          "description": "Optional free-text additional comments or remarks for VA that do not fit elsewhere in the form.",
+          "maxLength": 4000
+        },
+        "certificationStatements": {
+          "type": "array",
+          "description": "Required certification checkboxes. All three statements must be confirmed before submission can proceed.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ENROLLED_AS_DESCRIBED",
+              "INFORMATION_IS_ACCURATE",
+              "UNDERSTANDS_FALSE_STATEMENT_PENALTIES"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "typedSignature": {
+          "type": "string",
+          "description": "SCO's typed full name as digital signature. Must match the authenticated name from Login.gov/ID.me session. Validated at submission time against session identity.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "signatureTimestamp": {
+          "type": "string",
+          "description": "ISO 8601 UTC timestamp auto-populated at time of signature/submission. Format: YYYY-MM-DDTHH:mm:ssZ.",
+          "format": "date-time"
+        }
+      }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "description": "Platform-required privacy agreement acceptance. Must be true for form submission to proceed.",
+      "enum": [
+        true
+      ]
+    },
+    "duplicateCheckResult": {
+      "type": "object",
+      "description": "Result of the pre-submission duplicate check against VA-ONCE records. Read-only. Not user input.",
+      "additionalProperties": false,
+      "properties": {
+        "duplicateCheckPerformed": {
+          "type": "boolean"
+        },
+        "potentialDuplicateFound": {
+          "type": "boolean"
+        },
+        "duplicateCheckTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "scoProceedDespiteDuplicate": {
+          "type": "boolean",
+          "description": "True when the SCO has acknowledged the duplicate warning and explicitly chosen to proceed with submission."
+        }
+      }
+    },
+    "submissionMetadata": {
+      "type": "object",
+      "description": "Submission routing and processing metadata. Populated at submission time by the backend. Not user input.",
+      "additionalProperties": false,
+      "properties": {
+        "confirmationNumber": {
+          "type": "string",
+          "description": "VA-assigned confirmation number for this submission.",
+          "maxLength": 50
+        },
+        "submissionTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "routedToRpo": {
+          "type": "string",
+          "description": "RPO this submission was routed to based on institution location.",
+          "enum": [
+            "BUFFALO",
+            "MUSKOGEE",
+            "ST_LOUIS"
+          ]
+        },
+        "formVersion": {
+          "type": "string",
+          "description": "Schema version of the form at time of submission.",
+          "maxLength": 20
         }
       }
     }
-
   }
 }
