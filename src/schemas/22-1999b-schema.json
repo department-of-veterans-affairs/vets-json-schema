@@ -1,0 +1,591 @@
+// src/schemas/22-1999b-schema.json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 22-1999b — Notice of Change in Student Status",
+  "description": "Graduate/Professional Student Enrollment Certification — Change in Student Status submitted by School Certifying Official (SCO)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "institutionInformation",
+    "certifyingOfficial",
+    "studentInformation",
+    "benefitChapter",
+    "originalEnrollment",
+    "changeInformation",
+    "certificationStatement"
+  ],
+  "definitions": {
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["street", "city", "state", "postalCode"],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 50
+        }
+      }
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^\\d{3}-?\\d{2}-?\\d{4}$",
+      "minLength": 9,
+      "maxLength": 11
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^[0-9()\\-\\s]{10,14}$",
+      "minLength": 10,
+      "maxLength": 14
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "vaFacilityCode": {
+      "type": "string",
+      "pattern": "^\\d{8}$",
+      "minLength": 8,
+      "maxLength": 8
+    },
+    "opeid": {
+      "type": "string",
+      "pattern": "^\\d{6}-?\\d{2}$",
+      "minLength": 8,
+      "maxLength": 9
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^\\d{7,9}$",
+      "minLength": 7,
+      "maxLength": 9
+    },
+    "creditHours": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 30
+    },
+    "trainingTime": {
+      "type": "string",
+      "enum": [
+        "full_time",
+        "three_quarter_time",
+        "half_time",
+        "less_than_half_time"
+      ]
+    },
+    "degreeLevel": {
+      "type": "string",
+      "enum": [
+        "masters",
+        "doctoral",
+        "professional",
+        "certificate"
+      ]
+    },
+    "reasonForChange": {
+      "type": "string",
+      "enum": [
+        "credit_hour_reduction",
+        "full_withdrawal",
+        "program_change",
+        "graduation_date_change",
+        "administrative_withdrawal",
+        "stop_out",
+        "early_completion",
+        "intensity_change"
+      ]
+    },
+    "benefitChapter": {
+      "type": "string",
+      "enum": [
+        "chapter-30",
+        "chapter-33",
+        "chapter-35",
+        "chapter-1606",
+        "chapter-1607"
+      ]
+    },
+    "withdrawalType": {
+      "type": "string",
+      "enum": [
+        "student_initiated",
+        "administrative",
+        "medical",
+        "military_orders"
+      ]
+    },
+    "mitigatingCircumstanceType": {
+      "type": "string",
+      "enum": [
+        "illness_or_injury",
+        "death_of_close_relative",
+        "undue_hardship",
+        "active_duty_military_orders",
+        "other"
+      ]
+    },
+    "mitigatingCircumstanceClaim": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unknown"
+      ]
+    }
+  },
+  "properties": {
+    "institutionInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Screens 3–4: VA facility identification and certifying official contact information",
+      "required": [
+        "vaFacilityCode",
+        "opeid"
+      ],
+      "properties": {
+        "vaFacilityCode": {
+          "$ref": "#/definitions/vaFacilityCode",
+          "title": "VA facility code",
+          "description": "8-digit VA facility code assigned to the institution"
+        },
+        "opeid": {
+          "$ref": "#/definitions/opeid",
+          "title": "OPEID",
+          "description": "8-digit Office of Postsecondary Education Identifier including 2-digit branch code"
+        },
+        "institutionName": {
+          "type": "string",
+          "title": "Institution name",
+          "description": "Auto-populated from facility code lookup; read-only on frontend",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "institutionAddress": {
+          "$ref": "#/definitions/address",
+          "title": "Institution address",
+          "description": "Auto-populated from facility code lookup"
+        }
+      }
+    },
+    "certifyingOfficial": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Screen 4: School Certifying Official contact information for this submission",
+      "required": [
+        "firstName",
+        "lastName",
+        "phone",
+        "email"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "title": "First name",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "lastName": {
+          "type": "string",
+          "title": "Last name",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "title": {
+          "type": "string",
+          "title": "Title or role",
+          "description": "SCO's title or role at the institution",
+          "maxLength": 100
+        },
+        "phone": {
+          "$ref": "#/definitions/phone",
+          "title": "Phone number",
+          "description": "Direct phone number including area code"
+        },
+        "email": {
+          "$ref": "#/definitions/email",
+          "title": "Email address",
+          "description": "Institutional email address; submission confirmation will be sent here"
+        }
+      }
+    },
+    "studentInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Screen 5: Student/beneficiary identity information",
+      "required": [
+        "firstName",
+        "lastName",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "title": "Student first name",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "middleName": {
+          "type": "string",
+          "title": "Student middle name",
+          "maxLength": 50
+        },
+        "lastName": {
+          "type": "string",
+          "title": "Student last name",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "suffix": {
+          "type": "string",
+          "title": "Student name suffix",
+          "enum": [
+            "Jr.",
+            "Sr.",
+            "II",
+            "III",
+            "IV",
+            "V"
+          ]
+        },
+        "ssn": {
+          "$ref": "#/definitions/ssn",
+          "title": "Student Social Security number",
+          "description": "Student SSN as it appears in VA benefit records; required unless VA File Number is provided"
+        },
+        "vaFileNumber": {
+          "$ref": "#/definitions/vaFileNumber",
+          "title": "VA file number",
+          "description": "7–9 digit VA file number if different from SSN; required if SSN is not provided"
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/date",
+          "title": "Student date of birth",
+          "description": "Used to confirm student identity in VA systems"
+        }
+      }
+    },
+    "benefitChapter": {
+      "$ref": "#/definitions/benefitChapter",
+      "title": "VA education benefit chapter",
+      "description": "Screen 6: VA education benefit chapter under which the student is certified"
+    },
+    "originalEnrollment": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Screens 7–8: Enrollment data as originally certified on the most recent VA Form 22-1999",
+      "required": [
+        "certifiedTermBeginDate",
+        "certifiedTermEndDate",
+        "certifiedCreditHours",
+        "programName",
+        "degreeLevel",
+        "originalGraduationDate"
+      ],
+      "properties": {
+        "certifiedTermBeginDate": {
+          "$ref": "#/definitions/date",
+          "title": "Certified term begin date",
+          "description": "First day of the term as originally certified to VA"
+        },
+        "certifiedTermEndDate": {
+          "$ref": "#/definitions/date",
+          "title": "Certified term end date",
+          "description": "Last day of the term as originally certified to VA"
+        },
+        "certifiedCreditHours": {
+          "$ref": "#/definitions/creditHours",
+          "title": "Credit hours originally certified to VA",
+          "description": "Number of credit hours certified on the most recent VA Form 22-1999 for this term"
+        },
+        "certifiedTrainingTime": {
+          "$ref": "#/definitions/trainingTime",
+          "title": "Originally certified training time",
+          "description": "Training time classification as originally certified; conditional on benefit chapter"
+        },
+        "programName": {
+          "type": "string",
+          "title": "Program name / degree",
+          "description": "Name of the program or degree as originally certified",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "degreeLevel": {
+          "$ref": "#/definitions/degreeLevel",
+          "title": "Degree level",
+          "description": "Level of the degree or credential being pursued"
+        },
+        "originalGraduationDate": {
+          "$ref": "#/definitions/date",
+          "title": "Originally certified graduation or completion date",
+          "description": "Anticipated graduation or program completion date as previously certified"
+        }
+      }
+    },
+    "changeInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Screens 9–14: Details of the enrollment change being reported",
+      "required": [
+        "reasonForChange",
+        "effectiveDateOfChange",
+        "changeOccurredAfterTermStart"
+      ],
+      "properties": {
+        "reasonForChange": {
+          "$ref": "#/definitions/reasonForChange",
+          "title": "Reason for change",
+          "description": "Screen 9: Regulatory reason code for the enrollment change"
+        },
+        "vaReasonCode": {
+          "type": "string",
+          "title": "VA regulatory reason code",
+          "description": "Mapped from reasonForChange on submission; e.g., '01' for credit_hour_reduction",
+          "enum": [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08"
+          ]
+        },
+        "reasonExplanation": {
+          "type": "string",
+          "title": "Additional explanation",
+          "description": "Required for certain reason codes; free-text explanation of the change",
+          "maxLength": 1000
+        },
+        "effectiveDateOfChange": {
+          "$ref": "#/definitions/date",
+          "title": "Effective date of change",
+          "description": "Screen 10: Date the enrollment change occurred at the institution"
+        },
+        "changeOccurredAfterTermStart": {
+          "type": "boolean",
+          "title": "Change occurred after first day of certified term",
+          "description": "Screen 10: Whether the change occurred after the first day of the certified term"
+        },
+        "newEnrollmentDetails": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Screen 11: New enrollment status after the change; conditional — skip if full_withdrawal",
+          "properties": {
+            "newCreditHours": {
+              "type": "integer",
+              "title": "New credit hours enrolled",
+              "description": "Number of credit hours student is enrolled in after the change; must be less than certifiedCreditHours",
+              "minimum": 0,
+              "maximum": 30
+            },
+            "newTrainingTime": {
+              "$ref": "#/definitions/trainingTime",
+              "title": "New training time classification",
+              "description": "Updated training time classification after the change"
+            },
+            "newGraduationDate": {
+              "$ref": "#/definitions/date",
+              "title": "New program end or graduation date",
+              "description": "Updated graduation or completion date if changed; required if reasonForChange is graduation_date_change or early_completion"
+            },
+            "affectedCourseTypes": {
+              "type": "array",
+              "title": "Types of courses affected",
+              "description": "Chapter 30/1606 specific: types of courses affected by the change",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "remedial",
+                  "deficiency",
+                  "refresher"
+                ]
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "withdrawalDetails": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Screen 12: Withdrawal-specific details; conditional — shown when reasonForChange is full_withdrawal or administrative_withdrawal",
+          "properties": {
+            "lastDateOfAttendance": {
+              "$ref": "#/definitions/date",
+              "title": "Last date of physical or online attendance",
+              "description": "Must be on or before effectiveDateOfChange and on or after certifiedTermBeginDate"
+            },
+            "withdrawalType": {
+              "$ref": "#/definitions/withdrawalType",
+              "title": "Type of withdrawal",
+              "description": "Category of withdrawal action"
+            },
+            "nonPunitiveGradeOnTranscript": {
+              "type": "boolean",
+              "title": "Non-punitive grade will appear on transcript",
+              "description": "Whether a non-punitive grade (W, I) will appear on the student's transcript"
+            },
+            "administrativeActionType": {
+              "type": "string",
+              "title": "Administrative action type",
+              "description": "Required when withdrawalType is administrative; type of administrative action taken",
+              "enum": [
+                "administrative_drop",
+                "suspension",
+                "expulsion"
+              ]
+            }
+          }
+        },
+        "mitigatingCircumstances": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Screen 13: Mitigating circumstances; conditional — shown when withdrawal or drop occurred after term start",
+          "properties": {
+            "studentClaimingMitigatingCircumstances": {
+              "$ref": "#/definitions/mitigatingCircumstanceClaim",
+              "title": "Student claiming mitigating circumstances",
+              "description": "Whether the student is claiming mitigating circumstances for the change"
+            },
+            "circumstanceTypes": {
+              "type": "array",
+              "title": "Types of mitigating circumstances",
+              "description": "One or more circumstances the student is claiming",
+              "items": {
+                "$ref": "#/definitions/mitigatingCircumstanceType"
+              },
+              "uniqueItems": true
+            },
+            "circumstanceDescription": {
+              "type": "string",
+              "title": "Brief description of circumstances",
+              "description": "Required if studentClaimingMitigatingCircumstances is 'yes'",
+              "maxLength": 1000
+            }
+          }
+        },
+        "chapter33HousingDetails": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Screen 14: Chapter 33 MHA-relevant enrollment intensity data; conditional — shown only when benefitChapter is chapter-33",
+          "properties": {
+            "enrolledExclusivelyOnline": {
+              "type": "boolean",
+              "title": "Student enrolled exclusively online",
+              "description": "Whether the student is enrolled exclusively in online courses after the change"
+            },
+            "inPersonCreditHours": {
+              "type": "integer",
+              "title": "Credit hours for in-person instruction",
+              "description": "Number of credit hours delivered via in-person instruction after the change",
+              "minimum": 0,
+              "maximum": 30
+            },
+            "onlineCreditHours": {
+              "type": "integer",
+              "title": "Credit hours for online instruction",
+              "description": "Number of credit hours delivered via online instruction after the change",
+              "minimum": 0,
+              "maximum": 30
+            },
+            "yellowRibbonApplicable": {
+              "type": "boolean",
+              "title": "Yellow Ribbon Program applicable",
+              "description": "Whether the Yellow Ribbon Program applies to this student's enrollment"
+            }
+          }
+        },
+        "stopOutDetails": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Additional fields specific to stop-out or leave of absence; conditional on reasonForChange === stop_out",
+          "properties": {
+            "expectedReturnDate": {
+              "$ref": "#/definitions/date",
+              "title": "Expected return date",
+              "description": "Expected date of student's return from stop-out or leave of absence; conditionally required"
+            }
+          }
+        },
+        "earlyCompletionDetails": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Additional fields specific to early program completion; conditional on reasonForChange === early_completion",
+          "properties": {
+            "actualCompletionDate": {
+              "$ref": "#/definitions/date",
+              "title": "Actual completion date",
+              "description": "Date the student actually completed the program; required for early_completion"
+            }
+          }
+        }
+      }
+    },
+    "certificationStatement": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Screen 15: SCO certification and electronic signature",
+      "required": [
+        "certificationCheckbox",
+        "electronicSignature",
+        "dateOfCertification"
+      ],
+      "properties": {
+        "certificationCheckbox": {
+          "type": "boolean",
+          "title": "Certification checkbox",
+          "description": "SCO certifies that the information provided is accurate and complete to the best of their knowledge",
+          "enum": [true]
+        },
+        "electronicSignature": {
+          "type": "string",
+          "title": "SCO electronic signature",
+          "description": "Typed full name of the certifying official as electronic signature",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "dateOfCertification": {
+          "$ref": "#/definitions/date",
+          "title": "Date of certification",
+          "description": "Date the form was certified and submitted; auto-populated with today's date"
+        }
+      }
+    },
+    "privacyAgreementAccepted": {
+      "type": "boolean",
+      "title": "Privacy policy agreement accepted",
+      "description": "Indicates the submitter has read and accepted the VA privacy policy",
+      "enum": [true]
+    }
+  }
+}
