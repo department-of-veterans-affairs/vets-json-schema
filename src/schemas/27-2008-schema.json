@@ -1,29 +1,31 @@
 // src/schemas/27-2008-schema.json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "VA Form 27-2008 — Application for United States Flag for Burial Purposes",
+  "title": "Application for United States Flag for Burial Purposes (VA Form 27-2008)",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
     "date": {
       "type": "string",
-      "format": "date",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "ISO 8601 date string: YYYY-MM-DD"
     },
     "ssn": {
       "type": "string",
-      "pattern": "^\\d{9}$"
+      "pattern": "^\\d{9}$",
+      "description": "Social Security Number — 9 digits, no dashes"
     },
     "phone": {
       "type": "string",
-      "pattern": "^\\d{10}$"
+      "pattern": "^\\d{10}$",
+      "description": "US phone number — 10 digits, no formatting characters"
     },
     "email": {
       "type": "string",
       "format": "email",
       "maxLength": 254
     },
-    "usaState": {
+    "usStateCode": {
       "type": "string",
       "enum": [
         "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL",
@@ -54,7 +56,7 @@
           "pattern": "^[A-Za-z\\s\\-]+$"
         },
         "state": {
-          "$ref": "#/definitions/usaState"
+          "$ref": "#/definitions/usStateCode"
         },
         "postalCode": {
           "type": "string",
@@ -63,31 +65,7 @@
       },
       "required": ["street", "city", "state", "postalCode"]
     },
-    "fullName": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "firstName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^[A-Za-z\\s\\-']+$"
-        },
-        "middleName": {
-          "type": "string",
-          "maxLength": 30,
-          "pattern": "^[A-Za-z\\s\\-']*$"
-        },
-        "lastName": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 30,
-          "pattern": "^[A-Za-z\\s\\-']+$"
-        }
-      },
-      "required": ["firstName", "lastName"]
-    },
-    "claimantName": {
+    "personName": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -100,7 +78,7 @@
         "middleInitial": {
           "type": "string",
           "maxLength": 1,
-          "pattern": "^[A-Za-z]?$"
+          "pattern": "^[A-Za-z]$"
         },
         "lastName": {
           "type": "string",
@@ -110,26 +88,6 @@
         }
       },
       "required": ["firstName", "lastName"]
-    },
-    "fileUpload": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 255
-        },
-        "size": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "confirmationCode": {
-          "type": "string",
-          "minLength": 1
-        }
-      },
-      "required": ["name", "size", "confirmationCode"]
     }
   },
   "properties": {
@@ -146,7 +104,8 @@
         "vsoRepresentative",
         "governmentOfficial",
         "authorizedRepresentative"
-      ]
+      ],
+      "description": "Identifies the relationship of the submitting claimant to the deceased Veteran"
     },
     "claimant": {
       "type": "object",
@@ -161,7 +120,7 @@
         "middleInitial": {
           "type": "string",
           "maxLength": 1,
-          "pattern": "^[A-Za-z]?$"
+          "pattern": "^[A-Za-z]$"
         },
         "lastName": {
           "type": "string",
@@ -169,11 +128,11 @@
           "maxLength": 30,
           "pattern": "^[A-Za-z\\s\\-']+$"
         },
-        "email": {
-          "$ref": "#/definitions/email"
-        },
         "phone": {
           "$ref": "#/definitions/phone"
+        },
+        "email": {
+          "$ref": "#/definitions/email"
         },
         "address": {
           "$ref": "#/definitions/address"
@@ -181,10 +140,11 @@
         "relationshipDescription": {
           "type": "string",
           "minLength": 20,
-          "maxLength": 500
+          "maxLength": 500,
+          "description": "Conditional — required only when claimantType is 'closeFriend' or 'authorizedRepresentative'"
         }
       },
-      "required": ["firstName", "lastName", "email", "phone", "address"]
+      "required": ["firstName", "lastName", "phone", "email", "address"]
     },
     "veteran": {
       "type": "object",
@@ -199,7 +159,7 @@
         "middleName": {
           "type": "string",
           "maxLength": 30,
-          "pattern": "^[A-Za-z\\s\\-']*$"
+          "pattern": "^[A-Za-z\\s\\-']+$"
         },
         "lastName": {
           "type": "string",
@@ -218,7 +178,8 @@
         },
         "vaFileNumber": {
           "type": "string",
-          "pattern": "^\\d{7,9}$"
+          "pattern": "^\\d{7,9}$",
+          "description": "VA file or claim number — 7 to 9 digits"
         }
       },
       "required": ["firstName", "lastName", "ssn", "dateOfBirth", "dateOfDeath"]
@@ -254,7 +215,6 @@
         },
         "rankAtDischarge": {
           "type": "string",
-          "minLength": 1,
           "maxLength": 50
         },
         "dischargeCharacter": {
@@ -275,73 +235,68 @@
             "type": "string",
             "enum": [
               "wwi",
-              "wwiI",
+              "wwii",
               "korea",
               "vietnam",
               "gulfWar",
-              "postGulfWar",
-              "operationEnduringFreedom",
+              "operationEndurингFreedom",
               "operationIraqiFreedom",
               "operationNewDawn",
+              "operationInherentResolve",
               "other"
             ]
-          }
+          },
+          "description": "Array of war periods during which the Veteran served; multi-select"
         }
       },
-      "required": [
-        "branchOfService",
-        "serviceType",
-        "serviceEntryDate",
-        "serviceSeparationDate",
-        "dischargeCharacter"
-      ]
+      "required": ["branchOfService", "serviceType", "serviceEntryDate", "serviceSeparationDate", "dischargeCharacter"]
     },
     "reserveGuardEligibility": {
       "type": "object",
       "additionalProperties": false,
+      "description": "Conditional — shown only when serviceType is 'reserveGuard'",
       "properties": {
         "entitledToRetiredPay": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Was the Veteran entitled to retired pay at the time of death?"
         },
         "diedWhileActiveMember": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Did the Veteran die while an active member of the Selected Reserve?"
         },
-        "hospitalizedAtVaForServiceConnectedCondition": {
-          "type": "boolean"
+        "diedAtVaFacilityForScCondition": {
+          "type": "boolean",
+          "description": "Was the Veteran hospitalized or treated at a VA facility for a service-connected disability at the time of death?"
         }
       },
-      "required": [
-        "entitledToRetiredPay",
-        "diedWhileActiveMember",
-        "hospitalizedAtVaForServiceConnectedCondition"
-      ]
+      "required": ["entitledToRetiredPay", "diedWhileActiveMember", "diedAtVaFacilityForScCondition"]
     },
     "specialServiceCategories": {
       "type": "object",
       "additionalProperties": false,
+      "description": "Conditional — shown only when branchOfService is 'publicHealthService', 'merchantMarine', or 'philippineArmy'",
       "properties": {
-        "merchantMarinerWwiiQualifyingService": {
-          "type": "boolean"
+        "merchantMarinerWithWwiiService": {
+          "type": "boolean",
+          "description": "Was the Veteran a Merchant Mariner with WWII qualifying service?"
         },
-        "commissionedOfficerPublicHealthService": {
-          "type": "boolean"
+        "commissionedOfficerPublicHealth": {
+          "type": "boolean",
+          "description": "Was the Veteran a Commissioned Officer of the Public Health Service, Environmental Science Services Administration, or Coast and Geodetic Survey?"
         },
-        "philippineCommonwealthArmyOrGuerrilla": {
-          "type": "boolean"
+        "philippineArmyOrGuerrillaForces": {
+          "type": "boolean",
+          "description": "Did the Veteran serve in the Philippine Commonwealth Army or recognized guerrilla forces?"
         }
-      },
-      "required": [
-        "merchantMarinerWwiiQualifyingService",
-        "commissionedOfficerPublicHealthService",
-        "philippineCommonwealthArmyOrGuerrilla"
-      ]
+      }
     },
     "priorFlagInformation": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "priorFlagIssued": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Has a burial flag previously been issued for this Veteran?"
         },
         "replacementReason": {
           "type": "string",
@@ -350,12 +305,13 @@
             "stolen",
             "neverReceived",
             "other"
-          ]
+          ],
+          "description": "Conditional — required only when priorFlagIssued is true"
         },
         "replacementReasonDescription": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 500
+          "maxLength": 500,
+          "description": "Conditional — required only when replacementReason is 'other'"
         }
       },
       "required": ["priorFlagIssued"]
@@ -365,7 +321,8 @@
       "additionalProperties": false,
       "properties": {
         "hasDd214": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Does the claimant have a copy of the Veteran's DD-214 or equivalent discharge document?"
         },
         "alternativeDocumentation": {
           "type": "array",
@@ -375,18 +332,35 @@
             "enum": [
               "npcRequest",
               "militaryOrders",
-              "buddyStatement",
+              "buddyStatements",
               "vaRecords",
               "other"
             ]
-          }
+          },
+          "description": "Conditional — shown when hasDd214 is false; what alternative documentation is available"
         },
-        "uploads": {
+        "attachments": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/fileUpload"
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 255
+              },
+              "confirmationCode": {
+                "type": "string",
+                "description": "UUID returned by the /v0/supporting_evidence_attachments endpoint after upload"
+              },
+              "attachmentId": {
+                "type": "string",
+                "description": "Document type identifier used by VBMS/eFolder for categorization"
+              }
+            },
+            "required": ["name", "confirmationCode"]
           },
-          "maxItems": 10
+          "description": "Uploaded DD-214 or alternative documentation files; array of file upload confirmation objects"
         }
       },
       "required": ["hasDd214"]
@@ -401,48 +375,45 @@
             "casketBurial",
             "cremationWithUrn",
             "other"
-          ]
+          ],
+          "description": "Type of burial or final disposition"
         },
-        "burialAtNationalCemetery": {
-          "type": "boolean"
+        "isNationalCemetery": {
+          "type": "boolean",
+          "description": "Is the burial taking place at a national cemetery?"
         },
-        "cemeteryOrBurialPlace": {
+        "cemeteryOrPlaceOfBurial": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 100
+          "maxLength": 100,
+          "description": "Name of the cemetery or place of burial"
         },
         "burialCity": {
           "type": "string",
-          "minLength": 1,
           "maxLength": 50,
           "pattern": "^[A-Za-z\\s\\-]+$"
         },
         "burialState": {
-          "$ref": "#/definitions/usaState"
+          "$ref": "#/definitions/usStateCode"
         },
-        "burialServiceDate": {
-          "$ref": "#/definitions/date"
+        "funeralServiceDate": {
+          "$ref": "#/definitions/date",
+          "description": "Date of the funeral or burial service — may be scheduled or planned"
         }
       },
-      "required": [
-        "burialType",
-        "burialAtNationalCemetery",
-        "cemeteryOrBurialPlace",
-        "burialCity",
-        "burialState",
-        "burialServiceDate"
-      ]
+      "required": ["burialType", "isNationalCemetery", "funeralServiceDate"]
     },
     "flagDelivery": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "flagRecipientIsSameAsClaimant": {
-          "type": "boolean"
+        "recipientIsSameAsClaimant": {
+          "type": "boolean",
+          "description": "Is the flag recipient at the service the same person as the claimant?"
         },
         "flagRecipient": {
           "type": "object",
           "additionalProperties": false,
+          "description": "Conditional — required when recipientIsSameAsClaimant is false",
           "properties": {
             "firstName": {
               "type": "string",
@@ -453,7 +424,7 @@
             "middleInitial": {
               "type": "string",
               "maxLength": 1,
-              "pattern": "^[A-Za-z]?$"
+              "pattern": "^[A-Za-z]$"
             },
             "lastName": {
               "type": "string",
@@ -462,7 +433,8 @@
               "pattern": "^[A-Za-z\\s\\-']+$"
             },
             "address": {
-              "$ref": "#/definitions/address"
+              "$ref": "#/definitions/address",
+              "description": "Conditional — required for late or replacement flag requests where mailing is needed"
             }
           },
           "required": ["firstName", "lastName"]
@@ -472,34 +444,32 @@
           "enum": [
             "mailToAddress",
             "pickUpAtVaFacility"
-          ]
+          ],
+          "description": "Conditional — for replacement or late requests only"
         }
       },
-      "required": ["flagRecipientIsSameAsClaimant"]
+      "required": ["recipientIsSameAsClaimant"]
     },
     "attestation": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "certifyInformationIsAccurate": {
+        "certifyInformationAccurate": {
           "type": "boolean",
-          "enum": [true]
+          "description": "Claimant certifies that the information provided is true and correct to the best of their knowledge"
         },
         "understandFlagIssuancePolicy": {
           "type": "boolean",
-          "enum": [true]
+          "description": "Claimant understands that a burial flag is issued once per Veteran and that false statements may constitute a federal violation"
         },
         "signature": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 100
+          "maxLength": 100,
+          "description": "Typed full legal name serving as electronic signature"
         }
       },
-      "required": [
-        "certifyInformationIsAccurate",
-        "understandFlagIssuancePolicy",
-        "signature"
-      ]
+      "required": ["certifyInformationAccurate", "understandFlagIssuancePolicy", "signature"]
     }
   },
   "required": [
