@@ -1,0 +1,362 @@
+// src/schemas/22-1999b-schema.json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 22-1999b - Notice of Change in Student Status",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "ssn": {
+      "type": "string",
+      "pattern": "^\\d{9}$",
+      "minLength": 9,
+      "maxLength": 9
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^\\(?([0-9]{3})\\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+      "minLength": 10,
+      "maxLength": 14
+    },
+    "email": {
+      "type": "string",
+      "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+      "maxLength": 256
+    },
+    "facilityCode": {
+      "type": "string",
+      "pattern": "^\\d{8}$",
+      "minLength": 8,
+      "maxLength": 8
+    },
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^\\d{7,9}$",
+      "minLength": 7,
+      "maxLength": 9
+    },
+    "enrollmentType": {
+      "type": "string",
+      "enum": [
+        "fullTime",
+        "threeQuarterTime",
+        "halfTime",
+        "lessThanHalfTime"
+      ]
+    },
+    "benefitChapter": {
+      "type": "string",
+      "enum": [
+        "chapter33",
+        "chapter30",
+        "chapter35",
+        "chapter1606",
+        "chapter1607"
+      ]
+    },
+    "reasonForChange": {
+      "type": "string",
+      "enum": [
+        "studentWithdrew",
+        "studentDismissedOrDiscontinued",
+        "studentReducedCourseLoad",
+        "studentFailedToReEnroll",
+        "studentChangedProgram"
+      ]
+    }
+  },
+  "properties": {
+    "institutionInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "institutionName",
+        "facilityCode",
+        "scoName",
+        "scoPhone",
+        "scoEmail",
+        "isAuthorizedSco"
+      ],
+      "properties": {
+        "institutionName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Name of the VA-approved educational institution. Pre-filled from Enrollment Manager profile."
+        },
+        "facilityCode": {
+          "$ref": "#/definitions/facilityCode",
+          "description": "VA-assigned 8-digit facility code for the institution. Pre-filled from Enrollment Manager profile."
+        },
+        "scoName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Full name of the School Certifying Official submitting this form."
+        },
+        "scoPhone": {
+          "$ref": "#/definitions/phone",
+          "description": "Phone number where VA can reach the SCO regarding this submission."
+        },
+        "scoEmail": {
+          "$ref": "#/definitions/email",
+          "description": "Institutional email address for the SCO. VA sends submission confirmation here."
+        },
+        "isAuthorizedSco": {
+          "type": "boolean",
+          "description": "SCO confirmation that they are the designated, authorized SCO for this institution. Must be true to proceed."
+        }
+      }
+    },
+    "studentIdentification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identificationMethod",
+        "studentLastName",
+        "studentFirstName",
+        "studentSsn",
+        "studentDateOfBirth"
+      ],
+      "properties": {
+        "identificationMethod": {
+          "type": "string",
+          "enum": [
+            "roster",
+            "manual"
+          ],
+          "description": "Whether the SCO selected the student from the institution's active enrollment roster or entered student information manually."
+        },
+        "enrollmentRosterRecordId": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Opaque EMS enrollment record ID when student was selected from the roster. Used to reconstruct SSN on submission."
+        },
+        "studentFirstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "Student's first name as it appears in VA records."
+        },
+        "studentLastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "Student's last name as it appears in VA records."
+        },
+        "studentSsn": {
+          "$ref": "#/definitions/ssn",
+          "description": "Student's Social Security number (9 digits, no dashes). Used for MPI identity verification."
+        },
+        "studentDateOfBirth": {
+          "$ref": "#/definitions/date",
+          "description": "Student's date of birth in YYYY-MM-DD format. Must be a valid past date; student must be at least 16 years old."
+        },
+        "vaFileNumber": {
+          "$ref": "#/definitions/vaFileNumber",
+          "description": "VA C-file number (7–9 digits). Optional; accelerates record matching if available."
+        },
+        "mpiValidated": {
+          "type": "boolean",
+          "description": "Internal flag indicating the student's identity was successfully verified against MPI before submission."
+        }
+      }
+    },
+    "benefitChapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chapter"
+      ],
+      "properties": {
+        "chapter": {
+          "$ref": "#/definitions/benefitChapter",
+          "description": "The VA education benefit chapter under which the student was certified for this enrollment."
+        }
+      }
+    },
+    "enrollmentPeriod": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enrollmentBeginDate",
+        "enrollmentEndDate",
+        "courseName",
+        "enrollmentType"
+      ],
+      "properties": {
+        "enrollmentBeginDate": {
+          "$ref": "#/definitions/date",
+          "description": "First day of the enrollment period as originally certified. Must be on or before enrollmentEndDate."
+        },
+        "enrollmentEndDate": {
+          "$ref": "#/definitions/date",
+          "description": "Last day of the enrollment period as originally certified. Must be on or after enrollmentBeginDate; must not be more than 2 years in the future."
+        },
+        "courseName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Name of the course or program of study for this enrollment period."
+        },
+        "enrollmentType": {
+          "$ref": "#/definitions/enrollmentType",
+          "description": "Credit-hour load category certified for this student at the start of the enrollment period."
+        }
+      }
+    },
+    "changeDetails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reasonForChange",
+        "effectiveDateOfChange",
+        "lastDateOfAttendance"
+      ],
+      "properties": {
+        "reasonForChange": {
+          "$ref": "#/definitions/reasonForChange",
+          "description": "The reason describing why the student's enrollment is being reported as changed or terminated."
+        },
+        "effectiveDateOfChange": {
+          "$ref": "#/definitions/date",
+          "description": "The date on which the enrollment change became effective."
+        },
+        "lastDateOfAttendance": {
+          "$ref": "#/definitions/date",
+          "description": "The last date the student attended class. Mandatory field for all terminations."
+        },
+        "newEnrollmentLevel": {
+          "type": "string",
+          "enum": [
+            "fullTime",
+            "threeQuarterTime",
+            "halfTime",
+            "lessThanHalfTime",
+            "terminated"
+          ],
+          "description": "New enrollment level after a course load reduction. Only applicable when reasonForChange is 'studentReducedCourseLoad'."
+        },
+        "additionalExplanation": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Optional free-text explanation providing additional context about the enrollment change."
+        }
+      }
+    },
+    "militaryActivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enrollmentChangeDueToMilitaryActivation"
+      ],
+      "properties": {
+        "enrollmentChangeDueToMilitaryActivation": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ],
+          "description": "Whether the student's enrollment change was caused by an activation for military service. Affects benefit continuation eligibility under 38 U.S.C. § 3691."
+        }
+      }
+    },
+    "mitigatingCircumstances": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hasMitigatingCircumstances"
+      ],
+      "properties": {
+        "hasMitigatingCircumstances": {
+          "type": "boolean",
+          "description": "Whether the SCO is aware of documented mitigating circumstances for a student withdrawal. Only applicable when reasonForChange is 'studentWithdrew'."
+        },
+        "mitigatingCircumstanceTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "illnessOrInjury",
+              "familyEmergency",
+              "militaryActivation",
+              "naturalDisaster",
+              "other"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Types of mitigating circumstances documented for this withdrawal. Required when hasMitigatingCircumstances is true."
+        },
+        "mitigatingCircumstancesOtherDescription": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Description of mitigating circumstances when 'other' is selected in mitigatingCircumstanceTypes."
+        }
+      }
+    },
+    "gradeInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gradeType"
+      ],
+      "properties": {
+        "gradeType": {
+          "type": "string",
+          "enum": [
+            "punitiveGrade",
+            "nonPunitiveGrade",
+            "notYetAssigned",
+            "notApplicable"
+          ],
+          "description": "Classification of the grade assigned for this enrollment period. Only collected when benefit chapter is Chapter 33. Affects tuition recoupment adjudication."
+        },
+        "actualGradeAssigned": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "The actual grade value assigned by the institution (e.g., 'F', 'W', 'WD', 'I'). Optional field on the Chapter 33 grade screen."
+        }
+      }
+    },
+    "certification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "certificationStatement",
+        "certifyingOfficialName",
+        "certificationDate"
+      ],
+      "properties": {
+        "certificationStatement": {
+          "type": "boolean",
+          "description": "SCO's affirmation that the information on this form is true and correct and that the student named is no longer enrolled as stated. Must be true to submit."
+        },
+        "certifyingOfficialName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Printed name of the certifying official. Must match the authenticated account name."
+        },
+        "certificationDate": {
+          "$ref": "#/definitions/date",
+          "description": "Date the certification was signed. Defaults to today's date. Cannot be a future date."
+        }
+      }
+    }
+  },
+  "required": [
+    "institutionInformation",
+    "studentIdentification",
+    "benefitChapter",
+    "enrollmentPeriod",
+    "changeDetails",
+    "militaryActivation",
+    "certification"
+  ]
+}
