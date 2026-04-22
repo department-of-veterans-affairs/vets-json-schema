@@ -50,8 +50,7 @@ const schema = {
     },
     vaBenefitProgram: {
       type: 'string',
-      minLength: 1,
-      maxLength: 500,
+      enum: ['chapter33', 'chapter35'],
     },
 
     // PART III - LICENSING OR CERTIFICATION TEST

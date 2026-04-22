@@ -66,15 +66,8 @@ const testData = {
     ],
   },
   vaBenefitProgram: {
-    valid: [
-      'Previously applied for Chapter 33',
-      'Used Chapter 33 and Chapter 35 in the past',
-    ],
-    invalid: [
-      '',
-      null,
-      longString501,
-    ],
+    valid: ['chapter33', 'chapter35'],
+    invalid: ['', null, longString501],
   },
   vaFileNumber: {
     valid: ['796111863', '123456789'],
@@ -140,9 +133,7 @@ const testData = {
 
 describe('22-10272 schema property validations', () => {
   // Strip out cross-field logic for unit-style property tests
-  const validationHelper = new SchemaTestHelper(
-    omit(schemaClone, ['required', 'oneOf']),
-  );
+  const validationHelper = new SchemaTestHelper(omit(schemaClone, ['required', 'oneOf']));
 
   validationHelper.testValidAndInvalid('applicantName', testData.applicantName);
   validationHelper.testValidAndInvalid('organizationName', testData.organizationName);
@@ -151,33 +142,15 @@ describe('22-10272 schema property validations', () => {
   validationHelper.testValidAndInvalid('mailingAddress', testData.mailingAddress);
   validationHelper.testValidAndInvalid('vaBenefitProgram', testData.vaBenefitProgram);
   validationHelper.testValidAndInvalid('vaFileNumber', testData.vaFileNumber);
-  validationHelper.testValidAndInvalid(
-    'statementOfTruthSignature',
-    testData.statementOfTruthSignature,
-  );
+  validationHelper.testValidAndInvalid('statementOfTruthSignature', testData.statementOfTruthSignature);
   validationHelper.testValidAndInvalid('dateSigned', testData.dateSigned);
 
   validationHelper.testValidAndInvalid('prepCourseName', testData.prepCourseName);
-  validationHelper.testValidAndInvalid(
-    'prepCourseOrganizationName',
-    testData.prepCourseOrganizationName,
-  );
-  validationHelper.testValidAndInvalid(
-    'prepCourseOrganizationAddress',
-    testData.prepCourseOrganizationAddress,
-  );
-  validationHelper.testValidAndInvalid(
-    'prepCourseTakenOnline',
-    testData.prepCourseTakenOnline,
-  );
-  validationHelper.testValidAndInvalid(
-    'prepCourseStartDate',
-    testData.prepCourseStartDate,
-  );
-  validationHelper.testValidAndInvalid(
-    'prepCourseEndDate',
-    testData.prepCourseEndDate,
-  );
+  validationHelper.testValidAndInvalid('prepCourseOrganizationName', testData.prepCourseOrganizationName);
+  validationHelper.testValidAndInvalid('prepCourseOrganizationAddress', testData.prepCourseOrganizationAddress);
+  validationHelper.testValidAndInvalid('prepCourseTakenOnline', testData.prepCourseTakenOnline);
+  validationHelper.testValidAndInvalid('prepCourseStartDate', testData.prepCourseStartDate);
+  validationHelper.testValidAndInvalid('prepCourseEndDate', testData.prepCourseEndDate);
   validationHelper.testValidAndInvalid('prepCourseCost', testData.prepCourseCost);
   validationHelper.testValidAndInvalid('remarks', testData.remarks);
 });
@@ -226,7 +199,7 @@ describe('22-10272 schema cross-field validations', () => {
     const payload = {
       ...base,
       hasPreviouslyApplied: true,
-      vaBenefitProgram: 'Previously applied for Chapter 33 benefits',
+      vaBenefitProgram: 'chapter33',
     };
 
     expect(schemaTestHelper.validateSchema(payload)).to.equal(true);
