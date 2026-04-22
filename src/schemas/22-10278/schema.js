@@ -208,7 +208,7 @@ const schema = {
         securityAnswerText: {
           type: 'string',
           minLength: 1,
-          maxLength: 30,
+          maxLength: 100,
         },
         securityAnswerLocation: {
           type: 'object',
