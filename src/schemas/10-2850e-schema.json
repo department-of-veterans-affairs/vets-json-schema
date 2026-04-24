@@ -1,0 +1,873 @@
+// src/schemas/10-2850e-schema.json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 10-2850e",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "applicationType",
+    "personalInformation",
+    "contactInformation",
+    "professionalLicenses",
+    "employmentHistory",
+    "professionalReferences",
+    "adverseHistory",
+    "appointmentDetails",
+    "attestation"
+  ],
+  "properties": {
+    "applicationType": {
+      "type": "string",
+      "enum": ["initial", "reappointment", "transfer", "temporary"]
+    },
+    "occupationalCategory": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "personalInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lastName", "firstName", "dateOfBirth", "ssn"],
+      "properties": {
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[a-zA-Z\\s\\-']+$"
+        },
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[a-zA-Z\\s\\-']+$"
+        },
+        "middleName": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "suffix": {
+          "type": "string",
+          "enum": ["Jr.", "Sr.", "II", "III", "IV", "MD", "DO", "PhD", "NP", "CRNA", "RN", "DNP", ""]
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "ssn": {
+          "type": "string",
+          "pattern": "^\\d{3}-?\\d{2}-?\\d{4}$"
+        },
+        "cityOfBirth": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "stateOrCountryOfBirth": {
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
+    "contactInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["homeAddress", "primaryPhone", "professionalEmail"],
+      "properties": {
+        "homeAddress": {
+          "$ref": "#/definitions/address"
+        },
+        "mailingAddressSameAsHome": {
+          "type": "boolean"
+        },
+        "mailingAddress": {
+          "$ref": "#/definitions/address"
+        },
+        "primaryPhone": {
+          "type": "string",
+          "pattern": "^(?:\\(?[2-9]\\d{2}\\)?[-.\\s]?){1}\\d{3}[-.\\s]?\\d{4}$"
+        },
+        "alternatePhone": {
+          "type": "string",
+          "pattern": "^(?:\\(?[2-9]\\d{2}\\)?[-.\\s]?){1}\\d{3}[-.\\s]?\\d{4}$"
+        },
+        "professionalEmail": {
+          "type": "string",
+          "format": "email",
+          "minLength": 5,
+          "maxLength": 254
+        }
+      }
+    },
+    "citizenshipStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "citizenshipType": {
+          "type": "string",
+          "enum": ["us-citizen", "us-national", "lawful-permanent-resident", "work-authorized-non-immigrant", "other"]
+        },
+        "visaType": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "visaNumber": {
+          "type": "string",
+          "maxLength": 50
+        }
+      }
+    },
+    "veteranStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "isVeteran": {
+          "type": "boolean"
+        },
+        "branchOfService": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "dischargeDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "characterOfDischarge": {
+          "type": "string",
+          "enum": ["honorable", "general", "other-than-honorable", "bad-conduct", "dishonorable", "uncharacterized", ""]
+        }
+      }
+    },
+    "professionalLicenses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["licenseType", "issuingState", "licenseNumber", "issueDate", "licenseStatus"],
+        "properties": {
+          "licenseType": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "issuingState": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "licenseNumber": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+          },
+          "issueDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "expirationDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "licenseStatus": {
+            "type": "string",
+            "enum": ["active", "active-restricted", "inactive", "expired", "surrendered", "revoked", "suspended"]
+          },
+          "restrictionExplanation": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 2000
+          }
+        }
+      }
+    },
+    "boardCertifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "certifyingBoard": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "certifyingBoardOther": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "specialty": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "certificationNumber": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "initialCertificationDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "expirationDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "certificationStatus": {
+            "type": "string",
+            "enum": ["current", "pending", "lapsed", "revoked"]
+          },
+          "anticipatedCertificationDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "statusExplanation": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        }
+      }
+    },
+    "deaRegistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deaApplicable": {
+          "type": "string",
+          "enum": ["yes-current", "yes-required", "no-not-applicable"]
+        },
+        "deaNumber": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}\\d{7}$"
+        },
+        "authorizedSchedules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["II", "III", "IV", "V"]
+          },
+          "uniqueItems": true
+        },
+        "deaIssueDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "deaExpirationDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "deaState": {
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
+    "education": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "graduateDegree": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "institutionName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "degreeType": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "fieldOfStudy": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "graduationDate": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "institutionCity": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "institutionStateOrCountry": {
+              "type": "string",
+              "maxLength": 100
+            }
+          }
+        },
+        "postgraduateTraining": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "trainingType": {
+                "type": "string",
+                "enum": ["internship", "residency", "fellowship", "clinical-practicum", "other"]
+              },
+              "programName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "sponsoringInstitution": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "specialty": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "startDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "endDate": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "completionStatus": {
+                "type": "string",
+                "enum": ["completed", "in-progress", "did-not-complete"]
+              },
+              "nonCompletionExplanation": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 1000
+              }
+            }
+          }
+        }
+      }
+    },
+    "employmentHistory": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["employerName", "employerCity", "employerState", "positionTitle", "startDate"],
+        "properties": {
+          "employerName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "employerStreetAddress": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "employerCity": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "employerState": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "positionTitle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "department": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "startDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "endDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "isCurrentPosition": {
+            "type": "boolean"
+          },
+          "reasonForLeaving": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "hoursPerWeek": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 168
+          }
+        }
+      }
+    },
+    "employmentGapExplanations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gapStartDate", "gapEndDate", "explanation"],
+        "properties": {
+          "gapStartDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "gapEndDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 1000
+          }
+        }
+      }
+    },
+    "professionalReferences": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["lastName", "firstName", "professionalTitle", "institution", "phone", "email", "relationship"],
+        "properties": {
+          "lastName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "firstName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "professionalTitle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "institution": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "phone": {
+            "type": "string",
+            "pattern": "^(?:\\(?[2-9]\\d{2}\\)?[-.\\s]?){1}\\d{3}[-.\\s]?\\d{4}$"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 5,
+            "maxLength": 254
+          },
+          "relationship": {
+            "type": "string",
+            "enum": ["direct-supervisor", "peer-colleague", "department-chair", "training-program-director", "other-professional"]
+          },
+          "yearsKnown": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 60
+          }
+        }
+      }
+    },
+    "adverseHistory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adverseLicensureActions",
+        "malpracticeHistory",
+        "clinicalPrivilegesAdverse",
+        "deaRegistrationAdverse",
+        "criminalHistory",
+        "federalExclusion"
+      ],
+      "properties": {
+        "adverseLicensureActions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hasAdverseLicensureActions"],
+          "properties": {
+            "hasAdverseLicensureActions": {
+              "type": "boolean"
+            },
+            "actions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["actionType", "stateOrJurisdiction", "actionDate", "explanation"],
+                "properties": {
+                  "actionType": {
+                    "type": "string",
+                    "enum": [
+                      "denial-of-initial-application",
+                      "restriction-limitation",
+                      "probation",
+                      "suspension",
+                      "revocation",
+                      "voluntary-surrender-non-disciplinary",
+                      "voluntary-surrender-in-lieu-of-disciplinary",
+                      "other"
+                    ]
+                  },
+                  "stateOrJurisdiction": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "actionDate": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                  },
+                  "explanation": {
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 3000
+                  },
+                  "currentStatus": {
+                    "type": "string",
+                    "enum": ["resolved", "ongoing"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "malpracticeHistory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hasMalpracticeHistory"],
+          "properties": {
+            "hasMalpracticeHistory": {
+              "type": "boolean"
+            },
+            "claims": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["incidentDate", "allegationType", "outcome", "explanation"],
+                "properties": {
+                  "incidentDate": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                  },
+                  "claimFiledDate": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                  },
+                  "allegationType": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "outcome": {
+                    "type": "string",
+                    "enum": ["pending", "dismissed", "settled", "judgmentForPlaintiff", "judgmentForDefendant"]
+                  },
+                  "settlementAmount": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "explanation": {
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 3000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "clinicalPrivilegesAdverse": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hasAdversePrivilegesHistory"],
+          "properties": {
+            "hasAdversePrivilegesHistory": {
+              "type": "boolean"
+            },
+            "actionDate": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 10,
+              "maxLength": 3000
+            }
+          }
+        },
+        "deaRegistrationAdverse": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hasAdverseDeaHistory"],
+          "properties": {
+            "hasAdverseDeaHistory": {
+              "type": "boolean"
+            },
+            "actionDate": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 10,
+              "maxLength": 3000
+            }
+          }
+        },
+        "criminalHistory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hasFelonyConviction", "hasMisdemeanorConviction"],
+          "properties": {
+            "hasFelonyConviction": {
+              "type": "boolean"
+            },
+            "felonyDetails": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/criminalEvent"
+              }
+            },
+            "hasMisdemeanorConviction": {
+              "type": "boolean"
+            },
+            "misdemeanorDetails": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/criminalEvent"
+              }
+            }
+          }
+        },
+        "federalExclusion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["isCurrentlyExcluded"],
+          "properties": {
+            "isCurrentlyExcluded": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "supportingDocuments": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "licenseDocuments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/uploadedDocument"
+          }
+        },
+        "deaCertificate": {
+          "$ref": "#/definitions/uploadedDocument"
+        },
+        "boardCertificationDocuments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/uploadedDocument"
+          }
+        },
+        "malpracticeInsuranceCertificate": {
+          "$ref": "#/definitions/uploadedDocument"
+        },
+        "adverseHistoryDocuments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "document": {
+                "$ref": "#/definitions/uploadedDocument"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 500
+              }
+            }
+          }
+        },
+        "otherDocuments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "document": {
+                "$ref": "#/definitions/uploadedDocument"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 500
+              }
+            }
+          }
+        }
+      }
+    },
+    "appointmentDetails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["facilityId", "positionTitle", "appointmentType"],
+      "properties": {
+        "facilityId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "facilityName": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "positionTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "department": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "appointmentType": {
+          "type": "string",
+          "enum": ["full-time-permanent", "part-time-permanent", "temporary-full-time", "fee-basis", "without-compensation"]
+        },
+        "requestedStartDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "priorVaFacility": {
+          "type": "string",
+          "maxLength": 200
+        }
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "certifiesAccuracy",
+        "authorizesBackgroundInvestigation",
+        "authorizesReleaseOfInformation",
+        "acknowledgesNpdbQuery",
+        "electronicSignatureName",
+        "signatureDate"
+      ],
+      "properties": {
+        "certifiesAccuracy": {
+          "type": "boolean",
+          "enum": [true]
+        },
+        "authorizesBackgroundInvestigation": {
+          "type": "boolean",
+          "enum": [true]
+        },
+        "authorizesReleaseOfInformation": {
+          "type": "boolean",
+          "enum": [true]
+        },
+        "acknowledgesNpdbQuery": {
+          "type": "boolean",
+          "enum": [true]
+        },
+        "electronicSignatureName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 150
+        },
+        "signatureDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["street", "city", "state", "zipCode"],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "zipCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        }
+      }
+    },
+    "uploadedDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20971520
+        },
+        "confirmationCode": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    "criminalEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "offenseType": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "convictionDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "court": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 3000
+        }
+      }
+    }
+  }
+}
