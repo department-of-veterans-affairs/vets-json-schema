@@ -1,0 +1,716 @@
+// src/schemas/22-1999b-schema.json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 22-1999b — Notice of Change in Student Status",
+  "description": "Schema for VA Form 22-1999b enrollment change certification submitted by School Certifying Officials (SCOs). ⚠️ Field names and enums are derived from secondary research and must be validated against the official form PDF and VBA Education Service before production use.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scoInformation",
+    "schoolInformation",
+    "studentInformation",
+    "benefitProgram",
+    "originalEnrollment",
+    "enrollmentChange",
+    "enrollmentSummary",
+    "certification"
+  ],
+  "definitions": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])$"
+    },
+    "usPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$",
+      "minLength": 10,
+      "maxLength": 10
+    },
+    "email": {
+      "type": "string",
+      "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+      "minLength": 5,
+      "maxLength": 254
+    },
+    "currencyAmount": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 999999.99
+    },
+    "creditHours": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 30,
+      "multipleOf": 0.5
+    },
+    "enrollmentRate": {
+      "type": "string",
+      "enum": [
+        "fullTime",
+        "threeQuarterTime",
+        "halfTime",
+        "lessThanHalfTime"
+      ]
+    },
+    "usAddress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "addressLine1",
+        "city",
+        "state",
+        "zipCode"
+      ],
+      "properties": {
+        "addressLine1": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "addressLine2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL",
+            "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA",
+            "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV",
+            "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
+            "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "VI",
+            "WA", "WV", "WI", "WY"
+          ]
+        },
+        "zipCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(?:-\\d{4})?$"
+        }
+      }
+    },
+    "documentGuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "UUID v4 assigned to an uploaded supporting document stored in S3 temp bucket"
+    }
+  },
+  "properties": {
+    "scoInformation": {
+      "type": "object",
+      "title": "School Certifying Official Information",
+      "description": "Identity and contact information for the SCO submitting this form",
+      "additionalProperties": false,
+      "required": [
+        "scoFirstName",
+        "scoLastName",
+        "scoTitle",
+        "scoPhone",
+        "scoEmail"
+      ],
+      "properties": {
+        "scoFirstName": {
+          "type": "string",
+          "title": "SCO first name",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "scoMiddleInitial": {
+          "type": "string",
+          "title": "SCO middle initial",
+          "pattern": "^[A-Za-z]$",
+          "maxLength": 1
+        },
+        "scoLastName": {
+          "type": "string",
+          "title": "SCO last name",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "scoTitle": {
+          "type": "string",
+          "title": "SCO title or role",
+          "description": "Official title of the certifying official at the institution",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "scoPhone": {
+          "$ref": "#/definitions/usPhone",
+          "title": "SCO daytime phone number"
+        },
+        "scoEmail": {
+          "$ref": "#/definitions/email",
+          "title": "SCO email address"
+        }
+      }
+    },
+    "schoolInformation": {
+      "type": "object",
+      "title": "School Information",
+      "description": "VA-approved institution details",
+      "additionalProperties": false,
+      "required": [
+        "institutionName",
+        "vaFacilityCode",
+        "address"
+      ],
+      "properties": {
+        "institutionName": {
+          "type": "string",
+          "title": "Institution name",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "vaFacilityCode": {
+          "type": "string",
+          "title": "VA facility code",
+          "description": "8-digit VA facility code assigned to the school. Pattern: exactly 8 numeric digits.",
+          "pattern": "^\\d{8}$",
+          "minLength": 8,
+          "maxLength": 8
+        },
+        "address": {
+          "$ref": "#/definitions/usAddress",
+          "title": "School address"
+        },
+        "isBranchCampus": {
+          "type": "boolean",
+          "title": "Is this a branch campus?",
+          "description": "Indicates whether the facility code is for a branch campus rather than the main campus"
+        }
+      }
+    },
+    "studentInformation": {
+      "type": "object",
+      "title": "Student Information",
+      "description": "Identifying information for the student Veteran whose enrollment status is changing",
+      "additionalProperties": false,
+      "required": [
+        "studentFirstName",
+        "studentLastName",
+        "studentDob"
+      ],
+      "properties": {
+        "studentFirstName": {
+          "type": "string",
+          "title": "Student first name",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "studentMiddleInitial": {
+          "type": "string",
+          "title": "Student middle initial",
+          "pattern": "^[A-Za-z]$",
+          "maxLength": 1
+        },
+        "studentLastName": {
+          "type": "string",
+          "title": "Student last name",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "studentDob": {
+          "$ref": "#/definitions/date",
+          "title": "Student date of birth",
+          "description": "Format: YYYY-MM-DD. Must be in the past. Student must be at least 15 years old."
+        },
+        "vaFileNumber": {
+          "type": "string",
+          "title": "Student VA file number (C-file number)",
+          "description": "7–9 digit VA claim file number. ⚠️ Confirm exact format and length range with VBA/VBMS.",
+          "pattern": "^\\d{7,9}$",
+          "minLength": 7,
+          "maxLength": 9
+        },
+        "studentSsnLastFour": {
+          "type": "string",
+          "title": "Student Social Security Number — last 4 digits",
+          "description": "Last 4 digits of student's SSN. ⚠️ Confirm whether full SSN or last-4 is required per current form PDF. Current schema assumes last-4 per VA PII minimization standards.",
+          "pattern": "^\\d{4}$",
+          "minLength": 4,
+          "maxLength": 4
+        },
+        "studentEmail": {
+          "$ref": "#/definitions/email",
+          "title": "Student email address",
+          "description": "Optional. Used to send VANotify benefit-impact notification to student Veteran."
+        },
+        "studentPreferredContactMethod": {
+          "type": "string",
+          "title": "Student preferred VA notification method",
+          "description": "How the student prefers to receive VA notifications about benefit changes. ⚠️ Confirm available options with VANotify integration team.",
+          "enum": [
+            "email",
+            "mail"
+          ]
+        }
+      }
+    },
+    "benefitProgram": {
+      "type": "object",
+      "title": "Benefit Program",
+      "description": "GI Bill chapter the student is enrolled under",
+      "additionalProperties": false,
+      "required": [
+        "benefitChapter"
+      ],
+      "properties": {
+        "benefitChapter": {
+          "type": "string",
+          "title": "GI Bill benefit chapter",
+          "description": "The VA education benefit chapter the student is using for this enrollment period. ⚠️ Confirm complete chapter list with VBA Education Service. Chapter 31 VR&E is excluded per architecture intent.",
+          "enum": [
+            "chapter33",
+            "chapter30",
+            "chapter1606",
+            "chapter35",
+            "chapter32",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "originalEnrollment": {
+      "type": "object",
+      "title": "Original Enrollment Information",
+      "description": "Enrollment data as certified on the original VA Form 22-1999 — the baseline before this change",
+      "additionalProperties": false,
+      "required": [
+        "enrollmentStartDate",
+        "enrollmentEndDate",
+        "originalCreditHours",
+        "originalEnrollmentRate"
+      ],
+      "properties": {
+        "enrollmentStartDate": {
+          "$ref": "#/definitions/date",
+          "title": "Enrollment start date",
+          "description": "First day of the enrollment period as certified on the original VA Form 22-1999. Must not be in the future."
+        },
+        "enrollmentEndDate": {
+          "$ref": "#/definitions/date",
+          "title": "Enrollment end date",
+          "description": "Expected last day of the enrollment period (term end date) as certified on the original VA Form 22-1999. Must be after enrollmentStartDate."
+        },
+        "originalCreditHours": {
+          "$ref": "#/definitions/creditHours",
+          "title": "Credit hours on original 22-1999",
+          "description": "Total credit hours certified on the original enrollment certification. Minimum 1 for an active enrollment. ⚠️ Confirm maximum with VBA (some institutions allow overloads above 30).",
+          "minimum": 1
+        },
+        "originalEnrollmentRate": {
+          "$ref": "#/definitions/enrollmentRate",
+          "title": "Enrollment rate on original 22-1999"
+        },
+        "originalTuitionAndFees": {
+          "$ref": "#/definitions/currencyAmount",
+          "title": "Tuition and mandatory fees on original 22-1999",
+          "description": "Total tuition and mandatory fees amount as certified on the original VA Form 22-1999. Required for Chapter 33 enrollments when tuition or fees are also changing. Do not include room, board, or optional fees. ⚠️ Conditionally required — present only when benefitChapter = chapter33."
+        }
+      }
+    },
+    "enrollmentChange": {
+      "type": "object",
+      "title": "Enrollment Change Details",
+      "description": "Details of the enrollment change being reported",
+      "additionalProperties": false,
+      "required": [
+        "changeType"
+      ],
+      "properties": {
+        "changeType": {
+          "type": "string",
+          "title": "Type of enrollment change",
+          "description": "The primary reason for and nature of the enrollment change. Drives conditional routing to subsequent detail pages. ⚠️ Verify full option list against actual form PDF — these values are based on secondary research.",
+          "enum": [
+            "completeWithdrawal",
+            "courseWithdrawal",
+            "creditHourReduction",
+            "tuitionFeeAdjustment",
+            "nonPunitiveGrade",
+            "leaveOfAbsence",
+            "stoppedAttending",
+            "academicSuspension"
+          ]
+        },
+        "lastDateOfAttendance": {
+          "$ref": "#/definitions/date",
+          "title": "Last date of attendance (LDA)",
+          "description": "The last date the student actually attended class or participated in an academically related activity. NOT the official withdrawal date. Required when changeType is completeWithdrawal, courseWithdrawal, nonPunitiveGrade, stoppedAttending, or academicSuspension. Must not be before enrollmentStartDate and must not be in the future. ⚠️ Confirm LDA requirement for nonPunitiveGrade with VBA Education Service."
+        },
+        "withdrawalType": {
+          "type": "string",
+          "title": "Withdrawal type",
+          "description": "Distinguishes complete withdrawal from partial course withdrawal. Required when changeType is completeWithdrawal or courseWithdrawal.",
+          "enum": [
+            "completeWithdrawalAllCourses",
+            "partialCourseWithdrawal"
+          ]
+        },
+        "coursesWithdrawn": {
+          "type": "string",
+          "title": "Courses withdrawn from",
+          "description": "For each course withdrawn, include course name, course number, and credit hours. One course per line. Required for courseWithdrawal; optional for completeWithdrawal if original 22-1999 fully documents courses.",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "gradeType": {
+          "type": "string",
+          "title": "Grade type received for withdrawn course(s)",
+          "description": "The grade type determines whether VA will seek repayment of benefits. Required for completeWithdrawal, courseWithdrawal, and stoppedAttending. ⚠️ Confirm enum values against VBA policy — 'notYetAssigned' handling needs VBA guidance.",
+          "enum": [
+            "punitive",
+            "nonPunitive",
+            "notYetAssigned"
+          ]
+        },
+        "tuitionAlsoChanged": {
+          "type": "boolean",
+          "title": "Did tuition or mandatory fees also change?",
+          "description": "Indicates whether a credit hour or enrollment change also resulted in a change to tuition or mandatory fees. Triggers display of tuition/fee adjustment section when true. Primarily applicable to Chapter 33."
+        }
+      }
+    },
+    "withdrawalDetails": {
+      "type": "object",
+      "title": "Withdrawal Details",
+      "description": "Additional detail for withdrawal-type enrollment changes. Present only when changeType is completeWithdrawal, courseWithdrawal, stoppedAttending, academicSuspension, or nonPunitiveGrade.",
+      "additionalProperties": false,
+      "properties": {
+        "lastDateOfAttendance": {
+          "$ref": "#/definitions/date",
+          "title": "Last date of attendance (LDA)",
+          "description": "Duplicate of enrollmentChange.lastDateOfAttendance. Stored here when captured on the dedicated withdrawal details page. ⚠️ Resolve duplication: either store only in enrollmentChange or only here in final schema implementation."
+        },
+        "withdrawalType": {
+          "type": "string",
+          "title": "Withdrawal type",
+          "enum": [
+            "completeWithdrawalAllCourses",
+            "partialCourseWithdrawal"
+          ]
+        },
+        "coursesWithdrawn": {
+          "type": "string",
+          "title": "Courses withdrawn from",
+          "description": "Course name, number, and credit hours for each withdrawn course. One course per line.",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "gradeType": {
+          "type": "string",
+          "title": "Grade type received for withdrawn course(s)",
+          "enum": [
+            "punitive",
+            "nonPunitive",
+            "notYetAssigned"
+          ]
+        }
+      }
+    },
+    "creditHourReduction": {
+      "type": "object",
+      "title": "Credit Hour Reduction Details",
+      "description": "Details of the credit hour reduction. Present only when changeType is courseWithdrawal or creditHourReduction.",
+      "additionalProperties": false,
+      "required": [
+        "newCreditHours",
+        "newEnrollmentRate",
+        "effectiveDateOfChange"
+      ],
+      "properties": {
+        "newCreditHours": {
+          "$ref": "#/definitions/creditHours",
+          "title": "Total credit hours after reduction",
+          "description": "New total credit hours the student will carry after the reduction. Must be strictly less than originalEnrollment.originalCreditHours. May be 0 for complete withdrawal resolved through this path."
+        },
+        "newEnrollmentRate": {
+          "type": "string",
+          "title": "Enrollment rate after credit hour reduction",
+          "description": "New enrollment rate based on reduced credit hours. Drives housing allowance advisory for Chapter 33.",
+          "enum": [
+            "fullTime",
+            "threeQuarterTime",
+            "halfTime",
+            "lessThanHalfTime",
+            "notEnrolled"
+          ]
+        },
+        "effectiveDateOfChange": {
+          "$ref": "#/definitions/date",
+          "title": "Effective date of credit hour change",
+          "description": "Date the credit hour reduction takes effect. Must be on or after enrollmentStartDate and must not be in the future. ⚠️ Confirm with VBA whether retroactive effective dates are permitted."
+        }
+      }
+    },
+    "tuitionFeeChange": {
+      "type": "object",
+      "title": "Tuition and Fee Adjustment",
+      "description": "Revised tuition and fee information. Present when changeType is tuitionFeeAdjustment, or when a credit hour change also results in a tuition/fee change (especially Chapter 33).",
+      "additionalProperties": false,
+      "required": [
+        "revisedTuition",
+        "effectiveDateOfTuitionChange"
+      ],
+      "properties": {
+        "revisedTuition": {
+          "$ref": "#/definitions/currencyAmount",
+          "title": "Revised tuition amount",
+          "description": "Corrected or updated tuition amount for this enrollment period in U.S. dollars. Do not include room, board, or non-mandatory fees."
+        },
+        "revisedMandatoryFees": {
+          "$ref": "#/definitions/currencyAmount",
+          "title": "Revised mandatory fees amount",
+          "description": "Updated mandatory fees amount in U.S. dollars. Do not include optional or non-mandatory fees."
+        },
+        "effectiveDateOfTuitionChange": {
+          "$ref": "#/definitions/date",
+          "title": "Effective date of tuition/fee change",
+          "description": "Date the revised tuition or fee amount takes effect."
+        },
+        "reasonForTuitionChange": {
+          "type": "string",
+          "title": "Reason for tuition/fee change",
+          "description": "Primary reason the tuition or mandatory fees changed. ⚠️ Confirm option list with VBA Education Service.",
+          "enum": [
+            "courseDropReducedCost",
+            "institutionalFeeCorrection",
+            "scholarshipAdjustment",
+            "other"
+          ]
+        },
+        "tuitionChangeReasonExplanation": {
+          "type": "string",
+          "title": "Explanation for 'other' tuition change reason",
+          "description": "Required when reasonForTuitionChange is 'other'. Plain-language explanation.",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      }
+    },
+    "nonPunitiveGrade": {
+      "type": "object",
+      "title": "Non-Punitive Grade Details",
+      "description": "Course-specific details for non-punitive grade reporting. Present only when gradeType is nonPunitive or changeType is nonPunitiveGrade.",
+      "additionalProperties": false,
+      "required": [
+        "coursesWithNonPunitiveGrade",
+        "gradeEffectiveDate"
+      ],
+      "properties": {
+        "coursesWithNonPunitiveGrade": {
+          "type": "string",
+          "title": "Course(s) receiving non-punitive grade",
+          "description": "Course name, course number, and credit hours for each course receiving a non-punitive grade (W, WP, WF, Incomplete, Audit). One course per line.",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "gradeEffectiveDate": {
+          "$ref": "#/definitions/date",
+          "title": "Date non-punitive grade was assigned",
+          "description": "The date the non-punitive grade was assigned or became effective on the academic record."
+        },
+        "studentWillReEnroll": {
+          "type": "string",
+          "title": "Will student re-enroll in this course next term?",
+          "description": "Indicates whether the student plans to repeat the course.",
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "leaveOfAbsence": {
+      "type": "object",
+      "title": "Leave of Absence Details",
+      "description": "Leave period and institutional authorization details. Present only when changeType is leaveOfAbsence.",
+      "additionalProperties": false,
+      "required": [
+        "leaveStartDate",
+        "institutionApprovedLeave",
+        "leaveReason"
+      ],
+      "properties": {
+        "leaveStartDate": {
+          "$ref": "#/definitions/date",
+          "title": "Leave of absence start date",
+          "description": "First day of the approved leave of absence. Must be on or after enrollmentStartDate."
+        },
+        "expectedReturnDate": {
+          "$ref": "#/definitions/date",
+          "title": "Expected return date",
+          "description": "Date the student is expected to return from leave. Optional — enter best estimate or omit if unknown. Must be after leaveStartDate if provided. ⚠️ Confirm return date future-dating rules with VBA."
+        },
+        "institutionApprovedLeave": {
+          "type": "boolean",
+          "title": "Is leave of absence approved by the institution?",
+          "description": "Indicates whether the institution has formally approved the leave of absence."
+        },
+        "leaveReason": {
+          "type": "string",
+          "title": "Reason for leave of absence",
+          "description": "Primary reason the student is taking a leave of absence. ⚠️ Confirm option list with VBA Education Service.",
+          "enum": [
+            "medical",
+            "militaryActivation",
+            "personal",
+            "other"
+          ]
+        },
+        "leaveReasonExplanation": {
+          "type": "string",
+          "title": "Explanation for 'other' leave reason",
+          "description": "Required when leaveReason is 'other'.",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      }
+    },
+    "mitigatingCircumstances": {
+      "type": "object",
+      "title": "Mitigating Circumstances",
+      "description": "Mitigating circumstances documentation. Present when changeType is completeWithdrawal, courseWithdrawal, nonPunitiveGrade, leaveOfAbsence, stoppedAttending, or academicSuspension — and gradeType is not punitive.",
+      "additionalProperties": false,
+      "required": [
+        "hasMitigatingCircumstances"
+      ],
+      "properties": {
+        "hasMitigatingCircumstances": {
+          "type": "boolean",
+          "title": "Does the student have mitigating circumstances to report?",
+          "description": "Indicates whether the student claims mitigating circumstances for VA to consider in reviewing any potential overpayment."
+        },
+        "circumstanceTypes": {
+          "type": "array",
+          "title": "Types of mitigating circumstances",
+          "description": "One or more mitigating circumstance categories that apply. Required when hasMitigatingCircumstances is true. ⚠️ Verify list against 38 CFR § 21.4135.",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "seriousIllnessStudent",
+              "seriousIllnessFamilyMember",
+              "militaryDeploymentOrActivation",
+              "unavoidableEmploymentConflict",
+              "deathImmediateFamilyMember",
+              "other"
+            ]
+          }
+        },
+        "circumstanceDescription": {
+          "type": "string",
+          "title": "Description of mitigating circumstances",
+          "description": "Brief description of the circumstances, including relevant dates. Required when hasMitigatingCircumstances is true. Minimum 20 characters to ensure sufficient detail.",
+          "minLength": 20,
+          "maxLength": 2000
+        },
+        "documentGuids": {
+          "type": "array",
+          "title": "Supporting document GUIDs",
+          "description": "UUIDs of documents uploaded to S3 temp storage via the document upload endpoint. Each GUID references a file already uploaded. Server validates GUIDs exist in S3 for this session before submission.",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/documentGuid"
+          }
+        }
+      }
+    },
+    "enrollmentSummary": {
+      "type": "object",
+      "title": "Updated Enrollment Summary",
+      "description": "Student's new enrollment status after the reported change — the 'after' picture",
+      "additionalProperties": false,
+      "required": [
+        "totalCreditHoursAfterChange",
+        "enrollmentStatusAfterChange"
+      ],
+      "properties": {
+        "totalCreditHoursAfterChange": {
+          "$ref": "#/definitions/creditHours",
+          "title": "Total credit hours after change",
+          "description": "Total credit hours the student is enrolled in after the enrollment change takes effect. Must be 0 for complete withdrawal."
+        },
+        "enrollmentStatusAfterChange": {
+          "type": "string",
+          "title": "Enrollment status after change",
+          "description": "Student's enrollment status after the reported change. Used by VA to calculate the correct benefit adjustment.",
+          "enum": [
+            "fullTime",
+            "threeQuarterTime",
+            "halfTime",
+            "lessThanHalfTime",
+            "notEnrolled"
+          ]
+        },
+        "effectiveDateOfNewStatus": {
+          "$ref": "#/definitions/date",
+          "title": "Effective date of new enrollment status",
+          "description": "Date the new enrollment status takes effect. Required if different from the effective date already entered in change details sections."
+        },
+        "expectedToReEnroll": {
+          "type": "string",
+          "title": "Is student expected to resume enrollment next term?",
+          "description": "Indicates whether the student is expected to re-enroll in a future term. Informational — does not constitute a new enrollment certification.",
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "certification": {
+      "type": "object",
+      "title": "SCO Certification and Attestation",
+      "description": "Electronic certification by the School Certifying Official attesting to the accuracy of the submission. ⚠️ OGC confirmation required that electronic attestation is legally sufficient for SCO certification purposes (Open Question #20 from Product Outline).",
+      "additionalProperties": false,
+      "required": [
+        "certifiedByName",
+        "certifiedByTitle",
+        "certificationConfirmed",
+        "certificationTimestamp"
+      ],
+      "properties": {
+        "certifiedByName": {
+          "type": "string",
+          "title": "SCO printed name at time of certification",
+          "description": "Full name of the School Certifying Official as entered at the certification step. Must match scoFirstName + scoLastName.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "certifiedByTitle": {
+          "type": "string",
+          "title": "SCO title at time of certification",
+          "description": "Official title of the certifying official, as entered at the certification step.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "certificationConfirmed": {
+          "type": "boolean",
+          "title": "SCO certification checkbox confirmed",
+          "description": "Must be true for a valid submission. The SCO certifies under penalty of law that all information is accurate and they are authorized to submit. Server validates this is true — false submissions are rejected.",
+          "enum": [true]
+        },
+        "certificationTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Certification timestamp",
+          "description": "ISO 8601 date-time when the SCO checked the certification checkbox and submitted the form. Generated server-side and validated against submission time to prevent replay."
+        },
+        "statutoyCertificationAgreed": {
+          "type": "boolean",
+          "title": "Statutory certification agreed",
+          "description": "Confirms the SCO acknowledged the 18 U.S.C. § 1001 and 38 U.S.C. § 3693 penalty warning displayed on the certification screen. ⚠️ Confirm exact statutory citations with OGC before production.",
+          "enum": [true]
+        }
+      }
+    }
+  }
+}
