@@ -1,0 +1,405 @@
+// src/schemas/10-5345-schema.json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "VA Form 10-5345 — Request for and Authorization to Release Health Information",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "submitterType",
+    "veteranFullName",
+    "veteranDateOfBirth",
+    "veteranAddress",
+    "veteranPhone",
+    "outsideProvider",
+    "recordTypes",
+    "purposeOfRelease",
+    "expirationOption",
+    "certifyAccuracy",
+    "electronicSignature",
+    "signatureDate"
+  ],
+  "properties": {
+
+    "submitterType": {
+      "type": "string",
+      "enum": ["veteran", "representative"]
+    },
+
+    "veteranFullName": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["first", "last"],
+      "properties": {
+        "first": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middle": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "last": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "suffix": {
+          "type": "string",
+          "enum": ["Jr.", "Sr.", "II", "III", "IV", "V", ""]
+        }
+      }
+    },
+
+    "veteranDateOfBirth": {
+      "type": "string",
+      "format": "date"
+    },
+
+    "veteranSsn": {
+      "type": "string",
+      "pattern": "^\\d{9}$"
+    },
+
+    "vaFileNumber": {
+      "type": "string",
+      "pattern": "^\\d{7,9}$"
+    },
+
+    "veteranAddress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["street", "city", "state", "postalCode"],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC",
+            "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
+            "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
+            "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+            "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT",
+            "VT", "VA", "WA", "WV", "WI", "WY",
+            "PR", "GU", "VI", "AS", "MP",
+            "AA", "AE", "AP"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 50,
+          "default": "USA"
+        }
+      }
+    },
+
+    "veteranPhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+
+    "veteranMobilePhone": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+
+    "veteranEmail": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 256
+    },
+
+    "veteranAddressConfirmed": {
+      "type": "boolean"
+    },
+
+    "representative": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "vso",
+            "attorney",
+            "claimsAgent",
+            "legalGuardian",
+            "fiduciary",
+            "survivingSpouse",
+            "nextOfKin",
+            "other"
+          ]
+        },
+        "poaReference": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^\\d{10}$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 256
+        },
+        "authorityOnFile": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "outsideProvider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nameOrFacility", "street", "city", "state", "postalCode"],
+      "properties": {
+        "nameOrFacility": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "street2": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC",
+            "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
+            "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
+            "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+            "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT",
+            "VT", "VA", "WA", "WV", "WI", "WY",
+            "PR", "GU", "VI", "AS", "MP",
+            "AA", "AE", "AP"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^\\d{10}$"
+        },
+        "fax": {
+          "type": "string",
+          "pattern": "^\\d{10}$"
+        }
+      }
+    },
+
+    "recordTypes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "healthSummary",
+          "patientMedicalRecords",
+          "inpatientDischargeSummary",
+          "progressNotes",
+          "specificClinics",
+          "specificProviders",
+          "operativeProcedures",
+          "labResults",
+          "specificTests",
+          "radiologyReports",
+          "activeMedications",
+          "vaccination",
+          "administrativeRecords",
+          "substanceUse",
+          "hivAids",
+          "sickleCellAnemia",
+          "other"
+        ]
+      }
+    },
+
+    "recordDateRangeFrom": {
+      "type": "string",
+      "format": "date"
+    },
+
+    "recordDateRangeTo": {
+      "type": "string",
+      "format": "date"
+    },
+
+    "allAvailableRecords": {
+      "type": "boolean"
+    },
+
+    "recordsDescription": {
+      "type": "string",
+      "maxLength": 500
+    },
+
+    "purposeOfRelease": {
+      "type": "string",
+      "enum": [
+        "treatment",
+        "benefits",
+        "legal",
+        "employment",
+        "disabilityCompensationClaim",
+        "cpExamination",
+        "vaMedicalCare",
+        "communityCare",
+        "other"
+      ]
+    },
+
+    "purposeOther": {
+      "type": "string",
+      "maxLength": 500
+    },
+
+    "expirationOption": {
+      "type": "string",
+      "enum": [
+        "oneTimeDisclosure",
+        "specificDate",
+        "specificCondition",
+        "oneYear"
+      ]
+    },
+
+    "expirationDate": {
+      "type": "string",
+      "format": "date"
+    },
+
+    "expirationCondition": {
+      "type": "string",
+      "maxLength": 500
+    },
+
+    "authorizationAcknowledgments": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "acknowledgesRightToRevoke": {
+          "type": "boolean"
+        },
+        "acknowledgesExpirationTerms": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "sensitiveCategories": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "drugAbuse": {
+          "type": "boolean"
+        },
+        "alcoholism": {
+          "type": "boolean"
+        },
+        "sickleCellAnemia": {
+          "type": "boolean"
+        },
+        "hiv": {
+          "type": "boolean"
+        },
+        "doNotReleaseSensitiveForTreatment": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "additionalAuthorizationCategories": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "substanceUseTreatment",
+          "hivAidsDiagnosisTreatment",
+          "otherFederallyProtected"
+        ]
+      }
+    },
+
+    "additionalAuthorizationDescription": {
+      "type": "string",
+      "maxLength": 500
+    },
+
+    "enhancedAuthorizationConsent": {
+      "type": "boolean"
+    },
+
+    "certifyAccuracy": {
+      "type": "boolean",
+      "enum": [true]
+    },
+
+    "electronicSignature": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+
+    "signatureDate": {
+      "type": "string",
+      "format": "date"
+    },
+
+    "legalRepresentativeSignature": {
+      "type": "string",
+      "maxLength": 100
+    },
+
+    "legalRepresentativeSignatureDate": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}
